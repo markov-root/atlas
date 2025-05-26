@@ -1,0 +1,56 @@
+/* src/components/Courses/CoursesList.module.css */
+
+.coursesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.emptyState {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: var(--ifm-color-emphasis-100);
+  border-radius: 10px;
+  border: 1px dashed var(--ifm-color-emphasis-300);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.emptyIcon {
+  color: var(--ifm-color-emphasis-500);
+  margin-bottom: 1.5rem;
+}
+
+.emptyTitle {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.emptyText {
+  font-size: 1rem;
+  color: var(--ifm-color-emphasis-600);
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .coursesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .coursesGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .emptyState {
+    padding: 3rem 1.5rem;
+  }
+}

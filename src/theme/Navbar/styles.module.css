@@ -1,0 +1,94 @@
+/* src/theme/Navbar/styles.module.css */
+
+.navbarContainer {
+  position: relative;
+}
+
+.settingsButton {
+  /* Style as a navbar item */
+  background: transparent;
+  border: none;
+  color: var(--atlas-text-secondary, #6c757d);
+  cursor: pointer;
+  padding: var(--ifm-navbar-item-padding-vertical) var(--ifm-navbar-item-padding-horizontal);
+  border-radius: var(--ifm-button-border-radius);
+  transition: all 0.2s ease;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Match navbar link styling */
+  text-decoration: none;
+  font-weight: var(--ifm-font-weight-normal);
+}
+
+.settingsButton:hover {
+  background: rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.1);
+  color: var(--atlas-primary, #1971c2);
+}
+
+.settingsButton:focus {
+  outline: 2px solid var(--atlas-primary, #1971c2);
+  outline-offset: 2px;
+}
+
+/* Style the SVG icon */
+.settingsButton img {
+  filter: none;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.settingsButton:hover img {
+  opacity: 1;
+  /* Apply primary color filter on hover */
+  filter: brightness(0) saturate(100%) invert(27%) sepia(94%) saturate(1167%) hue-rotate(201deg) brightness(96%) contrast(94%);
+}
+
+/* Dropdown container - positioned fixed to follow navbar */
+.dropdownContainer {
+  position: fixed;
+  top: var(--ifm-navbar-height, 60px);
+  right: 1rem;
+  z-index: 9999;
+}
+
+/* Dark mode styles */
+[data-theme='dark'] .settingsButton {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .settingsButton:hover {
+  background: rgba(var(--atlas-primary-rgb, 51, 154, 240), 0.15);
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .settingsButton:focus {
+  outline-color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .settingsButton img {
+  /* Invert for dark mode */
+  filter: invert(1);
+  opacity: 0.7;
+}
+
+[data-theme='dark'] .settingsButton:hover img {
+  opacity: 1;
+  /* Apply primary color filter for dark mode */
+  filter: invert(1) brightness(0) saturate(100%) invert(67%) sepia(32%) saturate(1715%) hue-rotate(191deg) brightness(101%) contrast(94%);
+}
+
+/* Responsive positioning */
+@media (max-width: 768px) {
+  .dropdownContainer {
+    right: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dropdownContainer {
+    right: 0.5rem;
+  }
+}

@@ -1,0 +1,50 @@
+/* src/components/Homepage/Features.module.css */
+.features {
+  padding: 4rem 0;
+  background-color: #ffffff;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.featureCard {
+  background-color: #f5f7fa;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.featureTitle {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.featureDescription {
+  margin-bottom: 2rem;
+  color: #4b5563;
+}
+
+.featureButton {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #2e8555;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.featureButton:hover {
+  background-color: #277148;
+}
+
+@media (max-width: 768px) {
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "ongoing": [
+    {
+      "id": "1",
+      "name": "AI Safety Fundamentals",
+      "organization": "ML4Good",
+      "type": "Organized AI Safety Group",
+      "startDate": "2025-01-15",
+      "endDate": "2025-05-30",
+      "students": 60,
+      "logo": "/img/courses/ml4g/ml4g_logo.png",
+      "location": "Online",
+      "format": "Weekly Zoom Meetings",
+      "description": "A comprehensive introduction to AI safety concepts and alignment research. This course covers core alignment theory, AI governance, and technical safety approaches.",
+      "curriculum": [
+        "Introduction to AI safety",
+        "Alignment theory fundamentals",
+        "Agent foundations",
+        "Interpretability approaches",
+        "Reinforcement learning from human feedback",
+        "AI governance considerations",
+        "Technical safety research directions"
+      ],
+      "registrationInfo": "Registration for the current cohort is closed. The next cohort will begin in September 2025.",
+      "contactEmail": "contact@ml4good.org"
+    },
+    {
+      "id": "2",
+      "name": "Technical AI Safety Research",
+      "organization": "University of British Columbia",
+      "type": "University Course",
+      "startDate": "2025-02-01",
+      "endDate": "2025-06-15",
+      "students": 25,
+      "logo": "/img/courses/ubc_vancouver/ubc_vancouver_logo.png",
+      "location": "Vancouver, BC (Hybrid)",
+      "format": "Lectures & Project-Based Learning",
+      "description": "An advanced course on technical AI safety research. Students will learn about current research directions in AI alignment and work on practical projects implementing safety techniques.",
+      "curriculum": [
+        "Advanced alignment theory",
+        "Robustness in deep learning",
+        "Interpretability methods",
+        "Scalable oversight",
+        "Value learning",
+        "Safe exploration in RL",
+        "Research project"
+      ],
+      "registrationInfo": "Open to UBC graduate students in Computer Science, Electrical Engineering, and related fields.",
+      "registrationLink": "https://cs.ubc.ca/courses/ai-safety",
+      "contactEmail": "aisafety@cs.ubc.ca"
+    },
+    {
+      "id": "3",
+      "name": "AI Alignment Reading Group",
+      "organization": "London Alignment Community",
+      "type": "Independent Reading Group",
+      "startDate": "2025-03-10",
+      "endDate": "2025-07-20",
+      "students": 15,
+      "location": "London, UK",
+      "format": "Bi-weekly In-Person Discussions",
+      "description": "A community-led reading group focused on AI alignment research papers and concepts. We discuss recent advances in AI safety research and their implications.",
+      "curriculum": [
+        "Embedded agency",
+        "Power-seeking behavior",
+        "Interpretability techniques",
+        "Coordination and governance",
+        "Mechanistic anomaly detection",
+        "AI ethics and values alignment"
+      ],
+      "registrationInfo": "Open to anyone interested in AI safety. We meet every other Tuesday at the London EA Hub.",
+      "contactEmail": "london.alignment@example.com"
+    }
+  ],
+  "upcoming": [
+    {
+      "id": "4",
+      "name": "AI Safety Summer School",
+      "organization": "École Normale Supérieure",
+      "type": "University Course",
+      "startDate": "2025-07-01",
+      "endDate": "2025-07-28",
+      "students": 40,
+      "logo": "/img/courses/ens_paris/ens_paris_logo.jpg",
+      "location": "Paris, France",
+      "format": "Intensive Summer Program",
+      "description": "A month-long intensive summer school focused on AI safety and alignment. Students will learn from leading researchers and work on collaborative projects.",
+      "curriculum": [
+        "Foundations of AI safety",
+        "Technical alignment approaches",
+        "Value learning and preference inference",
+        "AI governance and policy",
+        "Group projects",
+        "Research presentations"
+      ],
+      "registrationInfo": "Applications open March 15, 2025. Open to international students with backgrounds in computer science, mathematics, or philosophy.",
+      "registrationLink": "https://ens.fr/ai-safety-summer",
+      "contactEmail": "summer-school@ens.fr"
+    },
+    {
+      "id": "5",
+      "name": "Applied AI Safety",
+      "organization": "AI Safety Collaborative",
+      "type": "Organized AI Safety Group",
+      "startDate": "2025-09-05",
+      "endDate": "2025-12-15",
+      "students": 30,
+      "logo": "/img/courses/ai_safety_collab/ai_safety_collab_06_24.jpg",
+      "location": "Online",
+      "format": "Weekly Workshops & Projects",
+      "description": "A hands-on course focusing on practical implementation of AI safety techniques. Participants will learn to implement safety methods in modern ML systems.",
+      "curriculum": [
+        "Safety in deep learning systems",
+        "Implementing RLHF",
+        "Building interpretability tools",
+        "Evaluating alignment",
+        "Red-teaming exercises",
+        "Final capstone project"
+      ],
+      "registrationInfo": "Applications open June 2025. Participants should have prior experience with machine learning and programming.",
+      "registrationLink": "https://aisafetycollaborative.org/applied-course",
+      "contactEmail": "applied@aisafetycollaborative.org"
+    },
+    {
+      "id": "6",
+      "name": "Governance & AI Safety",
+      "organization": "Cambridge Centre for AI Safety",
+      "type": "University Course",
+      "startDate": "2025-10-10",
+      "endDate": "2026-03-20",
+      "students": 35,
+      "location": "Cambridge, UK (Online Options Available)",
+      "format": "Lectures & Seminars",
+      "description": "An interdisciplinary course examining the governance, policy, and institutional aspects of ensuring the safe development of advanced AI systems.",
+      "curriculum": [
+        "Global AI governance landscape",
+        "Risk assessment frameworks",
+        "Technical mechanisms for oversight",
+        "International coordination",
+        "AI ethics and values",
+        "Policy design studio"
+      ],
+      "registrationInfo": "Registration opens July 2025. The course is open to graduate students and professionals in relevant fields.",
+      "registrationLink": "https://cam.ac.uk/ai-governance",
+      "contactEmail": "aisafety@cam.ac.uk"
+    }
+  ]
+}

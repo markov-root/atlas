@@ -1,0 +1,220 @@
+/* src/components/Courses/StartOwnCourse.module.css */
+
+/* Import Virgil font for Excalidraw-like styling */
+@font-face {
+  font-family: 'Virgil';
+  src: url('https://excalidraw.com/Virgil.woff2') format('woff2');
+  font-display: swap;
+}
+
+.startCourseSection {
+  padding: 5rem 0;
+  background: linear-gradient(
+    to bottom,
+    var(--atlas-background, #ffffff) 0%,
+    var(--atlas-background-alt, #f8f9fa) 100%
+  );
+  position: relative;
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+}
+
+.sectionTitle {
+  font-family: 'Virgil', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--atlas-primary, #1971c2);
+}
+
+.sectionDescription {
+  font-size: 1.2rem;
+  color: var(--atlas-text-secondary, #495057);
+  line-height: 1.6;
+}
+
+.resourcesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.resourceCard {
+  background-color: var(--atlas-background-paper, white);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+  border: 2px solid var(--atlas-border-color, #e5e7eb);
+  transition: all 0.3s ease;
+  transform: rotate(-0.5deg);
+}
+
+.resourceCard:nth-child(2) {
+  transform: rotate(0.8deg);
+}
+
+.resourceCard:nth-child(3) {
+  transform: rotate(-0.3deg);
+}
+
+.resourceCard:hover {
+  transform: translateY(-5px) rotate(0deg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.resourceIcon {
+  width: 60px;
+  height: 60px;
+  background-color: var(--atlas-primary-lightest, #e7f5ff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: var(--atlas-primary, #1971c2);
+  border: 2px solid var(--atlas-primary-light, #74c0fc);
+}
+
+.resourceTitle {
+  font-family: 'Virgil', sans-serif;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--atlas-primary, #1971c2);
+}
+
+.resourceDescription {
+  font-size: 1rem;
+  color: var(--atlas-text-secondary, #495057);
+  line-height: 1.6;
+}
+
+.startCourseActions {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.9rem 1.8rem;
+  background-color: var(--atlas-primary, #1971c2);
+  color: white;
+  font-weight: 500;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 1.1rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.buttonIcon {
+  margin-right: 0.5rem;
+}
+
+.primaryButton:hover {
+  background-color: var(--atlas-primary-dark, #1864ab);
+  text-decoration: none;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.9rem 1.8rem;
+  background-color: var(--atlas-background-paper, white);
+  color: var(--atlas-primary, #1971c2);
+  font-weight: 500;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 2px solid var(--atlas-primary, #1971c2);
+  transition: all 0.2s ease;
+  font-size: 1.1rem;
+}
+
+.secondaryButton:hover {
+  background-color: var(--atlas-primary-lightest, #e7f5ff);
+  text-decoration: none;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .startCourseSection {
+  background: linear-gradient(
+    to bottom,
+    var(--atlas-background, #121212) 0%,
+    var(--atlas-background-alt, #1a1a1a) 100%
+  );
+}
+
+[data-theme='dark'] .resourceCard {
+  background-color: var(--atlas-background-paper, #1a1a1a);
+  border-color: var(--atlas-border-color, #383838);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme='dark'] .resourceCard:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme='dark'] .resourceIcon {
+  background-color: rgba(var(--atlas-primary-rgb, 51, 154, 240), 0.2);
+  border-color: var(--atlas-primary, #339af0);
+}
+
+[data-theme='dark'] .secondaryButton {
+  background-color: var(--atlas-background, #121212);
+}
+
+/* Responsive adjustments */
+@media (max-width: 996px) {
+  .resourcesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .startCourseSection {
+    padding: 4rem 0;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .sectionDescription {
+    font-size: 1.1rem;
+  }
+  
+  .resourcesGrid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .startCourseActions {
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    justify-content: center;
+  }
+}

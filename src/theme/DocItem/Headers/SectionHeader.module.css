@@ -1,0 +1,474 @@
+/* Section navigation - same as chapter header */
+.sectionNavigation {
+  display: flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.breadcrumbLink {
+  color: var(--atlas-text-secondary, #6c757d);
+  opacity: 0.8;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbLink:hover {
+  color: var(--atlas-primary, #1971c2);
+  opacity: 1;
+  text-decoration: none;
+}
+
+.breadcrumbIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.breadcrumbSeparator {
+  color: var(--atlas-text-secondary, #6c757d);
+  opacity: 0.6;
+  font-weight: 300;
+}
+
+.breadcrumbCurrent {
+  color: var(--atlas-text, #212529);
+  font-weight: 500;
+}/* Reading time breakdown */
+.readingBreakdown {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.timeSegment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.05rem;
+}
+
+.timeValue {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--atlas-primary, #1971c2);
+}
+
+.timeLabel {
+  font-size: 0.55rem;
+  color: var(--atlas-text-tertiary, #9ca3af);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}/* src/theme/DocItem/Headers/SectionHeader.module.css */
+
+.sectionContainer {
+  position: relative;
+  width: 100%;
+  height: 280px; /* Fixed height for consistent background */
+  overflow: hidden;
+  background: var(--atlas-background, #ffffff);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.6s ease;
+}
+
+.sectionContainer.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Background with texture support */
+.backgroundLayers {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Texture background - same as chapter but slightly more muted */
+.sectionContainer {
+  background-image: url('/img/textures/chapter_header_texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Dark mode texture */
+[data-theme='dark'] .sectionContainer {
+  background-image: url('/img/textures/chapter_header_texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.textureOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.90) 0%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.95) 50%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.90) 100%
+  );
+}
+
+/* Subtler particles for sections */
+.particleLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  background: var(--atlas-primary, #1971c2);
+  border-radius: 50%;
+  opacity: 0.15; /* More subtle than chapter */
+  left: var(--x);
+  top: var(--y);
+  animation: gentleFloat var(--duration) ease-in-out infinite var(--delay);
+  box-shadow: 0 0 6px rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.15);
+}
+
+@keyframes gentleFloat {
+  0% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translateY(-10px) translateX(2px) scale(1.05);
+    opacity: 0.25;
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.15;
+  }
+}
+
+/* Main content - fixed positioning within container */
+.sectionContent {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 3rem 3.5rem; /* Exact same as chapter header */
+  height: 100%; /* Fill the fixed container */
+  display: flex;
+  align-items: center; /* Center content vertically */
+}
+
+/* Main layout - exact same gap as chapter header */
+.mainLayout {
+  display: flex;
+  gap: 3rem; /* Same as chapter header */
+  width: 100%;
+}
+
+/* LEFT SECTION - Core content */
+.leftSection {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* RIGHT SECTION - Breadcrumbs + minimal metadata */
+.rightSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Title section */
+.titleSection {
+  margin-bottom: 0.5rem;
+}
+
+.titleRow {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+}
+
+.sectionNumber {
+  font-size: 2.5rem; /* Smaller than chapter number */
+  font-weight: 300;
+  color: var(--atlas-primary, #1971c2);
+  line-height: 1;
+  font-family: var(--atlas-font-mono, 'JetBrains Mono', monospace);
+  background: linear-gradient(
+    135deg,
+    var(--atlas-primary, #1971c2) 0%,
+    var(--atlas-primary-light, #1c7ed6) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  flex-shrink: 0;
+}
+
+.sectionTitle {
+  font-size: 2.25rem; /* Smaller than chapter title */
+  font-weight: 600; /* Less bold than chapter */
+  color: var(--atlas-text, #212529);
+  line-height: 1.2;
+  margin: 0;
+  font-family: var(--atlas-font-heading, 'Inter', sans-serif);
+  letter-spacing: -0.01em;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Section navigation - same as chapter */
+.sectionNavigation {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  flex-wrap: wrap;
+}
+
+.breadcrumbLink {
+  color: var(--atlas-text-secondary, #6c757d);
+  opacity: 0.8;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbLink:hover {
+  color: var(--atlas-primary, #1971c2);
+  opacity: 1;
+  text-decoration: none;
+}
+
+.breadcrumbIcon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.breadcrumbSeparator {
+  color: var(--atlas-text-secondary, #6c757d);
+  opacity: 0.6;
+  font-weight: 300;
+}
+
+.breadcrumbCurrent {
+  color: var(--atlas-text, #212529);
+  font-weight: 500;
+}
+
+/* Description - smaller than chapter */
+.sectionDescription {
+  font-size: 1.1rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 400;
+  max-width: 90%;
+}
+
+/* Minimal metadata */
+.metadataSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.metaCard {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.metaIcon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--atlas-primary, #1971c2);
+  flex-shrink: 0;
+}
+
+.iconSvg {
+  width: 16px;
+  height: 16px;
+}
+
+.metaContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.metaLabel {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--atlas-text-tertiary, #9ca3af);
+}
+
+.metaValue {
+  font-size: 0.8rem;
+  color: var(--atlas-text, #212529);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Dark Mode */
+[data-theme='dark'] .sectionContainer {
+  background: var(--atlas-background, #121212);
+}
+
+[data-theme='dark'] .textureOverlay {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.50) 0%,
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.55) 50%,
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.50) 100%
+  );
+}
+
+[data-theme='dark'] .particle {
+  background: var(--atlas-primary-lighter, #74c0fc);
+  box-shadow: 0 0 8px rgba(var(--atlas-primary-rgb, 116, 192, 252), 0.2);
+}
+
+[data-theme='dark'] .sectionNumber {
+  background: linear-gradient(
+    135deg,
+    var(--atlas-primary-lighter, #74c0fc) 0%,
+    var(--atlas-primary-lightest, #a5d8ff) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme='dark'] .sectionTitle {
+  color: var(--atlas-text, #e9ecef);
+}
+
+[data-theme='dark'] .breadcrumbLink {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .breadcrumbLink:hover {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .breadcrumbSeparator {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .breadcrumbCurrent {
+  color: var(--atlas-text, #e9ecef);
+}
+
+[data-theme='dark'] .sectionDescription {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .breadcrumbLink {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .breadcrumbLink:hover {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .breadcrumbSeparator {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .breadcrumbCurrent {
+  color: var(--atlas-text, #e9ecef);
+}
+
+[data-theme='dark'] .metaCard {
+  /* No background in dark mode either */
+}
+
+[data-theme='dark'] .metaCard:hover {
+  /* No hover effects */
+}
+
+[data-theme='dark'] .iconImage {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+
+[data-theme='dark'] .metaValue {
+  color: var(--atlas-text, #e9ecef);
+}
+
+[data-theme='dark'] .metaIcon {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .mainLayout {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .leftSection,
+  .rightSection {
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionContent {
+    padding: 1.5rem 2rem 2rem;
+  }
+  
+  .titleRow {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  
+  .sectionNumber {
+    font-size: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+  
+  .sectionDescription {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionContent {
+    padding: 1.25rem 1.5rem 1.75rem;
+  }
+  
+  .sectionNumber {
+    font-size: 1.75rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+  
+  .sectionDescription {
+    font-size: 0.95rem;
+  }
+}

@@ -1,0 +1,110 @@
+/* src/components/chapters/Iframe.module.css */
+.iframeContainer {
+  margin: 2rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--atlas-primary, #1971c2);
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.iframeWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* Removed all borders, shadows, backgrounds for seamless integration */
+}
+
+/* For responsive iframes (when using aspect ratio) */
+.iframeWrapper:has(iframe[style*="position: absolute"]) {
+  height: 0;
+}
+
+.iframe {
+  width: 100%;
+  border: none;
+  display: block;
+  /* Completely seamless - no borders or backgrounds */
+}
+
+/* When iframe is positioned absolutely (responsive mode) */
+.iframe[style*="position: absolute"] {
+  top: 0;
+  left: 0;
+}
+
+.caption {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--atlas-text-tertiary, #6c757d);
+  text-align: center;
+  padding: 0 1rem;
+  line-height: 1.5;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.captionLink {
+  color: var(--atlas-primary, #1971c2);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.captionLink:hover {
+  text-decoration: underline;
+  color: var(--atlas-primary-darker, #1864ab);
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .spinner {
+  border-color: rgba(255, 255, 255, 0.1);
+  border-top-color: var(--atlas-primary, #339af0);
+}
+
+[data-theme='dark'] .caption {
+  color: var(--atlas-text-tertiary, #adb5bd);
+}
+
+[data-theme='dark'] .captionLink {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .captionLink:hover {
+  color: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .iframeContainer {
+    margin: 1.5rem 0;
+  }
+  
+  .caption {
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,38 @@
+// File: src/components/design-tokens.module.css
+
+:root {
+  /* Core Design System */
+  --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'GT Alpina', 'Freight Text Pro', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+
+  /* Refined Color Palette */
+  --color-canvas: #fafafa;
+  --color-surface: #ffffff;
+  --color-ink: #1a1a1a;
+  --color-ink-light: #666666;
+  --color-accent: #2563eb;
+  --color-accent-soft: rgba(37, 99, 235, 0.08);
+  --color-sage: #10b981;
+  --color-sage-soft: rgba(16, 185, 129, 0.08);
+  --color-rust: #ef4444;
+  --color-rust-soft: rgba(239, 68, 68, 0.08);
+  
+  /* Elevation */
+  --shadow-float: 
+    0px 1px 1px rgba(0,0,0,0.03),
+    0px 3px 6px rgba(0,0,0,0.02);
+  --shadow-raise:
+    0px 2px 4px rgba(0,0,0,0.03),
+    0px 8px 16px rgba(0,0,0,0.06);
+}
+
+[data-theme='dark'] {
+  --color-canvas: #0a0a0a;
+  --color-surface: #1a1a1a;
+  --color-ink: #ffffff;
+  --color-ink-light: #a3a3a3;
+  --color-accent-soft: rgba(37, 99, 235, 0.15);
+  --color-sage-soft: rgba(16, 185, 129, 0.15);
+  --color-rust-soft: rgba(239, 68, 68, 0.15);
+}

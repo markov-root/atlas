@@ -1,0 +1,234 @@
+/* src/components/Homepage/Testimonials.module.css */
+.testimonialSection {
+  padding: 5rem 0;
+  background-color: var(--atlas-background-alt, #F5F5F5);
+}
+
+.container {
+  max-width: var(--ifm-container-width);
+  margin: 0 auto;
+  padding: 0 var(--ifm-spacing-horizontal);
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--atlas-primary, #546E7A);
+  font-weight: 700;
+}
+
+/* Base testimonial card styling - applies to ALL cards */
+.testimonialCard {
+  background-color: var(--atlas-card-bg, #F9F9F9);
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  box-shadow: var(--atlas-shadow, 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 6px rgba(0, 0, 0, 0.08));
+  border: 1px solid var(--atlas-border-color, #E0E0E0);
+  transition: all 0.3s ease;
+}
+
+.testimonialCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--atlas-shadow-md, 0 4px 8px rgba(0, 0, 0, 0.03), 0 8px 16px rgba(0, 0, 0, 0.08));
+}
+
+/* Featured testimonials additional styling */
+.featuredTestimonials {
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.featuredCard {
+  max-width: 800px;
+  margin: 0 auto;
+  border-left: 4px solid var(--atlas-primary, #546E7A);
+}
+
+.quoteIconWrapper {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  width: 36px;
+  height: 36px;
+  background-color: var(--atlas-primary, #546E7A);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quoteIcon {
+  color: white;
+}
+
+.quote {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+  color: var(--atlas-text, #212121);
+  font-style: italic;
+}
+
+.testimonialFooter {
+  display: flex;
+  align-items: center;
+}
+
+.avatarWrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1rem;
+  border: 2px solid var(--atlas-primary-lighter, #90A4AE);
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.testimonialAuthor {
+  flex: 1;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+  color: var(--atlas-primary, #546E7A);
+}
+
+.position {
+  font-size: 0.85rem;
+  color: var(--atlas-text-secondary, #616161);
+}
+
+/* Carousel */
+.testimonialCarouselWrapper {
+  position: relative;
+  margin: 0 -1rem;
+}
+
+.testimonialCarousel {
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.carouselTrack {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carouselItem {
+  flex: 0 0 33.33%;
+  min-width: 33.33%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+/* Arrow icons */
+.arrowIcon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.carouselButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--atlas-primary, #546E7A);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.carouselButton:hover {
+  opacity: 1;
+  background-color: var(--atlas-primary-dark, #455A64);
+}
+
+.prevButton {
+  left: -20px;
+}
+
+.nextButton {
+  right: -20px;
+}
+
+/* Pagination dots */
+.paginationDots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 2rem;
+}
+
+.paginationDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--atlas-secondary-lighter, #BDBDBD);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.activeDot {
+  background-color: var(--atlas-primary, #546E7A);
+  transform: scale(1.2);
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .testimonialCard {
+  background-color: var(--atlas-card-bg, #2C2C2C);
+  border-color: var(--atlas-border-color, #383838);
+}
+
+[data-theme='dark'] .quote {
+  color: var(--atlas-text, #EEEEEE);
+}
+
+[data-theme='dark'] .position {
+  color: var(--atlas-text-secondary, #BDBDBD);
+}
+
+/* Responsive adjustments */
+@media (max-width: 996px) {
+  .carouselItem {
+    flex: 0 0 50%;
+    min-width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .carouselItem {
+    flex: 0 0 100%;
+    min-width: 100%;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .featuredCard {
+    transform: none;
+  }
+}

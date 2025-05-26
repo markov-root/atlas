@@ -1,0 +1,106 @@
+{
+  "featured": [
+  ],
+  "regular": [
+    {
+      "quote": "I think AI Safety Atlas is awesome! I highly encourage further donations.",
+      "name": "Ryan Kidd",
+      "position": "AI Safety Researcher",
+      "date": "2025",
+      "image": "/img/testimonials/ryan_kidd.jpg",
+      "tier": "prominent"
+    },
+    {
+      "quote": "This is the kind of resource I would have loved to have when first learning about AI safety.",
+      "name": "Martin Kunev",
+      "position": "AI Alignment Researcher",
+      "date": "2025",
+      "image": "",
+      "tier": "independent"
+    },
+    {
+      "quote": "The systematic approach makes it remarkably easier to integrate into existing curricula.",
+      "name": "Course Organizer",
+      "position": "ML4Good",
+      "date": "2025",
+      "tier": "facilitator"
+    },
+    {
+      "quote": "This work is fundamentally useful for everyone involved in, or curious about, the development of safe Artificial Intelligences. It's a precious endeavor that every AI enthusiast should support.",
+      "name": "Victor Daudonnet",
+      "position": "AI Safety Researcher",
+      "date": "2025",
+      "tier": "independent"
+    },
+    {
+      "quote": "Atlas is great. I think there should be additional courses with a different style then the BlueDot courses that are a bit lengthy etc. I think Atlas could produce that!",
+      "name": "Evander Hammer",
+      "position": "AI Safety Collab Organizer",
+      "date": "2025",
+      "tier": "facilitator"
+    },
+    {
+      "quote": "This was my first time reading the AI Safety Atlas and wow!!! It has so many insightful information and citations that I am looking forward to diving deeper into. I am super fascinated by this text and I feel I have learned so much from it already.",
+      "name": "Student",
+      "position": "Vancouver Program",
+      "date": "Q1 2025",
+      "tier": "student"
+    },
+    {
+      "quote": "I like the amount of real-life examples incorporated into the writing when talking about a certain concept, and the citations following those examples so we can go more in depth into specific examples if we like.",
+      "name": "Student",
+      "position": "Vancouver Program",
+      "date": "Q1 2025",
+      "tier": "student"
+    },
+    {
+      "quote": "I haven't spent much time reading the Atlas, but I've attended 3 of Markov's presentations (with Q&As). He is obviously a gifted and passionate teacher, and he has shown himself to be deeply familiar with most ideas and arguments in AI Safety.",
+      "name": "Gustavo Lacerda",
+      "position": "AI Safety Researcher",
+      "date": "2025",
+      "tier": "independent"
+    },
+    {
+      "quote": "I co-lead the Turing Seminar while the Atlas was still being developped at ENS Paris. It offers a comprehensive survey of different fields of AIS and is clearly written and coherent. The facilitation guide did most of the heavy-lifting for me, by offering intriguing and entertaining questions to the class.",
+      "name": "Camille Berger",
+      "position": "Seminar Leader",
+      "date": "2025",
+      "tier": "facilitator"
+    },
+    {
+      "quote": "I read part of the Atlas (Evaluation Chapter). As an AI safety research engineer, I find it a pretty good in-depth introduction. It covers a lot in a very clear way.",
+      "name": "Maxime Riche",
+      "position": "AI Safety Research Engineer",
+      "date": "2025",
+      "tier": "independent"
+    },
+    {
+      "quote": "A strong theory of change, well executed in practice. Very good material at the end. They have my support!",
+      "name": "Thibaud Veron",
+      "position": "AI Safety Researcher",
+      "date": "2025",
+      "tier": "independent"
+    },
+    {
+      "quote": "That's one of the best AI safety fundamentals material, available for free. Very accessible, comprehensive and well-written.",
+      "name": "Leo Karoubi",
+      "position": "AI Safety Researcher",
+      "date": "2025",
+      "tier": "independent"
+    },
+    {
+      "quote": "This project is a great overview of up-to-date fundamentals in AI safety. It was the right choice for our technical intro course at UBC AI Safety in Vancouver, Canada.",
+      "name": "Josh Thorsteinson",
+      "position": "Course Organizer, UBC",
+      "date": "2025",
+      "tier": "facilitator"
+    },
+    {
+      "quote": "The AI Safety Atlas is excellent teaching material. I'd know since I read it multiple times and I often go back to it for reference.",
+      "name": "Amaury Lorin",
+      "position": "AI Safety Student",
+      "date": "2025",
+      "tier": "student"
+    }
+  ]
+}

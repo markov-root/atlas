@@ -1,0 +1,152 @@
+[data-theme='dark'] .definitionHeader {
+  background: linear-gradient(
+    to right,
+    rgba(var(--ifm-color-primary-rgb), 0.15) 0%,
+    rgba(var(--ifm-color-primary-rgb), 0.05) 100%
+  );
+  border-bottom-color: var(--ifm-color-emphasis-300);
+}
+
+.definitionHeader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--ifm-color-primary);
+}
+
+.definitionDomain {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  margin-bottom: 0.75rem;
+  border-radius: 1rem;
+  background: rgba(var(--ifm-color-primary-rgb), 0.1);
+  color: var(--ifm-color-primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.definitionTermContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.definitionTerm {
+  margin: 0;
+  padding: 0;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 1.25rem;
+  line-height: 1.3;
+  color: var(--ifm-color-emphasis-900);
+  letter-spacing: -0.02em;
+  position: relative;
+}
+
+.definitionSource {
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-700);
+  white-space: nowrap;
+}
+
+.definitionSource a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.definitionSource a:hover {
+  color: var(--ifm-color-primary-darker);
+  text-decoration: underline;
+}
+
+.definitionContent {
+  padding: 1.75rem 2rem 2rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ifm-font-color-base);
+}
+
+.definitionContent p:first-child {
+  margin-top: 0;
+}
+
+.definitionContent p:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .definitionHeader,
+  .definitionContent {
+    padding: 1.5rem 1.5rem;
+  }
+  
+  .definitionTerm {
+    font-size: 1.125rem;
+  }
+  
+  .definitionTermContainer {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .definitionSource {
+    padding-left: 0;
+  }
+}.definitionHeader {
+  position: relative;
+  padding: 1.75rem 2rem;
+  background: linear-gradient(
+    to right,
+    rgba(var(--ifm-color-primary-rgb), 0.08) 0%,
+    rgba(var(--ifm-color-primary-rgb), 0.03) 100%
+  );
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}/* File: src/components/DefinitionBlock.module.css */
+
+.definitionBlock {
+  position: relative;
+  margin: 3rem 0;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: var(--ifm-color-emphasis-0);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+[data-theme='dark'] .definitionBlock {
+  background: var(--ifm-color-emphasis-100);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+.definitionLabel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-700);
+  background-color: var(--ifm-color-emphasis-100);
+  border-bottom-left-radius: 6px;
+  opacity: 0.85;
+  z-index: 10;
+}
+
+[data-theme='dark'] .definitionLabel {
+  background-color: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-emphasis-600);
+}

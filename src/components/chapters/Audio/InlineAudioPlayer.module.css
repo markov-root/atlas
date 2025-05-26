@@ -1,0 +1,391 @@
+/* src/components/chapters/Audio/MinimalAudioPlayer.module.css */
+
+.audioPlayer {
+  margin-top: 1rem;
+  padding: 12px 0;
+  background: transparent; /* Keep background transparent */
+  border: none;
+  width: 100%;
+  min-height: 50px;
+}
+
+.playerRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--atlas-border-color, rgba(0, 0, 0, 0.1));
+}
+
+[data-theme='dark'] .playerRow {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Track buttons (only show if multiple tracks) */
+.trackButtons {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.trackButton {
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  background: transparent;
+  border: 1px solid var(--atlas-primary, #1971c2);
+  border-radius: 4px;
+  color: var(--atlas-primary, #1971c2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.trackButton:hover {
+  background: rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.1);
+  color: var(--atlas-primary-darker, #1864ab);
+}
+
+.activeTrack {
+  background: rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.15);
+  color: var(--atlas-primary-darker, #1864ab);
+  border-color: var(--atlas-primary-darker, #1864ab);
+}
+
+[data-theme='dark'] .trackButton {
+  border-color: var(--atlas-primary-lighter, #74c0fc);
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .trackButton:hover {
+  background: rgba(var(--atlas-primary-rgb, 51, 154, 240), 0.15);
+  color: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+[data-theme='dark'] .activeTrack {
+  background: rgba(var(--atlas-primary-rgb, 51, 154, 240), 0.2);
+  color: var(--atlas-primary-lightest, #a5d8ff);
+  border-color: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+/* Main Controls */
+.mainControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.controlButton {
+  background: transparent;
+  border: none;
+  color: var(--atlas-text-secondary, #6c757d);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.controlButton:hover:not(:disabled) {
+  color: var(--atlas-primary, #1971c2);
+  background: rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.1);
+}
+
+.controlButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+[data-theme='dark'] .controlButton {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .controlButton:hover:not(:disabled) {
+  color: var(--atlas-primary-lighter, #74c0fc);
+  background: rgba(var(--atlas-primary-rgb, 51, 154, 240), 0.15);
+}
+
+.playButton {
+  background: var(--atlas-primary, #1971c2);
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.playButton:hover:not(:disabled) {
+  background: var(--atlas-primary-darker, #1864ab);
+  transform: scale(1.05);
+}
+
+.playButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+[data-theme='dark'] .playButton {
+  background: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .playButton:hover:not(:disabled) {
+  background: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+/* Progress Container */
+.progressContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.timeDisplay {
+  font-size: 11px;
+  font-family: var(--ifm-font-family-monospace);
+  color: var(--atlas-text-secondary, #6c757d);
+  flex-shrink: 0;
+  min-width: 35px;
+  text-align: center;
+}
+
+[data-theme='dark'] .timeDisplay {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+.progressBar {
+  position: relative;
+  height: 4px;
+  background: var(--atlas-border-color, rgba(0, 0, 0, 0.1));
+  border-radius: 2px;
+  cursor: pointer;
+  flex: 1;
+  min-width: 80px;
+}
+
+[data-theme='dark'] .progressBar {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--atlas-primary, #1971c2);
+  border-radius: 2px;
+  transition: width 0.1s ease;
+}
+
+[data-theme='dark'] .progressFill {
+  background: var(--atlas-primary-lighter, #74c0fc);
+}
+
+/* Volume Control */
+.volumeControl {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* Speed Control */
+.speedControl {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.speedLabel {
+  font-size: 11px;
+  color: var(--atlas-text-secondary, #6c757d);
+  min-width: 25px;
+  text-align: center;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+[data-theme='dark'] .speedLabel {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Sliders */
+.slider {
+  -webkit-appearance: none;
+  width: 60px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--atlas-border-color, rgba(0, 0, 0, 0.1));
+  outline: none;
+  cursor: pointer;
+}
+
+[data-theme='dark'] .slider {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--atlas-primary, #1971c2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--atlas-primary, #1971c2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  background: var(--atlas-primary-darker, #1864ab);
+  transform: scale(1.1);
+}
+
+.slider::-moz-range-thumb:hover {
+  background: var(--atlas-primary-darker, #1864ab);
+  transform: scale(1.1);
+}
+
+[data-theme='dark'] .slider::-webkit-slider-thumb {
+  background: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .slider::-moz-range-thumb {
+  background: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .slider::-webkit-slider-thumb:hover,
+[data-theme='dark'] .slider::-moz-range-thumb:hover {
+  background: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+/* Close Button */
+.closeButton {
+  background: transparent;
+  border: none;
+  color: var(--atlas-text-secondary, #6c757d);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.closeButton:hover {
+  color: var(--atlas-danger, #c92a2a);
+  background: rgba(var(--atlas-danger-rgb, 201, 42, 42), 0.1);
+}
+
+[data-theme='dark'] .closeButton {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .closeButton:hover {
+  color: var(--atlas-danger, #fa5252);
+  background: rgba(var(--atlas-danger-rgb, 250, 82, 82), 0.15);
+}
+
+/* Loading Spinner */
+.loadingSpinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--atlas-border-color, rgba(0, 0, 0, 0.1));
+  border-top: 2px solid var(--atlas-primary, #1971c2);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+[data-theme='dark'] .loadingSpinner {
+  border-color: rgba(255, 255, 255, 0.1);
+  border-top-color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error Message */
+.errorMessage {
+  padding: 8px 12px;
+  margin-top: 8px;
+  background: rgba(var(--atlas-danger-rgb, 201, 42, 42), 0.1);
+  border: 1px solid rgba(var(--atlas-danger-rgb, 201, 42, 42), 0.2);
+  border-radius: 4px;
+  color: var(--atlas-danger, #c92a2a);
+  font-size: 12px;
+  text-align: center;
+}
+
+[data-theme='dark'] .errorMessage {
+  background: rgba(var(--atlas-danger-rgb, 250, 82, 82), 0.15);
+  border-color: rgba(var(--atlas-danger-rgb, 250, 82, 82), 0.3);
+  color: var(--atlas-danger, #fa5252);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .playerRow {
+    gap: 8px;
+  }
+  
+  .mainControls {
+    gap: 6px;
+  }
+  
+  .progressContainer {
+    gap: 6px;
+  }
+  
+  .timeDisplay {
+    font-size: 10px;
+    min-width: 30px;
+  }
+  
+  .slider {
+    width: 50px;
+  }
+  
+  .speedLabel {
+    font-size: 10px;
+    min-width: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .trackButtons {
+    display: none; /* Hide track buttons on very small screens */
+  }
+  
+  .playerRow {
+    gap: 6px;
+  }
+  
+  .slider {
+    width: 40px;
+  }
+  
+  .volumeControl,
+  .speedControl {
+    gap: 4px;
+  }
+}

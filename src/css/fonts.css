@@ -1,0 +1,161 @@
+/* src/css/fonts.css - Font selection system */
+
+/* CSS Custom Properties for dynamic font switching */
+:root {
+  --atlas-reader-font: var(--atlas-font-body, 'Inter', sans-serif);
+  --atlas-reader-font-size: 16px;
+  --atlas-reader-line-height: 1.6;
+  --atlas-reader-text-align: left;
+  --atlas-reader-max-width: 65ch;
+  --atlas-reader-motion: auto;
+}
+
+/* ONLY target the actual markdown content inside docs */
+/* This is very specific to avoid affecting headers, heroes, etc. */
+.theme-doc-markdown.markdown,
+.theme-doc-markdown.markdown > div {
+  /* Apply all reader settings as a group */
+  font-family: var(--atlas-reader-font) !important;
+  font-size: var(--atlas-reader-font-size) !important;
+  line-height: var(--atlas-reader-line-height) !important;
+  text-align: var(--atlas-reader-text-align) !important;
+  max-width: var(--atlas-reader-max-width) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Apply to specific content elements */
+.theme-doc-markdown.markdown p,
+.theme-doc-markdown.markdown li,
+.theme-doc-markdown.markdown blockquote,
+.theme-doc-markdown.markdown td,
+.theme-doc-markdown.markdown th {
+  font-family: var(--atlas-reader-font) !important;
+  font-size: var(--atlas-reader-font-size) !important;
+  line-height: var(--atlas-reader-line-height) !important;
+  text-align: var(--atlas-reader-text-align) !important;
+}
+
+/* Blockquotes should inherit alignment but have some visual distinction */
+.theme-doc-markdown.markdown blockquote {
+  text-align: var(--atlas-reader-text-align) !important;
+  max-width: var(--atlas-reader-max-width) !important;
+}
+
+/* Lists should respect alignment */
+.theme-doc-markdown.markdown ul,
+.theme-doc-markdown.markdown ol {
+  text-align: var(--atlas-reader-text-align) !important;
+  max-width: var(--atlas-reader-max-width) !important;
+}
+
+/* Target specific Atlas components that should use reader font */
+.quoteCard .quote,
+.noteContainer .contentWrapper,
+.noteContainer .contentWrapper p,
+.definitionContainer .definition,
+.definitionContainer .definition p {
+  font-family: var(--atlas-reader-font) !important;
+  font-size: var(--atlas-reader-font-size) !important;
+  line-height: var(--atlas-reader-line-height) !important;
+  text-align: var(--atlas-reader-text-align) !important;
+}
+
+/* Don't override headings in docs - they should keep their styling */
+.theme-doc-markdown.markdown h1,
+.theme-doc-markdown.markdown h2,
+.theme-doc-markdown.markdown h3,
+.theme-doc-markdown.markdown h4,
+.theme-doc-markdown.markdown h5,
+.theme-doc-markdown.markdown h6 {
+  font-family: var(--atlas-font-heading, 'Inter', sans-serif) !important;
+  /* Headings get a slightly larger size relative to reader font */
+  line-height: 1.3 !important;
+  text-align: left !important; /* Keep headings left-aligned */
+  max-width: var(--atlas-reader-max-width) !important;
+}
+
+/* Never override code elements */
+.theme-doc-markdown.markdown code,
+.theme-doc-markdown.markdown pre,
+.theme-doc-markdown.markdown kbd,
+.theme-doc-markdown.markdown samp,
+[class*="codeBlock"],
+[class*="language-"] {
+  font-family: var(--atlas-font-mono, 'JetBrains Mono', monospace) !important;
+  /* Code blocks should not inherit text alignment */
+  text-align: left !important;
+}
+
+/* Tables should have consistent formatting */
+.theme-doc-markdown.markdown table {
+  max-width: var(--atlas-reader-max-width) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Apply reduced motion when requested */
+.theme-doc-markdown.markdown *,
+.quoteCard *,
+.noteContainer * {
+  animation-duration: var(--atlas-reader-motion, auto) !important;
+  transition-duration: var(--atlas-reader-motion, auto) !important;
+}
+
+/* EXPLICITLY EXCLUDE MODALS AND UI ELEMENTS FROM READER SETTINGS */
+/* Figure zoom modal should never be affected by reader settings */
+.zoomOverlay,
+.zoomOverlay *,
+.zoomContainer,
+.zoomContainer *,
+.zoomedImage,
+.zoomedCaption,
+.closeButton {
+  font-family: var(--atlas-font-body, 'Inter', sans-serif) !important;
+  font-size: initial !important;
+  line-height: initial !important;
+  text-align: initial !important;
+  max-width: none !important;
+  width: auto !important;
+  margin: initial !important;
+}
+
+/* Settings dropdown should never be affected */
+.dropdown,
+.dropdown *,
+.dropdownContainer,
+.dropdownContainer * {
+  font-family: var(--atlas-font-body, 'Inter', sans-serif) !important;
+  font-size: initial !important;
+  line-height: initial !important;
+  text-align: initial !important;
+  max-width: none !important;
+  width: auto !important;
+  margin: initial !important;
+}
+
+/* Explicitly exclude all these areas from font changes */
+.navbar,
+.navbar *,
+.menu,
+.menu *,
+.pagination,
+.pagination *,
+.breadcrumbs,
+.breadcrumbs *,
+.toc,
+.toc *,
+.chapterContainer,
+.chapterContainer *,
+.heroSection,
+.heroSection *,
+.landingContainer,
+.landingContainer *,
+.footer,
+.footer * {
+  font-family: var(--atlas-font-body, 'Inter', sans-serif) !important;
+  font-size: initial !important;
+  line-height: initial !important;
+  text-align: initial !important;
+  max-width: none !important;
+}

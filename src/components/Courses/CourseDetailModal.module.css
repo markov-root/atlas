@@ -1,0 +1,361 @@
+/* src/components/Courses/CourseDetailModal.module.css */
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+  backdrop-filter: blur(3px);
+}
+
+.modalContent {
+  background-color: var(--ifm-background-color);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: var(--ifm-global-shadow-md);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  animation: modalOpen 0.3s ease-out;
+}
+
+@keyframes modalOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: var(--ifm-background-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+  color: var(--ifm-color-primary);
+}
+
+.closeButton:hover {
+  background: var(--ifm-color-primary);
+  color: white;
+  transform: rotate(90deg);
+}
+
+/* Course Header */
+.courseHeader {
+  padding: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--ifm-color-emphasis-100);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.headerContent {
+  flex: 1;
+}
+
+.typeTag {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background-color: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-primary);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.courseTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  color: var(--ifm-color-primary);
+  line-height: 1.2;
+}
+
+.organization {
+  font-size: 1.2rem;
+  color: var(--ifm-color-emphasis-700);
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.organization:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 2px;
+  background: var(--ifm-color-primary);
+}
+
+.logoContainer {
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-left: 2rem;
+  background-color: var(--ifm-color-emphasis-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  flex-shrink: 0;
+  box-shadow: var(--ifm-global-shadow-lw);
+  padding: 1rem;
+}
+
+.courseLogo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Course Info */
+.courseInfo {
+  padding: 2.5rem;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.infoCard {
+  background-color: var(--ifm-color-emphasis-0);
+  border-radius: 8px;
+  padding: 1.25rem;
+  display: flex;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  box-shadow: var(--ifm-global-shadow-lw);
+}
+
+.infoIcon {
+  width: 36px;
+  height: 36px;
+  background-color: var(--ifm-color-emphasis-100);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  color: var(--ifm-color-primary);
+  flex-shrink: 0;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.infoContent {
+  flex: 1;
+}
+
+.infoTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+  color: var(--ifm-color-emphasis-700);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.infoValue {
+  font-size: 1.1rem;
+  margin: 0;
+  color: var(--ifm-color-emphasis-900);
+  line-height: 1.4;
+}
+
+.contentSection {
+  margin-bottom: 2.5rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  padding: 1.5rem;
+  background-color: var(--ifm-color-emphasis-0);
+}
+
+.sectionTitle {
+  font-size: 1.4rem;
+  color: var(--ifm-color-primary);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.courseDescription {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-900);
+}
+
+.curriculumList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.curriculumItem {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px dashed var(--ifm-color-emphasis-200);
+}
+
+.curriculumItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.curriculumNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background-color: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-primary);
+  border-radius: 50%;
+  font-weight: 600;
+  margin-right: 1rem;
+  flex-shrink: 0;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.curriculumText {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--ifm-color-emphasis-900);
+  flex: 1;
+}
+
+.registrationSection {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  padding: 1.5rem;
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.registrationInfo {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-900);
+  margin-bottom: 1.5rem;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.registrationButton, .contactButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: var(--ifm-global-shadow-lw);
+}
+
+.buttonIcon {
+  margin-left: 0.5rem;
+}
+
+.registrationButton {
+  background-color: var(--ifm-color-primary);
+  color: white;
+  border: none;
+}
+
+.registrationButton:hover {
+  background-color: var(--ifm-color-primary-darker);
+  transform: translateY(-2px);
+  box-shadow: var(--ifm-global-shadow-md);
+  color: white;
+  text-decoration: none;
+}
+
+.contactButton {
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-color-primary);
+  border: 1px solid var(--ifm-color-primary);
+}
+
+.contactButton:hover {
+  background-color: var(--ifm-color-emphasis-100);
+  transform: translateY(-2px);
+  box-shadow: var(--ifm-global-shadow-md);
+  text-decoration: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .courseHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .logoContainer {
+    margin: 1.5rem 0 0;
+    align-self: center;
+  }
+  
+  .courseTitle {
+    font-size: 2rem;
+  }
+  
+  .courseInfo {
+    padding: 1.5rem;
+  }
+  
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sectionTitle {
+    font-size: 1.25rem;
+  }
+  
+  .actionButtons {
+    flex-direction: column;
+  }
+  
+  .registrationButton,
+  .contactButton {
+    width: 100%;
+    justify-content: center;
+  }
+}

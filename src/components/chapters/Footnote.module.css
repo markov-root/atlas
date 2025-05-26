@@ -1,0 +1,145 @@
+/* src/components/chapters/Footnote.module.css */
+
+/* Footnote anchor in text */
+.footnoteAnchor {
+  font-size: 0.75rem;
+  vertical-align: super;
+  color: var(--atlas-primary, #1971c2);
+  padding: 0.1rem 0.3rem;
+  margin: 0 0.1rem;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.footnoteAnchor:hover {
+  background: rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.1);
+  color: var(--atlas-primary-darker, #1864ab);
+}
+
+/* Section separator */
+.footnoteSection {
+  margin-top: 4rem;
+}
+
+.separator {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.separatorSvg {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  opacity: 0.6;
+}
+
+/* Footnote registry */
+.footnoteRegistry {
+  margin-top: 2rem;
+}
+
+.registryTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--atlas-text, #212529);
+  text-align: center;
+}
+
+.footnoteList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: footnote-counter;
+}
+
+.footnoteItem {
+  counter-increment: footnote-counter;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--atlas-border-color, #e5e7eb);
+}
+
+.footnoteItem::before {
+  content: counter(footnote-counter) ".";
+  color: var(--atlas-primary, #1971c2);
+  font-weight: 600;
+  min-width: 2rem;
+  flex-shrink: 0;
+}
+
+.backButton {
+  background: none;
+  border: none;
+  color: var(--atlas-primary, #1971c2);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.backButton:hover {
+  background: rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.1);
+  color: var(--atlas-primary-darker, #1864ab);
+}
+
+/* Highlight animation */
+.highlighted {
+  animation: highlight 1.5s ease;
+}
+
+@keyframes highlight {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.2); }
+}
+
+/* Dark mode */
+[data-theme='dark'] .footnoteAnchor {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .footnoteAnchor:hover {
+  background: rgba(var(--atlas-primary-rgb, 51, 154, 240), 0.15);
+  color: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+[data-theme='dark'] .separatorSvg {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+[data-theme='dark'] .registryTitle {
+  color: var(--atlas-text, #e9ecef);
+}
+
+[data-theme='dark'] .footnoteItem {
+  border-bottom-color: var(--atlas-border-color, #373737);
+}
+
+[data-theme='dark'] .footnoteItem::before {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .backButton {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .backButton:hover {
+  background: rgba(var(--atlas-primary-rgb, 51, 154, 240), 0.15);
+  color: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+[data-theme='dark'] .highlighted {
+  animation: highlightDark 1.5s ease;
+}
+
+@keyframes highlightDark {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: rgba(var(--atlas-primary-rgb, 51, 154, 240), 0.3); }
+}

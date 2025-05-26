@@ -1,0 +1,88 @@
+/* File: src/components/FrameEmbed.module.css */
+
+.frameFigure {
+  margin: 2.5rem auto;
+  width: 100%;
+  max-width: 100%;
+}
+
+.frameContainer {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--ifm-background-surface-color);
+  box-shadow: var(--ifm-global-shadow-md);
+}
+
+.iframe {
+  width: 100%;
+  border: 0;
+  min-height: 400px; /* Default height if none specified */
+  display: block;
+}
+
+.frameLabel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-700);
+  background-color: var(--ifm-color-emphasis-100);
+  border-bottom-left-radius: 6px;
+  opacity: 0.85;
+  z-index: 10;
+}
+
+[data-theme='dark'] .frameLabel {
+  background-color: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-emphasis-600);
+}
+
+.errorState {
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ifm-background-surface-color);
+  color: var(--ifm-color-emphasis-600);
+}
+
+.caption {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+  text-align: center;
+  padding: 0 1rem;
+  margin: 0.75rem auto 0;
+  max-width: 80ch;
+  line-height: 1.5;
+}
+
+.frameNumber {
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-900);
+}
+
+.sourceLink {
+  color: var(--ifm-color-emphasis-700);
+  text-decoration: none;
+}
+
+.sourceLink:hover {
+  text-decoration: underline;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .caption {
+  color: var(--ifm-color-emphasis-500);
+}
+
+[data-theme='dark'] .sourceLink {
+  color: var(--ifm-color-emphasis-500);
+}

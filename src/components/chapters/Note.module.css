@@ -1,0 +1,265 @@
+.optionalTag {
+    right: 15px;
+    width: 90px;
+    height: 32px;
+    font-size: 0.6rem;
+  }[data-theme='dark'] .noteHeader:hover {
+  background-color: rgba(var(--atlas-primary-rgb, 51, 154, 240), 0.05);
+}
+
+[data-theme='dark'] .noteHeader:focus {
+  outline-color: var(--atlas-primary-lighter, #74c0fc);
+}.optionalTag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.1);
+  color: var(--atlas-primary, #1971c2);
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  line-height: 1;
+  flex-shrink: 0;
+}/* src/components/chapters/Note.module.css */
+
+/* Main container - full width with gray background like Quote */
+.noteContainer {
+  background-color: var(--atlas-background-alt, #f8f9fa);
+  border-radius: 12px;
+  margin: 2.5rem 0;
+  position: relative;
+  box-shadow: var(--atlas-shadow, 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 6px rgba(0, 0, 0, 0.08));
+  border: 1px solid var(--atlas-border-color, #E0E0E0);
+  transition: all 0.3s ease;
+  width: 100%;
+  /* Remove overflow hidden so icon can appear outside */
+}
+
+.noteContainer:hover {
+  box-shadow: var(--atlas-shadow-md, 0 4px 8px rgba(0, 0, 0, 0.03), 0 8px 16px rgba(0, 0, 0, 0.08));
+}
+
+/* Note icon - matches Quote component positioning exactly */
+.noteIconWrapper {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  width: 36px;
+  height: 36px;
+  background-color: var(--atlas-primary, #1971c2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  opacity: 1;
+}
+
+.noteIcon {
+  color: #ffffff;
+}
+
+/* Optional tag - circular design like the icon, positioned on right */
+.optionalTag {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  width: 100px;
+  height: 36px;
+  background-color: var(--atlas-primary, #1971c2);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+}
+
+/* Header section - clickable */
+.noteHeader {
+  padding: 2rem 2.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.noteHeader:hover {
+  background-color: rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.03);
+}
+
+.noteHeader:focus {
+  outline: 2px solid var(--atlas-primary, #1971c2);
+  outline-offset: -2px;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-right: 8rem; /* More space for the wider Optional tag */
+}
+
+.optionalTag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.1);
+  color: var(--atlas-primary, #1971c2);
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.noteTitle {
+  margin: 0;
+  color: var(--atlas-text, #212529);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Chevron icon - clean and simple */
+.chevronIcon {
+  color: var(--atlas-text-secondary, #6c757d);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.chevronRotated {
+  transform: rotate(180deg);
+}
+
+.noteHeader:hover .chevronIcon {
+  color: var(--atlas-primary, #1971c2);
+}
+
+/* Content section */
+.noteContent {
+  max-height: 2000px;
+  transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+.contentWrapper {
+  padding: 0 2.5rem 2rem;
+  color: var(--atlas-text, #212529);
+  line-height: 1.6;
+  border-top: 1px solid var(--atlas-border-color, #e5e7eb);
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+}
+
+/* Better typography in content */
+.contentWrapper p:first-child {
+  margin-top: 0;
+}
+
+.contentWrapper p:last-child {
+  margin-bottom: 0;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .noteContainer {
+  background-color: var(--atlas-background-alt, #1e1e1e);
+  border-color: var(--atlas-border-color, #383838);
+}
+
+[data-theme='dark'] .noteIconWrapper {
+  background-color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .noteIcon {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .optionalTag {
+  background-color: var(--atlas-primary-lighter, #74c0fc);
+  color: #ffffff;
+}
+
+[data-theme='dark'] .noteTitle {
+  color: var(--atlas-text, #e9ecef);
+}
+
+[data-theme='dark'] .chevronIcon {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .noteHeader:hover .chevronIcon {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .contentWrapper {
+  color: var(--atlas-text, #e9ecef);
+  border-top-color: var(--atlas-border-color, #373737);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .noteContainer {
+    margin: 2rem 0;
+  }
+  
+  .noteHeader {
+    padding: 1.5rem 1.5rem 1.25rem;
+  }
+  
+  .headerContent {
+    gap: 0.75rem;
+  }
+  
+  .noteTitle {
+    font-size: 0.95rem;
+  }
+  
+  .contentWrapper {
+    padding: 0 1.5rem 1.5rem;
+    padding-top: 1.25rem;
+  }
+  
+  .noteIconWrapper {
+    left: 15px;
+    width: 32px;
+    height: 32px;
+  }
+  
+  .noteIcon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .noteHeader {
+    padding: 1.25rem 1rem 1rem;
+  }
+  
+  .contentWrapper {
+    padding: 0 1rem 1.25rem;
+  }
+  
+  .optionalTag {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.5rem;
+  }
+}

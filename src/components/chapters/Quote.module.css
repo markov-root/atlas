@@ -1,0 +1,254 @@
+/* src/components/chapters/Quote.module.css */
+
+/* Base quote card styling - full width with gray background */
+.quoteCard {
+  background-color: var(--atlas-background-alt, #f8f9fa);
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  margin: 3rem 0;
+  position: relative;
+  box-shadow: var(--atlas-shadow, 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 6px rgba(0, 0, 0, 0.08));
+  border: 1px solid var(--atlas-border-color, #E0E0E0);
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: none;
+}
+
+.quoteCard:hover {
+  /* Removed hover zoom - just keep subtle shadow enhancement */
+  box-shadow: var(--atlas-shadow-md, 0 4px 8px rgba(0, 0, 0, 0.03), 0 8px 16px rgba(0, 0, 0, 0.08));
+}
+
+/* Known authors get special treatment */
+.knownAuthor {
+  border-left: 4px solid var(--atlas-primary, #1971c2);
+}
+
+/* Quote icon - matches testimonials */
+.quoteIconWrapper {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  width: 36px;
+  height: 36px;
+  background-color: var(--atlas-primary, #1971c2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quoteIcon {
+  color: white;
+}
+
+/* Quote text styling - slightly smaller and more readable */
+.quote {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  margin: 0 0 1.75rem;
+  color: var(--atlas-text, #212121);
+  font-style: italic;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+  font-weight: 400;
+}
+
+/* Footer section - improved layout */
+.quoteFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+/* Author section - avatar + name/position */
+.authorSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+/* Avatar styling - back to original size */
+.avatarWrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--atlas-primary-lighter, #90A4AE);
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatarPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--atlas-primary-light, #1c7ed6) 0%, var(--atlas-primary, #1971c2) 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+/* Author info */
+.quoteAuthor {
+  min-width: 0;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: var(--atlas-primary, #1971c2);
+}
+
+.position {
+  font-size: 0.85rem;
+  color: var(--atlas-text-secondary, #616161);
+  line-height: 1.3;
+}
+
+/* Metadata section - date and source */
+.quoteMetadata {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.date {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--atlas-text-secondary, #616161);
+}
+
+.sourceText {
+  font-size: 0.8rem;
+  color: var(--atlas-text-secondary, #616161);
+  line-height: 1.4;
+}
+
+/* Source links within the processed text */
+.sourceText a,
+.sourceLink {
+  color: var(--atlas-primary, #1971c2);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.sourceText a:hover,
+.sourceLink:hover {
+  color: var(--atlas-primary-darker, #1864ab);
+  text-decoration: underline;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .quoteCard {
+  background-color: var(--atlas-background-alt, #1e1e1e);
+  border-color: var(--atlas-border-color, #383838);
+}
+
+[data-theme='dark'] .knownAuthor {
+  border-left-color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .quoteIconWrapper {
+  background-color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .quote {
+  color: var(--atlas-text, #EEEEEE);
+}
+
+[data-theme='dark'] .name {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .position,
+[data-theme='dark'] .date,
+[data-theme='dark'] .sourceText {
+  color: var(--atlas-text-secondary, #BDBDBD);
+}
+
+[data-theme='dark'] .sourceText a,
+[data-theme='dark'] .sourceLink {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .sourceText a:hover,
+[data-theme='dark'] .sourceLink:hover {
+  color: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+[data-theme='dark'] .avatarWrapper {
+  border-color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .quoteCard {
+    padding: 2rem 1.5rem;
+    margin: 2rem 0;
+  }
+  
+  .quote {
+    font-size: 1.1rem;
+  }
+  
+  .quoteFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  
+  .authorSection {
+    width: 100%;
+  }
+  
+  .quoteMetadata {
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .avatarWrapper {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .avatarPlaceholder {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .quoteCard {
+    padding: 1.5rem 1rem;
+  }
+  
+  .quote {
+    font-size: 1.1rem;
+  }
+  
+  .quoteIconWrapper {
+    left: 15px;
+    width: 32px;
+    height: 32px;
+  }
+  
+  .quoteIcon {
+    width: 20px;
+    height: 20px;
+  }
+}

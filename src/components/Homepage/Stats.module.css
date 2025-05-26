@@ -1,0 +1,86 @@
+/* src/components/Homepage/Stats.module.css */
+.statsSection {
+  padding: 4rem 0;
+  background-color: #f5f7fa;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #2e8555;
+}
+
+.statsGrid {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.statCard {
+  text-align: center;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  width: 200px;
+}
+
+.statNumber {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #2e8555;
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  font-size: 1.25rem;
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+
+.statDescription {
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.usageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.usageCard {
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.usageTitle {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #2e8555;
+}
+
+.usageDescription {
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .statsGrid {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .usageGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+}

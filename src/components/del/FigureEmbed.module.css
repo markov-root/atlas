@@ -1,0 +1,77 @@
+/* File: src/components/FigureEmbed.module.css */
+
+.figure {
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 800px; /* Default max-width, can be overridden via props */
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--ifm-background-surface-color);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 0.3s ease;
+}
+
+.loading {
+  opacity: 0;
+}
+
+.error {
+  opacity: 0.5;
+}
+
+.loadingPlaceholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ifm-background-surface-color);
+  color: var(--ifm-color-emphasis-600);
+}
+
+.caption {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+  text-align: center;
+  padding: 0 1rem;
+  margin: 0 auto;
+  max-width: 80ch;
+  line-height: 1.5;
+}
+
+.figureNumber {
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-900);
+}
+
+.sourceLink {
+  color: var(--ifm-color-emphasis-700);
+  text-decoration: none;
+}
+
+.sourceLink:hover {
+  text-decoration: underline;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .caption {
+  color: var(--ifm-color-emphasis-500);
+}
+
+[data-theme='dark'] .sourceLink {
+  color: var(--ifm-color-emphasis-500);
+}

@@ -1,0 +1,180 @@
+.container {
+  position: relative;
+  margin: 2.5rem 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  background-color: var(--atlas-background-paper, white);
+  border: 1px solid var(--atlas-border-color, #e5e7eb);
+}
+
+/* Color variations based on type */
+.primary {
+  --definition-color: var(--atlas-primary, #1971c2);
+  --definition-light: rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.1);
+}
+
+.secondary {
+  --definition-color: var(--atlas-text-secondary, #495057);
+  --definition-light: rgba(73, 80, 87, 0.1);
+}
+
+.warning {
+  --definition-color: var(--atlas-warning, #e67700);
+  --definition-light: rgba(230, 119, 0, 0.1);
+}
+
+.info {
+  --definition-color: var(--atlas-info, #1864ab);
+  --definition-light: rgba(24, 100, 171, 0.1);
+}
+
+.typeLabel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--atlas-text-secondary, #6c757d);
+  background-color: var(--atlas-background-alt, #f8f9fa);
+  border-bottom-left-radius: 6px;
+  opacity: 0.85;
+  z-index: 1;
+}
+
+[data-theme='dark'] .typeLabel {
+  background-color: var(--atlas-background-alt, #1e1e1e);
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+.header {
+  position: relative;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--atlas-border-color, #e5e7eb);
+  background-color: var(--definition-light);
+}
+
+[data-theme='dark'] .header {
+  border-bottom-color: var(--atlas-border-color, #373737);
+}
+
+.termWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-right: 4rem; /* Space for the Definition label */
+}
+
+.term {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--definition-color);
+}
+
+.pronunciation {
+  font-size: 0.9rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  font-style: italic;
+}
+
+[data-theme='dark'] .pronunciation {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+.etymology {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  font-style: italic;
+}
+
+[data-theme='dark'] .etymology {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+.etymologyLabel {
+  font-weight: 600;
+  font-style: normal;
+}
+
+.content {
+  padding: 1.5rem;
+  color: var(--atlas-text, #212529);
+  line-height: 1.6;
+}
+
+[data-theme='dark'] .content {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.definition {
+  margin-bottom: 0.5rem;
+}
+
+.definition p:first-child {
+  margin-top: 0;
+}
+
+.definition p:last-child {
+  margin-bottom: 0;
+}
+
+.source {
+  margin-top: 1.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  font-style: italic;
+}
+
+[data-theme='dark'] .source {
+  color: var(--atlas-text-secondary, #adb5bd);
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.sourceLabel {
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* Type-specific styles for dark mode */
+[data-theme='dark'] .primary {
+  --definition-color: var(--atlas-primary-lighter, #74c0fc);
+  --definition-light: rgba(51, 154, 240, 0.1);
+}
+
+[data-theme='dark'] .secondary {
+  --definition-color: var(--atlas-text-secondary, #adb5bd);
+  --definition-light: rgba(173, 181, 189, 0.1);
+}
+
+[data-theme='dark'] .warning {
+  --definition-color: var(--atlas-warning, #fcc419);
+  --definition-light: rgba(252, 196, 25, 0.1);
+}
+
+[data-theme='dark'] .info {
+  --definition-color: var(--atlas-info, #228be6);
+  --definition-light: rgba(34, 139, 230, 0.1);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem 1.25rem;
+  }
+  
+  .term {
+    font-size: 1.15rem;
+  }
+  
+  .content {
+    padding: 1.25rem;
+  }
+}

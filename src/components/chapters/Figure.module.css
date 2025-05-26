@@ -1,0 +1,158 @@
+/* src/components/chapters/Figure.module.css */
+
+/* Basic figure styling - no modal styles needed since modal uses inline styles */
+.figure {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imageContainer {
+  position: relative;
+  max-width: 100%;
+  min-height: 200px;
+  overflow: hidden;
+}
+
+.image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  transition: opacity 0.3s ease;
+}
+
+.clickable {
+  cursor: zoom-in;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.clickable:hover {
+  transform: scale(1.02);
+}
+
+.placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--atlas-primary, #1971c2);
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.errorContainer {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--atlas-danger, #c92a2a);
+  text-align: center;
+}
+
+.errorIcon {
+  margin-bottom: 1rem;
+  color: var(--atlas-danger, #c92a2a);
+}
+
+.debugInfo {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  margin: 0.25rem 0;
+  word-break: break-all;
+}
+
+.caption {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--atlas-text-tertiary, #6c757d);
+  text-align: center;
+  padding: 0 1rem;
+  line-height: 1.5;
+  max-width: 90%;
+}
+
+.captionLink {
+  color: var(--atlas-primary, #1971c2);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.captionLink:hover {
+  text-decoration: underline;
+  color: var(--atlas-primary-darker, #1864ab);
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .spinner {
+  border-color: rgba(255, 255, 255, 0.1);
+  border-top-color: var(--atlas-primary, #339af0);
+}
+
+[data-theme='dark'] .caption {
+  color: var(--atlas-text-tertiary, #adb5bd);
+}
+
+[data-theme='dark'] .captionLink {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .captionLink:hover {
+  color: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+[data-theme='dark'] .errorContainer {
+  color: var(--atlas-danger, #fa5252);
+}
+
+[data-theme='dark'] .errorIcon {
+  color: var(--atlas-danger, #fa5252);
+}
+
+[data-theme='dark'] .debugInfo {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .figure {
+    margin: 1.5rem 0;
+  }
+  
+  .imageContainer {
+    min-height: 150px;
+  }
+  
+  .caption {
+    font-size: 0.8rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .image,
+  .clickable {
+    transition: none;
+    animation: none;
+  }
+  
+  .clickable:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,364 @@
+/* src/css/sidebar.css */
+
+/* Target the main chapter/category titles at the top level */
+/* This targets the category links that represent chapters */
+.theme-doc-sidebar-container .menu__list > .menu__list-item > .menu__list-item-collapsible > .menu__link {
+  font-weight: 700 !important; /* Bold weight for top-level chapter titles */
+  font-size: 1.05rem !important; /* Slightly larger font size for emphasis */
+  /* Removed color override - let it use default colors */
+}
+
+/* Also target direct doc links at the top level (like "Chapter Index") */
+.theme-doc-sidebar-container .menu__list > .menu__list-item > .menu__link:not(.menu__link--sublist) {
+  font-weight: 700 !important;
+}
+
+/* Ensure ALL nested/sub-items remain normal weight */
+.theme-doc-sidebar-container .menu__list .menu__list .menu__link {
+  font-weight: 400 !important; /* Normal weight for any nested items */
+  font-size: 0.95rem !important; /* Slightly smaller for hierarchy */
+}
+
+/* Override for deeply nested items to ensure they stay normal */
+.theme-doc-sidebar-container .menu__list .menu__list .menu__list .menu__link {
+  font-weight: 400 !important;
+}
+
+/* Sub-category items (like "5.2 Benchmarks") should remain normal */
+.theme-doc-sidebar-container .menu__list .menu__list .menu__list-item .menu__link {
+  font-weight: 400 !important;
+}
+
+/* REMOVE ALL BACKGROUND HIGHLIGHTS COMPLETELY */
+
+/* Remove ALL backgrounds from menu items */
+.theme-doc-sidebar-container .menu__link,
+.theme-doc-sidebar-container .menu__link:hover,
+.theme-doc-sidebar-container .menu__link:focus,
+.theme-doc-sidebar-container .menu__link:active,
+.theme-doc-sidebar-container .menu__link--active,
+.theme-doc-sidebar-container .menu__list-item,
+.theme-doc-sidebar-container .menu__list-item:hover,
+.theme-doc-sidebar-container .menu__list-item--active,
+.theme-doc-sidebar-container .menu__list-item-collapsible,
+.theme-doc-sidebar-container .menu__list-item-collapsible:hover,
+.theme-doc-sidebar-container .menu__list-item-collapsible--active {
+  background: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Remove background from buttons */
+.theme-doc-sidebar-container .menu__caret,
+.theme-doc-sidebar-container .menu__caret:hover,
+.theme-doc-sidebar-container .menu__caret:focus,
+.theme-doc-sidebar-container .menu__caret:active {
+  background: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* CLEAN ACTIVE STATE - ONLY COLOR AND BOLD */
+
+/* Active items - bold and primary color, no backgrounds */
+.theme-doc-sidebar-container .menu__link--active {
+  font-weight: 700 !important;
+  color: var(--atlas-primary, #1971c2) !important;
+  position: relative !important;
+}
+
+/* Subtle left border for active items */
+.theme-doc-sidebar-container .menu__link--active::before {
+  content: '' !important;
+  position: absolute !important;
+  left: -1rem !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 3px !important;
+  background: var(--atlas-primary, #1971c2) !important;
+  border-radius: 0 2px 2px 0 !important;
+}
+
+/* Active collapsible items (parent categories in the path) */
+.theme-doc-sidebar-container .menu__list-item-collapsible--active > .menu__link {
+  font-weight: 700 !important;
+  color: var(--atlas-primary, #1971c2) !important;
+}
+
+/* Hover state - only color change, no backgrounds */
+.theme-doc-sidebar-container .menu__link:hover {
+  color: var(--atlas-primary, #1971c2) !important;
+  transition: color 0.2s ease !important;
+  background: none !important;
+  background-color: transparent !important;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .theme-doc-sidebar-container .menu__link--active {
+  color: var(--atlas-primary-lighter, #74c0fc) !important;
+}
+
+[data-theme='dark'] .theme-doc-sidebar-container .menu__link--active::before {
+  background: var(--atlas-primary-lighter, #74c0fc) !important;
+}
+
+[data-theme='dark'] .theme-doc-sidebar-container .menu__list-item-collapsible--active > .menu__link {
+  color: var(--atlas-primary-lighter, #74c0fc) !important;
+}
+
+[data-theme='dark'] .theme-doc-sidebar-container .menu__link:hover {
+  color: var(--atlas-primary-lighter, #74c0fc) !important;
+}
+
+/* CUSTOM CHEVRON ICONS ONLY */
+
+/* Fix chevron alignment - ensure it's properly centered with text */
+.menu__list-item-collapsible {
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Category toggle icons - properly centered with text baseline */
+.menu__caret {
+  width: 1rem !important;
+  height: 1rem !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  margin-left: auto !important; /* Push to the right */
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Hide the default SVG completely */
+.menu__caret svg {
+  display: none !important;
+}
+
+/* Custom chevron icon - properly centered with theme-aware colors */
+.menu__caret::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 12px !important;
+  height: 12px !important;
+  background-image: url('/img/icons/chevron-right.svg') !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  transition: transform 0.2s ease !important;
+  /* Add filter for theme colors */
+  filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(90%) contrast(90%);
+}
+
+/* Dark mode chevron color */
+[data-theme='dark'] .menu__caret::after {
+  filter: brightness(0) saturate(100%) invert(80%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(110%) contrast(90%);
+}
+
+/* Rotate when collapsed (expanded state) */
+.menu__list-item--collapsed .menu__caret::after {
+  transform: translate(-50%, -50%) rotate(-90deg) !important;
+}
+
+/* src/css/sidebar.css */
+
+/* ========== SIDEBAR FLAT STYLING ========== */
+
+/* Remove ALL borders and shadows from sidebar */
+.theme-doc-sidebar-container,
+.docSidebarContainer_YfHR,
+.sidebarViewport_aRkj,
+.sidebar_njMd {
+  border: none !important;
+  border-right: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+}
+
+/* Remove pseudo-element borders that might exist */
+.theme-doc-sidebar-container:before,
+.theme-doc-sidebar-container:after,
+.docSidebarContainer_YfHR:before,
+.docSidebarContainer_YfHR:after {
+  display: none !important;
+}
+
+/* Ensure sidebar menu items are also flat */
+.menu,
+.menu_SIkG,
+.menu__list,
+.menu__list-item {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove any divider lines in the sidebar */
+.theme-doc-sidebar-container hr,
+.docSidebarContainer_YfHR hr,
+.sidebar_njMd hr {
+  display: none !important;
+}
+
+/* Dark mode sidebar - completely flat */
+[data-theme='dark'] .theme-doc-sidebar-container,
+[data-theme='dark'] .docSidebarContainer_YfHR,
+[data-theme='dark'] .sidebarViewport_aRkj,
+[data-theme='dark'] .sidebar_njMd {
+  border: none !important;
+  border-right: none !important;
+}
+
+/* ========== CUSTOM SCROLLBAR STYLING ========== */
+
+/* Target the sidebar scrollable container */
+.sidebarViewport_aRkj,
+.sidebar_njMd,
+.menu.thin-scrollbar {
+  /* Override default Docusaurus thin-scrollbar class styling */
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+/* Custom scrollbar for webkit browsers (Chrome, Safari, Edge) */
+.sidebarViewport_aRkj::-webkit-scrollbar,
+.sidebar_njMd::-webkit-scrollbar,
+.theme-doc-sidebar-container ::-webkit-scrollbar {
+  width: 0.5px; /* Ultra-thin, like a hairline */
+  height: 0.5px;
+}
+
+.sidebarViewport_aRkj::-webkit-scrollbar-track,
+.sidebar_njMd::-webkit-scrollbar-track,
+.theme-doc-sidebar-container ::-webkit-scrollbar-track {
+  background: transparent !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.sidebarViewport_aRkj::-webkit-scrollbar-thumb,
+.sidebar_njMd::-webkit-scrollbar-thumb,
+.theme-doc-sidebar-container ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.08); /* Ultra-subtle, like a faint line */
+  border-radius: 0 !important; /* Completely square */
+  border: none !important;
+  transition: background 0.3s ease;
+}
+
+.sidebarViewport_aRkj::-webkit-scrollbar-thumb:hover,
+.sidebar_njMd::-webkit-scrollbar-thumb:hover,
+.theme-doc-sidebar-container ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.15); /* Still very subtle on hover */
+}
+
+/* Completely eliminate ALL scrollbar buttons with every possible selector */
+.sidebarViewport_aRkj::-webkit-scrollbar-button,
+.sidebar_njMd::-webkit-scrollbar-button,
+.theme-doc-sidebar-container ::-webkit-scrollbar-button,
+.sidebarViewport_aRkj::-webkit-scrollbar-button:start,
+.sidebar_njMd::-webkit-scrollbar-button:start,
+.theme-doc-sidebar-container ::-webkit-scrollbar-button:start,
+.sidebarViewport_aRkj::-webkit-scrollbar-button:end,
+.sidebar_njMd::-webkit-scrollbar-button:end,
+.theme-doc-sidebar-container ::-webkit-scrollbar-button:end,
+.sidebarViewport_aRkj::-webkit-scrollbar-button:vertical,
+.sidebar_njMd::-webkit-scrollbar-button:vertical,
+.theme-doc-sidebar-container ::-webkit-scrollbar-button:vertical,
+.sidebarViewport_aRkj::-webkit-scrollbar-button:horizontal,
+.sidebar_njMd::-webkit-scrollbar-button:horizontal,
+.theme-doc-sidebar-container ::-webkit-scrollbar-button:horizontal,
+.sidebarViewport_aRkj::-webkit-scrollbar-button:single-button,
+.sidebar_njMd::-webkit-scrollbar-button:single-button,
+.theme-doc-sidebar-container ::-webkit-scrollbar-button:single-button,
+.sidebarViewport_aRkj::-webkit-scrollbar-button:double-button,
+.sidebar_njMd::-webkit-scrollbar-button:double-button,
+.theme-doc-sidebar-container ::-webkit-scrollbar-button:double-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
+  border: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Remove corner and any other scrollbar elements */
+.sidebarViewport_aRkj::-webkit-scrollbar-corner,
+.sidebar_njMd::-webkit-scrollbar-corner,
+.theme-doc-sidebar-container ::-webkit-scrollbar-corner,
+.sidebarViewport_aRkj::-webkit-resizer,
+.sidebar_njMd::-webkit-resizer,
+.theme-doc-sidebar-container ::-webkit-resizer {
+  display: none !important;
+  background: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Firefox - completely hide scrollbar */
+.sidebarViewport_aRkj,
+.sidebar_njMd,
+.theme-doc-sidebar-container {
+  scrollbar-width: none !important;
+  scrollbar-color: transparent transparent !important;
+}
+
+/* Dark mode scrollbar - ultra-subtle white line */
+[data-theme='dark'] .sidebarViewport_aRkj::-webkit-scrollbar-thumb,
+[data-theme='dark'] .sidebar_njMd::-webkit-scrollbar-thumb,
+[data-theme='dark'] .theme-doc-sidebar-container ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme='dark'] .sidebarViewport_aRkj::-webkit-scrollbar-thumb:hover,
+[data-theme='dark'] .sidebar_njMd::-webkit-scrollbar-thumb:hover,
+[data-theme='dark'] .theme-doc-sidebar-container ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme='dark'] .sidebarViewport_aRkj,
+[data-theme='dark'] .sidebar_njMd,
+[data-theme='dark'] .theme-doc-sidebar-container {
+  scrollbar-width: none !important;
+  scrollbar-color: transparent transparent !important;
+}
+
+/* ========== COLLAPSE BUTTON FLAT STYLING ========== */
+
+/* Remove all borders and shadows from the collapse button */
+.collapseSidebarButton_PEFL,
+.button--secondary.button--outline {
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  background: transparent !important;
+  outline: none !important;
+}
+
+.collapseSidebarButton_PEFL:hover,
+.collapseSidebarButton_PEFL:focus,
+.collapseSidebarButton_PEFL:active {
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  background: rgba(0, 0, 0, 0.05) !important;
+  outline: none !important;
+}
+
+/* Dark mode collapse button */
+[data-theme='dark'] .collapseSidebarButton_PEFL:hover,
+[data-theme='dark'] .collapseSidebarButton_PEFL:focus,
+[data-theme='dark'] .collapseSidebarButton_PEFL:active {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ========== SIDEBAR CONTENT STYLING ========== */

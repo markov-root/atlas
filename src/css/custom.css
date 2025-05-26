@@ -1,0 +1,102 @@
+/**
+ * src/css/custom.css
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* Import our theme variables */
+@import './theme.css';
+@import './sidebar.css';
+@import './navbar.css';
+@import './tippy.css';
+@import './fonts.css';
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: var(--atlas-primary);
+  --ifm-color-primary-dark: var(--atlas-primary-dark);
+  --ifm-color-primary-darker: var(--atlas-primary-darker);
+  --ifm-color-primary-darkest: var(--atlas-primary-darkest);
+  --ifm-color-primary-light: var(--atlas-primary-light);
+  --ifm-color-primary-lighter: var(--atlas-primary-lighter);
+  --ifm-color-primary-lightest: var(--atlas-primary-lightest);
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: var(--atlas-primary);
+  --ifm-color-primary-dark: var(--atlas-primary-dark);
+  --ifm-color-primary-darker: var(--atlas-primary-darker);
+  --ifm-color-primary-darkest: var(--atlas-primary-darkest);
+  --ifm-color-primary-light: var(--atlas-primary-light);
+  --ifm-color-primary-lighter: var(--atlas-primary-lighter);
+  --ifm-color-primary-lightest: var(--atlas-primary-lightest);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Hide the table of contents sidebar completely */
+.table-of-contents {
+  display: none !important;
+}
+
+/* Hide the TOC mobile toggle button */
+.table-of-contents__left-border {
+  display: none !important;
+}
+
+/* Hide the entire TOC column on desktop */
+.col.col--3 {
+  display: none !important;
+}
+
+/* Expand the main content to use full width when TOC is hidden */
+.row .col:not(.col--3) {
+  max-width: 100% !important;
+  flex: 0 0 100% !important;
+}
+
+/* Specific targeting for Docusaurus TOC classes */
+div[class*="tableOfContents"] {
+  display: none !important;
+}
+
+div[class*="tocCollapsible"] {
+  display: none !important;
+}
+
+/* Hide mobile TOC toggle */
+button[class*="tocCollapsibleButton"] {
+  display: none !important;
+}
+
+/* Ensure main content uses full width */
+.main-wrapper {
+  max-width: 100%;
+}
+
+.container {
+  max-width: var(--ifm-container-width);
+}
+
+/* Additional custom styles can be added here */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

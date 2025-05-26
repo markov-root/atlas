@@ -1,0 +1,667 @@
+/* src/theme/DocItem/Headers/ChapterHeader.module.css */
+
+.chapterContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--atlas-background, #ffffff);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.6s ease;
+}
+
+.chapterContainer.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Background with texture support */
+.backgroundLayers {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Texture background */
+.chapterContainer {
+  background-image: url('/img/textures/chapter_header_texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Dark mode also gets the texture */
+[data-theme='dark'] .chapterContainer {
+  background-image: url('/img/textures/chapter_header_texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.textureOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.85) 0%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.90) 50%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.85) 100%
+  );
+}
+
+/* Flowing particles - midway subtlety */
+.particleLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  background: var(--atlas-primary, #1971c2);
+  border-radius: 50%;
+  opacity: 0.25;
+  left: var(--x);
+  top: var(--y);
+  animation: flowingFloat var(--duration) ease-in-out infinite var(--delay);
+  box-shadow: 0 0 8px rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.2);
+}
+
+@keyframes flowingFloat {
+  0% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.25;
+  }
+  25% {
+    transform: translateY(-15px) translateX(5px) scale(1.1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-25px) translateX(-3px) scale(0.9);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translateY(-10px) translateX(8px) scale(1.05);
+    opacity: 0.45;
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.25;
+  }
+}
+
+/* Main content */
+.chapterContent {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 3rem 3.5rem; /* Increased top/bottom padding */
+}
+
+/* Main layout structure */
+.mainSplit {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* TOP SECTION - Core content and metadata in horizontal layout */
+.topSection {
+  display: flex;
+  gap: 3rem;
+  width: 100%;
+}
+
+/* LEFT SECTION - Core content */
+.leftSection {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* RIGHT SECTION - Breadcrumbs + Metadata only (no buttons) */
+.rightSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Increased gap for better separation */
+}
+
+/* Title section */
+.titleSection {
+  margin-bottom: 0.5rem;
+}
+
+.titleRow {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+}
+
+.chapterNumber {
+  font-size: 3.5rem;
+  font-weight: 200;
+  color: var(--atlas-primary, #1971c2);
+  line-height: 1;
+  font-family: var(--atlas-font-mono, 'JetBrains Mono', monospace);
+  background: linear-gradient(
+    135deg,
+    var(--atlas-primary, #1971c2) 0%,
+    var(--atlas-primary-light, #1c7ed6) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  flex-shrink: 0;
+}
+
+.chapterTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--atlas-text, #212529);
+  line-height: 1.1;
+  margin: 0;
+  font-family: var(--atlas-font-heading, 'Inter', sans-serif);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Chapter Navigation - now at top of right side */
+.chapterNavigation {
+  display: flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+/* Metadata section wrapper */
+.metadataSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Action buttons section - Horizontal line at bottom, no border */
+.buttonsSection {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+/* Horizontal inline buttons with reduced padding */
+.actionButton {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  background: none;
+  border: none;
+  color: var(--atlas-text-secondary, #6c757d);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  min-width: 80px;
+  flex: 0 0 auto;
+}
+
+.actionButton:hover {
+  color: var(--atlas-primary, #1971c2);
+  background: rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.05);
+  transform: translateY(-2px);
+}
+
+.actionButton.inactive {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.actionButton.inactive:hover {
+  transform: none;
+  background: none;
+  color: var(--atlas-text-secondary, #6c757d);
+}
+
+/* Bigger icon styling */
+.buttonIcon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.actionButton:hover .buttonIcon {
+  transform: scale(1.1);
+}
+
+.buttonIconImage {
+  width: 36px;
+  height: 36px;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+}
+
+.actionButton:hover .buttonIconImage {
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(27%) sepia(94%) saturate(1167%) hue-rotate(201deg) brightness(96%) contrast(94%);
+}
+
+.actionButton.inactive .buttonIconImage {
+  opacity: 0.3;
+}
+
+/* Simplified text content */
+.buttonContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.1rem;
+}
+
+.buttonLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.2;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+/* Remove descriptions to save space */
+.buttonDescription {
+  display: none;
+}
+
+/* Remove arrow and glow effects */
+.buttonArrow,
+.buttonGlow {
+  display: none;
+}
+
+.breadcrumbLink {
+  color: var(--atlas-text-secondary, #6c757d);
+  opacity: 0.8;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbLink:hover {
+  color: var(--atlas-primary, #1971c2);
+  opacity: 1;
+  text-decoration: none;
+}
+
+.breadcrumbIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.breadcrumbSeparator {
+  color: var(--atlas-text-secondary, #6c757d);
+  opacity: 0.6;
+  font-weight: 300;
+}
+
+.breadcrumbCurrent {
+  color: var(--atlas-text, #212529);
+  font-weight: 500;
+}
+
+/* Description - slightly smaller again */
+.chapterDescription {
+  font-size: 1.4rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 400;
+  max-width: 90%;
+}
+
+/* Metadata cards - no background, just icons + text */
+.metaCard {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  /* Removed all backgrounds and borders */
+}
+
+.metaCard:hover {
+  /* Removed hover effects */
+}
+
+.metaIcon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--atlas-primary, #1971c2);
+  flex-shrink: 0;
+  /* Removed background */
+}
+
+.iconImage {
+  width: 20px;
+  height: 20px;
+  filter: none;
+  opacity: 1;
+}
+
+.metaContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.metaLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--atlas-text-tertiary, #9ca3af);
+}
+
+.metaValue {
+  font-size: 0.85rem;
+  color: var(--atlas-text, #212529);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Reading time breakdown */
+.readingBreakdown {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.timeSegment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.timeValue {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--atlas-primary, #1971c2);
+}
+
+.timeLabel {
+  font-size: 0.6rem;
+  color: var(--atlas-text-tertiary, #9ca3af);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Dark Mode */
+[data-theme='dark'] .chapterContainer {
+  background: var(--atlas-background, #121212);
+}
+
+[data-theme='dark'] .textureOverlay {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.45) 0%,
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.50) 50%,
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.45) 100%
+  );
+}
+
+[data-theme='dark'] .particle {
+  background: var(--atlas-primary-lighter, #74c0fc);
+  box-shadow: 0 0 10px rgba(var(--atlas-primary-rgb, 116, 192, 252), 0.25);
+}
+
+[data-theme='dark'] .chapterNumber {
+  background: linear-gradient(
+    135deg,
+    var(--atlas-primary-lighter, #74c0fc) 0%,
+    var(--atlas-primary-lightest, #a5d8ff) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme='dark'] .chapterTitle {
+  color: var(--atlas-text, #e9ecef);
+}
+
+[data-theme='dark'] .breadcrumbLink {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .breadcrumbLink:hover {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .breadcrumbSeparator {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .breadcrumbCurrent {
+  color: var(--atlas-text, #e9ecef);
+}
+
+[data-theme='dark'] .chapterDescription {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .metaCard {
+  /* No background in dark mode either */
+}
+
+[data-theme='dark'] .metaCard:hover {
+  /* No hover effects */
+}
+
+[data-theme='dark'] .iconImage {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+
+[data-theme='dark'] .metaValue {
+  color: var(--atlas-text, #e9ecef);
+}
+
+/* Dark mode button styles - simplified for horizontal layout */
+[data-theme='dark'] .actionButton {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .actionButton:hover {
+  color: var(--atlas-primary-lighter, #74c0fc);
+  background: rgba(var(--atlas-primary-rgb, 51, 154, 240), 0.08);
+}
+
+[data-theme='dark'] .buttonIconImage {
+  opacity: 0.6;
+}
+
+[data-theme='dark'] .actionButton:hover .buttonIconImage {
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(67%) sepia(32%) saturate(1715%) hue-rotate(191deg) brightness(101%) contrast(94%);
+}
+
+[data-theme='dark'] .actionButton.inactive {
+  color: var(--atlas-text-tertiary, #6c757d);
+}
+
+[data-theme='dark'] .buttonLabel {
+  color: inherit;
+}
+
+[data-theme='dark'] .actionButton:hover .buttonLabel {
+  color: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+/* Responsive adjustments for horizontal layout */
+@media (max-width: 768px) {
+  .buttonsSection {
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+  }
+  
+  .actionButton {
+    min-width: 70px;
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .buttonIcon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .buttonIconImage {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .buttonLabel {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .buttonsSection {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  
+  .actionButton {
+    min-width: 60px;
+    padding: 0.4rem 0.5rem;
+  }
+  
+  .buttonIcon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .buttonIconImage {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .buttonLabel {
+    font-size: 0.6rem;
+  }
+}
+
+/* Responsive - stack at 1024px */
+@media (max-width: 1024px) {
+  .topSection {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .leftSection,
+  .rightSection {
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .titleRow {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  
+  .chapterNumber {
+    font-size: 3rem;
+  }
+  
+  .chapterTitle {
+    font-size: 2.75rem;
+  }
+  
+  .chapterDescription {
+    font-size: 1.4rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .chapterNumber {
+    font-size: 2.25rem;
+  }
+  
+  .chapterTitle {
+    font-size: 2.25rem;
+  }
+  
+  .chapterDescription {
+    font-size: 1.2rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .chapterContainer,
+  .particle {
+    animation: none;
+    transition: none;
+  }
+  
+  .chapterContainer.visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* Add this to src/theme/DocItem/Headers/ChapterHeader.module.css */
+
+/* Fix SVG icons in dark mode - make them white */
+[data-theme='dark'] .buttonIconImage {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+
+[data-theme='dark'] .actionButton:hover .buttonIconImage {
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(67%) sepia(32%) saturate(1715%) hue-rotate(191deg) brightness(101%) contrast(94%);
+}
+
+[data-theme='dark'] .actionButton.inactive .buttonIconImage {
+  filter: brightness(0) invert(1);
+  opacity: 0.3;
+}
+
+/* Fix breadcrumb SVG icons in dark mode */
+[data-theme='dark'] .breadcrumbIcon {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+
+[data-theme='dark'] .breadcrumbLink:hover .breadcrumbIcon {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(32%) saturate(1715%) hue-rotate(191deg) brightness(101%) contrast(94%);
+  opacity: 1;
+}
+
+/* Fix metadata SVG icons in dark mode */
+[data-theme='dark'] .iconImage {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}

@@ -1,0 +1,22 @@
+// sidebars.js
+import chapter1Sidebar from './sidebars/chapter1.js';
+// Import other chapters as needed
+// import chapter2Sidebar from './sidebars/chapter2.js';
+// import chapter3Sidebar from './sidebars/chapter3.js';
+
+/** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
+const sidebars = {
+  docs: [
+    {
+      type: 'doc',
+      id: 'chapters/index',  // Add this line to include the chapters index page
+      label: 'Textbook Overview',
+    },
+    ...chapter1Sidebar,
+    // Uncomment these when the chapters are ready
+    // ...chapter2Sidebar,
+    // ...chapter3Sidebar,
+  ],
+};
+
+export default sidebars;

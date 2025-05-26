@@ -1,0 +1,136 @@
+/* src/theme/Footer/styles.module.css */
+
+
+.footer {
+  position: relative;
+  background-color: var(--atlas-gray-900);
+  color: #ffffff; /* Always white text in footer regardless of theme */
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Main Footer Content */
+.footerContent {
+  max-width: var(--ifm-container-width);
+  margin: 0 auto;
+  padding: 3rem var(--ifm-spacing-horizontal);
+}
+
+.footerRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 996px) {
+  .footerRow {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+}
+
+/* Logo and description */
+.footerLogoCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.footerLogoWrapper {
+  margin-bottom: 1.5rem;
+}
+
+.footerLogoLink {
+  display: block;
+}
+
+.footerLogo {
+  max-width: 180px;
+  height: auto;
+}
+
+.footerDescription {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  line-height: 1.5;
+  margin: 0;
+  color: #ffffff;
+}
+
+/* Links Columns */
+.footerLinksWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 2rem;
+}
+
+.footerLinkHeading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff; /* Always white in footer */
+}
+
+.footerLinksList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLinksItem {
+  margin-bottom: 0.5rem;
+}
+
+.footerLink {
+  color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.footerLink:hover {
+  opacity: 1;
+  text-decoration: none;
+  color: #ffffff; /* Pure white on hover */
+}
+
+/* Contact Form Column */
+.footerContactCol {
+  width: 100%;
+}
+
+/* Divider */
+.footerDivider {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.footerDividerLine {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+}
+
+/* Copyright */
+.footerCopyright {
+  text-align: center;
+}
+
+.footerCopyrightText {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  margin: 0;
+  color: #ffffff;
+}
+
+/* Utilities for responsive design */
+@media (max-width: 996px) {
+  .footerContent {
+    padding: 2rem var(--ifm-spacing-horizontal);
+  }
+}

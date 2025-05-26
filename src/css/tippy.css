@@ -1,0 +1,42 @@
+/* src/css/tippy.css */
+
+/* Custom Atlas theme for Tippy tooltips */
+.tippy-box[data-theme~='atlas'] {
+  background-color: var(--atlas-gray-900, #212529);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.tippy-box[data-theme~='atlas'] .tippy-content {
+  padding: 0.75rem 1rem;
+}
+
+.tippy-box[data-theme~='atlas'] .tippy-arrow {
+  color: var(--atlas-gray-900, #212529);
+}
+
+.tippy-box[data-theme~='atlas'] a {
+  color: var(--atlas-primary-lighter, #74c0fc);
+  text-decoration: none;
+}
+
+.tippy-box[data-theme~='atlas'] a:hover {
+  color: var(--atlas-primary-lightest, #a5d8ff);
+  text-decoration: underline;
+}
+
+/* Dark mode */
+[data-theme='dark'] .tippy-box[data-theme~='atlas'] {
+  background-color: rgba(var(--atlas-background-rgb, 18, 18, 18), 0.95);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--atlas-text, #e9ecef);
+}
+
+[data-theme='dark'] .tippy-box[data-theme~='atlas'] .tippy-arrow {
+  color: rgba(var(--atlas-background-rgb, 18, 18, 18), 0.95);
+}
