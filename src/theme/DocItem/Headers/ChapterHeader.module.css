@@ -10,7 +10,7 @@
   transition: all 0.6s ease;
   
   /* UNIFIED TEXTURE BACKGROUND - Works for both light and dark mode */
-  background-image: url('/img/textures/texture.jpg');
+  background-image: url('/img/textures/texture-1.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -419,7 +419,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('/img/textures/texture.jpg');
+  background-image: url('/img/textures/texture-1.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -176,10 +176,11 @@
 .sidebarViewport_aRkj,
 .sidebar_njMd {
   border: none !important;
-  border-right: none !important;
   box-shadow: none !important;
+  border-right: 0px solid black !important;
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
+
 }
 
 /* Remove pseudo-element borders that might exist */
@@ -188,6 +189,7 @@
 .docSidebarContainer_YfHR:before,
 .docSidebarContainer_YfHR:after {
   display: none !important;
+
 }
 
 /* Ensure sidebar menu items are also flat */
@@ -213,6 +215,7 @@
 [data-theme='dark'] .sidebar_njMd {
   border: none !important;
   border-right: none !important;
+  border-right: 0px solid white !important;
 }
 
 /* ========== CUSTOM SCROLLBAR STYLING ========== */
