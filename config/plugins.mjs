@@ -3,6 +3,7 @@ export function createChapterImagesPlugin() {
   return function chapterImagesPlugin(context, options) {
     return {
       name: 'chapter-images-plugin',
+      
       configureWebpack(config, isServer, utils) {
         if (isServer) return {};
         
@@ -25,6 +26,7 @@ export function createChapterImagesPlugin() {
           },
         };
       },
+      
       async postBuild(props) {
         const fs = require('fs');
         const path = require('path');

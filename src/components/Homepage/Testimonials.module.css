@@ -27,6 +27,9 @@
   box-shadow: var(--atlas-shadow, 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 6px rgba(0, 0, 0, 0.08));
   border: 1px solid var(--atlas-border-color, #E0E0E0);
   transition: all 0.3s ease;
+  /* Remove fixed height - let content determine height */
+  display: flex;
+  flex-direction: column;
 }
 
 .testimonialCard:hover {
@@ -71,11 +74,13 @@
   margin: 0 0 1.5rem;
   color: var(--atlas-text, #212121);
   font-style: italic;
+  /* Remove flex-grow - let natural content flow */
 }
 
 .testimonialFooter {
   display: flex;
   align-items: center;
+  /* Remove margin-top: auto - let it flow naturally */
 }
 
 .avatarWrapper {
@@ -108,6 +113,7 @@
 .position {
   font-size: 0.85rem;
   color: var(--atlas-text-secondary, #616161);
+  line-height: 1.3;
 }
 
 /* Carousel */
@@ -119,6 +125,7 @@
 .testimonialCarousel {
   overflow: hidden;
   padding: 1rem;
+  touch-action: pan-y; /* Allow vertical scrolling but handle horizontal swipes */
 }
 
 .carouselTrack {
@@ -131,6 +138,7 @@
   min-width: 33.33%;
   padding: 0 1rem;
   box-sizing: border-box;
+  /* Remove display: flex - let cards size naturally */
 }
 
 /* Arrow icons */
@@ -197,6 +205,10 @@
 }
 
 /* Dark mode adjustments */
+[data-theme='dark'] .testimonialSection {
+  background-color: var(--atlas-background-alt, #1e1e1e);
+}
+
 [data-theme='dark'] .testimonialCard {
   background-color: var(--atlas-card-bg, #2C2C2C);
   border-color: var(--atlas-border-color, #383838);
@@ -206,8 +218,32 @@
   color: var(--atlas-text, #EEEEEE);
 }
 
+[data-theme='dark'] .name {
+  color: var(--atlas-primary-lighter, #90A4AE);
+}
+
 [data-theme='dark'] .position {
   color: var(--atlas-text-secondary, #BDBDBD);
+}
+
+[data-theme='dark'] .sectionTitle {
+  color: var(--atlas-primary-lighter, #90A4AE);
+}
+
+[data-theme='dark'] .quoteIconWrapper {
+  background-color: var(--atlas-primary-lighter, #90A4AE);
+}
+
+[data-theme='dark'] .carouselButton {
+  background-color: var(--atlas-primary-lighter, #90A4AE);
+}
+
+[data-theme='dark'] .carouselButton:hover {
+  background-color: var(--atlas-primary, #546E7A);
+}
+
+[data-theme='dark'] .activeDot {
+  background-color: var(--atlas-primary-lighter, #90A4AE);
 }
 
 /* Responsive adjustments */
@@ -216,9 +252,26 @@
     flex: 0 0 50%;
     min-width: 50%;
   }
+  
+  .carouselButton {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .prevButton {
+    left: -18px;
+  }
+  
+  .nextButton {
+    right: -18px;
+  }
 }
 
 @media (max-width: 768px) {
+  .testimonialSection {
+    padding: 3rem 0;
+  }
+  
   .carouselItem {
     flex: 0 0 100%;
     min-width: 100%;
@@ -226,9 +279,113 @@
   
   .sectionTitle {
     font-size: 2rem;
+    margin-bottom: 2rem;
   }
   
   .featuredCard {
     transform: none;
+  }
+  
+  .testimonialCard {
+    padding: 1.5rem;
+    /* Remove min-height - let content determine size */
+  }
+  
+  .quote {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .name {
+    font-size: 0.95rem;
+  }
+  
+  .position {
+    font-size: 0.8rem;
+  }
+  
+  .avatarWrapper {
+    width: 45px;
+    height: 45px;
+  }
+  
+  /* Hide navigation arrows on mobile */
+  .carouselButton {
+    display: none;
+  }
+  
+  /* Make dots more touch-friendly on mobile */
+  .paginationDot {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .paginationDots {
+    gap: 12px;
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonialSection {
+    padding: 2rem 0;
+  }
+  
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+  
+  .testimonialCard {
+    padding: 1.25rem;
+    /* Remove min-height - let content determine size naturally */
+  }
+  
+  .quote {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  .testimonialCarouselWrapper {
+    margin: 0 -0.5rem;
+  }
+  
+  .testimonialCarousel {
+    padding: 0.5rem;
+  }
+  
+  .carouselItem {
+    padding: 0 0.5rem;
+  }
+  
+  /* Arrows already hidden from 768px breakpoint */
+}
+
+/* Accessibility and motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .carouselTrack {
+    transition: none;
+  }
+  
+  .testimonialCard {
+    transition: none;
+  }
+  
+  .carouselButton {
+    transition: none;
+  }
+  
+  .testimonialCard:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .testimonialCard {
+    border-width: 2px;
+  }
+  
+  .carouselButton {
+    border: 2px solid currentColor;
   }
 }

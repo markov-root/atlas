@@ -1,5 +1,5 @@
-// config/presets.js
-import { docsConfig } from './docs.js';
+// config/presets.mjs
+import { docsConfig } from './docs.mjs';
 
 export const presetsConfig = [
   [

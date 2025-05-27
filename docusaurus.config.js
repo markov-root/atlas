@@ -1,9 +1,9 @@
 // docusaurus.config.js
-import { metadata } from './config/metadata.js';
-import { themeConfig } from './config/theme.js';
-import { presetsConfig } from './config/presets.js';
-import { pluginsConfig } from './config/plugins.js';
-import { stylesheetsConfig } from './config/stylesheets.js';
+import { metadata } from './config/metadata.mjs';
+import { themeConfig } from './config/theme.mjs';
+import { presetsConfig } from './config/presets.mjs';
+import { pluginsConfig } from './config/plugins.mjs';
+import { stylesheetsConfig } from './config/stylesheets.mjs';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
