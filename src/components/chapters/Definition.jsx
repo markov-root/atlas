@@ -1,67 +1,70 @@
+// src/components/chapters/Definition.jsx
 import React from 'react';
 import styles from './Definition.module.css';
 
 /**
- * Definition component for displaying terminology definitions
+ * Definition component for key terms and concepts
  * @param {Object} props
+ * @param {React.ReactNode} props.children - Definition content
  * @param {string} props.term - The term being defined
- * @param {string} props.source - Optional source of the definition
- * @param {React.ReactNode} props.children - The definition content
- * @param {string} props.type - Optional type of definition (primary, secondary, warning, info)
- * @param {string} props.etymology - Optional etymology information
- * @param {string} props.pronounce - Optional pronunciation guide
+ * @param {string|React.ReactNode} props.source - Source citation with markdown links
  */
-const Definition = ({ 
-  term, 
-  source, 
+export default function Definition({ 
   children, 
-  type = 'primary',
-  etymology = '',
-  pronounce = ''
-}) => {
-  // Get CSS class for the type of definition
-  const getTypeClass = () => {
-    switch (type.toLowerCase()) {
-      case 'secondary':
-        return styles.secondary;
-      case 'warning':
-        return styles.warning;
-      case 'info':
-        return styles.info;
-      default:
-        return styles.primary;
-    }
+  term, 
+  source
+}) {
+  // Process markdown links in source
+  const processMarkdownLinks = (text) => {
+    if (!text || typeof text !== 'string') return text;
+    
+    // Replace markdown links [text](url) with HTML links
+    return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, 
+      '<a href="$2" target="_blank" rel="noopener noreferrer" class="' + styles.sourceLink + '">$1</a>'
+    );
   };
 
+  const processedSource = typeof source === 'string' ? processMarkdownLinks(source) : source;
+
   return (
-    <div className={`${styles.container} ${getTypeClass()}`}>
-      <div className={styles.header}>
-        <div className={styles.typeLabel}>Definition</div>
-        <div className={styles.termWrapper}>
-          <h4 className={styles.term}>{term}</h4>
-          {pronounce && <span className={styles.pronunciation}>{pronounce}</span>}
+    <div className={styles.definitionContainer}>
+      
+      {/* Left side - Icon, term, and metadata */}
+      <div className={styles.headerLeft}>
+        
+        {/* Icon and term row */}
+        <div className={styles.iconTermRow}>
+          <div className={styles.iconContainer}>
+            <img src="/img/icons/definition.svg" alt="" className={styles.definitionIcon} />
+          </div>
+          <div className={styles.termSection}>
+            <div className={styles.termName}>{term}</div>
+          </div>
         </div>
         
-        {etymology && (
-          <div className={styles.etymology}>
-            <span className={styles.etymologyLabel}>Etymology:</span> {etymology}
-          </div>
-        )}
+        {/* Metadata */}
+        <div className={styles.metadata}>
+          <span className={styles.typeLabel}>Definition</span>
+          {source && (
+            <>
+              <span className={styles.metaSeparator}>•</span>
+              <span 
+                className={styles.termSource}
+                dangerouslySetInnerHTML={{ __html: processedSource }}
+              />
+            </>
+          )}
+        </div>
+        
       </div>
       
-      <div className={styles.content}>
-        <div className={styles.definition}>
+      {/* Right side - Definition content */}
+      <div className={styles.definitionContent}>
+        <div className={styles.contentInner}>
           {children}
         </div>
-        
-        {source && (
-          <div className={styles.source}>
-            <span className={styles.sourceLabel}>Source:</span> {source}
-          </div>
-        )}
       </div>
+      
     </div>
   );
-};
-
-export default Definition;
+}

@@ -15,14 +15,23 @@
 [ ] docs page - design next/previous page
 [ ] docs landing page - design
 [ ] docs page - audio + errors
-[ ] home page - design
+[ ] home page - funders
+[ ] home page - hero
+[ ] home page - who we are
+[ ] home page - what we do
+[ ] collapse appendix
+[ ] drop caps injection
+[ ] use theme around #1a202c
+[ ] definitions counting and numbering
 
 ## Design
 [ ] definitions component
 [ ] warning component
 [ ] note component
 [ ] footnote component
-[ ] quote component
+[x] quote component
+[ ] tippy, perspective-extreme , offset, large arrow
+
 
 ## New components
 [ ] progress bar
