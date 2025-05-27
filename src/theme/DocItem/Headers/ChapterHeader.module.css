@@ -8,6 +8,13 @@
   opacity: 0;
   transform: translateY(10px);
   transition: all 0.6s ease;
+  
+  /* UNIFIED TEXTURE BACKGROUND - Works for both light and dark mode */
+  background-image: url('/img/textures/chapter_header_texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Remove background-attachment: fixed to prevent sliding issues */
 }
 
 .chapterContainer.visible {
@@ -22,30 +29,17 @@
   z-index: 0;
 }
 
-/* Texture background */
-.chapterContainer {
-  background-image: url('/img/textures/chapter_header_texture.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* Dark mode also gets the texture */
-[data-theme='dark'] .chapterContainer {
-  background-image: url('/img/textures/chapter_header_texture.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
+/* REMOVE DUPLICATE TEXTURE DECLARATIONS */
+/* These were causing the switching issues */
 
 .textureOverlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.85) 0%,
-    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.90) 50%,
-    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.85) 100%
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.65) 0%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.70) 50%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.65) 100%
   );
 }
 
@@ -414,17 +408,32 @@
   letter-spacing: 0.05em;
 }
 
-/* Dark Mode */
+/* Dark Mode - SIMPLIFIED AND CONSISTENT */
 [data-theme='dark'] .chapterContainer {
-  background: var(--atlas-background, #121212);
+  /* Keep the same texture image - don't redeclare it */
+  background-color: var(--atlas-background, #121212);
 }
 
+/* Make ONLY the background texture monochrome in dark mode */
+[data-theme='dark'] .chapterContainer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/img/textures/chapter_header_texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: grayscale(1) contrast(0.8) brightness(0.7);
+  z-index: -1;
+}
+
+/* Dark mode texture overlay - make it darker */
 [data-theme='dark'] .textureOverlay {
   background: linear-gradient(
     135deg,
-    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.45) 0%,
-    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.50) 50%,
-    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.45) 100%
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.75) 0%,
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.80) 50%,
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.75) 100%
   );
 }
 
@@ -497,6 +506,7 @@
 
 [data-theme='dark'] .buttonIconImage {
   opacity: 0.6;
+  filter: brightness(0) invert(1); /* Make button icons white in dark mode */
 }
 
 [data-theme='dark'] .actionButton:hover .buttonIconImage {
@@ -585,36 +595,44 @@
 
 @media (max-width: 768px) {
   .titleRow {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: flex-start;
+    flex-direction: row; /* Keep on same line */
+    gap: 1rem; /* Smaller gap for mobile */
+    align-items: baseline; /* Keep baseline alignment */
+    flex-wrap: wrap; /* Allow wrapping if absolutely necessary */
   }
   
   .chapterNumber {
-    font-size: 3rem;
+    font-size: 2.5rem; /* Smaller on mobile */
+    flex-shrink: 0; /* Don't shrink */
   }
   
   .chapterTitle {
-    font-size: 2.75rem;
+    font-size: 2rem; /* Smaller on mobile */
+    flex: 1;
+    min-width: 0;
   }
   
   .chapterDescription {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     max-width: 100%;
   }
 }
 
 @media (max-width: 480px) {
+  .titleRow {
+    gap: 0.75rem; /* Even smaller gap on very small screens */
+  }
+  
   .chapterNumber {
-    font-size: 2.25rem;
+    font-size: 2rem; /* Smaller for tiny screens */
   }
   
   .chapterTitle {
-    font-size: 2.25rem;
+    font-size: 1.75rem; /* Smaller for tiny screens */
   }
   
   .chapterDescription {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -630,38 +648,4 @@
     opacity: 1;
     transform: none;
   }
-}
-/* Add this to src/theme/DocItem/Headers/ChapterHeader.module.css */
-
-/* Fix SVG icons in dark mode - make them white */
-[data-theme='dark'] .buttonIconImage {
-  filter: brightness(0) invert(1);
-  opacity: 0.8;
-}
-
-[data-theme='dark'] .actionButton:hover .buttonIconImage {
-  opacity: 1;
-  filter: brightness(0) saturate(100%) invert(67%) sepia(32%) saturate(1715%) hue-rotate(191deg) brightness(101%) contrast(94%);
-}
-
-[data-theme='dark'] .actionButton.inactive .buttonIconImage {
-  filter: brightness(0) invert(1);
-  opacity: 0.3;
-}
-
-/* Fix breadcrumb SVG icons in dark mode */
-[data-theme='dark'] .breadcrumbIcon {
-  filter: brightness(0) invert(1);
-  opacity: 0.8;
-}
-
-[data-theme='dark'] .breadcrumbLink:hover .breadcrumbIcon {
-  filter: brightness(0) saturate(100%) invert(67%) sepia(32%) saturate(1715%) hue-rotate(191deg) brightness(101%) contrast(94%);
-  opacity: 1;
-}
-
-/* Fix metadata SVG icons in dark mode */
-[data-theme='dark'] .iconImage {
-  filter: brightness(0) invert(1);
-  opacity: 0.8;
 }

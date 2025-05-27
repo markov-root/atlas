@@ -1,69 +1,4 @@
-/* Section navigation - same as chapter header */
-.sectionNavigation {
-  display: flex !important;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  color: var(--atlas-text-secondary, #6c757d);
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-}
-
-.breadcrumbLink {
-  color: var(--atlas-text-secondary, #6c757d);
-  opacity: 0.8;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-}
-
-.breadcrumbLink:hover {
-  color: var(--atlas-primary, #1971c2);
-  opacity: 1;
-  text-decoration: none;
-}
-
-.breadcrumbIcon {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-}
-
-.breadcrumbSeparator {
-  color: var(--atlas-text-secondary, #6c757d);
-  opacity: 0.6;
-  font-weight: 300;
-}
-
-.breadcrumbCurrent {
-  color: var(--atlas-text, #212529);
-  font-weight: 500;
-}/* Reading time breakdown */
-.readingBreakdown {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.timeSegment {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.05rem;
-}
-
-.timeValue {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--atlas-primary, #1971c2);
-}
-
-.timeLabel {
-  font-size: 0.55rem;
-  color: var(--atlas-text-tertiary, #9ca3af);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}/* src/theme/DocItem/Headers/SectionHeader.module.css */
+/* src/theme/DocItem/Headers/SectionHeader.module.css */
 
 .sectionContainer {
   position: relative;
@@ -74,6 +9,12 @@
   opacity: 0;
   transform: translateY(10px);
   transition: all 0.6s ease;
+  
+  /* UNIFIED TEXTURE BACKGROUND - Works for both light and dark mode */
+  background-image: url('/img/textures/chapter_header_texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .sectionContainer.visible {
@@ -88,30 +29,14 @@
   z-index: 0;
 }
 
-/* Texture background - same as chapter but slightly more muted */
-.sectionContainer {
-  background-image: url('/img/textures/chapter_header_texture.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* Dark mode texture */
-[data-theme='dark'] .sectionContainer {
-  background-image: url('/img/textures/chapter_header_texture.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 .textureOverlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.90) 0%,
-    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.95) 50%,
-    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.90) 100%
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.65) 0%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.70) 50%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.65) 100%
   );
 }
 
@@ -298,9 +223,11 @@
   flex-shrink: 0;
 }
 
-.iconSvg {
+.iconImage {
   width: 16px;
   height: 16px;
+  filter: none;
+  opacity: 1;
 }
 
 .metaContent {
@@ -326,17 +253,58 @@
   line-height: 1.3;
 }
 
-/* Dark Mode */
-[data-theme='dark'] .sectionContainer {
-  background: var(--atlas-background, #121212);
+/* Reading time breakdown */
+.readingBreakdown {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
+.timeSegment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.05rem;
+}
+
+.timeValue {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--atlas-primary, #1971c2);
+}
+
+.timeLabel {
+  font-size: 0.55rem;
+  color: var(--atlas-text-tertiary, #9ca3af);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Dark Mode - FIXED LIKE CHAPTER HEADER */
+[data-theme='dark'] .sectionContainer {
+  background-color: var(--atlas-background, #121212);
+}
+
+/* Make ONLY the background texture monochrome in dark mode */
+[data-theme='dark'] .sectionContainer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/img/textures/chapter_header_texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: grayscale(1) contrast(0.8) brightness(0.7);
+  z-index: -1;
+}
+
+/* Dark mode texture overlay - make it darker */
 [data-theme='dark'] .textureOverlay {
   background: linear-gradient(
     135deg,
-    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.50) 0%,
-    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.55) 50%,
-    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.50) 100%
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.75) 0%,
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.80) 50%,
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.75) 100%
   );
 }
 
@@ -380,22 +348,6 @@
   color: var(--atlas-text-secondary, #adb5bd);
 }
 
-[data-theme='dark'] .breadcrumbLink {
-  color: var(--atlas-text-secondary, #adb5bd);
-}
-
-[data-theme='dark'] .breadcrumbLink:hover {
-  color: var(--atlas-primary-lighter, #74c0fc);
-}
-
-[data-theme='dark'] .breadcrumbSeparator {
-  color: var(--atlas-text-secondary, #adb5bd);
-}
-
-[data-theme='dark'] .breadcrumbCurrent {
-  color: var(--atlas-text, #e9ecef);
-}
-
 [data-theme='dark'] .metaCard {
   /* No background in dark mode either */
 }
@@ -436,17 +388,21 @@
   }
   
   .titleRow {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: flex-start;
+    flex-direction: row; /* Keep on same line like chapter header */
+    gap: 1rem;
+    align-items: baseline;
+    flex-wrap: wrap;
   }
   
   .sectionNumber {
     font-size: 2rem;
+    flex-shrink: 0;
   }
   
   .sectionTitle {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+    flex: 1;
+    min-width: 0;
   }
   
   .sectionDescription {
@@ -460,12 +416,16 @@
     padding: 1.25rem 1.5rem 1.75rem;
   }
   
+  .titleRow {
+    gap: 0.75rem;
+  }
+  
   .sectionNumber {
     font-size: 1.75rem;
   }
   
   .sectionTitle {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
   
   .sectionDescription {

@@ -144,7 +144,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               <div className={styles.titleSection}>
                 <div className={styles.titleRow}>
                   <span className={styles.chapterNumber}>
-                    {frontMatter.chapter_number || chapterNumber}
+                    {String(frontMatter.chapter_number || chapterNumber).padStart(2, '0')}
                   </span>
                   <h1 className={styles.chapterTitle}>{title}</h1>
                 </div>

@@ -30,13 +30,18 @@ export default function ChapterHeaderRenderer({
       }
     };
 
+    // Try immediately
     updateMainWidth();
     
+    // If not ready, try a few more times with short delays
     if (!isReady) {
-      const timer = setTimeout(updateMainWidth, 50);
-      return () => clearTimeout(timer);
+      const attempts = [50, 100, 200];
+      attempts.forEach(delay => {
+        setTimeout(updateMainWidth, delay);
+      });
     }
     
+    // Also listen for resize events
     window.addEventListener('resize', updateMainWidth);
     return () => window.removeEventListener('resize', updateMainWidth);
   }, [isReady]);
@@ -56,7 +61,7 @@ export default function ChapterHeaderRenderer({
 
   const { chapterNumber, sectionNumber } = getChapterAndSectionNumbers();
 
-  // Debug to see what we're working with
+  // Debug to console only (not UI)
   console.log('🎯 ChapterHeaderRenderer data check:', {
     isReady,
     mainWidth,
@@ -79,13 +84,9 @@ export default function ChapterHeaderRenderer({
     margin: '-1rem 0 2rem 0'
   };
 
-  // Only render when we have proper bounds
+  // Render nothing while measuring - no visible loading state
   if (!isReady || mainWidth <= 0) {
-    return (
-      <div style={{ padding: '1rem', background: '#ffeeee', border: '1px solid red' }}>
-        ⏳ Measuring bounds... (width: {mainWidth}px, ready: {String(isReady)})
-      </div>
-    );
+    return null;
   }
 
   return (
@@ -111,7 +112,8 @@ export default function ChapterHeaderRenderer({
         <div style={{
           padding: '1rem',
           background: '#f8d7da',
-          border: '2px solid #721c24'
+          border: '2px solid #721c24',
+          textAlign: 'center'
         }}>
           ❓ UNKNOWN PAGE TYPE
           <br />

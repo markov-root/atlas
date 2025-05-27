@@ -37,11 +37,16 @@ export default function NavbarWrapper(props) {
       settingsButton.setAttribute('aria-label', 'Open settings');
       settingsButton.setAttribute('aria-expanded', isDropdownOpen ? 'true' : 'false');
       
-      // Add the settings icon using your SVG
-      settingsButton.innerHTML = `
-        <img src="/img/icons/settings.svg" alt="" width="20" height="20" style="display: block;" />
-      `;
+      // Create the image element with proper class
+      const iconImg = document.createElement('img');
+      iconImg.src = '/img/icons/settings.svg';
+      iconImg.alt = '';
+      iconImg.width = 20;
+      iconImg.height = 20;
+      iconImg.className = styles.settingsIcon; // Add specific class for the icon
+      iconImg.style.display = 'block';
       
+      settingsButton.appendChild(iconImg);
       settingsButton.addEventListener('click', handleSettingsClick);
 
       // Store reference for dropdown positioning
