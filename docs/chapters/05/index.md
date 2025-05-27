@@ -10,10 +10,9 @@ authors:
 affiliations: ["French Center for AI Safety (CeSIA)"]
 arxiv_link: "https://arxiv.org/abs/2505.05541"
 google_docs_link: "https://docs.google.com/document/d/1KI95w27Ce7yWoynE11PJ94IXK0gT0NwP8091s06P7wM/edit?usp=sharing"
-alignment_forum_link: "https://www.lesswrong.com/s/GTAGBi3fyw88yArQi"
+alignment_forum_link: "https://www.lesswrong.com/posts/CwdCYmsutwXwnYtEF/paper-safety-by-measurement-a-systematic-literature-review"
 sidebar_position: 5
 slug: /chapters/05/
-audio_podcast: "evaluations.mp3"
 ---
 import Note from "@site/src/components/chapters/Note";
 import Quote from "@site/src/components/chapters/Quote";
@@ -45,6 +44,6 @@ When you can measure what you are speaking about, and express it in numbers, you
 
 **Despite significant progress, AI evaluations face fundamental limitations that threaten their reliability.** The asymmetry between proving presence versus absence of capabilities means we can never be certain we've detected all potential risks. Evaluations can conclusively confirm that a model possesses certain capabilities but cannot definitively prove their absence. Technical challenges include measurement sensitivity—performance can vary based on seemingly trivial changes in prompting formats—and the combinatorial explosion of test cases as we add new dimensions to evaluate. Misalignment might lead to model "sandbagging" (strategic underperformance on evaluations), research shows language models can be made to selectively underperform on tests for dangerous capabilities while maintaining performance on general benchmarks. Organizational incentives might lead labs themselves to do "safety washing" (misrepresenting capability improvements as safety advancements). These challenges highlight the need for continued research into more robust evaluation methodologies and institutional arrangements that support genuinely independent assessment.
 
-<Figure src="./img/qwC_Image_1.png" alt="Enter image alt description" chapter="5" figure="1" caption="Overview of chapter content." />
+<Figure src="./img/6Dq_Image_1.png" alt="Enter image alt description" number="1" label="5.1" caption="Overview of chapter content." />
 
 This introduction gave you the general overview of many of the concepts that we will be talking about throughout this chapter. The sections will largely proceed in the order that we introduced the ideas above. We begin by exploring how benchmarks have shaped AI development.

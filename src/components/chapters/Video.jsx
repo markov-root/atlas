@@ -1,22 +1,27 @@
 // src/components/chapters/Video.jsx
 import React, { useState } from 'react';
+import { useLocation } from '@docusaurus/router';
+import Caption from './Caption';
 import styles from './Video.module.css';
 
 /**
- * Video component for embedding videos with responsive behavior and accessibility
+ * Enhanced Video component with full-width design and custom player option
  * @param {Object} props
- * @param {string} props.type - Type of video ('youtube', 'vimeo', 'mp4', 'webm')
+ * @param {string} props.type - Type of video ('youtube', 'vimeo', 'mp4', 'webm', 'custom')
  * @param {string} props.videoId - Video ID for YouTube/Vimeo, or full URL for direct video files
  * @param {string} props.caption - Optional caption for the video
  * @param {string} props.title - Accessibility title for the video
  * @param {string} props.startTime - Optional start time for YouTube videos (e.g., "2m30s" or "150")
  * @param {boolean} props.autoplay - Whether to autoplay the video (default: false)
  * @param {boolean} props.controls - Whether to show video controls (default: true)
- * @param {string} props.aspectRatio - Aspect ratio ('16:9', '4:3', '1:1') - default: '16:9'
+ * @param {string} props.aspectRatio - Aspect ratio ('16:9', '4:3', '1:1', '21:9') - default: '16:9'
  * @param {string} props.width - Optional custom width
  * @param {string} props.height - Optional custom height
  * @param {number} props.chapter - Chapter number for figure numbering
- * @param {number} props.video - Video number within chapter for numbering
+ * @param {number} props.number - Video number within chapter for numbering
+ * @param {string} props.label - Optional label (e.g., "1.1") for numbering
+ * @param {boolean} props.useCustomPlayer - Use custom Atlas player instead of embedded (default: false)
+ * @param {boolean} props.fullWidth - Span full content width (default: true)
  */
 export default function Video({ 
   type = 'youtube',
@@ -30,21 +35,30 @@ export default function Video({
   width,
   height,
   chapter,
-  video
+  number,
+  label,
+  useCustomPlayer = false,
+  fullWidth = true
 }) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const location = useLocation();
+
+  // Auto-extract chapter number from URL if not provided
+  const getChapterFromPath = () => {
+    const match = location.pathname.match(/\/chapters\/(\d+)/);
+    return match ? parseInt(match[1]) : null;
+  };
+
+  const chapterNumber = chapter || getChapterFromPath();
 
   // Convert start time to seconds for YouTube
   const parseStartTime = (time) => {
     if (!time) return '';
     
-    // If it's already a number, return as is
     if (typeof time === 'number') return time.toString();
     
-    // Parse formats like "2m30s", "1h30m", "150" (seconds)
     if (typeof time === 'string') {
-      // If it's just numbers, assume seconds
       if (/^\d+$/.test(time)) return time;
       
       let totalSeconds = 0;
@@ -73,9 +87,20 @@ export default function Video({
         
         if (startSeconds) params.append('start', startSeconds);
         if (autoplay) params.append('autoplay', '1');
-        if (!controls) params.append('controls', '0');
+        if (!controls && !useCustomPlayer) params.append('controls', '0');
+        
+        // Enhanced YouTube embed parameters for better experience
         params.append('rel', '0'); // Don't show related videos
         params.append('modestbranding', '1'); // Minimal YouTube branding
+        params.append('fs', '1'); // Allow fullscreen
+        params.append('cc_load_policy', '0'); // Don't force captions
+        params.append('iv_load_policy', '3'); // Hide annotations
+        
+        if (useCustomPlayer) {
+          // For custom player, we might want different params
+          params.append('enablejsapi', '1'); // Enable JS API
+          params.append('origin', window.location.origin);
+        }
         
         const paramString = params.toString();
         return paramString ? `${youtubeUrl}?${paramString}` : youtubeUrl;
@@ -85,10 +110,11 @@ export default function Video({
         const vimeoParams = new URLSearchParams();
         
         if (autoplay) vimeoParams.append('autoplay', '1');
-        if (!controls) vimeoParams.append('controls', '0');
-        vimeoParams.append('title', '0'); // Hide title
-        vimeoParams.append('byline', '0'); // Hide byline
-        vimeoParams.append('portrait', '0'); // Hide portrait
+        if (!controls && !useCustomPlayer) vimeoParams.append('controls', '0');
+        vimeoParams.append('title', '0');
+        vimeoParams.append('byline', '0');
+        vimeoParams.append('portrait', '0');
+        vimeoParams.append('dnt', '1'); // Do not track
         
         const vimeoParamString = vimeoParams.toString();
         return vimeoParamString ? `${vimeoUrl}?${vimeoParamString}` : vimeoUrl;
@@ -96,7 +122,6 @@ export default function Video({
       case 'mp4':
       case 'webm':
       case 'video':
-        // For direct video files, videoId should be the full URL
         return videoId;
         
       default:
@@ -120,37 +145,6 @@ export default function Video({
     }
   };
 
-  // Generate video label for numbering
-  const getVideoLabel = () => {
-    if (chapter && video) {
-      return `Video ${chapter}.${video}`;
-    } else if (video) {
-      return `Video ${video}`;
-    }
-    return '';
-  };
-
-  // Generate full caption with video numbering
-  const getFullCaption = () => {
-    const videoLabel = getVideoLabel();
-    
-    if (caption) {
-      // Check if caption already starts with video numbering
-      if (caption.match(/^Video \d+(\.\d+)?:/)) {
-        return caption;
-      } else if (videoLabel) {
-        return `${videoLabel}: ${caption}`;
-      } else {
-        return caption;
-      }
-    } else if (videoLabel) {
-      return videoLabel;
-    }
-    
-    return '';
-  };
-
-  const fullCaption = getFullCaption();
   const videoUrl = getVideoUrl();
 
   const handleLoad = () => {
@@ -162,15 +156,27 @@ export default function Video({
     setIsLoading(false);
   };
 
-  // Process markdown links in caption
-  const processMarkdownLinks = (text) => {
-    if (!text) return '';
-    return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, 
-      '<a href="$2" target="_blank" rel="noopener noreferrer" class="' + styles.captionLink + '">$1</a>'
+  // Custom Atlas Player Component (placeholder for future implementation)
+  const CustomVideoPlayer = ({ src, onLoad, onError }) => {
+    return (
+      <div className={styles.customPlayer}>
+        <div className={styles.customPlayerPlaceholder}>
+          <h3>Atlas Custom Player</h3>
+          <p>Coming Soon</p>
+          <a 
+            href={src} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={styles.fallbackLink}
+          >
+            Watch on {type.charAt(0).toUpperCase() + type.slice(1)}
+          </a>
+        </div>
+      </div>
     );
   };
 
-  // Custom video element for direct video files
+  // Direct video element for MP4/WebM files
   const renderDirectVideo = () => (
     <video
       className={styles.videoElement}
@@ -178,7 +184,7 @@ export default function Video({
       autoPlay={autoplay}
       onLoadedData={handleLoad}
       onError={handleError}
-      title={title || fullCaption || `${type} video`}
+      title={title || caption || `${type} video`}
       style={{ 
         width: width || '100%', 
         height: height || 'auto',
@@ -196,33 +202,39 @@ export default function Video({
   );
 
   // Embedded iframe for YouTube/Vimeo
-  const renderEmbeddedVideo = () => (
-    <iframe
-      className={styles.videoIframe}
-      src={videoUrl}
-      title={title || fullCaption || `${type} video`}
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-      onLoad={handleLoad}
-      onError={handleError}
-      style={{ 
-        width: width || '100%', 
-        height: height || '100%',
-        opacity: isLoading ? 0 : 1
-      }}
-    />
-  );
+  const renderEmbeddedVideo = () => {
+    if (useCustomPlayer) {
+      return <CustomVideoPlayer src={videoUrl} onLoad={handleLoad} onError={handleError} />;
+    }
+
+    return (
+      <iframe
+        className={styles.videoIframe}
+        src={videoUrl}
+        title={title || caption || `${type} video`}
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        onLoad={handleLoad}
+        onError={handleError}
+        style={{ 
+          width: width || '100%', 
+          height: height || '100%',
+          opacity: isLoading ? 0 : 1
+        }}
+      />
+    );
+  };
 
   const isDirectVideo = ['mp4', 'webm', 'video'].includes(type.toLowerCase());
 
   return (
-    <figure className={styles.videoFigure}>
+    <figure className={`${styles.videoFigure} ${fullWidth ? styles.fullWidth : ''}`}>
       <div 
         className={`${styles.videoContainer} ${getAspectRatioClass()}`}
         style={{ 
-          width: width || 'auto',
-          maxWidth: '100%'
+          width: fullWidth ? '100%' : (width || 'auto'),
+          maxWidth: fullWidth ? 'none' : '800px'
         }}
       >
         {/* Loading indicator */}
@@ -243,9 +255,7 @@ export default function Video({
               viewBox="0 0 24 24" 
               fill="none" 
               stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
+              strokeWidth="2"
             >
               <circle cx="12" cy="12" r="10"></circle>
               <line x1="12" y1="8" x2="12" y2="12"></line>
@@ -271,13 +281,14 @@ export default function Video({
         )}
       </div>
       
-      {/* Caption */}
-      {fullCaption && (
-        <figcaption 
-          className={styles.videoCaption}
-          dangerouslySetInnerHTML={{ __html: processMarkdownLinks(fullCaption) }}
-        />
-      )}
+      {/* Caption with automatic numbering */}
+      <Caption 
+        caption={caption}
+        mediaType="video"
+        chapter={chapterNumber}
+        number={number}
+        label={label}
+      />
     </figure>
   );
 }

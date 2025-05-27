@@ -2,15 +2,25 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useLocation } from '@docusaurus/router';
+import Caption from './Caption';
 
 /**
  * Figure component for displaying images with captions and click-to-zoom
+ * Now supports automatic numbering via chapter and number props
  */
-function Figure({ src, alt, caption, width, height, chapter, figure }) {
+function Figure({ src, alt, caption, width, height, chapter, number, label }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
   const location = useLocation();
+
+  // Auto-extract chapter number from URL if not provided
+  const getChapterFromPath = () => {
+    const match = location.pathname.match(/\/chapters\/(\d+)/);
+    return match ? parseInt(match[1]) : null;
+  };
+
+  const chapterNumber = chapter || getChapterFromPath();
 
   // Resolve relative paths for Docusaurus
   const getImageSrc = () => {
@@ -30,37 +40,6 @@ function Figure({ src, alt, caption, width, height, chapter, figure }) {
   };
 
   const imageSrc = getImageSrc();
-
-  // Generate figure label
-  const getFigureLabel = () => {
-    if (chapter && figure) {
-      return `Figure ${chapter}.${figure}`;
-    } else if (figure) {
-      return `Figure ${figure}`;
-    }
-    return '';
-  };
-
-  // Generate full caption with figure numbering
-  const getFullCaption = () => {
-    const figureLabel = getFigureLabel();
-    
-    if (caption) {
-      if (caption.match(/^Figure \d+(\.\d+)?:/)) {
-        return caption;
-      } else if (figureLabel) {
-        return `${figureLabel}: ${caption}`;
-      } else {
-        return caption;
-      }
-    } else if (figureLabel) {
-      return figureLabel;
-    }
-    
-    return '';
-  };
-
-  const fullCaption = getFullCaption();
 
   const handleLoad = () => {
     setIsLoaded(true);
@@ -96,14 +75,6 @@ function Figure({ src, alt, caption, width, height, chapter, figure }) {
       return () => document.removeEventListener('keydown', handleKeyDown);
     }
   }, [isZoomed]);
-
-  // Process markdown links in caption
-  const processMarkdownLinks = (text) => {
-    if (!text) return '';
-    return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, 
-      '<a href="$2" target="_blank" rel="noopener noreferrer" style="color: #1971c2; text-decoration: none;">$1</a>'
-    );
-  };
 
   return (
     <>
@@ -186,20 +157,14 @@ function Figure({ src, alt, caption, width, height, chapter, figure }) {
           )}
         </div>
         
-        {fullCaption && (
-          <figcaption 
-            style={{
-              marginTop: '0.75rem',
-              fontSize: '0.9rem',
-              color: 'var(--atlas-text-tertiary, #6c757d)',
-              textAlign: 'center',
-              padding: '0 1rem',
-              lineHeight: '1.5',
-              maxWidth: '90%'
-            }}
-            dangerouslySetInnerHTML={{ __html: processMarkdownLinks(fullCaption) }}
-          />
-        )}
+        {/* Caption with automatic numbering */}
+        <Caption 
+          caption={caption}
+          mediaType="figure"
+          chapter={chapterNumber}
+          number={number}
+          label={label}
+        />
       </figure>
 
       {/* Zoom Modal - Only render when isZoomed is true */}
@@ -294,8 +259,8 @@ function Figure({ src, alt, caption, width, height, chapter, figure }) {
               onClick={handleZoomClose}
             />
 
-            {/* Caption */}
-            {fullCaption && (
+            {/* Caption in zoom modal with numbering */}
+            {caption && (
               <div
                 style={{
                   marginTop: '16px',
@@ -309,8 +274,15 @@ function Figure({ src, alt, caption, width, height, chapter, figure }) {
                   textAlign: 'center',
                   fontFamily: 'system-ui, -apple-system, sans-serif'
                 }}
-                dangerouslySetInnerHTML={{ __html: processMarkdownLinks(fullCaption) }}
-              />
+              >
+                <Caption 
+                  caption={caption}
+                  mediaType="figure"
+                  chapter={chapterNumber}
+                  number={number}
+                  label={label}
+                />
+              </div>
             )}
 
             {/* Hint text */}

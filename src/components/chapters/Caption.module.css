@@ -1,0 +1,56 @@
+/* src/components/chapters/Caption.module.css */
+
+.mediaCaption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--atlas-text-tertiary, #6c757d);
+  text-align: center;
+  line-height: 1.5;
+  
+  /* Align with document content width */
+  max-width: var(--ifm-container-width-xl, 1320px);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--ifm-spacing-horizontal, 1rem);
+  
+  /* For full-width media, constrain caption to readable width */
+  width: 100%;
+}
+
+.captionLink {
+  color: var(--atlas-primary, #1971c2);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.captionLink:hover {
+  text-decoration: underline;
+  color: var(--atlas-primary-darker, #1864ab);
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .mediaCaption {
+  color: var(--atlas-text-tertiary, #adb5bd);
+}
+
+[data-theme='dark'] .captionLink {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .captionLink:hover {
+  color: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mediaCaption {
+    font-size: 0.85rem;
+    padding: 0 var(--ifm-spacing-horizontal, 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .mediaCaption {
+    font-size: 0.8rem;
+  }
+}

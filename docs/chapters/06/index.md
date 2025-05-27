@@ -10,7 +10,6 @@ affiliations: ["French Center for AI Safety (CeSIA)"]
 alignment_forum_link: "https://www.lesswrong.com/s/3ni2P2GZzBvNebWYZ/p/mMBoPnFrFqQJKzDsZ"
 google_docs_link: "https://docs.google.com/document/d/1kEdmyVTUG3MO7lwuw4utHEm7CcavvgAiUZcWHaOZuPY/edit?usp=sharing"
 sidebar_position: 6
-audio_podcast: specification.mp3
 slug: /chapters/06/
 ---
 import Note from "@site/src/components/chapters/Note";

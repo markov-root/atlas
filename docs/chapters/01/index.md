@@ -15,6 +15,7 @@ video_link: "https://www.youtube.com/watch?v=J_iMeH1hb9M"
 sidebar_position: 1
 slug: /chapters/01/
 ---
+import Video from "@site/src/components/chapters/Video";
 import Note from "@site/src/components/chapters/Note";
 import Quote from "@site/src/components/chapters/Quote";
 import Definition from "@site/src/components/chapters/Definition";
@@ -29,21 +30,11 @@ There is no question that machines will become smarter than humans—in all doma
 
 </Quote>
 
-<video>
-
-[https://www.youtube.com/watch?v=J_iMeH1hb9M](null)
-
-</video>
-
-<video-caption>
-
-Optional video to get an overview of AI capabilities.
-
-</video-caption>
+<Video type="youtube" videoId="J_iMeH1hb9M" number="1" label="1.1" caption="Optional video to get an overview of AI capabilities." />
 
 The field of artificial intelligence has undergone a remarkable transformation in recent years, and this might be only the beginning. This chapter lays the groundwork for the entire book by establishing what AI systems can currently do, how they achieve these capabilities, and how we might anticipate their future development. This understanding is essential for all subsequent chapters: the discussion of dangerous capabilities and potential risks (Chapter 2) follows directly from understanding capabilities. Similarly, proposed technical (Chapter 3) and governance solutions (Chapter 4) both must account for the current and projected future of AI capabilities.
 
-<Figure src="./img/sh2_Image_1.png" alt="Enter image alt description" chapter="1" figure="1" caption="We first explain foundation models, which have been continuously showing improved capabilities due to scale. Then examine empirically observed scaling laws. Based on these trends we look at some techniques that researchers use to try and forecast future AI progress." />
+<Figure src="./img/sh2_Image_1.png" alt="Enter image alt description" number="1" label="1.1" caption="We first explain foundation models, which have been continuously showing improved capabilities due to scale. Then examine empirically observed scaling laws. Based on these trends we look at some techniques that researchers use to try and forecast future AI progress." />
 
 **State-of-the-Art AI - Achieved breakthrough capabilities across multiple domains.** We begin by exploring how AI systems have evolved from narrow, specialized tools to increasingly general-purpose tools. Language models can now engage in complex reasoning, while computer vision systems demonstrate sophisticated understanding of visual information. In robotics, we're seeing the emergence of systems that can learn and adapt to real-world environments with increasing autonomy. The goal of this section is to give the reader many examples from different domains of accelerating AI capabilities.
 

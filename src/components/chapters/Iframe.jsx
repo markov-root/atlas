@@ -1,5 +1,7 @@
 // src/components/chapters/Iframe.jsx
 import React, { useState } from 'react';
+import { useLocation } from '@docusaurus/router';
+import Caption from './Caption';
 import styles from './Iframe.module.css';
 
 /**
@@ -10,28 +12,33 @@ import styles from './Iframe.module.css';
  * @param {string} props.title - Accessibility title for the iframe
  * @param {string} props.height - Optional custom height for the iframe
  * @param {string} props.width - Optional custom width for the iframe
+ * @param {number} props.chapter - Chapter number for numbering
+ * @param {number} props.number - Iframe number within chapter for numbering
+ * @param {string} props.label - Optional label (e.g., "1.1") for numbering
  */
 export default function Iframe({ 
   src, 
   caption, 
   title = "Embedded content",
   height = "500px", 
-  width = "100%" 
+  width = "100%",
+  chapter,
+  number,
+  label
 }) {
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+
+  // Auto-extract chapter number from URL if not provided
+  const getChapterFromPath = () => {
+    const match = location.pathname.match(/\/chapters\/(\d+)/);
+    return match ? parseInt(match[1]) : null;
+  };
+
+  const chapterNumber = chapter || getChapterFromPath();
 
   const handleLoad = () => {
     setIsLoading(false);
-  };
-
-  // Process markdown links in caption
-  const processMarkdownLinks = (text) => {
-    if (!text) return '';
-    
-    // Replace markdown links [text](url) with HTML links
-    return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, 
-      '<a href="$2" target="_blank" rel="noopener noreferrer" class="' + styles.captionLink + '">$1</a>'
-    );
   };
 
   // Determine if we should use responsive aspect ratio or fixed height
@@ -70,12 +77,14 @@ export default function Iframe({
         ></iframe>
       </div>
 
-      {caption && (
-        <figcaption 
-          className={styles.caption}
-          dangerouslySetInnerHTML={{ __html: processMarkdownLinks(caption) }}
-        />
-      )}
+      {/* Caption with automatic numbering */}
+      <Caption 
+        caption={caption}
+        mediaType="iframe"
+        chapter={chapterNumber}
+        number={number}
+        label={label}
+      />
     </figure>
   );
 }
