@@ -1,5 +1,5 @@
 ---
-title: "Specification"
+title: "Misspecification"
 chapter_number: 6
 reading_time_core: "56 min"
 reading_time_optional: "3 min"

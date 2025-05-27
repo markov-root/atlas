@@ -2,7 +2,7 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 module.exports = {
   type: 'category',
-  label: '6. Specification',
+  label: '6. Misspecification',
   link: {
     type: 'doc',
     id: 'chapters/06/index',

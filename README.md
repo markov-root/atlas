@@ -1,24 +1,48 @@
 # TODO
-[ ] parser - post split the imports are not being injected in the files, so the components are not going to render properly
-[ ] the size of iframes, images, videos, etc. should span content width
-[ ] notes component needs to be reworked similar to definitions and quotes
-[ ] footer copy code from mkdocs
-[ ] tippy injection
-[ ] header component injection + create
-[ ] sidebar integrate into 1
-[ ] topbar - textbook, course materials, devlog, about, feedback, donate
-[ ] plugins - https://docusaurus.community/plugindirectory/
-[ ] logo sample top left rotation - https://reactnative.dev/
+
+[ ] render - risks
+[ ] render - strategies
+[ ] render - governance
+[ ] render - generalization
+[ ] render - oversight
+[ ] render - interpretability
+[ ] add section numbering to h3 h4 headers
+[ ] font for section numbers on sidebar
+[ ] docs page - remove edit page auto insert
+[ ] docs page - design next/previous page
+[ ] docs landing page - design
+[ ] docs page - audio + errors
+[ ] home page - design
+[ ] quote component - design
+[ ] definitions component - design
+[ ] warning component - design
+[ ] note component - design
+[ ] footnote component - change svg
+[ ] abbreviations component
+[ ] progress bar
+[ ] citation box
+[ ] meta - add + commit excalidraw
+[ ] course page
+[ ] devlog page
+[ ] about page
+[ ] feedback page
+[ ] analytics integration
+[ ] algolia search integration
+[ ] modal - feedback
+[ ] donate button + link on topbar
+[ ] plugins review - https://docusaurus.community/plugindirectory/
 
 
 # Website
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This website is built using [Docusaurus](https://docusaurus.io/).
 
-### Installation
+### Install Dependencies
+
+The list of dependencies are in package.json
 
 ```
-$ yarn
+$ yarn install
 ```
 
 ### Local Development
@@ -27,7 +51,6 @@ $ yarn
 $ yarn start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
 ### Build
 
