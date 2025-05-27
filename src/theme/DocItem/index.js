@@ -11,13 +11,13 @@ export default function DocItemWrapper(props) {
   // Debug logging - remove after testing
   console.log('🔍 DocItemWrapper called:', {
     pathname: location.pathname,
-    isChapterPage: location.pathname.match(/^\/chapters\/\d+\/$/) !== null,
+    isChapterPage: location.pathname.match(/^\/chapters\/\d+\/?$/) !== null,
     isSectionPage: location.pathname.match(/^\/chapters\/\d+\/\d+/) !== null,
     hasContent: !!props.content
   });
   
-  // Detect if this is a chapter or section page  
-  const isChapterPage = location.pathname.match(/^\/chapters\/\d+\/$/) !== null;
+  // Fix: Detect chapter or section page with optional trailing slash
+  const isChapterPage = location.pathname.match(/^\/chapters\/\d+\/?$/) !== null;
   const isSectionPage = location.pathname.match(/^\/chapters\/\d+\/\d+/) !== null;
   
   // Check if we're on the main chapters landing page
