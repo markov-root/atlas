@@ -1,4 +1,4 @@
-// src/components/chapters/Audio/MinimalAudioPlayer.jsx
+// src/components/chapters/Audio/InlineAudioPlayer.jsx - Updated with centralized Tippy
 import React, { useRef, useEffect, useState } from 'react';
 import { 
   Play, 
@@ -9,6 +9,7 @@ import {
   VolumeX,
   X
 } from 'lucide-react';
+import { AudioControlTooltip } from '../../UI/Tooltip';
 import styles from './InlineAudioPlayer.module.css';
 
 const MinimalAudioPlayer = ({ 
@@ -218,17 +219,6 @@ const MinimalAudioPlayer = ({
     }
   };
 
-  // Handle close - mute and close
-  const handleClose = () => {
-    const audio = audioRef.current;
-    if (audio) {
-      audio.pause();
-      audio.volume = 0;
-    }
-    setAudioState(prev => ({ ...prev, isPlaying: false, volume: 0 }));
-    onClose();
-  };
-
   // Format time display
   const formatTime = (time) => {
     if (!time || isNaN(time)) return '0:00';
@@ -252,120 +242,138 @@ const MinimalAudioPlayer = ({
         {tracks.length > 1 && (
           <div className={styles.trackButtons}>
             {tracks.map(track => (
-              <button
+              <AudioControlTooltip 
                 key={track.id}
-                className={`${styles.trackButton} ${activeTrack?.id === track.id ? styles.activeTrack : ''}`}
-                onClick={() => loadTrack(track)}
-                title={track.name}
+                content={`Switch to ${track.name}`}
               >
-                {track.name}
-              </button>
+                <button
+                  className={`${styles.trackButton} ${activeTrack?.id === track.id ? styles.activeTrack : ''}`}
+                  onClick={() => loadTrack(track)}
+                >
+                  {track.name}
+                </button>
+              </AudioControlTooltip>
             ))}
           </div>
         )}
 
         {/* Main Controls */}
         <div className={styles.mainControls}>
-          <button 
-            className={styles.controlButton}
-            onClick={() => skip(-15)}
-            disabled={isLoading || hasError}
-            title="Skip back 15s"
-          >
-            <SkipBack size={16} />
-          </button>
+          <AudioControlTooltip content="Skip back 15 seconds">
+            <button 
+              className={styles.controlButton}
+              onClick={() => skip(-15)}
+              disabled={isLoading || hasError}
+            >
+              <SkipBack size={16} />
+            </button>
+          </AudioControlTooltip>
 
-          <button 
-            className={styles.playButton}
-            onClick={togglePlayPause}
-            disabled={isLoading || hasError}
-            title={audioState.isPlaying ? 'Pause' : 'Play'}
+          <AudioControlTooltip 
+            content={
+              isLoading ? 'Loading...' : 
+              hasError ? 'Error loading audio' : 
+              audioState.isPlaying ? 'Pause' : 'Play'
+            }
           >
-            {isLoading ? (
-              <div className={styles.loadingSpinner} />
-            ) : hasError ? (
-              <span>!</span>
-            ) : audioState.isPlaying ? (
-              <Pause size={16} />
-            ) : (
-              <Play size={16} />
-            )}
-          </button>
+            <button 
+              className={styles.playButton}
+              onClick={togglePlayPause}
+              disabled={isLoading || hasError}
+            >
+              {isLoading ? (
+                <div className={styles.loadingSpinner} />
+              ) : hasError ? (
+                <span>!</span>
+              ) : audioState.isPlaying ? (
+                <Pause size={16} />
+              ) : (
+                <Play size={16} />
+              )}
+            </button>
+          </AudioControlTooltip>
 
-          <button 
-            className={styles.controlButton}
-            onClick={() => skip(30)}
-            disabled={isLoading || hasError}
-            title="Skip forward 30s"
-          >
-            <SkipForward size={16} />
-          </button>
+          <AudioControlTooltip content="Skip forward 30 seconds">
+            <button 
+              className={styles.controlButton}
+              onClick={() => skip(30)}
+              disabled={isLoading || hasError}
+            >
+              <SkipForward size={16} />
+            </button>
+          </AudioControlTooltip>
         </div>
 
         {/* Progress Bar */}
         {!isLoading && !hasError && (
           <div className={styles.progressContainer}>
             <span className={styles.timeDisplay}>{formatTime(audioState.currentTime)}</span>
-            <div 
-              ref={progressRef}
-              className={styles.progressBar}
-              onClick={handleProgressInteraction}
-              onMouseDown={() => setIsDragging(true)}
-              onMouseUp={() => setIsDragging(false)}
-            >
+            <AudioControlTooltip content="Click to seek">
               <div 
-                className={styles.progressFill}
-                style={{ width: `${progressPercentage}%` }}
-              />
-            </div>
+                ref={progressRef}
+                className={styles.progressBar}
+                onClick={handleProgressInteraction}
+                onMouseDown={() => setIsDragging(true)}
+                onMouseUp={() => setIsDragging(false)}
+              >
+                <div 
+                  className={styles.progressFill}
+                  style={{ width: `${progressPercentage}%` }}
+                />
+              </div>
+            </AudioControlTooltip>
             <span className={styles.timeDisplay}>{formatTime(audioState.duration)}</span>
           </div>
         )}
 
         {/* Volume Control */}
         <div className={styles.volumeControl}>
-          <button 
-            onClick={toggleMute}
-            className={styles.controlButton}
-            title={audioState.volume === 0 ? 'Unmute' : 'Mute'}
-          >
-            {audioState.volume === 0 ? <VolumeX size={16} /> : <Volume2 size={16} />}
-          </button>
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.1"
-            value={audioState.volume}
-            onChange={handleVolumeChange}
-            className={styles.slider}
-            title="Volume"
-          />
+          <AudioControlTooltip content={audioState.volume === 0 ? 'Unmute' : 'Mute'}>
+            <button 
+              onClick={toggleMute}
+              className={styles.controlButton}
+            >
+              {audioState.volume === 0 ? <VolumeX size={16} /> : <Volume2 size={16} />}
+            </button>
+          </AudioControlTooltip>
+          <AudioControlTooltip content="Adjust volume">
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.1"
+              value={audioState.volume}
+              onChange={handleVolumeChange}
+              className={styles.slider}
+            />
+          </AudioControlTooltip>
         </div>
 
         {/* Speed Control */}
         <div className={styles.speedControl}>
           <span className={styles.speedLabel}>{audioState.playbackRate}×</span>
-          <input
-            type="range"
-            min="0.5"
-            max="2"
-            step="0.1"
-            value={audioState.playbackRate}
-            onChange={handleSpeedChange}
-            className={styles.slider}
-            title="Playback speed"
-          />
+          <AudioControlTooltip content="Adjust playback speed">
+            <input
+              type="range"
+              min="0.5"
+              max="2"
+              step="0.1"
+              value={audioState.playbackRate}
+              onChange={handleSpeedChange}
+              className={styles.slider}
+            />
+          </AudioControlTooltip>
         </div>
 
         {/* Close Button */}
-        <button 
-          className={styles.closeButton}
-          onClick={handleClose}
-          title="Close audio player"
-        >
-          <X size={16} />
-        </button>
+        <AudioControlTooltip content="Close audio player">
+          <button 
+            className={styles.closeButton}
+            onClick={handleClose}
+          >
+            <X size={16} />
+          </button>
+        </AudioControlTooltip>
       </div>
 
       {/* Error State */}

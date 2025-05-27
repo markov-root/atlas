@@ -1,0 +1,51 @@
+{
+  "godfathers": [
+    {
+      "name": "Geoffrey Hinton",
+      "title": "Godfather of modern AI, Turing Award Recipient",
+      "quote": "The research question is: how do you prevent them from ever wanting to take control? And nobody knows the answer [...] If you take the existential risk seriously, as I now do, it might be quite sensible to just stop developing these things any further."
+    },
+    {
+      "name": "Yoshua Bengio", 
+      "title": "One of most cited scientists ever, Godfather of modern AI, Turing Award Recipient",
+      "quote": "Rogue AI may be dangerous for the whole of humanity. Banning powerful AI systems (say beyond the abilities of GPT-4) that are given autonomy and agency would be a good start."
+    },
+    {
+      "name": "Yann LeCun",
+      "title": "Godfather of modern AI, Turing Award Recipient, Chief AI Scientist at Meta", 
+      "quote": "There is no question that machines will become smarter than humans—in all domains in which humans are smart—in the future. It's a question of when and how, not a question of if."
+    }
+  ],
+  "carousel": [
+    {
+      "name": "Stuart Russell",
+      "title": "Co-Author of leading AI textbook, Co-Founder of Center for Human-Compatible AI",
+      "quote": "If we pursue [our current approach], then we will eventually lose control over the machines."
+    },
+    {
+      "name": "Demis Hassabis",
+      "title": "Co-Founder and CEO of DeepMind",
+      "quote": "We must take the risks of AI as seriously as other major global challenges, like climate change. It took the international community too long to coordinate an effective global response to this, and we're living with the consequences of that now."
+    },
+    {
+      "name": "Dario Amodei",
+      "title": "Co-Founder and CEO of Anthropic, Former Head of AI Safety at OpenAI",
+      "quote": "If such a model wanted to wreak havoc and destroy humanity or whatever, I think we have basically no ability to stop it."
+    },
+    {
+      "name": "Ilya Sutskever",
+      "title": "One of the most cited scientists ever, Co-Founder and Former Chief Scientist at OpenAI",
+      "quote": "It's not that it's going to actively hate humans and want to harm them, but it's just going to be too powerful, and I think a good analogy would be the way humans treat animals."
+    },
+    {
+      "name": "Sam Altman",
+      "title": "Co-Founder and CEO of OpenAI",
+      "quote": "Any compute cluster above a certain extremely high-power threshold has to submit to the equivalent of international weapons inspectors."
+    },
+    {
+      "name": "Elon Musk",
+      "title": "Founder/Co-Founder of OpenAI, Neuralink, SpaceX, xAI, PayPal, CEO of Tesla",
+      "quote": "AI is far more dangerous than nukes. Far. So why do we have no regulatory oversight? This is insane."
+    }
+  ]
+}

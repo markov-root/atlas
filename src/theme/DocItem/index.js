@@ -24,8 +24,9 @@ export default function DocItemWrapper(props) {
   if (location.pathname === '/' || 
       location.pathname === '/chapters' || 
       location.pathname === '/chapters/') {
-    console.log('🏠 Rendering ChapterLanding');
-    return <ChapterLanding {...props} />;
+    console.log('🏠 Rendering ChapterLanding - BYPASS DocItem completely');
+    // Return ChapterLanding directly without any DocItem wrapper
+    return <ChapterLanding />;
   }
 
   // For chapter/section pages, inject our custom header

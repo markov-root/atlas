@@ -1,10 +1,10 @@
-// config/docs.js
+// config/docs.mjs
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
 export const docsConfig = {
   routeBasePath: '/',
-  sidebarPath: './sidebars.js',
+  sidebarPath: './config/sidebars.js', // Updated path to config folder
   editUrl: 'https://github.com/markov-root/atlas/edit/main/',
   showLastUpdateTime: false,
   showLastUpdateAuthor: false,

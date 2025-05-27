@@ -1,0 +1,110 @@
+/* src/theme/DocItem/Landing/ProjectInfo.module.css */
+
+.projectInfoSection {
+  width: 100%;
+  background: var(--atlas-background, #ffffff);
+  border-bottom: 1px solid var(--atlas-border-color, #e2e8f0);
+  padding: 60px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--atlas-text, #1a202c);
+  margin: 0 0 40px 0;
+  text-align: center;
+  font-family: var(--atlas-font-heading, Inter, sans-serif);
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.infoCard {
+  background: var(--atlas-background, #ffffff);
+  border: 1px solid var(--atlas-border-color, #e2e8f0);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.infoTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--atlas-primary, #1971c2);
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.infoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.infoList li {
+  font-size: 15px;
+  color: var(--atlas-text, #1a202c);
+  padding: 4px 0;
+  line-height: 1.5;
+}
+
+.infoText {
+  font-size: 15px;
+  color: var(--atlas-text, #1a202c);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.citation {
+  font-size: 14px;
+  color: var(--atlas-text-secondary, #64748b);
+  margin: 0;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .projectInfoSection {
+    padding: 40px 16px;
+  }
+  
+  .title {
+    font-size: 36px;
+    margin-bottom: 32px;
+  }
+  
+  .infoGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .infoCard {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projectInfoSection {
+    padding: 32px 12px;
+  }
+  
+  .title {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+  
+  .infoCard {
+    padding: 16px;
+  }
+}

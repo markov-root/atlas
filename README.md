@@ -1,11 +1,14 @@
 # TODO
 
-[ ] render - risks
-[ ] render - strategies
-[ ] render - governance
-[ ] render - generalization
-[ ] render - oversight
-[ ] render - interpretability
+## Render
+[ ] risks
+[ ] strategies
+[ ] governance
+[x] generalization
+[ ] oversight
+[ ] interpretability
+
+## ...
 [ ] add section numbering to h3 h4 headers
 [ ] font for section numbers on sidebar
 [ ] docs page - remove edit page auto insert
@@ -13,22 +16,35 @@
 [ ] docs landing page - design
 [ ] docs page - audio + errors
 [ ] home page - design
-[ ] quote component - design
-[ ] definitions component - design
-[ ] warning component - design
-[ ] note component - design
-[ ] footnote component - change svg
-[ ] abbreviations component
+
+## Design
+[ ] definitions component
+[ ] warning component
+[ ] note component
+[ ] footnote component
+[ ] quote component
+
+## New components
 [ ] progress bar
 [ ] citation box
-[ ] meta - add + commit excalidraw
+
+
+## Organization
+[x] move sidebars.js to config folder
+[ ] add + commit excalidraw
+
+
+## After deployment to main
+
+[ ] feedback forms, explore Formspree
+[ ] algolia search integration
+[ ] integrate analytics - https://plausible.io/ 
+
+## Future features
+[ ] abbreviations component
 [ ] course page
 [ ] devlog page
 [ ] about page
-[ ] feedback page
-[ ] analytics integration
-[ ] algolia search integration
-[ ] modal - feedback
 [ ] donate button + link on topbar
 [ ] plugins review - https://docusaurus.community/plugindirectory/
 

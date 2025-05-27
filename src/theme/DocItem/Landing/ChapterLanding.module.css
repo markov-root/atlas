@@ -1,62 +1,131 @@
 /* src/theme/DocItem/Landing/ChapterLanding.module.css */
 
 .landingContainer {
-  padding: 3rem 0 5rem;
-  position: relative;
+  width: 100%;
+  background: var(--atlas-background, #ffffff);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  /* Positioning is handled by inline style, just like chapter headers */
 }
 
-.landingContent {
-  max-width: var(--ifm-container-width);
+/* Streams Container - handles centering and padding within the measured width */
+.streamsContainer {
+  width: 100%;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 var(--ifm-spacing-horizontal);
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.streamSection {
+  margin-bottom: 80px;
+}
+
+.streamSection:last-child {
+  margin-bottom: 40px;
+}
+
+.streamHeader {
+  margin-bottom: 40px;
   text-align: center;
 }
 
-.landingTitle {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-  color: var(--ifm-color-primary);
-  font-weight: 700;
+.streamTitle {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--atlas-primary, #1971c2);
+  margin: 0 0 16px 0;
+  font-family: var(--atlas-font-heading, Inter, sans-serif);
 }
 
-.landingDescription {
-  font-size: 1.2rem;
-  max-width: 800px;
-  margin: 0 auto 3rem;
-  color: var(--ifm-color-emphasis-700);
+.streamDescription {
+  font-size: 18px;
+  color: var(--atlas-text-secondary, #64748b);
+  max-width: 600px;
+  margin: 0 auto;
   line-height: 1.6;
 }
 
-.placeholder {
-  background: var(--ifm-color-emphasis-100);
-  border: 2px dashed var(--ifm-color-emphasis-300);
-  border-radius: 8px;
-  padding: 3rem 2rem;
-  margin: 2rem auto;
-  max-width: 600px;
+/* Responsive Grid - Fixed for proper responsiveness */
+.chaptersGrid {
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+  width: 100%;
+  
+  /* 4 columns on very large screens */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.placeholder h2 {
-  color: var(--ifm-color-primary);
-  margin: 0 0 1rem 0;
+/* Force max 4 columns even on very wide screens */
+@media (min-width: 1400px) {
+  .chaptersGrid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1200px;
+  }
 }
 
-.placeholder p {
-  margin: 0.5rem 0;
-  color: var(--ifm-color-emphasis-700);
+/* 3 columns on large screens */
+@media (max-width: 1200px) {
+  .chaptersGrid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 900px;
+  }
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .landingTitle {
-    font-size: 2.5rem;
+/* 2 columns on medium screens */
+@media (max-width: 900px) {
+  .streamsContainer {
+    padding: 32px 16px;
   }
   
-  .landingDescription {
-    font-size: 1.1rem;
+  .chaptersGrid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 600px;
+    gap: 16px;
   }
   
-  .placeholder {
-    padding: 2rem 1rem;
+  .streamSection {
+    margin-bottom: 60px;
+  }
+  
+  .streamTitle {
+    font-size: 28px;
+  }
+  
+  .streamDescription {
+    font-size: 16px;
+  }
+}
+
+/* 1 column on small screens */
+@media (max-width: 600px) {
+  .streamsContainer {
+    padding: 24px 12px;
+  }
+  
+  .chaptersGrid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    gap: 12px;
+  }
+  
+  .streamSection {
+    margin-bottom: 40px;
+  }
+  
+  .streamHeader {
+    margin-bottom: 24px;
+  }
+  
+  .streamTitle {
+    font-size: 24px;
+  }
+  
+  .streamDescription {
+    font-size: 14px;
   }
 }

@@ -1,0 +1,312 @@
+/* src/theme/DocItem/Landing/ChapterCard.module.css */
+
+.cardContainer {
+  width: 100%;
+  max-width: 280px;
+  height: 420px;
+  perspective: 1000px;
+  cursor: pointer;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.flipContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.flipContainer.flipped {
+  transform: rotateY(180deg);
+}
+
+/* FRONT SIDE - Book Cover */
+.frontSide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: var(--atlas-background, #ffffff);
+  border: 1px solid var(--atlas-border-color, #e2e8f0);
+  border-left: 8px solid var(--atlas-gray-700, #334155);
+  border-radius: 0 12px 12px 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Texture overlay - only appears when texture is provided */
+.textureOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.85) 0%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.80) 50%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.85) 100%
+  );
+  z-index: 0;
+}
+
+.frontContent {
+  padding: 28px;
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.titleRow {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.chapterNumber {
+  background: var(--atlas-text, #1a202c);
+  color: var(--atlas-background, white);
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: var(--atlas-font-mono, "JetBrains Mono", monospace);
+  flex-shrink: 0;
+}
+
+.chapterTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--atlas-text, #1a202c);
+  margin: 0;
+  line-height: 1.2;
+  flex: 1;
+  min-width: 0;
+}
+
+.resourceButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-height: 0; /* Allow container to shrink */
+}
+
+.resourceButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 40px;
+  background: none;
+  border: none;
+}
+
+.resourceButton.available:hover {
+  opacity: 0.7;
+}
+
+.resourceButton.unavailable {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.resourceIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  filter: none;
+  opacity: 1;
+}
+
+.resourceButton.unavailable .resourceIcon {
+  opacity: 0.4;
+}
+
+.resourceLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--atlas-text, #1a202c);
+  min-width: 0;
+}
+
+.resourceButton.unavailable .resourceLabel {
+  color: var(--atlas-text-tertiary, #64748b);
+}
+
+.flipHint {
+  text-align: center;
+  font-size: 12px;
+  color: var(--atlas-text-tertiary, #94a3b8);
+  font-weight: 500;
+  margin-top: 16px;
+  padding: 8px 0;
+  flex-shrink: 0;
+}
+
+/* BACK SIDE - Book Back Cover */
+.backSide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: var(--atlas-background, #ffffff);
+  border: 1px solid var(--atlas-border-color, #cbd5e1);
+  border-right: 8px solid var(--atlas-gray-600, #475569);
+  border-radius: 12px 0 0 12px;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.backContent {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.descriptionContainer {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.description {
+  font-size: 15px;
+  color: var(--atlas-text-secondary, #475569);
+  line-height: 1.65;
+  margin: 0;
+  text-align: justify;
+  flex: 1;
+}
+
+.bottomAction {
+  text-align: center;
+  border-top: 1px solid var(--atlas-border-color, #cbd5e1);
+  padding-top: 20px;
+  flex-shrink: 0;
+}
+
+.startReading {
+  color: var(--atlas-primary, #1971c2);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 4px 8px;
+  display: inline-block;
+}
+
+.startReading:hover {
+  color: var(--atlas-primary-dark, #1864ab);
+}
+
+[data-theme='dark'] .textureOverlay {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.85) 0%,
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.80) 50%,
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.85) 100%
+  );
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .resourceIcon {
+  filter: brightness(0) invert(1);
+}
+
+[data-theme='dark'] .resourceButton.unavailable .resourceIcon {
+  filter: brightness(0) invert(1);
+  opacity: 0.4;
+}
+@media (max-width: 768px) {
+  .cardContainer {
+    width: 280px;
+    height: 420px;
+    margin: 0 12px 24px 0;
+  }
+
+  .frontContent,
+  .backContent {
+    padding: 24px;
+    padding-top: 28px;
+  }
+
+  .chapterTitle {
+    font-size: 22px;
+  }
+
+  .chapterNumber {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .resourceButton {
+    padding: 8px 0;
+    min-height: 36px;
+  }
+
+  .resourceLabel {
+    font-size: 13px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardContainer {
+    width: 260px;
+    height: 400px;
+  }
+
+  .titleRow {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .chapterTitle {
+    font-size: 20px;
+  }
+
+  .resourceButtons {
+    gap: 8px;
+  }
+
+  .resourceButton {
+    padding: 6px 0;
+    min-height: 32px;
+  }
+
+  .resourceIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .resourceLabel {
+    font-size: 12px;
+  }
+}

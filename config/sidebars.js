@@ -1,4 +1,4 @@
-// sidebars.js
+// config/sidebars.js
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 
 // Function to get chapter sidebar - handles both dynamic import and fallback
@@ -6,7 +6,7 @@ const getChapterSidebar = (chapterNum) => {
   const paddedNum = String(chapterNum).padStart(2, '0');
   
   try {
-    const chapterSidebar = require(`./docs/chapters/${paddedNum}/sidebar`);
+    const chapterSidebar = require(`../docs/chapters/${paddedNum}/sidebar`);
     return chapterSidebar;
   } catch (e) {
     return {
