@@ -8,6 +8,14 @@ import ChapterHeaderRenderer from './Headers/ChapterHeaderRenderer';
 export default function DocItemWrapper(props) {
   const location = useLocation();
   
+  // Debug logging - remove after testing
+  console.log('🔍 DocItemWrapper called:', {
+    pathname: location.pathname,
+    isChapterPage: location.pathname.match(/^\/chapters\/\d+\/$/) !== null,
+    isSectionPage: location.pathname.match(/^\/chapters\/\d+\/\d+/) !== null,
+    hasContent: !!props.content
+  });
+  
   // Detect if this is a chapter or section page  
   const isChapterPage = location.pathname.match(/^\/chapters\/\d+\/$/) !== null;
   const isSectionPage = location.pathname.match(/^\/chapters\/\d+\/\d+/) !== null;
@@ -16,11 +24,13 @@ export default function DocItemWrapper(props) {
   if (location.pathname === '/' || 
       location.pathname === '/chapters' || 
       location.pathname === '/chapters/') {
+    console.log('🏠 Rendering ChapterLanding');
     return <ChapterLanding {...props} />;
   }
 
   // For chapter/section pages, inject our custom header
   if (isChapterPage || isSectionPage) {
+    console.log('📖 Rendering custom chapter/section header');
     // Extract the real data from props.content
     const frontMatter = props.content?.frontMatter || {};
     const metadata = props.content?.metadata || {};
@@ -67,6 +77,7 @@ export default function DocItemWrapper(props) {
     );
   }
 
+  console.log('📄 Rendering original DocItem');
   // For all other pages, render the original DocItem
   return <DocItem {...props} />;
 }
