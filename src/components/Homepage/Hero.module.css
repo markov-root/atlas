@@ -10,7 +10,7 @@
 
 /* Add texture overlay when texture.jpg is available */
 .heroContainer.withTexture {
-  background-image: url('/img/texture.jpg');
+  background-image: url('/img/textures/texture.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

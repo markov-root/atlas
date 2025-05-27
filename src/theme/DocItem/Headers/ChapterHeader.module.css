@@ -10,7 +10,7 @@
   transition: all 0.6s ease;
   
   /* UNIFIED TEXTURE BACKGROUND - Works for both light and dark mode */
-  background-image: url('/img/textures/chapter_header_texture.jpg');
+  background-image: url('/img/textures/texture.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -37,9 +37,9 @@
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.65) 0%,
-    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.70) 50%,
-    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.65) 100%
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.85) 0%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.80) 50%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.85) 100%
   );
 }
 
@@ -419,7 +419,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('/img/textures/chapter_header_texture.jpg');
+  background-image: url('/img/textures/texture.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -431,9 +431,9 @@
 [data-theme='dark'] .textureOverlay {
   background: linear-gradient(
     135deg,
-    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.75) 0%,
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.95) 0%,
     rgba(var(--atlas-background-rgb, 18, 18, 18), 0.80) 50%,
-    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.75) 100%
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.95) 100%
   );
 }
 

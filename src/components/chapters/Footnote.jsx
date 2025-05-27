@@ -1,6 +1,6 @@
-// src/components/chapters/Footnote.jsx
+// src/components/chapters/Footnote.jsx - Updated with centralized Tippy configuration
 import React, { useState, useEffect } from 'react';
-import Tippy from '@tippyjs/react';
+import { FootnoteTooltip } from '../UI/Tooltip';
 import styles from './Footnote.module.css';
 
 // Helper function for scrolling to elements
@@ -22,7 +22,7 @@ function processMarkdownLinks(text) {
 }
 
 /**
- * Minimal, elegant footnote component with Tippy tooltips
+ * Minimal, elegant footnote component with centralized Tippy tooltips
  */
 export default function Footnote({ id, text, number }) {
   const footnoteId = id || `footnote-${Math.random().toString(36).substr(2, 9)}`;
@@ -47,17 +47,8 @@ export default function Footnote({ id, text, number }) {
   }, [footnoteId, text]);
 
   return (
-    <Tippy
-      content={
-        <div dangerouslySetInnerHTML={{ __html: processedText }} />
-      }
-      theme="atlas"
-      placement="top"
-      arrow={true}
-      delay={[300, 0]}
-      duration={[200, 150]}
-      maxWidth={350}
-      interactive={false}
+    <FootnoteTooltip
+      content={<div dangerouslySetInnerHTML={{ __html: processedText }} />}
     >
       <sup
         id={`footnote-ref-${footnoteId}`}
@@ -67,7 +58,7 @@ export default function Footnote({ id, text, number }) {
       >
         {number || '*'}
       </sup>
-    </Tippy>
+    </FootnoteTooltip>
   );
 }
 
@@ -112,12 +103,7 @@ export function FootnoteRegistry({ title = "References" }) {
               value={parseInt(footnote.number) || undefined}
             >
               <div id={`footnote-clone-${footnote.id}`} />
-              <Tippy
-                content="Back to reference"
-                theme="atlas"
-                placement="top"
-                delay={[200, 0]}
-              >
+              <FootnoteTooltip content="Back to reference">
                 <button 
                   className={styles.backButton}
                   onClick={() => scrollToElement(`footnote-ref-${footnote.id}`)}
@@ -125,7 +111,7 @@ export function FootnoteRegistry({ title = "References" }) {
                 >
                   ↩
                 </button>
-              </Tippy>
+              </FootnoteTooltip>
             </li>
           ))}
         </ol>

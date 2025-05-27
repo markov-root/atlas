@@ -32,7 +32,7 @@ export const themeConfig = {
     title: '',
     logo: {
       alt: 'AI Safety Atlas Logo',
-      src: 'logos/cesia_logo_monochrome.svg',
+      src: 'img/logo/logo_text.svg',
     },
     items: [
       {
@@ -58,7 +58,7 @@ export const themeConfig = {
     style: 'dark',
     logo: {
       alt: 'AI Safety Atlas Logo',
-      src: 'logos/cesia_logo_monochrome.png',
+      src: 'img/logo/logo_only.svg',
       href: '/',
     },
     links: [

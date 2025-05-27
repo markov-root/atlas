@@ -9,16 +9,19 @@ import {ContactForm} from './ContactForm';
 
 function FooterLogo({src, srcDark, alt, width, height}) {
   const logoSrc = useBaseUrl(src);
-  const logoSrcDark = useBaseUrl(srcDark || src);
+  const logoSrcDark = srcDark ? useBaseUrl(srcDark) : null;
   
   return (
     <img 
       src={logoSrc}
-      srcSet={logoSrcDark ? {dark: logoSrcDark} : undefined}
       alt={alt}
       width={width}
       height={height}
       className={styles.footerLogo}
+      style={{
+        // Ensure logo is visible in dark footer
+        filter: 'brightness(0) invert(1)', // Make logo white on dark background
+      }}
     />
   );
 }

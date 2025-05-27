@@ -1,21 +1,56 @@
-// src/theme/DocItem/Headers/ChapterHeader.jsx
+// src/theme/DocItem/Headers/ChapterHeader.jsx - Updated with centralized Tippy
 import React, { useState, useEffect } from 'react';
+import { ActionButtonTooltip } from '../../../components/UI/Tooltip';
 import styles from './ChapterHeader.module.css';
 import InlineAudioPlayer from '@site/src/components/chapters/Audio/InlineAudioPlayer';
 
-// Action Button Component - RESTORED with audio button functionality
+// Action Button Component - Updated with centralized Tippy
 function ActionButton({ href, iconPath, label, description, active, onClick }) {
   const [isHovered, setIsHovered] = useState(false);
+
+  // Determine tooltip content
+  const tooltipContent = description || label;
 
   // If it's the audio button and has onClick, render as button instead of link
   if (onClick) {
     return (
-      <button
-        onClick={onClick}
+      <ActionButtonTooltip content={tooltipContent}>
+        <button
+          onClick={onClick}
+          className={`${styles.actionButton} ${!active ? styles.inactive : ''}`}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          style={{ 
+            background: 'none', 
+            border: 'none', 
+            cursor: active ? 'pointer' : 'not-allowed' 
+          }}
+          disabled={!active}
+        >
+          <div className={styles.buttonIcon}>
+            <img src={iconPath} alt="" className={styles.buttonIconImage} />
+          </div>
+          
+          <div className={styles.buttonContent}>
+            <span className={styles.buttonLabel}>{label}</span>
+          </div>
+        </button>
+      </ActionButtonTooltip>
+    );
+  }
+
+  // Regular link buttons
+  return (
+    <ActionButtonTooltip content={active ? tooltipContent : `${label} (Not available)`}>
+      <a
+        href={active ? href : '#'}
+        target={active && href ? "_blank" : undefined}
+        rel={active && href ? "noopener noreferrer" : undefined}
         className={`${styles.actionButton} ${!active ? styles.inactive : ''}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        style={{ background: 'none', border: 'none', cursor: active ? 'pointer' : 'not-allowed' }}
+        onClick={!active ? (e) => e.preventDefault() : undefined}
+        aria-disabled={!active}
       >
         <div className={styles.buttonIcon}>
           <img src={iconPath} alt="" className={styles.buttonIconImage} />
@@ -24,28 +59,8 @@ function ActionButton({ href, iconPath, label, description, active, onClick }) {
         <div className={styles.buttonContent}>
           <span className={styles.buttonLabel}>{label}</span>
         </div>
-      </button>
-    );
-  }
-
-  // Regular link buttons
-  return (
-    <a
-      href={active ? href : '#'}
-      target={active && href ? "_blank" : undefined}
-      rel={active && href ? "noopener noreferrer" : undefined}
-      className={`${styles.actionButton} ${!active ? styles.inactive : ''}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className={styles.buttonIcon}>
-        <img src={iconPath} alt="" className={styles.buttonIconImage} />
-      </div>
-      
-      <div className={styles.buttonContent}>
-        <span className={styles.buttonLabel}>{label}</span>
-      </div>
-    </a>
+      </a>
+    </ActionButtonTooltip>
   );
 }
 
@@ -162,19 +177,23 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
             <div className={styles.rightSection}>
               {/* Breadcrumbs at top of right side */}
               <nav className={styles.chapterNavigation}>
-                <a href="/" className={styles.breadcrumbLink} title="AI Safety Atlas Home">
-                  <svg className={styles.breadcrumbIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9,22 9,12 15,12 15,22"></polyline>
-                  </svg>
-                </a>
+                <ActionButtonTooltip content="AI Safety Atlas Home">
+                  <a href="/" className={styles.breadcrumbLink}>
+                    <svg className={styles.breadcrumbIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                      <polyline points="9,22 9,12 15,12 15,22"></polyline>
+                    </svg>
+                  </a>
+                </ActionButtonTooltip>
                 <span className={styles.breadcrumbSeparator}>›</span>
-                <a href="/chapters/" className={styles.breadcrumbLink} title="All Chapters">
-                  <svg className={styles.breadcrumbIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                  </svg>
-                </a>
+                <ActionButtonTooltip content="All Chapters">
+                  <a href="/chapters/" className={styles.breadcrumbLink}>
+                    <svg className={styles.breadcrumbIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                  </a>
+                </ActionButtonTooltip>
                 <span className={styles.breadcrumbSeparator}>›</span>
                 <a href={`/chapters/${String(frontMatter.chapter_number || chapterNumber).padStart(2, '0')}/`} className={styles.breadcrumbLink}>
                   Chapter {frontMatter.chapter_number || chapterNumber}
@@ -257,6 +276,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               href={frontMatter.arxiv_link}
               iconPath="/img/icons/arxiv.svg"
               label="Paper"
+              description="View on arXiv"
               active={!!frontMatter.arxiv_link}
             />
             
@@ -264,6 +284,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               href={frontMatter.google_docs_link}
               iconPath="/img/icons/google.svg"
               label="Docs"
+              description="View in Google Docs"
               active={!!frontMatter.google_docs_link}
             />
             
@@ -271,6 +292,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               href={frontMatter.alignment_forum_link}
               iconPath="/img/icons/lesswrong.svg"
               label="Discuss"
+              description="Discuss on Alignment Forum"
               active={!!frontMatter.alignment_forum_link}
             />
             
@@ -278,6 +300,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               href={frontMatter.video_link}
               iconPath="/img/icons/video.svg"
               label="Video"
+              description="Watch video explanation"
               active={!!frontMatter.video_link}
             />
             
@@ -286,6 +309,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               onClick={handleAudioToggle}
               iconPath="/img/icons/audio.svg"
               label="Audio"
+              description={hasAudio ? "Listen to audio content" : "Audio not available"}
               active={hasAudio}
             />
             
@@ -293,6 +317,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               href={frontMatter.teach_link}
               iconPath="/img/icons/teach.svg"
               label="Teach"
+              description="Teaching resources"
               active={!!frontMatter.teach_link}
             />
           </div>

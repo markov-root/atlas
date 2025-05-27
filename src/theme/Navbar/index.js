@@ -1,7 +1,8 @@
-// src/theme/Navbar/index.js
+// src/theme/Navbar/index.js - Updated with centralized Tippy configuration
 import React, { useEffect, useRef, useState } from 'react';
 import Navbar from '@theme-original/Navbar';
 import { SettingsDropdown } from '../../components/Settings';
+import { NavTooltip } from '../../components/UI/Tooltip';
 import styles from './styles.module.css';
 
 export default function NavbarWrapper(props) {
@@ -33,7 +34,6 @@ export default function NavbarWrapper(props) {
       // Create the settings button element
       const settingsButton = document.createElement('button');
       settingsButton.className = `navbar__item ${styles.settingsButton}`;
-      settingsButton.title = 'Settings';
       settingsButton.setAttribute('aria-label', 'Open settings');
       settingsButton.setAttribute('aria-expanded', isDropdownOpen ? 'true' : 'false');
       
@@ -43,7 +43,7 @@ export default function NavbarWrapper(props) {
       iconImg.alt = '';
       iconImg.width = 20;
       iconImg.height = 20;
-      iconImg.className = styles.settingsIcon; // Add specific class for the icon
+      iconImg.className = styles.settingsIcon;
       iconImg.style.display = 'block';
       
       settingsButton.appendChild(iconImg);
@@ -60,6 +60,18 @@ export default function NavbarWrapper(props) {
         // Fallback: append to the end
         rightItems.appendChild(settingsButton);
       }
+
+      // Add tooltip using centralized configuration
+      // Note: We need to dynamically import and apply tooltip after DOM manipulation
+      import('../../utils/tippyConfig').then(({ getComponentTippyConfig }) => {
+        import('tippy.js').then(({ default: tippy }) => {
+          tippy(settingsButton, {
+            ...getComponentTippyConfig('settingsItem'),
+            content: 'Settings',
+            placement: 'bottom'
+          });
+        });
+      });
     };
 
     // Inject on mount and when the component updates

@@ -1,9 +1,9 @@
-// config/footer.js
+// config/footer.mjs
 export const footerConfig = {
   style: 'dark',
   logo: {
     alt: 'AI Safety Atlas Logo',
-    src: '/logos/cesia_logo_monochrome.png',
+    src: '/img/logo/logo_only.svg', // Added leading slash for absolute path
     href: '/',
   },
   links: [

@@ -1,42 +1,300 @@
-/* src/css/tippy.css */
+/* src/css/tippy.css - Enhanced Atlas theme for Tippy tooltips */
 
-/* Custom Atlas theme for Tippy tooltips */
+/* PRIMARY ATLAS THEME - Dark blue with white text for both light and dark modes */
 .tippy-box[data-theme~='atlas'] {
-  background-color: var(--atlas-gray-900, #212529);
+  background-color: var(--atlas-primary-darker, #1864ab);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--atlas-primary-darkest, #12467a);
+  border-radius: 8px;
+  box-shadow: 
+    0 4px 14px rgba(24, 100, 171, 0.25),
+    0 2px 6px rgba(24, 100, 171, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   font-family: var(--atlas-font-body, 'Inter', sans-serif);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   line-height: 1.4;
+  font-weight: 400;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  /* Enhanced animations */
+  transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transform-origin: center bottom;
 }
 
+/* Content styling */
 .tippy-box[data-theme~='atlas'] .tippy-content {
   padding: 0.75rem 1rem;
+  position: relative;
+  z-index: 1;
 }
 
+/* Arrow styling - matches the dark blue theme */
 .tippy-box[data-theme~='atlas'] .tippy-arrow {
-  color: var(--atlas-gray-900, #212529);
+  color: var(--atlas-primary-darker, #1864ab);
+  filter: drop-shadow(0 1px 2px rgba(24, 100, 171, 0.2));
 }
 
+/* Arrow positioning improvements */
+.tippy-box[data-theme~='atlas'][data-placement^='top'] .tippy-arrow {
+  bottom: 0;
+}
+
+.tippy-box[data-theme~='atlas'][data-placement^='bottom'] .tippy-arrow {
+  top: 0;
+}
+
+.tippy-box[data-theme~='atlas'][data-placement^='left'] .tippy-arrow {
+  right: 0;
+}
+
+.tippy-box[data-theme~='atlas'][data-placement^='right'] .tippy-arrow {
+  left: 0;
+}
+
+/* Link styling within tooltips */
 .tippy-box[data-theme~='atlas'] a {
-  color: var(--atlas-primary-lighter, #74c0fc);
+  color: var(--atlas-primary-lightest, #a5d8ff);
   text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 .tippy-box[data-theme~='atlas'] a:hover {
-  color: var(--atlas-primary-lightest, #a5d8ff);
+  color: #ffffff;
   text-decoration: underline;
 }
 
-/* Dark mode */
+/* Code styling within tooltips */
+.tippy-box[data-theme~='atlas'] code {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--atlas-primary-lightest, #a5d8ff);
+  padding: 0.125rem 0.25rem;
+  border-radius: 3px;
+  font-family: var(--atlas-font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.8125rem;
+}
+
+/* Strong/bold text styling */
+.tippy-box[data-theme~='atlas'] strong,
+.tippy-box[data-theme~='atlas'] b {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* List styling within tooltips */
+.tippy-box[data-theme~='atlas'] ul,
+.tippy-box[data-theme~='atlas'] ol {
+  margin: 0.5rem 0;
+  padding-left: 1.25rem;
+}
+
+.tippy-box[data-theme~='atlas'] li {
+  margin: 0.25rem 0;
+}
+
+/* Paragraph styling */
+.tippy-box[data-theme~='atlas'] p {
+  margin: 0;
+}
+
+.tippy-box[data-theme~='atlas'] p:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+/* ANIMATION ENHANCEMENTS */
+
+/* Scale animation for show/hide */
+.tippy-box[data-theme~='atlas'][data-animation='scale'] {
+  transform-origin: var(--tippy-arrow-transform-origin);
+}
+
+.tippy-box[data-theme~='atlas'][data-animation='scale'][data-state='hidden'] {
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+.tippy-box[data-theme~='atlas'][data-animation='scale'][data-state='visible'] {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Fade animation */
+.tippy-box[data-theme~='atlas'][data-animation='fade'][data-state='hidden'] {
+  opacity: 0;
+}
+
+.tippy-box[data-theme~='atlas'][data-animation='fade'][data-state='visible'] {
+  opacity: 1;
+}
+
+/* Shift animation (subtle slide) */
+.tippy-box[data-theme~='atlas'][data-animation='shift-away'][data-state='hidden'] {
+  opacity: 0;
+}
+
+.tippy-box[data-theme~='atlas'][data-animation='shift-away'][data-state='visible'] {
+  opacity: 1;
+}
+
+.tippy-box[data-theme~='atlas'][data-animation='shift-away'][data-placement^='top'][data-state='hidden'] {
+  transform: translateY(8px);
+}
+
+.tippy-box[data-theme~='atlas'][data-animation='shift-away'][data-placement^='bottom'][data-state='hidden'] {
+  transform: translateY(-8px);
+}
+
+.tippy-box[data-theme~='atlas'][data-animation='shift-away'][data-placement^='left'][data-state='hidden'] {
+  transform: translateX(8px);
+}
+
+.tippy-box[data-theme~='atlas'][data-animation='shift-away'][data-placement^='right'][data-state='hidden'] {
+  transform: translateX(-8px);
+}
+
+/* DARK MODE ADJUSTMENTS - Keep the same dark blue theme */
 [data-theme='dark'] .tippy-box[data-theme~='atlas'] {
-  background-color: rgba(var(--atlas-background-rgb, 18, 18, 18), 0.95);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: var(--atlas-text, #e9ecef);
+  /* Maintain the same dark blue background for consistency */
+  background-color: var(--atlas-primary-darker, #1864ab);
+  border-color: var(--atlas-primary-darkest, #12467a);
+  /* Slightly stronger shadow in dark mode for better contrast */
+  box-shadow: 
+    0 6px 18px rgba(24, 100, 171, 0.35),
+    0 3px 8px rgba(24, 100, 171, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 [data-theme='dark'] .tippy-box[data-theme~='atlas'] .tippy-arrow {
-  color: rgba(var(--atlas-background-rgb, 18, 18, 18), 0.95);
+  color: var(--atlas-primary-darker, #1864ab);
+  filter: drop-shadow(0 1px 3px rgba(24, 100, 171, 0.3));
+}
+
+/* INTERACTIVE TOOLTIP THEME - For tooltips with interactive content */
+.tippy-box[data-theme~='atlas-interactive'] {
+  background-color: var(--atlas-primary-darker, #1864ab);
+  color: #ffffff;
+  border: 1px solid var(--atlas-primary-darkest, #12467a);
+  border-radius: 10px;
+  box-shadow: 
+    0 6px 20px rgba(24, 100, 171, 0.3),
+    0 3px 8px rgba(24, 100, 171, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-weight: 400;
+  max-width: 400px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.tippy-box[data-theme~='atlas-interactive'] .tippy-content {
+  padding: 1rem 1.25rem;
+}
+
+.tippy-box[data-theme~='atlas-interactive'] .tippy-arrow {
+  color: var(--atlas-primary-darker, #1864ab);
+  filter: drop-shadow(0 2px 4px rgba(24, 100, 171, 0.25));
+}
+
+/* SMALL TOOLTIP THEME - For minimal tooltips */
+.tippy-box[data-theme~='atlas-small'] {
+  background-color: var(--atlas-primary-darker, #1864ab);
+  color: #ffffff;
+  border: 1px solid var(--atlas-primary-darkest, #12467a);
+  border-radius: 6px;
+  box-shadow: 
+    0 2px 8px rgba(24, 100, 171, 0.2),
+    0 1px 3px rgba(24, 100, 171, 0.15);
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  font-weight: 400;
+  max-width: 200px;
+}
+
+.tippy-box[data-theme~='atlas-small'] .tippy-content {
+  padding: 0.5rem 0.75rem;
+}
+
+.tippy-box[data-theme~='atlas-small'] .tippy-arrow {
+  color: var(--atlas-primary-darker, #1864ab);
+}
+
+/* ACCESSIBILITY IMPROVEMENTS */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .tippy-box[data-theme~='atlas'],
+  .tippy-box[data-theme~='atlas-interactive'],
+  .tippy-box[data-theme~='atlas-small'] {
+    border-width: 2px;
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.4),
+      0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .tippy-box[data-theme~='atlas'],
+  .tippy-box[data-theme~='atlas-interactive'],
+  .tippy-box[data-theme~='atlas-small'] {
+    transition: opacity 0.2s ease;
+    transform: none !important;
+  }
+  
+  .tippy-box[data-theme~='atlas'][data-state='hidden'],
+  .tippy-box[data-theme~='atlas-interactive'][data-state='hidden'],
+  .tippy-box[data-theme~='atlas-small'][data-state='hidden'] {
+    opacity: 0;
+    transform: none !important;
+  }
+  
+  .tippy-box[data-theme~='atlas'][data-state='visible'],
+  .tippy-box[data-theme~='atlas-interactive'][data-state='visible'],
+  .tippy-box[data-theme~='atlas-small'][data-state='visible'] {
+    opacity: 1;
+    transform: none !important;
+  }
+}
+
+/* FOCUS INDICATORS - For keyboard navigation */
+.tippy-box[data-theme~='atlas']:focus-within,
+.tippy-box[data-theme~='atlas-interactive']:focus-within,
+.tippy-box[data-theme~='atlas-small']:focus-within {
+  outline: 2px solid var(--atlas-primary-lightest, #a5d8ff);
+  outline-offset: 2px;
+}
+
+/* CUSTOM ANIMATIONS */
+@keyframes atlasTooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes atlasTooltipFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateY(4px);
+  }
+}
+
+/* Apply custom animations */
+.tippy-box[data-theme~='atlas'][data-animation='atlas-fade'][data-state='visible'] {
+  animation: atlasTooltipFadeIn 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.tippy-box[data-theme~='atlas'][data-animation='atlas-fade'][data-state='hidden'] {
+  animation: atlasTooltipFadeOut 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
