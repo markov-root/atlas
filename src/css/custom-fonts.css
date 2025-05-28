@@ -1,10 +1,18 @@
-/* src/css/custom-fonts.css - Host custom fonts locally */
+/* src/css/custom-fonts.css - GitHub Pages compatible font loading */
 
-/* OpenDyslexic - You have woff2 and woff files */
+/* Use Google Fonts CDN for most fonts (more reliable on GitHub Pages) */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* Only host OpenDyslexic locally (since it's not available on Google Fonts) */
+/* Use relative paths and add crossorigin headers */
 @font-face {
   font-family: 'OpenDyslexic';
-  src: url('/fonts/opendyslexic/OpenDyslexic-Regular.woff2') format('woff2'),
-       url('/fonts/opendyslexic/OpenDyslexic-Regular.woff') format('woff');
+  src: url('./../../static/fonts/opendyslexic/OpenDyslexic-Regular.woff2') format('woff2'),
+       url('./../../static/fonts/opendyslexic/OpenDyslexic-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -12,8 +20,8 @@
 
 @font-face {
   font-family: 'OpenDyslexic';
-  src: url('/fonts/opendyslexic/OpenDyslexic-Bold.woff2') format('woff2'),
-       url('/fonts/opendyslexic/OpenDyslexic-Bold.woff') format('woff');
+  src: url('./../../static/fonts/opendyslexic/OpenDyslexic-Bold.woff2') format('woff2'),
+       url('./../../static/fonts/opendyslexic/OpenDyslexic-Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -21,117 +29,22 @@
 
 @font-face {
   font-family: 'OpenDyslexic';
-  src: url('/fonts/opendyslexic/OpenDyslexic-Italic.woff2') format('woff2'),
-       url('/fonts/opendyslexic/OpenDyslexic-Italic.woff') format('woff');
+  src: url('./../../static/fonts/opendyslexic/OpenDyslexic-Italic.woff2') format('woff2'),
+       url('./../../static/fonts/opendyslexic/OpenDyslexic-Italic.woff') format('woff');
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 
-/* EB Garamond - You have TTF files */
+/* Alternative: Use jsDelivr CDN for OpenDyslexic (more reliable for GitHub Pages) */
+/* Uncomment these and comment out the @font-face above if local fonts still don't work */
+/*
+@import url('https://cdn.jsdelivr.net/npm/opendyslexic@1.0.3/OpenDyslexic-Regular.woff2');
 @font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/garamond/EBGaramond-Regular.ttf') format('truetype');
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/npm/opendyslexic@1.0.3/OpenDyslexic-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
-
-@font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/garamond/EBGaramond-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/garamond/EBGaramond-Italic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/garamond/EBGaramond-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Libre Baskerville - You have TTF files */
-@font-face {
-  font-family: 'Libre Baskerville';
-  src: url('/fonts/baskerville/LibreBaskerville-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Libre Baskerville';
-  src: url('/fonts/baskerville/LibreBaskerville-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Libre Baskerville';
-  src: url('/fonts/baskerville/LibreBaskerville-Italic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Montserrat - You have TTF files */
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/montserrat/Montserrat-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/montserrat/Montserrat-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/montserrat/Montserrat-Italic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/montserrat/Montserrat-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Bebas Neue - You have TTF file */
-@font-face {
-  font-family: 'Bebas Neue';
-  src: url('/fonts/bebas/BebasNeue-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+*/
