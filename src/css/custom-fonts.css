@@ -3,16 +3,16 @@
 /* Use Google Fonts CDN for most fonts (more reliable on GitHub Pages) */
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Benne&display=swap');
 
-/* Only host OpenDyslexic locally (since it's not available on Google Fonts) */
-/* Use relative paths and add crossorigin headers */
+/* OpenDyslexic via jsDelivr CDN (GitHub Pages compatible) */
 @font-face {
   font-family: 'OpenDyslexic';
-  src: url('./../../static/fonts/opendyslexic/OpenDyslexic-Regular.woff2') format('woff2'),
-       url('./../../static/fonts/opendyslexic/OpenDyslexic-Regular.woff') format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/antijingoist/opendyslexic@master/otf/OpenDyslexic-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -20,8 +20,7 @@
 
 @font-face {
   font-family: 'OpenDyslexic';
-  src: url('./../../static/fonts/opendyslexic/OpenDyslexic-Bold.woff2') format('woff2'),
-       url('./../../static/fonts/opendyslexic/OpenDyslexic-Bold.woff') format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/antijingoist/opendyslexic@master/otf/OpenDyslexic-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -29,22 +28,17 @@
 
 @font-face {
   font-family: 'OpenDyslexic';
-  src: url('./../../static/fonts/opendyslexic/OpenDyslexic-Italic.woff2') format('woff2'),
-       url('./../../static/fonts/opendyslexic/OpenDyslexic-Italic.woff') format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/antijingoist/opendyslexic@master/otf/OpenDyslexic-Italic.otf') format('opentype');
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 
-/* Alternative: Use jsDelivr CDN for OpenDyslexic (more reliable for GitHub Pages) */
-/* Uncomment these and comment out the @font-face above if local fonts still don't work */
-/*
-@import url('https://cdn.jsdelivr.net/npm/opendyslexic@1.0.3/OpenDyslexic-Regular.woff2');
+/* Backup OpenDyslexic from different CDN if above fails */
 @font-face {
-  font-family: 'OpenDyslexic';
-  src: url('https://cdn.jsdelivr.net/npm/opendyslexic@1.0.3/OpenDyslexic-Regular.woff2') format('woff2');
+  font-family: 'OpenDyslexic-Backup';
+  src: url('https://cdn.jsdelivr.net/npm/@fontsource/opendyslexic@4.5.0/files/opendyslexic-latin-400-normal.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
-*/

@@ -1,8 +1,7 @@
-// src/theme/Navbar/index.js - Fixed for mobile compatibility
+// src/theme/Navbar/index.js - Simplified working version
 import React, { useEffect, useRef, useState } from 'react';
 import Navbar from '@theme-original/Navbar';
 import { SettingsDropdown } from '../../components/Settings';
-import { NavTooltip } from '../../components/UI/Tooltip';
 import styles from './styles.module.css';
 
 export default function NavbarWrapper(props) {
@@ -10,33 +9,66 @@ export default function NavbarWrapper(props) {
   const settingsButtonRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-
-  const handleSettingsClick = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  const handleCloseDropdown = () => {
-    setIsDropdownOpen(false);
-  };
+  const [isClicked, setIsClicked] = useState(false);
+  const hoverTimeoutRef = useRef(null);
 
   // Better mobile detection
   const isMobile = () => {
     return window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   };
 
+  const handleCloseDropdown = () => {
+    setIsDropdownOpen(false);
+    setIsClicked(false);
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+  };
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
+  // Create global functions that can be accessed by the injected button
+  useEffect(() => {
+    window.atlasSettingsHandlers = {
+      handleClick: () => {
+        console.log('Click handler called, isClicked:', isClicked);
+        const newClickState = !isClicked;
+        setIsClicked(newClickState);
+        setIsDropdownOpen(newClickState);
+      },
+      handleMouseEnter: () => {
+        if (!isClicked) {
+          if (hoverTimeoutRef.current) {
+            clearTimeout(hoverTimeoutRef.current);
+          }
+          setIsDropdownOpen(true);
+        }
+      },
+      handleMouseLeave: () => {
+        if (!isClicked) {
+          hoverTimeoutRef.current = setTimeout(() => {
+            setIsDropdownOpen(false);
+          }, 200);
+        }
+      }
+    };
+
+    return () => {
+      if (window.atlasSettingsHandlers) {
+        delete window.atlasSettingsHandlers;
+      }
+    };
+  }, [isClicked]);
+
   useEffect(() => {
     if (!isMounted) return;
 
-    // More robust injection with retries
     const injectSettingsButton = () => {
       const navbar = navbarRef.current;
       if (!navbar) return false;
 
-      // Try multiple selectors for navbar items
       const selectors = [
         '.navbar__items--right',
         '.navbar__items.navbar__items--right',
@@ -54,42 +86,44 @@ export default function NavbarWrapper(props) {
         return false;
       }
 
-      // Check if we've already added the settings button
       if (rightItems.querySelector(`.${styles.settingsButton}`)) {
         return true;
       }
 
-      // Create the settings button element
       const settingsButton = document.createElement('button');
       settingsButton.className = `navbar__item ${styles.settingsButton}`;
       settingsButton.setAttribute('aria-label', 'Open reading settings');
-      settingsButton.setAttribute('aria-expanded', isDropdownOpen ? 'true' : 'false');
       settingsButton.setAttribute('type', 'button');
       
-      // Create the image element with proper error handling
-      const iconImg = document.createElement('img');
-      iconImg.src = '/img/icons/settings.svg';
-      iconImg.alt = 'Settings';
-      iconImg.width = 20;
-      iconImg.height = 20;
-      iconImg.className = styles.settingsIcon;
-      iconImg.style.display = 'block';
+      settingsButton.innerHTML = '𝐀';
+      settingsButton.style.fontSize = '18px';
+      settingsButton.style.fontWeight = 'bold';
       
-      // Add error handling for icon loading
-      iconImg.onerror = () => {
-        console.warn('Settings icon failed to load, using fallback');
-        // Fallback to text if icon fails
-        settingsButton.innerHTML = '⚙️';
-        settingsButton.style.fontSize = '16px';
-      };
-      
-      settingsButton.appendChild(iconImg);
-      settingsButton.addEventListener('click', handleSettingsClick);
+      // Add event listeners using global handlers
+      settingsButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (window.atlasSettingsHandlers) {
+          window.atlasSettingsHandlers.handleClick();
+        }
+      });
 
-      // Store reference for dropdown positioning
+      if (!isMobile()) {
+        settingsButton.addEventListener('mouseenter', () => {
+          if (window.atlasSettingsHandlers) {
+            window.atlasSettingsHandlers.handleMouseEnter();
+          }
+        });
+        
+        settingsButton.addEventListener('mouseleave', () => {
+          if (window.atlasSettingsHandlers) {
+            window.atlasSettingsHandlers.handleMouseLeave();
+          }
+        });
+      }
+
       settingsButtonRef.current = settingsButton;
 
-      // Insert the settings button before the theme toggle or at the end
       const themeToggle = rightItems.querySelector('[class*="colorModeToggle"], [class*="toggle"]');
       if (themeToggle) {
         rightItems.insertBefore(settingsButton, themeToggle);
@@ -97,64 +131,41 @@ export default function NavbarWrapper(props) {
         rightItems.appendChild(settingsButton);
       }
 
-      // Add tooltip for desktop only (mobile tooltips can be problematic)
-      if (!isMobile()) {
-        import('../../utils/tippyConfig').then(({ getComponentTippyConfig }) => {
-          import('tippy.js').then(({ default: tippy }) => {
-            tippy(settingsButton, {
-              ...getComponentTippyConfig('settingsItem'),
-              content: 'Reading Settings',
-              placement: 'bottom'
-            });
-          });
-        }).catch(err => {
-          console.warn('Could not load tooltip system:', err);
-        });
-      }
-
       return true;
     };
 
-    // Try injection with multiple attempts
     let attempts = 0;
     const maxAttempts = 5;
-    const retryDelay = 100;
 
     const tryInject = () => {
       attempts++;
       const success = injectSettingsButton();
       
       if (!success && attempts < maxAttempts) {
-        setTimeout(tryInject, retryDelay * attempts); // Increasing delay
-      } else if (!success) {
-        console.error('Failed to inject settings button after', maxAttempts, 'attempts');
+        setTimeout(tryInject, 100 * attempts);
       }
     };
 
-    // Start injection attempts
     tryInject();
     
-    // Also try on window load as a fallback
     const handleLoad = () => tryInject();
     window.addEventListener('load', handleLoad);
     
     return () => {
       window.removeEventListener('load', handleLoad);
     };
-  }, [isDropdownOpen, isMounted]);
+  }, [isMounted]);
 
-  // Update aria-expanded when dropdown state changes
+  // Update aria-expanded
   useEffect(() => {
     if (settingsButtonRef.current) {
       settingsButtonRef.current.setAttribute('aria-expanded', isDropdownOpen ? 'true' : 'false');
     }
   }, [isDropdownOpen]);
 
-  // Handle clicks outside dropdown on mobile
+  // Handle clicks outside
   useEffect(() => {
-    if (!isDropdownOpen || !isMobile()) return;
-
-    const handleTouchStart = (e) => {
+    const handleClickOutside = (e) => {
       const dropdown = document.querySelector(`.${styles.dropdownContainer}`);
       if (dropdown && !dropdown.contains(e.target) && 
           settingsButtonRef.current && !settingsButtonRef.current.contains(e.target)) {
@@ -162,12 +173,29 @@ export default function NavbarWrapper(props) {
       }
     };
 
-    document.addEventListener('touchstart', handleTouchStart, { passive: true });
-    
+    if (isDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
     return () => {
-      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isDropdownOpen]);
+
+  // Handle dropdown hover
+  const handleDropdownMouseEnter = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+  };
+
+  const handleDropdownMouseLeave = () => {
+    if (!isClicked) {
+      hoverTimeoutRef.current = setTimeout(() => {
+        setIsDropdownOpen(false);
+      }, 200);
+    }
+  };
 
   if (!isMounted) {
     return <Navbar {...props} />;
@@ -177,9 +205,12 @@ export default function NavbarWrapper(props) {
     <div ref={navbarRef} className={styles.navbarContainer}>
       <Navbar {...props} />
       
-      {/* Settings Dropdown - only render if we have a button reference */}
       {settingsButtonRef.current && (
-        <div className={styles.dropdownContainer}>
+        <div 
+          className={styles.dropdownContainer}
+          onMouseEnter={handleDropdownMouseEnter}
+          onMouseLeave={handleDropdownMouseLeave}
+        >
           <SettingsDropdown
             isOpen={isDropdownOpen}
             onClose={handleCloseDropdown}

@@ -1,7 +1,6 @@
-// src/components/Settings/SettingsDropdown.jsx - Redesigned with textbook fonts and better layout
+// src/components/Settings/SettingsDropdown.jsx - Clean version without any tooltip references
 import React, { useState, useRef, useEffect } from 'react';
 import { useSettings } from './SettingsContext';
-import { SettingsTooltip } from '../UI/Tooltip';
 import styles from './SettingsDropdown.module.css';
 
 export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
@@ -68,17 +67,21 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
           />
           <h3 className={styles.title}>Reading Settings</h3>
         </div>
-        <SettingsTooltip content="Reset all settings to defaults">
-          <button 
-            onClick={resetSettings}
-            className={styles.resetButton}
-          >
-            <img src="/img/icons/reset.svg" alt="" className={styles.resetIcon} />
-          </button>
-        </SettingsTooltip>
+        <button 
+          onClick={resetSettings}
+          className={styles.resetButton}
+          aria-label="Reset all settings to defaults"
+        >
+          <img src="/img/icons/reset.svg" alt="" className={styles.resetIcon} />
+        </button>
       </div>
 
       <div className={styles.content}>
+        {/* Notice at top */}
+        <div className={styles.notice}>
+          <span className={styles.noticeText}>These settings only apply to textbook chapter pages</span>
+        </div>
+
         {/* Font Family */}
         <div className={styles.setting}>
           <label className={styles.label}>Font Family</label>
@@ -87,6 +90,7 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
               value={settings.font}
               onChange={(e) => updateSetting('font', e.target.value)}
               className={styles.select}
+              aria-label="Select font family"
             >
               {fontOptions.filter(f => f.id !== 'opendyslexic').map(font => (
                 <option key={font.id} value={font.id}>
@@ -183,57 +187,52 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
         <div className={styles.setting}>
           <label className={styles.label}>Text Alignment</label>
           <div className={styles.alignmentGroup}>
-            <SettingsTooltip content="Align text to the left">
-              <button
-                onClick={() => updateSetting('textAlign', 'left')}
-                className={`${styles.alignButton} ${settings.textAlign === 'left' ? styles.active : ''}`}
-                aria-label="Align text left"
-              >
-                <img src="/img/icons/align-left.svg" alt="" className={styles.alignIcon} />
-              </button>
-            </SettingsTooltip>
-            <SettingsTooltip content="Center text">
-              <button
-                onClick={() => updateSetting('textAlign', 'center')}
-                className={`${styles.alignButton} ${settings.textAlign === 'center' ? styles.active : ''}`}
-                aria-label="Center text"
-              >
-                <img src="/img/icons/align-center.svg" alt="" className={styles.alignIcon} />
-              </button>
-            </SettingsTooltip>
-            <SettingsTooltip content="Align text to the right">
-              <button
-                onClick={() => updateSetting('textAlign', 'right')}
-                className={`${styles.alignButton} ${settings.textAlign === 'right' ? styles.active : ''}`}
-                aria-label="Align text right"
-              >
-                <img src="/img/icons/align-right.svg" alt="" className={styles.alignIcon} />
-              </button>
-            </SettingsTooltip>
-            <SettingsTooltip content="Justify text for even margins">
-              <button
-                onClick={() => updateSetting('textAlign', 'justify')}
-                className={`${styles.alignButton} ${settings.textAlign === 'justify' ? styles.active : ''}`}
-                aria-label="Justify text"
-              >
-                <img src="/img/icons/align-justify.svg" alt="" className={styles.alignIcon} />
-              </button>
-            </SettingsTooltip>
+            <button
+              onClick={() => updateSetting('textAlign', 'left')}
+              className={`${styles.alignButton} ${settings.textAlign === 'left' ? styles.active : ''}`}
+              aria-label="Align text left"
+              title="Align text left"
+            >
+              <img src="/img/icons/align-left.svg" alt="" className={styles.alignIcon} />
+            </button>
+            <button
+              onClick={() => updateSetting('textAlign', 'center')}
+              className={`${styles.alignButton} ${settings.textAlign === 'center' ? styles.active : ''}`}
+              aria-label="Center text"
+              title="Center text"
+            >
+              <img src="/img/icons/align-center.svg" alt="" className={styles.alignIcon} />
+            </button>
+            <button
+              onClick={() => updateSetting('textAlign', 'right')}
+              className={`${styles.alignButton} ${settings.textAlign === 'right' ? styles.active : ''}`}
+              aria-label="Align text right"
+              title="Align text right"
+            >
+              <img src="/img/icons/align-right.svg" alt="" className={styles.alignIcon} />
+            </button>
+            <button
+              onClick={() => updateSetting('textAlign', 'justify')}
+              className={`${styles.alignButton} ${settings.textAlign === 'justify' ? styles.active : ''}`}
+              aria-label="Justify text"
+              title="Justify text"
+            >
+              <img src="/img/icons/align-justify.svg" alt="" className={styles.alignIcon} />
+            </button>
           </div>
         </div>
 
         {/* Dyslexia Font */}
         <div className={styles.setting}>
           <label className={styles.label}>Dyslexia-Friendly Font</label>
-          <SettingsTooltip content="Use OpenDyslexic font for better readability">
-            <button
-              onClick={() => updateSetting('dyslexiaFont', !settings.dyslexiaFont)}
-              className={`${styles.toggle} ${settings.dyslexiaFont ? styles.toggleActive : ''}`}
-              aria-label={`${settings.dyslexiaFont ? 'Disable' : 'Enable'} dyslexia-friendly font`}
-            >
-              <span className={styles.toggleSlider}></span>
-            </button>
-          </SettingsTooltip>
+          <button
+            onClick={() => updateSetting('dyslexiaFont', !settings.dyslexiaFont)}
+            className={`${styles.toggle} ${settings.dyslexiaFont ? styles.toggleActive : ''}`}
+            aria-label={`${settings.dyslexiaFont ? 'Disable' : 'Enable'} dyslexia-friendly font`}
+            title="Use OpenDyslexic font for better readability"
+          >
+            <span className={styles.toggleSlider}></span>
+          </button>
         </div>
       </div>
     </div>

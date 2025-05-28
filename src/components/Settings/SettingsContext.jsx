@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const SettingsContext = createContext();
 
-// Available font options - Updated with proper fallbacks and working fonts
+// Available font options - Updated with new fonts, removed Bebas
 export const FONT_OPTIONS = [
   {
     id: 'inter',
@@ -19,15 +19,21 @@ export const FONT_OPTIONS = [
   },
   {
     id: 'garamond',
-    name: 'Garamond',
+    name: 'EB Garamond',
     family: '"EB Garamond", "Adobe Garamond Pro", Garamond, Georgia, serif',
     description: 'Elegant French serif, perfect for academic texts'
   },
   {
     id: 'baskerville',
-    name: 'Baskerville',
+    name: 'Libre Baskerville',
     family: '"Libre Baskerville", Baskerville, Georgia, serif',
     description: 'Traditional English serif with excellent readability'
+  },
+  {
+    id: 'caslon',
+    name: 'Libre Caslon Text',
+    family: '"Libre Caslon Text", "Adobe Caslon Pro", "Big Caslon", Georgia, serif',
+    description: 'Historic serif with exceptional character and readability'
   },
   {
     id: 'times',
@@ -48,6 +54,18 @@ export const FONT_OPTIONS = [
     description: 'Modern serif designed specifically for book typography'
   },
   {
+    id: 'merriweather',
+    name: 'Merriweather',
+    family: '"Merriweather", Georgia, serif',
+    description: 'Designed for optimal readability on screens'
+  },
+  {
+    id: 'benne',
+    name: 'Benne',
+    family: '"Benne", Georgia, serif',
+    description: 'Warm, friendly serif with academic appeal'
+  },
+  {
     id: 'cambria',
     name: 'Cambria',
     family: 'Cambria, Georgia, serif',
@@ -58,12 +76,6 @@ export const FONT_OPTIONS = [
     name: 'Montserrat',
     family: '"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif',
     description: 'Modern geometric sans-serif with clean lines'
-  },
-  {
-    id: 'bebas',
-    name: 'Bebas Neue',
-    family: '"Bebas Neue", "Arial Black", "Helvetica Neue", Arial, sans-serif',
-    description: 'Bold condensed sans-serif for impactful text'
   },
   {
     id: 'source-serif',
@@ -80,7 +92,7 @@ export const FONT_OPTIONS = [
   {
     id: 'opendyslexic',
     name: 'OpenDyslexic',
-    family: '"OpenDyslexic", "Comic Sans MS", cursive',
+    family: '"OpenDyslexic", "OpenDyslexic-Backup", "Comic Sans MS", cursive',
     description: 'Designed specifically for dyslexic readers'
   }
 ];
@@ -100,28 +112,9 @@ const DEFAULT_SETTINGS = {
 export function SettingsProvider({ children }) {
   const [settings, setSettingsState] = useState(DEFAULT_SETTINGS);
 
-  // Load settings from localStorage on mount
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsedSettings = JSON.parse(saved);
-        setSettingsState(prev => ({ ...prev, ...parsedSettings }));
-      }
-    } catch (error) {
-      console.warn('Failed to load settings from localStorage:', error);
-    }
-  }, []);
-
-  // Save settings to localStorage whenever they change
-  useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
-    } catch (error) {
-      console.warn('Failed to save settings to localStorage:', error);
-    }
-  }, [settings]);
-
+  // Don't load from localStorage - always start fresh on page load
+  // This ensures settings reset on page refresh
+  
   // Apply all reading settings to document
   useEffect(() => {
     let selectedFont;

@@ -1,5 +1,3 @@
-/* src/components/Settings/SettingsDropdown.module.css - Minimal design with progress bar sliders */
-
 .dropdown {
   position: absolute;
   top: calc(100% + 12px);
@@ -68,28 +66,25 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  background: transparent;
-  border: 1px solid var(--atlas-border-color, #e2e8f0);
+  background: var(--atlas-gray-800, #334155);
+  border: 1px solid var(--atlas-gray-800, #334155);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .resetButton:hover {
-  background: var(--atlas-background-alt, #f8fafc);
-  border-color: var(--atlas-primary, #1971c2);
+  background: var(--atlas-gray-700, #475569);
+  border-color: var(--atlas-gray-700, #475569);
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(71, 85, 105, 0.3);
 }
 
 .resetIcon {
   width: 16px;
   height: 16px;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
-}
-
-.resetButton:hover .resetIcon {
-  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(100%); /* Always white icon */
+  transition: all 0.2s ease;
 }
 
 /* Content */
@@ -97,6 +92,21 @@
   padding: 8px 0 16px;
   max-height: calc(85vh - 100px);
   overflow-y: auto;
+}
+
+/* Notice at top */
+.notice {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px 16px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--atlas-border-color, #f1f5f9);
+}
+
+.noticeText {
+  font-size: 13px;
+  color: var(--atlas-text-secondary, #6c757d);
+  font-style: italic;
 }
 
 /* Settings */
@@ -350,15 +360,57 @@
   transform: translateX(24px);
 }
 
-/* Remove all icon filters - keep original colors */
+/* Icon base styles - responsive to theme */
+.headerIcon {
+  width: 24px;
+  height: 24px;
+  opacity: 0.8;
+  transition: filter 0.2s ease;
+}
+
+.selectIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.sliderIcon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.alignIcon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.noticeIcon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+/* Light mode - keep original icon colors */
 .headerIcon,
-.resetIcon,
 .selectIcon,
 .sliderIcon,
-.alignIcon {
+.alignIcon,
+.noticeIcon {
   filter: none;
 }
 
+/* Dark Mode */
 /* Dark Mode */
 [data-theme='dark'] .dropdown {
   background: var(--atlas-background, #0f172a);
@@ -378,12 +430,30 @@
 }
 
 [data-theme='dark'] .resetButton {
-  border-color: var(--atlas-border-color, #334155);
+  background: var(--atlas-gray-100, #f8f9fa);
+  border-color: var(--atlas-gray-100, #f8f9fa);
 }
 
 [data-theme='dark'] .resetButton:hover {
-  background: var(--atlas-background-alt, #1e293b);
-  border-color: var(--atlas-primary-lighter, #74c0fc);
+  background: var(--atlas-gray-300, #cbd5e1);
+  border-color: var(--atlas-gray-300, #cbd5e1);
+  box-shadow: 0 4px 12px rgba(203, 213, 225, 0.4);
+}
+
+[data-theme='dark'] .resetIcon {
+  filter: brightness(0) saturate(100%) invert(0%); /* Black icon on light background in dark mode */
+}
+
+[data-theme='dark'] .resetButton:hover .resetIcon {
+  filter: brightness(0) saturate(100%) invert(0%); /* Keep black icon on hover */
+}
+
+[data-theme='dark'] .notice {
+  border-bottom-color: var(--atlas-border-color, #334155);
+}
+
+[data-theme='dark'] .noticeText {
+  color: var(--atlas-text-secondary, #adb5bd);
 }
 
 [data-theme='dark'] .label {
@@ -441,7 +511,7 @@
 }
 
 [data-theme='dark'] .alignButton.active .alignIcon {
-  filter: brightness(0) invert(0);
+  filter: brightness(0) invert(0); /* Black icon on light background */
 }
 
 [data-theme='dark'] .toggle {
@@ -463,6 +533,30 @@
 
 [data-theme='dark'] .toggleSlider {
   background: var(--atlas-background, #0f172a);
+}
+
+/* Dark mode - make ALL icons white for better visibility, including dropdown arrow */
+[data-theme='dark'] .headerIcon,
+[data-theme='dark'] .selectIcon,
+[data-theme='dark'] .sliderIcon,
+[data-theme='dark'] .noticeIcon {
+  filter: brightness(0) saturate(100%) invert(100%) !important;
+}
+
+/* Ensure dropdown arrow transforms properly in dark mode */
+[data-theme='dark'] .fontSelector:hover .selectIcon {
+  opacity: 0.8;
+  transform: translateY(-50%) rotate(180deg);
+  filter: brightness(0) saturate(100%) invert(100%) !important;
+}
+
+/* Special handling for alignment icons - they need to invert properly on active state */
+[data-theme='dark'] .alignIcon {
+  filter: brightness(0) saturate(100%) invert(100%) !important;
+}
+
+[data-theme='dark'] .alignButton.active .alignIcon {
+  filter: brightness(0) saturate(100%) invert(0%) !important; /* Black icon on light active background */
 }
 
 /* Responsive Design */
