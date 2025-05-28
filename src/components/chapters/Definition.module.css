@@ -1,31 +1,22 @@
-/* Dark mode mobile adjustments */
-@media (max-width: 768px) {
-  [data-theme='dark'] .headerLeft {
-    border-bottom-color: var(--atlas-border-color, #373737);
-    /* Still no background */
-  }
-}/* src/components/chapters/Definition.module.css */
+/* src/components/chapters/Definition.module.css */
 
-/* Base definition container - no borders, clean flexbox layout */
+/* Base definition container - no borders, no rounded corners */
 .definitionContainer {
-  border-radius: 6px;
   margin: 1.5rem 0;
   position: relative;
   display: flex;
   align-items: stretch;
-  /* No borders at all */
+  /* Remove all borders and rounded corners */
 }
 
-/* Left side - responsive width based on content */
+/* Left side - Icon, term, and metadata with theme-based dark background */
 .headerLeft {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  flex: 0 1 auto; /* Let it size based on content */
-  min-width: 160px; /* Minimum reasonable width */
-  max-width: 280px; /* Maximum to prevent it getting too wide */
+  flex: 0 0 35%; /* Consistent 35% width */
   padding: 1rem 1.25rem;
-  /* No background */
+  background-color: var(--atlas-text, #212529); /* Use theme text color as background */
 }
 
 /* Icon and term row */
@@ -35,22 +26,22 @@
   gap: 0.75rem;
 }
 
-/* Icon container - larger like info component */
+/* Icon container - bigger for better visual impact */
 .iconContainer {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  margin-top: 0.125rem; /* Slight top alignment adjustment */
+  margin-top: 0.125rem; /* Slight adjustment for alignment */
 }
 
 .definitionIcon {
-  width: 24px; /* Larger like info component */
-  height: 24px;
-  /* Grayscale color for definition icon */
-  filter: brightness(0) saturate(100%) invert(42%) sepia(0%) saturate(0%) hue-rotate(169deg) brightness(95%) contrast(85%);
+  width: 28px;
+  height: 28px;
+  /* Use inverted theme background color for icon */
+  filter: brightness(0) saturate(100%) invert(100%);
 }
 
 /* Term section */
@@ -62,17 +53,17 @@
 }
 
 .termName {
-  font-size: 1.1rem; /* Increased font size */
-  font-weight: 700; /* Bolder weight */
-  color: var(--atlas-text, #212529);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--atlas-background, #ffffff); /* Use theme background color as text color */
   margin: 0;
   line-height: 1.2;
-  font-style: italic;
-  text-transform: uppercase; /* Uppercase the term */
-  letter-spacing: 0.02em; /* Slight letter spacing for readability */
+  /* Remove italic styling */
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
-/* Metadata line - type and source */
+/* Metadata line - aligned under the term, not the icon */
 .metadata {
   display: flex;
   align-items: center;
@@ -80,30 +71,31 @@
   font-size: 0.7rem;
   line-height: 1;
   flex-wrap: wrap;
+  margin-left: 0; /* Ensure it aligns under the term */
 }
 
 .typeLabel {
   font-weight: 500;
-  color: var(--atlas-gray-600, #6c757d);
+  color: var(--atlas-background, rgba(255, 255, 255, 0.8)); /* Use theme background with opacity */
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .metaSeparator {
-  color: var(--atlas-text-secondary, #6c757d);
+  color: var(--atlas-background, rgba(255, 255, 255, 0.6));
   opacity: 0.6;
   font-weight: 300;
 }
 
 .termSource {
-  color: var(--atlas-text-secondary, #6c757d);
+  color: var(--atlas-background, rgba(255, 255, 255, 0.8));
   line-height: 1.4;
 }
 
-/* Source links - grayscale */
+/* Source links - use theme background color */
 .termSource a,
 .sourceLink {
-  color: var(--atlas-gray-700, #495057);
+  color: var(--atlas-background, rgba(255, 255, 255, 0.9));
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
@@ -111,7 +103,7 @@
 
 .termSource a:hover,
 .sourceLink:hover {
-  color: var(--atlas-text, #212529);
+  color: var(--atlas-background, #ffffff);
   text-decoration: underline;
 }
 
@@ -120,8 +112,7 @@
   flex: 1;
   background-color: var(--atlas-background-alt, #f8f9fa);
   padding: 1rem 1.5rem;
-  border-radius: 6px; /* Round all corners since no container border */
-  /* No borders */
+  /* Remove all borders and rounded corners */
 }
 
 .contentInner {
@@ -129,7 +120,7 @@
   border: none;
 }
 
-/* Content styling - more space and better typography */
+/* Content styling - italicize definition text */
 .contentInner p,
 .contentInner ul,
 .contentInner ol,
@@ -138,6 +129,7 @@
   line-height: 1.6; /* More line height for better reading */
   color: var(--atlas-text, #212529);
   margin-bottom: 0.75rem;
+  font-style: italic; /* Italicize the definition text */
 }
 
 .contentInner p:last-child,
@@ -187,13 +179,14 @@
   text-decoration: underline;
 }
 
-/* Dark mode adjustments - split background, no borders */
+/* Dark mode adjustments - white background with dark text on left side */
 [data-theme='dark'] .definitionContainer {
   /* No borders */
 }
 
 [data-theme='dark'] .headerLeft {
-  /* No background on left side */
+  /* White background in dark mode (inverted from light mode) */
+  background-color: #ffffff;
 }
 
 [data-theme='dark'] .definitionContent {
@@ -202,30 +195,33 @@
 }
 
 [data-theme='dark'] .definitionIcon {
-  filter: brightness(0) saturate(100%) invert(70%) sepia(0%) saturate(0%) hue-rotate(169deg) brightness(105%) contrast(85%);
+  /* Dark icon on white background */
+  filter: none;
 }
 
 [data-theme='dark'] .termName {
-  color: var(--atlas-text, #e9ecef);
+  /* Dark text on white background */
+  color: #212529;
 }
 
 [data-theme='dark'] .typeLabel {
-  color: var(--atlas-gray-400, #ced4da);
+  /* Dark text with some opacity */
+  color: rgba(33, 37, 41, 0.8);
 }
 
 [data-theme='dark'] .termSource,
 [data-theme='dark'] .metaSeparator {
-  color: var(--atlas-text-secondary, #adb5bd);
+  color: rgba(33, 37, 41, 0.7);
 }
 
 [data-theme='dark'] .termSource a,
 [data-theme='dark'] .sourceLink {
-  color: var(--atlas-gray-300, #dee2e6);
+  color: rgba(33, 37, 41, 0.9);
 }
 
 [data-theme='dark'] .termSource a:hover,
 [data-theme='dark'] .sourceLink:hover {
-  color: var(--atlas-text, #e9ecef);
+  color: #212529;
 }
 
 [data-theme='dark'] .contentInner p,
@@ -235,6 +231,7 @@
 [data-theme='dark'] .contentInner strong,
 [data-theme='dark'] .contentInner b {
   color: var(--atlas-text, #e9ecef);
+  font-style: italic; /* Keep italics in dark mode too */
 }
 
 [data-theme='dark'] .contentInner blockquote {
@@ -328,6 +325,6 @@
 @media print {
   .definitionContainer {
     break-inside: avoid;
-    /* No borders for print */
+    /* No borders */
   }
 }

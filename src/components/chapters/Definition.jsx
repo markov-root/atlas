@@ -39,21 +39,21 @@ export default function Definition({
           </div>
           <div className={styles.termSection}>
             <div className={styles.termName}>{term}</div>
+            
+            {/* Metadata directly under the term */}
+            <div className={styles.metadata}>
+              <span className={styles.typeLabel}>Definition</span>
+              {source && (
+                <>
+                  <span className={styles.metaSeparator}>•</span>
+                  <span 
+                    className={styles.termSource}
+                    dangerouslySetInnerHTML={{ __html: processedSource }}
+                  />
+                </>
+              )}
+            </div>
           </div>
-        </div>
-        
-        {/* Metadata */}
-        <div className={styles.metadata}>
-          <span className={styles.typeLabel}>Definition</span>
-          {source && (
-            <>
-              <span className={styles.metaSeparator}>•</span>
-              <span 
-                className={styles.termSource}
-                dangerouslySetInnerHTML={{ __html: processedSource }}
-              />
-            </>
-          )}
         </div>
         
       </div>
