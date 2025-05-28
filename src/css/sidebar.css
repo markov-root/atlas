@@ -177,7 +177,7 @@
 .sidebar_njMd {
   border: none !important;
   box-shadow: none !important;
-  border-right: 0px solid black !important;
+  border-right: 1px solid black !important;
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
 
@@ -365,3 +365,21 @@
 }
 
 /* ========== SIDEBAR CONTENT STYLING ========== */
+
+/* Category toggle icons - properly centered with text baseline */
+.menu__caret {
+  width: 1rem !important;
+  height: 1rem !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  margin-left: auto !important; /* Push to the right */
+  margin-right: 1rem !important; /* Add space after the chevron */
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+

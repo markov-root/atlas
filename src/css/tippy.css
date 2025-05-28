@@ -1,6 +1,6 @@
-/* src/css/tippy.css - Enhanced Atlas theme for Tippy tooltips */
+/* src/css/tippy.css - Enhanced Atlas theme for Tippy tooltips with large arrows and perspective */
 
-/* PRIMARY ATLAS THEME - Dark blue with white text for both light and dark modes */
+/* PRIMARY ATLAS THEME - Dark blue with white text and large arrows */
 .tippy-box[data-theme~='atlas'] {
   background-color: var(--atlas-primary-darker, #1864ab);
   color: #ffffff;
@@ -10,45 +10,94 @@
     0 4px 14px rgba(24, 100, 171, 0.25),
     0 2px 6px rgba(24, 100, 171, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  font-family: var(--atlas-font-body, 'Inter', sans-serif);
-  font-size: 0.875rem;
-  line-height: 1.4;
+  font-family: var(--atlas-font-body, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
+  font-size: 0.8125rem;
+  line-height: 1.5;
   font-weight: 400;
+  letter-spacing: 0.01em;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   /* Enhanced animations */
-  transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transition: all 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
   transform-origin: center bottom;
+  /* Better text rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Content styling */
+/* Content styling with better spacing */
 .tippy-box[data-theme~='atlas'] .tippy-content {
-  padding: 0.75rem 1rem;
+  padding: 0.875rem 1.125rem;
   position: relative;
   z-index: 1;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
-/* Arrow styling - matches the dark blue theme */
+/* LARGE ARROW STYLING - Seamlessly connected to bubble */
 .tippy-box[data-theme~='atlas'] .tippy-arrow {
+  width: 16px;
+  height: 16px;
   color: var(--atlas-primary-darker, #1864ab);
-  filter: drop-shadow(0 1px 2px rgba(24, 100, 171, 0.2));
 }
 
-/* Arrow positioning improvements */
+.tippy-box[data-theme~='atlas'] .tippy-arrow:before {
+  content: '';
+  position: absolute;
+  border-color: transparent;
+  border-style: solid;
+}
+
+/* Arrow positioning improvements - seamlessly connected */
 .tippy-box[data-theme~='atlas'][data-placement^='top'] .tippy-arrow {
   bottom: 0;
+  transform: translateY(1px); /* Overlap with box border for seamless connection */
+}
+
+.tippy-box[data-theme~='atlas'][data-placement^='top'] .tippy-arrow:before {
+  bottom: -8px;
+  left: 0;
+  border-width: 8px 8px 0;
+  border-top-color: var(--atlas-primary-darker, #1864ab);
+  transform-origin: center top;
 }
 
 .tippy-box[data-theme~='atlas'][data-placement^='bottom'] .tippy-arrow {
   top: 0;
+  transform: translateY(-1px); /* Overlap with box border */
+}
+
+.tippy-box[data-theme~='atlas'][data-placement^='bottom'] .tippy-arrow:before {
+  top: -8px;
+  left: 0;
+  border-width: 0 8px 8px;
+  border-bottom-color: var(--atlas-primary-darker, #1864ab);
+  transform-origin: center bottom;
 }
 
 .tippy-box[data-theme~='atlas'][data-placement^='left'] .tippy-arrow {
   right: 0;
+  transform: translateX(1px); /* Overlap with box border */
+}
+
+.tippy-box[data-theme~='atlas'][data-placement^='left'] .tippy-arrow:before {
+  border-width: 8px 0 8px 8px;
+  border-left-color: var(--atlas-primary-darker, #1864ab);
+  right: -8px;
+  transform-origin: left center;
 }
 
 .tippy-box[data-theme~='atlas'][data-placement^='right'] .tippy-arrow {
   left: 0;
+  transform: translateX(-1px); /* Overlap with box border */
+}
+
+.tippy-box[data-theme~='atlas'][data-placement^='right'] .tippy-arrow:before {
+  left: -8px;
+  border-width: 8px 8px 8px 0;
+  border-right-color: var(--atlas-primary-darker, #1864ab);
+  transform-origin: right center;
 }
 
 /* Link styling within tooltips */
@@ -101,7 +150,37 @@
   margin-bottom: 0.5rem;
 }
 
-/* ANIMATION ENHANCEMENTS */
+/* PERSPECTIVE-EXTREME ANIMATION */
+.tippy-box[data-theme~='atlas'][data-animation='perspective-extreme'] {
+  transform-origin: var(--tippy-arrow-transform-origin);
+}
+
+.tippy-box[data-theme~='atlas'][data-animation='perspective-extreme'][data-state='hidden'] {
+  transform: perspective(200px) rotateX(-60deg) rotateY(-45deg) scale(0.6);
+  opacity: 0;
+}
+
+.tippy-box[data-theme~='atlas'][data-animation='perspective-extreme'][data-state='visible'] {
+  transform: perspective(200px) rotateX(0deg) rotateY(0deg) scale(1);
+  opacity: 1;
+}
+
+/* Placement-specific perspective origins for better 3D effect */
+.tippy-box[data-theme~='atlas'][data-animation='perspective-extreme'][data-placement^='top'] {
+  transform-origin: center bottom;
+}
+
+.tippy-box[data-theme~='atlas'][data-animation='perspective-extreme'][data-placement^='bottom'] {
+  transform-origin: center top;
+}
+
+.tippy-box[data-theme~='atlas'][data-animation='perspective-extreme'][data-placement^='left'] {
+  transform-origin: right center;
+}
+
+.tippy-box[data-theme~='atlas'][data-animation='perspective-extreme'][data-placement^='right'] {
+  transform-origin: left center;
+}
 
 /* Scale animation for show/hide */
 .tippy-box[data-theme~='atlas'][data-animation='scale'] {
@@ -152,12 +231,186 @@
   transform: translateX(-8px);
 }
 
-/* DARK MODE ADJUSTMENTS - Keep the same dark blue theme */
+/* ATLAS-SMALL THEME with improved typography and connected arrows */
+.tippy-box[data-theme~='atlas-small'] {
+  background-color: var(--atlas-primary-darker, #1864ab);
+  color: #ffffff;
+  border: 1px solid var(--atlas-primary-darkest, #12467a);
+  border-radius: 6px;
+  box-shadow: 
+    0 2px 8px rgba(24, 100, 171, 0.2),
+    0 1px 3px rgba(24, 100, 171, 0.15);
+  font-family: var(--atlas-font-body, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  font-weight: 450;
+  letter-spacing: 0.02em;
+  max-width: 200px;
+  /* Better text rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tippy-box[data-theme~='atlas-small'] .tippy-content {
+  padding: 0.625rem 0.875rem;
+  word-wrap: break-word;
+}
+
+.tippy-box[data-theme~='atlas-small'] .tippy-arrow {
+  width: 14px;
+  height: 14px;
+  color: var(--atlas-primary-darker, #1864ab);
+}
+
+.tippy-box[data-theme~='atlas-small'] .tippy-arrow:before {
+  content: '';
+  position: absolute;
+  border-color: transparent;
+  border-style: solid;
+}
+
+/* Small theme arrow positioning - seamlessly connected */
+.tippy-box[data-theme~='atlas-small'][data-placement^='top'] .tippy-arrow {
+  bottom: 0;
+  transform: translateY(1px);
+}
+
+.tippy-box[data-theme~='atlas-small'][data-placement^='top'] .tippy-arrow:before {
+  bottom: -7px;
+  left: 0;
+  border-width: 7px 7px 0;
+  border-top-color: var(--atlas-primary-darker, #1864ab);
+}
+
+.tippy-box[data-theme~='atlas-small'][data-placement^='bottom'] .tippy-arrow {
+  top: 0;
+  transform: translateY(-1px);
+}
+
+.tippy-box[data-theme~='atlas-small'][data-placement^='bottom'] .tippy-arrow:before {
+  top: -7px;
+  left: 0;
+  border-width: 0 7px 7px;
+  border-bottom-color: var(--atlas-primary-darker, #1864ab);
+}
+
+.tippy-box[data-theme~='atlas-small'][data-placement^='left'] .tippy-arrow {
+  right: 0;
+  transform: translateX(1px);
+}
+
+.tippy-box[data-theme~='atlas-small'][data-placement^='left'] .tippy-arrow:before {
+  border-width: 7px 0 7px 7px;
+  border-left-color: var(--atlas-primary-darker, #1864ab);
+  right: -7px;
+}
+
+.tippy-box[data-theme~='atlas-small'][data-placement^='right'] .tippy-arrow {
+  left: 0;
+  transform: translateX(-1px);
+}
+
+.tippy-box[data-theme~='atlas-small'][data-placement^='right'] .tippy-arrow:before {
+  left: -7px;
+  border-width: 7px 7px 7px 0;
+  border-right-color: var(--atlas-primary-darker, #1864ab);
+}
+
+/* INTERACTIVE TOOLTIP THEME with improved typography and connected arrows */
+.tippy-box[data-theme~='atlas-interactive'] {
+  background-color: var(--atlas-primary-darker, #1864ab);
+  color: #ffffff;
+  border: 1px solid var(--atlas-primary-darkest, #12467a);
+  border-radius: 10px;
+  box-shadow: 
+    0 6px 20px rgba(24, 100, 171, 0.3),
+    0 3px 8px rgba(24, 100, 171, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  font-family: var(--atlas-font-body, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  max-width: 400px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  /* Better text rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tippy-box[data-theme~='atlas-interactive'] .tippy-content {
+  padding: 1rem 1.25rem;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.tippy-box[data-theme~='atlas-interactive'] .tippy-arrow {
+  width: 18px;
+  height: 18px;
+  color: var(--atlas-primary-darker, #1864ab);
+}
+
+.tippy-box[data-theme~='atlas-interactive'] .tippy-arrow:before {
+  content: '';
+  position: absolute;
+  border-color: transparent;
+  border-style: solid;
+}
+
+/* Interactive theme arrow positioning - seamlessly connected */
+.tippy-box[data-theme~='atlas-interactive'][data-placement^='top'] .tippy-arrow {
+  bottom: 0;
+  transform: translateY(1px);
+}
+
+.tippy-box[data-theme~='atlas-interactive'][data-placement^='top'] .tippy-arrow:before {
+  bottom: -9px;
+  left: 0;
+  border-width: 9px 9px 0;
+  border-top-color: var(--atlas-primary-darker, #1864ab);
+}
+
+.tippy-box[data-theme~='atlas-interactive'][data-placement^='bottom'] .tippy-arrow {
+  top: 0;
+  transform: translateY(-1px);
+}
+
+.tippy-box[data-theme~='atlas-interactive'][data-placement^='bottom'] .tippy-arrow:before {
+  top: -9px;
+  left: 0;
+  border-width: 0 9px 9px;
+  border-bottom-color: var(--atlas-primary-darker, #1864ab);
+}
+
+.tippy-box[data-theme~='atlas-interactive'][data-placement^='left'] .tippy-arrow {
+  right: 0;
+  transform: translateX(1px);
+}
+
+.tippy-box[data-theme~='atlas-interactive'][data-placement^='left'] .tippy-arrow:before {
+  border-width: 9px 0 9px 9px;
+  border-left-color: var(--atlas-primary-darker, #1864ab);
+  right: -9px;
+}
+
+.tippy-box[data-theme~='atlas-interactive'][data-placement^='right'] .tippy-arrow {
+  left: 0;
+  transform: translateX(-1px);
+}
+
+.tippy-box[data-theme~='atlas-interactive'][data-placement^='right'] .tippy-arrow:before {
+  left: -9px;
+  border-width: 9px 9px 9px 0;
+  border-right-color: var(--atlas-primary-darker, #1864ab);
+}
+
+/* DARK MODE ADJUSTMENTS - Keep the same dark blue theme with enhanced arrows */
 [data-theme='dark'] .tippy-box[data-theme~='atlas'] {
-  /* Maintain the same dark blue background for consistency */
   background-color: var(--atlas-primary-darker, #1864ab);
   border-color: var(--atlas-primary-darkest, #12467a);
-  /* Slightly stronger shadow in dark mode for better contrast */
   box-shadow: 
     0 6px 18px rgba(24, 100, 171, 0.35),
     0 3px 8px rgba(24, 100, 171, 0.25),
@@ -169,56 +422,28 @@
   filter: drop-shadow(0 1px 3px rgba(24, 100, 171, 0.3));
 }
 
-/* INTERACTIVE TOOLTIP THEME - For tooltips with interactive content */
-.tippy-box[data-theme~='atlas-interactive'] {
-  background-color: var(--atlas-primary-darker, #1864ab);
-  color: #ffffff;
-  border: 1px solid var(--atlas-primary-darkest, #12467a);
-  border-radius: 10px;
-  box-shadow: 
-    0 6px 20px rgba(24, 100, 171, 0.3),
-    0 3px 8px rgba(24, 100, 171, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  font-family: var(--atlas-font-body, 'Inter', sans-serif);
-  font-size: 0.875rem;
-  line-height: 1.4;
-  font-weight: 400;
-  max-width: 400px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+[data-theme='dark'] .tippy-box[data-theme~='atlas'][data-placement^='top'] .tippy-arrow:before,
+[data-theme='dark'] .tippy-box[data-theme~='atlas-small'][data-placement^='top'] .tippy-arrow:before,
+[data-theme='dark'] .tippy-box[data-theme~='atlas-interactive'][data-placement^='top'] .tippy-arrow:before {
+  border-top-color: var(--atlas-primary-darker, #1864ab);
 }
 
-.tippy-box[data-theme~='atlas-interactive'] .tippy-content {
-  padding: 1rem 1.25rem;
+[data-theme='dark'] .tippy-box[data-theme~='atlas'][data-placement^='bottom'] .tippy-arrow:before,
+[data-theme='dark'] .tippy-box[data-theme~='atlas-small'][data-placement^='bottom'] .tippy-arrow:before,
+[data-theme='dark'] .tippy-box[data-theme~='atlas-interactive'][data-placement^='bottom'] .tippy-arrow:before {
+  border-bottom-color: var(--atlas-primary-darker, #1864ab);
 }
 
-.tippy-box[data-theme~='atlas-interactive'] .tippy-arrow {
-  color: var(--atlas-primary-darker, #1864ab);
-  filter: drop-shadow(0 2px 4px rgba(24, 100, 171, 0.25));
+[data-theme='dark'] .tippy-box[data-theme~='atlas'][data-placement^='left'] .tippy-arrow:before,
+[data-theme='dark'] .tippy-box[data-theme~='atlas-small'][data-placement^='left'] .tippy-arrow:before,
+[data-theme='dark'] .tippy-box[data-theme~='atlas-interactive'][data-placement^='left'] .tippy-arrow:before {
+  border-left-color: var(--atlas-primary-darker, #1864ab);
 }
 
-/* SMALL TOOLTIP THEME - For minimal tooltips */
-.tippy-box[data-theme~='atlas-small'] {
-  background-color: var(--atlas-primary-darker, #1864ab);
-  color: #ffffff;
-  border: 1px solid var(--atlas-primary-darkest, #12467a);
-  border-radius: 6px;
-  box-shadow: 
-    0 2px 8px rgba(24, 100, 171, 0.2),
-    0 1px 3px rgba(24, 100, 171, 0.15);
-  font-family: var(--atlas-font-body, 'Inter', sans-serif);
-  font-size: 0.8125rem;
-  line-height: 1.3;
-  font-weight: 400;
-  max-width: 200px;
-}
-
-.tippy-box[data-theme~='atlas-small'] .tippy-content {
-  padding: 0.5rem 0.75rem;
-}
-
-.tippy-box[data-theme~='atlas-small'] .tippy-arrow {
-  color: var(--atlas-primary-darker, #1864ab);
+[data-theme='dark'] .tippy-box[data-theme~='atlas'][data-placement^='right'] .tippy-arrow:before,
+[data-theme='dark'] .tippy-box[data-theme~='atlas-small'][data-placement^='right'] .tippy-arrow:before,
+[data-theme='dark'] .tippy-box[data-theme~='atlas-interactive'][data-placement^='right'] .tippy-arrow:before {
+  border-right-color: var(--atlas-primary-darker, #1864ab);
 }
 
 /* ACCESSIBILITY IMPROVEMENTS */

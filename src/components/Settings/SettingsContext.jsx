@@ -1,9 +1,9 @@
-// src/components/Settings/SettingsContext.jsx
+// src/components/Settings/SettingsContext.jsx - Fixed OpenDyslexic handling
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const SettingsContext = createContext();
 
-// Available font options
+// Available font options - Updated with proper fallbacks and working fonts
 export const FONT_OPTIONS = [
   {
     id: 'inter',
@@ -12,46 +12,70 @@ export const FONT_OPTIONS = [
     description: 'Modern, highly readable sans-serif (default)'
   },
   {
-    id: 'system',
-    name: 'System',
-    family: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-    description: 'Your device\'s default system font'
-  },
-  {
     id: 'georgia',
     name: 'Georgia',
     family: 'Georgia, "Times New Roman", serif',
-    description: 'Classic serif, great for extended reading'
+    description: 'Classic serif, excellent for long reading'
   },
   {
-    id: 'charter',
-    name: 'Charter',
-    family: '"Charter", "Bitstream Charter", "Sitka Text", Cambria, serif',
-    description: 'Readable serif designed for screens'
+    id: 'garamond',
+    name: 'Garamond',
+    family: '"EB Garamond", "Adobe Garamond Pro", Garamond, Georgia, serif',
+    description: 'Elegant French serif, perfect for academic texts'
   },
   {
-    id: 'iowan',
-    name: 'Iowan Old Style',
-    family: '"Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052, serif',
-    description: 'Elegant serif with character'
+    id: 'baskerville',
+    name: 'Baskerville',
+    family: '"Libre Baskerville", Baskerville, Georgia, serif',
+    description: 'Traditional English serif with excellent readability'
   },
   {
-    id: 'open-sans',
-    name: 'Open Sans',
-    family: '"Open Sans", -apple-system, BlinkMacSystemFont, sans-serif',
-    description: 'Friendly, readable sans-serif'
+    id: 'times',
+    name: 'Times New Roman',
+    family: '"Times New Roman", Times, serif',
+    description: 'Classic newspaper serif, widely available'
+  },
+  {
+    id: 'palatino',
+    name: 'Palatino',
+    family: '"Palatino Linotype", "Book Antiqua", Palatino, serif',
+    description: 'Humanist serif inspired by Renaissance typefaces'
+  },
+  {
+    id: 'crimson',
+    name: 'Crimson Text',
+    family: '"Crimson Text", Georgia, serif',
+    description: 'Modern serif designed specifically for book typography'
+  },
+  {
+    id: 'cambria',
+    name: 'Cambria',
+    family: 'Cambria, Georgia, serif',
+    description: 'Microsoft serif designed for screen reading'
+  },
+  {
+    id: 'montserrat',
+    name: 'Montserrat',
+    family: '"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif',
+    description: 'Modern geometric sans-serif with clean lines'
+  },
+  {
+    id: 'bebas',
+    name: 'Bebas Neue',
+    family: '"Bebas Neue", "Arial Black", "Helvetica Neue", Arial, sans-serif',
+    description: 'Bold condensed sans-serif for impactful text'
   },
   {
     id: 'source-serif',
     name: 'Source Serif',
     family: '"Source Serif Pro", "Source Serif 4", Georgia, serif',
-    description: 'Clean serif optimized for reading'
+    description: 'Clean serif optimized for digital reading'
   },
   {
-    id: 'jetbrains',
-    name: 'JetBrains Mono',
-    family: '"JetBrains Mono", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace',
-    description: 'Monospace font for a technical feel'
+    id: 'system',
+    name: 'System Font',
+    family: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    description: 'Your device\'s default system font'
   },
   {
     id: 'opendyslexic',
@@ -70,7 +94,6 @@ const DEFAULT_SETTINGS = {
   lineHeight: 1.7,        // Increased from 1.6 - more comfortable
   textAlign: 'left',
   maxWidth: 85,           // Increased from 65ch - better for modern screens
-  reducedMotion: false,
   dyslexiaFont: false
 };
 
@@ -101,11 +124,13 @@ export function SettingsProvider({ children }) {
 
   // Apply all reading settings to document
   useEffect(() => {
-    let selectedFont = FONT_OPTIONS.find(font => font.id === settings.font);
+    let selectedFont;
     
-    // Handle dyslexia-friendly mode
+    // Handle dyslexia-friendly mode - override font selection
     if (settings.dyslexiaFont) {
-      selectedFont = FONT_OPTIONS.find(font => font.id === 'opendyslexic') || selectedFont;
+      selectedFont = FONT_OPTIONS.find(font => font.id === 'opendyslexic');
+    } else {
+      selectedFont = FONT_OPTIONS.find(font => font.id === settings.font);
     }
     
     if (selectedFont) {
@@ -117,16 +142,6 @@ export function SettingsProvider({ children }) {
     document.documentElement.style.setProperty('--atlas-reader-line-height', settings.lineHeight);
     document.documentElement.style.setProperty('--atlas-reader-text-align', settings.textAlign);
     document.documentElement.style.setProperty('--atlas-reader-max-width', `${settings.maxWidth}ch`);
-    
-    // Apply reduced motion
-    if (settings.reducedMotion) {
-      document.documentElement.style.setProperty('--atlas-reader-motion', 'none');
-      // Also apply the standard reduced motion
-      document.documentElement.setAttribute('data-reduced-motion', 'true');
-    } else {
-      document.documentElement.style.removeProperty('--atlas-reader-motion');
-      document.documentElement.removeAttribute('data-reduced-motion');
-    }
     
   }, [settings]);
 

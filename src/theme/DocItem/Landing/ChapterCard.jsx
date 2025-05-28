@@ -1,8 +1,10 @@
-// src/theme/DocItem/Landing/ChapterCard.jsx
+// src/theme/DocItem/Landing/ChapterCard.jsx - Redesigned to match research card style
 import React from 'react';
+import { ChevronRight } from 'lucide-react';
+import { SmallTooltip } from '../../../components/UI/Tooltip';
 import styles from './ChapterCard.module.css';
 
-export default function ChapterCard({ chapter, isFlipped, onToggle, textureFile }) {
+export default function ChapterCard({ chapter, textureFile }) {
   const handleResourceClick = (e, url, resourceType) => {
     e.stopPropagation();
     if (url) {
@@ -15,14 +17,14 @@ export default function ChapterCard({ chapter, isFlipped, onToggle, textureFile 
     }
   };
 
-  // All possible resources - shown on every card, activated based on availability
-  const allResources = [
-    { 
-      key: 'chapter', 
-      icon: '/img/icons/read.svg', 
-      label: 'Read Chapter',
-      tooltip: 'Read Chapter Online'
-    },
+  const handleCardClick = () => {
+    if (chapter.resources.chapter) {
+      window.location.href = chapter.resources.chapter;
+    }
+  };
+
+  // Resources excluding the redundant "chapter/read" option
+  const resourcesWithoutRead = [
     { 
       key: 'video', 
       icon: '/img/icons/video.svg', 
@@ -50,92 +52,57 @@ export default function ChapterCard({ chapter, isFlipped, onToggle, textureFile 
   ];
 
   return (
-    <div 
-      onClick={onToggle}
-      className={styles.cardContainer}
+    <article 
+      className={styles.card} 
+      onClick={handleCardClick}
+      style={textureFile ? {
+        backgroundImage: `url(/img/textures/${textureFile})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      } : {}}
     >
-      {/* Flip Container */}
-      <div className={`${styles.flipContainer} ${isFlipped ? styles.flipped : ''}`}>
+      <div className={styles.cardContent}>
         
-        {/* FRONT SIDE - Book Cover */}
-        <div className={styles.frontSide} style={textureFile ? {
-          backgroundImage: `url(/img/textures/${textureFile})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        } : {}}>
-          
-          {/* Texture overlay if texture is provided */}
-          {textureFile && <div className={styles.textureOverlay} />}
-          
-          {/* Main Content */}
-          <div className={styles.frontContent}>
-            
-            {/* Title Row - Number and Title on same line */}
-            <div className={styles.titleRow}>
-              <div className={styles.chapterNumber}>
-                {chapter.number.toString().padStart(2, '0')}
-              </div>
+        {/* Header */}
+        <div className={styles.header}>
+          <div className={styles.chapterNumber}>
+            {chapter.number.toString().padStart(2, '0')}
+          </div>
+          <h3 className={styles.title}>{chapter.title}</h3>
+        </div>
 
-              <h3 className={styles.chapterTitle}>
-                {chapter.title}
-              </h3>
-            </div>
-
-            {/* Resource Buttons - Vertical Stack with Text */}
-            <div className={styles.resourceButtons}>
-              {allResources.map((resource) => {
-                const isAvailable = !!chapter.resources[resource.key];
-                
-                return (
-                  <div
-                    key={resource.key}
-                    onClick={(e) => isAvailable ? handleResourceClick(e, chapter.resources[resource.key], resource.key) : e.stopPropagation()}
-                    className={`${styles.resourceButton} ${isAvailable ? styles.available : styles.unavailable}`}
+        {/* Resource Icons with Labels (excluding read) */}
+        <div className={styles.resourceSection}>
+          <div className={styles.resourceIcons}>
+            {resourcesWithoutRead.map((resource) => {
+              const isAvailable = !!chapter.resources[resource.key];
+              
+              return (
+                <SmallTooltip key={resource.key} content={isAvailable ? resource.tooltip : `${resource.label} - Coming soon`}>
+                  <div 
+                    className={`${styles.resourceIcon} ${isAvailable ? styles.iconAvailable : styles.iconUnavailable}`}
+                    onClick={isAvailable ? (e) => handleResourceClick(e, chapter.resources[resource.key], resource.key) : undefined}
                   >
                     <img 
                       src={resource.icon} 
                       alt={resource.label}
-                      className={styles.resourceIcon}
+                      className={styles.iconImage}
                     />
-                    <span className={styles.resourceLabel}>
-                      {resource.label}
-                    </span>
+                    <span className={styles.iconLabel}>{resource.label}</span>
                   </div>
-                );
-              })}
-            </div>
-
-            {/* Flip Hint */}
-            <div className={styles.flipHint}>
-              View Summary →
-            </div>
+                </SmallTooltip>
+              );
+            })}
           </div>
         </div>
 
-        {/* BACK SIDE - Book Back Cover */}
-        <div className={styles.backSide}>
-          <div className={styles.backContent}>
-
-            {/* Description - Full space */}
-            <div className={styles.descriptionContainer}>
-              <p className={styles.description}>
-                {chapter.description}
-              </p>
-            </div>
-
-            {/* Bottom action */}
-            <div className={styles.bottomAction}>
-              <div
-                onClick={(e) => handleResourceClick(e, chapter.resources.chapter, 'chapter')}
-                className={styles.startReading}
-              >
-                Start Reading Chapter {chapter.number}
-              </div>
-            </div>
-          </div>
+        {/* Click indicator */}
+        <div className={styles.clickIndicator}>
+          <span>Start Reading Online</span>
+          <ChevronRight size={16} />
         </div>
       </div>
-    </div>
+    </article>
   );
 }

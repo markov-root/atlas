@@ -1,6 +1,7 @@
-// src/components/Settings/SettingsDropdown.jsx
+// src/components/Settings/SettingsDropdown.jsx - Redesigned with textbook fonts and better layout
 import React, { useState, useRef, useEffect } from 'react';
 import { useSettings } from './SettingsContext';
+import { SettingsTooltip } from '../UI/Tooltip';
 import styles from './SettingsDropdown.module.css';
 
 export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
@@ -55,23 +56,37 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
       ref={dropdownRef}
       className={styles.dropdown}
       role="menu"
-      aria-label="Settings menu"
+      aria-label="Reading settings menu"
     >
-      <div className={styles.dropdownHeader}>
-        <h3 className={styles.dropdownTitle}>Reading Settings</h3>
+      {/* Header */}
+      <div className={styles.header}>
+        <div className={styles.headerContent}>
+          <img 
+            src="/img/icons/font.svg" 
+            alt="" 
+            className={styles.headerIcon}
+          />
+          <h3 className={styles.title}>Reading Settings</h3>
+        </div>
+        <SettingsTooltip content="Reset all settings to defaults">
+          <button 
+            onClick={resetSettings}
+            className={styles.resetButton}
+          >
+            <img src="/img/icons/reset.svg" alt="" className={styles.resetIcon} />
+          </button>
+        </SettingsTooltip>
       </div>
-      
-      <div className={styles.dropdownContent}>
-        {/* Typography Settings */}
-        <div className={styles.section}>
-          <h4 className={styles.sectionTitle}>Typography</h4>
-          
-          <div className={styles.settingItem}>
-            <span className={styles.settingLabel}>Font Family</span>
+
+      <div className={styles.content}>
+        {/* Font Family */}
+        <div className={styles.setting}>
+          <label className={styles.label}>Font Family</label>
+          <div className={styles.fontSelector}>
             <select 
-              className={styles.settingControl}
               value={settings.font}
               onChange={(e) => updateSetting('font', e.target.value)}
+              className={styles.select}
             >
               {fontOptions.filter(f => f.id !== 'opendyslexic').map(font => (
                 <option key={font.id} value={font.id}>
@@ -79,14 +94,16 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
                 </option>
               ))}
             </select>
+            <img src="/img/icons/chevron-down.svg" alt="" className={styles.selectIcon} />
           </div>
-          
-          <div className={styles.settingItem}>
-            <span className={styles.settingLabel}>Font Size</span>
-            <div className={styles.sliderContainer}>
-              <svg className={styles.sliderIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M4 20h16M4 20v-4a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v4M8 12V8a4 4 0 0 1 8 0v4"/>
-              </svg>
+        </div>
+
+        {/* Font Size */}
+        <div className={styles.setting}>
+          <label className={styles.label}>Font Size</label>
+          <div className={styles.sliderGroup}>
+            <img src="/img/icons/font-size.svg" alt="" className={styles.sliderIcon} />
+            <div className={styles.sliderWrapper}>
               <input
                 type="range"
                 min="14"
@@ -95,20 +112,25 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
                 value={settings.fontSize}
                 onChange={(e) => updateSetting('fontSize', parseInt(e.target.value))}
                 className={styles.slider}
+                aria-label="Font size"
               />
-              <svg className={styles.sliderIcon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M4 20h16M4 20v-6a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v6M6 10V6a6 6 0 0 1 12 0v4"/>
-              </svg>
-              <span className={styles.valueDisplay}>{settings.fontSize}px</span>
+              <div 
+                className={styles.sliderFill}
+                style={{
+                  width: `${((settings.fontSize - 14) / (28 - 14)) * 100}%`
+                }}
+              />
             </div>
+            <span className={styles.value}>{settings.fontSize}px</span>
           </div>
-          
-          <div className={styles.settingItem}>
-            <span className={styles.settingLabel}>Line Spacing</span>
-            <div className={styles.sliderContainer}>
-              <svg className={styles.sliderIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M3 8h18M3 16h18M8 4v16"/>
-              </svg>
+        </div>
+
+        {/* Line Height */}
+        <div className={styles.setting}>
+          <label className={styles.label}>Line Spacing</label>
+          <div className={styles.sliderGroup}>
+            <img src="/img/icons/height.svg" alt="" className={styles.sliderIcon} />
+            <div className={styles.sliderWrapper}>
               <input
                 type="range"
                 min="1.2"
@@ -117,49 +139,25 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
                 value={settings.lineHeight}
                 onChange={(e) => updateSetting('lineHeight', parseFloat(e.target.value))}
                 className={styles.slider}
+                aria-label="Line spacing"
               />
-              <svg className={styles.sliderIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M3 6h18M3 12h18M3 18h18M8 2v20"/>
-              </svg>
-              <span className={styles.valueDisplay}>{settings.lineHeight}×</span>
+              <div 
+                className={styles.sliderFill}
+                style={{
+                  width: `${((settings.lineHeight - 1.2) / (2.2 - 1.2)) * 100}%`
+                }}
+              />
             </div>
+            <span className={styles.value}>{settings.lineHeight}×</span>
           </div>
         </div>
 
-        {/* Layout Settings */}
-        <div className={styles.section}>
-          <h4 className={styles.sectionTitle}>Layout</h4>
-          
-          <div className={styles.settingItem}>
-            <span className={styles.settingLabel}>Text Alignment</span>
-            <div className={styles.buttonGroup}>
-              <button
-                className={`${styles.optionButton} ${settings.textAlign === 'left' ? styles.active : ''}`}
-                onClick={() => updateSetting('textAlign', 'left')}
-                title="Left align"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M3 6h11M3 12h11M3 18h11"/>
-                </svg>
-              </button>
-              <button
-                className={`${styles.optionButton} ${settings.textAlign === 'justify' ? styles.active : ''}`}
-                onClick={() => updateSetting('textAlign', 'justify')}
-                title="Justify"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M3 6h18M3 12h18M3 18h18"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-          
-          <div className={styles.settingItem}>
-            <span className={styles.settingLabel}>Column Width</span>
-            <div className={styles.sliderContainer}>
-              <svg className={styles.sliderIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="3" y="4" width="6" height="16" rx="1"/>
-              </svg>
+        {/* Column Width */}
+        <div className={styles.setting}>
+          <label className={styles.label}>Column Width</label>
+          <div className={styles.sliderGroup}>
+            <img src="/img/icons/width.svg" alt="" className={styles.sliderIcon} />
+            <div className={styles.sliderWrapper}>
               <input
                 type="range"
                 min="55"
@@ -168,69 +166,75 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
                 value={settings.maxWidth}
                 onChange={(e) => updateSetting('maxWidth', parseInt(e.target.value))}
                 className={styles.slider}
+                aria-label="Column width"
               />
-              <svg className={styles.sliderIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="3" y="4" width="18" height="16" rx="1"/>
-              </svg>
-              <span className={styles.valueDisplay}>{settings.maxWidth}ch</span>
+              <div 
+                className={styles.sliderFill}
+                style={{
+                  width: `${((settings.maxWidth - 55) / (95 - 55)) * 100}%`
+                }}
+              />
             </div>
+            <span className={styles.value}>{settings.maxWidth}ch</span>
           </div>
         </div>
 
-        {/* Accessibility Settings */}
-        <div className={styles.section}>
-          <h4 className={styles.sectionTitle}>Accessibility</h4>
-          
-          <div className={styles.settingItem}>
-            <div className={styles.settingLabelWithIcon}>
-              <svg className={styles.settingIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-              <span className={styles.settingLabel}>Reduce Motion</span>
-            </div>
-            <label className={styles.toggle}>
-              <input 
-                type="checkbox" 
-                checked={settings.reducedMotion}
-                onChange={(e) => updateSetting('reducedMotion', e.target.checked)}
-              />
-              <span className={styles.toggleSlider}></span>
-            </label>
-          </div>
-          
-          <div className={styles.settingItem}>
-            <div className={styles.settingLabelWithIcon}>
-              <svg className={styles.settingIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 3v18m9-9H3"/>
-                <circle cx="12" cy="12" r="3"/>
-              </svg>
-              <span className={styles.settingLabel}>Dyslexia-Friendly</span>
-            </div>
-            <label className={styles.toggle}>
-              <input 
-                type="checkbox" 
-                checked={settings.dyslexiaFont}
-                onChange={(e) => updateSetting('dyslexiaFont', e.target.checked)}
-              />
-              <span className={styles.toggleSlider}></span>
-            </label>
+        {/* Text Alignment */}
+        <div className={styles.setting}>
+          <label className={styles.label}>Text Alignment</label>
+          <div className={styles.alignmentGroup}>
+            <SettingsTooltip content="Align text to the left">
+              <button
+                onClick={() => updateSetting('textAlign', 'left')}
+                className={`${styles.alignButton} ${settings.textAlign === 'left' ? styles.active : ''}`}
+                aria-label="Align text left"
+              >
+                <img src="/img/icons/align-left.svg" alt="" className={styles.alignIcon} />
+              </button>
+            </SettingsTooltip>
+            <SettingsTooltip content="Center text">
+              <button
+                onClick={() => updateSetting('textAlign', 'center')}
+                className={`${styles.alignButton} ${settings.textAlign === 'center' ? styles.active : ''}`}
+                aria-label="Center text"
+              >
+                <img src="/img/icons/align-center.svg" alt="" className={styles.alignIcon} />
+              </button>
+            </SettingsTooltip>
+            <SettingsTooltip content="Align text to the right">
+              <button
+                onClick={() => updateSetting('textAlign', 'right')}
+                className={`${styles.alignButton} ${settings.textAlign === 'right' ? styles.active : ''}`}
+                aria-label="Align text right"
+              >
+                <img src="/img/icons/align-right.svg" alt="" className={styles.alignIcon} />
+              </button>
+            </SettingsTooltip>
+            <SettingsTooltip content="Justify text for even margins">
+              <button
+                onClick={() => updateSetting('textAlign', 'justify')}
+                className={`${styles.alignButton} ${settings.textAlign === 'justify' ? styles.active : ''}`}
+                aria-label="Justify text"
+              >
+                <img src="/img/icons/align-justify.svg" alt="" className={styles.alignIcon} />
+              </button>
+            </SettingsTooltip>
           </div>
         </div>
-      </div>
-      
-      <div className={styles.dropdownFooter}>
-        <button 
-          className={styles.footerButton}
-          onClick={resetSettings}
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
-            <path d="M21 3v5h-5"/>
-            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
-            <path d="M3 21v-5h5"/>
-          </svg>
-          Reset to Defaults
-        </button>
+
+        {/* Dyslexia Font */}
+        <div className={styles.setting}>
+          <label className={styles.label}>Dyslexia-Friendly Font</label>
+          <SettingsTooltip content="Use OpenDyslexic font for better readability">
+            <button
+              onClick={() => updateSetting('dyslexiaFont', !settings.dyslexiaFont)}
+              className={`${styles.toggle} ${settings.dyslexiaFont ? styles.toggleActive : ''}`}
+              aria-label={`${settings.dyslexiaFont ? 'Disable' : 'Enable'} dyslexia-friendly font`}
+            >
+              <span className={styles.toggleSlider}></span>
+            </button>
+          </SettingsTooltip>
+        </div>
       </div>
     </div>
   );

@@ -34,7 +34,7 @@
 [x] note component
 [ ] footnote component
 [x] quote component
-[ ] tippy, perspective-extreme , offset, large arrow
+[x] tippy, perspective-extreme , offset, large arrow
 
 
 ## New components

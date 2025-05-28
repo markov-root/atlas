@@ -1,44 +1,54 @@
-/* src/theme/DocItem/Landing/ChapterCard.module.css */
+/* src/theme/DocItem/Landing/ChapterCard.module.css - Fixed with better spacing and preserved book aesthetic */
 
-.cardContainer {
-  width: 100%;
-  max-width: 280px;
-  height: 420px;
-  perspective: 1000px;
-  cursor: pointer;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
-.flipContainer {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
-}
-
-.flipContainer.flipped {
-  transform: rotateY(180deg);
-}
-
-/* FRONT SIDE - Book Cover */
-.frontSide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
+.card {
   background: var(--atlas-background, #ffffff);
   border: 1px solid var(--atlas-border-color, #e2e8f0);
-  border-left: 8px solid var(--atlas-gray-700, #334155);
+  border-left: 12px solid var(--atlas-gray-700, #334155);
   border-radius: 0 12px 12px 0;
-  display: flex;
-  flex-direction: column;
+  position: relative;
   overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  /* Default texture background - can be overridden by style prop */
+  background-image: url('/img/textures/texture-1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Add book-like angled corners using clip-path */
+  clip-path: polygon(
+    0% 8px,
+    12px 0%, 
+    100% 0%, 
+    100% 100%, 
+    12px 100%,
+    0% calc(100% - 8px)
+  );
 }
 
-/* Texture overlay - only appears when texture is provided */
-.textureOverlay {
+.card:hover {
+  border-color: var(--atlas-border-color, #e2e8f0);
+  border-left-color: var(--atlas-primary, #1971c2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] .card {
+  background-color: var(--atlas-background, #121212);
+  border-color: var(--atlas-border-color, #373737);
+  border-left-color: var(--atlas-gray-600, #475569);
+}
+
+[data-theme='dark'] .card:hover {
+  border-left-color: var(--atlas-primary-lighter, #74c0fc);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Add texture overlay for better text readability */
+.card::before {
+  content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
@@ -50,174 +60,7 @@
   z-index: 0;
 }
 
-.frontContent {
-  padding: 28px;
-  padding-top: 32px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 0;
-  position: relative;
-  z-index: 1;
-}
-
-.titleRow {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.chapterNumber {
-  background: var(--atlas-text, #1a202c);
-  color: var(--atlas-background, white);
-  width: 44px;
-  height: 44px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: 700;
-  font-family: var(--atlas-font-mono, "JetBrains Mono", monospace);
-  flex-shrink: 0;
-}
-
-.chapterTitle {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--atlas-text, #1a202c);
-  margin: 0;
-  line-height: 1.2;
-  flex: 1;
-  min-width: 0;
-}
-
-.resourceButtons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1;
-  min-height: 0; /* Allow container to shrink */
-}
-
-.resourceButton {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 0;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  min-height: 40px;
-  background: none;
-  border: none;
-}
-
-.resourceButton.available:hover {
-  opacity: 0.7;
-}
-
-.resourceButton.unavailable {
-  cursor: not-allowed;
-  opacity: 0.4;
-}
-
-.resourceIcon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  filter: none;
-  opacity: 1;
-}
-
-.resourceButton.unavailable .resourceIcon {
-  opacity: 0.4;
-}
-
-.resourceLabel {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--atlas-text, #1a202c);
-  min-width: 0;
-}
-
-.resourceButton.unavailable .resourceLabel {
-  color: var(--atlas-text-tertiary, #64748b);
-}
-
-.flipHint {
-  text-align: center;
-  font-size: 12px;
-  color: var(--atlas-text-tertiary, #94a3b8);
-  font-weight: 500;
-  margin-top: 16px;
-  padding: 8px 0;
-  flex-shrink: 0;
-}
-
-/* BACK SIDE - Book Back Cover */
-.backSide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  background: var(--atlas-background, #ffffff);
-  border: 1px solid var(--atlas-border-color, #cbd5e1);
-  border-right: 8px solid var(--atlas-gray-600, #475569);
-  border-radius: 12px 0 0 12px;
-  transform: rotateY(180deg);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.backContent {
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 0;
-}
-
-.descriptionContainer {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 24px;
-}
-
-.description {
-  font-size: 15px;
-  color: var(--atlas-text-secondary, #475569);
-  line-height: 1.65;
-  margin: 0;
-  text-align: justify;
-  flex: 1;
-}
-
-.bottomAction {
-  text-align: center;
-  border-top: 1px solid var(--atlas-border-color, #cbd5e1);
-  padding-top: 20px;
-  flex-shrink: 0;
-}
-
-.startReading {
-  color: var(--atlas-primary, #1971c2);
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: underline;
-  padding: 4px 8px;
-  display: inline-block;
-}
-
-.startReading:hover {
-  color: var(--atlas-primary-dark, #1864ab);
-}
-
-[data-theme='dark'] .textureOverlay {
+[data-theme='dark'] .card::before {
   background: linear-gradient(
     135deg,
     rgba(var(--atlas-background-rgb, 18, 18, 18), 0.85) 0%,
@@ -226,87 +69,315 @@
   );
 }
 
-/* Dark mode adjustments */
-[data-theme='dark'] .resourceIcon {
-  filter: brightness(0) invert(1);
+/* Card Content - More compact on desktop */
+.cardContent {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  height: 100%;
+  min-height: 240px;
+  position: relative;
+  z-index: 1;
 }
 
-[data-theme='dark'] .resourceButton.unavailable .resourceIcon {
-  filter: brightness(0) invert(1);
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0;
+}
+
+.chapterNumber {
+  background: var(--atlas-text, #1a202c);
+  color: var(--atlas-background, white);
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-family: var(--atlas-font-mono, "JetBrains Mono", monospace);
+  flex-shrink: 0;
+}
+
+[data-theme='dark'] .chapterNumber {
+  background: var(--atlas-text, #e9ecef);
+  color: var(--atlas-background, #121212);
+}
+
+.title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--atlas-primary, #1971c2);
+  margin: 0;
+  line-height: 1.25;
+  flex: 1;
+}
+
+[data-theme='dark'] .title {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+/* Resource Icons Section */
+.resourceSection {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resourceIcons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.resourceIcon {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+  background: none;
+  border: none;
+  width: 100%;
+}
+
+.resourceIcon.iconAvailable:hover {
+  opacity: 0.7;
+}
+
+.resourceIcon.iconUnavailable {
+  cursor: not-allowed;
   opacity: 0.4;
 }
+
+.iconImage {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+}
+
+.iconLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--atlas-text, #1a202c);
+  min-width: 0;
+}
+
+.resourceIcon.iconUnavailable .iconLabel {
+  color: var(--atlas-text-tertiary, #64748b);
+}
+
+[data-theme='dark'] .iconLabel {
+  color: var(--atlas-text, #e9ecef);
+}
+
+[data-theme='dark'] .resourceIcon.iconUnavailable .iconLabel {
+  color: var(--atlas-text-tertiary, #6c757d);
+}
+
+.resourceIcon.iconAvailable:hover .iconImage {
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(27%) sepia(94%) saturate(1167%) hue-rotate(201deg) brightness(96%) contrast(94%);
+}
+
+.resourceIcon.iconUnavailable .iconImage {
+  opacity: 0.3;
+}
+
+/* Dark mode resource icons */
+[data-theme='dark'] .resourceIcon.iconAvailable:hover .iconImage {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(32%) saturate(1715%) hue-rotate(191deg) brightness(101%) contrast(94%);
+}
+
+[data-theme='dark'] .iconImage {
+  filter: brightness(0) invert(1);
+}
+
+/* Click Indicator */
+.clickIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  color: var(--atlas-background, white);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-top: 1px solid var(--atlas-border-color, #e2e8f0);
+  margin: 0 -1.75rem -1.75rem -1.75rem;
+  transition: all 0.2s ease;
+  background: var(--atlas-text, #1a202c);
+}
+
+[data-theme='dark'] .clickIndicator {
+  color: var(--atlas-background, #121212);
+  border-top-color: var(--atlas-border-color, #373737);
+  background: var(--atlas-text, #e9ecef);
+}
+
+.card:hover .clickIndicator {
+  background: var(--atlas-primary, #1971c2);
+}
+
+[data-theme='dark'] .card:hover .clickIndicator {
+  background: var(--atlas-primary-lighter, #74c0fc);
+  color: var(--atlas-background, #121212);
+}
+
+/* Mobile Responsive - KEEPING BOOK AESTHETIC, just better spacing */
 @media (max-width: 768px) {
-  .cardContainer {
-    width: 280px;
-    height: 420px;
-    margin: 0 12px 24px 0;
+  .cardContent {
+    padding: 1.5rem;
+    gap: 1rem;
+    min-height: 320px;
   }
-
-  .frontContent,
-  .backContent {
-    padding: 24px;
-    padding-top: 28px;
+  
+  .header {
+    gap: 0.875rem;
   }
-
-  .chapterTitle {
-    font-size: 22px;
-  }
-
+  
   .chapterNumber {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
   }
-
-  .resourceButton {
+  
+  .title {
+    font-size: 1.35rem;
+    line-height: 1.2;
+  }
+  
+  .resourceIcons {
+    gap: 0.625rem;
+  }
+  
+  .resourceIcon {
     padding: 8px 0;
-    min-height: 36px;
+    gap: 12px;
+    min-height: 52px;
   }
-
-  .resourceLabel {
-    font-size: 13px;
+  
+  .iconImage {
+    width: 32px;
+    height: 32px;
   }
-
-  .subtitle {
-    font-size: 16px;
-    margin-bottom: 20px;
+  
+  .iconLabel {
+    font-size: 15px;
+    font-weight: 500;
   }
-
-  .description {
-    font-size: 14px;
+  
+  .clickIndicator {
+    font-size: 0.95rem;
+    padding: 0.875rem;
+    margin: 0 -1.5rem -1.5rem -1.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .cardContainer {
-    width: 260px;
-    height: 400px;
+  .cardContent {
+    padding: 1.25rem;
+    gap: 0.875rem;
+    min-height: 300px;
   }
-
-  .titleRow {
-    gap: 12px;
-    margin-bottom: 24px;
+  
+  .header {
+    gap: 0.75rem;
   }
-
-  .chapterTitle {
-    font-size: 20px;
+  
+  .chapterNumber {
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
   }
-
-  .resourceButtons {
-    gap: 8px;
+  
+  .title {
+    font-size: 1.25rem;
+    line-height: 1.15;
   }
-
-  .resourceButton {
-    padding: 6px 0;
-    min-height: 32px;
+  
+  .resourceIcons {
+    gap: 0.5rem;
   }
-
+  
   .resourceIcon {
-    width: 18px;
-    height: 18px;
+    padding: 6px 0;
+    gap: 10px;
+    min-height: 48px;
   }
+  
+  .iconImage {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .iconLabel {
+    font-size: 14px;
+  }
+  
+  .clickIndicator {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+    margin: 0 -1.25rem -1.25rem -1.25rem;
+  }
+}
 
-  .resourceLabel {
-    font-size: 12px;
+@media (max-width: 360px) {
+  .cardContent {
+    padding: 1rem;
+    gap: 0.75rem;
+    min-height: 280px;
+  }
+  
+  .header {
+    gap: 0.625rem;
+  }
+  
+  .chapterNumber {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .title {
+    font-size: 1.15rem;
+    line-height: 1.1;
+  }
+  
+  .resourceIcons {
+    gap: 0.375rem;
+  }
+  
+  .resourceIcon {
+    padding: 5px 0;
+    gap: 8px;
+    min-height: 44px;
+  }
+  
+  .iconImage {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .iconLabel {
+    font-size: 13px;
+  }
+  
+  .clickIndicator {
+    font-size: 0.85rem;
+    padding: 0.625rem;
+    margin: 0 -1rem -1rem -1rem;
   }
 }

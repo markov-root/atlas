@@ -1,4 +1,4 @@
-// config/theme.js
+// config/theme.mjs
 import {themes as prismThemes} from 'prism-react-renderer';
 
 export const themeConfig = {
@@ -45,11 +45,7 @@ export const themeConfig = {
         position: 'right',
         label: 'Courses',
       },
-      {
-        href: 'https://github.com/markov-root/atlas',
-        label: 'GitHub',
-        position: 'right',
-      },
+      // Removed GitHub link from navbar
     ],
   },
   
