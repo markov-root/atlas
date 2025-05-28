@@ -2,7 +2,7 @@
 
 /* Base quote card styling */
 .quoteCard {
-  background-color: var(--atlas-background-alt, #f8f9fa);
+  background-color: white;
   border-radius: 16px;
   margin: 3rem 0;
   position: relative;

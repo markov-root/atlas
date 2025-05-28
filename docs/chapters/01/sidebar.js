@@ -68,7 +68,23 @@ module.exports = {
     id: "chapters/01/5"
   },
   items: [
-  { type: "link", label: "1.5.1 Methodology", href: "/chapters/01/05#01" }
+  { type: "link", label: "1.5.1 Methodology", href: "/chapters/01/05#01" },
+  {
+    type: "category",
+    label: "1.5.2 Trend Based Forecasting",
+    link: {
+      type: "generated-index",
+      title: "1.5.2 Trend Based Forecasting",
+      slug: "/chapters/01/05#02"
+    },
+    items: [
+    { type: "link", label: "1.5.2.1 Compute", href: "/chapters/01/05#02-01" },
+    { type: "link", label: "1.5.2.2 Parameters", href: "/chapters/01/05#02-02" },
+    { type: "link", label: "1.5.2.3 Data", href: "/chapters/01/05#02-03" },
+    { type: "link", label: "1.5.2.4 Algorithms", href: "/chapters/01/05#02-04" },
+    { type: "link", label: "1.5.2.5 Costs", href: "/chapters/01/05#02-05" }
+    ]
+  }
   ]
 },
     {
@@ -114,9 +130,27 @@ module.exports = {
       slug: "/chapters/01/08#02"
     },
     items: [
-    { type: "link", label: "1.8.2.1 AI Experts", href: "/chapters/01/08#02-01" }
+    { type: "link", label: "1.8.2.1 AI Experts", href: "/chapters/01/08#02-01" },
+    { type: "link", label: "1.8.2.2 Academics", href: "/chapters/01/08#02-02" },
+    { type: "link", label: "1.8.2.3 Tech Entrepreneurs", href: "/chapters/01/08#02-03" },
+    { type: "link", label: "1.8.2.4 Join Declarations", href: "/chapters/01/08#02-04" }
     ]
   }
+  ]
+},
+    {
+  type: "category",
+  label: "1.9 Appendix: Discussion on LLMs",
+  link: {
+    type: "doc",
+    id: "chapters/01/9"
+  },
+  items: [
+  { type: "link", label: "1.9.1 Empirically insufficiency?", href: "/chapters/01/09#01" },
+  { type: "link", label: "1.9.2 Shallow Understanding?", href: "/chapters/01/09#02" },
+  { type: "link", label: "1.9.3 Structural inadequacy?", href: "/chapters/01/09#03" },
+  { type: "link", label: "1.9.4 Differences with the brain", href: "/chapters/01/09#04" },
+  { type: "link", label: "1.9.5 Further reasons to continue scaling LLMs", href: "/chapters/01/09#05" }
   ]
 }
   ],

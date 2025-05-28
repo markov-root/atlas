@@ -24,10 +24,15 @@
 [ ] use theme around #1a202c
 [ ] definitions counting and numbering
 
+
 ## Design
 [ ] definitions component
+
+so we dont need the far left line anymore, consistent size (around like 30-35%) on the left is probably best, Remove all rounded corners,  remove all borders, i dont want to see any outside lines. Definition • Source dont seem to be aligned underneath the defined term as they should be, they seem to be more left aligned and appear underneath the icon which they shouldnt. the icon for the info component seemed bigger it spanned multiple lines, i think that icon size we were using is better and should be also used for this component
+
+
 [ ] warning component
-[ ] note component
+[x] note component
 [ ] footnote component
 [x] quote component
 [ ] tippy, perspective-extreme , offset, large arrow
