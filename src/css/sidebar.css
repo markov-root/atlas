@@ -177,7 +177,7 @@
 .sidebar_njMd {
   border: none !important;
   box-shadow: none !important;
-  border-right: 1px solid black !important;
+  border-right: 0px solid black !important;
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
 

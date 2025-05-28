@@ -1,4 +1,4 @@
-/* src/theme/Navbar/styles.module.css */
+/* src/theme/Navbar/styles.module.css - Mobile compatibility improvements */
 
 .navbarContainer {
   position: relative;
@@ -10,8 +10,8 @@
   border: none;
   color: var(--atlas-text-secondary, #6c757d);
   cursor: pointer;
-  padding: var(--ifm-navbar-item-padding-vertical) var(--ifm-navbar-item-padding-horizontal);
-  border-radius: var(--ifm-button-border-radius);
+  padding: var(--ifm-navbar-item-padding-vertical, 0.25rem) var(--ifm-navbar-item-padding-horizontal, 0.75rem);
+  border-radius: var(--ifm-button-border-radius, 0.375rem);
   transition: all 0.2s ease;
   
   display: flex;
@@ -20,7 +20,20 @@
   
   /* Match navbar link styling */
   text-decoration: none;
-  font-weight: var(--ifm-font-weight-normal);
+  font-weight: var(--ifm-font-weight-normal, 400);
+  
+  /* Ensure it's clickable on mobile */
+  min-width: 44px;
+  min-height: 44px;
+  
+  /* Prevent text selection on mobile */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  /* Prevent double-tap zoom on mobile */
+  touch-action: manipulation;
 }
 
 .settingsButton:hover {
@@ -33,6 +46,22 @@
   outline-offset: 2px;
 }
 
+/* Mobile specific styles */
+@media (max-width: 768px) {
+  .settingsButton {
+    /* Larger touch target for mobile */
+    min-width: 48px;
+    min-height: 48px;
+    padding: 0.5rem;
+  }
+  
+  /* Ensure the icon is visible on mobile */
+  .settingsIcon {
+    width: 22px !important;
+    height: 22px !important;
+  }
+}
+
 /* Style the SVG icon - Light mode */
 .settingsIcon {
   filter: none;
@@ -40,6 +69,8 @@
   transition: all 0.2s ease;
   width: 20px;
   height: 20px;
+  display: block;
+  pointer-events: none; /* Prevent icon from blocking clicks */
 }
 
 .settingsButton:hover .settingsIcon {
@@ -48,12 +79,30 @@
   filter: brightness(0) saturate(100%) invert(27%) sepia(94%) saturate(1167%) hue-rotate(201deg) brightness(96%) contrast(94%);
 }
 
-/* Dropdown container - positioned fixed to follow navbar */
+/* Dropdown container - improved mobile positioning */
 .dropdownContainer {
   position: fixed;
   top: var(--ifm-navbar-height, 60px);
   right: 1rem;
   z-index: 9999;
+}
+
+/* Mobile-specific dropdown positioning */
+@media (max-width: 768px) {
+  .dropdownContainer {
+    right: 0.5rem;
+    left: 0.5rem;
+    /* On mobile, make dropdown full-width minus margins */
+    width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .dropdownContainer {
+    right: 0.25rem;
+    left: 0.25rem;
+    top: calc(var(--ifm-navbar-height, 60px) + 0.5rem);
+  }
 }
 
 /* Dark mode styles */
@@ -82,15 +131,26 @@
   filter: brightness(0) saturate(100%) invert(67%) sepia(32%) saturate(1715%) hue-rotate(191deg) brightness(101%) contrast(94%);
 }
 
-/* Responsive positioning */
-@media (max-width: 768px) {
-  .dropdownContainer {
-    right: 0.75rem;
-  }
+/* Force visibility on problematic mobile browsers */
+.settingsButton,
+.settingsIcon {
+  visibility: visible !important;
+  display: flex !important;
 }
 
-@media (max-width: 480px) {
+/* Improve button rendering on Android browsers */
+.settingsButton {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-clip: padding-box;
+}
+
+/* Ensure dropdown is above mobile keyboards */
+@media (max-height: 500px) {
   .dropdownContainer {
-    right: 0.5rem;
+    top: 0.5rem;
+    max-height: calc(100vh - 1rem);
+    overflow-y: auto;
   }
 }
