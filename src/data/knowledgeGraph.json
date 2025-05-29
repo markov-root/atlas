@@ -1,0 +1,497 @@
+{
+  "nodes": [
+    {
+      "id": "atlas",
+      "label": "AI Safety Atlas",
+      "type": "central",
+      "layer": 0,
+      "angle": 0,
+      "icon": "organization.svg",
+      "stats": {
+        "total": "12,847 sources integrated"
+      }
+    },
+    {
+      "id": "papers-hub",
+      "label": "Papers",
+      "type": "hub",
+      "layer": 1,
+      "angle": 0,
+      "icon": "research_paper.svg",
+      "stats": {
+        "count": "2,341 papers"
+      }
+    },
+    {
+      "id": "podcasts-hub",
+      "label": "Podcasts",
+      "type": "hub",
+      "layer": 1,
+      "angle": 60,
+      "icon": "podcast.svg",
+      "stats": {
+        "count": "156 episodes"
+      }
+    },
+    {
+      "id": "youtube-hub",
+      "label": "YouTube",
+      "type": "hub",
+      "layer": 1,
+      "angle": 120,
+      "icon": "courses.svg",
+      "stats": {
+        "count": "89 videos"
+      }
+    },
+    {
+      "id": "labs-hub",
+      "label": "Research Labs",
+      "type": "hub",
+      "layer": 1,
+      "angle": 180,
+      "icon": "research_labs.svg",
+      "stats": {
+        "count": "23 labs tracked"
+      }
+    },
+    {
+      "id": "orgs-hub",
+      "label": "Organizations",
+      "type": "hub",
+      "layer": 1,
+      "angle": 240,
+      "icon": "organization.svg",
+      "stats": {
+        "count": "31 organizations"
+      }
+    },
+    {
+      "id": "blog-hub",
+      "label": "Blog Posts",
+      "type": "hub",
+      "layer": 1,
+      "angle": 300,
+      "icon": "blog.svg",
+      "stats": {
+        "count": "1,247 posts"
+      }
+    },
+    {
+      "id": "arxiv",
+      "label": "ArXiv",
+      "type": "source",
+      "layer": 2,
+      "angle": -15,
+      "hubAngle": 0,
+      "icon": "research_paper.svg",
+      "stats": {
+        "count": "1,891 papers"
+      }
+    },
+    {
+      "id": "pubmed",
+      "label": "PubMed",
+      "type": "source",
+      "layer": 2,
+      "angle": 0,
+      "hubAngle": 0,
+      "icon": "research_paper.svg",
+      "stats": {
+        "count": "342 papers"
+      }
+    },
+    {
+      "id": "nature",
+      "label": "Nature",
+      "type": "source",
+      "layer": 2,
+      "angle": 15,
+      "hubAngle": 0,
+      "icon": "research_paper.svg",
+      "stats": {
+        "count": "108 articles"
+      }
+    },
+    {
+      "id": "more-papers",
+      "label": "573+ more",
+      "type": "more",
+      "layer": 3,
+      "angle": 25,
+      "hubAngle": 0,
+      "icon": "research_paper.svg",
+      "stats": {
+        "count": "573+ more sources",
+        "examples": ["IEEE Papers", "Science Direct", "ACM Digital Library", "PLOS ONE", "Springer"]
+      }
+    },
+    {
+      "id": "axrp",
+      "label": "AXRP",
+      "type": "source",
+      "layer": 2,
+      "angle": 45,
+      "hubAngle": 60,
+      "icon": "podcast.svg",
+      "stats": {
+        "count": "67 episodes"
+      }
+    },
+    {
+      "id": "mlst",
+      "label": "MLST",
+      "type": "source",
+      "layer": 2,
+      "angle": 60,
+      "hubAngle": 60,
+      "icon": "podcast.svg",
+      "stats": {
+        "count": "45 episodes"
+      }
+    },
+    {
+      "id": "dwarkesh",
+      "label": "Dwarkesh",
+      "type": "source",
+      "layer": 2,
+      "angle": 75,
+      "hubAngle": 60,
+      "icon": "podcast.svg",
+      "stats": {
+        "count": "44 episodes"
+      }
+    },
+    {
+      "id": "more-podcasts",
+      "label": "12+ more",
+      "type": "more",
+      "layer": 3,
+      "angle": 85,
+      "hubAngle": 60,
+      "icon": "podcast.svg",
+      "stats": {
+        "count": "12+ more podcasts",
+        "examples": ["80,000 Hours", "Future of Life", "AI Alignment", "Lex Fridman", "The Inside View"]
+      }
+    },
+    {
+      "id": "rational-anim",
+      "label": "Rational Animations",
+      "type": "source",
+      "layer": 2,
+      "angle": 105,
+      "hubAngle": 120,
+      "icon": "courses.svg",
+      "stats": {
+        "count": "28 videos"
+      }
+    },
+    {
+      "id": "rob-miles",
+      "label": "Rob Miles",
+      "type": "source",
+      "layer": 2,
+      "angle": 120,
+      "hubAngle": 120,
+      "icon": "courses.svg",
+      "stats": {
+        "count": "34 videos"
+      }
+    },
+    {
+      "id": "two-minute-papers",
+      "label": "Two Minute Papers",
+      "type": "source",
+      "layer": 2,
+      "angle": 135,
+      "hubAngle": 120,
+      "icon": "courses.svg",
+      "stats": {
+        "count": "27 videos"
+      }
+    },
+    {
+      "id": "more-youtube",
+      "label": "25+ more",
+      "type": "more",
+      "layer": 3,
+      "angle": 145,
+      "hubAngle": 120,
+      "icon": "courses.svg",
+      "stats": {
+        "count": "25+ more channels",
+        "examples": ["3Blue1Brown", "Computerphile", "Machine Learning Street Talk", "AI Coffee Break", "Yannic Kilcher"]
+      }
+    },
+    {
+      "id": "fhi",
+      "label": "FAR AI",
+      "type": "source",
+      "layer": 2,
+      "angle": 165,
+      "hubAngle": 180,
+      "icon": "research_labs.svg",
+      "stats": {
+        "count": "23 publications"
+      }
+    },
+    {
+      "id": "epoch",
+      "label": "Epoch AI",
+      "type": "source",
+      "layer": 2,
+      "angle": 180,
+      "hubAngle": 180,
+      "icon": "research_labs.svg",
+      "stats": {
+        "count": "41 reports"
+      }
+    },
+    {
+      "id": "apollo",
+      "label": "Apollo Research",
+      "type": "source",
+      "layer": 2,
+      "angle": 195,
+      "hubAngle": 180,
+      "icon": "research_labs.svg",
+      "stats": {
+        "count": "17 papers"
+      }
+    },
+    {
+      "id": "more-labs",
+      "label": "15+ more",
+      "type": "more",
+      "layer": 3,
+      "angle": 205,
+      "hubAngle": 180,
+      "icon": "research_labs.svg",
+      "stats": {
+        "count": "15+ more labs",
+        "examples": ["CHAI", "MIRI", "Redwood Research", "AI Safety Camp", "Center for AI Policy"]
+      }
+    },
+    {
+      "id": "anthropic",
+      "label": "Anthropic",
+      "type": "source",
+      "layer": 2,
+      "angle": 225,
+      "hubAngle": 240,
+      "icon": "organization.svg",
+      "stats": {
+        "count": "89 publications"
+      }
+    },
+    {
+      "id": "deepmind",
+      "label": "DeepMind",
+      "type": "source",
+      "layer": 2,
+      "angle": 240,
+      "hubAngle": 240,
+      "icon": "organization.svg",
+      "stats": {
+        "count": "156 papers"
+      }
+    },
+    {
+      "id": "openai",
+      "label": "OpenAI",
+      "type": "source",
+      "layer": 2,
+      "angle": 255,
+      "hubAngle": 240,
+      "icon": "organization.svg",
+      "stats": {
+        "count": "78 publications"
+      }
+    },
+    {
+      "id": "more-orgs",
+      "label": "40+ more",
+      "type": "more",
+      "layer": 3,
+      "angle": 265,
+      "hubAngle": 240,
+      "icon": "organization.svg",
+      "stats": {
+        "count": "40+ more organizations",
+        "examples": ["Google AI", "Meta AI", "Microsoft Research", "Stability AI", "Cohere"]
+      }
+    },
+    {
+      "id": "alignment-forum",
+      "label": "Alignment Forum",
+      "type": "source",
+      "layer": 2,
+      "angle": 285,
+      "hubAngle": 300,
+      "icon": "blog.svg",
+      "stats": {
+        "count": "567 posts"
+      }
+    },
+    {
+      "id": "lesswrong",
+      "label": "LessWrong",
+      "type": "source",
+      "layer": 2,
+      "angle": 300,
+      "hubAngle": 300,
+      "icon": "blog.svg",
+      "stats": {
+        "count": "423 posts"
+      }
+    },
+    {
+      "id": "substack",
+      "label": "Substack",
+      "type": "source",
+      "layer": 2,
+      "angle": 315,
+      "hubAngle": 300,
+      "icon": "blog.svg",
+      "stats": {
+        "count": "257 posts"
+      }
+    },
+    {
+      "id": "more-blogs",
+      "label": "200+ more",
+      "type": "more",
+      "layer": 3,
+      "angle": 325,
+      "hubAngle": 300,
+      "icon": "blog.svg",
+      "stats": {
+        "count": "200+ more sources",
+        "examples": ["Medium Articles", "Personal Blogs", "Research Institution Blogs", "Company Blogs", "Newsletter Archives"]
+      }
+    }
+  ],
+  "links": [
+    {
+      "source": "papers-hub",
+      "target": "atlas"
+    },
+    {
+      "source": "podcasts-hub",
+      "target": "atlas"
+    },
+    {
+      "source": "youtube-hub",
+      "target": "atlas"
+    },
+    {
+      "source": "labs-hub",
+      "target": "atlas"
+    },
+    {
+      "source": "orgs-hub",
+      "target": "atlas"
+    },
+    {
+      "source": "blog-hub",
+      "target": "atlas"
+    },
+    {
+      "source": "arxiv",
+      "target": "papers-hub"
+    },
+    {
+      "source": "pubmed",
+      "target": "papers-hub"
+    },
+    {
+      "source": "nature",
+      "target": "papers-hub"
+    },
+    {
+      "source": "more-papers",
+      "target": "papers-hub"
+    },
+    {
+      "source": "axrp",
+      "target": "podcasts-hub"
+    },
+    {
+      "source": "mlst",
+      "target": "podcasts-hub"
+    },
+    {
+      "source": "dwarkesh",
+      "target": "podcasts-hub"
+    },
+    {
+      "source": "more-podcasts",
+      "target": "podcasts-hub"
+    },
+    {
+      "source": "rational-anim",
+      "target": "youtube-hub"
+    },
+    {
+      "source": "rob-miles",
+      "target": "youtube-hub"
+    },
+    {
+      "source": "two-minute-papers",
+      "target": "youtube-hub"
+    },
+    {
+      "source": "more-youtube",
+      "target": "youtube-hub"
+    },
+    {
+      "source": "fhi",
+      "target": "labs-hub"
+    },
+    {
+      "source": "epoch",
+      "target": "labs-hub"
+    },
+    {
+      "source": "apollo",
+      "target": "labs-hub"
+    },
+    {
+      "source": "more-labs",
+      "target": "labs-hub"
+    },
+    {
+      "source": "anthropic",
+      "target": "orgs-hub"
+    },
+    {
+      "source": "deepmind",
+      "target": "orgs-hub"
+    },
+    {
+      "source": "openai",
+      "target": "orgs-hub"
+    },
+    {
+      "source": "more-orgs",
+      "target": "orgs-hub"
+    },
+    {
+      "source": "alignment-forum",
+      "target": "blog-hub"
+    },
+    {
+      "source": "lesswrong",
+      "target": "blog-hub"
+    },
+    {
+      "source": "substack",
+      "target": "blog-hub"
+    },
+    {
+      "source": "more-blogs",
+      "target": "blog-hub"
+    }
+  ]
+}
