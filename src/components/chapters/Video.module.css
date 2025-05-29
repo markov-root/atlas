@@ -10,39 +10,31 @@
 .fullWidth {
   width: 100%;
   max-width: none;
-  /* Remove the negative margins that are causing misalignment */
-}
-
-/* Full-width video on larger screens */
-@media (min-width: 997px) {
-  .fullWidth {
-    /* Remove the negative margins that break alignment */
-  }
 }
 
 .videoContainer {
   position: relative;
   width: 100%;
-  background-color: var(--atlas-background-alt, #f8f9fa);
-  border-radius: 12px;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: var(--atlas-shadow-md, 0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.05));
-  border: 1px solid var(--atlas-border-color, #e5e7eb);
-  transition: all 0.3s ease;
+  box-shadow: none;
+  transition: none;
 }
 
 .videoContainer:hover {
-  box-shadow: var(--atlas-shadow-lg, 0 10px 15px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.05));
+  box-shadow: none;
 }
 
 [data-theme='dark'] .videoContainer {
-  background-color: var(--atlas-background-alt, #1e1e1e);
-  border-color: var(--atlas-border-color, #373737);
-  box-shadow: var(--atlas-shadow-md, 0 6px 8px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.1));
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 [data-theme='dark'] .videoContainer:hover {
-  box-shadow: var(--atlas-shadow-lg, 0 12px 20px rgba(0, 0, 0, 0.25), 0 6px 8px rgba(0, 0, 0, 0.15));
+  box-shadow: none;
 }
 
 /* Aspect ratio containers */
@@ -105,8 +97,8 @@
   height: 100%;
   border: none;
   display: block;
-  transition: opacity 0.3s ease;
-  border-radius: 12px;
+  transition: none;
+  border-radius: 0;
 }
 
 .videoElement {
@@ -120,11 +112,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--atlas-primary-lightest, #e7f5ff) 0%, var(--atlas-background, #ffffff) 100%);
+  background: var(--atlas-background, #ffffff);
 }
 
 [data-theme='dark'] .customPlayer {
-  background: linear-gradient(135deg, rgba(var(--atlas-primary-rgb, 51, 154, 240), 0.1) 0%, var(--atlas-background, #121212) 100%);
+  background: var(--atlas-background, #121212);
 }
 
 .customPlayerPlaceholder {
@@ -163,14 +155,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--atlas-background-alt, #f8f9fa);
+  background-color: var(--atlas-background, #ffffff);
   color: var(--atlas-text-secondary, #6c757d);
   z-index: 2;
-  border-radius: 12px;
+  border-radius: 0;
 }
 
 [data-theme='dark'] .loadingOverlay {
-  background-color: var(--atlas-background-alt, #1e1e1e);
+  background-color: var(--atlas-background, #121212);
   color: var(--atlas-text-secondary, #adb5bd);
 }
 
@@ -204,16 +196,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--atlas-background-alt, #f8f9fa);
+  background-color: var(--atlas-background, #ffffff);
   color: var(--atlas-text, #212529);
   text-align: center;
   padding: 2rem;
   z-index: 2;
-  border-radius: 12px;
+  border-radius: 0;
 }
 
 [data-theme='dark'] .errorContainer {
-  background-color: var(--atlas-background-alt, #1e1e1e);
+  background-color: var(--atlas-background, #121212);
   color: var(--atlas-text, #e9ecef);
 }
 
@@ -253,19 +245,19 @@
   background-color: var(--atlas-primary, #1971c2);
   color: white;
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: 0;
   font-size: 0.95rem;
   font-weight: 500;
-  transition: all 0.2s ease;
+  transition: none;
   display: inline-block;
 }
 
 .fallbackLink:hover {
-  background-color: var(--atlas-primary-darker, #1864ab);
+  background-color: var(--atlas-primary, #1971c2);
   text-decoration: none;
   color: white;
-  transform: translateY(-2px);
-  box-shadow: var(--atlas-shadow, 0 2px 4px rgba(0, 0, 0, 0.1));
+  transform: none;
+  box-shadow: none;
 }
 
 [data-theme='dark'] .fallbackLink {
@@ -273,7 +265,7 @@
 }
 
 [data-theme='dark'] .fallbackLink:hover {
-  background-color: var(--atlas-primary-darker, #1c7ed6);
+  background-color: var(--atlas-primary, #339af0);
 }
 
 /* Responsive adjustments */
@@ -282,22 +274,18 @@
     margin: 2rem 0;
   }
   
-  .fullWidth {
-    /* Keep aligned with content, no negative margins on mobile */
-  }
-  
   .videoContainer {
-    border-radius: 8px;
+    border-radius: 0;
   }
   
   .loadingOverlay,
   .errorContainer {
-    border-radius: 8px;
+    border-radius: 0;
   }
   
   .videoIframe,
   .videoElement {
-    border-radius: 8px;
+    border-radius: 0;
   }
   
   .errorContainer {
@@ -315,6 +303,7 @@
   .fallbackLink {
     font-size: 0.9rem;
     padding: 0.65rem 1.25rem;
+    border-radius: 0;
   }
 }
 
@@ -324,18 +313,18 @@
   }
   
   .videoContainer {
-    border-radius: 6px;
+    border-radius: 0;
   }
   
   .loadingOverlay,
   .errorContainer {
-    border-radius: 6px;
+    border-radius: 0;
     padding: 1rem;
   }
   
   .videoIframe,
   .videoElement {
-    border-radius: 6px;
+    border-radius: 0;
   }
   
   .errorIcon {
@@ -360,11 +349,11 @@
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .videoContainer {
-    border-width: 2px;
+    border: none;
   }
   
   .fallbackLink {
-    border: 2px solid currentColor;
+    border: none;
   }
 }
 

@@ -5,7 +5,7 @@ import Caption from './Caption';
 import styles from './Video.module.css';
 
 /**
- * Enhanced Video component with full-width design and custom player option
+ * Minimal Video component with no styling frills
  * @param {Object} props
  * @param {string} props.type - Type of video ('youtube', 'vimeo', 'mp4', 'webm', 'custom')
  * @param {string} props.videoId - Video ID for YouTube/Vimeo, or full URL for direct video files
@@ -89,15 +89,21 @@ export default function Video({
         if (autoplay) params.append('autoplay', '1');
         if (!controls && !useCustomPlayer) params.append('controls', '0');
         
-        // Enhanced YouTube embed parameters for better experience
+        // MINIMAL YouTube embed parameters - remove ALL branding and suggestions
         params.append('rel', '0'); // Don't show related videos
         params.append('modestbranding', '1'); // Minimal YouTube branding
         params.append('fs', '1'); // Allow fullscreen
         params.append('cc_load_policy', '0'); // Don't force captions
         params.append('iv_load_policy', '3'); // Hide annotations
+        params.append('showinfo', '0'); // Hide video info (deprecated but still works in some cases)
+        params.append('disablekb', '1'); // Disable keyboard controls to prevent distractions
+        params.append('playsinline', '1'); // Prevent fullscreen on mobile
+        
+        // Additional parameters to minimize YouTube UI
+        params.append('color', 'white'); // Use white progress bar
+        params.append('theme', 'light'); // Light theme
         
         if (useCustomPlayer) {
-          // For custom player, we might want different params
           params.append('enablejsapi', '1'); // Enable JS API
           params.append('origin', window.location.origin);
         }
@@ -111,10 +117,14 @@ export default function Video({
         
         if (autoplay) vimeoParams.append('autoplay', '1');
         if (!controls && !useCustomPlayer) vimeoParams.append('controls', '0');
-        vimeoParams.append('title', '0');
-        vimeoParams.append('byline', '0');
-        vimeoParams.append('portrait', '0');
+        
+        // MINIMAL Vimeo embed parameters
+        vimeoParams.append('title', '0'); // Hide title
+        vimeoParams.append('byline', '0'); // Hide author
+        vimeoParams.append('portrait', '0'); // Hide author portrait
         vimeoParams.append('dnt', '1'); // Do not track
+        vimeoParams.append('transparent', '0'); // No transparency
+        vimeoParams.append('background', '1'); // Background mode (minimal UI)
         
         const vimeoParamString = vimeoParams.toString();
         return vimeoParamString ? `${vimeoUrl}?${vimeoParamString}` : vimeoUrl;

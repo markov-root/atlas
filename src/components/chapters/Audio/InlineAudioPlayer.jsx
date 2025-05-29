@@ -1,4 +1,4 @@
-// src/components/chapters/Audio/InlineAudioPlayer.jsx - Updated with centralized Tippy
+// src/components/chapters/Audio/InlineAudioPlayer.jsx - Updated with new audio folder structure and centralized Tippy
 import React, { useRef, useEffect, useState } from 'react';
 import { 
   Play, 
@@ -10,9 +10,10 @@ import {
   X
 } from 'lucide-react';
 import { AudioControlTooltip } from '../../UI/Tooltip';
+import { getAudioUrl, getTrackDisplayName, debugAudioFiles } from '../../../utils/audioUtils';
 import styles from './InlineAudioPlayer.module.css';
 
-const MinimalAudioPlayer = ({ 
+const InlineAudioPlayer = ({ 
   chapterNumber,
   audioFiles = {},
   onClose
@@ -34,10 +35,9 @@ const MinimalAudioPlayer = ({
   const [hasError, setHasError] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
-  // Build audio file URLs
-  const getAudioUrl = (filename) => {
-    if (!filename) return null;
-    return `/chapters/${chapterNumber.toString().padStart(2, '0')}/${filename}`;
+  // Build audio file URLs - Updated for new folder structure
+  const buildAudioUrl = (filename) => {
+    return getAudioUrl(chapterNumber, filename);
   };
 
   // Available tracks
@@ -45,15 +45,22 @@ const MinimalAudioPlayer = ({
   if (audioFiles.podcast) {
     tracks.push({
       id: 'podcast',
-      name: 'Podcast',
-      url: getAudioUrl(audioFiles.podcast)
+      name: getTrackDisplayName('podcast'),
+      url: buildAudioUrl(audioFiles.podcast)
     });
   }
   if (audioFiles.transcript) {
     tracks.push({
       id: 'transcript', 
-      name: 'Reading',
-      url: getAudioUrl(audioFiles.transcript)
+      name: getTrackDisplayName('transcript'),
+      url: buildAudioUrl(audioFiles.transcript)
+    });
+  }
+  if (audioFiles.discussion) {
+    tracks.push({
+      id: 'discussion',
+      name: getTrackDisplayName('discussion'), 
+      url: buildAudioUrl(audioFiles.discussion)
     });
   }
 
@@ -102,7 +109,8 @@ const MinimalAudioPlayer = ({
       setAudioState(prev => ({ ...prev, isPlaying: false, currentTime: 0 }));
     };
 
-    const handleError = () => {
+    const handleError = (e) => {
+      console.error('Audio loading error:', e);
       setIsLoading(false);
       setHasError(true);
     };
@@ -219,6 +227,16 @@ const MinimalAudioPlayer = ({
     }
   };
 
+  // Handle close - fixed function name
+  const handleClose = () => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.pause();
+      setAudioState(prev => ({ ...prev, isPlaying: false }));
+    }
+    onClose();
+  };
+
   // Format time display
   const formatTime = (time) => {
     if (!time || isNaN(time)) return '0:00';
@@ -232,6 +250,14 @@ const MinimalAudioPlayer = ({
   const progressPercentage = audioState.duration > 0 
     ? (audioState.currentTime / audioState.duration) * 100 
     : 0;
+
+  // Debug logging for audio file paths
+  debugAudioFiles('InlineAudioPlayer', {
+    chapterNumber,
+    audioFiles,
+    tracks: tracks.map(t => ({ name: t.name, url: t.url })),
+    activeTrack: activeTrack?.name
+  });
 
   return (
     <div className={styles.audioPlayer}>
@@ -379,11 +405,11 @@ const MinimalAudioPlayer = ({
       {/* Error State */}
       {hasError && (
         <div className={styles.errorMessage}>
-          Failed to load audio
+          Failed to load audio. Check if file exists at: {activeTrack?.url}
         </div>
       )}
     </div>
   );
 };
 
-export default MinimalAudioPlayer;
+export default InlineAudioPlayer;

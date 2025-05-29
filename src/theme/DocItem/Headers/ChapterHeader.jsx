@@ -1,8 +1,9 @@
-// src/theme/DocItem/Headers/ChapterHeader.jsx - Updated with centralized Tippy
+// src/theme/DocItem/Headers/ChapterHeader.jsx - Updated with new audio folder structure and centralized Tippy
 import React, { useState, useEffect } from 'react';
 import { ActionButtonTooltip } from '../../../components/UI/Tooltip';
 import styles from './ChapterHeader.module.css';
 import InlineAudioPlayer from '@site/src/components/chapters/Audio/InlineAudioPlayer';
+import { buildAudioFiles, hasAudioFiles, debugAudioFiles } from '@site/src/utils/audioUtils';
 
 // Action Button Component - Updated with centralized Tippy
 function ActionButton({ href, iconPath, label, description, active, onClick }) {
@@ -78,22 +79,22 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
     return () => clearTimeout(timer);
   }, []);
 
-  // Build audio files object
-  const audioFiles = {};
-  if (frontMatter.audio_podcast) audioFiles.podcast = frontMatter.audio_podcast;
-  if (frontMatter.audio_transcript) audioFiles.transcript = frontMatter.audio_transcript;
-  if (frontMatter.audio_discussion) audioFiles.discussion = frontMatter.audio_discussion;
+  // Build audio files object - Updated for new folder structure
+  const audioFiles = buildAudioFiles(frontMatter, chapterNumber);
+  const hasAudio = hasAudioFiles(audioFiles);
 
-  // Fallback for existing audio_link
-  if (Object.keys(audioFiles).length === 0 && frontMatter.audio_link) {
-    const audioFilename = frontMatter.audio_link.split('/').pop();
-    if (audioFilename && audioFilename.includes('.')) {
-      audioFiles.podcast = audioFilename;
-    }
-  }
-
-  const hasAudio = Object.keys(audioFiles).length > 0 && 
-                   Object.values(audioFiles).some(file => file && file.trim() !== '');
+  // Debug logging for audio detection
+  debugAudioFiles('ChapterHeader', {
+    chapterNumber,
+    frontMatterAudio: {
+      audio_podcast: frontMatter.audio_podcast,
+      audio_transcript: frontMatter.audio_transcript,
+      audio_discussion: frontMatter.audio_discussion,
+      audio_link: frontMatter.audio_link
+    },
+    processedAudioFiles: audioFiles,
+    hasAudio
+  });
 
   // Handle audio button click
   const handleAudioToggle = () => {
