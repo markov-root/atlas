@@ -8,7 +8,8 @@ import {
   // What,
   // Qualities,
   // Stats,
-  Testimonials
+  Testimonials,
+  SourcesFlow
 } from '../components/Homepage';
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
       {/* <What /> */}
       {/* <Qualities /> */}
       {/* <Stats /> */}
+      <SourcesFlow />
       <Testimonials />
     </Layout>
   );

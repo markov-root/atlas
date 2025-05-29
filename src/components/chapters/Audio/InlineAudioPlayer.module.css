@@ -1,9 +1,9 @@
-/* src/components/chapters/Audio/MinimalAudioPlayer.module.css */
+/* src/components/chapters/Audio/InlineAudioPlayer.module.css - Clean version with download button */
 
 .audioPlayer {
   margin-top: 1rem;
   padding: 12px 0;
-  background: transparent; /* Keep background transparent */
+  background: transparent;
   border: none;
   width: 100%;
   min-height: 50px;
@@ -15,17 +15,19 @@
   gap: 12px;
   padding: 12px 0;
   border-top: 1px solid var(--atlas-border-color, rgba(0, 0, 0, 0.1));
+  flex-wrap: wrap;
 }
 
 [data-theme='dark'] .playerRow {
   border-top-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Track buttons (only show if multiple tracks) */
+/* Track buttons */
 .trackButtons {
   display: flex;
   gap: 4px;
   flex-shrink: 0;
+  order: 1;
 }
 
 .trackButton {
@@ -73,6 +75,7 @@
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
+  order: 2;
 }
 
 .controlButton {
@@ -148,6 +151,7 @@
   gap: 8px;
   flex: 1;
   min-width: 0;
+  order: 3;
 }
 
 .timeDisplay {
@@ -194,6 +198,7 @@
   align-items: center;
   gap: 6px;
   flex-shrink: 0;
+  order: 4;
 }
 
 /* Speed Control */
@@ -202,6 +207,7 @@
   align-items: center;
   gap: 6px;
   flex-shrink: 0;
+  order: 5;
 }
 
 .speedLabel {
@@ -275,6 +281,41 @@
   background: var(--atlas-primary-lightest, #a5d8ff);
 }
 
+/* Download Button */
+.downloadButton {
+  background: transparent;
+  border: none;
+  color: var(--atlas-text-secondary, #6c757d);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  order: 6;
+}
+
+.downloadButton:hover:not(:disabled) {
+  color: var(--atlas-success, #2b8a3e);
+  background: rgba(var(--atlas-success-rgb, 43, 138, 62), 0.1);
+}
+
+.downloadButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+[data-theme='dark'] .downloadButton {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .downloadButton:hover:not(:disabled) {
+  color: var(--atlas-success, #40c057);
+  background: rgba(var(--atlas-success-rgb, 64, 192, 87), 0.15);
+}
+
 /* Close Button */
 .closeButton {
   background: transparent;
@@ -288,6 +329,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  order: 7;
 }
 
 .closeButton:hover {
@@ -342,23 +384,50 @@
   color: var(--atlas-danger, #fa5252);
 }
 
-/* Responsive adjustments */
+/* Mobile Responsive Layout */
 @media (max-width: 768px) {
   .playerRow {
     gap: 8px;
+    flex-wrap: wrap;
   }
   
   .mainControls {
     gap: 6px;
+    order: 1;
+    flex-shrink: 0;
   }
   
   .progressContainer {
     gap: 6px;
+    order: 2;
+    flex-basis: 100%;
+    width: 100%;
+    margin: 8px 0;
   }
   
   .timeDisplay {
     font-size: 10px;
     min-width: 30px;
+  }
+  
+  .volumeControl {
+    order: 3;
+    flex-shrink: 0;
+  }
+  
+  .speedControl {
+    order: 4;
+    flex-shrink: 0;
+  }
+  
+  .downloadButton {
+    order: 5;
+    flex-shrink: 0;
+  }
+  
+  .closeButton {
+    order: 6;
+    flex-shrink: 0;
   }
   
   .slider {
@@ -373,19 +442,94 @@
 
 @media (max-width: 480px) {
   .trackButtons {
-    display: none; /* Hide track buttons on very small screens */
+    display: none;
   }
   
   .playerRow {
-    gap: 6px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .mainControls {
+    order: 1;
+    flex-basis: 100%;
+    justify-content: center;
+    margin-bottom: 4px;
+  }
+  
+  .progressContainer {
+    order: 2;
+    flex-basis: 100%;
+    width: 100%;
+    margin: 12px 0;
+  }
+  
+  .volumeControl {
+    order: 3;
+    flex: 1;
+  }
+  
+  .speedControl {
+    order: 4;
+    flex: 1;
+  }
+  
+  .downloadButton {
+    order: 5;
+    flex: 0 0 auto;
+  }
+  
+  .closeButton {
+    order: 6;
+    flex: 0 0 auto;
+    margin-left: 8px;
   }
   
   .slider {
     width: 40px;
   }
+}
+
+@media (max-width: 320px) {
+  .playerRow {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
   
-  .volumeControl,
+  .mainControls {
+    order: 1;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .progressContainer {
+    order: 2;
+    width: 100%;
+    margin: 8px 0;
+  }
+  
+  .volumeControl {
+    order: 3;
+    flex: 1;
+    justify-content: center;
+  }
+  
   .speedControl {
-    gap: 4px;
+    order: 3;
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .downloadButton {
+    order: 3;
+    flex: 0 0 auto;
+    align-self: center;
+  }
+  
+  .closeButton {
+    order: 3;
+    flex: 0 0 auto;
+    align-self: center;
   }
 }

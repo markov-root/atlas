@@ -1,0 +1,120 @@
+/* src/components/Homepage/SourcesFlow.module.css */
+
+.sourcesFlowSection {
+  padding: 5rem 0;
+  background-color: var(--atlas-background, #ffffff);
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--atlas-text, #212529);
+}
+
+.sectionDescription {
+  text-align: center;
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 4rem;
+  color: var(--atlas-text-secondary, #495057);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.graphContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.networkGraph {
+  /* Clean, no backgrounds */
+}
+
+.layerLabels {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.layerLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--atlas-text-secondary, #495057);
+  font-weight: 500;
+}
+
+.layerDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .sourcesFlowSection {
+  background-color: var(--atlas-background, #121212);
+}
+
+[data-theme='dark'] .layerLabel {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sourcesFlowSection {
+    padding: 3rem 0;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .sectionDescription {
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    max-width: 90%;
+  }
+  
+  .graphContainer {
+    margin: 0;
+    padding: 1rem 0;
+  }
+  
+  .networkGraph {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .layerLabels {
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .layerLabel {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+  
+  .layerLabels {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .graphContainer {
+    padding: 0.5rem 0;
+  }
+}

@@ -9,6 +9,7 @@
 [ ] interpretability
 
 ## ...
+[ ] facilitate links not being fetched from gdoc
 [ ] add section numbering to h3 h4 headers
 [ ] font for section numbers on sidebar
 [ ] docs page - remove edit page auto insert

@@ -1,4 +1,3 @@
-// src/components/chapters/Audio/InlineAudioPlayer.jsx - Updated with new audio folder structure and centralized Tippy
 import React, { useRef, useEffect, useState } from 'react';
 import { 
   Play, 
@@ -7,7 +6,8 @@ import {
   SkipForward,
   Volume2,
   VolumeX,
-  X
+  X,
+  Download
 } from 'lucide-react';
 import { AudioControlTooltip } from '../../UI/Tooltip';
 import { getAudioUrl, getTrackDisplayName, debugAudioFiles } from '../../../utils/audioUtils';
@@ -237,6 +237,22 @@ const InlineAudioPlayer = ({
     onClose();
   };
 
+  // Handle download
+  const handleDownload = () => {
+    if (!activeTrack || !activeTrack.url) return;
+    
+    // Create a temporary anchor element to trigger download
+    const link = document.createElement('a');
+    link.href = activeTrack.url;
+    link.download = `Chapter_${chapterNumber}_${activeTrack.name}.mp3`;
+    link.style.display = 'none';
+    
+    // Append to body, click, and remove
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   // Format time display
   const formatTime = (time) => {
     if (!time || isNaN(time)) return '0:00';
@@ -390,6 +406,17 @@ const InlineAudioPlayer = ({
             />
           </AudioControlTooltip>
         </div>
+
+        {/* Download Button */}
+        <AudioControlTooltip content={activeTrack ? `Download ${activeTrack.name}` : "No audio to download"}>
+          <button 
+            className={styles.downloadButton}
+            onClick={handleDownload}
+            disabled={!activeTrack}
+          >
+            <Download size={16} />
+          </button>
+        </AudioControlTooltip>
 
         {/* Close Button */}
         <AudioControlTooltip content="Close audio player">
