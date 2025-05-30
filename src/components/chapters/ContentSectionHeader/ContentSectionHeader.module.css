@@ -7,11 +7,10 @@
   width: 100%;
 }
 
-.contentHeaderRow {
+.contentSectionContent {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
+  flex-direction: column;
+  gap: 0.5rem;
   width: 100%;
 }
 
@@ -21,10 +20,9 @@
   color: #000000; /* Black text */
   margin: 0 !important;
   line-height: 1.2;
-  flex: 1;
-  min-width: 0;
   border-bottom: 2px solid #000000; /* Black underline */
   padding-bottom: 0.5rem;
+  width: 100%;
 }
 
 /* Different sizes for different heading levels - all black */
@@ -43,85 +41,53 @@
   border-bottom-width: 1px;
 }
 
-/* Gray reading time indicator */
+/* Very subtle reading time positioned underneath the title */
 .contentReadingTime {
   display: flex;
   align-items: center;
   gap: 0.375rem;
-  color: #666666; /* Medium gray text */
-  font-size: 0.8125rem;
-  font-weight: 500;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: all 0.2s ease;
-  cursor: help;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  opacity: 0.8;
-}
-
-.contentReadingTime:hover {
-  opacity: 1;
-  color: #333333; /* Darker gray on hover */
-  background: rgba(0, 0, 0, 0.05);
+  color: #888888; /* Very light gray text */
+  font-size: 0.75rem; /* Smaller, more subtle */
+  font-weight: 400; /* Lighter weight */
+  padding: 0.25rem 0;
+  opacity: 0.6; /* Subtle opacity */
+  align-self: flex-start;
+  margin-top: 0.25rem;
 }
 
 .contentReadingTimeIcon {
-  width: 14px;
-  height: 14px;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
-  /* Gray icon */
-  filter: brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
-}
-
-.contentReadingTime:hover .contentReadingTimeIcon {
-  opacity: 1;
-  /* Darker gray on hover */
-  filter: brightness(0) saturate(100%) invert(20%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+  width: 12px; /* Smaller icon */
+  height: 12px;
+  opacity: 0.6;
+  /* Very light gray icon */
+  filter: brightness(0) saturate(100%) invert(53%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
 }
 
 .contentReadingTimeText {
   font-family: var(--atlas-font-body, 'Inter', sans-serif);
   letter-spacing: 0.025em;
-  font-weight: 500;
+  font-weight: 400;
 }
 
-/* Dark mode styles - white headers, light gray reading time */
+/* Dark mode styles - white headers, very subtle reading time */
 [data-theme='dark'] .contentSectionTitle {
   color: #ffffff; /* White text */
   border-bottom-color: #ffffff; /* White underline */
 }
 
 [data-theme='dark'] .contentReadingTime {
-  color: #aaaaaa; /* Light gray */
-}
-
-[data-theme='dark'] .contentReadingTime:hover {
-  color: #cccccc; /* Lighter gray on hover */
-  background: rgba(255, 255, 255, 0.05);
+  color: #777777; /* Subtle gray */
+  opacity: 0.5;
 }
 
 [data-theme='dark'] .contentReadingTimeIcon {
   /* Light gray icon in dark mode */
-  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
-  opacity: 0.6;
-}
-
-[data-theme='dark'] .contentReadingTime:hover .contentReadingTimeIcon {
-  opacity: 1;
-  /* Lighter gray on hover */
-  filter: brightness(0) saturate(100%) invert(80%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  filter: brightness(0) saturate(100%) invert(47%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  opacity: 0.5;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .contentHeaderRow {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-  }
-
   .contentSectionContainer h2.contentSectionTitle {
     font-size: 1.75rem;
   }
@@ -131,14 +97,13 @@
   }
 
   .contentReadingTime {
-    align-self: flex-end;
-    font-size: 0.75rem;
-    padding: 0.25rem 0.375rem;
+    font-size: 0.7rem;
+    margin-top: 0.375rem;
   }
 
   .contentReadingTimeIcon {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
   }
 }
 
@@ -154,16 +119,9 @@
   .contentSectionContainer h3.contentSectionTitle {
     font-size: 1.25rem;
   }
-}
 
-/* Force single-line layout on desktop */
-@media (min-width: 769px) {
-  .contentHeaderRow {
-    align-items: center;
-    flex-wrap: nowrap;
-  }
-  
   .contentReadingTime {
-    margin-left: auto;
+    font-size: 0.65rem;
+    margin-top: 0.25rem;
   }
 }

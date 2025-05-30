@@ -17,7 +17,7 @@ export default function Home() {
     <Layout
       title="AI Safety Atlas"
       description="A comprehensive guide to AI safety and alignment">
-      {/* <Hero /> */}
+      { <Hero /> }
       {/* <ActionCards /> */}
       {/* <Features /> */}
       {/* <What /> */}

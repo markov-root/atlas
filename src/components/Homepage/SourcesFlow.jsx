@@ -1,4 +1,4 @@
-// src/components/Homepage/SourcesFlow.jsx - Enhanced responsive version
+// src/components/Homepage/SourcesFlow.jsx - Fresh implementation
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import * as d3 from 'd3';
 import styles from './SourcesFlow.module.css';
@@ -17,26 +17,25 @@ export default function SourcesFlow() {
     
     const containerWidth = containerRef.current.clientWidth;
     const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
     
-    // Calculate size based on viewport and container
+    // Calculate size based on viewport and container - MUCH more aggressive on mobile
     let size;
     
     if (viewportWidth <= 480) {
-      // Small mobile: Use almost ALL available width with tiny margins
-      size = Math.min(containerWidth - 5, viewportWidth - 10, 500); // Minimal 5px margins, bigger max size
+      // Small mobile: Use almost ALL available width
+      size = Math.min(containerWidth - 5, viewportWidth - 10, 500);
     } else if (viewportWidth <= 768) {
       // Mobile/tablet: Use most of the width
-      size = Math.min(containerWidth - 15, viewportWidth - 30, 700); // Reduced margins, bigger max
+      size = Math.min(containerWidth - 15, viewportWidth - 30, 700);
     } else if (viewportWidth <= 1024) {
       // Small desktop/large tablet: Medium size
-      size = Math.min(containerWidth - 60, viewportWidth - 100, 700);
+      size = Math.min(containerWidth - 60, viewportWidth - 100, 800);
     } else if (viewportWidth <= 1440) {
       // Standard desktop: Large size
-      size = Math.min(containerWidth - 80, viewportWidth - 120, 900);
+      size = Math.min(containerWidth - 80, viewportWidth - 120, 1000);
     } else {
       // Large desktop: Maximum size
-      size = Math.min(containerWidth - 100, viewportWidth - 200, 1100);
+      size = Math.min(containerWidth - 100, viewportWidth - 200, 1200);
     }
     
     // Ensure minimum size for usability
@@ -62,7 +61,7 @@ export default function SourcesFlow() {
     };
   }, [updateDimensions]);
 
-  // Main D3 rendering effect with enhanced responsiveness
+  // Main D3 rendering effect
   useEffect(() => {
     if (!svgRef.current || dimensions.width === 0) return;
     
@@ -72,23 +71,21 @@ export default function SourcesFlow() {
     const { width, height } = dimensions;
     const centerX = width / 2;
     const centerY = height / 2;
-    const viewportWidth = window.innerWidth;
     
     svg.attr("width", width).attr("height", height);
     
-    // Enhanced responsive scaling based on actual size, not just breakpoints
+    // Enhanced responsive scaling based on actual size
     const sizeScale = width / 800; // Base size of 800px
     const isSmall = width < 500;
     const isMedium = width >= 500 && width < 800;
-    const isLarge = width >= 800;
     
-    // Dynamic layer radii based on actual visualization size
-    const baseRadius = width * 0.12; // Increased from 0.11 for bigger visualization
+    // Dynamic layer radii - MUCH more aggressive space usage
+    const baseRadius = width * 0.18; // Increased from 0.12 to use more space
     const layerRadius = {
       0: 0,                        // Center (Atlas)
       1: baseRadius,               // Hub ring  
-      2: baseRadius * (isSmall ? 1.6 : isMedium ? 1.75 : 1.85), // Source ring (responsive spacing)
-      3: baseRadius * (isSmall ? 2.1 : isMedium ? 2.3 : 2.5)    // "More" indicators ring (responsive)
+      2: baseRadius * (isSmall ? 1.4 : isMedium ? 1.5 : 1.6), // Source ring - tighter spacing
+      3: baseRadius * (isSmall ? 1.7 : isMedium ? 1.85 : 2.0)  // "More" ring - tighter spacing
     };
     
     // Position nodes in concentric circles
@@ -99,7 +96,7 @@ export default function SourcesFlow() {
       node.y = centerY + radius * Math.sin(angleRad);
     });
     
-    // Add concentric circle guides with responsive styling
+    // Add concentric circle guides
     svg.append("g")
       .selectAll("circle")
       .data([layerRadius[1], layerRadius[2], layerRadius[3]])
@@ -137,7 +134,7 @@ export default function SourcesFlow() {
       .enter().append("g")
       .attr("transform", d => `translate(${d.x},${d.y})`);
     
-    // Helper functions (unchanged)
+    // Helper functions
     const getBranchNodes = (nodeId) => {
       const node = graphData.nodes.find(n => n.id === nodeId);
       if (node.type === 'hub') {
@@ -161,23 +158,23 @@ export default function SourcesFlow() {
       return [];
     };
     
-    // Calculate node sizes once for reuse
+    // Calculate node radius function - bigger nodes
     const getNodeRadius = (d) => {
       let baseSize;
-      if (d.type === 'central') baseSize = 35;
-      else if (d.type === 'hub') baseSize = 24;
-      else if (d.type === 'more') baseSize = 12;
-      else baseSize = 16;
+      if (d.type === 'central') baseSize = 45; // Increased from 35
+      else if (d.type === 'hub') baseSize = 30; // Increased from 24
+      else if (d.type === 'more') baseSize = 16; // Increased from 12
+      else baseSize = 20; // Increased from 16
       
-      const scaledSize = baseSize * Math.max(sizeScale, 0.6);
+      const scaledSize = baseSize * Math.max(sizeScale, 0.7); // Increased minimum scale
       
-      if (d.type === 'central') return Math.max(scaledSize, 25);
-      if (d.type === 'hub') return Math.max(scaledSize, 18);
-      if (d.type === 'more') return Math.max(scaledSize, 8);
-      return Math.max(scaledSize, 12);
+      if (d.type === 'central') return Math.max(scaledSize, 30); // Increased minimum
+      if (d.type === 'hub') return Math.max(scaledSize, 22); // Increased minimum
+      if (d.type === 'more') return Math.max(scaledSize, 10); // Increased minimum
+      return Math.max(scaledSize, 15); // Increased minimum
     };
-
-    // Enhanced responsive node circles
+    
+    // Add circles
     nodeGroup.append("circle")
       .attr("r", getNodeRadius)
       .attr("fill", d => {
@@ -201,7 +198,7 @@ export default function SourcesFlow() {
           { node: d, x: event.pageX, y: event.pageY };
         setStatsDisplay(statsInfo);
         
-        // Enhanced hover effects with responsive scaling
+        // Hover effects
         nodeGroup.selectAll("circle")
           .transition()
           .duration(200)
@@ -242,12 +239,11 @@ export default function SourcesFlow() {
           });
       });
 
-    // Enhanced responsive icons with proper scaling and centering
+    // Add icons with proper centering
     nodeGroup.append("foreignObject")
       .attr("width", d => {
         const radius = getNodeRadius(d);
-        // Icon should be about 60% of the circle diameter for good proportion
-        return radius * 1.2;
+        return radius * 1.2; // Icon is 60% of circle diameter
       })
       .attr("height", d => {
         const radius = getNodeRadius(d);
@@ -256,13 +252,12 @@ export default function SourcesFlow() {
       .attr("x", d => {
         const radius = getNodeRadius(d);
         const iconSize = radius * 1.2;
-        // Center the icon by offsetting by half the icon size
-        return -iconSize / 2;
+        return -iconSize / 2; // Center horizontally
       })
       .attr("y", d => {
         const radius = getNodeRadius(d);
         const iconSize = radius * 1.2;
-        return -iconSize / 2;
+        return -iconSize / 2; // Center vertically
       })
       .style("pointer-events", "none")
       .style("opacity", d => d.type === 'more' ? 0.6 : 1)

@@ -9,14 +9,14 @@
   /* Remove all borders and rounded corners */
 }
 
-/* Left side - Icon, term, and metadata with theme-based dark background */
+/* Left side - Icon, term, and metadata with subtle gray background */
 .headerLeft {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   flex: 0 0 35%; /* Consistent 35% width */
   padding: 1rem 1.25rem;
-  background-color: var(--atlas-text, #212529); /* Use theme text color as background */
+  background-color: var(--atlas-gray-100, #f5f5f5); /* Subtle gray background */
 }
 
 /* Icon and term row */
@@ -40,9 +40,12 @@
 .definitionIcon {
   width: 28px;
   height: 28px;
-  /* Use inverted theme background color for icon */
-  filter: brightness(0) saturate(100%) invert(100%);
+  /* Gray icon to match subtle theme */
+  filter: none;
+  opacity: 0.7;
 }
+
+/* Remove the termRow and definitionNumber styles since we're not using them anymore */
 
 /* Term section */
 .termSection {
@@ -55,13 +58,15 @@
 .termName {
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--atlas-background, #ffffff); /* Use theme background color as text color */
+  color: var(--atlas-text, #212529); /* Dark text on light background */
   margin: 0;
   line-height: 1.2;
-  /* Remove italic styling */
   text-transform: uppercase;
   letter-spacing: 0.02em;
+  flex: 1;
 }
+
+/* Remove definition number styling completely */
 
 /* Metadata line - aligned under the term, not the icon */
 .metadata {
@@ -76,26 +81,26 @@
 
 .typeLabel {
   font-weight: 500;
-  color: var(--atlas-background, rgba(255, 255, 255, 0.8)); /* Use theme background with opacity */
+  color: var(--atlas-text-secondary, #6c757d); /* Secondary text color */
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .metaSeparator {
-  color: var(--atlas-background, rgba(255, 255, 255, 0.6));
+  color: var(--atlas-text-tertiary, #9ca3af);
   opacity: 0.6;
   font-weight: 300;
 }
 
 .termSource {
-  color: var(--atlas-background, rgba(255, 255, 255, 0.8));
+  color: var(--atlas-text-secondary, #6c757d);
   line-height: 1.4;
 }
 
-/* Source links - use theme background color */
+/* Source links - darker gray for links */
 .termSource a,
 .sourceLink {
-  color: var(--atlas-background, rgba(255, 255, 255, 0.9));
+  color: var(--atlas-text, #212529);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
@@ -103,14 +108,14 @@
 
 .termSource a:hover,
 .sourceLink:hover {
-  color: var(--atlas-background, #ffffff);
+  color: var(--atlas-primary, #1971c2);
   text-decoration: underline;
 }
 
-/* Right side - Definition content with background, no borders */
+/* Right side - Definition content with white background */
 .definitionContent {
   flex: 1;
-  background-color: var(--atlas-background-alt, #f8f9fa);
+  background-color: #ffffff; /* Pure white background */
   padding: 1rem 1.5rem;
   /* Remove all borders and rounded corners */
 }
@@ -179,49 +184,50 @@
   text-decoration: underline;
 }
 
-/* Dark mode adjustments - white background with dark text on left side */
+/* Dark mode adjustments - darker gray background with light text on left side */
 [data-theme='dark'] .definitionContainer {
   /* No borders */
 }
 
 [data-theme='dark'] .headerLeft {
-  /* White background in dark mode (inverted from light mode) */
-  background-color: #ffffff;
+  /* Darker gray background in dark mode */
+  background-color: var(--atlas-gray-800, #343a40);
 }
 
 [data-theme='dark'] .definitionContent {
-  background-color: var(--atlas-background-alt, #1e1e1e);
+  background-color: var(--atlas-background, #121212); /* Dark background instead of white */
   /* No borders */
 }
 
 [data-theme='dark'] .definitionIcon {
-  /* Dark icon on white background */
-  filter: none;
+  /* Light icon on dark background */
+  filter: brightness(0) saturate(100%) invert(80%);
+  opacity: 0.8;
 }
 
 [data-theme='dark'] .termName {
-  /* Dark text on white background */
-  color: #212529;
+  /* Light text on dark background */
+  color: var(--atlas-text, #e9ecef);
 }
 
 [data-theme='dark'] .typeLabel {
-  /* Dark text with some opacity */
-  color: rgba(33, 37, 41, 0.8);
+  /* Light secondary text */
+  color: var(--atlas-text-secondary, #adb5bd);
 }
 
 [data-theme='dark'] .termSource,
 [data-theme='dark'] .metaSeparator {
-  color: rgba(33, 37, 41, 0.7);
+  color: var(--atlas-text-secondary, #adb5bd);
 }
 
 [data-theme='dark'] .termSource a,
 [data-theme='dark'] .sourceLink {
-  color: rgba(33, 37, 41, 0.9);
+  color: var(--atlas-text, #e9ecef);
 }
 
 [data-theme='dark'] .termSource a:hover,
 [data-theme='dark'] .sourceLink:hover {
-  color: #212529;
+  color: var(--atlas-primary-lighter, #74c0fc);
 }
 
 [data-theme='dark'] .contentInner p,

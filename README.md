@@ -8,32 +8,30 @@
 [ ] oversight
 [ ] interpretability
 
-## ...
-[ ] facilitate links not being fetched from gdoc
-[ ] add section numbering to h3 h4 headers
-[ ] font for section numbers on sidebar
-[ ] docs page - remove edit page auto insert
-[ ] docs page - design next/previous page
-[ ] docs landing page - design
-[ ] docs page - audio + errors
-[ ] home page - funders
-[ ] home page - hero
-[ ] home page - who we are
-[ ] home page - what we do
-[ ] collapse appendix
-[ ] drop caps injection
-[ ] use theme around #1a202c
-[ ] definitions counting and numbering
-[ ] get download pdf working
-[ ] get audio + parser working
-[ ] add image source to quotes
 
+ - [ ] facilitate links not being fetched from gdoc
+ - [ ] font for section numbers on sidebar
+ - [ ] docs page - remove edit page auto insert
+ - [ ] docs page - design next/previous page
+ - [ ] docs landing page - design
+ - [ ] docs page - audio + errors
+ - [ ] home page - funders
+ - [ ] home page - hero
+ - [ ] home page - who we are
+ - [ ] home page - what we do
+ - [ ] collapse appendix
+ - [ ] use theme around #1a202c
+ - [ ] definitions counting and numbering
+ - [ ] get download pdf working
+ - [ ] add image source to quotes
+ - [x] get audio + parser working
+ - [x] add section numbering to h3 h4 headers
 
 ## Design
 [x] definitions component
 [ ] warning component
 [x] note component
-[ ] footnote component
+[x] footnote component
 [x] quote component
 [x] tippy, perspective-extreme , offset, large arrow
 

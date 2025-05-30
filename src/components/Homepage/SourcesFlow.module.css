@@ -1,13 +1,12 @@
-/* src/components/Homepage/SourcesFlow.module.css - Simplified graph-only version */
+/* src/components/Homepage/SourcesFlow.module.css - Fresh implementation for maximum mobile space */
 
 .graphContainer {
   display: flex;
   justify-content: center;
   width: 100%;
   padding: 2rem 1rem;
-  overflow: visible; /* Allow tooltips to show outside */
+  overflow: visible;
   position: relative;
-  /* Add subtle background to make the graph stand out */
   background: radial-gradient(
     circle at center,
     rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.02) 0%,
@@ -15,29 +14,27 @@
   );
   border-radius: 20px;
   margin: 0 auto;
-  max-width: 100vw; /* Changed from 95vw to 100vw for full width */
+  max-width: 100vw;
 }
 
 .networkGraph {
   max-width: 100%;
   height: auto;
-  /* Add subtle drop shadow to the entire graph */
   filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.1));
   transition: all 0.3s ease;
 }
 
-/* Enhanced hover effect for the entire graph */
 .graphContainer:hover .networkGraph {
   filter: drop-shadow(0 6px 25px rgba(0, 0, 0, 0.15));
 }
 
-/* Stats Overlay with better responsiveness */
+/* Stats Overlay */
 .statsOverlay {
   position: fixed;
   z-index: 1001;
   pointer-events: none;
   transition: all 0.2s ease;
-  max-width: 90vw; /* Prevent stats from going off-screen */
+  max-width: 90vw;
 }
 
 .statsCard {
@@ -77,11 +74,6 @@
   font-size: clamp(0.8rem, 2vw, 0.9rem);
 }
 
-.statLabel {
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 500;
-}
-
 .statValue {
   color: white;
   font-weight: 600;
@@ -89,7 +81,6 @@
   font-size: clamp(0.85rem, 2vw, 1rem);
 }
 
-/* Examples section */
 .examplesSection {
   margin-top: 1rem;
   padding-top: 1rem;
@@ -116,7 +107,7 @@
   line-height: 1.3;
 }
 
-/* Enhanced interactive effects */
+/* Interactive effects */
 .networkGraph circle {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -129,7 +120,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dark mode enhancements */
+/* Dark mode */
 [data-theme='dark'] .graphContainer {
   background: radial-gradient(
     circle at center,
@@ -142,9 +133,9 @@
   stroke: #606060 !important;
 }
 
-/* Responsive breakpoints with enhanced scaling */
+/* RESPONSIVE BREAKPOINTS - AGGRESSIVE MOBILE OPTIMIZATION */
 
-/* Large desktop - Make it really big and impressive */
+/* Large desktop */
 @media (min-width: 1441px) {
   .graphContainer {
     padding: 4rem 2rem;
@@ -165,10 +156,10 @@
   }
 }
 
-/* Tablet portrait and small laptop */
+/* Tablet portrait - START AGGRESSIVE OPTIMIZATION */
 @media (min-width: 481px) and (max-width: 768px) {
   .graphContainer {
-    padding: 1rem 0.25rem; /* Much more aggressive padding reduction */
+    padding: 1rem 0.25rem; /* Much smaller padding */
     max-width: 100vw;
   }
   
@@ -179,13 +170,13 @@
   }
 }
 
-/* Mobile */
+/* Mobile - MAXIMUM SPACE USAGE */
 @media (max-width: 480px) {
   .graphContainer {
-    padding: 0.5rem 0.125rem; /* Extremely minimal padding */
+    padding: 0.5rem 0.125rem; /* Minimal padding: 8px top/bottom, 2px sides */
     max-width: 100vw;
     margin: 0;
-    border-radius: 0; /* Remove border radius on mobile for edge-to-edge */
+    border-radius: 0; /* Edge-to-edge */
   }
   
   .statsCard {
@@ -196,14 +187,14 @@
   }
   
   .statsOverlay {
-    max-width: 98vw; /* Slightly more room for tooltips */
+    max-width: 98vw;
   }
 }
 
-/* Ultra-small mobile */
+/* Ultra-small mobile - ABSOLUTE MAXIMUM USAGE */
 @media (max-width: 360px) {
   .graphContainer {
-    padding: 0.25rem 0.0625rem; /* Almost no padding at all */
+    padding: 0.25rem 0.0625rem; /* Extreme minimal: 4px top/bottom, 1px sides */
     max-width: 100vw;
   }
   
@@ -220,7 +211,7 @@
   }
 }
 
-/* Accessibility - Reduced motion */
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   .networkGraph circle,
   .networkGraph line,
@@ -229,7 +220,6 @@
   }
 }
 
-/* High contrast mode */
 @media (prefers-contrast: high) {
   .statsCard {
     border-width: 2px;

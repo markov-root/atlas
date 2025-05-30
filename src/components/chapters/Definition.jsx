@@ -8,11 +8,15 @@ import styles from './Definition.module.css';
  * @param {React.ReactNode} props.children - Definition content
  * @param {string} props.term - The term being defined
  * @param {string|React.ReactNode} props.source - Source citation with markdown links
+ * @param {string|number} props.number - Definition number (e.g., "1", "2.1", etc.)
+ * @param {string} props.label - Optional label to display instead of number (e.g., "1.1")
  */
 export default function Definition({ 
   children, 
   term, 
-  source
+  source,
+  number,
+  label
 }) {
   // Process markdown links in source
   const processMarkdownLinks = (text) => {
@@ -25,6 +29,9 @@ export default function Definition({
   };
 
   const processedSource = typeof source === 'string' ? processMarkdownLinks(source) : source;
+
+  // Use label if provided, otherwise use number
+  const displayNumber = label || number;
 
   return (
     <div className={styles.definitionContainer}>
@@ -42,7 +49,9 @@ export default function Definition({
             
             {/* Metadata directly under the term */}
             <div className={styles.metadata}>
-              <span className={styles.typeLabel}>Definition</span>
+              <span className={styles.typeLabel}>
+                Definition{displayNumber && ` ${displayNumber}`}
+              </span>
               {source && (
                 <>
                   <span className={styles.metaSeparator}>•</span>
