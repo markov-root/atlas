@@ -31,6 +31,93 @@ module.exports = {
     ]
   }
   ]
-}
+},
+    {
+  type: "category",
+  label: "2.2 Dangerous Capabilities",
+  link: {
+    type: "doc",
+    id: "chapters/02/2"
+  },
+  items: [
+  { type: "link", label: "2.2.1 Deception", href: "/chapters/02/02#01" },
+  { type: "link", label: "2.2.2 Situational Awareness", href: "/chapters/02/02#02" },
+  { type: "link", label: "2.2.3 Power Seeking", href: "/chapters/02/02#03" },
+  { type: "link", label: "2.2.4 Autonomous Replication", href: "/chapters/02/02#04" },
+  { type: "link", label: "2.2.5 Agency", href: "/chapters/02/02#05" }
+  ]
+},
+    {
+  type: "category",
+  label: "2.3 Misuse Risks",
+  link: {
+    type: "doc",
+    id: "chapters/02/3"
+  },
+  items: [
+  { type: "link", label: "2.3.1 Bio Risk", href: "/chapters/02/03#01" },
+  { type: "link", label: "2.3.2 Cyber Risk", href: "/chapters/02/03#02" },
+  { type: "link", label: "2.3.3 Autonomous Weapons Risk", href: "/chapters/02/03#03" },
+  { type: "link", label: "2.3.4 Adversarial AI Risk", href: "/chapters/02/03#04" }
+  ]
+},
+    {
+  type: "category",
+  label: "2.4 Misalignment Risks",
+  link: {
+    type: "doc",
+    id: "chapters/02/4"
+  },
+  items: [
+  { type: "link", label: "2.4.1 Specification Failure Risks", href: "/chapters/02/04#01" },
+  { type: "link", label: "2.4.2 Generalization Failure Risks", href: "/chapters/02/04#02" },
+  { type: "link", label: "2.4.3 Convergent Subgoal Risks", href: "/chapters/02/04#03" },
+  { type: "link", label: "2.4.4 Combined Misalignment Risks", href: "/chapters/02/04#04" }
+  ]
+},
+    {
+  type: "category",
+  label: "2.5 Systemic Risks",
+  link: {
+    type: "doc",
+    id: "chapters/02/5"
+  },
+  items: [
+  { type: "link", label: "2.5.1 Decisive Systemic Risks", href: "/chapters/02/05#01" },
+  {
+    type: "category",
+    label: "2.5.2 Accumulative Systemic Risks",
+    link: {
+      type: "generated-index",
+      title: "2.5.2 Accumulative Systemic Risks",
+      slug: "/chapters/02/05#02"
+    },
+    items: [
+    { type: "link", label: "2.5.2.1 Epistemic Erosion", href: "/chapters/02/05#02-01" },
+    { type: "link", label: "2.5.2.2 Power Concentration", href: "/chapters/02/05#02-02" },
+    { type: "link", label: "2.5.2.3 Value lock-in", href: "/chapters/02/05#02-03" },
+    { type: "link", label: "2.5.2.4 Automation", href: "/chapters/02/05#02-04" }
+    ]
+  }
+  ]
+},
+    {
+  type: "category",
+  label: "2.6 Risk Amplifiers",
+  link: {
+    type: "doc",
+    id: "chapters/02/6"
+  },
+  items: [
+  { type: "link", label: "2.6.1 Accidents", href: "/chapters/02/06#01" },
+  { type: "link", label: "2.6.2 Indifference", href: "/chapters/02/06#02" },
+  { type: "link", label: "2.6.3 Unpredictability", href: "/chapters/02/06#03" },
+  { type: "link", label: "2.6.4 Black-boxes", href: "/chapters/02/06#04" },
+  { type: "link", label: "2.6.5 Deployment Scale", href: "/chapters/02/06#05" },
+  { type: "link", label: "2.6.6 Race Dynamics", href: "/chapters/02/06#06" },
+  { type: "link", label: "2.6.7 Coordination Challenges", href: "/chapters/02/06#07" }
+  ]
+},
+    { type: "doc", id: "chapters/02/7", label: "2.7 Conclusion" }
   ],
 };

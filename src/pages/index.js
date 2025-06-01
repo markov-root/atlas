@@ -23,7 +23,6 @@ export default function Home() {
       {/* <What /> */}
       {/* <Qualities /> */}
       {/* <Stats /> */}
-      <SourcesFlow />
       <Testimonials />
     </Layout>
   );

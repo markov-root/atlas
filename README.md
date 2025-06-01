@@ -9,6 +9,7 @@
 [ ] interpretability
 
 
+ - [ ] next page is broken e.g. http://localhost:3000/chapters/02/01#02 should go to http://localhost:3000/chapters/02/02
  - [ ] facilitate links not being fetched from gdoc
  - [ ] font for section numbers on sidebar
  - [ ] docs page - remove edit page auto insert
