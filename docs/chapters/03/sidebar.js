@@ -21,6 +21,103 @@ module.exports = {
   { type: "link", label: "3.1.3 AI Ethics", href: "/chapters/03/01#03" },
   { type: "link", label: "3.1.4 AI Control", href: "/chapters/03/01#04" }
   ]
-}
+},
+    {
+  type: "category",
+  label: "3.2 Misuse Prevention Strategies",
+  link: {
+    type: "doc",
+    id: "chapters/03/2"
+  },
+  items: [
+  {
+    type: "category",
+    label: "3.2.1 Access Controls",
+    link: {
+      type: "generated-index",
+      title: "3.2.1 Access Controls",
+      slug: "/chapters/03/02#01"
+    },
+    items: [
+    { type: "link", label: "3.2.1.1 External Controls", href: "/chapters/03/02#01-01" },
+    { type: "link", label: "3.2.1.2 Internal Controls", href: "/chapters/03/02#01-02" },
+    { type: "link", label: "3.2.1.3 Technical Safeguards", href: "/chapters/03/02#01-03" }
+    ]
+  },
+  { type: "link", label: "3.2.2 Socio-technical Strategies", href: "/chapters/03/02#02" }
+  ]
+},
+    {
+  type: "category",
+  label: "3.3 AGI Safety Strategies",
+  link: {
+    type: "doc",
+    id: "chapters/03/3"
+  },
+  items: [
+  { type: "link", label: "3.3.1 Naïve Strategies", href: "/chapters/03/03#01" },
+  {
+    type: "category",
+    label: "3.3.2 Solve Alignment",
+    link: {
+      type: "generated-index",
+      title: "3.3.2 Solve Alignment",
+      slug: "/chapters/03/03#02"
+    },
+    items: [
+    { type: "link", label: "3.3.2.1 Requirements for AGI Alignment", href: "/chapters/03/03#02-01" }
+    ]
+  },
+  { type: "link", label: "3.3.3 AI Control", href: "/chapters/03/03#03" },
+  { type: "link", label: "3.3.4 Transparent Thoughts", href: "/chapters/03/03#04" }
+  ]
+},
+    {
+  type: "category",
+  label: "3.4 ASI Safety Strategies",
+  link: {
+    type: "doc",
+    id: "chapters/03/4"
+  },
+  items: [
+  { type: "link", label: "3.4.1 Debated Strategies", href: "/chapters/03/04#01" },
+  { type: "link", label: "3.4.2 Automating Alignment Research", href: "/chapters/03/04#02" },
+  { type: "link", label: "3.4.3 Safety-by-Design", href: "/chapters/03/04#03" },
+  { type: "link", label: "3.4.4 World Coordination", href: "/chapters/03/04#04" },
+  { type: "link", label: "3.4.5 Deterrence", href: "/chapters/03/04#05" }
+  ]
+},
+    {
+  type: "category",
+  label: "3.5 Transversal Strategies",
+  link: {
+    type: "doc",
+    id: "chapters/03/5"
+  },
+  items: [
+  { type: "link", label: "3.5.1 Defense Acceleration (d/acc)", href: "/chapters/03/05#01" },
+  { type: "link", label: "3.5.2 Defense in Depth", href: "/chapters/03/05#02" },
+  { type: "link", label: "3.5.3 AI Governance", href: "/chapters/03/05#03" },
+  { type: "link", label: "3.5.4 Risk Management", href: "/chapters/03/05#04" },
+  { type: "link", label: "3.5.5 Safety Culture", href: "/chapters/03/05#05" }
+  ]
+},
+    { type: "doc", id: "chapters/03/6", label: "3.6 Combining Strategies" },
+    {
+  type: "category",
+  label: "3.7 Challenges",
+  link: {
+    type: "doc",
+    id: "chapters/03/7"
+  },
+  items: [
+  { type: "link", label: "3.7.1 The Nature of the Problem", href: "/chapters/03/07#01" },
+  { type: "link", label: "3.7.2 Uncertainty and Disagreement", href: "/chapters/03/07#02" },
+  { type: "link", label: "3.7.3 Safety Washing", href: "/chapters/03/07#03" }
+  ]
+},
+    { type: "doc", id: "chapters/03/8", label: "3.8 Conclusion" },
+    { type: "doc", id: "chapters/03/9", label: "3.9 Appendix : Long-term questions" },
+    { type: "doc", id: "chapters/03/10", label: "3.10 Appendix: Requirements for ASI Alignment" }
   ],
 };

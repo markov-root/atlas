@@ -1,8 +1,9 @@
 ---
 title: "Strategies"
 chapter_number: 3
-reading_time_core: "10 min"
-reading_time_optional: "7 min"
+reading_time_core: "80 min"
+reading_time_optional: "35 min"
+reading_time_appendix: "16 min"
 authors:
   - "Charbel-Raphaël Segerie"
   - "Markov Grey"
@@ -12,21 +13,23 @@ google_docs_link: "https://docs.google.com/document/d/1WTyLHyaJ_NEDEu49U_hh7oz0-
 sidebar_position: 3
 slug: /chapters/03/
 ---
-import Note from "@site/src/components/chapters/Note";
 import Quote from "@site/src/components/chapters/Quote";
+import Note from "@site/src/components/chapters/Note";
 import Definition from "@site/src/components/chapters/Definition";
 
 import Figure from "@site/src/components/chapters/Figure";
 
 # Introduction
 
-This document tries to lay down the big picture of AI Safety strategy to mitigate the risks explored in the previous chapter.
+This chapter tries to lay out the big picture of AI safety strategy to mitigate the risks explored in the previous chapter.
 
 As AI capabilities continue their rapid advance, the strategies designed to ensure safety must also evolve, this is why the first version of this document has been written in July 2024, and has been updated in late May 2025. We talk about technical approaches, and try to articulate this chapter with the other chapters of the book. The aim is to provide a structured overview of current thinking and ongoing work in AI safety strategy, acknowledging both established methods and emerging research directions. For each type of macro problem like misuses, AGI alignment, we list different macro strategies that can help mitigate those risks. Those strategies can generally be combined, and should be combined! We discuss the sequencing of the different strategies at the end of the chapter.
 
-<Figure src="./img/JVx_Image_1.png" alt="JVx_Image_1.png" number="1" label="3.1"  caption="Tentative diagram summarizing the main high-level approaches to make AI development safe." />
+<Figure src="./img/6pU_Image_1.png" alt="Enter image alt description" number="1" label="3.1" caption="Tentative diagram summarizing the main high-level approaches to make AI development safe." />
 
-**Beyond the scope of this chapter** While this chapter focuses on strategies directly related to preventing large-scale negative outcomes from AI misuse, misalignment, or uncontrolled development, several related topics are necessarily placed beyond its primary scope:
+**Beyond the scope of this chapter**
+
+While this chapter focuses on strategies directly related to preventing large-scale negative outcomes from AI misuse, misalignment, or uncontrolled development, several related topics are necessarily placed beyond its primary scope:
 
 - **AI-generated misinformation:** The proliferation of AI-driven misinformation, including deepfakes and biased content generation. Strategies to combat this, such as robust detection systems, watermarking, and responsible AI principles, are mostly beyond the score of the chapter. These often fall under the umbrella of content moderation, media literacy, and platform governance, distinct from the core technical alignment and control strategies discussed in this chapter.
 

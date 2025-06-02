@@ -63,11 +63,17 @@
   filter: brightness(0) saturate(100%) invert(53%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
 }
 
+
 .contentReadingTimeText {
   font-family: var(--atlas-font-body, 'Inter', sans-serif);
   letter-spacing: 0.025em;
   font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
 }
+
 
 /* Dark mode styles - white headers, very subtle reading time */
 [data-theme='dark'] .contentSectionTitle {
@@ -124,4 +130,17 @@
     font-size: 0.65rem;
     margin-top: 0.25rem;
   }
+}
+
+
+.coreTime {
+  color: inherit;
+}
+
+.optionalTime {
+  color: inherit;
+}
+
+.timeSeparator {
+  color: inherit;
 }

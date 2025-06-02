@@ -15,79 +15,25 @@
   min-height: 300px; /* Ensure minimum height */
 }
 
-.svg {
+.logoImage {
   width: 100%;
   height: 100%;
-  /* Remove max-width/height constraints to fill available space */
-}
-
-/* Light mode - concentric circles */
-.svg :global(.concentric-circle) {
-  stroke: var(--atlas-primary);
-  opacity: 0.15;
-}
-
-/* Dark mode - concentric circles */
-[data-theme='dark'] .svg :global(.concentric-circle) {
-  stroke: var(--atlas-primary-lighter);
-  opacity: 0.25;
-}
-
-/* Connection lines and arcs - theme aware */
-.svg :global(.spreading-edge) {
-  stroke: var(--atlas-primary) !important;
-  opacity: 0.4 !important;
-  transition: all 0.3s ease;
-}
-
-.svg :global(.circle-arc) {
-  stroke: var(--atlas-primary) !important;
-  opacity: 0.6 !important;
-  transition: all 0.3s ease;
-  stroke-linecap: round; /* Rounded end caps for smoother arcs */
-}
-
-[data-theme='dark'] .svg :global(.spreading-edge) {
-  stroke: var(--atlas-primary-lighter) !important;
-  opacity: 0.5 !important;
-}
-
-[data-theme='dark'] .svg :global(.circle-arc) {
-  stroke: var(--atlas-primary-lighter) !important;
-  opacity: 0.7 !important;
-}
-
-/* Theme-aware icons */
-.svg :global(.theme-aware-icon) {
+  max-width: 400px; /* Reasonable max size */
+  max-height: 400px;
+  object-fit: contain; /* Maintain aspect ratio */
   filter: none;
   transition: all 0.2s ease;
 }
 
-/* Dark mode icon adjustments - make icons lighter */
-[data-theme='dark'] .svg :global(.theme-aware-icon) {
-  filter: brightness(0) invert(1);
+.logoImage:hover {
+  transform: scale(1.02); /* Subtle hover effect */
 }
 
-/* Company nodes - theme aware backgrounds and borders */
-.svg :global(.company-node) circle {
-  fill: var(--atlas-background) !important;
-  stroke: var(--atlas-border-color) !important;
-  transition: all 0.2s ease;
-}
-
-/* Hover effects for company nodes */
-.svg :global(.company-node):hover circle {
-  stroke-width: 2;
-  stroke: var(--atlas-primary);
-  transform: scale(1.05);
-}
-
-.svg :global(.company-node):hover .theme-aware-icon {
-  transform: scale(1.1);
-}
-
-[data-theme='dark'] .svg :global(.company-node):hover circle {
-  stroke: var(--atlas-primary-lighter);
+/* Dark mode adjustments for the logo if needed */
+[data-theme='dark'] .logoImage {
+  filter: none; /* Keep original colors, or adjust if needed */
+  /* Uncomment below if you want to invert the logo in dark mode */
+  /* filter: brightness(0) invert(1); */
 }
 
 /* Mobile responsive */
@@ -95,15 +41,21 @@
   .graphArea {
     padding: 0.5rem; /* Reduce padding even more on mobile */
     min-height: 250px;
-    max-height: 400px; /* Add max height to prevent overflow */
+    max-height: 300px; /* Smaller on mobile */
     width: 100%;
     box-sizing: border-box; /* Ensure padding is included in width */
   }
   
-  .svg {
-    width: 100%;
-    height: 100%;
-    max-width: 100%; /* Prevent SVG from overflowing */
-    max-height: 100%;
+  .logoImage {
+    max-width: 250px;
+    max-height: 250px;
+  }
+}
+
+/* Tablet responsive */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .logoImage {
+    max-width: 350px;
+    max-height: 350px;
   }
 }

@@ -118,6 +118,19 @@ module.exports = {
   { type: "link", label: "2.6.7 Coordination Challenges", href: "/chapters/02/06#07" }
   ]
 },
-    { type: "doc", id: "chapters/02/7", label: "2.7 Conclusion" }
+    { type: "doc", id: "chapters/02/7", label: "2.7 Conclusion" },
+    {
+  type: "category",
+  label: "2.8 Appendix: X-Risk Scenarios",
+  link: {
+    type: "doc",
+    id: "chapters/02/8"
+  },
+  items: [
+  { type: "link", label: "2.8.1 From Misaligned AI to X-Risks", href: "/chapters/02/08#01" },
+  { type: "link", label: "2.8.2 Expert Opinion on X-Risks", href: "/chapters/02/08#02" },
+  { type: "link", label: "2.8.3 Would ASI be able to defeat humanity?", href: "/chapters/02/08#03" }
+  ]
+}
   ],
 };

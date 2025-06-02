@@ -6,9 +6,7 @@ export default function HeroDescription() {
   return (
     <div className={styles.descriptionArea}>
       <p className={styles.description}>
-        Systematic explanations of AI safety concepts that accelerate understanding, 
-        reduce research debt, and multiply impact across the entire community. 
-        Every hour saved in understanding multiplies across hundreds of researchers and students.
+        The central repository of AI safety knowledge. Distilling safety research into a complete learning ecosystem: textbook, courses, guides, videos, and more.
       </p>
     </div>
   );

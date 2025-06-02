@@ -3,6 +3,7 @@ title: "Risks"
 chapter_number: 2
 reading_time_core: "89 min"
 reading_time_optional: "28 min"
+reading_time_appendix: "8 min"
 authors:
   - "Markov Grey"
   - "Charbel-Raphaël Segerie"
@@ -26,7 +27,7 @@ Increasing capabilities are a problem, because as AI models get more capable, th
 
 The first step is to get an understanding of - What exactly are the concerning scenarios? What are the likelihoods of certain harmful outcomes occurring over others?, and what aspects of current AI development accelerate these risks? In this chapter we aim to tackle these fundamental questions and provide a concrete overview of the various risks in the AI landscape.
 
-<Figure src="./img/VDs_Image_1.png" alt="Enter image alt description" number="1" label="2.1" caption="The two-dimensional view of performance x generality. With increasing capabilities, and increasing generality, we also see increasing risks. Depending on the development trajectory and takeoff we might see longer periods with potential catastrophic risks, or suddenly emerging severe existential risks. The curves and colors in this diagram are meant to be illustrative and do not represent any specific forecasted development trajectory." />
+<Figure src="./img/qax_Image_1.png" alt="Enter image alt description" number="1" label="2.1" caption="The two-dimensional view of performance x generality. With increasing capabilities, and increasing generality, we also see increasing risks. Depending on the development trajectory and takeoff we might see longer periods with potential catastrophic risks, or suddenly emerging severe existential risks. The curves and colors in this diagram are meant to be illustrative and do not represent any specific forecasted development trajectory." />
 
 We already have identifiable pathways through which AI can be misused. This misuse can lead to catastrophic outcomes that could profoundly impact society. In addition to misuse, there is the risk that we are approaching a critical threshold where the development of dangerously advanced capabilities, such as uncontrolled self-proliferation and self-replicating AI agents, becomes a tangible reality. These capabilities could lead to scenarios where AI systems rapidly expand and evolve beyond human control, potentially causing widespread disruption and harm. This proximity to such advanced capabilities underscores the immediate need for vigilance and proactive measures. Additionally, the current regulatory landscape is beset by significant gaps, lacking comprehensive regulations governing AI development and deployment. This absence of adequate regulatory frameworks further exacerbates the risks associated with AI.
 
