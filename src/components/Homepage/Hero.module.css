@@ -7,7 +7,7 @@
   gap: 0;
   /* Set a base background color and texture directly */
   background-color: var(--atlas-background, #ffffff);
-  /* background-image: url('/img/textures/map.jpg'); */
+  /* background-image: url('/img/textures/texture.jpg'); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

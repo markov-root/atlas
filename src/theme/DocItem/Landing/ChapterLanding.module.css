@@ -1,4 +1,4 @@
-/* src/theme/DocItem/Landing/ChapterLanding.module.css */
+/* 2 columns on medium screens *//* src/theme/DocItem/Landing/ChapterLanding.module.css - Clean minimal layout */
 
 .landingContainer {
   width: 100%;
@@ -6,126 +6,163 @@
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  /* Positioning is handled by inline style, just like chapter headers */
 }
 
-/* Streams Container - handles centering and padding within the measured width */
+/* Streams Container - Clean spacing */
 .streamsContainer {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 60px 20px;
   box-sizing: border-box;
 }
 
 .streamSection {
-  margin-bottom: 80px;
+  margin-bottom: 100px;
 }
 
 .streamSection:last-child {
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 
 .streamHeader {
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   text-align: center;
 }
 
 .streamTitle {
-  font-size: 32px;
-  font-weight: 600;
+  font-size: 2.5rem;
+  font-weight: 700;
   color: var(--atlas-primary, #1971c2);
-  margin: 0 0 16px 0;
+  margin: 0 0 20px 0;
   font-family: var(--atlas-font-heading, Inter, sans-serif);
 }
 
+[data-theme='dark'] .streamTitle {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
 .streamDescription {
-  font-size: 18px;
+  font-size: 1.1rem;
   color: var(--atlas-text-secondary, #64748b);
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
   line-height: 1.6;
 }
 
-/* Responsive Grid - Fixed for proper responsiveness */
+[data-theme='dark'] .streamDescription {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Controls Section - removed */
+
+/* Responsive Grid - Optimized for smaller cards */
 .chaptersGrid {
   display: grid;
-  gap: 20px;
+  gap: 25px;
   justify-items: center;
   width: 100%;
   
-  /* 4 columns on very large screens */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* 3 columns on large screens */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Force max 4 columns even on very wide screens */
+/* Force max 3 columns even on very wide screens */
 @media (min-width: 1400px) {
   .chaptersGrid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     max-width: 1200px;
   }
 }
 
-/* 3 columns on large screens */
-@media (max-width: 1200px) {
+/* 2 columns on medium screens */
+@media (max-width: 1100px) {
   .chaptersGrid {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 900px;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+    gap: 25px;
   }
 }
 
-/* 2 columns on medium screens */
+/* Responsive adjustments */
 @media (max-width: 900px) {
   .streamsContainer {
-    padding: 32px 16px;
-  }
-  
-  .chaptersGrid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 600px;
-    gap: 16px;
+    padding: 40px 16px;
   }
   
   .streamSection {
-    margin-bottom: 60px;
+    margin-bottom: 80px;
   }
   
   .streamTitle {
-    font-size: 28px;
+    font-size: 2rem;
   }
   
   .streamDescription {
-    font-size: 16px;
+    font-size: 1rem;
+  }
+  
+  .chaptersGrid {
+    gap: 20px;
   }
 }
 
 /* 1 column on small screens */
 @media (max-width: 600px) {
   .streamsContainer {
-    padding: 24px 12px;
+    padding: 30px 12px;
   }
   
   .chaptersGrid {
     grid-template-columns: 1fr;
-    max-width: 320px;
-    gap: 12px;
+    max-width: 400px;
+    gap: 20px;
   }
   
   .streamSection {
-    margin-bottom: 40px;
+    margin-bottom: 60px;
   }
   
   .streamHeader {
-    margin-bottom: 24px;
+    margin-bottom: 30px;
   }
   
   .streamTitle {
-    font-size: 24px;
+    font-size: 1.75rem;
   }
   
   .streamDescription {
-    font-size: 14px;
+    font-size: 0.95rem;
+  }
+  
+  .controlsSection {
+    margin-top: 20px;
+  }
+  
+  .descriptionToggleButton {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 400px) {
+  .streamsContainer {
+    padding: 20px 8px;
+  }
+  
+  .chaptersGrid {
+    max-width: 320px;
+    gap: 16px;
+  }
+  
+  .streamTitle {
+    font-size: 1.5rem;
+  }
+  
+  .streamDescription {
+    font-size: 0.9rem;
   }
 }

@@ -1,13 +1,12 @@
-// src/theme/DocItem/Landing/ChapterLanding.jsx
+// src/theme/DocItem/Landing/ChapterLanding.jsx - Updated with table layout
 import React, { useState, useEffect } from 'react';
-import ChapterCard from './ChapterCard';
+import ChapterList from './ChapterList';
 import ProjectInfo from './ProjectInfo';
 import QuotesSection from './QuotesSection';
 import chaptersData from '../../../data/chapters.json';
 import styles from './ChapterLanding.module.css';
 
 export default function ChapterLanding() {
-  const [flippedChapter, setFlippedChapter] = useState(null);
   const [mainWidth, setMainWidth] = useState(0);
   const [isReady, setIsReady] = useState(false);
   
@@ -42,14 +41,6 @@ export default function ChapterLanding() {
     window.addEventListener('resize', updateMainWidth);
     return () => window.removeEventListener('resize', updateMainWidth);
   }, [isReady]);
-
-  const handleChapterToggle = (chapter) => {
-    if (flippedChapter?.id === chapter.id) {
-      setFlippedChapter(null);
-    } else {
-      setFlippedChapter(chapter);
-    }
-  };
 
   // Landing bounds container - EXACT same technique as ChapterHeaderRenderer
   const landingStyle = {
@@ -90,18 +81,8 @@ export default function ChapterLanding() {
                 </p>
               </div>
 
-              {/* Chapter Cards Grid */}
-              <div className={styles.chaptersGrid}>
-                {stream.chapters.map(chapter => (
-                  <ChapterCard
-                    key={chapter.id}
-                    chapter={chapter}
-                    isFlipped={flippedChapter?.id === chapter.id}
-                    onToggle={() => handleChapterToggle(chapter)}
-                    textureFile={chapter.texture}
-                  />
-                ))}
-              </div>
+              {/* Chapter List */}
+              <ChapterList chapters={stream.chapters} />
             </div>
           ))}
         </div>

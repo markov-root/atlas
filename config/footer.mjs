@@ -3,7 +3,7 @@ export const footerConfig = {
   style: 'dark',
   logo: {
     alt: 'AI Safety Atlas Logo',
-    src: '/img/logo/logo_only.svg', // Added leading slash for absolute path
+    src: '/img/logo_samples/01.svg', // Added leading slash for absolute path
     href: '/',
   },
   links: [

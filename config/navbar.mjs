@@ -3,7 +3,7 @@ export const navbarConfig = {
   title: '',
   logo: {
     alt: 'AI Safety Atlas Logo',
-    src: 'logo/logo/text_only.svg',
+    src: '/img/logo_samples/01.svg',
   },
   items: [
     {

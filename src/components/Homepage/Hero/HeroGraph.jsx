@@ -6,7 +6,7 @@ export default function HeroGraph() {
   return (
     <div className={styles.graphArea}>
       <img 
-        src="/img/logo/logo.svg" 
+        src="/img/logo_samples/01.svg" 
         alt="AI Safety Atlas Logo" 
         className={styles.logoImage}
       />

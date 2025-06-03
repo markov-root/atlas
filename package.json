@@ -15,8 +15,9 @@
     "swizzle-components": "node scripts/swizzle-components.js"
   },
   "dependencies": {
-    "@docusaurus/core": "3.7.0",
-    "@docusaurus/preset-classic": "3.7.0",
+    "@docusaurus/core": "^3.8.0",
+    "@docusaurus/plugin-client-redirects": "^3.8.0",
+    "@docusaurus/preset-classic": "^3.8.0",
     "@easyops-cn/docusaurus-search-local": "^0.48.5",
     "@mdx-js/react": "^3.0.0",
     "@tippyjs/react": "^4.2.6",
@@ -30,8 +31,8 @@
     "tippy.js": "^6.3.7"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.7.0",
-    "@docusaurus/types": "3.7.0",
+    "@docusaurus/module-type-aliases": "^3.8.0",
+    "@docusaurus/types": "^3.8.0",
     "lucide-react": "^0.475.0",
     "swc-loader": "^0.2.6"
   },

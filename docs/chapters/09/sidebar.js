@@ -58,18 +58,17 @@ module.exports = {
   { type: "link", label: "9.3.2 Activation Steering", href: "/chapters/09/03#02" }
   ]
 },
-    { type: "doc", id: "chapters/09/4", label: "9.4 Automating and Scaling Interpretability" },
     {
   type: "category",
-  label: "9.5 Automating and Scaling Interpretability",
+  label: "9.4 Automating and Scaling Interpretability",
   link: {
     type: "doc",
-    id: "chapters/09/5"
+    id: "chapters/09/4"
   },
   items: [
-  { type: "link", label: "9.5.1 Automatic Circuit DisCovery (ACDC)", href: "/chapters/09/05#01" }
+  { type: "link", label: "9.4.1 Automatic Circuit DisCovery (ACDC)", href: "/chapters/09/04#01" }
   ]
 },
-    { type: "doc", id: "chapters/09/6", label: "9.6 Critiques" }
+    { type: "doc", id: "chapters/09/5", label: "9.5 Critiques" }
   ],
 };

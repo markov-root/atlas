@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Open Philanthropy",
+    "description": "Major funding partner supporting AI safety research and education initiatives.",
+    "logo": "/img/supporters/open-philanthropy.svg",
+    "website": "https://www.openphilanthropy.org/",
+    "category": "funding",
+    "supportType": "Major Grant",
+    "featured": true
+  },
+  {
+    "name": "Ryan Kidd",
+    "description": "Individual philanthropist providing funding through Manifund regrants program.",
+    "logo": "/img/supporters/manifund.svg",
+    "website": "https://manifund.org/",
+    "category": "funding",
+    "supportType": "Manifund Regrant",
+    "featured": false
+  },
+  {
+    "name": "French Center for AI Safety (CeSIA)",
+    "description": "Lead institutional partner and organizational home for the AI Safety Atlas project.",
+    "logo": "/img/supporters/cesia.svg",
+    "website": "https://cesia.fr/",
+    "category": "partner",
+    "supportType": "Lead Institution",
+    "featured": true
+  },
+  {
+    "name": "Vincent Corruble",
+    "description": "Academic advisor providing guidance on AI safety curriculum and pedagogy.",
+    "logo": "/img/supporters/sorbonne.svg",
+    "website": "https://www.sorbonne-universite.fr/",
+    "category": "advisor",
+    "supportType": "Academic Advisor",
+    "featured": false
+  },
+  {
+    "name": "Fabien Roger",
+    "description": "AI safety researcher providing technical guidance and content review.",
+    "logo": "/img/supporters/placeholder.svg",
+    "website": null,
+    "category": "advisor",
+    "supportType": "Technical Advisor",
+    "featured": false
+  }
+]

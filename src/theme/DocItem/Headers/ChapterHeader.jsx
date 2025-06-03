@@ -285,7 +285,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               href={frontMatter.google_docs_link}
               iconPath="/img/icons/google.svg"
               label="Docs"
-              description="View in Google Docs"
+              description="Comment on Google Docs"
               active={!!frontMatter.google_docs_link}
             />
             
@@ -301,7 +301,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               href={frontMatter.video_link}
               iconPath="/img/icons/video.svg"
               label="Video"
-              description="Watch video explanation"
+              description="Watch the video lecture"
               active={!!frontMatter.video_link}
             />
             
@@ -310,7 +310,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               onClick={handleAudioToggle}
               iconPath="/img/icons/audio.svg"
               label="Audio"
-              description={hasAudio ? "Listen to audio content" : "Audio not available"}
+              description={hasAudio ? "Listen to the podcast" : "Audio not available"}
               active={hasAudio}
             />
             
@@ -327,7 +327,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               href={frontMatter.teach_link}
               iconPath="/img/icons/teach.svg"
               label="Teach"
-              description="Teaching resources"
+              description="Access Facilitation Resources"
               active={!!frontMatter.teach_link}
             />
           </div>

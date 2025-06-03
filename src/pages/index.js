@@ -3,13 +3,8 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import { 
   Hero, 
-  ActionCards, 
-  // Features, 
-  // What,
-  // Qualities,
-  // Stats,
   Testimonials,
-  SourcesFlow
+  Supporters
 } from '../components/Homepage';
 
 export default function Home() {
@@ -17,12 +12,8 @@ export default function Home() {
     <Layout
       title="AI Safety Atlas"
       description="A comprehensive guide to AI safety and alignment">
-      { <Hero /> }
-      {/* <ActionCards /> */}
-      {/* <Features /> */}
-      {/* <What /> */}
-      {/* <Qualities /> */}
-      {/* <Stats /> */}
+      <Hero />
+      <Supporters />
       <Testimonials />
     </Layout>
   );
