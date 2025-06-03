@@ -3,7 +3,7 @@ title: "Evaluations"
 chapter_number: 5
 chapter_description: "We need a systematic way of measuring progress on safety."
 reading_time_core: "128 min"
-reading_time_optional: "26 min"
+reading_time_optional: "27 min"
 authors:
   - "Markov Grey"
   - "Charbel-Raphael Segerie"
@@ -14,8 +14,8 @@ alignment_forum_link: "https://www.lesswrong.com/posts/CwdCYmsutwXwnYtEF/paper-s
 sidebar_position: 5
 slug: /chapters/05/
 ---
-import Note from "@site/src/components/chapters/Note";
 import Quote from "@site/src/components/chapters/Quote";
+import Note from "@site/src/components/chapters/Note";
 import Definition from "@site/src/components/chapters/Definition";
 
 import Figure from "@site/src/components/chapters/Figure";
@@ -32,7 +32,7 @@ When you can measure what you are speaking about, and express it in numbers, you
 
 **Benchmarks provide standardization of measurement but currently fail to capture the complex risks posed by advanced AI systems.** Early AI development faced a measurement crisis similar to pre-standardized engineering—without reliable metrics, progress was chaotic and unpredictable. Benchmarks revolutionized AI development by creating standardized metrics that allowed meaningful comparisons between systems. While benchmarks like MMLU, GPQA, or FrontierMath are extremely useful, they still fall short when predicting real-world behavior. They fail to measure what happens when models are pushed to their limits or operate in complex environments where unexpected capability combinations emerge. As we move towards highly capable AI systems, we need stronger safety guarantees in a wider range of scenarios than what benchmarks alone can provide.
 
-**Safety risks emerge from interactions between capabilities, creating a combinatorial challenge.** Individual capabilities like situational awareness or deception appear manageable when measured in isolation, but their combination creates emergent risks fundamentally different from either capability alone. Models might recognize when they're being evaluated and selectively hide capabilities during testing but demonstrate concerning behaviors during deployment. This combinatorial explosion makes comprehensive testing exponentially more difficult but essential for meaningful safety claims. A model passing most safety benchmarks might still harbor dangerous capability combinations that weren't explicitly tested. This is why we need to move measurement of safety critical properties of a system towards comprehensive evaluations.
+**Safety risks emerge from interactions between capabilities, creating a combinatorial challenge. **Individual capabilities like situational awareness or deception appear manageable when measured in isolation, but their combination creates emergent risks fundamentally different from either capability alone. Models might recognize when they're being evaluated and selectively hide capabilities during testing but demonstrate concerning behaviors during deployment. This combinatorial explosion makes comprehensive testing exponentially more difficult but essential for meaningful safety claims. A model passing most safety benchmarks might still harbor dangerous capability combinations that weren't explicitly tested. This is why we need to move measurement of safety critical properties of a system towards comprehensive evaluations.
 
 **Effective safety assessment requires measuring three distinct properties: capabilities, propensities, and control.** Dangerous capabilities evaluations establish upper bounds on what models can do when pushed to their limits through techniques like scaffolding and tool-augmentation. Propensity evaluations reveal what behaviors models tend to exhibit by default, measuring behavioral tendencies rather than just maximum abilities. Control evaluations verify whether safety protocols remain effective when models actively try to circumvent them. This three-part taxonomy provides a systematic framework for safety measurement that helps answer the most decision-relevant questions about AI.
 

@@ -1,13 +1,15 @@
 ---
 title: "Interpretability"
 chapter_number: 9
-reading_time_core: "4 min"
-reading_time_optional: "1 min"
+reading_time_core: "30 min"
+reading_time_optional: "23 min"
 authors:
   - "Jeanne Salle"
   - "Charbel-Raphaël Segerie"
 affiliations: ["French Center for AI Safety (CeSIA)"]
 google_docs_link: "https://docs.google.com/document/d/1mdYnniBG5vg4HjMMqqojEs8siFXoRnxi0RfxursBw7A/edit?usp=sharing"
+feedback_link: "https://forms.gle/ZsA4hEWUx1ZrtQLL9"
+teach_link: "https://docs.google.com/document/d/1izDWZKR_xB2qj2a8LkbqcnqnjBIC-C7fn-74CIA-m9w/edit?usp=sharing"
 sidebar_position: 9
 slug: /chapters/09/
 ---

@@ -1,4 +1,4 @@
-// src/theme/DocItem/Headers/ChapterHeader.jsx - Updated with new audio folder structure and centralized Tippy
+// src/theme/DocItem/Headers/ChapterHeader.jsx - Updated with PDF download button support
 import React, { useState, useEffect } from 'react';
 import { ActionButtonTooltip } from '../../../components/UI/Tooltip';
 import styles from './ChapterHeader.module.css';
@@ -111,7 +111,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
   // Generate flowing particles with better distribution
   const generateParticles = () => {
     const count = 8;
-    return Array.from({ length: count }, (_, i) => ({
+    return Array.from({ length, count }, (_, i) => ({
       id: i,
       size: Math.random() * 3 + 1.5,
       x: Math.random() * 100,
@@ -312,6 +312,15 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               label="Audio"
               description={hasAudio ? "Listen to audio content" : "Audio not available"}
               active={hasAudio}
+            />
+            
+            {/* PDF Download button - NEW */}
+            <ActionButton
+              href={frontMatter.download_link}
+              iconPath="/img/icons/pdf.svg"
+              label="PDF"
+              description="Download PDF version"
+              active={!!frontMatter.download_link}
             />
             
             <ActionButton

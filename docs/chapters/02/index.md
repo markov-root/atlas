@@ -13,8 +13,8 @@ video_link: "https://www.youtube.com/watch?v=dhr4u-w75aQ"
 sidebar_position: 2
 slug: /chapters/02/
 ---
-import Note from "@site/src/components/chapters/Note";
 import Quote from "@site/src/components/chapters/Quote";
+import Note from "@site/src/components/chapters/Note";
 import Definition from "@site/src/components/chapters/Definition";
 
 import Figure from "@site/src/components/chapters/Figure";
