@@ -3,7 +3,7 @@ export const navbarConfig = {
   title: '',
   logo: {
     alt: 'AI Safety Atlas Logo',
-    src: '/img/logo_samples/01.svg', // Standardized with leading slash
+    src: '/img/logo_samples/01-test.png', // Standardized with leading slash
   },
   items: [
     {

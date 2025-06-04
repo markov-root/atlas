@@ -16,7 +16,7 @@ export default function ChaptersHero() {
       {/* Right side - Logo */}
       <div className={styles.logoSection}>
         <img 
-          src="/img/logo_samples/01.svg" 
+          src="/img/logo_samples/01-test.png" 
           alt="AI Safety Atlas Logo" 
           className={styles.logoImage}
         />
