@@ -34,9 +34,9 @@
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.65) 0%,
-    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.70) 50%,
-    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.65) 100%
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 1) 0%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.9) 50%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 1) 100%
   );
 }
 
@@ -302,9 +302,9 @@
 [data-theme='dark'] .textureOverlay {
   background: linear-gradient(
     135deg,
-    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.75) 0%,
-    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.80) 50%,
-    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.75) 100%
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 1) 0%,
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 0.90) 50%,
+    rgba(var(--atlas-background-rgb, 18, 18, 18), 1) 100%
   );
 }
 

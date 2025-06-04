@@ -1,7 +1,10 @@
 // src/theme/DocItem/Landing/ChapterLanding.jsx
 import React, { useState, useEffect } from 'react';
 import ChaptersHero from './ChaptersHero';
+import StreamHeader from './StreamHeader';
 import ChapterList from './ChapterList';
+import ImpactSection from './ImpactSection';
+import ProjectInfo from './ProjectInfo';
 import chaptersData from '../../../data/chapters.json';
 import styles from './ChapterLanding.module.css';
 
@@ -60,15 +63,11 @@ export default function ChapterLanding() {
           {chaptersData.streams.map(stream => (
             <div key={stream.id} className={styles.streamSection}>
               
-              {/* Stream Header */}
-              <div className={styles.streamHeader}>
-                <h2 className={styles.streamTitle}>
-                  {stream.title}
-                </h2>
-                <p className={styles.streamDescription}>
-                  {stream.description}
-                </p>
-              </div>
+              {/* Stream Header with Texture */}
+              <StreamHeader 
+                title={stream.title}
+                description={stream.description}
+              />
 
               {/* Chapter List */}
               <ChapterList chapters={stream.chapters} />
@@ -76,9 +75,11 @@ export default function ChapterLanding() {
           ))}
         </div>
         
-        {/* Future sections - just comment out individual lines */}
-        {/* <HeroSection /> */}
-        {/* <AboutSection /> */}
+        {/* Impact Section - Standalone */}
+        <ImpactSection />
+        
+        {/* Project Information Section */}
+        <ProjectInfo />
         
       </div>
     </div>

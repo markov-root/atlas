@@ -41,9 +41,9 @@
   max-width: 100%; /* ADD: Prevent overflow */
   background: linear-gradient(
     135deg,
-    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.85) 0%,
-    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.80) 50%,
-    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.85) 100%
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 1) 0%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.95) 50%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 1) 100%
   );
 }
 

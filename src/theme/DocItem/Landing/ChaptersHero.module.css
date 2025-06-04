@@ -1,6 +1,7 @@
-/* src/theme/DocItem/Landing/ChaptersHero.module.css - Simple hero styling */
+/* src/theme/DocItem/Landing/ChaptersHero.module.css - Seamless with subtle center texture */
 
 .heroContainer {
+  position: relative;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
@@ -10,13 +11,39 @@
   align-items: center;
   padding: 5rem 2rem 4rem 2rem;
   background: var(--atlas-background, #ffffff);
-  border-bottom: 1px solid var(--atlas-border-color, #e9ecef);
   box-sizing: border-box;
+  overflow: hidden;
 }
 
+/* Subtle texture overlay that fades to background - center focused */
+.heroContainer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/img/textures/texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  
+  /* Create a radial mask that fades from center to edges */
+  mask: radial-gradient(ellipse 70% 60% at center, black 0%, black 30%, transparent 70%);
+  -webkit-mask: radial-gradient(ellipse 70% 60% at center, black 0%, black 30%, transparent 70%);
+  
+  opacity: 0.15; /* Very subtle */
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Dark mode texture handling */
 [data-theme='dark'] .heroContainer {
-  background: var(--atlas-background, #121212);
-  border-bottom-color: var(--atlas-border-color, #373737);
+  background-color: var(--atlas-background, #121212);
+}
+
+[data-theme='dark'] .heroContainer::before {
+  /* Apply grayscale filter for dark mode */
+  filter: grayscale(1) contrast(0.8) brightness(0.4);
+  opacity: 0.2; /* Slightly more visible in dark mode */
 }
 
 /* Content Section (Title + Description) */
@@ -24,6 +51,8 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .title {
@@ -63,6 +92,8 @@
   padding: 1rem;
   height: 100%;
   min-height: 300px;
+  position: relative;
+  z-index: 1;
 }
 
 .logoImage {
@@ -71,11 +102,7 @@
   max-width: 280px;
   max-height: 280px;
   object-fit: contain;
-  transition: transform 0.2s ease;
-}
-
-.logoImage:hover {
-  transform: scale(1.02);
+  /* Removed hover transition and transform */
 }
 
 /* Tablet responsive */

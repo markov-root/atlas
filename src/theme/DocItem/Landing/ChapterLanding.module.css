@@ -1,4 +1,4 @@
-/* src/theme/DocItem/Landing/ChapterLanding.module.css - Minimal clean layout */
+/* src/theme/DocItem/Landing/ChapterLanding.module.css - Seamless clean layout */
 
 .landingContainer {
   width: 100%;
@@ -30,65 +30,4 @@
   margin-bottom: 20px;
 }
 
-/* Stream header */
-.streamHeader {
-  margin-bottom: 40px;
-  text-align: center;
-}
-
-.streamTitle {
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: var(--atlas-primary, #1971c2);
-  margin: 0 0 16px 0;
-  font-family: var(--atlas-font-heading, Inter, sans-serif);
-}
-
-[data-theme='dark'] .streamTitle {
-  color: var(--atlas-primary-lighter, #74c0fc);
-}
-
-.streamDescription {
-  font-size: 1.1rem;
-  color: var(--atlas-text-secondary, #64748b);
-  max-width: 700px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-[data-theme='dark'] .streamDescription {
-  color: var(--atlas-text-secondary, #adb5bd);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .section {
-    padding: 30px 16px;
-  }
-  
-  .streamSection {
-    margin-bottom: 40px;
-  }
-  
-  .streamTitle {
-    font-size: 1.875rem;
-  }
-  
-  .streamDescription {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .section {
-    padding: 20px 12px;
-  }
-  
-  .streamTitle {
-    font-size: 1.5rem;
-  }
-  
-  .streamDescription {
-    font-size: 0.95rem;
-  }
-}
+/* Remove old stream header styles since we're using StreamHeader component now */

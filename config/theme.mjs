@@ -4,7 +4,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 export const themeConfig = {
   docs: {
     sidebar: {
-      hideable: true,
+      hideable: false,
       autoCollapseCategories: true,
     },
   },

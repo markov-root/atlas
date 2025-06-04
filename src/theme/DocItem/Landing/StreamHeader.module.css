@@ -1,0 +1,81 @@
+/* src/theme/DocItem/Landing/StreamHeader.module.css - Clean styling without any borders */
+
+.streamHeaderContainer {
+  position: relative;
+  width: 100%;
+  background: transparent;
+  margin-bottom: 2rem;
+}
+
+/* Content */
+.streamContent {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 2rem;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.streamTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--atlas-primary, #1971c2);
+  margin: 0 0 1rem 0;
+  font-family: var(--atlas-font-heading, Inter, sans-serif);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.streamDescription {
+  font-size: 1.2rem;
+  color: var(--atlas-text-secondary, #64748b);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Dark mode */
+[data-theme='dark'] .streamHeaderContainer {
+  background: transparent;
+}
+
+[data-theme='dark'] .streamTitle {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .streamDescription {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .streamContent {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .streamTitle {
+    font-size: 2rem;
+  }
+  
+  .streamDescription {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .streamContent {
+    padding: 2rem 1rem;
+  }
+  
+  .streamTitle {
+    font-size: 1.75rem;
+  }
+  
+  .streamDescription {
+    font-size: 1rem;
+  }
+}

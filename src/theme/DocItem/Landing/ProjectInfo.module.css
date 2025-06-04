@@ -1,0 +1,107 @@
+/* src/theme/DocItem/Landing/ProjectInfo.module.css - Container for organized sections */
+
+.projectInfoContainer {
+  position: relative;
+  width: 100%;
+  background: var(--atlas-background, #ffffff);
+  padding: 5rem 2rem 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+[data-theme='dark'] .projectInfoContainer {
+  background: var(--atlas-background, #121212);
+}
+
+.projectContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* Main Title */
+.projectTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--atlas-primary, #1971c2);
+  margin: 0 0 4rem 0;
+  text-align: center;
+  font-family: var(--atlas-font-heading, 'Inter', sans-serif);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+[data-theme='dark'] .projectTitle {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+/* Two-column grid layout */
+.sectionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leftColumn,
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .sectionsGrid {
+    gap: 3rem;
+  }
+  
+  .leftColumn,
+  .rightColumn {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .projectInfoContainer {
+    padding: 4rem 1.5rem 3rem 1.5rem;
+  }
+  
+  .projectTitle {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .sectionsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 100%;
+  }
+  
+  .leftColumn,
+  .rightColumn {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .projectInfoContainer {
+    padding: 3rem 1rem 2.5rem 1rem;
+  }
+  
+  .projectTitle {
+    font-size: 1.75rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .sectionsGrid {
+    gap: 0.5rem;
+  }
+  
+  .leftColumn,
+  .rightColumn {
+    gap: 0.5rem;
+  }
+}
