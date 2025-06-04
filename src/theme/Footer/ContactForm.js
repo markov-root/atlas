@@ -15,23 +15,56 @@ function ContactForm() {
     e.preventDefault();
     setStatus('sending');
 
-    // Create a mailto link as a simple way to handle the form submission
-    const mailtoLink = `mailto:contact@aisafetyatlas.com?subject=Contact Form: ${formData.name}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    )}`;
-    
-    window.location.href = mailtoLink;
-    setStatus('sent');
-    
-    // Reset form after submission
-    setFormData({
-      name: '',
-      email: '',
-      message: ''
-    });
+    try {
+      // Using Formspree for email handling with your actual form endpoint
+      const response = await fetch('https://formspree.io/f/xldndnnl', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _replyto: formData.email,
+          _subject: `AI Safety Atlas Contact: ${formData.name}`
+        })
+      });
 
-    // Clear the status after a delay
-    setTimeout(() => setStatus(''), 3000);
+      if (response.ok) {
+        setStatus('sent');
+        // Reset form after successful submission
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+        
+        // Clear the status after 3 seconds
+        setTimeout(() => setStatus(''), 3000);
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      
+      // Fallback to mailto link if API fails
+      const mailtoLink = `mailto:markov@securite-ia.fr?subject=AI Safety Atlas Contact: ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      )}`;
+      
+      window.location.href = mailtoLink;
+      setStatus('sent');
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
+      
+      setTimeout(() => setStatus(''), 3000);
+    }
   };
 
   const handleChange = (e) => {
@@ -160,7 +193,7 @@ function StayCoordinated() {
           }
           title="Email"
           subtitle="Send Us"
-          href="mailto:contact@aisafetyatlas.com"
+          href="mailto:markov@securite-ia.fr"
         />
       </div>
     </div>

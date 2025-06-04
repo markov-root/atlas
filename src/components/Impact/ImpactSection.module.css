@@ -1,29 +1,4 @@
-.publicationLinks {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.publicationLink {
-  color: var(--atlas-primary, #1971c2);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.875rem;
-  transition: color 0.2s ease;
-}
-
-.publicationLink:hover {
-  color: var(--atlas-primary-darker, #1864ab);
-  text-decoration: underline;
-}
-
-[data-theme='dark'] .publicationLink {
-  color: var(--atlas-primary-lighter, #74c0fc);
-}
-
-[data-theme='dark'] .publicationLink:hover {
-  color: var(--atlas-primary-lightest, #a5d8ff);
-}/* src/theme/DocItem/Landing/ImpactSection.module.css - Updated with vertical layout */
+/* src/components/Impact/ImpactSection.module.css - Moved from theme/DocItem/Landing/ImpactSection.module.css */
 
 .impactContainer {
   width: 100%;
@@ -67,12 +42,31 @@
   color: var(--atlas-text-secondary, #adb5bd);
 }
 
+/* Impact Metrics Section */
+.metricsSection {
+  margin-bottom: 4rem;
+}
+
+.metricsSubheader {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--atlas-text, #212529);
+  margin: 0 0 2rem 0;
+  text-align: left;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-theme='dark'] .metricsSubheader {
+  color: var(--atlas-text, #e9ecef);
+}
+
 /* Impact Metrics Grid */
 .metricsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 2rem;
-  margin-bottom: 4rem;
 }
 
 .metricCard {
@@ -260,17 +254,6 @@
 
 [data-theme='dark'] .categoryTitle {
   color: var(--atlas-primary-lighter, #74c0fc);
-}
-
-.categoryDescription {
-  font-size: 1rem;
-  color: var(--atlas-text-secondary, #495057);
-  line-height: 1.6;
-  margin: 0;
-}
-
-[data-theme='dark'] .categoryDescription {
-  color: var(--atlas-text-secondary, #adb5bd);
 }
 
 /* Full Width Group Content - Image Left, Text Right */

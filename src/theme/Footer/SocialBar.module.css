@@ -1,9 +1,8 @@
-/* Modified src/theme/Footer/SocialBar.module.css */
-
+/* src/theme/Footer/SocialBar.module.css */
 
 .socialBar {
-  background-color: rgba(0, 0, 0, 0.2); /* Slightly darker than footer */
-  padding: 1rem 0;
+  background-color: var(--atlas-gray-900); /* Same as footer background */
+  padding: 1.5rem 0; /* Increased padding for bigger icons */
 }
 
 .socialContent {
@@ -11,23 +10,22 @@
   margin: 0 auto;
   padding: 0 var(--ifm-spacing-horizontal);
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
 .socialIcons {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-bottom: 1rem;
+  gap: 3rem; /* Increased gap for bigger icons */
 }
 
 .socialLink {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 60px; /* Bigger icons */
+  height: 60px; /* Bigger icons */
   border-radius: 50%;
   color: rgba(255, 255, 255, 0.7);
   transition: all 0.2s ease-in-out;
@@ -35,31 +33,16 @@
 
 .socialLink:hover {
   color: #ffffff;
-  transform: translateY(-2px);
+  transform: translateY(-3px); /* Slightly more hover effect */
 }
 
 .icon {
-  width: 20px;
-  height: 20px;
+  width: 32px; /* Bigger icon size */
+  height: 32px; /* Bigger icon size */
+  filter: brightness(0) invert(1); /* Make SVG icons white */
 }
 
-.socialDivider {
-  width: 100%;
-  max-width: 400px;
-  display: flex;
-  justify-content: center;
-}
-
-.socialDividerLine {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-}
+/* Removed all divider styles */
 
 .srOnly {
   position: absolute;

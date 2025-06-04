@@ -1,9 +1,9 @@
-// config/footer.mjs
+// config/footer.mjs - Standardized footer configuration
 export const footerConfig = {
   style: 'dark',
   logo: {
     alt: 'AI Safety Atlas Logo',
-    src: '/img/logo_samples/01.svg', // Added leading slash for absolute path
+    src: '/img/logo/logo_footer.svg', // Standardized with leading slash
     href: '/',
   },
   links: [
@@ -42,15 +42,7 @@ export const footerConfig = {
       items: [
         {
           label: 'GitHub',
-          href: 'https://github.com/markov-root/atlas',
-        },
-        {
-          label: 'Twitter',
-          href: 'https://twitter.com/AISafetyAtlas',
-        },
-        {
-          label: 'LinkedIn',
-          href: 'https://linkedin.com/company/ai-safety-atlas',
+          href: 'https://github.com/CentreSecuriteIA/textbook',
         },
         {
           label: 'YouTube',

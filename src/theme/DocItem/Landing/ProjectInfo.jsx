@@ -1,10 +1,8 @@
 // src/theme/DocItem/Landing/ProjectInfo.jsx - Organized into separate components
 import React from 'react';
-import AuthorsSection from './AuthorsSection';
-import AdvisorsSection from './AdvisorsSection';
-import SponsorsSection from './SponsorsSection';
-import CitationSection from './CitationSection';
-import AcknowledgementsSection from './AcknowledgementsSection';
+import AuthorsSection from './ProjectInfo/AuthorsSection';
+import AdvisorsSection from './ProjectInfo/AdvisorsSection';
+import CitationSection from './ProjectInfo/CitationSection';
 import styles from './ProjectInfo.module.css';
 
 export default function ProjectInfo() {
@@ -12,17 +10,12 @@ export default function ProjectInfo() {
     <div className={styles.projectInfoContainer}>
       <div className={styles.projectContent}>
         
-        {/* Main Title */}
-        <h1 className={styles.projectTitle}>Project Information</h1>
-        
         {/* Two-column grid for better organization */}
         <div className={styles.sectionsGrid}>
           
           {/* Left Column */}
           <div className={styles.leftColumn}>
             <AuthorsSection />
-            <SponsorsSection />
-            <AcknowledgementsSection />
           </div>
           
           {/* Right Column */}

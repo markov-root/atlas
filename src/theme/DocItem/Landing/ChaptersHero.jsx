@@ -9,7 +9,7 @@ export default function ChaptersHero() {
       <div className={styles.contentSection}>
         <h1 className={styles.title}>AI SAFETY ATLAS</h1>
         <p className={styles.description}>
-          We transform scattered knowledge into a central repository of AI safety information. Distilling safety research into a complete learning ecosystem: textbook, courses, guides, videos, and more.
+          Distilling safety research into a complete learning ecosystem: textbook, courses, guides, videos, and more.
         </p>
       </div>
 

@@ -1,4 +1,4 @@
-// src/theme/DocItem/Landing/ImpactSection.jsx - Updated with images and vertical layout
+// src/components/Impact/ImpactSection.jsx - Moved from theme/DocItem/Landing/ImpactSection.jsx
 import React, { useState, useEffect } from 'react';
 import styles from './ImpactSection.module.css';
 
@@ -39,29 +39,17 @@ export default function ImpactSection() {
     {
       title: "Published Video Lectures",
       description: "YouTube video series explaining key AI safety concepts with visual aids and examples",
-      image: "/img/impact/video_risks.jpg",
-      links: [
-        { name: "Introduction to AI Safety", url: "https://www.youtube.com/watch?v=J_iMeH1hb9M" },
-        { name: "AI Capabilities & Risks", url: "https://www.youtube.com/watch?v=dhr4u-w75aQ" },
-        { name: "Alignment Challenges", url: "https://www.youtube.com/watch?v=iO7Jl4xders" },
-        { name: "Technical Safety Approaches", url: "https://www.youtube.com/watch?v=FSKuDqze9es" }
-      ]
+      image: "/img/impact/video_risks.jpg"
     },
     {
       title: "Published Research Papers",
       description: "Academic publications documenting our systematic approach to AI safety education and literature review methodology",
-      image: "/img/impact/paper_evals.png",
-      links: [
-        { name: "AI Safety Atlas: arXiv Paper", url: "https://arxiv.org/abs/2505.05541" }
-      ]
+      image: "/img/impact/paper_evals.png"
     },
     {
       title: "Published Interactive Online Chapters",
       description: "9 comprehensive online chapters with hundreds of interactive features from AI Safety Digest, Our World in Data, and AI Safety Info",
-      image: "/img/courses/featured/ens_paris_23.png", // Using existing image as placeholder
-      links: [
-        { name: "Browse All Chapters", url: "/chapters/" }
-      ]
+      image: "/img/courses/featured/ens_paris_23.png" // Using existing image as placeholder
     }
   ];
 
@@ -101,21 +89,24 @@ export default function ImpactSection() {
       
       {/* Header */}
       <div className={styles.impactHeader}>
-        <h2 className={styles.impactTitle}>Impact</h2>
+        <h1 className={styles.impactTitle}>Impact</h1>
         <p className={styles.impactDescription}>
           Measurable outcomes from systematic AI safety education and research contributions.
         </p>
       </div>
       
       {/* Impact Metrics */}
-      <div className={styles.metricsGrid}>
-        {impactMetrics.map((metric, index) => (
-          <div key={index} className={styles.metricCard}>
-            <div className={styles.metricNumber}>{metric.number}</div>
-            <div className={styles.metricLabel}>{metric.label}</div>
-            <div className={styles.metricDescription}>{metric.description}</div>
-          </div>
-        ))}
+      <div className={styles.metricsSection}>
+        <h3 className={styles.metricsSubheader}>Our Impact at a Glance</h3>
+        <div className={styles.metricsGrid}>
+          {impactMetrics.map((metric, index) => (
+            <div key={index} className={styles.metricCard}>
+              <div className={styles.metricNumber}>{metric.number}</div>
+              <div className={styles.metricLabel}>{metric.label}</div>
+              <div className={styles.metricDescription}>{metric.description}</div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Three Horizontal Columns - Publications */}
@@ -136,20 +127,6 @@ export default function ImpactSection() {
               <div className={styles.publicationContent}>
                 <h4 className={styles.publicationTitle}>{category.title}</h4>
                 <p className={styles.publicationDescription}>{category.description}</p>
-                
-                <div className={styles.publicationLinks}>
-                  {category.links.map((link, linkIndex) => (
-                    <a 
-                      key={linkIndex}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.publicationLink}
-                    >
-                      {link.name} →
-                    </a>
-                  ))}
-                </div>
               </div>
             </div>
           ))}
@@ -164,7 +141,6 @@ export default function ImpactSection() {
           <div key={groupIndex} className={styles.adoptionGroup}>
             <div className={styles.adoptionGroupHeader}>
               <h4 className={styles.categoryTitle}>{group.category}</h4>
-              <p className={styles.categoryDescription}>{group.description}</p>
             </div>
             
             <div className={styles.adoptionGroupContent}>

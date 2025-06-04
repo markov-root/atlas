@@ -1,0 +1,341 @@
+/* src/theme/DocItem/Landing/ProjectImportance.module.css - Testimonials-style layout with no backgrounds */
+
+.importanceContainer {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.importanceContent {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Header Section */
+.headerSection {
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.question {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--atlas-primary, #1971c2);
+  margin: 0 0 2rem 0;
+  line-height: 1.2;
+  font-family: var(--atlas-font-heading, 'Inter', sans-serif);
+  letter-spacing: -0.01em;
+}
+
+[data-theme='dark'] .question {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.contextText {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--atlas-text, #212529);
+  margin: 0 0 1.5rem 0;
+  font-weight: 400;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+}
+
+.contextText:last-child {
+  margin-bottom: 0;
+}
+
+[data-theme='dark'] .contextText {
+  color: var(--atlas-text, #e9ecef);
+}
+
+/* Quotes Grid - Testimonials Style */
+.quotesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin: 0 auto;
+}
+
+/* Quote Cards - Based on testimonial styling */
+.quoteCard {
+  background: transparent;
+  border: 1px solid var(--atlas-border-color, #e2e8f0);
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Equal height cards */
+}
+
+.quoteCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--atlas-shadow-md, 0 4px 8px rgba(0, 0, 0, 0.03), 0 8px 16px rgba(0, 0, 0, 0.08));
+}
+
+[data-theme='dark'] .quoteCard {
+  border-color: var(--atlas-border-color, #373737);
+}
+
+/* Quote Header with Photo and Info */
+.quoteHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.expertPhoto {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--atlas-primary-lightest, #e7f5ff);
+  flex-shrink: 0;
+}
+
+[data-theme='dark'] .expertPhoto {
+  border-color: rgba(var(--atlas-primary-rgb, 51, 154, 240), 0.2);
+}
+
+.expertInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.expertName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--atlas-primary, #1971c2);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+[data-theme='dark'] .expertName {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.expertTitle {
+  font-size: 0.875rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  line-height: 1.4;
+}
+
+[data-theme='dark'] .expertTitle {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Quote Text */
+.expertQuote {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--atlas-text, #212529);
+  margin: 0 0 1.5rem 0;
+  font-style: italic;
+  flex: 1; /* Take up remaining space */
+  position: relative;
+}
+
+.expertQuote::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: -10px;
+  font-size: 3rem;
+  color: var(--atlas-primary-lightest, #e7f5ff);
+  font-family: serif;
+  line-height: 1;
+}
+
+[data-theme='dark'] .expertQuote {
+  color: var(--atlas-text, #e9ecef);
+}
+
+[data-theme='dark'] .expertQuote::before {
+  color: rgba(var(--atlas-primary-rgb, 51, 154, 240), 0.2);
+}
+
+/* Quote Meta (Date and Source) */
+.quoteMeta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--atlas-border-color, #f1f3f5);
+  margin-top: auto; /* Push to bottom */
+}
+
+[data-theme='dark'] .quoteMeta {
+  border-top-color: var(--atlas-border-color, #373737);
+}
+
+.quoteDate {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--atlas-text-secondary, #6c757d);
+}
+
+[data-theme='dark'] .quoteDate {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+.quoteSource {
+  font-size: 0.875rem;
+  color: var(--atlas-primary, #1971c2);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.quoteSource:hover {
+  color: var(--atlas-primary-darker, #1864ab);
+  text-decoration: underline;
+}
+
+[data-theme='dark'] .quoteSource {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .quoteSource:hover {
+  color: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .importanceContainer {
+    padding: 4rem 1.5rem;
+  }
+  
+  .headerSection {
+    margin-bottom: 3rem;
+  }
+  
+  .question {
+    font-size: 2.25rem;
+  }
+  
+  .contextText {
+    font-size: 1.0625rem;
+  }
+  
+  .quotesGrid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .quoteCard {
+    padding: 1.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .importanceContainer {
+    padding: 3rem 1.5rem;
+  }
+  
+  .headerSection {
+    margin-bottom: 2.5rem;
+  }
+  
+  .question {
+    font-size: 2rem;
+  }
+  
+  .contextText {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .quotesGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .quoteCard {
+    padding: 1.5rem;
+  }
+  
+  .expertPhoto {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .expertName {
+    font-size: 1rem;
+  }
+  
+  .expertTitle {
+    font-size: 0.8125rem;
+  }
+  
+  .expertQuote {
+    font-size: 0.95rem;
+  }
+  
+  .quoteMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .importanceContainer {
+    padding: 2.5rem 1rem;
+  }
+  
+  .headerSection {
+    margin-bottom: 2rem;
+  }
+  
+  .question {
+    font-size: 1.75rem;
+    line-height: 1.3;
+  }
+  
+  .contextText {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+  
+  .quotesGrid {
+    gap: 1.25rem;
+  }
+  
+  .quoteCard {
+    padding: 1.25rem;
+  }
+  
+  .quoteHeader {
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .expertPhoto {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .expertName {
+    font-size: 0.95rem;
+  }
+  
+  .expertTitle {
+    font-size: 0.75rem;
+  }
+  
+  .expertQuote {
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+  }
+}

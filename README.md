@@ -5,24 +5,24 @@
 [x] strategies
 [ ] governance
 [x] generalization
-[ ] oversight
-[ ] interpretability
+[x] oversight
+[x] interpretability
 
 - bug evals - **Why aren't better benchmarks enough? **
  - [x] next page is broken e.g. http://localhost:3000/chapters/02/01#02 should go to http://localhost:3000/chapters/02/02
- - [ ] facilitate links not being fetched from gdoc
+ - [x] facilitate links not being fetched from gdoc
  - [ ] font for section numbers on sidebar
  - [ ] docs page - remove edit page auto insert
  - [ ] docs page - design next/previous page
- - [ ] docs landing page - design
+ - [x] docs landing page - design
  - [x] docs page - audio + errors
- - [ ] home page - funders
- - [ ] home page - hero
- - [ ] home page - who we are
- - [ ] home page - what we do
+ - [x] home page - funders
+ - [x] home page - hero
+ - [x] home page - who we are
+ - [x] home page - what we do
  - [ ] collapse appendix
- - [ ] definitions counting and numbering
- - [ ] get download pdf working
+ - [x] definitions counting and numbering
+ - [x] get download pdf working
  - [ ] add image source to quotes
  - [x] get audio + parser working
  - [x] add section numbering to h3 h4 headers
@@ -38,7 +38,7 @@
 
 ## New components
 [ ] progress bar
-[ ] citation box
+[x] citation box
 
 
 ## Organization

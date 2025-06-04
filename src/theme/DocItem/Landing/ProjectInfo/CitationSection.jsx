@@ -1,6 +1,6 @@
 // src/theme/DocItem/Landing/CitationSection.jsx - Copyable citation
 import React, { useState } from 'react';
-import { SmallTooltip } from '../../../components/UI/Tooltip';
+import { SmallTooltip } from '../../../../components/UI/Tooltip';
 import styles from './CitationSection.module.css';
 
 export default function CitationSection() {

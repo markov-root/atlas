@@ -1,10 +1,11 @@
 // src/theme/DocItem/Landing/ChapterLanding.jsx
 import React, { useState, useEffect } from 'react';
 import ChaptersHero from './ChaptersHero';
+import ProjectStory from './ProjectStory';
 import StreamHeader from './StreamHeader';
 import ChapterList from './ChapterList';
-import ImpactSection from './ImpactSection';
 import ProjectInfo from './ProjectInfo';
+import Testimonials from './Testimonials';
 import chaptersData from '../../../data/chapters.json';
 import styles from './ChapterLanding.module.css';
 
@@ -58,6 +59,9 @@ export default function ChapterLanding() {
         {/* Hero Section */}
         <ChaptersHero />
         
+        {/* Project Story Section - Why AI Safety matters + What we do */}
+        <ProjectStory />
+        
         {/* Chapter List Section */}
         <div className={styles.section}>
           {chaptersData.streams.map(stream => (
@@ -75,11 +79,10 @@ export default function ChapterLanding() {
           ))}
         </div>
         
-        {/* Impact Section - Standalone */}
-        <ImpactSection />
         
         {/* Project Information Section */}
         <ProjectInfo />
+        <Testimonials />
         
       </div>
     </div>
