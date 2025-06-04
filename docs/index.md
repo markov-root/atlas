@@ -5,16 +5,6 @@ slug: /
 
 # AI Safety Atlas
 
-Welcome to the AI Safety Atlas, a comprehensive guide to AI safety and alignment.
+This page should be replaced by the custom landing page.
 
-## Textbook Chapters
-
-- [Chapter 1](/chapters/01)
-- [Chapter 2](/chapters/02)
-- [Chapter 3](/chapters/03)
-- [Chapter 4](/chapters/04)
-- [Chapter 5](/chapters/05)
-- [Chapter 6](/chapters/06)
-- [Chapter 7](/chapters/07)
-- [Chapter 8](/chapters/08)
-- [Chapter 9](/chapters/09)
+If you see this, then there is an error.

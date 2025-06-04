@@ -1,12 +1,27 @@
-// src/theme/DocItem/Landing/ChapterList.jsx - Clean aligned layout without table styling
-import React, { useState } from 'react';
+// src/theme/DocItem/Landing/ChapterList.jsx - Clean implementation
+import React, { useState, useEffect } from 'react';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { SmallTooltip } from '../../../components/UI/Tooltip';
 import styles from './ChapterList.module.css';
 
 export default function ChapterList({ chapters }) {
   const [expandedChapters, setExpandedChapters] = useState(new Set());
+  const [isMobile, setIsMobile] = useState(false);
 
+  // Responsive detection
+  useEffect(() => {
+    const updateScreenSize = () => {
+      setIsMobile(window.innerWidth <= 700);
+    };
+
+    if (typeof window !== 'undefined') {
+      updateScreenSize();
+      window.addEventListener('resize', updateScreenSize);
+      return () => window.removeEventListener('resize', updateScreenSize);
+    }
+  }, []);
+
+  // Toggle chapter expansion
   const toggleExpanded = (chapterId) => {
     const newExpanded = new Set(expandedChapters);
     if (newExpanded.has(chapterId)) {
@@ -17,7 +32,9 @@ export default function ChapterList({ chapters }) {
     setExpandedChapters(newExpanded);
   };
 
-  const handleResourceClick = (url, resourceType) => {
+  // Handle resource clicks
+  const handleResourceClick = (e, url, resourceType) => {
+    e.stopPropagation();
     if (url) {
       if (resourceType === 'chapter') {
         window.location.href = url;
@@ -27,6 +44,22 @@ export default function ChapterList({ chapters }) {
     }
   };
 
+  // Handle title clicks (go to chapter)
+  const handleTitleClick = (e, chapterUrl) => {
+    e.stopPropagation();
+    if (chapterUrl) {
+      window.location.href = chapterUrl;
+    }
+  };
+
+  // Handle row clicks (expand description)
+  const handleRowClick = (chapterId, hasDescription) => {
+    if (hasDescription) {
+      toggleExpanded(chapterId);
+    }
+  };
+
+  // Resource definitions
   const resources = [
     { key: 'chapter', icon: '/img/icons/book.svg', label: 'Read', tooltip: 'Read Online' },
     { key: 'video', icon: '/img/icons/video.svg', label: 'Video', tooltip: 'Watch Video' },
@@ -36,128 +69,102 @@ export default function ChapterList({ chapters }) {
   ];
 
   return (
-    <div className={styles.listContainer}>
-      {/* Header */}
-      <div className={styles.header}>
-        <div className={styles.expandHeader}></div>
-        <div className={styles.numberHeader}>#</div>
-        <div className={styles.titleHeader}>Chapter</div>
-        {resources.map(resource => (
-          <div key={resource.key} className={styles.resourceHeader}>
-            {resource.label}
-          </div>
-        ))}
-      </div>
+    <div className={styles.container}>
+      
+      {/* Desktop Header */}
+      {!isMobile && (
+        <div className={styles.header}>
+          <div className={styles.expandCol}></div>
+          <div className={styles.numberCol}>#</div>
+          <div className={styles.titleCol}>Chapter</div>
+          {resources.map(resource => (
+            <div key={resource.key} className={styles.resourceCol}>
+              {resource.label}
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Chapter Rows */}
-      <div className={styles.chaptersContainer}>
+      <div className={styles.chapters}>
         {chapters.map(chapter => {
           const isExpanded = expandedChapters.has(chapter.id);
+          const hasDescription = !!chapter.description;
+          
           return (
-            <div key={chapter.id} className={styles.chapterGroup}>
-              <div className={styles.chapterRow}>
-                {/* Desktop layout - grid */}
-                <div className={styles.desktopLayout}>
-                  <div className={styles.expandCell}>
-                    {chapter.description && (
-                      <button 
-                        className={styles.expandButton}
-                        onClick={() => toggleExpanded(chapter.id)}
-                        aria-expanded={isExpanded}
-                      >
-                        {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
-                      </button>
-                    )}
-                  </div>
-                  <div className={styles.numberCell}>
-                    <span className={styles.chapterNumber}>
-                      {chapter.number.toString().padStart(2, '0')}
-                    </span>
-                  </div>
-                  <div className={styles.titleCell}>
-                    <div className={styles.titleContent}>
-                      <h3 className={styles.chapterTitle}>{chapter.title}</h3>
-                    </div>
-                  </div>
-                  {resources.map(resource => {
+            <div 
+              key={chapter.id} 
+              className={`${styles.chapterGroup} ${isExpanded ? styles.expanded : ''}`}
+            >
+              
+              {/* Main Row */}
+              <div 
+                className={`${styles.row} ${isMobile ? styles.mobileRow : styles.desktopRow} ${hasDescription ? styles.clickable : ''}`}
+                onClick={() => handleRowClick(chapter.id, hasDescription)}
+              >
+                
+                {/* Expand Button (if has description) */}
+                {hasDescription && (
+                  <button 
+                    className={styles.expandBtn}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleExpanded(chapter.id);
+                    }}
+                    aria-expanded={isExpanded}
+                  >
+                    {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                  </button>
+                )}
+                
+                {/* Chapter Number */}
+                <span className={styles.chapterNumber}>
+                  {chapter.number.toString().padStart(2, '0')}
+                </span>
+                
+                {/* Chapter Title */}
+                <h3 
+                  className={styles.chapterTitle}
+                  onClick={(e) => handleTitleClick(e, chapter.resources.chapter)}
+                >
+                  {chapter.title}
+                </h3>
+                
+                {/* Resource Buttons */}
+                {isMobile ? (
+                  // Mobile: Only Read button
+                  <SmallTooltip content={chapter.resources.chapter ? 'Read Online' : 'Read - Coming soon'}>
+                    <button
+                      className={`${styles.resourceBtn} ${chapter.resources.chapter ? styles.available : styles.unavailable}`}
+                      onClick={chapter.resources.chapter ? (e) => handleResourceClick(e, chapter.resources.chapter, 'chapter') : undefined}
+                      disabled={!chapter.resources.chapter}
+                    >
+                      <img src="/img/icons/book.svg" alt="Read" className={styles.resourceIcon} />
+                    </button>
+                  </SmallTooltip>
+                ) : (
+                  // Desktop: All resource buttons
+                  resources.map(resource => {
                     const isAvailable = !!chapter.resources[resource.key];
                     return (
-                      <div key={resource.key} className={styles.resourceCell}>
-                        <SmallTooltip 
-                          content={isAvailable ? resource.tooltip : `${resource.label} - Coming soon`}
+                      <SmallTooltip 
+                        key={resource.key}
+                        content={isAvailable ? resource.tooltip : `${resource.label} - Coming soon`}
+                      >
+                        <button
+                          className={`${styles.resourceBtn} ${isAvailable ? styles.available : styles.unavailable}`}
+                          onClick={isAvailable ? (e) => handleResourceClick(e, chapter.resources[resource.key], resource.key) : undefined}
+                          disabled={!isAvailable}
                         >
-                          <button
-                            className={`${styles.resourceButton} ${isAvailable ? styles.available : styles.unavailable}`}
-                            onClick={isAvailable ? () => handleResourceClick(chapter.resources[resource.key], resource.key) : undefined}
-                            disabled={!isAvailable}
-                          >
-                            <img 
-                              src={resource.icon} 
-                              alt={resource.label}
-                              className={styles.resourceIcon}
-                            />
-                          </button>
-                        </SmallTooltip>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Mobile layout - stacked */}
-                <div className={styles.mobileLayout}>
-                  <div className={styles.mobileTopRow}>
-                    <div className={styles.numberCell}>
-                      <span className={styles.chapterNumber}>
-                        {chapter.number.toString().padStart(2, '0')}
-                      </span>
-                    </div>
-                    <div className={styles.titleCell}>
-                      <div className={styles.titleContent}>
-                        <h3 className={styles.chapterTitle}>{chapter.title}</h3>
-                      </div>
-                    </div>
-                    {chapter.description && (
-                      <div className={styles.expandCell}>
-                        <button 
-                          className={styles.expandButton}
-                          onClick={() => toggleExpanded(chapter.id)}
-                          aria-expanded={isExpanded}
-                        >
-                          {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                          <img src={resource.icon} alt={resource.label} className={styles.resourceIcon} />
                         </button>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className={styles.mobileResourcesRow}>
-                    {resources.map(resource => {
-                      const isAvailable = !!chapter.resources[resource.key];
-                      return (
-                        <div key={resource.key} className={styles.resourceCell}>
-                          <SmallTooltip 
-                            content={isAvailable ? resource.tooltip : `${resource.label} - Coming soon`}
-                          >
-                            <button
-                              className={`${styles.resourceButton} ${isAvailable ? styles.available : styles.unavailable}`}
-                              onClick={isAvailable ? () => handleResourceClick(chapter.resources[resource.key], resource.key) : undefined}
-                              disabled={!isAvailable}
-                            >
-                              <img 
-                                src={resource.icon} 
-                                alt={resource.label}
-                                className={styles.resourceIcon}
-                              />
-                            </button>
-                          </SmallTooltip>
-                          <span className={styles.resourceLabel}>{resource.label}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                      </SmallTooltip>
+                    );
+                  })
+                )}
               </div>
 
-              {/* No separate expand button row for desktop anymore */}
+              {/* Description (expandable) */}
               {isExpanded && chapter.description && (
                 <div className={styles.descriptionRow}>
                   <div className={styles.description}>

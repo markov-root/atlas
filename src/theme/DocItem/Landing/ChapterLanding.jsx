@@ -1,20 +1,15 @@
-// src/theme/DocItem/Landing/ChapterLanding.jsx - Updated with table layout
+// src/theme/DocItem/Landing/ChapterLanding.jsx
 import React, { useState, useEffect } from 'react';
+import ChaptersHero from './ChaptersHero';
 import ChapterList from './ChapterList';
-import ProjectInfo from './ProjectInfo';
-import QuotesSection from './QuotesSection';
 import chaptersData from '../../../data/chapters.json';
 import styles from './ChapterLanding.module.css';
 
 export default function ChapterLanding() {
   const [mainWidth, setMainWidth] = useState(0);
   const [isReady, setIsReady] = useState(false);
-  
-  // COMPONENT TOGGLES - Turn sections on/off here
-  const SHOW_PROJECT_INFO = false;
-  const SHOW_QUOTES = false;
 
-  // Measure bounds - EXACT same technique as ChapterHeaderRenderer
+  // Measure bounds - same technique as your headers
   useEffect(() => {
     const updateMainWidth = () => {
       const mainContainer = document.querySelector('.docMainContainer_TBSr');
@@ -26,10 +21,8 @@ export default function ChapterLanding() {
       }
     };
 
-    // Try immediately
     updateMainWidth();
     
-    // If not ready, try a few more times with short delays
     if (!isReady) {
       const attempts = [50, 100, 200];
       attempts.forEach(delay => {
@@ -37,12 +30,11 @@ export default function ChapterLanding() {
       });
     }
     
-    // Also listen for resize events
     window.addEventListener('resize', updateMainWidth);
     return () => window.removeEventListener('resize', updateMainWidth);
   }, [isReady]);
 
-  // Landing bounds container - EXACT same technique as ChapterHeaderRenderer
+  // Landing bounds container
   const landingStyle = {
     position: 'relative',
     left: '50%',
@@ -51,7 +43,7 @@ export default function ChapterLanding() {
     margin: '0'
   };
 
-  // Render nothing while measuring - no visible loading state
+  // Wait for measurements
   if (!isReady || mainWidth <= 0) {
     return null;
   }
@@ -60,14 +52,11 @@ export default function ChapterLanding() {
     <div style={landingStyle}>
       <div className={styles.landingContainer}>
         
-        {/* Project Info Section */}
-        {SHOW_PROJECT_INFO && <ProjectInfo />}
+        {/* Hero Section */}
+        <ChaptersHero />
         
-        {/* Quotes Section */}
-        {SHOW_QUOTES && <QuotesSection />}
-
-        {/* Chapter Streams */}
-        <div className={styles.streamsContainer}>
+        {/* Chapter List Section */}
+        <div className={styles.section}>
           {chaptersData.streams.map(stream => (
             <div key={stream.id} className={styles.streamSection}>
               
@@ -86,6 +75,11 @@ export default function ChapterLanding() {
             </div>
           ))}
         </div>
+        
+        {/* Future sections - just comment out individual lines */}
+        {/* <HeroSection /> */}
+        {/* <AboutSection /> */}
+        
       </div>
     </div>
   );

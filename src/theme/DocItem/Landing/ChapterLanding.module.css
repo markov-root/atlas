@@ -1,4 +1,4 @@
-/* 2 columns on medium screens *//* src/theme/DocItem/Landing/ChapterLanding.module.css - Clean minimal layout */
+/* src/theme/DocItem/Landing/ChapterLanding.module.css - Minimal clean layout */
 
 .landingContainer {
   width: 100%;
@@ -8,33 +8,39 @@
   min-height: 100vh;
 }
 
-/* Streams Container - Clean spacing */
-.streamsContainer {
+[data-theme='dark'] .landingContainer {
+  background: var(--atlas-background, #121212);
+}
+
+/* Section wrapper - for future modular sections */
+.section {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 60px 20px;
+  padding: 40px 20px;
   box-sizing: border-box;
 }
 
+/* Stream section (for chapter streams) */
 .streamSection {
-  margin-bottom: 100px;
-}
-
-.streamSection:last-child {
   margin-bottom: 60px;
 }
 
+.streamSection:last-child {
+  margin-bottom: 20px;
+}
+
+/* Stream header */
 .streamHeader {
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   text-align: center;
 }
 
 .streamTitle {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   font-weight: 700;
   color: var(--atlas-primary, #1971c2);
-  margin: 0 0 20px 0;
+  margin: 0 0 16px 0;
   font-family: var(--atlas-font-heading, Inter, sans-serif);
 }
 
@@ -54,108 +60,28 @@
   color: var(--atlas-text-secondary, #adb5bd);
 }
 
-/* Controls Section - removed */
-
-/* Responsive Grid - Optimized for smaller cards */
-.chaptersGrid {
-  display: grid;
-  gap: 25px;
-  justify-items: center;
-  width: 100%;
-  
-  /* 3 columns on large screens */
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Force max 3 columns even on very wide screens */
-@media (min-width: 1400px) {
-  .chaptersGrid {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 1200px;
-  }
-}
-
-/* 2 columns on medium screens */
-@media (max-width: 1100px) {
-  .chaptersGrid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 800px;
-    gap: 25px;
-  }
-}
-
 /* Responsive adjustments */
-@media (max-width: 900px) {
-  .streamsContainer {
-    padding: 40px 16px;
+@media (max-width: 768px) {
+  .section {
+    padding: 30px 16px;
   }
   
   .streamSection {
-    margin-bottom: 80px;
+    margin-bottom: 40px;
   }
   
   .streamTitle {
-    font-size: 2rem;
+    font-size: 1.875rem;
   }
   
   .streamDescription {
     font-size: 1rem;
   }
-  
-  .chaptersGrid {
-    gap: 20px;
-  }
 }
 
-/* 1 column on small screens */
-@media (max-width: 600px) {
-  .streamsContainer {
-    padding: 30px 12px;
-  }
-  
-  .chaptersGrid {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-    gap: 20px;
-  }
-  
-  .streamSection {
-    margin-bottom: 60px;
-  }
-  
-  .streamHeader {
-    margin-bottom: 30px;
-  }
-  
-  .streamTitle {
-    font-size: 1.75rem;
-  }
-  
-  .streamDescription {
-    font-size: 0.95rem;
-  }
-  
-  .controlsSection {
-    margin-top: 20px;
-  }
-  
-  .descriptionToggleButton {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.85rem;
-  }
-}
-
-/* Very small screens */
-@media (max-width: 400px) {
-  .streamsContainer {
-    padding: 20px 8px;
-  }
-  
-  .chaptersGrid {
-    max-width: 320px;
-    gap: 16px;
+@media (max-width: 480px) {
+  .section {
+    padding: 20px 12px;
   }
   
   .streamTitle {
@@ -163,6 +89,6 @@
   }
   
   .streamDescription {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 }
