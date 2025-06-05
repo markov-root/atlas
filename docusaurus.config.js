@@ -4,6 +4,7 @@ import { themeConfig } from './config/theme.mjs';
 import { presetsConfig } from './config/presets.mjs';
 import { pluginsConfig } from './config/plugins.mjs';
 import { stylesheetsConfig } from './config/stylesheets.mjs';
+import { analyticsConfig } from './config/analytics.mjs';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -18,7 +19,10 @@ const config = {
   
   // External stylesheets
   stylesheets: stylesheetsConfig,
-  
+
+  // Analytics scripts
+  scripts: analyticsConfig,
+
   // Theme configuration
   themeConfig: themeConfig,
 };
