@@ -1,15 +1,14 @@
 // config/metadata.mjs
-
 export const metadata = {
   title: 'AI Safety Atlas',
   tagline: 'A comprehensive guide to AI safety and alignment',
   favicon: 'img/favicon.ico',
   
-  // GitHub User Pages - always use baseUrl: /
-  url: 'https://markov-root.github.io',
+  // Change to your custom domain
+  url: 'https://ai-safety-atlas.com',  // ← Changed from markov-root.github.io
   baseUrl: '/',
   
-  // GitHub deployment settings
+  // GitHub deployment settings - keep the same
   organizationName: 'markov-root',
   projectName: 'markov-root.github.io',
   deploymentBranch: 'gh-pages',
