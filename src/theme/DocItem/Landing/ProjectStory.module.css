@@ -1,4 +1,4 @@
-/* src/theme/DocItem/Landing/ProjectStory.module.css - Clean minimal Q&A layout */
+/* src/theme/DocItem/Landing/ProjectStory.module.css - Redesigned with cleaner quotes */
 
 .storyContainer {
   position: relative;
@@ -22,51 +22,46 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 4rem;
 }
 
-/* Question Sections */
-.questionSection {
+/* PRIMARY SECTION - Fixed height only on desktop */
+.primarySection {
   width: 100%;
-}
-
-.questionContent {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 1fr;
   gap: 4rem;
   align-items: start;
+  height: 500px; /* Fixed height for desktop only */
 }
 
-/* Question Side */
-.questionSide {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 2rem;
-}
-
-.question {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--atlas-primary, #1971c2);
-  margin: 0;
-  line-height: 1.2;
-  font-family: var(--atlas-font-heading, 'Inter', sans-serif);
-  text-align: right;
-  letter-spacing: -0.01em;
-}
-
-[data-theme='dark'] .question {
-  color: var(--atlas-primary-lighter, #74c0fc);
-}
-
-/* Answer Side */
-.answerSide {
+.primaryContent {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-.answerText {
+.primaryTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--atlas-primary, #1971c2);
+  margin: 0;
+  line-height: 1.2;
+  font-family: var(--atlas-font-heading, 'Inter', sans-serif);
+  letter-spacing: -0.01em;
+}
+
+[data-theme='dark'] .primaryTitle {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.primaryDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.primaryDescription p {
   font-size: 1.125rem;
   line-height: 1.7;
   color: var(--atlas-text, #212529);
@@ -75,123 +70,126 @@
   font-family: var(--atlas-font-body, 'Inter', sans-serif);
 }
 
-[data-theme='dark'] .answerText {
+[data-theme='dark'] .primaryDescription p {
   color: var(--atlas-text, #e9ecef);
 }
 
-.problemText {
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: var(--atlas-text, #212529);
-  margin: 0;
-  font-weight: 400;
-  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+.solutionStatement {
+  font-size: 1.125rem !important; /* Same as other paragraphs */
+  font-weight: 400 !important;
+  line-height: 1.7 !important; /* Same line height */
 }
 
-[data-theme='dark'] .problemText {
-  color: var(--atlas-text, #e9ecef);
-}
-
-/* Solution Highlight - Just bold and underlined */
-.solutionHighlight {
-  font-size: 1.5rem;
-  font-weight: 700;
+.solutionStatement strong {
   color: var(--atlas-primary, #1971c2);
-  margin: 0;
-  line-height: 1.3;
-  font-family: var(--atlas-font-heading, 'Inter', sans-serif);
-  text-decoration: underline;
-  text-decoration-color: var(--atlas-primary, #1971c2);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 0.3em;
+  font-weight: 600;
 }
 
-[data-theme='dark'] .solutionHighlight {
+[data-theme='dark'] .solutionStatement strong {
   color: var(--atlas-primary-lighter, #74c0fc);
-  text-decoration-color: var(--atlas-primary-lighter, #74c0fc);
 }
 
-/* Expert Quotes - Clean minimal style inspired by Quote component */
-.expertQuotes {
+/* EXPERT QUOTE CONTAINER - Flexible on mobile */
+.expertQuoteContainer {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
+  align-items: center;
+  height: 100%; /* Fill available space on desktop */
 }
 
-.expertQuote {
+.quoteCard {
   background: transparent;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Quote container - inspired by your Quote component */
-.quoteContainer {
-  background: var(--atlas-background, #ffffff);
-  border-radius: 16px;
-  display: flex;
-  align-items: stretch;
-  min-height: 160px;
-  overflow: hidden;
-}
-
-[data-theme='dark'] .quoteContainer {
-  background: var(--atlas-background-alt, #1e1e1e);
-}
-
-/* Image section - full left side */
-.imageSection {
-  width: 120px;
-  flex-shrink: 0;
+  border-radius: 12px;
+  padding: 2rem;
   position: relative;
-}
-
-.expertImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-}
-
-/* Quote content section */
-.quoteContent {
-  flex: 1;
-  padding: 1.5rem;
+  box-shadow: none;
+  border: none;
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  flex: 1; /* Take up available space on desktop */
+}
+
+.quoteCard:hover {
+  transform: translateY(-3px);
+}
+
+/* Quote icon - positioned like testimonials */
+.quoteIconWrapper {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  width: 36px;
+  height: 36px;
+  background-color: var(--atlas-primary, #1971c2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-theme='dark'] .quoteIconWrapper {
+  background-color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.quoteIcon {
+  color: white;
+  width: 20px;
+  height: 20px;
 }
 
 .quote {
-  font-size: 1rem;
+  font-size: 1.125rem; /* Bigger quote text */
   line-height: 1.6;
+  margin: 1rem 0 1.5rem 0; /* Added top margin to clear the quote icon */
   color: var(--atlas-text, #212529);
-  margin: 0 0 1rem 0;
   font-style: italic;
-  flex: 1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  flex: 1; /* Take up available space */
 }
 
 [data-theme='dark'] .quote {
   color: var(--atlas-text, #e9ecef);
 }
 
-/* Quote footer */
+/* Quote footer - redesigned like testimonials */
 .quoteFooter {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   gap: 1rem;
 }
 
-.expertInfo {
+.avatarWrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--atlas-primary-lighter, #74c0fc);
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.authorInfo {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .expertName {
   font-size: 1rem;
   font-weight: 600;
   color: var(--atlas-primary, #1971c2);
-  margin-bottom: 0.25rem;
+  margin: 0;
   line-height: 1.2;
 }
 
@@ -200,32 +198,20 @@
 }
 
 .expertTitle {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--atlas-text-secondary, #6c757d);
   line-height: 1.3;
+  margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 [data-theme='dark'] .expertTitle {
   color: var(--atlas-text-secondary, #adb5bd);
 }
 
-/* Quote Source - Essential citations */
 .quoteSource {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.25rem;
-  flex-shrink: 0;
-}
-
-.sourceDate {
-  font-weight: 600;
-  color: var(--atlas-text-secondary, #6c757d);
-  font-size: 0.75rem;
-}
-
-[data-theme='dark'] .sourceDate {
-  color: var(--atlas-text-secondary, #adb5bd);
+  margin-top: 0.25rem;
 }
 
 .sourceLink {
@@ -247,6 +233,102 @@
 
 [data-theme='dark'] .sourceLink:hover {
   color: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+/* Quote rotation indicators */
+.quoteIndicators {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: var(--atlas-border-color, #e9ecef);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator:hover {
+  background: var(--atlas-primary-light, #339af0);
+}
+
+.activeIndicator {
+  background: var(--atlas-primary, #1971c2);
+  transform: scale(1.2);
+}
+
+[data-theme='dark'] .indicator {
+  background: var(--atlas-border-color, #373737);
+}
+
+[data-theme='dark'] .indicator:hover {
+  background: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .activeIndicator {
+  background: var(--atlas-primary-lighter, #74c0fc);
+}
+
+/* SECONDARY SECTION - Simplified Q&A */
+.secondarySection {
+  width: 100%;
+  padding-top: 2rem;
+  border-top: 1px solid var(--atlas-border-color, #e9ecef);
+}
+
+[data-theme='dark'] .secondarySection {
+  border-top-color: var(--atlas-border-color, #373737);
+}
+
+.questionContent {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.questionSide {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 2rem;
+}
+
+.question {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--atlas-primary, #1971c2);
+  margin: 0;
+  line-height: 1.2;
+  font-family: var(--atlas-font-heading, 'Inter', sans-serif);
+  text-align: right;
+}
+
+[data-theme='dark'] .question {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.answerSide {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.answerText {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--atlas-text, #212529);
+  margin: 0;
+  font-weight: 400;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+}
+
+[data-theme='dark'] .answerText {
+  color: var(--atlas-text, #e9ecef);
 }
 
 /* Credibility link */
@@ -277,11 +359,24 @@
   }
   
   .storyContent {
-    gap: 4rem;
+    gap: 3rem;
+  }
+  
+  .primarySection {
+    gap: 3rem;
+    height: 450px; /* Keep fixed height for tablet */
+  }
+  
+  .primaryTitle {
+    font-size: 2rem;
+  }
+  
+  .primaryDescription p {
+    font-size: 1.0625rem;
   }
   
   .questionContent {
-    gap: 3rem;
+    gap: 2.5rem;
   }
   
   .questionSide {
@@ -289,16 +384,36 @@
   }
   
   .question {
-    font-size: 2.25rem;
+    font-size: 1.75rem;
   }
   
-  .answerText,
-  .problemText {
-    font-size: 1.0625rem;
+  /* Better quote handling at medium sizes */
+  .expertQuoteContainer {
+    height: 100%; /* Fill available space */
   }
   
-  .solutionHighlight {
-    font-size: 1.375rem;
+  .quoteCard {
+    padding: 1.5rem;
+    flex: 1; /* Fill available space */
+  }
+  
+  .quote {
+    font-size: 1rem; /* Slightly smaller on tablet */
+    line-height: 1.5;
+    margin: 1rem 0 1.25rem 0; /* Keep top margin on tablet */
+  }
+  
+  .expertName {
+    font-size: 0.9rem;
+  }
+  
+  .expertTitle {
+    font-size: 0.8rem;
+  }
+  
+  .avatarWrapper {
+    width: 45px;
+    height: 45px;
   }
 }
 
@@ -311,9 +426,25 @@
     gap: 3rem;
   }
   
+  .primarySection {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    height: auto; /* Remove fixed height on mobile - let content determine height */
+  }
+  
+  .primaryTitle {
+    font-size: 1.875rem;
+    text-align: center;
+  }
+  
+  .primaryDescription p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
   .questionContent {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
     text-align: center;
   }
   
@@ -323,52 +454,49 @@
   }
   
   .question {
-    font-size: 2rem;
+    font-size: 1.75rem;
     text-align: center;
   }
   
-  .answerText,
-  .problemText {
+  .answerText {
     font-size: 1rem;
     line-height: 1.6;
   }
   
-  .solutionHighlight {
-    font-size: 1.25rem;
+  /* Mobile quote layout - let content determine height */
+  .expertQuoteContainer {
+    height: auto; /* Auto height on mobile */
+    min-height: 200px; /* Just a small minimum */
   }
   
-  .expertQuotes {
-    gap: 1.5rem;
-  }
-  
-  .quoteContainer {
-    flex-direction: column;
-    min-height: auto;
-  }
-  
-  .imageSection {
-    width: 100%;
-    height: 120px;
-    flex-shrink: 0;
-  }
-  
-  .quoteContent {
-    padding: 1.25rem;
+  .quoteCard {
+    padding: 1.5rem;
+    max-width: 100%;
+    flex: none; /* Don't stretch on mobile */
+    min-height: auto; /* Let content determine height */
   }
   
   .quote {
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    margin: 1rem 0 1.25rem 0; /* Keep top margin on mobile */
+    line-height: 1.5;
   }
   
   .quoteFooter {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
+    gap: 0.875rem;
   }
   
-  .quoteSource {
-    align-items: flex-start;
+  .expertName {
+    font-size: 0.875rem;
+  }
+  
+  .expertTitle {
+    font-size: 0.75rem;
+  }
+  
+  .avatarWrapper {
+    width: 45px;
+    height: 45px;
   }
 }
 
@@ -381,53 +509,91 @@
     gap: 2.5rem;
   }
   
-  .question {
-    font-size: 1.75rem;
-    line-height: 1.3;
+  .primaryTitle {
+    font-size: 1.625rem;
+    line-height: 1.2;
   }
   
-  .answerText,
-  .problemText {
+  .primaryDescription p {
     font-size: 0.9375rem;
     line-height: 1.5;
   }
   
-  .solutionHighlight {
-    font-size: 1.125rem;
+  .question {
+    font-size: 1.5rem;
   }
   
-  .expertQuotes {
-    gap: 1.25rem;
+  .answerText {
+    font-size: 0.9375rem;
   }
   
-  .quoteContainer {
-    min-height: auto;
+  .primarySection {
+    height: auto; /* Remove fixed height on small mobile */
   }
   
-  .imageSection {
-    height: 100px;
+  /* Small mobile adjustments - natural height */
+  .expertQuoteContainer {
+    height: auto; /* Auto height on small mobile */
+    min-height: 180px; /* Even smaller minimum */
   }
   
-  .quoteContent {
-    padding: 1rem;
+  .quoteCard {
+    padding: 1.25rem;
+    flex: none; /* Don't stretch on small mobile */
+    min-height: auto; /* Let content determine height */
   }
   
   .quote {
     font-size: 0.875rem;
-    margin-bottom: 0.75rem;
-  }
-  
-  .expertName {
-    font-size: 0.9rem;
-  }
-  
-  .expertTitle {
-    font-size: 0.7rem;
+    margin: 1rem 0 1rem 0; /* Keep top margin on small mobile */
+    line-height: 1.4;
   }
   
   .quoteFooter {
-    gap: 0.5rem;
+    gap: 0.75rem;
+  }
+  
+  .expertName {
+    font-size: 0.8125rem;
+  }
+  
+  .expertTitle {
+    font-size: 0.6875rem;
+    line-height: 1.2;
+  }
+  
+  .avatarWrapper {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .sourceLink {
+    font-size: 0.6875rem;
   }
 }
 
+/* Accessibility and motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .quoteCard {
+    transition: none;
+  }
+  
+  .indicator {
+    transition: none;
+  }
+  
+  .quoteCard:hover {
+    transform: none;
+  }
+}
 
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .quoteCard {
+    border: 1px solid currentColor;
+  }
+  
+  .avatarWrapper {
+    border-width: 3px;
+  }
+}

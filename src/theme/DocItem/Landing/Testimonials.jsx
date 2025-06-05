@@ -6,7 +6,7 @@ import { Quote } from 'lucide-react';
 
 function TestimonialCard({ quote, name, position, image, featured = false }) {
   // Use placeholder image if none is provided
-  const imageSrc = image || 'img/testimonials/placeholder.jpg';
+  const imageSrc = image || '../../img/testimonials/placeholder.jpg';
   
   return (
     <div className={`${styles.testimonialCard} ${featured ? styles.featuredCard : ''}`}>

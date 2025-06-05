@@ -1,149 +1,144 @@
-// src/theme/DocItem/Landing/ProjectStory.jsx
-import React from 'react';
+// src/theme/DocItem/Landing/ProjectStory.jsx - Flipped Framework with Bold Claims
+import React, { useState, useEffect } from 'react';
 import styles from './ProjectStory.module.css';
 
+// Single rotating expert quote data
+const EXPERT_QUOTES = [
+  {
+    quote: "We have agency. It's not too late to steer the evolution of societies and humanity in a positive direction. But for that, we need enough people who understand both the advantages and the risks.",
+    name: "Yoshua Bengio",
+    title: "Most cited computer scientist globally, Turing Award Winner",
+    image: "/img/quotes/yoshua_bengio.jpg",
+    source: "CNBC Interview",
+    year: "2024",
+    url: "https://www.cnbc.com/2024/11/21/will-ai-replace-humans-yoshua-bengio-warns-of-artificial-intelligence-risks.html"
+  },
+  {
+    quote: "We're dealing with things we've never dealt with before. And normally, the first time you deal with something totally novel, you get it wrong. And we can't afford to get it wrong.",
+    name: "Geoffrey Hinton",
+    title: "Turing Award Winner 2018, \"Godfather of AI\"",
+    image: "/img/quotes/geoffrey_hinton.jpg",
+    source: "CBS 60 Minutes Interview",
+    year: "2023",
+    url: "https://www.cbsnews.com/news/geoffrey-hinton-ai-dangers-60-minutes-transcript/"
+  },
+  {
+    quote: "It's obviously important that any superintelligence anyone builds does not go rogue... It's an unsolved problem.",
+    name: "Ilya Sutskever",
+    title: "Co-Founder Safe Superintelligence Inc., former Chief Scientist at OpenAI",
+    image: "/img/quotes/ilya_sutskever.jpg",
+    source: "MIT Technology Review",
+    year: "2023",
+    url: "https://www.technologyreview.com/2023/10/26/1082398/exclusive-ilya-sutskever-openais-chief-scientist-on-his-hopes-and-fears-for-the-future-of-ai/"
+  }
+];
+
 export default function ProjectStory() {
+  const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
+
+  // Auto-rotate quotes
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentQuoteIndex((prev) => (prev + 1) % EXPERT_QUOTES.length);
+    }, 6000); // Change every 6 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const currentQuote = EXPERT_QUOTES[currentQuoteIndex];
+
   return (
     <div className={styles.storyContainer}>
       <div className={styles.storyContent}>
         
-        {/* First Q&A: Why do you need to understand AI Safety? */}
-        <div className={styles.questionSection}>
-          <div className={styles.questionContent}>
-            <div className={styles.questionSide}>
-              <h2 className={styles.question}>
-                Why do you need to understand AI Safety?
-              </h2>
-            </div>
+        {/* Primary Message: Bold claim and solution */}
+        <div className={styles.primarySection}>
+          <div className={styles.primaryContent}>
+            <h2 className={styles.primaryTitle}>
+              The field that will determine humanity's future, explained systematically.
+            </h2>
             
-            <div className={styles.answerSide}>
-              <p className={styles.answerText}>
-                We're living through the most consequential technological transition in human history. 
-                AI systems are rapidly approaching human capabilities across domains that were unthinkable 
-                just years ago. Some of the <a href="https://scholar.google.com/citations?hl=en&view_op=search_authors&mauthors=label%3Aartificial_intelligence+OR+label%3AAI&btnG=" target="_blank" rel="noopener noreferrer" className={styles.credibilityLink}>most cited AI researchers</a> are sounding urgent warnings about the path ahead.
+            <div className={styles.primaryDescription}>
+              <p>
+                Some of the <a href="https://scholar.google.com/citations?hl=en&view_op=search_authors&mauthors=label%3Aartificial_intelligence+OR+label%3AAI&btnG=" target="_blank" rel="noopener noreferrer" className={styles.credibilityLink}>most cited AI researchers</a> are 
+                sounding urgent warnings about the path ahead. But the knowledge you need to understand 
+                AI safety is scattered across hundreds of research papers, blog posts, and technical discussions.
               </p>
               
-              {/* Expert Quotes - Clean minimal style */}
-              <div className={styles.expertQuotes}>
-                
-                <div className={styles.expertQuote}>
-                  <div className={styles.quoteContainer}>
-                    <div className={styles.imageSection}>
-                      <img 
-                        src="/img/quotes/yoshua_bengio.jpg" 
-                        alt="Yoshua Bengio" 
-                        className={styles.expertImage}
-                      />
-                    </div>
-                    <div className={styles.quoteContent}>
-                      <blockquote className={styles.quote}>
-                        "We have agency. It's not too late to steer the evolution of societies and humanity in a positive and beneficial direction. But for that, we need enough people who understand both the advantages and the risks, and we need enough people to work on the solutions. And the solutions can be technological, they could be political... policy, but we need enough effort in those directions right now."
-                                  </blockquote>
-                      <div className={styles.quoteFooter}>
-                        <div className={styles.expertInfo}>
-                          <div className={styles.expertName}>Yoshua Bengio</div>
-                          <div className={styles.expertTitle}>Most cited computer scientist globally, Turing Award Winner, Scientific Director of Mila</div>
-                        </div>
-                        <div className={styles.quoteSource}>
-                          <span className={styles.sourceDate}>2024</span>
-                          <a href="https://www.cnbc.com/2024/11/21/will-ai-replace-humans-yoshua-bengio-warns-of-artificial-intelligence-risks.html" target="_blank" rel="noopener noreferrer" className={styles.sourceLink}>
-                            CNBC Interview
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className={styles.expertQuote}>
-                  <div className={styles.quoteContainer}>
-                    <div className={styles.imageSection}>
-                      <img 
-                        src="/img/quotes/geoffrey_hinton.jpg" 
-                        alt="Geoffrey Hinton" 
-                        className={styles.expertImage}
-                      />
-                    </div>
-                    <div className={styles.quoteContent}>
-                      <blockquote className={styles.quote}>
-                        "We're dealing with things we've never dealt with before. And normally, the first time you deal with something totally novel, you get it wrong. And we can't afford to get it wrong."
-                      </blockquote>
-                      <div className={styles.quoteFooter}>
-                        <div className={styles.expertInfo}>
-                          <div className={styles.expertName}>Geoffrey Hinton</div>
-                          <div className={styles.expertTitle}>Turing Award Winner 2018, "Godfather of AI"</div>
-                        </div>
-                        <div className={styles.quoteSource}>
-                          <span className={styles.sourceDate}>2023</span>
-                          <a href="https://www.cbsnews.com/news/geoffrey-hinton-ai-dangers-60-minutes-transcript/" target="_blank" rel="noopener noreferrer" className={styles.sourceLink}>
-                            CBS 60 Minutes Interview
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className={styles.expertQuote}>
-                  <div className={styles.quoteContainer}>
-                    <div className={styles.imageSection}>
-                      <img 
-                        src="/img/quotes/ilya_sutskever.jpg" 
-                        alt="Ilya Sutskever" 
-                        className={styles.expertImage}
-                      />
-                    </div>
-                    <div className={styles.quoteContent}>
-                      <blockquote className={styles.quote}>
-                        "It's obviously important that any superintelligence anyone builds does not go rogue... It's an unsolved problem."
-                      </blockquote>
-                      <div className={styles.quoteFooter}>
-                        <div className={styles.expertInfo}>
-                          <div className={styles.expertName}>Ilya Sutskever</div>
-                          <div className={styles.expertTitle}>Co-Founder and former Chief Scientist at OpenAI, Co-Founder Safe Superintelligence Inc.</div>
-                        </div>
-                        <div className={styles.quoteSource}>
-                          <span className={styles.sourceDate}>2023</span>
-                          <a href="https://www.technologyreview.com/2023/10/26/1082398/exclusive-ilya-sutskever-openais-chief-scientist-on-his-hopes-and-fears-for-the-future-of-ai/" target="_blank" rel="noopener noreferrer" className={styles.sourceLink}>
-                            MIT Technology Review
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
+              <p className={styles.solutionStatement}>
+                <strong>That's why we created the AI Safety Atlas.</strong> We perform the essential <a href="https://distill.pub/2017/research-debt/" target="_blank" rel="noopener noreferrer" className={styles.credibilityLink}>interpretive labor</a>—transforming scattered AI
+                safety research into systematic, connected learning paths.
+                Hundreds of students globally across multiple universities now use the
+                Atlas to go from curious to well-informed in weeks, not years.
+              </p>
+            </div>
+          </div>
+          
+          {/* Single rotating expert quote - redesigned like testimonials */}
+          <div className={styles.expertQuoteContainer}>
+            <div className={styles.quoteCard}>
+              {/* Quote icon */}
+              <div className={styles.quoteIconWrapper}>
+                <svg className={styles.quoteIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z" fill="currentColor"/>
+                </svg>
               </div>
               
-              <p className={styles.problemText}>
-                Whether you work in policy, engineering, business, or are just a concerned citizen— the information you need is currently scattered across hundreds of research papers, blog posts, and technical discussions.
-              </p>
+              <blockquote className={styles.quote}>
+                {currentQuote.quote}
+              </blockquote>
               
-              <p className={styles.solutionHighlight}>
-                That's why we are creating the AI Safety Atlas.
-              </p>
+              <div className={styles.quoteFooter}>
+                <div className={styles.avatarWrapper}>
+                  <img 
+                    src={currentQuote.image} 
+                    alt={currentQuote.name} 
+                    className={styles.avatar}
+                  />
+                </div>
+                
+                <div className={styles.authorInfo}>
+                  <div className={styles.expertName}>{currentQuote.name}</div>
+                  <div className={styles.expertTitle}>{currentQuote.title}</div>
+                  <div className={styles.quoteSource}>
+                    <a href={currentQuote.url} target="_blank" rel="noopener noreferrer" className={styles.sourceLink}>
+                      {currentQuote.source}, {currentQuote.year}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Quote rotation indicators */}
+            <div className={styles.quoteIndicators}>
+              {EXPERT_QUOTES.map((_, index) => (
+                <button
+                  key={index}
+                  className={`${styles.indicator} ${index === currentQuoteIndex ? styles.activeIndicator : ''}`}
+                  onClick={() => setCurrentQuoteIndex(index)}
+                  aria-label={`View quote ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Second Q&A: What is the AI Safety Atlas? */}
-        <div className={styles.questionSection}>
+        {/* Secondary Q&A: Who this is for */}
+        <div className={styles.secondarySection}>
           <div className={styles.questionContent}>
             <div className={styles.questionSide}>
-              <h2 className={styles.question}>
-                What is the AI Safety Atlas?
-              </h2>
+              <h3 className={styles.question}>
+                Stop piecing together AI safety from scattered sources.
+              </h3>
             </div>
             
             <div className={styles.answerSide}>
               <p className={styles.answerText}>
-                We transform scattered AI safety knowledge into systematic explanations. The Atlas performs 
-                the essential <strong>interpretive labor</strong>—creating clear, connected pathways through complex 
-                research so new contributors can understand and advance safety work instead of spending 
-                months piecing together the landscape. We've helped hundreds of students globally across multiple universities 
-                build a foundational understanding of safety.
+                Whether you're in policy, engineering, business, or academia—the Atlas gives you 
+                the complete picture. We've structured the most important knowledge in the field 
+                so you can build genuine understanding instead of collecting random facts from 
+                scattered sources.
               </p>
-              
             </div>
           </div>
         </div>
