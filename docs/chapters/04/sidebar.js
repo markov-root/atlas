@@ -34,6 +34,141 @@ module.exports = {
   },
   { type: "link", label: "4.2.2 Data Governance", href: "/chapters/04/02#02" }
   ]
+},
+    {
+  type: "category",
+  label: "4.3 Key issues and mitigations",
+  link: {
+    type: "doc",
+    id: "chapters/04/3"
+  },
+  items: [
+  { type: "link", label: "4.3.1 Competition", href: "/chapters/04/03#01" },
+  { type: "link", label: "4.3.2 Proliferation", href: "/chapters/04/03#02" },
+  { type: "link", label: "4.3.3 Uncertainty", href: "/chapters/04/03#03" },
+  { type: "link", label: "4.3.4 Accountability", href: "/chapters/04/03#04" },
+  { type: "link", label: "4.3.5 Allocation", href: "/chapters/04/03#05" }
+  ]
+},
+    {
+  type: "category",
+  label: "4.4 Corporate Governance",
+  link: {
+    type: "doc",
+    id: "chapters/04/4"
+  },
+  items: [
+  {
+    type: "category",
+    label: "4.4.1 Frontier Safety Frameworks",
+    link: {
+      type: "generated-index",
+      title: "4.4.1 Frontier Safety Frameworks",
+      slug: "/chapters/04/04#01"
+    },
+    items: [
+    { type: "link", label: "4.4.1.1 Anthropic's Responsible Scaling Policy (RSP)", href: "/chapters/04/04#01-01" },
+    { type: "link", label: "4.4.1.2 OpenAI's Preparedness Framework", href: "/chapters/04/04#01-02" }
+    ]
+  },
+  {
+    type: "category",
+    label: "4.4.2 Policy options",
+    link: {
+      type: "generated-index",
+      title: "4.4.2 Policy options",
+      slug: "/chapters/04/04#02"
+    },
+    items: [
+    { type: "link", label: "4.4.2.1 Risk Assessment Methods", href: "/chapters/04/04#02-01" },
+    { type: "link", label: "4.4.2.2 The Three Lines of Defense", href: "/chapters/04/04#02-02" },
+    { type: "link", label: "4.4.2.3 Coordinated Pausing", href: "/chapters/04/04#02-03" },
+    { type: "link", label: "4.4.2.4 Deployment Corrections", href: "/chapters/04/04#02-04" },
+    { type: "link", label: "4.4.2.5 Towards Industry-Wide Best Practices", href: "/chapters/04/04#02-05" }
+    ]
+  }
+  ]
+},
+    {
+  type: "category",
+  label: "4.5 National Governance",
+  link: {
+    type: "doc",
+    id: "chapters/04/5"
+  },
+  items: [
+  { type: "link", label: "4.5.1 The need for national governance", href: "/chapters/04/05#01" },
+  {
+    type: "category",
+    label: "4.5.2 Current initiatives",
+    link: {
+      type: "generated-index",
+      title: "4.5.2 Current initiatives",
+      slug: "/chapters/04/05#02"
+    },
+    items: [
+    { type: "link", label: "4.5.2.1 AI Safety Institutes", href: "/chapters/04/05#02-01" },
+    { type: "link", label: "4.5.2.2 The EU AI Act", href: "/chapters/04/05#02-02" },
+    { type: "link", label: "4.5.2.3 The US Executive Order on AI", href: "/chapters/04/05#02-03" }
+    ]
+  },
+  {
+    type: "category",
+    label: "4.5.3 Policy options",
+    link: {
+      type: "generated-index",
+      title: "4.5.3 Policy options",
+      slug: "/chapters/04/05#03"
+    },
+    items: [
+    { type: "link", label: "4.5.3.1 Mechanisms for developing safety standards", href: "/chapters/04/05#03-01" },
+    { type: "link", label: "4.5.3.2 Mechanisms for ensuring regulatory visibility", href: "/chapters/04/05#03-02" },
+    { type: "link", label: "4.5.3.3 Mechanisms for ensuring compliance", href: "/chapters/04/05#03-03" },
+    { type: "link", label: "4.5.3.4 The Architecture of AI Regulations", href: "/chapters/04/05#03-04" }
+    ]
+  }
+  ]
+},
+    {
+  type: "category",
+  label: "4.6 International Governance",
+  link: {
+    type: "doc",
+    id: "chapters/04/6"
+  },
+  items: [
+  { type: "link", label: "4.6.1 The need for international governance", href: "/chapters/04/06#01" },
+  {
+    type: "category",
+    label: "4.6.2 Current initiatives",
+    link: {
+      type: "generated-index",
+      title: "4.6.2 Current initiatives",
+      slug: "/chapters/04/06#02"
+    },
+    items: [
+    { type: "link", label: "4.6.2.1 Global Impacts of National Regulations", href: "/chapters/04/06#02-01" },
+    { type: "link", label: "4.6.2.2 International initiatives", href: "/chapters/04/06#02-02" },
+    { type: "link", label: "4.6.2.3 Stages of International Policymaking", href: "/chapters/04/06#02-03" }
+    ]
+  },
+  {
+    type: "category",
+    label: "4.6.3 Policy options",
+    link: {
+      type: "generated-index",
+      title: "4.6.3 Policy options",
+      slug: "/chapters/04/06#03"
+    },
+    items: [
+    { type: "link", label: "4.6.3.1 Institutional Models for International AI Governance", href: "/chapters/04/06#03-01" },
+    { type: "link", label: "4.6.3.2 Non-proliferation", href: "/chapters/04/06#03-02" },
+    { type: "link", label: "4.6.3.3 Regulatory agreements", href: "/chapters/04/06#03-03" },
+    { type: "link", label: "4.6.3.4 Containment", href: "/chapters/04/06#03-04" }
+    ]
+  },
+  { type: "link", label: "4.6.4 Conclusion", href: "/chapters/04/06#04" }
+  ]
 }
   ],
 };

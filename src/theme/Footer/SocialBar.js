@@ -56,6 +56,11 @@ export default function SocialBar() {
           ))}
         </div>
       </div>
+      
+      {/* Divider line below social icons */}
+      <div className={styles.socialDivider}>
+        <div className={styles.socialDividerLine} />
+      </div>
     </div>
   );
 }

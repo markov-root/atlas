@@ -16,16 +16,12 @@
           "reading_time_optional": "",
           "reading_time_appendix": "",
           "resources": {
-            "chapter": "https://ai-safety-atlas.com/chapters/01/",
+            "chapter": "/chapters/01",
             "video": "https://www.youtube.com/watch?v=J_iMeH1hb9M",
             "audio": null,
             "pdf": null,
             "feedback": "https://forms.gle/ZsA4hEWUx1ZrtQLL9",
             "facilitation": "https://docs.google.com/document/d/1L32xCVUCWEsm-x8UZ3GSTgKnmBcC7rJQLLIh9wGLj40/edit?usp=sharing"
-          },
-          "quote": {
-            "text": "The continued advancement of AI capabilities represents both tremendous opportunity and significant challenge for humanity.",
-            "author": "Stuart Russell"
           }
         },
         {
@@ -39,16 +35,12 @@
           "reading_time_optional": "",
           "reading_time_appendix": "",
           "resources": {
-            "chapter": "https://ai-safety-atlas.com/chapters/02/",
+            "chapter": "/chapters/02",
             "video": "https://www.youtube.com/watch?v=dhr4u-w75aQ",
             "audio": null,
             "pdf": null,
             "feedback": "https://forms.gle/ZsA4hEWUx1ZrtQLL9",
             "facilitation": "https://docs.google.com/document/d/1evE1rG91DKBuKlWnqPw45QtPxKBz0GlD_ZYrurNdvN4/edit?usp=sharing"
-          },
-          "quote": {
-            "text": "The greatest risk from AI isn't malice but competence - creating systems that pursue goals misaligned with human values.",
-            "author": "Nick Bostrom"
           }
         },
         {
@@ -62,7 +54,7 @@
           "reading_time_optional": "",
           "reading_time_appendix": "",
           "resources": {
-            "chapter": "https://ai-safety-atlas.com/chapters/03/",
+            "chapter": "/chapters/03",
             "video": "https://www.youtube.com/watch?v=iO7Jl4xders",
             "audio": null,
             "pdf": null,
@@ -81,7 +73,7 @@
           "reading_time_optional": "",
           "reading_time_appendix": "",
           "resources": {
-            "chapter": "https://ai-safety-atlas.com/chapters/04/",
+            "chapter": "/chapters/04",
             "video": "https://www.youtube.com/watch?v=FSKuDqze9es",
             "audio": null,
             "pdf": null,
@@ -107,7 +99,7 @@
           "reading_time_optional": "",
           "reading_time_appendix": "",
           "resources": {
-            "chapter": "https://ai-safety-atlas.com/chapters/05/",
+            "chapter": "/chapters/05",
             "video": null,
             "audio": null,
             "pdf": null,
@@ -126,7 +118,7 @@
           "reading_time_optional": "",
           "reading_time_appendix": "",
           "resources": {
-            "chapter": "https://ai-safety-atlas.com/chapters/06/",
+            "chapter": "/chapters/06",
             "video": null,
             "audio": null,
             "pdf": null,
@@ -145,7 +137,7 @@
           "reading_time_optional": "",
           "reading_time_appendix": "",
           "resources": {
-            "chapter": "https://ai-safety-atlas.com/chapters/07/",
+            "chapter": "/chapters/07",
             "video": null,
             "audio": null,
             "pdf": null,
@@ -164,7 +156,7 @@
           "reading_time_optional": "",
           "reading_time_appendix": "",
           "resources": {
-            "chapter": "https://ai-safety-atlas.com/chapters/08/",
+            "chapter": "/chapters/08",
             "video": null,
             "audio": null,
             "pdf": null,
@@ -183,7 +175,7 @@
           "reading_time_optional": "",
           "reading_time_appendix": "",
           "resources": {
-            "chapter": "https://ai-safety-atlas.com/chapters/09/",
+            "chapter": "/chapters/09",
             "video": null,
             "audio": null,
             "pdf": null,

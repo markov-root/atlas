@@ -7,7 +7,7 @@
 .contactHeading {
   font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   color: #ffffff; /* Always white in footer */
 }
 
@@ -16,6 +16,7 @@
   opacity: 0.8;
   margin-bottom: 1.5rem;
   line-height: 1.5;
+  color: #ffffff;
 }
 
 .form {
@@ -44,11 +45,12 @@
   width: 100%;
   padding: 0.75rem 1rem;
   font-size: 0.9rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 0.375rem;
   color: #ffffff;
   transition: all 0.2s ease-in-out;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
 }
 
 .formControl::placeholder {
@@ -57,13 +59,15 @@
 
 .formControl:focus {
   outline: none;
-  border-color: var(--atlas-primary-lighter);
-  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
 }
 
 textarea.formControl {
   min-height: 100px;
   resize: vertical;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
 }
 
 .submitButton {
@@ -74,32 +78,37 @@ textarea.formControl {
   font-size: 0.9rem;
   font-weight: 500;
   border-radius: 0.375rem;
-  border: none;
-  background-color: var(--atlas-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: transparent;
   color: #ffffff;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-align: center;
   width: fit-content;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
 }
 
 .submitButton:hover:not(:disabled) {
-  background-color: var(--atlas-primary-darker);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .submitButton:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(var(--atlas-primary-rgb), 0.4);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
 }
 
 .submitButton.sending {
-  background-color: rgba(var(--atlas-background-rgb), 0.2);
-  color: rgba(var(--atlas-background-rgb), 0.5);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.5);
   cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .submitButton.sent {
-  background-color: var(--atlas-success);
+  background-color: rgba(40, 167, 69, 0.2);
+  border-color: rgba(40, 167, 69, 0.4);
+  color: #ffffff;
 }
 
 /* StayCoordinated component styles */

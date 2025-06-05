@@ -50,14 +50,9 @@ function CitationBox() {
       </div>
       <button onClick={handleCopy} className={styles.copyButton} title="Copy citation">
         {copied ? (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <polyline points="20,6 9,17 4,12"></polyline>
-          </svg>
+          <img src="/img/icons/copy.svg" alt="Copied" className={styles.copyIcon} />
         ) : (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-          </svg>
+          <img src="/img/icons/copy.svg" alt="Copy" className={styles.copyIcon} />
         )}
       </button>
     </div>
@@ -79,9 +74,10 @@ function Footer() {
       <SocialBar />
       
       <div className={styles.footerContent}>
-        <div className={styles.footerRow}>
-          {/* Logo and Description */}
-          <div className={styles.footerLogoCol}>
+        {/* Line 1: Three columns - Atlas, CeSIA, Funders */}
+        <div className={styles.footerTopRow}>
+          {/* Atlas Column */}
+          <div className={styles.atlasCol}>
             <div className={styles.footerLogoWrapper}>
               <div className={styles.footerLogoContainer}>
                 <FooterLogo
@@ -95,39 +91,57 @@ function Footer() {
               </div>
             </div>
             <p className={styles.footerDescription}>
-              A comprehensive guide to AI safety and alignment research,
-              providing resources and knowledge for researchers and practitioners.
+              A comprehensive guide to AI safety and alignment research.
             </p>
           </div>
-          
-          {/* Sponsors and Citation */}
-          <div className={styles.footerLinksWrapper}>
-            <div className={styles.footerLinksCol}>
-              <h3 className={styles.footerLinkHeading}>Our Sponsors</h3>
-              <div className={styles.sponsorsList}>
-                <a href="https://www.securite-ia.fr/en" target="_blank" rel="noopener noreferrer" className={styles.sponsorItem}>
-                  <img src="/img/supporters/cesia.svg" alt="CeSIA" className={styles.sponsorLogo} />
-                  <span className={styles.sponsorName}>CeSIA</span>
-                </a>
-                <a href="https://manifund.org/" target="_blank" rel="noopener noreferrer" className={styles.sponsorItem}>
-                  <img src="/img/supporters/manifund.svg" alt="Manifund" className={styles.sponsorLogo} />
-                  <span className={styles.sponsorName}>Manifund</span>
-                </a>
-                <a href="https://www.openphilanthropy.org/" target="_blank" rel="noopener noreferrer" className={styles.sponsorItem}>
-                  <img src="/img/supporters/open-philanthropy.svg" alt="Open Philanthropy" className={styles.sponsorLogo} />
-                  <span className={styles.sponsorName}>Open Philanthropy</span>
-                </a>
-              </div>
-            </div>
 
-            <div className={styles.footerLinksCol}>
-              <h3 className={styles.footerLinkHeading}>Cite this work as</h3>
-              <CitationBox />
+          {/* CeSIA Column */}
+          <div className={styles.cesiaCol}>
+            <div className={styles.cesiaContainer}>
+              <a 
+                href="https://www.securite-ia.fr/en" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={styles.cesiaLink}
+              >
+                <img 
+                  src="/img/supporters/cesia_text.svg" 
+                  alt="French Center for AI Safety (CeSIA)" 
+                  className={styles.cesiaLogo} 
+                />
+              </a>
+              <p className={styles.cesiaDescription}>
+                Leading research institute advancing AI safety and alignment in Europe.
+              </p>
             </div>
           </div>
+
+          {/* Funders Column */}
+          <div className={styles.fundersCol}>
+            <h3 className={styles.footerLinkHeading}>Funders</h3>
+            <div className={styles.fundersList}>
+              <a href="https://manifund.org/" target="_blank" rel="noopener noreferrer" className={styles.funderItem}>
+                <img src="/img/supporters/manifund.svg" alt="Manifund" className={styles.funderLogo} />
+                <span className={styles.funderName}>Manifund</span>
+              </a>
+              <a href="https://www.openphilanthropy.org/" target="_blank" rel="noopener noreferrer" className={styles.funderItem}>
+                <img src="/img/supporters/open-philanthropy.svg" alt="Open Philanthropy" className={styles.funderLogo} />
+                <span className={styles.funderName}>Open Philanthropy</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Line 2: Two columns - Citation, Contact */}
+        <div className={styles.footerBottomRow}>
+          {/* Citation Column */}
+          <div className={styles.citationCol}>
+            <h3 className={styles.footerLinkHeading}>Cite this work as</h3>
+            <CitationBox />
+          </div>
           
-          {/* Contact Form */}
-          <div className={styles.footerContactCol}>
+          {/* Contact Form Column */}
+          <div className={styles.contactCol}>
             <ContactForm />
           </div>
         </div>

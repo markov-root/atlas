@@ -2,7 +2,7 @@
 
 .socialBar {
   background-color: var(--atlas-gray-900); /* Same as footer background */
-  padding: 1.5rem 0; /* Increased padding for bigger icons */
+  padding: 1.5rem 0 0 0; /* Remove bottom padding, divider will handle spacing */
 }
 
 .socialContent {
@@ -12,12 +12,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 1.5rem; /* Add padding before divider */
 }
 
 .socialIcons {
   display: flex;
   justify-content: center;
-  gap: 3rem; /* Increased gap for bigger icons */
+  gap: 3rem; /* Back to original spacing without between-icon dividers */
 }
 
 .socialLink {
@@ -42,7 +43,25 @@
   filter: brightness(0) invert(1); /* Make SVG icons white */
 }
 
-/* Removed all divider styles */
+/* Divider line below social icons */
+.socialDivider {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--ifm-spacing-horizontal);
+}
+
+.socialDividerLine {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  max-width: var(--ifm-container-width);
+}
 
 .srOnly {
   position: absolute;
