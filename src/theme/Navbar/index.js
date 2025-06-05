@@ -1,4 +1,4 @@
-// src/theme/Navbar/index.js - Simplified working version
+// src/theme/Navbar/index.js - Updated to use settings.svg icon
 import React, { useEffect, useRef, useState } from 'react';
 import Navbar from '@theme-original/Navbar';
 import { SettingsDropdown } from '../../components/Settings';
@@ -95,9 +95,14 @@ export default function NavbarWrapper(props) {
       settingsButton.setAttribute('aria-label', 'Open reading settings');
       settingsButton.setAttribute('type', 'button');
       
-      settingsButton.innerHTML = '𝐀';
-      settingsButton.style.fontSize = '18px';
-      settingsButton.style.fontWeight = 'bold';
+      // Create the settings icon using SVG
+      settingsButton.innerHTML = `
+        <img 
+          src="/img/icons/settings.svg" 
+          alt="" 
+          class="${styles.settingsIcon}" 
+        />
+      `;
       
       // Add event listeners using global handlers
       settingsButton.addEventListener('click', (e) => {

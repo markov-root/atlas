@@ -42,11 +42,11 @@ export const footerConfig = {
       items: [
         {
           label: 'GitHub',
-          href: 'https://github.com/CentreSecuriteIA/textbook',
+          href: 'https://github.com/markov-root/atlas',
         },
         {
           label: 'YouTube',
-          href: 'https://youtube.com/@AISafetyAtlas',
+          href: 'https://www.youtube.com/@securite-ia',
         },
       ],
     },

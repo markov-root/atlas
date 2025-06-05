@@ -12,7 +12,7 @@
   box-sizing: border-box; /* ADD: Ensure proper sizing */
   
   /* UNIFIED TEXTURE BACKGROUND - Works for both light and dark mode */
-  background-image: url('/img/textures/texture.jpg');
+  background-image: url('/img/textures/texture-chapter.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -42,7 +42,7 @@
   background: linear-gradient(
     135deg,
     rgba(var(--atlas-background-rgb, 255, 255, 255), 1) 0%,
-    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.95) 50%,
+    rgba(var(--atlas-background-rgb, 255, 255, 255), 0.9) 50%,
     rgba(var(--atlas-background-rgb, 255, 255, 255), 1) 100%
   );
 }
@@ -473,7 +473,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('/img/textures/texture.jpg');
+  background-image: url('/img/textures/texture-chapter.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -1,4 +1,4 @@
-// src/components/Settings/SettingsDropdown.jsx - Clean version without any tooltip references
+// src/components/Settings/SettingsDropdown.jsx - Removed dyslexia font option
 import React, { useState, useRef, useEffect } from 'react';
 import { useSettings } from './SettingsContext';
 import styles from './SettingsDropdown.module.css';
@@ -92,7 +92,7 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
               className={styles.select}
               aria-label="Select font family"
             >
-              {fontOptions.filter(f => f.id !== 'opendyslexic').map(font => (
+              {fontOptions.map(font => (
                 <option key={font.id} value={font.id}>
                   {font.name}
                 </option>
@@ -220,19 +220,6 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
               <img src="/img/icons/align-justify.svg" alt="" className={styles.alignIcon} />
             </button>
           </div>
-        </div>
-
-        {/* Dyslexia Font */}
-        <div className={styles.setting}>
-          <label className={styles.label}>Dyslexia-Friendly Font</label>
-          <button
-            onClick={() => updateSetting('dyslexiaFont', !settings.dyslexiaFont)}
-            className={`${styles.toggle} ${settings.dyslexiaFont ? styles.toggleActive : ''}`}
-            aria-label={`${settings.dyslexiaFont ? 'Disable' : 'Enable'} dyslexia-friendly font`}
-            title="Use OpenDyslexic font for better readability"
-          >
-            <span className={styles.toggleSlider}></span>
-          </button>
         </div>
       </div>
     </div>

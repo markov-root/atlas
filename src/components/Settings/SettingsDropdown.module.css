@@ -1,3 +1,4 @@
+/* src/components/Settings/SettingsDropdown.module.css - Fixed slider styling */
 .dropdown {
   position: absolute;
   top: calc(100% + 12px);
@@ -185,7 +186,7 @@
   transform: translateY(-50%) rotate(180deg);
 }
 
-/* Slider Group - Minimal Progress Bar Design */
+/* Slider Group - Simplified without thumb */
 .sliderGroup {
   display: flex;
   align-items: center;
@@ -220,58 +221,48 @@
 
 .slider {
   position: absolute;
-  top: -5px; /* Extend above and below the track */
+  top: -6px; /* Extend clickable area above and below */
   left: 0;
   width: 100%;
-  height: 18px; /* Taller than the track to prevent thumb clipping */
+  height: 20px; /* Larger clickable area */
   background: transparent;
   cursor: pointer;
   -webkit-appearance: none;
   appearance: none;
   outline: none;
-  z-index: 2; /* Above the fill */
+  z-index: 2;
 }
 
+/* Hide all thumb elements */
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--atlas-primary, #1971c2);
-  cursor: pointer;
-  border: 3px solid var(--atlas-background, #ffffff);
-  box-shadow: 0 2px 6px rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.3);
-  transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
-  margin-top: 0; /* Reset any default margin */
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .slider::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--atlas-primary, #1971c2);
-  cursor: pointer;
-  border: 3px solid var(--atlas-background, #ffffff);
-  box-shadow: 0 2px 6px rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.3);
-  transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
-  margin-top: 0;
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
-/* Remove default track styles for Firefox */
+/* Hide default track for all browsers */
+.slider::-webkit-slider-track {
+  background: transparent;
+  border: none;
+  height: 0;
+}
+
 .slider::-moz-range-track {
   background: transparent;
   border: none;
-}
-
-.slider::-webkit-slider-thumb:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.4);
-}
-
-.slider::-moz-range-thumb:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.4);
+  height: 0;
 }
 
 /* Text Alignment - Minimal Design */
@@ -316,48 +307,6 @@
 
 .alignButton.active .alignIcon {
   opacity: 1;
-}
-
-/* Toggle Switch */
-.toggle {
-  position: relative;
-  width: 52px;
-  height: 28px;
-  background: var(--atlas-border-color, #e2e8f0);
-  border: none;
-  border-radius: 14px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-  outline: none;
-}
-
-.toggle:hover {
-  background: var(--atlas-gray-300, #cbd5e1);
-  box-shadow: 0 0 0 4px rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.1);
-}
-
-.toggle.toggleActive {
-  background: var(--atlas-primary, #1971c2);
-}
-
-.toggle.toggleActive:hover {
-  background: var(--atlas-primary-dark, #1864ab);
-}
-
-.toggleSlider {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 24px;
-  height: 24px;
-  background: var(--atlas-background, #ffffff);
-  border-radius: 50%;
-  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-.toggleActive .toggleSlider {
-  transform: translateX(24px);
 }
 
 /* Icon base styles - responsive to theme */
@@ -410,7 +359,6 @@
   filter: none;
 }
 
-/* Dark Mode */
 /* Dark Mode */
 [data-theme='dark'] .dropdown {
   background: var(--atlas-background, #0f172a);
@@ -484,18 +432,6 @@
   background: var(--atlas-primary-lighter, #74c0fc);
 }
 
-[data-theme='dark'] .slider::-webkit-slider-thumb,
-[data-theme='dark'] .slider::-moz-range-thumb {
-  background: var(--atlas-primary-lighter, #74c0fc);
-  border-color: var(--atlas-background, #0f172a);
-  box-shadow: 0 2px 6px rgba(116, 192, 252, 0.4);
-}
-
-[data-theme='dark'] .slider::-webkit-slider-thumb:hover,
-[data-theme='dark'] .slider::-moz-range-thumb:hover {
-  box-shadow: 0 4px 12px rgba(116, 192, 252, 0.5);
-}
-
 [data-theme='dark'] .alignButton {
   border-color: var(--atlas-border-color, #334155);
 }
@@ -512,27 +448,6 @@
 
 [data-theme='dark'] .alignButton.active .alignIcon {
   filter: brightness(0) invert(0); /* Black icon on light background */
-}
-
-[data-theme='dark'] .toggle {
-  background: var(--atlas-border-color, #334155);
-}
-
-[data-theme='dark'] .toggle:hover {
-  background: var(--atlas-gray-600, #475569);
-  box-shadow: 0 0 0 4px rgba(116, 192, 252, 0.15);
-}
-
-[data-theme='dark'] .toggle.toggleActive {
-  background: var(--atlas-primary-lighter, #74c0fc);
-}
-
-[data-theme='dark'] .toggle.toggleActive:hover {
-  background: var(--atlas-primary-lightest, #a5d8ff);
-}
-
-[data-theme='dark'] .toggleSlider {
-  background: var(--atlas-background, #0f172a);
 }
 
 /* Dark mode - make ALL icons white for better visibility, including dropdown arrow */
@@ -653,15 +568,13 @@
 /* Enhanced Focus States for Accessibility */
 .resetButton:focus,
 .select:focus,
-.alignButton:focus,
-.toggle:focus {
+.alignButton:focus {
   outline: 2px solid var(--atlas-primary, #1971c2);
   outline-offset: 2px;
 }
 
 [data-theme='dark'] .resetButton:focus,
 [data-theme='dark'] .select:focus,
-[data-theme='dark'] .alignButton:focus,
-[data-theme='dark'] .toggle:focus {
+[data-theme='dark'] .alignButton:focus {
   outline-color: var(--atlas-primary-lighter, #74c0fc);
 }

@@ -1,9 +1,19 @@
-// src/theme/DocItem/Headers/ChapterHeader.jsx - Updated with PDF download button support
+// src/theme/DocItem/Headers/ChapterHeader.jsx - Updated with separate PDF and audio utils
 import React, { useState, useEffect } from 'react';
 import { ActionButtonTooltip } from '../../../components/UI/Tooltip';
 import styles from './ChapterHeader.module.css';
 import InlineAudioPlayer from '@site/src/components/chapters/Audio/InlineAudioPlayer';
-import { buildAudioFiles, hasAudioFiles, debugAudioFiles } from '@site/src/utils/audioUtils';
+import { 
+  buildAudioFiles, 
+  hasAudioFiles, 
+  debugAudioFiles
+} from '@site/src/utils/audioUtils';
+import { 
+  buildPdfFile, 
+  hasPdfFile, 
+  getPdfUrl, 
+  debugPdfFiles 
+} from '@site/src/utils/pdfUtils';
 
 // Action Button Component - Updated with centralized Tippy
 function ActionButton({ href, iconPath, label, description, active, onClick }) {
@@ -79,9 +89,14 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
     return () => clearTimeout(timer);
   }, []);
 
-  // Build audio files object - Updated for new folder structure
+  // Build audio files object
   const audioFiles = buildAudioFiles(frontMatter, chapterNumber);
   const hasAudio = hasAudioFiles(audioFiles);
+
+  // Build PDF file path and check availability
+  const pdfFile = buildPdfFile(frontMatter, chapterNumber);
+  const hasPdf = hasPdfFile(pdfFile);
+  const pdfUrl = getPdfUrl(chapterNumber, pdfFile);
 
   // Debug logging for audio detection
   debugAudioFiles('ChapterHeader', {
@@ -94,6 +109,17 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
     },
     processedAudioFiles: audioFiles,
     hasAudio
+  });
+
+  // Debug logging for PDF detection
+  debugPdfFiles('ChapterHeader', {
+    chapterNumber,
+    frontMatterPdf: {
+      download_link: frontMatter.download_link
+    },
+    processedPdfFile: pdfFile,
+    pdfUrl,
+    hasPdf
   });
 
   // Handle audio button click
@@ -111,7 +137,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
   // Generate flowing particles with better distribution
   const generateParticles = () => {
     const count = 8;
-    return Array.from({ length, count }, (_, i) => ({
+    return Array.from({ length: count }, (_, i) => ({
       id: i,
       size: Math.random() * 3 + 1.5,
       x: Math.random() * 100,
@@ -314,13 +340,13 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               active={hasAudio}
             />
             
-            {/* PDF Download button - NEW */}
+            {/* PDF Download button - NOW WITH SMART DETECTION */}
             <ActionButton
-              href={frontMatter.download_link}
+              href={pdfUrl}
               iconPath="/img/icons/pdf.svg"
               label="PDF"
-              description="Download PDF version"
-              active={!!frontMatter.download_link}
+              description={hasPdf ? "Download PDF version" : "PDF not available"}
+              active={hasPdf}
             />
             
             <ActionButton

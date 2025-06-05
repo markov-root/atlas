@@ -1,9 +1,9 @@
-// src/components/Settings/SettingsContext.jsx - Fixed OpenDyslexic handling
+// src/components/Settings/SettingsContext.jsx - Removed OpenDyslexic option
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const SettingsContext = createContext();
 
-// Available font options - Updated with new fonts, removed Bebas
+// Available font options - Removed OpenDyslexic
 export const FONT_OPTIONS = [
   {
     id: 'inter',
@@ -88,12 +88,6 @@ export const FONT_OPTIONS = [
     name: 'System Font',
     family: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     description: 'Your device\'s default system font'
-  },
-  {
-    id: 'opendyslexic',
-    name: 'OpenDyslexic',
-    family: '"OpenDyslexic", "OpenDyslexic-Backup", "Comic Sans MS", cursive',
-    description: 'Designed specifically for dyslexic readers'
   }
 ];
 
@@ -106,7 +100,6 @@ const DEFAULT_SETTINGS = {
   lineHeight: 1.7,        // Increased from 1.6 - more comfortable
   textAlign: 'left',
   maxWidth: 85,           // Increased from 65ch - better for modern screens
-  dyslexiaFont: false
 };
 
 export function SettingsProvider({ children }) {
@@ -117,14 +110,7 @@ export function SettingsProvider({ children }) {
   
   // Apply all reading settings to document
   useEffect(() => {
-    let selectedFont;
-    
-    // Handle dyslexia-friendly mode - override font selection
-    if (settings.dyslexiaFont) {
-      selectedFont = FONT_OPTIONS.find(font => font.id === 'opendyslexic');
-    } else {
-      selectedFont = FONT_OPTIONS.find(font => font.id === settings.font);
-    }
+    const selectedFont = FONT_OPTIONS.find(font => font.id === settings.font);
     
     if (selectedFont) {
       document.documentElement.style.setProperty('--atlas-reader-font', selectedFont.family);
