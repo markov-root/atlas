@@ -1,4 +1,4 @@
-// src/components/Impact/ImpactSection.jsx - Moved from theme/DocItem/Landing/ImpactSection.jsx
+// src/components/Impact/ImpactSection.jsx - Updated with better framing and testimonials
 import React, { useState, useEffect } from 'react';
 import styles from './ImpactSection.module.css';
 
@@ -15,22 +15,46 @@ export default function ImpactSection() {
     {
       number: "300+",
       label: "Papers Integrated",
-      description: "Research papers systematically reviewed and synthesized"
+      description: "Insights from hundreds of research papers systematically reviewed and synthesized"
     },
     {
       number: "9",
-      label: "State-of-the-Art Reviews", 
-      description: "Comprehensive literature reviews per topic"
+      label: "Chapters Written", 
+      description: "Thorough literature reviews covering major AI safety topics"
     },
     {
-      number: "100s",
-      label: "Interactive Features",
-      description: "From leading AI safety resources"
+      number: "500+",
+      label: "Visual Explanations",
+      description: "Custom visualizations, embedded charts, prediction markets, and curated figures"
     },
     {
-      number: "4+",
+      number: "4",
       label: "Video Lectures",
       description: "YouTube explanations of key concepts"
+    }
+  ];
+
+  // Visual content breakdown - new section to highlight different types of content
+  const visualContentTypes = [
+    {
+      type: "Custom Figures",
+      description: "Original diagrams and visual explanations designed from scratch to clarify complex AI safety concepts",
+      count: "80+"
+    },
+    {
+      type: "Embedded Predictions",
+      description: "Live prediction markets from Metaculus showing expert forecasts on AI development timelines",
+      count: "15+"
+    },
+    {
+      type: "Interactive Charts",
+      description: "Data visualizations from AI Safety Digest, Our World in Data, and other leading sources",
+      count: "50+"
+    },
+    {
+      type: "Curated Visualizations",
+      description: "Carefully selected figures, graphs, and infographics from research papers and reports",
+      count: "200+"
     }
   ];
 
@@ -42,14 +66,14 @@ export default function ImpactSection() {
       image: "/img/impact/video_risks.jpg"
     },
     {
-      title: "Published Research Papers",
-      description: "Academic publications documenting our systematic approach to AI safety education and literature review methodology",
+      title: "Published Research Publication",
+      description: "Academic publication documenting our systematic approach to AI safety education and literature review methodology",
       image: "/img/impact/paper_evals.png"
     },
     {
       title: "Published Interactive Online Chapters",
-      description: "9 comprehensive online chapters with hundreds of interactive features from AI Safety Digest, Our World in Data, and AI Safety Info",
-      image: "/img/courses/featured/ens_paris_23.png" // Using existing image as placeholder
+      description: "9 comprehensive chapters featuring custom-designed figures, embedded prediction markets, interactive charts from leading sources, and curated visualizations",
+      image: "/img/impact/interactive.png"
     }
   ];
 
@@ -57,19 +81,19 @@ export default function ImpactSection() {
   const adoptionGroups = [
     {
       category: "Universities",
-      description: "~150 students per year across major institutions including ENS Paris & Saclay (~100 students annually) and UBC Vancouver (30-50 students per cohort). Strong repeat usage across multiple semesters with course organizers choosing our materials based on merit.",
+      description: "~150 students per year across major institutions including ENS Paris & Saclay (~100 students annually) and UBC Vancouver (30-50 students per cohort). Achieved through organic adoption with minimal marketing. Strong repeat usage across multiple semesters - institutions return semester after semester with course organizers choosing our materials based on merit.",
       image: "/img/courses/ens_paris/ens_paris_23.png",
       logo: "/img/courses/ens_paris/ens_paris_logo.png"
     },
     {
       category: "AI Safety Groups",
       description: "550+ students annually across specialized AI safety training programs. ML4Good reaches 250 students annually across regions, AI Safety Collab serves 300+ students in Q2 2025 (scaling to 1000+), and AI Safety India is starting mid-2025 with Fundamentals of Safe AI program. Organic adoption based on merit.",
-      image: "/img/courses/ml4g/ml4g_eu_25.jpeg",
+      image: "/img/courses/ml4g/ml4g_france_22.png",
       logo: "/img/courses/ml4g/ml4g_logo.svg"
     },
     {
       category: "Independent Readers", 
-      description: "Global reach with individual readers from Moscow, Brazil, Canada, and worldwide discovering materials organically. Cold outreach from readers thanking us for our work demonstrates the international impact of accessible AI safety education.",
+      description: "Global reach with individual readers from Moscow, Brazil, Canada, and worldwide discovering materials organically. Cold outreach from readers globally thanking us for our work demonstrates the international impact of accessible AI safety education.",
       image: "/img/courses/independent/independent_1.jpg",
       logo: null
     }
@@ -108,6 +132,68 @@ export default function ImpactSection() {
           ))}
         </div>
       </div>
+
+      {/* Testimonials Section - Clean presentation */}
+      <div className={styles.testimonialsSection}>
+        <h3 className={styles.testimonialsTitle}>What Students, Facilitators, and Researchers Are Saying</h3>
+        <div className={styles.testimonialsGrid}>
+          {/* Student */}
+          <div className={styles.testimonialCard}>
+            <div className={styles.testimonialType}>Student</div>
+            <blockquote className={styles.testimonialQuote}>
+              "This was my first time reading the AI Safety Atlas and wow!!! It has so many insightful information and citations that I am looking forward to diving deeper into."
+            </blockquote>
+            <div className={styles.testimonialAuthor}>
+              <div className={styles.authorRole}>Vancouver Program</div>
+            </div>
+          </div>
+
+          {/* Facilitator */}
+          <div className={styles.testimonialCard}>
+            <div className={styles.testimonialType}>Facilitator</div>
+            <blockquote className={styles.testimonialQuote}>
+              "For a systematic, centralized, and concise introduction to the core topics in AI safety, this is the best and most up-to-date resource I know."
+            </blockquote>
+            <div className={styles.testimonialAuthor}>
+
+              <div className={styles.authorName}>Josh Thorsteinson</div>
+              <div className={styles.authorRole}>UBC Vancouver Course Organizer</div>
+            </div>
+          </div>
+
+          {/* Researcher */}
+          <div className={styles.testimonialCard}>
+
+            <div className={styles.testimonialType}>Researcher</div>
+            <blockquote className={styles.testimonialQuote}>
+              "As an AI safety research engineer, I find it a pretty good in-depth introduction. It covers a lot in a very clear way."
+            </blockquote>
+            <div className={styles.testimonialAuthor}>
+              <div className={styles.authorName}>Maxime Riche</div>
+              <div className={styles.authorRole}>AI Safety Researcher</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Visual Content Breakdown - Commented out for now
+      <div className={styles.visualContentSection}>
+        <h3 className={styles.visualContentTitle}>Rich Visual Learning Experience</h3>
+        <p className={styles.visualContentDescription}>
+          Our chapters combine multiple types of visual content to make complex AI safety concepts accessible and engaging.
+        </p>
+        
+        <div className={styles.visualContentGrid}>
+          {visualContentTypes.map((content, index) => (
+            <div key={index} className={styles.visualContentCard}>
+              <div className={styles.visualContentCount}>{content.count}</div>
+              <h4 className={styles.visualContentType}>{content.type}</h4>
+              <p className={styles.visualContentDesc}>{content.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      */}
 
       {/* Three Horizontal Columns - Publications */}
       <div className={styles.publicationsSection}>

@@ -1,4 +1,4 @@
-/* src/components/Impact/ImpactSection.module.css - Moved from theme/DocItem/Landing/ImpactSection.module.css */
+/* src/components/Impact/ImpactSection.module.css - Updated with hero-style header and testimonials */
 
 .impactContainer {
   width: 100%;
@@ -8,14 +8,53 @@
   box-sizing: border-box;
 }
 
-/* Header */
+/* Header - Hero style with texture background */
 .impactHeader {
+  position: relative;
   text-align: center;
   margin-bottom: 3rem;
+  padding: 3rem 2rem;
+  margin-left: -2rem;
+  margin-right: -2rem;
+  background: var(--atlas-background, #ffffff);
+  overflow: hidden;
+}
+
+/* Subtle texture overlay that fades to background - center focused */
+.impactHeader::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/img/textures/texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  
+  /* Create a radial mask that fades from center to edges */
+  mask: radial-gradient(ellipse 70% 60% at center, black 0%, black 30%, transparent 70%);
+  -webkit-mask: radial-gradient(ellipse 70% 60% at center, black 0%, black 30%, transparent 70%);
+  
+  opacity: 0.15; /* Very subtle */
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Dark mode texture handling */
+[data-theme='dark'] .impactHeader {
+  background-color: var(--atlas-background, #121212);
+}
+
+[data-theme='dark'] .impactHeader::before {
+  /* Apply grayscale filter for dark mode */
+  filter: grayscale(1) contrast(0.8) brightness(0.4);
+  opacity: 0.2; /* Slightly more visible in dark mode */
 }
 
 .impactTitle {
-  font-size: 2.5rem;
+  position: relative;
+  z-index: 1;
+  font-size: 3.5rem;
   font-weight: 700;
   color: var(--atlas-primary, #1971c2);
   margin: 0 0 1rem 0;
@@ -26,6 +65,8 @@
 }
 
 .impactDescription {
+  position: relative;
+  z-index: 1;
   font-size: 1.2rem;
   color: var(--atlas-text-secondary, #64748b);
   max-width: 600px;
@@ -108,6 +149,240 @@
 }
 
 [data-theme='dark'] .metricDescription {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Testimonials Section - Clean presentation */
+.testimonialsSection {
+  margin-bottom: 4rem;
+  padding: 3rem 0;
+  border-top: 1px solid var(--atlas-border-color, #e9ecef);
+  border-bottom: 1px solid var(--atlas-border-color, #e9ecef);
+}
+
+[data-theme='dark'] .testimonialsSection {
+  border-color: var(--atlas-border-color, #373737);
+}
+
+.testimonialsTitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--atlas-text, #212529);
+  margin: 0 0 2.5rem 0;
+  text-align: center;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+}
+
+[data-theme='dark'] .testimonialsTitle {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.testimonialsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.testimonialCard {
+  background: transparent;
+  border-radius: 12px;
+  padding: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.testimonialType {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--atlas-primary, #1971c2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+[data-theme='dark'] .testimonialType {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.quoteIcon {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  width: 36px;
+  height: 36px;
+  background-color: var(--atlas-primary, #1971c2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+[data-theme='dark'] .quoteIcon {
+  background-color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.quoteIcon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.testimonialQuote {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 1rem 0 0 0;
+  color: var(--atlas-text, #212529);
+  font-style: italic;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+}
+
+[data-theme='dark'] .testimonialQuote {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.testimonialAuthor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.authorName {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--atlas-primary, #1971c2);
+  margin: 0;
+}
+
+[data-theme='dark'] .authorName {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.authorRole {
+  font-size: 0.75rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  margin: 0;
+}
+
+[data-theme='dark'] .authorRole {
+  color: var(--atlas-text-secondary, #adb5bd);
+}ialAuthor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.authorName {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--atlas-primary, #1971c2);
+  margin: 0;
+}
+
+[data-theme='dark'] .authorName {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.authorRole {
+  font-size: 0.75rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  margin: 0;
+}
+
+[data-theme='dark'] .authorRole {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Visual Content Section - Clean, no background */
+.visualContentSection {
+  margin-bottom: 4rem;
+}
+
+.visualContentTitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--atlas-text, #212529);
+  margin: 0 0 1rem 0;
+  text-align: center;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+}
+
+[data-theme='dark'] .visualContentTitle {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.visualContentDescription {
+  font-size: 1.1rem;
+  color: var(--atlas-text-secondary, #495057);
+  max-width: 700px;
+  margin: 0 auto 2.5rem auto;
+  text-align: center;
+  line-height: 1.6;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+}
+
+[data-theme='dark'] .visualContentDescription {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+.visualContentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.visualContentCard {
+  background: transparent;
+  border-radius: 0;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: none;
+  border: none;
+  transition: none;
+}
+
+.visualContentCard:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.visualContentCount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--atlas-primary, #1971c2);
+  font-family: var(--atlas-font-mono, 'JetBrains Mono', monospace);
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+
+[data-theme='dark'] .visualContentCount {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.visualContentType {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--atlas-text, #212529);
+  margin: 0 0 0.75rem 0;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+}
+
+[data-theme='dark'] .visualContentType {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.visualContentDesc {
+  font-size: 0.9375rem;
+  color: var(--atlas-text-secondary, #495057);
+  line-height: 1.5;
+  margin: 0;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+}
+
+[data-theme='dark'] .visualContentDesc {
   color: var(--atlas-text-secondary, #adb5bd);
 }
 
@@ -335,6 +610,10 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+  .visualContentGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
   .publicationsGrid {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -359,6 +638,32 @@
   .categoryContentText {
     text-align: center;
   }
+
+  .impactHeader {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .problemContent {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .questionSide {
+    justify-content: center;
+    padding-right: 0;
+  }
+  
+  .question {
+    text-align: center;
+    font-size: 1.75rem;
+  }
+
+  .testimonialsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -366,8 +671,14 @@
     padding: 4rem 1.5rem 3rem 1.5rem;
   }
   
+  .impactHeader {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    padding: 2rem 1.5rem;
+  }
+  
   .impactTitle {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   
   .impactDescription {
@@ -378,6 +689,19 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
     margin-bottom: 3rem;
+  }
+
+  .visualContentGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .visualContentCard {
+    padding: 1.5rem;
+  }
+
+  .visualContentCount {
+    font-size: 1.75rem;
   }
   
   .publicationImageContainer {
@@ -393,7 +717,9 @@
   }
   
   .adoptionTitle,
-  .publicationsTitle {
+  .publicationsTitle,
+  .visualContentTitle,
+  .testimonialsTitle {
     font-size: 1.5rem;
   }
   
@@ -408,6 +734,26 @@
   .adoptionGroupContent {
     gap: 1.5rem;
   }
+
+  .question {
+    font-size: 1.5rem;
+  }
+  
+  .olahQuote {
+    font-size: 1.125rem;
+  }
+  
+  .solutionStatement {
+    font-size: 1rem;
+  }
+  
+  .testimonialCard {
+    padding: 1.25rem;
+  }
+  
+  .testimonialQuote {
+    font-size: 0.875rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -415,8 +761,14 @@
     padding: 3rem 1rem 2.5rem 1rem;
   }
   
+  .impactHeader {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 1.5rem 1rem;
+  }
+  
   .impactTitle {
-    font-size: 1.75rem;
+    font-size: 2rem;
   }
   
   .impactDescription {
@@ -426,6 +778,22 @@
   .metricsGrid {
     gap: 1.25rem;
     margin-bottom: 2.5rem;
+  }
+
+  .visualContentCard {
+    padding: 1.25rem;
+  }
+
+  .visualContentCount {
+    font-size: 1.5rem;
+  }
+
+  .visualContentType {
+    font-size: 1rem;
+  }
+
+  .visualContentDesc {
+    font-size: 0.875rem;
   }
   
   .categoryImageContainer {
@@ -437,7 +805,9 @@
   }
   
   .adoptionTitle,
-  .publicationsTitle {
+  .publicationsTitle,
+  .visualContentTitle,
+  .testimonialsTitle {
     font-size: 1.375rem;
   }
   
@@ -451,5 +821,25 @@
   
   .adoptionGroupContent {
     gap: 1.25rem;
+  }
+
+  .question {
+    font-size: 1.375rem;
+  }
+  
+  .olahQuote {
+    font-size: 1rem;
+  }
+  
+  .solutionStatement {
+    font-size: 0.9375rem;
+  }
+  
+  .testimonialCard {
+    padding: 1rem;
+  }
+  
+  .testimonialQuote {
+    font-size: 0.8125rem;
   }
 }
