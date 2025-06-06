@@ -13,7 +13,7 @@
     {
       "quote": "This is the kind of resource I would have loved to have when first learning about AI safety.",
       "name": "Martin Kunev",
-      "position": "AI Alignment Researcher",
+      "position": "",
       "date": "2025",
       "image": "",
       "tier": "independent"
@@ -28,14 +28,14 @@
     {
       "quote": "This work is fundamentally useful for everyone involved in, or curious about, the development of safe Artificial Intelligences. It's a precious endeavor that every AI enthusiast should support.",
       "name": "Victor Daudonnet",
-      "position": "AI Safety Researcher",
+      "position": "",
       "date": "2025",
       "tier": "independent"
     },
     {
       "quote": "Atlas is great. I think there should be additional courses with a different style then the BlueDot courses that are a bit lengthy etc. I think Atlas could produce that!",
       "name": "Evander Hammer",
-      "position": "AI Safety Collab Organizer",
+      "position": "Course Organizer, AI Safety Collab",
       "date": "2025",
       "tier": "facilitator"
     },
@@ -56,35 +56,35 @@
     {
       "quote": "I haven't spent much time reading the Atlas, but I've attended 3 of Markov's presentations (with Q&As). He is obviously a gifted and passionate teacher, and he has shown himself to be deeply familiar with most ideas and arguments in AI Safety.",
       "name": "Gustavo Lacerda",
-      "position": "AI Safety Researcher",
+      "position": "",
       "date": "2025",
       "tier": "independent"
     },
     {
       "quote": "I co-lead the Turing Seminar while the Atlas was still being developped at ENS Paris. It offers a comprehensive survey of different fields of AIS and is clearly written and coherent. The facilitation guide did most of the heavy-lifting for me, by offering intriguing and entertaining questions to the class.",
       "name": "Camille Berger",
-      "position": "Seminar Leader",
+      "position": "",
       "date": "2025",
       "tier": "facilitator"
     },
     {
       "quote": "I read part of the Atlas (Evaluation Chapter). As an AI safety research engineer, I find it a pretty good in-depth introduction. It covers a lot in a very clear way.",
       "name": "Maxime Riche",
-      "position": "AI Safety Research Engineer",
+      "position": "AI Safety Researcher",
       "date": "2025",
       "tier": "independent"
     },
     {
       "quote": "A strong theory of change, well executed in practice. Very good material at the end. They have my support!",
       "name": "Thibaud Veron",
-      "position": "AI Safety Researcher",
+      "position": "",
       "date": "2025",
       "tier": "independent"
     },
     {
       "quote": "That's one of the best AI safety fundamentals material, available for free. Very accessible, comprehensive and well-written.",
       "name": "Leo Karoubi",
-      "position": "AI Safety Researcher",
+      "position": "",
       "date": "2025",
       "tier": "independent"
     },
@@ -98,7 +98,7 @@
     {
       "quote": "The AI Safety Atlas is excellent teaching material. I'd know since I read it multiple times and I often go back to it for reference.",
       "name": "Amaury Lorin",
-      "position": "AI Safety Student",
+      "position": "",
       "date": "2025",
       "tier": "student"
     }

@@ -1,0 +1,19 @@
+/* src/css/docitem.css - New file for DocItem customizations */
+
+/* Hide elements in custom chapter/section pages */
+.docitem-with-custom-header .theme-doc-breadcrumbs,
+.docitem-with-custom-header [class*="breadcrumbs"],
+.docitem-with-custom-header nav[aria-label="Breadcrumbs"],
+.docitem-with-custom-header .breadcrumbs {
+  display: none !important;
+}
+
+.docitem-with-custom-header article h1:first-of-type,
+.docitem-with-custom-header .markdown h1:first-child,
+.docitem-with-custom-header [class*="docTitle"] {
+  display: none !important;
+}
+
+.docitem-with-custom-header header[class*="docHeader"] {
+  display: none !important;
+}

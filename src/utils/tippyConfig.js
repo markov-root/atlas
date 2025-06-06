@@ -1,27 +1,37 @@
-// src/utils/tippyConfig.js - Centralized Tippy configuration for Atlas components
-
-/**
- * Default Tippy configuration for Atlas components
- * This ensures consistent styling and behavior across all tooltips
- */
+// src/utils/tippyConfig.js - Complete file with all exports and fixed props
 export const ATLAS_TIPPY_DEFAULTS = {
   theme: 'atlas',
   animation: 'shift-away',
   arrow: true,
   placement: 'top',
-  delay: [300, 100], // [show delay, hide delay]
-  duration: [200, 150], // [show duration, hide duration]
+  delay: [300, 100],
+  duration: [200, 150],
   maxWidth: 300,
   interactive: false,
   appendTo: () => document.body,
-  // Enhanced easing for smooth animations
-  easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
-  // Offset from trigger element
+  // Remove invalid props and use popperOptions instead
   offset: [0, 8],
-  // Better positioning
-  flip: true,
-  flipBehavior: ['top', 'bottom', 'right', 'left'],
-  boundary: 'viewport',
+  flipOnUpdate: true,
+  
+  // Use popperOptions for advanced positioning
+  popperOptions: {
+    modifiers: [
+      {
+        name: 'flip',
+        options: {
+          fallbackPlacements: ['bottom', 'right', 'left'],
+          boundary: 'viewport'
+        }
+      },
+      {
+        name: 'preventOverflow',
+        options: {
+          boundary: 'viewport'
+        }
+      }
+    ]
+  },
+  
   // Accessibility
   aria: {
     content: 'auto',
@@ -56,7 +66,7 @@ export const TIPPY_PRESETS = {
     maxWidth: 400,
     interactive: true,
     interactiveBorder: 20,
-    delay: [100, 300], // Longer hide delay for interactive content
+    delay: [100, 300],
     duration: [250, 200],
     trigger: 'click',
     hideOnClick: true
@@ -71,7 +81,6 @@ export const TIPPY_PRESETS = {
     delay: [300, 100],
     duration: [200, 150],
     interactive: false,
-    // Special handling for footnotes
     allowHTML: true
   },
   
@@ -109,9 +118,6 @@ export const TIPPY_PRESETS = {
 
 /**
  * Utility function to create Tippy props with Atlas defaults
- * @param {string} preset - The preset to use ('default', 'small', 'interactive', etc.)
- * @param {Object} customProps - Custom properties to override defaults
- * @returns {Object} Complete Tippy props object
  */
 export function createTippyProps(preset = 'default', customProps = {}) {
   const baseProps = TIPPY_PRESETS[preset] || TIPPY_PRESETS.default;
@@ -119,15 +125,12 @@ export function createTippyProps(preset = 'default', customProps = {}) {
   return {
     ...baseProps,
     ...customProps,
-    // Ensure theme is always set to an Atlas theme
     theme: customProps.theme?.startsWith('atlas') ? customProps.theme : baseProps.theme
   };
 }
 
 /**
  * Higher-order component wrapper for consistent Tippy usage
- * @param {Object} props - Tippy props
- * @returns {Object} Enhanced props with Atlas defaults
  */
 export function withAtlasTippy(props = {}) {
   const preset = props.preset || 'default';
@@ -138,9 +141,6 @@ export function withAtlasTippy(props = {}) {
 
 /**
  * React hook for Tippy configuration
- * @param {string} preset - The preset to use
- * @param {Object} customProps - Custom properties
- * @returns {Object} Tippy configuration object
  */
 export function useTippyConfig(preset = 'default', customProps = {}) {
   return createTippyProps(preset, customProps);
@@ -150,41 +150,35 @@ export function useTippyConfig(preset = 'default', customProps = {}) {
  * Configuration for specific Atlas components
  */
 export const COMPONENT_TIPPY_CONFIGS = {
-  // Footnote component
   footnote: {
     ...TIPPY_PRESETS.footnote,
-    content: '', // Will be set dynamically
+    content: '',
     allowHTML: true
   },
   
-  // Settings dropdown items
   settingsItem: {
     ...TIPPY_PRESETS.help,
     placement: 'left',
     delay: [400, 100]
   },
   
-  // Navigation breadcrumbs
   breadcrumb: {
     ...TIPPY_PRESETS.nav,
     placement: 'bottom'
   },
   
-  // Chapter header action buttons
   actionButton: {
     ...TIPPY_PRESETS.small,
     placement: 'top',
     delay: [300, 100]
   },
   
-  // Audio player controls
   audioControl: {
     ...TIPPY_PRESETS.small,
     placement: 'top',
     maxWidth: 150
   },
   
-  // Figure/media zoom hints
   mediaHint: {
     ...TIPPY_PRESETS.small,
     placement: 'bottom',
@@ -195,9 +189,6 @@ export const COMPONENT_TIPPY_CONFIGS = {
 
 /**
  * Utility to get component-specific Tippy config
- * @param {string} componentType - The component type
- * @param {Object} customProps - Custom properties to override
- * @returns {Object} Component-specific Tippy configuration
  */
 export function getComponentTippyConfig(componentType, customProps = {}) {
   const baseConfig = COMPONENT_TIPPY_CONFIGS[componentType] || TIPPY_PRESETS.default;
@@ -209,14 +200,11 @@ export function getComponentTippyConfig(componentType, customProps = {}) {
 }
 
 /**
- * Global Tippy setup function - call this once in your app initialization
- * This sets up global defaults that will be applied to all Tippy instances
+ * Global Tippy setup function
  */
 export function setupGlobalTippyDefaults() {
-  // Only run on client side
   if (typeof window === 'undefined') return;
   
-  // Set global defaults if Tippy is available
   if (window.tippy && window.tippy.setDefaultProps) {
     window.tippy.setDefaultProps(ATLAS_TIPPY_DEFAULTS);
   }
@@ -224,25 +212,19 @@ export function setupGlobalTippyDefaults() {
 
 /**
  * Responsive Tippy configuration based on screen size
- * @param {string} preset - Base preset to use
- * @returns {Object} Responsive Tippy configuration
  */
 export function getResponsiveTippyConfig(preset = 'default') {
   const baseConfig = TIPPY_PRESETS[preset];
   
-  // Check if we're on mobile
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   
   if (isMobile) {
     return {
       ...baseConfig,
-      // Adjust for mobile
       maxWidth: Math.min(baseConfig.maxWidth, 280),
-      placement: 'top', // Prefer top placement on mobile
-      delay: [200, 100], // Faster on mobile
-      offset: [0, 6], // Smaller offset
-      boundary: 'viewport',
-      // Prevent tooltips from going off-screen on mobile
+      placement: 'top',
+      delay: [200, 100],
+      offset: [0, 6],
       popperOptions: {
         modifiers: [
           {
@@ -250,6 +232,13 @@ export function getResponsiveTippyConfig(preset = 'default') {
             options: {
               boundary: 'viewport',
               padding: 8
+            }
+          },
+          {
+            name: 'flip',
+            options: {
+              fallbackPlacements: ['bottom', 'right', 'left'],
+              boundary: 'viewport'
             }
           }
         ]

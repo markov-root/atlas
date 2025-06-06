@@ -12,6 +12,7 @@
 @import './tippy.css';
 @import './algolia.css';
 @import './fonts.css';
+@import './docitem.css';
 @import './custom-fonts.css';
 
 /* You can override the default Infima variables here. */
