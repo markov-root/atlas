@@ -1,9 +1,9 @@
-// config/navbar.mjs - Standardized navbar configuration
+// config/navbar.mjs - Clean, working navbar
 export const navbarConfig = {
   title: '',
   logo: {
     alt: 'AI Safety Atlas Logo',
-    src: '/img/logo_samples/01-test.png', // Standardized with leading slash
+    src: '/img/logo_samples/01-test.png',
   },
   items: [
     {
@@ -16,17 +16,6 @@ export const navbarConfig = {
       position: 'right',
       label: 'Impact',
     },
-    // Courses commented out as requested
-    // {
-    //   to: '/courses/',
-    //   position: 'right',
-    //   label: 'Courses',
-    // },
-    // GitHub link commented out as requested
-    // {
-    //   href: 'https://github.com/markov-root/atlas',
-    //   label: 'GitHub',
-    //   position: 'right',
-    // },
+    // No custom items - just clean navbar with search
   ],
 };

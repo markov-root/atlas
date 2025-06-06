@@ -2,6 +2,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import { navbarConfig } from './navbar.mjs';
 import { footerConfig } from './footer.mjs';
+import { algoliaConfig } from './algolia.mjs';
 
 export const themeConfig = {
   docs: {
@@ -28,7 +29,10 @@ export const themeConfig = {
     theme: prismThemes.github,
     darkTheme: prismThemes.dracula,
   },
-  
+
+  // Search module
+  algolia: algoliaConfig,
+
   // Import navbar configuration from separate file
   navbar: navbarConfig,
   
