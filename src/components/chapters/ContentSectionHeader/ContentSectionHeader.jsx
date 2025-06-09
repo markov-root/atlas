@@ -1,11 +1,11 @@
 // src/components/chapters/ContentSectionHeader/ContentSectionHeader.jsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styles from './ContentSectionHeader.module.css';
 
 /**
 * Custom section header component for CONTENT within markdown (not page headers)
 * Automatically calculates reading time for content until next section
-* This is completely separate from your existing SectionHeader.jsx component
+* Enhanced with Algolia search scroll support
 */
 export default function ContentSectionHeader({ 
  children, 
@@ -17,6 +17,57 @@ export default function ContentSectionHeader({
 }) {
  const [coreReadingTime, setCoreReadingTime] = useState(null);
  const [optionalReadingTime, setOptionalReadingTime] = useState(null);
+ const headerRef = useRef(null);
+
+ // Enhanced scroll-to behavior for Algolia search results
+ useEffect(() => {
+   if (!id) return;
+
+   // Function to handle smooth scrolling to this header
+   const handleScrollTo = () => {
+     if (headerRef.current) {
+       const rect = headerRef.current.getBoundingClientRect();
+       const offset = 100; // Account for fixed navbar
+       const elementPosition = rect.top + window.pageYOffset;
+       const offsetPosition = elementPosition - offset;
+
+       window.scrollTo({
+         top: offsetPosition,
+         behavior: 'smooth'
+       });
+     }
+   };
+
+   // Listen for hash changes (from Algolia or direct links)
+   const handleHashChange = () => {
+     if (window.location.hash === `#${id}`) {
+       // Small delay to ensure DOM is ready
+       setTimeout(handleScrollTo, 100);
+     }
+   };
+
+   // Check if we should scroll to this element on mount
+   if (window.location.hash === `#${id}`) {
+     setTimeout(handleScrollTo, 200);
+   }
+
+   // Listen for hash changes
+   window.addEventListener('hashchange', handleHashChange);
+   
+   // Custom event listener for Algolia search results
+   const handleAlgoliaScroll = (event) => {
+     if (event.detail?.targetId === id) {
+       handleScrollTo();
+     }
+   };
+   
+   window.addEventListener('algolia-scroll-to', handleAlgoliaScroll);
+
+   return () => {
+     window.removeEventListener('hashchange', handleHashChange);
+     window.removeEventListener('algolia-scroll-to', handleAlgoliaScroll);
+   };
+ }, [id]);
 
  // Helper function to get core text content, excluding optional elements
  const getCoreTextContent = (element) => {
@@ -312,8 +363,9 @@ export default function ContentSectionHeader({
  const HeaderTag = `h${level}`;
 
  return (
-   <div className={`${styles.contentSectionContainer} ${className}`}>
+   <div className={`${styles.contentSectionContainer} ${className}`} ref={headerRef}>
      <div className={styles.contentSectionContent}>
+       {/* The actual heading element with the ID for proper anchor linking */}
        <HeaderTag 
          id={id} 
          className={styles.contentSectionTitle}

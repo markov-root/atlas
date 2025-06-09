@@ -1,9 +1,10 @@
-// src/theme/DocItem/index.js - Fix hooks order
+// src/theme/DocItem/index.js - Updated with Feedback Integration
 import React, { useState, useEffect, useMemo } from 'react';
 import DocItem from '@theme-original/DocItem';
 import { useLocation } from '@docusaurus/router';
 import ChapterLanding from './Landing/ChapterLanding';
 import ChapterHeaderRenderer from './Headers/ChapterHeaderRenderer';
+import ChapterFeedback from '../../components/Feedback/ChapterFeedback';
 
 export default function DocItemWrapper(props) {
   const location = useLocation();
@@ -32,6 +33,23 @@ export default function DocItemWrapper(props) {
     return 'other';
   }, [location.pathname]);
 
+  // Extract chapter and section numbers for feedback
+  const { chapterNumber, sectionNumber } = useMemo(() => {
+    const sectionMatch = location.pathname.match(/\/chapters\/(\d+)\/(\d+)/);
+    if (sectionMatch) {
+      return { 
+        chapterNumber: sectionMatch[1], 
+        sectionNumber: sectionMatch[2] 
+      };
+    }
+    
+    const chapterMatch = location.pathname.match(/\/chapters\/(\d+)/);
+    return { 
+      chapterNumber: chapterMatch ? chapterMatch[1] : null, 
+      sectionNumber: null 
+    };
+  }, [location.pathname]);
+
   // Now we can do early returns after all hooks are called
   if (!isClient) {
     return null;
@@ -57,6 +75,17 @@ export default function DocItemWrapper(props) {
           isSectionPage={pageType === 'section'}
         />
         <DocItem {...props} />
+        
+        {/* Add feedback component at the end of docs pages */}
+        {(pageType === 'chapter' || pageType === 'section') && chapterNumber && (
+          <ChapterFeedback
+            chapterNumber={chapterNumber}
+            sectionNumber={sectionNumber}
+            title={title}
+            pathname={location.pathname}
+            frontMatter={frontMatter}
+          />
+        )}
       </div>
     );
   }
