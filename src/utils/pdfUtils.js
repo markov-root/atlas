@@ -101,6 +101,7 @@ export function hasPdfFile(pdfData) {
  * Debug function to log PDF file information
  * @param {string} context - Context for the debug log
  * @param {Object} data - Data to log
+ * 
  */
 export function debugPdfFiles(context, data) {
   console.log(`📄 ${context} PDF debug:`, data);
