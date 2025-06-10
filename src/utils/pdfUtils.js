@@ -1,69 +1,100 @@
-// src/utils/pdfUtils.js - Utility functions for handling PDF files
+// src/utils/pdfUtils.js - Utility functions for handling PDF files (local only)
 
 /**
- * Build PDF file path from frontmatter and provide smart fallbacks
- * @param {Object} frontMatter - The frontmatter object from a chapter/section
+ * Check if a local PDF file exists by making a GET request and checking content
  * @param {string|number} chapterNumber - The chapter number
- * @returns {string|null} PDF filename or null if not available
+ * @param {string} filename - The PDF filename to check
+ * @returns {Promise<boolean>} Whether the local file exists
  */
-export function buildPdfFile(frontMatter, chapterNumber) {
-  // First check if there's an explicit download_link in frontmatter
-  if (frontMatter.download_link) {
-    // If it's a full URL, return as-is
-    if (frontMatter.download_link.startsWith('http')) {
-      return frontMatter.download_link;
+async function checkLocalPdfExists(chapterNumber, filename) {
+  const localUrl = `/chapters/${chapterNumber.toString().padStart(2, '0')}/pdf/${filename}`;
+  
+  console.log(`🔍 Checking if PDF exists: ${localUrl}`);
+  
+  try {
+    const response = await fetch(localUrl, { method: 'GET' });
+    
+    console.log(`📄 Response status for ${localUrl}: ${response.status}`);
+    
+    // Check if response is OK and content type indicates a PDF
+    if (!response.ok) {
+      console.log(`❌ PDF check failed for ${localUrl}: status ${response.status}`);
+      return false;
     }
-    // If it's a relative path, extract just the filename
-    const pdfFilename = frontMatter.download_link.split('/').pop();
-    if (pdfFilename && pdfFilename.includes('.')) {
-      return pdfFilename;
+    
+    // Check content type
+    const contentType = response.headers.get('content-type');
+    console.log(`📄 Content-Type for ${localUrl}: ${contentType}`);
+    
+    // Check if it's actually a PDF file
+    if (contentType && contentType.includes('application/pdf')) {
+      console.log(`✅ PDF exists and is valid: ${localUrl}`);
+      return true;
     }
+    
+    // If content-type is not PDF, check if response looks like HTML (404 page)
+    const text = await response.text();
+    const isHtmlResponse = text.includes('<html') || text.includes('<!DOCTYPE');
+    
+    if (isHtmlResponse) {
+      console.log(`❌ PDF check failed for ${localUrl}: got HTML response (likely 404 page)`);
+      return false;
+    }
+    
+    // If we got here, it might be a PDF without proper content-type
+    console.log(`⚠️ PDF might exist but has unusual content-type: ${localUrl}`);
+    return text.startsWith('%PDF'); // Check if it starts with PDF magic number
+    
+  } catch (error) {
+    console.log(`❌ PDF check failed for ${localUrl}:`, error);
+    return false;
   }
-  
-  // Smart fallback: look for common PDF filenames
-  const chapterNum = parseInt(chapterNumber, 10);
-  const chapterNumStr = String(chapterNumber).padStart(2, '0');
-  
-  // Common patterns for PDF files based on the actual file structure
-  const commonPdfPatterns = [
-    'main.pdf',                      // main.pdf (matches your actual files)
-    `chapter${chapterNum}.pdf`,      // chapter1.pdf
-    `chapter_${chapterNumStr}.pdf`,  // chapter_01.pdf
-    `${chapterNumStr}.pdf`,          // 01.pdf
-    `${chapterNum}.pdf`,             // 1.pdf
-    `ch${chapterNum}.pdf`            // ch1.pdf
-  ];
-  
-  // Use the first pattern as fallback (matches your main.pdf structure)
-  return 'main.pdf';
 }
 
 /**
- * Generate PDF file URL for the new folder structure
+ * Build PDF file path - only checks for local files
+ * @param {Object} frontMatter - Not used anymore, kept for compatibility
  * @param {string|number} chapterNumber - The chapter number
- * @param {string} filename - The PDF filename
- * @returns {string|null} The full URL path to the PDF file, or null if no filename
+ * @returns {Promise<{type: string, url: string|null, isActive: boolean}>} PDF availability info
  */
-export function getPdfUrl(chapterNumber, filename) {
-  if (!filename) return null;
+export async function buildPdfFile(frontMatter, chapterNumber) {
+  // Only check for local file
+  const localFilename = 'main.pdf';
+  const localExists = await checkLocalPdfExists(chapterNumber, localFilename);
   
-  // If it's already a full URL, return as-is
-  if (filename.startsWith('http')) {
-    return filename;
+  if (localExists) {
+    const localUrl = `/chapters/${chapterNumber.toString().padStart(2, '0')}/pdf/${localFilename}`;
+    return {
+      type: 'local',
+      url: localUrl,
+      isActive: true
+    };
   }
   
-  // Updated path structure: /chapters/XX/pdf/filename.pdf
-  // Keep zero-padding for the folder path to match your folder structure (01, 02, etc.)
-  return `/chapters/${chapterNumber.toString().padStart(2, '0')}/pdf/${filename}`;
+  // No local PDF available - deactivate button
+  return {
+    type: 'none',
+    url: null,
+    isActive: false
+  };
 }
 
 /**
- * Check if PDF file is available (helper for components)
- * @param {string|null} pdfFile - PDF file path or filename
- * @returns {boolean} Whether PDF file is available
+ * Get PDF URL from the PDF data object
+ * @param {Object} pdfData - The PDF data object
+ * @returns {string|null} The URL or null
  */
-export function hasPdfFile(pdfFile) {
-  return !!(pdfFile && pdfFile.trim() !== '');
+export function getPdfUrl(pdfData) {
+  return pdfData ? pdfData.url : null;
+}
+
+/**
+ * Check if PDF is available
+ * @param {Object} pdfData - The PDF data object
+ * @returns {boolean} Whether PDF is available
+ */
+export function hasPdfFile(pdfData) {
+  return !!(pdfData && pdfData.isActive && pdfData.url);
 }
 
 /**

@@ -54,13 +54,13 @@ function ActionButton({ href, iconPath, label, description, active, onClick }) {
   return (
     <ActionButtonTooltip content={active ? tooltipContent : `${label} (Not available)`}>
       <a
-        href={active ? href : '#'}
+        href={active && href ? href : '#'}
         target={active && href ? "_blank" : undefined}
         rel={active && href ? "noopener noreferrer" : undefined}
         className={`${styles.actionButton} ${!active ? styles.inactive : ''}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={!active ? (e) => e.preventDefault() : undefined}
+        onClick={!active || !href ? (e) => e.preventDefault() : undefined}
         aria-disabled={!active}
       >
         <div className={styles.buttonIcon}>
@@ -82,6 +82,8 @@ function ActionButton({ href, iconPath, label, description, active, onClick }) {
 export default function ChapterHeader({ frontMatter, title, chapterNumber, boundWidth, metadata }) {
   const [isVisible, setIsVisible] = useState(false);
   const [showAudioPlayer, setShowAudioPlayer] = useState(false);
+  const [pdfData, setPdfData] = useState(null);
+  const [pdfLoading, setPdfLoading] = useState(true);
 
   // Animation trigger
   useEffect(() => {
@@ -89,14 +91,55 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
     return () => clearTimeout(timer);
   }, []);
 
+  // PDF availability check - async
+  useEffect(() => {
+    async function checkPdfAvailability() {
+      setPdfLoading(true);
+      
+      console.log(`🔍 Checking PDF for chapter ${chapterNumber}...`);
+      
+      try {
+        const result = await buildPdfFile(frontMatter, chapterNumber);
+        
+        console.log(`📄 PDF check result for chapter ${chapterNumber}:`, result);
+        
+        setPdfData(result);
+        
+        debugPdfFiles('ChapterHeader (async)', {
+          chapterNumber,
+          localFileChecked: `/chapters/${String(chapterNumber).padStart(2, '0')}/pdf/main.pdf`,
+          asyncResult: result
+        });
+      } catch (error) {
+        console.error(`❌ PDF availability check failed for chapter ${chapterNumber}:`, error);
+        // Set to inactive if check fails
+        setPdfData({
+          type: 'none',
+          url: null,
+          isActive: false
+        });
+      } finally {
+        setPdfLoading(false);
+      }
+    }
+    
+    checkPdfAvailability();
+  }, [frontMatter, chapterNumber]);
+
+  // Use actual PDF data once loaded, or show as inactive while loading
+  const hasPdf = pdfData ? hasPdfFile(pdfData) : false;
+  const pdfUrl = (pdfData && pdfData.isActive) ? getPdfUrl(pdfData) : null;
+  
+  console.log(`🎯 Chapter ${chapterNumber} PDF status:`, {
+    pdfLoading,
+    pdfData,
+    hasPdf,
+    pdfUrl
+  });
+
   // Build audio files object
   const audioFiles = buildAudioFiles(frontMatter, chapterNumber);
   const hasAudio = hasAudioFiles(audioFiles);
-
-  // Build PDF file path and check availability
-  const pdfFile = buildPdfFile(frontMatter, chapterNumber);
-  const hasPdf = hasPdfFile(pdfFile);
-  const pdfUrl = getPdfUrl(chapterNumber, pdfFile);
 
   // Debug logging for audio detection
   debugAudioFiles('ChapterHeader', {
@@ -112,15 +155,16 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
   });
 
   // Debug logging for PDF detection
-  debugPdfFiles('ChapterHeader', {
-    chapterNumber,
-    frontMatterPdf: {
-      download_link: frontMatter.download_link
-    },
-    processedPdfFile: pdfFile,
-    pdfUrl,
-    hasPdf
-  });
+  if (pdfData) {
+    debugPdfFiles('ChapterHeader (final)', {
+      chapterNumber,
+      localFileChecked: `/chapters/${String(chapterNumber).padStart(2, '0')}/pdf/main.pdf`,
+      finalPdfData: pdfData,
+      pdfUrl,
+      hasPdf,
+      pdfLoading
+    });
+  }
 
   // Handle audio button click
   const handleAudioToggle = () => {
@@ -323,6 +367,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               active={!!frontMatter.alignment_forum_link}
             />
             
+            {/* Video button - same as other action buttons */}
             <ActionButton
               href={frontMatter.video_link}
               iconPath="/img/icons/video.svg"
@@ -340,13 +385,22 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               active={hasAudio}
             />
             
-            {/* PDF Download button - NOW WITH SMART DETECTION */}
+            {/* PDF Download button - Only active when local file confirmed to exist */}
             <ActionButton
-              href={pdfUrl}
+              href={hasPdf ? pdfUrl : null}
               iconPath="/img/icons/pdf.svg"
               label="PDF"
               description={hasPdf ? "Download PDF version" : "PDF not available"}
               active={hasPdf}
+            />
+            
+            {/* Excalidraw button - NEW */}
+            <ActionButton
+              href={frontMatter.excalidraw_link}
+              iconPath="/img/icons/excalidraw.svg"
+              label="Diagram"
+              description="View interactive diagrams on Excalidraw"
+              active={!!frontMatter.excalidraw_link}
             />
             
             <ActionButton

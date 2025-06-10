@@ -260,7 +260,6 @@
 
 .actionButton:hover {
   color: var(--atlas-primary, #1971c2);
-  background: rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.05);
   transform: translateY(-2px);
 }
 
@@ -293,17 +292,21 @@
 .buttonIconImage {
   width: 36px;
   height: 36px;
-  transition: all 0.2s ease;
-  opacity: 0.7;
+  transition: filter 0.2s ease;
+  opacity: 1;
+  /* Light mode: pure black for all icons */
+  filter: brightness(0) saturate(100%) invert(0%);
 }
 
 .actionButton:hover .buttonIconImage {
-  opacity: 1;
+  /* Primary color filter on hover for ALL icons */
   filter: brightness(0) saturate(100%) invert(27%) sepia(94%) saturate(1167%) hue-rotate(201deg) brightness(96%) contrast(94%);
 }
 
 .actionButton.inactive .buttonIconImage {
   opacity: 0.3;
+  /* Light gray for inactive icons */
+  filter: brightness(0) saturate(100%) invert(70%);
 }
 
 /* Simplified text content */
@@ -558,21 +561,27 @@
 
 [data-theme='dark'] .actionButton:hover {
   color: var(--atlas-primary-lighter, #74c0fc);
-  background: rgba(var(--atlas-primary-rgb, 51, 154, 240), 0.08);
 }
 
 [data-theme='dark'] .buttonIconImage {
-  opacity: 0.6;
-  filter: brightness(0) invert(1);
+  /* Dark mode: pure white for all icons */
+  filter: brightness(0) saturate(100%) invert(100%);
 }
 
 [data-theme='dark'] .actionButton:hover .buttonIconImage {
   opacity: 1;
+  /* Dark mode hover: primary light color for all icons */
   filter: brightness(0) saturate(100%) invert(67%) sepia(32%) saturate(1715%) hue-rotate(191deg) brightness(101%) contrast(94%);
 }
 
 [data-theme='dark'] .actionButton.inactive {
   color: var(--atlas-text-tertiary, #6c757d);
+}
+
+[data-theme='dark'] .actionButton.inactive .buttonIconImage {
+  opacity: 0.3;
+  /* Dark mode inactive: light gray for all icons */
+  filter: brightness(0) saturate(100%) invert(70%);
 }
 
 [data-theme='dark'] .buttonLabel {

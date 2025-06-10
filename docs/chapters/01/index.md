@@ -16,6 +16,7 @@ download_link: "https://github.com/CentreSecuriteIA/textbook/blob/main/latex/AI%
 feedback_link: "https://forms.gle/ZsA4hEWUx1ZrtQLL9"
 video_link: "https://www.youtube.com/watch?v=J_iMeH1hb9M"
 teach_link: "https://docs.google.com/document/d/1L32xCVUCWEsm-x8UZ3GSTgKnmBcC7rJQLLIh9wGLj40/edit?usp=sharing"
+excalidraw_link: "https://excalidraw.com/#json=NV7BpqhwIeNziaCbcbmqb,82mR3MO9mampoZ7CC9Ajgg"
 sidebar_position: 1
 slug: /chapters/01/
 ---
