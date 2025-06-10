@@ -14,6 +14,8 @@
 @import './fonts.css';
 @import './docitem.css';
 @import './custom-fonts.css';
+@import './doc-footer.css';
+@import './scrollbar.css';
 
 /* You can override the default Infima variables here. */
 :root {

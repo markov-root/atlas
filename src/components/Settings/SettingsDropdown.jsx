@@ -98,7 +98,7 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
                 </option>
               ))}
             </select>
-            <img src="/img/icons/chevron-down.svg" alt="" className={styles.selectIcon} />
+            <img src="/img/icons/arrow-down.svg" alt="" className={styles.selectIcon} />
           </div>
         </div>
 

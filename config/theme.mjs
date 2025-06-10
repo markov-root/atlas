@@ -7,7 +7,7 @@ import { algoliaConfig } from './algolia.mjs';
 export const themeConfig = {
   docs: {
     sidebar: {
-      hideable: false,
+      hideable: true,
       autoCollapseCategories: true,
     },
   },

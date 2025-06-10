@@ -1,4 +1,4 @@
-// src/components/Feedback/ChapterFeedback.jsx
+// src/components/Feedback/ChapterFeedback.jsx - Updated with footnote-style separator
 import React, { useState, useEffect, useRef } from 'react';
 import { ActionButtonTooltip } from '../UI/Tooltip';
 import styles from './ChapterFeedback.module.css';
@@ -341,6 +341,17 @@ export default function ChapterFeedback({
   if (isSubmitted) {
     return (
       <div className={styles.feedbackContainer}>
+        {/* Footnote-style separator */}
+        <div className={styles.separator}>
+          <div className={styles.separatorLine}></div>
+          <img 
+            src="/img/logo_samples/01-test.svg" 
+            alt="Atlas logo" 
+            className={styles.separatorLogo}
+          />
+          <div className={styles.separatorLine}></div>
+        </div>
+
         <div className={styles.thankYou}>
           <div className={styles.checkIcon}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -359,11 +370,22 @@ export default function ChapterFeedback({
 
   return (
     <div className={styles.feedbackContainer}>
+      {/* Footnote-style separator */}
+      <div className={styles.separator}>
+        <div className={styles.separatorLine}></div>
+        <img 
+          src="/img/logo_samples/01-test.svg" 
+          alt="Atlas logo" 
+          className={styles.separatorLogo}
+        />
+        <div className={styles.separatorLine}></div>
+      </div>
+
       <div className={styles.feedbackHeader}>
         <h3>
           {isConclusion 
-            ? 'How was this chapter?' 
-            : 'How was this section?'
+            ? 'Chapter Feedback' 
+            : 'Section Feedback'
           }
         </h3>
         <p>We consider this textbook a live project. Feedback helps us target our improvements.</p>

@@ -1,0 +1,211 @@
+/* src/css/doc-footer.css - Minimal flat design with proper feedback ordering */
+
+/* ========== HIDE EDIT THIS PAGE LINK ========== */
+
+/* Hide the entire edit meta row */
+.theme-doc-footer-edit-meta-row {
+  display: none !important;
+}
+
+/* Alternative: Hide just the edit link if you want to keep other meta info */
+.theme-edit-this-page {
+  display: none !important;
+}
+
+/* Hide the edit icon specifically */
+.iconEdit_Z9Sw {
+  display: none !important;
+}
+
+/* ========== FEEDBACK AND PAGINATION ORDERING ========== */
+
+/* Ensure proper spacing for feedback component */
+.feedback-component-wrapper {
+  margin-bottom: 0 !important;
+}
+
+/* Ensure pagination has proper top margin when preceded by feedback */
+.feedback-component-wrapper + * .pagination-nav,
+.pagination-nav:has(+ .feedback-component-wrapper) {
+  margin-top: 2rem !important;
+}
+
+/* ========== SIMPLE TOP BORDER ========== */
+
+/* Add simple border above pagination */
+.pagination-nav {
+  border-top: 1px solid var(--atlas-border-color, #e9ecef) !important;
+  padding: 2rem 0 !important;
+  margin-top: 3rem !important;
+  background: transparent !important;
+  border: none !important;
+  border-top: 1px solid var(--atlas-border-color, #e9ecef) !important;
+}
+
+/* Dark mode border */
+[data-theme='dark'] .pagination-nav {
+  border-top-color: var(--atlas-border-color, #373737) !important;
+}
+
+/* ========== MINIMAL FLAT PAGINATION STYLES ========== */
+
+/* Individual pagination link containers - Dark background, light text */
+.pagination-nav__link {
+  background: var(--atlas-text, #212529) !important; /* Dark background in light mode */
+  color: var(--atlas-background, #ffffff) !important; /* Light text in light mode */
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+  text-decoration: none !important;
+  transition: opacity 0.2s ease !important;
+  box-shadow: none !important;
+}
+
+/* Hover effects - just opacity change */
+.pagination-nav__link:hover {
+  opacity: 0.8 !important;
+  text-decoration: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Previous link - left aligned */
+.pagination-nav__link--prev {
+  text-align: left !important;
+}
+
+/* Next link - right aligned */
+.pagination-nav__link--next {
+  text-align: right !important;
+}
+
+/* Sublabel styling (Previous/Next text) */
+.pagination-nav__sublabel {
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: inherit !important;
+  opacity: 0.7 !important;
+  margin-bottom: 0.5rem !important;
+  display: block !important;
+}
+
+/* Main label styling (actual page title) */
+.pagination-nav__label {
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
+  color: inherit !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+  opacity: 1 !important;
+}
+
+/* Simple arrows without extra styling */
+.pagination-nav__link--prev::before {
+  content: '← ' !important;
+  color: inherit !important;
+  opacity: 0.7 !important;
+}
+
+.pagination-nav__link--next::after {
+  content: ' →' !important;
+  color: inherit !important;
+  opacity: 0.7 !important;
+}
+
+/* ========== DARK MODE - LIGHT BACKGROUND, DARK TEXT ========== */
+
+/* Dark mode - Light background, dark text for all buttons */
+[data-theme='dark'] .pagination-nav__link {
+  background: #ffffff !important; /* Force light background */
+  color: #212529 !important; /* Force dark text */
+}
+
+[data-theme='dark'] .pagination-nav__link:hover {
+  background: #ffffff !important; /* Keep light background on hover */
+  color: #212529 !important; /* Keep dark text on hover */
+  opacity: 0.8 !important;
+}
+
+[data-theme='dark'] .pagination-nav__sublabel {
+  color: #212529 !important; /* Force dark text */
+}
+
+[data-theme='dark'] .pagination-nav__label {
+  color: #212529 !important; /* Force dark text */
+}
+
+[data-theme='dark'] .pagination-nav__link--prev::before,
+[data-theme='dark'] .pagination-nav__link--next::after {
+  color: #212529 !important; /* Force dark arrows */
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+@media (max-width: 768px) {
+  .pagination-nav {
+    padding: 1.5rem 0 !important;
+    margin-top: 2rem !important;
+  }
+  
+  .pagination-nav__link {
+    padding: 1.25rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .pagination-nav__sublabel {
+    font-size: 0.75rem !important;
+  }
+  
+  .pagination-nav__label {
+    font-size: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination-nav__link {
+    padding: 1rem !important;
+  }
+  
+  .pagination-nav__sublabel {
+    font-size: 0.7rem !important;
+    margin-bottom: 0.375rem !important;
+  }
+  
+  .pagination-nav__label {
+    font-size: 0.9rem !important;
+  }
+}
+
+/* ========== ACCESSIBILITY IMPROVEMENTS ========== */
+
+/* Focus states for keyboard navigation */
+.pagination-nav__link:focus {
+  outline: 2px solid var(--atlas-primary, #1971c2) !important;
+  outline-offset: 2px !important;
+}
+
+[data-theme='dark'] .pagination-nav__link:focus {
+  outline-color: var(--atlas-primary-lighter, #74c0fc) !important;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .pagination-nav__link {
+    transition: none !important;
+  }
+}
+
+/* ========== REMOVE ALL SHADOWS AND BORDERS ========== */
+
+/* Nuclear option - remove any remaining visual effects */
+.pagination-nav *,
+.pagination-nav__link *,
+.pagination-nav__sublabel *,
+.pagination-nav__label * {
+  box-shadow: none !important;
+  border: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+}

@@ -1,5 +1,5 @@
-// src/theme/DocItem/index.js - Updated with Feedback Integration
-import React, { useState, useEffect, useMemo } from 'react';
+// src/theme/DocItem/index.js - Fixed feedback placement with DOM manipulation
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import DocItem from '@theme-original/DocItem';
 import { useLocation } from '@docusaurus/router';
 import ChapterLanding from './Landing/ChapterLanding';
@@ -74,21 +74,142 @@ export default function DocItemWrapper(props) {
           isChapterPage={pageType === 'chapter'}
           isSectionPage={pageType === 'section'}
         />
-        <DocItem {...props} />
         
-        {/* Add feedback component at the end of docs pages */}
-        {(pageType === 'chapter' || pageType === 'section') && chapterNumber && (
-          <ChapterFeedback
-            chapterNumber={chapterNumber}
-            sectionNumber={sectionNumber}
-            title={title}
-            pathname={location.pathname}
-            frontMatter={frontMatter}
-          />
-        )}
+        {/* Use wrapper component that controls the order */}
+        <DocItemWithControlledFeedback 
+          docItemProps={props}
+          chapterNumber={chapterNumber}
+          sectionNumber={sectionNumber}
+          title={title}
+          pathname={location.pathname}
+          frontMatter={frontMatter}
+        />
       </div>
     );
   }
 
   return <DocItem {...props} />;
+}
+
+/**
+ * Wrapper that ensures feedback appears before pagination by moving DOM elements
+ */
+function DocItemWithControlledFeedback({ 
+  docItemProps, 
+  chapterNumber, 
+  sectionNumber, 
+  title, 
+  pathname, 
+  frontMatter 
+}) {
+  const containerRef = useRef(null);
+  const feedbackRef = useRef(null);
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hasMounted) return;
+
+    // Function to reorder elements with proper null checks
+    const reorderElements = () => {
+      const container = containerRef.current;
+      const feedback = feedbackRef.current;
+      
+      // Early return if essential elements don't exist
+      if (!container || !feedback) {
+        return;
+      }
+
+      try {
+        const pagination = container.querySelector('.pagination-nav');
+        
+        if (pagination && feedback && pagination.parentNode) {
+          // Check if feedback is already in the correct position
+          if (pagination.previousElementSibling !== feedback) {
+            // Move feedback to be right before pagination
+            pagination.parentNode.insertBefore(feedback, pagination);
+          }
+        }
+      } catch (error) {
+        console.warn('Error reordering feedback and pagination:', error);
+      }
+    };
+
+    // Multiple delayed attempts to ensure DOM is ready
+    const timers = [
+      setTimeout(reorderElements, 50),
+      setTimeout(reorderElements, 200),
+      setTimeout(reorderElements, 500)
+    ];
+
+    // Set up mutation observer with error handling
+    let observer = null;
+    
+    const setupObserver = () => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      try {
+        observer = new MutationObserver((mutations) => {
+          // Debounce the reordering
+          clearTimeout(window.reorderDebounce);
+          window.reorderDebounce = setTimeout(reorderElements, 50);
+        });
+
+        observer.observe(container, {
+          childList: true,
+          subtree: true
+        });
+      } catch (error) {
+        console.warn('Error setting up mutation observer:', error);
+      }
+    };
+
+    // Set up observer after a delay
+    const observerTimer = setTimeout(setupObserver, 100);
+
+    return () => {
+      // Clean up timers
+      timers.forEach(timer => clearTimeout(timer));
+      clearTimeout(observerTimer);
+      clearTimeout(window.reorderDebounce);
+      
+      // Clean up observer
+      if (observer) {
+        observer.disconnect();
+      }
+    };
+  }, [hasMounted]);
+
+  if (!chapterNumber) {
+    return <DocItem {...docItemProps} />;
+  }
+
+  return (
+    <div ref={containerRef} className="docitem-container-with-feedback">
+      {/* Render the original DocItem */}
+      <DocItem {...docItemProps} />
+      
+      {/* Feedback component - will be moved by the effect */}
+      <div 
+        ref={feedbackRef} 
+        className="feedback-component-wrapper"
+        style={{ 
+          /* Ensure it's visible but will be repositioned */
+          display: 'block'
+        }}
+      >
+        <ChapterFeedback
+          chapterNumber={chapterNumber}
+          sectionNumber={sectionNumber}
+          title={title}
+          pathname={pathname}
+          frontMatter={frontMatter}
+        />
+      </div>
+    </div>
+  );
 }

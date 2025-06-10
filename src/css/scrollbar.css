@@ -1,0 +1,142 @@
+/* src/css/scrollbar.css - Simple solid color scrollbar matching flat aesthetic */
+
+/* ========== GLOBAL SCROLLBAR STYLES ========== */
+
+/* Apply to all scrollable elements */
+* {
+  scrollbar-width: thick; /* Firefox */
+  scrollbar-color: var(--atlas-text, #212529) transparent; /* Firefox: dark thumb, transparent track */
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 20px; /* Thicker vertical scrollbar */
+  height: 20px; /* Thicker horizontal scrollbar */
+}
+
+/* Scrollbar track (background) - completely transparent */
+::-webkit-scrollbar-track {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Scrollbar thumb - solid dark color in light mode */
+::-webkit-scrollbar-thumb {
+  background: var(--atlas-text, #212529) !important; /* Solid dark color */
+  border-radius: 10px !important; /* Slightly more rounded for thicker bar */
+  border: none !important;
+  transition: opacity 0.2s ease !important;
+}
+
+/* Scrollbar thumb hover - just opacity change */
+::-webkit-scrollbar-thumb:hover {
+  opacity: 0.8 !important;
+}
+
+/* Scrollbar thumb active/pressed */
+::-webkit-scrollbar-thumb:active {
+  opacity: 0.6 !important;
+}
+
+/* Remove scrollbar corner */
+::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+
+/* Remove scrollbar buttons (arrows) completely */
+::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* ========== DARK MODE - SOLID LIGHT SCROLLBAR ========== */
+
+[data-theme='dark'] * {
+  scrollbar-color: #ffffff transparent; /* Firefox: light thumb, transparent track */
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: #ffffff !important; /* Solid light color */
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
+  opacity: 0.8 !important;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb:active {
+  opacity: 0.6 !important;
+}
+
+/* ========== DIFFERENT SIZES FOR DIFFERENT AREAS ========== */
+
+/* Thinner scrollbar for sidebar */
+.theme-doc-sidebar-container ::-webkit-scrollbar,
+.sidebarViewport_aRkj::-webkit-scrollbar,
+.sidebar_njMd::-webkit-scrollbar {
+  width: 16px !important; /* Still thick but slightly smaller for sidebar */
+}
+
+/* Medium scrollbar for code blocks */
+pre::-webkit-scrollbar,
+code::-webkit-scrollbar,
+[class*="codeBlock"]::-webkit-scrollbar {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* Thinner scrollbar for dropdowns */
+.dropdown::-webkit-scrollbar,
+[class*="dropdown"]::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+/* ========== MOBILE OPTIMIZATION ========== */
+
+@media (max-width: 768px) {
+  /* Still thick on mobile but slightly smaller */
+  ::-webkit-scrollbar {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  
+  .theme-doc-sidebar-container ::-webkit-scrollbar,
+  .sidebarViewport_aRkj::-webkit-scrollbar,
+  .sidebar_njMd::-webkit-scrollbar {
+    width: 14px !important;
+  }
+}
+
+/* ========== SMOOTH SCROLLING ========== */
+
+/* Enable smooth scrolling for the whole page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========== HIGH CONTRAST MODE ========== */
+
+@media (prefers-contrast: high) {
+  ::-webkit-scrollbar-thumb {
+    background: var(--atlas-text, #212529) !important;
+  }
+  
+  [data-theme='dark'] ::-webkit-scrollbar-thumb {
+    background: #ffffff !important;
+  }
+}
+
+/* ========== PERFORMANCE ========== */
+
+/* Optimize scrollbar rendering */
+::-webkit-scrollbar-thumb {
+  will-change: opacity;
+}
