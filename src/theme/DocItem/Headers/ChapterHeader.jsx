@@ -1,8 +1,9 @@
-// src/theme/DocItem/Headers/ChapterHeader.jsx - Updated with separate PDF and audio utils
+// src/theme/DocItem/Headers/ChapterHeader.jsx - Updated with inline audio/video players
 import React, { useState, useEffect } from 'react';
 import { ActionButtonTooltip } from '../../../components/UI/Tooltip';
 import styles from './ChapterHeader.module.css';
 import InlineAudioPlayer from '@site/src/components/chapters/Audio/InlineAudioPlayer';
+import InlineVideoPlayer from '@site/src/components/chapters/Video/InlineVideoPlayer';
 import { 
   buildAudioFiles, 
   hasAudioFiles, 
@@ -22,7 +23,7 @@ function ActionButton({ href, iconPath, label, description, active, onClick }) {
   // Determine tooltip content
   const tooltipContent = description || label;
 
-  // If it's the audio button and has onClick, render as button instead of link
+  // If it has onClick (audio or video buttons), render as button
   if (onClick) {
     return (
       <ActionButtonTooltip content={tooltipContent}>
@@ -76,12 +77,13 @@ function ActionButton({ href, iconPath, label, description, active, onClick }) {
 }
 
 /**
- * Complete Chapter Header Component with Minimal Audio Player
- * Features: Texture background, horizontal button strip, collapsible audio player
+ * Complete Chapter Header Component with Inline Audio/Video Players
+ * Features: Texture background, horizontal button strip, collapsible media players
  */
 export default function ChapterHeader({ frontMatter, title, chapterNumber, boundWidth, metadata }) {
   const [isVisible, setIsVisible] = useState(false);
   const [showAudioPlayer, setShowAudioPlayer] = useState(false);
+  const [showVideoPlayer, setShowVideoPlayer] = useState(false);
   const [pdfData, setPdfData] = useState(null);
   const [pdfLoading, setPdfLoading] = useState(true);
 
@@ -170,12 +172,32 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
   const handleAudioToggle = () => {
     if (hasAudio) {
       setShowAudioPlayer(!showAudioPlayer);
+      // Close video player if open
+      if (showVideoPlayer) {
+        setShowVideoPlayer(false);
+      }
+    }
+  };
+
+  // Handle video button click
+  const handleVideoToggle = () => {
+    if (frontMatter.video_link) {
+      setShowVideoPlayer(!showVideoPlayer);
+      // Close audio player if open
+      if (showAudioPlayer) {
+        setShowAudioPlayer(false);
+      }
     }
   };
 
   // Handle audio player close
   const handleAudioClose = () => {
     setShowAudioPlayer(false);
+  };
+
+  // Handle video player close
+  const handleVideoClose = () => {
+    setShowVideoPlayer(false);
   };
 
   // Generate flowing particles with better distribution
@@ -355,7 +377,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               href={frontMatter.google_docs_link}
               iconPath="/img/icons/google.svg"
               label="Docs"
-              description="Comment on Google Docs"
+              description="Comment directly on Google Docs"
               active={!!frontMatter.google_docs_link}
             />
             
@@ -363,20 +385,20 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               href={frontMatter.alignment_forum_link}
               iconPath="/img/icons/lesswrong.svg"
               label="Discuss"
-              description="Discuss on Alignment Forum"
+              description="Discuss on Lesswrong and Alignment Forum"
               active={!!frontMatter.alignment_forum_link}
             />
             
-            {/* Video button - same as other action buttons */}
+            {/* Video button - Now with inline playback */}
             <ActionButton
-              href={frontMatter.video_link}
+              onClick={handleVideoToggle}
               iconPath="/img/icons/video.svg"
-              label="Video"
-              description="Watch the video lecture"
+              label="Lecture"
+              description={frontMatter.video_link ? "Watch the video lecture" : "Video not available"}
               active={!!frontMatter.video_link}
             />
             
-            {/* Audio button - restored with click functionality */}
+            {/* Audio button - with click functionality */}
             <ActionButton
               onClick={handleAudioToggle}
               iconPath="/img/icons/audio.svg"
@@ -394,12 +416,12 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               active={hasPdf}
             />
             
-            {/* Excalidraw button - NEW */}
+            {/* Excalidraw button */}
             <ActionButton
               href={frontMatter.excalidraw_link}
               iconPath="/img/icons/excalidraw.svg"
-              label="Diagram"
-              description="View and edit diagram source svgs"
+              label="Diagrams"
+              description="View and edit source SVGs"
               active={!!frontMatter.excalidraw_link}
             />
             
@@ -418,6 +440,15 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               chapterNumber={frontMatter.chapter_number || chapterNumber}
               audioFiles={audioFiles}
               onClose={handleAudioClose}
+            />
+          )}
+
+          {/* VIDEO PLAYER SECTION - Only shows when video button is clicked */}
+          {showVideoPlayer && frontMatter.video_link && (
+            <InlineVideoPlayer
+              videoUrl={frontMatter.video_link}
+              title={title}
+              onClose={handleVideoClose}
             />
           )}
           

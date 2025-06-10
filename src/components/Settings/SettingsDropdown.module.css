@@ -1,7 +1,7 @@
 /* src/components/Settings/SettingsDropdown.module.css - Fixed slider styling */
 .dropdown {
   position: absolute;
-  top: calc(100% + 12px);
+  bottom: calc(100% + 12px); /* Position above the trigger button */
   right: 0;
   z-index: 9999;
   
@@ -18,7 +18,7 @@
     0 0 0 1px rgba(0, 0, 0, 0.05);
   
   animation: dropdownSlideIn 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-  transform-origin: top right;
+  transform-origin: bottom right; /* Change origin for bottom positioning */
 }
 
 @keyframes dropdownSlideIn {

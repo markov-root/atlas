@@ -1,0 +1,203 @@
+/* src/components/FloatingActions/FloatingActionsRow.module.css */
+
+.container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9998;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.container.hidden {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.actionsRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+  pointer-events: auto;
+}
+
+/* Settings button wrapper for dropdown positioning */
+.settingsButtonWrapper {
+  position: relative;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.actionButton:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+
+.actionButton:active {
+  transform: scale(0.95);
+}
+
+.buttonIcon {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) saturate(100%) invert(100%);
+  transition: all 0.2s ease;
+}
+
+.actionButton:hover .buttonIcon {
+  transform: scale(1.1);
+}
+
+/* Settings Button - dark background with white icon */
+.settingsButton {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.settingsButton:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.settingsButton.active {
+  background: rgba(0, 0, 0, 1);
+  transform: scale(1.05);
+}
+
+.settingsButton.active .buttonIcon {
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* Scroll Buttons - neutral gray */
+.scrollButton {
+  background: rgba(100, 116, 139, 0.8);
+}
+
+.scrollButton:hover {
+  background: rgba(71, 85, 105, 0.9);
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .actionButton {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .actionButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme='dark'] .settingsButton {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme='dark'] .settingsButton:hover,
+[data-theme='dark'] .settingsButton.active {
+  background: rgba(255, 255, 255, 1);
+}
+
+/* Dark mode - invert settings button icon to be black on white background */
+[data-theme='dark'] .settingsButton .buttonIcon {
+  filter: brightness(0) saturate(100%) invert(0%); /* Black icon on white background */
+}
+
+[data-theme='dark'] .scrollButton {
+  background: rgba(226, 232, 240, 0.2);
+}
+
+[data-theme='dark'] .scrollButton:hover {
+  background: rgba(226, 232, 240, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    bottom: 16px;
+    right: 16px;
+  }
+  
+  .actionsRow {
+    gap: 6px;
+  }
+  
+  .actionButton {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .buttonIcon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    bottom: 12px;
+    right: 12px;
+  }
+  
+  .actionButton {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .buttonIcon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Hide Docusaurus default scroll to top button */
+:global(.theme-back-to-top-button) {
+  display: none !important;
+}
+
+/* Remove any focus rings that might interfere */
+.actionButton:focus {
+  outline: none;
+}
+
+/* Ensure minimal visual impact */
+.actionButton {
+  box-shadow: none;
+  border: none;
+}
+
+/* Print styles */
+@media print {
+  .container {
+    display: none;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .container,
+  .actionButton,
+  .buttonIcon {
+    transition: none;
+  }
+  
+  .actionButton:hover,
+  .actionButton.active {
+    transform: none;
+  }
+}

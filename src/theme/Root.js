@@ -1,6 +1,7 @@
-// src/theme/Root.js - Updated with Tippy initialization
+// src/theme/Root.js - Fixed import syntax
 import React, { useEffect } from 'react';
 import { SettingsProvider } from '../components/Settings';
+import FloatingActionsRow from '../components/FloatingActions/FloatingActionsRow';
 import { initializeApp, injectGlobalTippyStyles } from '../utils/appSetup';
 
 // This component wraps your entire app and provides global context
@@ -31,6 +32,7 @@ export default function Root({ children }) {
   return (
     <SettingsProvider>
       {children}
+      <FloatingActionsRow />
     </SettingsProvider>
   );
 }

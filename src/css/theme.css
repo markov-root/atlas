@@ -118,3 +118,9 @@
   --atlas-ui-focus: rgba(51, 154, 240, 0.4);
 }
 
+
+/* Hide default Docusaurus back-to-top button since we have our own */
+.theme-back-to-top-button {
+  display: none !important;
+}
+
