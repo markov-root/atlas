@@ -399,7 +399,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               href={frontMatter.excalidraw_link}
               iconPath="/img/icons/excalidraw.svg"
               label="Diagram"
-              description="View interactive diagrams on Excalidraw"
+              description="View and edit diagram source svgs"
               active={!!frontMatter.excalidraw_link}
             />
             

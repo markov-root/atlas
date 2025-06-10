@@ -1,8 +1,8 @@
-// config/plugins.mjs - Updated to handle audio subfolder structure
+// config/plugins.mjs - Updated to handle audio, images, AND PDF files
 export function createChapterImagesPlugin() {
   return function chapterImagesPlugin(context, options) {
     return {
-      name: 'chapter-images-plugin',
+      name: 'chapter-assets-plugin',
       
       configureWebpack(config, isServer, utils) {
         if (isServer) return {};
@@ -18,7 +18,7 @@ export function createChapterImagesPlugin() {
               
               const express = require('express');
               
-              // Serve chapter images during development
+              // Serve chapter assets during development
               devServer.app.use('/chapters', express.static(path.join(context.siteDir, 'docs/chapters')));
               
               return middlewares;
@@ -32,7 +32,7 @@ export function createChapterImagesPlugin() {
         const path = require('path');
         const { outDir } = props;
         
-        // Copy chapter assets (images and audio) to the build output
+        // Copy chapter assets (images, audio, AND PDFs) to the build output
         const chaptersDir = path.join(context.siteDir, 'docs', 'chapters');
         
         if (fs.existsSync(chaptersDir)) {
@@ -84,6 +84,29 @@ export function createChapterImagesPlugin() {
               }
               
               console.log(`🎵 Copied audio files for chapter ${chapter}`);
+            }
+            
+            // Copy PDF files - NEW!
+            const chapterPdfDir = path.join(chapterPath, 'pdf');
+            if (fs.existsSync(chapterPdfDir)) {
+              const targetPdfDir = path.join(outDir, 'chapters', chapter, 'pdf');
+              
+              // Create target directory
+              fs.mkdirSync(targetPdfDir, { recursive: true });
+              
+              // Copy all PDF files
+              const pdfFiles = fs.readdirSync(chapterPdfDir);
+              for (const pdfFile of pdfFiles) {
+                const srcPath = path.join(chapterPdfDir, pdfFile);
+                const destPath = path.join(targetPdfDir, pdfFile);
+                
+                // Only copy actual files (not directories)
+                if (fs.statSync(srcPath).isFile()) {
+                  fs.copyFileSync(srcPath, destPath);
+                }
+              }
+              
+              console.log(`📄 Copied PDF files for chapter ${chapter}`);
             }
           }
         }
