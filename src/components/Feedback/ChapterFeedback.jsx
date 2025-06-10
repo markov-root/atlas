@@ -101,8 +101,8 @@ export default function ChapterFeedback({
       key: 'multimedia_desire',
       label: 'How much would more visuals and multimedia improve this chapter?',
       icon: 'multimedia.svg',
-      lowLabel: 'Not needed',
-      highLabel: 'Desperately needed',
+      lowLabel: 'Desperately needed',
+      highLabel: 'Not needed',
       tooltip: 'Would diagrams, images, videos, or interactive elements significantly help?'
     },
     {
@@ -134,8 +134,8 @@ export default function ChapterFeedback({
       key: 'multimedia_desire',
       label: 'How much would more visuals and multimedia improve this section?',
       icon: 'multimedia.svg',
-      lowLabel: 'Not needed',
-      highLabel: 'Desperately needed',
+      lowLabel: 'Desperately needed',
+      highLabel: 'Not needed',
       tooltip: 'Would diagrams, images, videos, or interactive elements significantly help?'
     },
     {
@@ -382,6 +382,25 @@ export default function ChapterFeedback({
         ))}
       </div>
 
+      {/* Comments Section - MOVED OUT OF DETAILS */}
+      <div className={styles.commentsSection}>
+        <div className={styles.commentsHeader}>
+          <img src="/img/feedback/comment.svg" alt="" className={styles.commentIcon} />
+          <label className={styles.commentsLabel}>
+            Additional feedback <span className={styles.optional}>(optional)</span>
+          </label>
+        </div>
+        
+        <textarea
+          value={comments}
+          onChange={(e) => setComments(e.target.value)}
+          placeholder={`Some questions to think about:\n\nWhat background knowledge was missing? Which concepts should connect better? Where did you get confused? Any technical corrections?\n\nShare any other thoughts or suggestions...`}
+          className={styles.commentsTextarea}
+          rows="6"
+          disabled={isSubmitted}
+        />
+      </div>
+
       {/* Details Section */}
       {showDetails && (
         <div className={styles.detailsSection}>
@@ -407,25 +426,6 @@ export default function ChapterFeedback({
               isOptional={true}
             />
           ))}
-
-          {/* Comments Section */}
-          <div className={styles.commentsSection}>
-            <div className={styles.commentsHeader}>
-              <img src="/img/feedback/comment.svg" alt="" className={styles.commentIcon} />
-              <label className={styles.commentsLabel}>
-                Additional feedback <span className={styles.optional}>(optional)</span>
-              </label>
-            </div>
-            
-            <textarea
-              value={comments}
-              onChange={(e) => setComments(e.target.value)}
-              placeholder={`Some questions to think about:\n\nWhat background knowledge was missing? Which concepts should connect better? Where did you get confused? Any technical corrections?\n\nShare any other thoughts or suggestions...`}
-              className={styles.commentsTextarea}
-              rows="6"
-              disabled={isSubmitted}
-            />
-          </div>
 
           {/* Optional Contact Information */}
           <div className={styles.contactSection}>

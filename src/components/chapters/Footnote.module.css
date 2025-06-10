@@ -25,15 +25,24 @@
 
 .separator {
   display: flex;
+  align-items: center;
   justify-content: center;
-  margin: 3rem 0;
+  margin: 3rem 0 2rem 0;
+  gap: 1rem;
 }
 
-.separatorSvg {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
+.separatorLine {
+  flex: 1;
+  height: 1px;
+  background: var(--atlas-border-color, #e5e7eb);
   opacity: 0.6;
+}
+
+.separatorLogo {
+  width: 24px;
+  height: 24px;
+  opacity: 0.5;
+  flex-shrink: 0;
 }
 
 /* Footnote registry */
@@ -42,11 +51,12 @@
 }
 
 .registryTitle {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 500;
   margin-bottom: 1.5rem;
-  color: var(--atlas-text, #212529);
+  color: var(--atlas-text-secondary, #6c757d);
   text-align: center;
+  opacity: 0.8;
 }
 
 .footnoteList {
@@ -57,20 +67,41 @@
 }
 
 .footnoteItem {
-  counter-increment: footnote-counter;
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--atlas-border-color, #e5e7eb);
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0;
+  /* Removed border-bottom */
+  font-size: 0.85rem; /* Smaller font */
+  color: var(--atlas-text-secondary, #6c757d); /* Greyed out */
+  line-height: 1.4;
 }
 
-.footnoteItem::before {
-  content: counter(footnote-counter) ".";
+.footnoteNumber {
+  background: none;
+  border: none;
   color: var(--atlas-primary, #1971c2);
+  cursor: pointer;
+  padding: 0.125rem 0.25rem;
+  border-radius: 3px;
+  transition: all 0.2s ease;
   font-weight: 600;
-  min-width: 2rem;
+  font-size: 0.85rem;
+  min-width: 1.5rem;
   flex-shrink: 0;
+  text-align: left;
+}
+
+.footnoteNumber:hover {
+  background: rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.1);
+  color: var(--atlas-primary-darker, #1864ab);
+}
+
+.footnoteContent {
+  flex: 1;
+  font-size: 0.85rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  line-height: 1.4;
 }
 
 .backButton {
@@ -78,16 +109,19 @@
   border: none;
   color: var(--atlas-primary, #1971c2);
   cursor: pointer;
-  padding: 0.25rem;
+  padding: 0.125rem 0.25rem;
   border-radius: 3px;
   transition: all 0.2s ease;
   margin-left: auto;
   flex-shrink: 0;
+  font-size: 0.75rem;
+  opacity: 0.7;
 }
 
 .backButton:hover {
   background: rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.1);
   color: var(--atlas-primary-darker, #1864ab);
+  opacity: 1;
 }
 
 /* Highlight animation */
@@ -110,20 +144,33 @@
   color: var(--atlas-primary-lightest, #a5d8ff);
 }
 
-[data-theme='dark'] .separatorSvg {
-  filter: invert(1) hue-rotate(180deg);
+[data-theme='dark'] .separatorLine {
+  background: var(--atlas-border-color, #373737);
+}
+
+[data-theme='dark'] .separatorLogo {
+  filter: invert(1);
 }
 
 [data-theme='dark'] .registryTitle {
-  color: var(--atlas-text, #e9ecef);
+  color: var(--atlas-text-secondary, #adb5bd);
 }
 
 [data-theme='dark'] .footnoteItem {
-  border-bottom-color: var(--atlas-border-color, #373737);
+  color: var(--atlas-text-secondary, #adb5bd);
 }
 
-[data-theme='dark'] .footnoteItem::before {
+[data-theme='dark'] .footnoteNumber {
   color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .footnoteNumber:hover {
+  background: rgba(var(--atlas-primary-rgb, 51, 154, 240), 0.15);
+  color: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+[data-theme='dark'] .footnoteContent {
+  color: var(--atlas-text-secondary, #adb5bd);
 }
 
 [data-theme='dark'] .backButton {

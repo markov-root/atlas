@@ -63,7 +63,7 @@ export default function Footnote({ id, text, number }) {
 }
 
 /**
- * Minimal footnote registry with elegant separator
+ * Footnote registry with simple line separator and Atlas logo
  */
 export function FootnoteRegistry({ title = "References" }) {
   const [footnotes, setFootnotes] = useState([]);
@@ -82,13 +82,15 @@ export function FootnoteRegistry({ title = "References" }) {
 
   return (
     <div className={styles.footnoteSection}>
-      {/* Use the provided SVG separator */}
+      {/* Simple line separator with Atlas logo in the middle */}
       <div className={styles.separator}>
+        <div className={styles.separatorLine}></div>
         <img 
-          src="/img/footer_seperator.svg" 
-          alt="Section separator" 
-          className={styles.separatorSvg}
+          src="/img/logo_samples/01-test.svg" 
+          alt="Atlas logo" 
+          className={styles.separatorLogo}
         />
+        <div className={styles.separatorLine}></div>
       </div>
 
       <div className={styles.footnoteRegistry}>
@@ -102,7 +104,18 @@ export function FootnoteRegistry({ title = "References" }) {
               className={styles.footnoteItem}
               value={parseInt(footnote.number) || undefined}
             >
-              <div id={`footnote-clone-${footnote.id}`} />
+              <FootnoteTooltip content="Back to reference">
+                <button 
+                  className={styles.footnoteNumber}
+                  onClick={() => scrollToElement(`footnote-ref-${footnote.id}`)}
+                  aria-label="Back to reference"
+                >
+                  {footnote.number}.
+                </button>
+              </FootnoteTooltip>
+              <div className={styles.footnoteContent}>
+                <div id={`footnote-clone-${footnote.id}`} />
+              </div>
               <FootnoteTooltip content="Back to reference">
                 <button 
                   className={styles.backButton}
