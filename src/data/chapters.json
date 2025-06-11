@@ -2,8 +2,8 @@
   "streams": [
     {
       "id": "fundamentals",
-      "title": "Fundamental AI Safety",
-      "description": "Core concepts every AI safety researcher should understand",
+      "title": "Fundamentals",
+      "description": "Core concepts everyone trying to get into AI safety should understand",
       "chapters": [
         {
           "id": "ch1",
@@ -85,8 +85,8 @@
     },
     {
       "id": "technical-advanced",
-      "title": "Technical AI Safety",
-      "description": "Technical approaches to ensuring AI systems remain safe and beneficial",
+      "title": "Technical",
+      "description": "Deeper dives into technical approaches to ensuring AI remains safe",
       "chapters": [
         {
           "id": "ch5",
@@ -110,7 +110,7 @@
         {
           "id": "ch6",
           "number": 6,
-          "title": "Specification",
+          "title": "Misspecification",
           "subtitle": "Why is telling AI systems what we want so hard?",
           "description": "Evaluations help us figure out what AI systems can do or tend to do, and if our current mitigation measures are enough. The next step is to try and answer - how do we correctly specify what we even want AI to do in the first place? We introduced the general concept of specification gaming in the risks chapter, here we build upon that and look at theoretical foundations and practical failure modes like reward hacking (finding unintended ways to maximize reward) and reward tampering (directly manipulating reward mechanisms). We also explain how suggested mitigation strategies to the specification problem might work. This includes things like imitation-based methods (e.g. behavioral cloning, inverse reinforcement learning) and feedback-based approaches (e.g. reward modeling, reinforcement learning from human feedback (RLHF), Constitutional AI). We also cover the limitations of these approaches which helps set up the context for the next few chapters on generalization and scalable oversight. After reading this chapter, you will be able to understand why trying to encode even simple instructions can lead to unexpected behaviors and how AI safety research is currently trying to address these challenges.",
           "texture": "",
@@ -129,7 +129,7 @@
         {
           "id": "ch7",
           "number": 7,
-          "title": "Generalization",
+          "title": "Misgeneralization",
           "subtitle": "Why might AIs pursue unintended goals?",
           "description": "In this chapter we turn to how AI systems actually learn and generalize from training. We start by a reminder of what an AI's \"goals\" concretely means, and how people in AI Safety use the term. This builds on the intuition provided in both the risks and the evaluations chapters between capabilities (what AI systems can do) versus propensities (how they tend to behave by default). We walk you through how capability generalization and goal generalization are separate things using concrete empirical results. We specifically focus on goal misgeneralization which is a different concern from standard ML generalization problems like overfitting. We also explore why goal misgeneralization happens by looking at the theory of neural network loss landscapes which shows how different types of learned algorithms can emerge from different training runs. We pay particular attention to one specific type of learned algorithm - a learned optimizer. Using the concept of learned optimizers as a starting point, we dive deeper into the inner alignment and deceptive alignment (scheming) problems that have been mentioned in many of the previous chapters. We also connect these concerns to evaluation strategies mentioned previously, as well as mitigation strategies which are explored in the subsequent chapter on interpretability. At the end of this chapter you should be able to distinguish between different ways that ML models might generalize between distributions and understand how and why capable AI systems might scheme, deceive, and pursue long term unintended goals.",
           "texture": "",

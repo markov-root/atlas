@@ -1,0 +1,52 @@
+/* src/theme/DocItem/Landing/ChapterList/Header.module.css */
+
+.header {
+  display: grid;
+  grid-template-columns: 50px 70px 1fr repeat(5, 80px);
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--atlas-background-alt, #f8f9fa);
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-theme='dark'] .header {
+  background: var(--atlas-background-alt, #1e1e1e);
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+.expandCol {
+  /* Empty column for expand button */
+}
+
+.numberCol {
+  text-align: left;
+}
+
+.titleCol {
+  text-align: left;
+}
+
+.resourceCol {
+  text-align: center;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: cetner;
+  align-items: center;
+}
+
+/* Desktop responsive adjustments */
+@media (max-width: 1000px) {
+  .header {
+    grid-template-columns: 40px 60px 1fr repeat(5, 70px);
+    gap: 0.75rem;
+  }
+
+  .resourceCol {
+    font-size: 0.75rem;
+  }
+}

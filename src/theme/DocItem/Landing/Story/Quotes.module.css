@@ -1,0 +1,341 @@
+/* src/theme/DocItem/Landing/Story/Quotes.module.css */
+
+/* EXPERT QUOTE CONTAINER - Flexible but stable */
+.expertQuoteContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  height: 100%; /* Fill available space on desktop */
+  justify-content: center; /* Center content vertically */
+}
+
+/* Container that maintains consistent height */
+.quoteCardContainer {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  transition: min-height 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Individual quote cards - now absolutely positioned for smooth transitions */
+.quoteCard {
+  background: transparent;
+  border-radius: 12px;
+  padding: 2.5rem 2rem 2rem 2rem; /* Extra top padding for better spacing */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+/* Active quote state */
+.activeQuote {
+  position: relative; /* Change to relative for the active quote */
+  opacity: 1;
+  transform: translateY(0);
+  z-index: 2;
+}
+
+/* Hidden quote state */
+.hiddenQuote {
+  opacity: 0;
+  transform: translateY(10px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Transitioning state */
+.transitioning {
+  opacity: 0.5;
+}
+
+.quote {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0; /* Removed top margin since we have padding */
+  color: var(--atlas-text, #212529);
+  font-style: italic;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: left; /* Ensure consistent alignment */
+}
+
+[data-theme='dark'] .quote {
+  color: var(--atlas-text, #e9ecef);
+}
+
+/* Quote footer */
+.quoteFooter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto; /* Push to bottom if there's extra space */
+}
+
+.avatarWrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--atlas-primary-lighter, #74c0fc);
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.authorInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0; /* Allow text to wrap */
+}
+
+.expertName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--atlas-primary, #1971c2);
+  margin: 0;
+  line-height: 1.2;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+[data-theme='dark'] .expertName {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.expertTitle {
+  font-size: 0.85rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  line-height: 1.3;
+  margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+[data-theme='dark'] .expertTitle {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+.quoteSource {
+  margin-top: 0.25rem;
+}
+
+.sourceLink {
+  color: var(--atlas-primary, #1971c2);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  font-size: 0.75rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.sourceLink:hover {
+  color: var(--atlas-primary-darker, #1864ab);
+  text-decoration: underline;
+}
+
+[data-theme='dark'] .sourceLink {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .sourceLink:hover {
+  color: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+/* Quote rotation indicators */
+.quoteIndicators {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem; /* More space from quote */
+  flex-shrink: 0;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: var(--atlas-border-color, #e9ecef);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator:hover {
+  background: var(--atlas-primary-light, #339af0);
+}
+
+.activeIndicator {
+  background: var(--atlas-primary, #1971c2);
+  transform: scale(1.2);
+}
+
+[data-theme='dark'] .indicator {
+  background: var(--atlas-border-color, #373737);
+}
+
+[data-theme='dark'] .indicator:hover {
+  background: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .activeIndicator {
+  background: var(--atlas-primary-lighter, #74c0fc);
+}
+
+/* Responsive Design - Adjust padding and font sizes */
+@media (max-width: 1024px) {
+  .quoteCard {
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+  }
+  
+  .quote {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+  
+  .expertName {
+    font-size: 0.9rem;
+  }
+  
+  .expertTitle {
+    font-size: 0.8rem;
+  }
+  
+  .avatarWrapper {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 768px) {
+  .expertQuoteContainer {
+    height: auto; /* Let it be flexible on mobile */
+    min-height: 200px; /* Just a small minimum */
+  }
+  
+  .quoteCard {
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+  }
+  
+  .quote {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+  
+  .quoteFooter {
+    gap: 0.875rem;
+  }
+  
+  .expertName {
+    font-size: 0.875rem;
+  }
+  
+  .expertTitle {
+    font-size: 0.75rem;
+  }
+  
+  .avatarWrapper {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .quoteIndicators {
+    margin-top: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .quoteCard {
+    padding: 1.75rem 1.25rem 1.25rem 1.25rem;
+  }
+  
+  .quote {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  
+  .quoteFooter {
+    gap: 0.75rem;
+  }
+  
+  .expertName {
+    font-size: 0.8125rem;
+  }
+  
+  .expertTitle {
+    font-size: 0.6875rem;
+    line-height: 1.2;
+  }
+  
+  .avatarWrapper {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .sourceLink {
+    font-size: 0.6875rem;
+  }
+  
+  .quoteIndicators {
+    margin-top: 0.5rem;
+  }
+}
+
+/* Accessibility and motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .quoteCard {
+    transition: none;
+  }
+  
+  .indicator {
+    transition: none;
+  }
+  
+  .quoteCardContainer {
+    transition: none;
+  }
+  
+  .activeQuote,
+  .hiddenQuote,
+  .transitioning {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .hiddenQuote {
+    display: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .quoteCard {
+    border: 1px solid currentColor;
+  }
+  
+  .avatarWrapper {
+    border-width: 3px;
+  }
+}

@@ -31,7 +31,7 @@ function FooterLogo({src, alt, href}) {
 
 function CitationBox() {
   const [copied, setCopied] = useState(false);
-  const citationText = "Markov Grey and Charbel-Raphael Segerie et al. 2024. AI Safety Atlas. French Center for AI Safety (CeSIA). ai-safety-atlas.com";
+  const citationText = "Markov Grey and Charbel-Raphaël Segerie et al. 2025. AI Safety Atlas. French Center for AI Safety (CeSIA). URL: ai-safety-atlas.com";
 
   const handleCopy = async () => {
     try {
@@ -154,7 +154,7 @@ function Footer() {
         {/* Copyright and Analytics - Below the line */}
         <div className={styles.footerBottom}>
           <div className={styles.footerBottomItem}>
-            <strong>Copyright:</strong> © 2025 • Text Content: <Link href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" className={styles.licenseLink}>CC BY-SA 4.0</Link> • Code: <Link href="https://opensource.org/licenses/MIT" target="_blank" className={styles.licenseLink}>MIT</Link>
+            <strong>Copyright:</strong> 2025 AI Safety Atlas • Text Content: <Link href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" className={styles.licenseLink}>CC BY-SA 4.0</Link> • Code: <Link href="https://opensource.org/licenses/MIT" target="_blank" className={styles.licenseLink}>MIT</Link>
           </div>
           <div className={styles.footerBottomItem}>
             <strong>Analytics:</strong> We use privacy-focused <Link href="https://plausible.io/" target="_blank" className={styles.licenseLink}>Plausible</Link> instead of Google Analytics. No cookies, fully GDPR/CCPA compliant. :)

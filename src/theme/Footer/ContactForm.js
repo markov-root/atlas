@@ -78,7 +78,7 @@ function ContactForm() {
     <div className={styles.contactForm}>
       <h3 className={styles.contactHeading}>Get in Touch</h3>
       <p className={styles.contactDescription}>
-        Have questions about AI safety or want to contribute? Send us a message.
+        Have questions about AI safety or want to contribute? Send us a message. This is an open source project. We are always looking for contributors or course collaborations.
       </p>
       
       <form onSubmit={handleSubmit} className={styles.form}>

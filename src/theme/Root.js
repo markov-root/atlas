@@ -1,8 +1,9 @@
-// src/theme/Root.js - Fixed import syntax
+// src/theme/Root.js - Updated with navbar scrolling
 import React, { useEffect } from 'react';
 import { SettingsProvider } from '../components/Settings';
 import FloatingActionsRow from '../components/FloatingActions/FloatingActionsRow';
 import { initializeApp, injectGlobalTippyStyles } from '../utils/appSetup';
+import { setupNavbarScrolling } from '../utils/navbarScroll';
 
 // This component wraps your entire app and provides global context
 export default function Root({ children }) {
@@ -12,6 +13,9 @@ export default function Root({ children }) {
     
     // Inject additional global styles for better Tippy integration
     injectGlobalTippyStyles();
+    
+    // Set up navbar scrolling behavior
+    const cleanupNavbarScroll = setupNavbarScrolling();
     
     // Optional: Add global keyboard shortcuts for accessibility
     const handleGlobalKeydown = (e) => {
@@ -26,6 +30,7 @@ export default function Root({ children }) {
     
     return () => {
       document.removeEventListener('keydown', handleGlobalKeydown);
+      if (cleanupNavbarScroll) cleanupNavbarScroll();
     };
   }, []);
 

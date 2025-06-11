@@ -1,0 +1,185 @@
+/* src/theme/DocItem/Landing/ChapterList/ChapterList.module.css - Main container and layout */
+
+/* =================================================================== */
+/* CONTAINER */
+/* =================================================================== */
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  background: var(--atlas-background, #ffffff);
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+  scroll-margin-top: calc(var(--ifm-navbar-height, 60px) + 2rem);
+}
+
+[data-theme='dark'] .container {
+  background: var(--atlas-background, #121212);
+}
+
+/* =================================================================== */
+/* STREAM HEADER */
+/* =================================================================== */
+
+.streamHeader {
+  padding: 3rem 2rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--atlas-border-color, #e9ecef);
+}
+
+[data-theme='dark'] .streamHeader {
+  border-bottom-color: var(--atlas-border-color, #373737);
+}
+
+.streamTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--atlas-primary, #1971c2);
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+  font-family: var(--atlas-font-heading, 'Inter', sans-serif);
+  letter-spacing: -0.01em;
+}
+
+[data-theme='dark'] .streamTitle {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.streamDescription {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--atlas-text-secondary, #6c757d);
+  margin: 0;
+  font-weight: 400;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+[data-theme='dark'] .streamDescription {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* =================================================================== */
+/* CHAPTER GROUPS & ROWS */
+/* =================================================================== */
+
+.chapters {
+  display: flex;
+  flex-direction: column;
+}
+
+.chapterGroup {
+  border-bottom: 1px solid var(--atlas-border-color, #e9ecef);
+  transition: all 0.3s ease;
+}
+
+[data-theme='dark'] .chapterGroup {
+  border-bottom-color: var(--atlas-border-color, #373737);
+}
+
+.chapterGroup:last-child {
+  border-bottom: none;
+}
+
+.chapterGroup.expanded {
+  background: var(--atlas-background-alt, #f8f9fa);
+}
+
+[data-theme='dark'] .chapterGroup.expanded {
+  background: var(--atlas-background-alt, #1e1e1e);
+}
+
+.row {
+  padding: 1rem;
+  align-items: center;
+  transition: background-color 0.2s ease;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.row.clickable {
+  cursor: pointer;
+}
+
+.row:hover {
+  background: var(--atlas-background-alt, #f8f9fa);
+}
+
+[data-theme='dark'] .row:hover {
+  background: var(--atlas-background-alt, #1e1e1e);
+}
+
+.desktopRow {
+  display: grid;
+  grid-template-columns: 50px 70px 1fr repeat(5, 80px);
+  gap: 1rem;
+  align-items: center;
+}
+
+.mobileRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mobileResourcesRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1rem 0.75rem;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Responsive Design for Stream Header */
+@media (max-width: 1024px) {
+  .streamHeader {
+    padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+  }
+  
+  .streamTitle {
+    font-size: 2.25rem;
+  }
+  
+  .streamDescription {
+    font-size: 1.0625rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .streamHeader {
+    padding: 2rem 1rem 1.25rem 1rem;
+  }
+  
+  .streamTitle {
+    font-size: 2rem;
+  }
+  
+  .streamDescription {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .streamHeader {
+    padding: 1.5rem 0.75rem 1rem 0.75rem;
+  }
+  
+  .streamTitle {
+    font-size: 1.75rem;
+  }
+  
+  .streamDescription {
+    font-size: 0.9375rem;
+  }
+}

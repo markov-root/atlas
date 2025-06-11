@@ -1,0 +1,172 @@
+/* src/theme/DocItem/Landing/ChapterList/Expandable.module.css */
+
+/* =================================================================== */
+/* EXPANDABLE CONTENT SECTIONS */
+/* =================================================================== */
+
+/* Description Row */
+.descriptionRow {
+  padding: 0 1rem 1.5rem 1rem;
+}
+
+.description {
+  background: transparent;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.9rem;
+  color: var(--atlas-text, #212529);
+  line-height: 1.6;
+  width: 100%;
+}
+
+[data-theme='dark'] .description {
+  color: var(--atlas-text, #e9ecef);
+}
+
+/* Media sections (audio/video) */
+.mediaRow {
+  padding: 0 1rem 1.5rem 1rem;
+}
+
+.mediaHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem 0.5rem 1.5rem;
+  border-bottom: 1px solid var(--atlas-border-color, #e9ecef);
+  margin-bottom: 1rem;
+}
+
+[data-theme='dark'] .mediaHeader {
+  border-bottom-color: var(--atlas-border-color, #373737);
+}
+
+.mediaTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--atlas-text, #212529);
+  margin: 0;
+}
+
+[data-theme='dark'] .mediaTitle {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.mediaTitleIcon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+}
+
+[data-theme='dark'] .mediaTitleIcon {
+  filter: brightness(0) invert(1);
+  opacity: 0.6;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.closeButton:hover {
+  color: var(--atlas-text, #212529);
+  background: var(--atlas-background-alt, #f8f9fa);
+}
+
+[data-theme='dark'] .closeButton {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .closeButton:hover {
+  color: var(--atlas-text, #e9ecef);
+  background: var(--atlas-background-alt, #1e1e1e);
+}
+
+.mediaContent {
+  padding: 0 1.5rem 1rem 1.5rem;
+}
+
+.mediaDescription {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  text-align: center;
+}
+
+[data-theme='dark'] .mediaDescription {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Audio Track Styling */
+.audioTrack {
+  margin-bottom: 1.5rem;
+}
+
+.audioTrack:last-of-type {
+  margin-bottom: 0;
+}
+
+.trackLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--atlas-text, #212529);
+  margin-bottom: 0.75rem;
+  padding-left: 0.25rem;
+}
+
+[data-theme='dark'] .trackLabel {
+  color: var(--atlas-text, #e9ecef);
+}
+
+/* Video Player Styling */
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  overflow: hidden;
+  border-radius: 8px;
+  background: #000;
+}
+
+.videoPlayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .description {
+    padding: 0.875rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .descriptionRow {
+    padding: 0 0.5rem 0.875rem 0.5rem;
+  }
+
+  .mediaRow {
+    padding: 0 0.5rem 0.875rem 0.5rem;
+  }
+
+  .mediaHeader {
+    padding: 0.75rem 0.5rem 0.5rem 0.5rem;
+  }
+
+  .mediaContent {
+    padding: 0 0.5rem 0.75rem 0.5rem;
+  }
+}

@@ -1,0 +1,110 @@
+/* src/theme/DocItem/Landing/Story/Description.module.css */
+
+.primaryContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.primaryTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--atlas-primary, #1971c2);
+  margin: 0;
+  line-height: 1.2;
+  font-family: var(--atlas-font-heading, 'Inter', sans-serif);
+  letter-spacing: -0.01em;
+}
+
+[data-theme='dark'] .primaryTitle {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.primaryDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.primaryDescription p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--atlas-text, #212529);
+  margin: 0;
+  font-weight: 400;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+}
+
+[data-theme='dark'] .primaryDescription p {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.solutionStatement {
+  font-size: 1.125rem !important;
+  font-weight: 400 !important;
+  line-height: 1.7 !important;
+}
+
+.solutionStatement strong {
+  color: var(--atlas-primary, #1971c2);
+  font-weight: 600;
+}
+
+[data-theme='dark'] .solutionStatement strong {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.credibilityLink {
+  color: var(--atlas-primary, #1971c2);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.credibilityLink:hover {
+  color: var(--atlas-primary-darker, #1864ab);
+  text-decoration: underline;
+}
+
+[data-theme='dark'] .credibilityLink {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .credibilityLink:hover {
+  color: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .primaryTitle {
+    font-size: 2rem;
+  }
+  
+  .primaryDescription p {
+    font-size: 1.0625rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .primaryTitle {
+    font-size: 1.875rem;
+    text-align: center;
+  }
+  
+  .primaryDescription p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 480px) {
+  .primaryTitle {
+    font-size: 1.625rem;
+    line-height: 1.2;
+  }
+  
+  .primaryDescription p {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+}

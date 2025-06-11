@@ -1,8 +1,9 @@
-// src/theme/DocItem/Landing/ChapterList.jsx - Clean version with fixed audio detection
+// src/theme/DocItem/Landing/ChapterList.jsx - Clean version with fixed audio detection and PDF utils
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { SmallTooltip } from '../../../components/UI/Tooltip';
 import { buildAudioFiles, hasAudioFiles, getAudioUrl } from '../../../utils/audioUtils';
+import { buildPdfFile, hasPdfFile, getPdfUrl } from '../../../utils/pdfUtils';
 import styles from './ChapterList.module.css';
 
 export default function ChapterList({ chapters }) {
@@ -10,6 +11,7 @@ export default function ChapterList({ chapters }) {
   const [expandedAudio, setExpandedAudio] = useState(new Set());
   const [expandedVideo, setExpandedVideo] = useState(new Set());
   const [verifiedAudioFiles, setVerifiedAudioFiles] = useState(new Map());
+  const [verifiedPdfFiles, setVerifiedPdfFiles] = useState(new Map());
   const [isMobile, setIsMobile] = useState(false);
 
   // Check if audio file actually exists
@@ -39,7 +41,22 @@ export default function ChapterList({ chapters }) {
     return verifiedFiles;
   };
 
-  // Responsive detection and audio verification
+  // Build verified PDF files (only include files that actually exist)
+  const buildVerifiedPdfFiles = async (chapter, chapterNumber) => {
+    try {
+      const pdfData = await buildPdfFile(chapter, chapterNumber);
+      return pdfData;
+    } catch (error) {
+      console.error(`PDF verification failed for chapter ${chapterNumber}:`, error);
+      return {
+        type: 'none',
+        url: null,
+        isActive: false
+      };
+    }
+  };
+
+  // Responsive detection and file verification
   useEffect(() => {
     const updateScreenSize = () => {
       setIsMobile(window.innerWidth <= 700);
@@ -49,12 +66,13 @@ export default function ChapterList({ chapters }) {
       updateScreenSize();
       window.addEventListener('resize', updateScreenSize);
       
-      // Verify audio files for all chapters
-      const verifyAllAudio = async () => {
+      // Verify audio and PDF files for all chapters
+      const verifyAllFiles = async () => {
         const audioMap = new Map();
+        const pdfMap = new Map();
         
         for (const chapter of chapters) {
-          // First check if chapter has explicit audio in frontmatter
+          // Verify audio files
           const hasExplicitAudio = !!(
             chapter.audio_podcast || 
             chapter.audio_transcript || 
@@ -63,11 +81,9 @@ export default function ChapterList({ chapters }) {
           );
           
           if (hasExplicitAudio) {
-            // If explicit audio is defined, build and verify
             const verifiedFiles = await buildVerifiedAudioFiles(chapter, chapter.number);
             audioMap.set(chapter.id, verifiedFiles);
           } else {
-            // If no explicit audio, check for fallback files
             const audioFiles = buildAudioFiles(chapter, chapter.number);
             const verifiedFiles = {};
             
@@ -80,12 +96,17 @@ export default function ChapterList({ chapters }) {
             }
             audioMap.set(chapter.id, verifiedFiles);
           }
+
+          // Verify PDF files
+          const pdfData = await buildVerifiedPdfFiles(chapter, chapter.number);
+          pdfMap.set(chapter.id, pdfData);
         }
         
         setVerifiedAudioFiles(audioMap);
+        setVerifiedPdfFiles(pdfMap);
       };
       
-      verifyAllAudio();
+      verifyAllFiles();
       
       return () => window.removeEventListener('resize', updateScreenSize);
     }
@@ -134,7 +155,7 @@ export default function ChapterList({ chapters }) {
   };
 
   // Handle resource clicks - prevent propagation to avoid expanding
-  const handleResourceClick = (e, url, resourceType, chapterId, hasVerifiedAudio) => {
+  const handleResourceClick = (e, url, resourceType, chapterId, hasVerifiedAudio, hasVerifiedPdf) => {
     e.preventDefault();
     e.stopPropagation();
     
@@ -146,6 +167,16 @@ export default function ChapterList({ chapters }) {
     
     if (resourceType === 'video' && url) {
       toggleVideoExpanded(chapterId);
+      return;
+    }
+    
+    // Handle PDF with verified URL
+    if (resourceType === 'pdf' && hasVerifiedPdf) {
+      const pdfData = verifiedPdfFiles.get(chapterId);
+      const pdfUrl = getPdfUrl(pdfData);
+      if (pdfUrl) {
+        window.open(pdfUrl, '_blank');
+      }
       return;
     }
     
@@ -384,6 +415,10 @@ export default function ChapterList({ chapters }) {
           const chapterAudioFiles = verifiedAudioFiles.get(chapter.id) || {};
           const hasVerifiedAudio = Object.keys(chapterAudioFiles).length > 0;
           
+          // Get verified PDF files for this chapter
+          const chapterPdfData = verifiedPdfFiles.get(chapter.id);
+          const hasVerifiedPdf = chapterPdfData ? hasPdfFile(chapterPdfData) : false;
+          
           const hasVideo = !!chapter.resources.video;
           const videoId = getYouTubeVideoId(chapter.resources.video);
           
@@ -451,26 +486,65 @@ export default function ChapterList({ chapters }) {
                   </h3>
                 </div>
                 
-                {/* Resource Buttons */}
-                {isMobile ? (
-                  // Mobile: Only Read button
-                  <SmallTooltip content={chapter.resources.chapter ? 'Read Online' : 'Read - Coming soon'}>
-                    <button
-                      className={`${styles.resourceBtn} ${chapter.resources.chapter ? styles.available : styles.unavailable}`}
-                      onClick={chapter.resources.chapter ? (e) => handleResourceClick(e, chapter.resources.chapter, 'chapter', chapter.id, hasVerifiedAudio) : undefined}
-                      disabled={!chapter.resources.chapter}
-                      aria-label={`Read ${chapter.title}`}
-                    >
-                      <img src="/img/icons/book.svg" alt="Read" className={styles.resourceIcon} />
-                    </button>
-                  </SmallTooltip>
-                ) : (
-                  // Desktop: All resource buttons
-                  resources.map(resource => {
-                    // For audio, check if we have verified audio files
-                    const isAvailable = resource.key === 'audio' 
-                      ? hasVerifiedAudio 
-                      : !!chapter.resources[resource.key];
+              </div>
+              
+              {/* Mobile Resource Buttons Row - Shows all buttons on mobile */}
+              {isMobile && (
+                <div className={styles.mobileResourcesRow}>
+                  {resources.map(resource => {
+                    // Determine availability based on resource type
+                    let isAvailable = false;
+                    if (resource.key === 'audio') {
+                      isAvailable = hasVerifiedAudio;
+                    } else if (resource.key === 'pdf') {
+                      isAvailable = hasVerifiedPdf;
+                    } else {
+                      isAvailable = !!chapter.resources[resource.key];
+                    }
+                    
+                    const isExpandable = (resource.key === 'audio' && hasVerifiedAudio) || (resource.key === 'video' && hasVideo);
+                    const isCurrentlyExpanded = (resource.key === 'audio' && isAudioExpanded) || (resource.key === 'video' && isVideoExpanded);
+                    
+                    return (
+                      <SmallTooltip 
+                        key={resource.key}
+                        content={
+                          isAvailable 
+                            ? isExpandable 
+                              ? `${isCurrentlyExpanded ? 'Hide' : 'Show'} ${resource.tooltip}` 
+                              : resource.tooltip
+                            : `${resource.label} - Coming soon`
+                        }
+                      >
+                        <button
+                          className={`${styles.mobileResourceBtn} ${isAvailable ? styles.available : styles.unavailable} ${isCurrentlyExpanded ? styles.active : ''}`}
+                          onClick={isAvailable ? (e) => handleResourceClick(e, chapter.resources[resource.key], resource.key, chapter.id, hasVerifiedAudio, hasVerifiedPdf) : undefined}
+                          disabled={!isAvailable}
+                          aria-label={`${resource.label} ${chapter.title}`}
+                          aria-expanded={isExpandable ? isCurrentlyExpanded : undefined}
+                        >
+                          <img src={resource.icon} alt={resource.label} className={styles.mobileResourceIcon} />
+                          <span className={styles.mobileResourceLabel}>{resource.label}</span>
+                        </button>
+                      </SmallTooltip>
+                    );
+                  })}
+                </div>
+              )}
+              
+              {/* Desktop Resource Buttons - In the main row */}
+              {!isMobile && (
+                <div className={styles.desktopResourceButtons}>
+                  {resources.map(resource => {
+                    // Determine availability based on resource type
+                    let isAvailable = false;
+                    if (resource.key === 'audio') {
+                      isAvailable = hasVerifiedAudio;
+                    } else if (resource.key === 'pdf') {
+                      isAvailable = hasVerifiedPdf;
+                    } else {
+                      isAvailable = !!chapter.resources[resource.key];
+                    }
                     
                     const isExpandable = (resource.key === 'audio' && hasVerifiedAudio) || (resource.key === 'video' && hasVideo);
                     const isCurrentlyExpanded = (resource.key === 'audio' && isAudioExpanded) || (resource.key === 'video' && isVideoExpanded);
@@ -488,7 +562,7 @@ export default function ChapterList({ chapters }) {
                       >
                         <button
                           className={`${styles.resourceBtn} ${isAvailable ? styles.available : styles.unavailable} ${isCurrentlyExpanded ? styles.active : ''}`}
-                          onClick={isAvailable ? (e) => handleResourceClick(e, chapter.resources[resource.key], resource.key, chapter.id, hasVerifiedAudio) : undefined}
+                          onClick={isAvailable ? (e) => handleResourceClick(e, chapter.resources[resource.key], resource.key, chapter.id, hasVerifiedAudio, hasVerifiedPdf) : undefined}
                           disabled={!isAvailable}
                           aria-label={`${resource.label} ${chapter.title}`}
                           aria-expanded={isExpandable ? isCurrentlyExpanded : undefined}
@@ -497,9 +571,9 @@ export default function ChapterList({ chapters }) {
                         </button>
                       </SmallTooltip>
                     );
-                  })
-                )}
-              </div>
+                  })}
+                </div>
+              )}
 
               {/* Description (expandable) */}
               {isExpanded && chapter.description && (

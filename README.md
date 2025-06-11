@@ -1,24 +1,23 @@
+# AI Safety Atlas
+
+Hosted at - https://ai-safety-atlas.com/
+
 # TODO
 
-- [ ] parser: many bold bugs - **Why aren't better benchmarks enough? **
- - [ ] font for section numbers on sidebar
- - [ ] docs page - remove edit page auto insert
- - [ ] docs page - design next/previous page
- - [ ] collapse appendix
- - [ ] add image source to quotes
- - [ ] warning component
- - [ ] progress bar
- - [ ] parser: excalidraw pipeline
- - [ ] header: excalidraw
+ - [ ] feature: warning component + reintroduce warnings
+ - [ ] parser: many bold bugs - **Why aren't better benchmarks enough? **
+ - [ ] parser: gdoc -> excalidraw pipeline
  - [ ] parser: autocompile pdf and move to docusaurus folder
+ - [ ] sidebar: font improvement for section numbers
+ - [ ] parser + sidebar : collapse appendix as category
+ - [ ] parser + sidebar : change appendix urls - a, a.1, b, b.1., etc.
+ - [ ] feature: add image source to quotes
+ - [ ] feature: progress bar at end of section
  - [ ] serve pdf downloads directly instead of github
- - [ ] abbreviations
+ - [ ] feature: abbreviations
+ - [ ] feature: glossary page
  - [ ] course page: add real course info
  - [ ] course page: add certificate
- - [ ] fix edit button at end of DocItem
- - [ ] style pagination at end of DocItem
- - [ ] style footnotes
  - [ ] donate button + link on topbar
  - [ ] plugins review - https://docusaurus.community/plugindirectory/
- - 
- - 
+ - [ ] design: algolia search theme integration

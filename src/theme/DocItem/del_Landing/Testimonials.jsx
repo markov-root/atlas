@@ -1,12 +1,12 @@
-// src/theme/DocItem/Landing/Testimonials.jsx
+// src/components/Homepage/Testimonials.jsx
 import React, { useState, useEffect } from 'react';
 import styles from './Testimonials.module.css';
-import testimonials from '../../../data/testimonials.json';
+import testimonials from '@site/src/data/testimonials.json';
 import { Quote } from 'lucide-react';
 
 function TestimonialCard({ quote, name, position, image, featured = false }) {
   // Use placeholder image if none is provided
-  const imageSrc = image || '/img/testimonials/placeholder.jpg';
+  const imageSrc = image || '../../img/testimonials/placeholder.jpg';
   
   return (
     <div className={`${styles.testimonialCard} ${featured ? styles.featuredCard : ''}`}>

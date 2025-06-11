@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import DocItem from '@theme-original/DocItem';
 import { useLocation } from '@docusaurus/router';
-import ChapterLanding from './Landing/ChapterLanding';
+import ChapterLanding from './Landing';
 import ChapterHeaderRenderer from './Headers/ChapterHeaderRenderer';
 import ChapterFeedback from '../../components/Feedback/ChapterFeedback';
 

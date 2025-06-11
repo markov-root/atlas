@@ -1,4 +1,4 @@
-/* src/theme/DocItem/Landing/ChapterList.module.css - Fixed click areas */
+/* src/theme/DocItem/Landing/ChapterList.module.css - Fixed with mobile resource buttons */
 
 /* =================================================================== */
 /* CONTAINER */
@@ -130,6 +130,23 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-wrap: wrap; /* Allow wrapping for mobile layout */
+}
+
+/* Mobile Resource Buttons Row - Separate row below title */
+.mobileResourcesRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem 0 1rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* Desktop Resource Buttons Container */
+.desktopResourceButtons {
+  display: contents; /* This makes the buttons appear directly in the grid */
 }
 
 /* =================================================================== */
@@ -231,7 +248,7 @@
   flex: 1;
 }
 
-/* Resource Buttons */
+/* Desktop Resource Buttons */
 .resourceBtn {
   background: transparent;
   border: none;
@@ -300,6 +317,117 @@
 
 [data-theme='dark'] .resourceBtn.available .resourceIcon {
   opacity: 0.7;
+}
+
+/* Mobile Resource Button Styling */
+.mobileResourceBtn {
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  min-width: 60px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.mobileResourceBtn.available:hover {
+  background: var(--atlas-ui-hover, #f1f3f5);
+}
+
+.mobileResourceBtn.available:hover .mobileResourceIcon {
+  filter: brightness(0) saturate(100%) invert(27%) sepia(94%) saturate(1167%) hue-rotate(201deg) brightness(96%) contrast(94%);
+  transform: scale(1.05);
+}
+
+.mobileResourceBtn.unavailable {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Active state for expanded audio/video on mobile */
+.mobileResourceBtn.active {
+  background: rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.1);
+  color: var(--atlas-primary, #1971c2);
+}
+
+.mobileResourceBtn.active .mobileResourceIcon {
+  filter: brightness(0) saturate(100%) invert(27%) sepia(94%) saturate(1167%) hue-rotate(201deg) brightness(96%) contrast(94%);
+}
+
+.mobileResourceIcon {
+  width: 28px;
+  height: 28px;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.mobileResourceBtn.available .mobileResourceIcon {
+  opacity: 0.8;
+}
+
+.mobileResourceLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--atlas-text-secondary, #6c757d);
+  transition: color 0.2s ease;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.mobileResourceBtn.available:hover .mobileResourceLabel {
+  color: var(--atlas-primary, #1971c2);
+}
+
+.mobileResourceBtn.active .mobileResourceLabel {
+  color: var(--atlas-primary, #1971c2);
+}
+
+/* Dark mode mobile resource buttons */
+[data-theme='dark'] .mobileResourceBtn.available:hover {
+  background: var(--atlas-ui-hover, #2c2c2c);
+}
+
+[data-theme='dark'] .mobileResourceBtn.available:hover .mobileResourceIcon {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(32%) saturate(1715%) hue-rotate(191deg) brightness(101%) contrast(94%);
+}
+
+[data-theme='dark'] .mobileResourceBtn.active {
+  background: rgba(var(--atlas-primary-rgb, 51, 154, 240), 0.15);
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .mobileResourceBtn.active .mobileResourceIcon {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(32%) saturate(1715%) hue-rotate(191deg) brightness(101%) contrast(94%);
+}
+
+[data-theme='dark'] .mobileResourceIcon {
+  filter: brightness(0) invert(1);
+  opacity: 0.6;
+}
+
+[data-theme='dark'] .mobileResourceBtn.available .mobileResourceIcon {
+  opacity: 0.7;
+}
+
+[data-theme='dark'] .mobileResourceLabel {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .mobileResourceBtn.available:hover .mobileResourceLabel {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .mobileResourceBtn.active .mobileResourceLabel {
+  color: var(--atlas-primary-lighter, #74c0fc);
 }
 
 /* =================================================================== */
@@ -667,15 +795,6 @@
   background: var(--atlas-ui-hover, #2c2c2c);
 }
 
-/* Remove old audio player styles */
-.audioPlayer {
-  display: none;
-}
-
-.audioPlayer:focus {
-  display: none;
-}
-
 /* Video player styling */
 .videoWrapper {
   position: relative;
@@ -711,17 +830,6 @@
   font-size: 1rem;
 }
 
-.mobileRow .resourceBtn {
-  width: 44px;
-  height: 44px;
-  padding: 0.5rem;
-}
-
-.mobileRow .resourceIcon {
-  width: 24px;
-  height: 24px;
-}
-
 /* Very small screens */
 @media (max-width: 480px) {
   .container {
@@ -730,7 +838,7 @@
 
   .mobileRow {
     gap: 0.75rem;
-    padding: 0.875rem 0.5rem;
+    padding: 0.875rem 0.5rem 0.5rem;
   }
 
   .mobileRow .chapterNumber {
@@ -743,14 +851,23 @@
     font-size: 0.95rem;
   }
 
-  .mobileRow .resourceBtn {
-    width: 40px;
-    height: 40px;
+  .mobileResourcesRow {
+    gap: 0.5rem;
+    padding: 0.5rem 0.5rem 0.75rem;
   }
 
-  .mobileRow .resourceIcon {
-    width: 22px;
-    height: 22px;
+  .mobileResourceBtn {
+    padding: 0.6rem 0.75rem;
+    min-width: 55px;
+  }
+
+  .mobileResourceIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .mobileResourceLabel {
+    font-size: 0.65rem;
   }
 
   .description {

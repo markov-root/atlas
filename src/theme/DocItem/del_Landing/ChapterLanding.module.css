@@ -1,0 +1,33 @@
+/* src/theme/DocItem/Landing/ChapterLanding.module.css - Seamless clean layout */
+
+.landingContainer {
+  width: 100%;
+  background: var(--atlas-background, #ffffff);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+[data-theme='dark'] .landingContainer {
+  background: var(--atlas-background, #121212);
+}
+
+/* Section wrapper - for future modular sections */
+.section {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* Stream section (for chapter streams) */
+.streamSection {
+  margin-bottom: 60px;
+}
+
+.streamSection:last-child {
+  margin-bottom: 20px;
+}
+
+/* Remove old stream header styles since we're using StreamHeader component now */

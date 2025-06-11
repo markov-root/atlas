@@ -1,0 +1,185 @@
+/* src/theme/DocItem/Landing/Info/Citation.module.css */
+
+.citationContainer {
+  width: 100%;
+  padding: 3rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Section Header - Icon + Title */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.iconContainer {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  opacity: 1;
+  filter: none;
+}
+
+[data-theme='dark'] .icon {
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.sectionTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--atlas-primary, #1971c2);
+  margin: 0;
+  font-family: var(--atlas-font-heading, 'Inter', sans-serif);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+[data-theme='dark'] .sectionTitle {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+/* Citation Content */
+.citationContent {
+  margin-left: 2.5rem; /* Align with title text */
+}
+
+.citationWrapper {
+  position: relative;
+  padding: 0;
+}
+
+.copyButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--atlas-text-secondary, #6c757d);
+  transform: translate(-0.5rem, -0.25rem);
+}
+
+.copyButton:hover {
+  background: var(--atlas-ui-hover, #f1f3f5);
+  color: var(--atlas-primary, #1971c2);
+  transform: translate(-0.5rem, -0.25rem) scale(1.1);
+}
+
+[data-theme='dark'] .copyButton {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .copyButton:hover {
+  background: var(--atlas-ui-hover, #2c2c2c);
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.copyIcon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+}
+
+.citation {
+  font-size: 0.9375rem;
+  color: var(--atlas-text-secondary, #495057);
+  line-height: 1.6;
+  margin: 0;
+  padding-left: 1.5rem; /* Space for the copy button */
+  font-style: italic;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+  font-weight: 400;
+}
+
+[data-theme='dark'] .citation {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .citationContainer {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+  
+  .citationContent {
+    margin-left: 2rem;
+  }
+  
+  .citationWrapper {
+    padding: 0;
+  }
+  
+  .citation {
+    font-size: 0.875rem;
+  }
+  
+  .copyIcon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .citationContainer {
+    padding: 2rem 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.375rem;
+  }
+  
+  .citationContent {
+    margin-left: 1.5rem;
+  }
+  
+  .citationWrapper {
+    padding: 0;
+    gap: 0.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .iconContainer {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .citation {
+    font-size: 0.8125rem;
+  }
+  
+  .copyButton {
+    align-self: flex-end;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+  }
+}

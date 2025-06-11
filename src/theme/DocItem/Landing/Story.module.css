@@ -1,0 +1,82 @@
+/* src/theme/DocItem/Landing/Story.module.css */
+
+.storyContainer {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  background: transparent;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--atlas-border-color, #e9ecef);
+}
+
+[data-theme='dark'] .storyContainer {
+  border-bottom-color: var(--atlas-border-color, #373737);
+}
+
+.storyContent {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* PRIMARY SECTION - Fixed height only on desktop */
+.primarySection {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  height: 500px; /* Fixed height for desktop only */
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .storyContainer {
+    padding: 3rem 1.5rem;
+  }
+  
+  .storyContent {
+    gap: 3rem;
+  }
+  
+  .primarySection {
+    gap: 3rem;
+    height: 450px; /* Keep fixed height for tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .storyContainer {
+    padding: 3rem 1.5rem;
+  }
+  
+  .storyContent {
+    gap: 3rem;
+  }
+  
+  .primarySection {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    height: auto; /* Remove fixed height on mobile - let content determine height */
+  }
+}
+
+@media (max-width: 480px) {
+  .storyContainer {
+    padding: 2.5rem 1rem;
+  }
+  
+  .storyContent {
+    gap: 2.5rem;
+  }
+  
+  .primarySection {
+    height: auto; /* Remove fixed height on small mobile */
+  }
+}

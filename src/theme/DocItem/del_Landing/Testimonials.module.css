@@ -1,4 +1,4 @@
-/* src/theme/DocItem/Landing/Testimonials.module.css */
+/* src/components/Homepage/Testimonials.module.css */
 .testimonialSection {
   padding: 5rem 0;
   background: transparent; /* Remove gray background */
@@ -178,7 +178,6 @@
   cursor: pointer;
   opacity: 0.8;
   transition: all 0.3s ease;
-  background-color: var(--atlas-primary, #546E7A);
 }
 
 .navButton:hover {
