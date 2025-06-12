@@ -16,7 +16,7 @@ const EXPERT_QUOTES = [
   {
     quote: "We're dealing with things we've never dealt with before. And normally, the first time you deal with something totally novel, you get it wrong. And we can't afford to get it wrong.",
     name: "Geoffrey Hinton",
-    title: "Turing Award Winner 2018, \"Godfather of AI\"",
+    title: "Turing Award Winner, \"Godfather of AI\"",
     image: "/img/quotes/geoffrey_hinton.jpg",
     source: "CBS 60 Minutes Interview",
     year: "2023",
