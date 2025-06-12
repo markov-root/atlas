@@ -8,8 +8,22 @@ authors:
   - "Markov Grey"
   - "Charbel-Raphaël Segerie"
 affiliations: ["French Center for AI Safety (CeSIA)"]
+acknowledgements:
+  - "Jeanne Salle"
+  - "Charles Martinet"
+  - "Vincent Corruble"
+  - "Sebastian Gil"
+  - "Alejandro Acelas"
+  - "Evander Hammer"
+  - "Mo Munem"
+  - "Mateo Rendon"
+  - "Kieron Kretschmar"
+  - "Camille Berger"
 google_docs_link: "https://docs.google.com/document/d/1ifYc49Wq-9HuqCXCa8jIr5n6ZOYjZ3FvxE9vHPMcu58/edit?usp=sharing"
+download_link: "https://github.com/CentreSecuriteIA/textbook/blob/main/latex/AI%20Safety%20Atlas%20-%20Risks.pdf"
+feedback_link: "https://forms.gle/ZsA4hEWUx1ZrtQLL9"
 video_link: "https://www.youtube.com/watch?v=dhr4u-w75aQ"
+teach_link: "https://docs.google.com/document/d/1evE1rG91DKBuKlWnqPw45QtPxKBz0GlD_ZYrurNdvN4/edit?usp=sharing"
 sidebar_position: 2
 slug: /chapters/02/
 ---

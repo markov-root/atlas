@@ -1,19 +1,28 @@
 ---
 title: "Misspecification"
 chapter_number: 6
-reading_time_core: "56 min"
+reading_time_core: "55 min"
 reading_time_optional: "3 min"
 authors:
   - "Markov Grey"
   - "Charbel-Raphael Segerie"
 affiliations: ["French Center for AI Safety (CeSIA)"]
+acknowledgements:
+  - "Jeanne Salle"
+  - "Oscar Heitmann"
+  - "Ram Rachum"
+  - "Nicolas Guillard"
+  - "Camille Berger"
+atlas_link: "https://ai-safety-atlas.com/chapters/06/"
 alignment_forum_link: "https://www.lesswrong.com/s/3ni2P2GZzBvNebWYZ/p/mMBoPnFrFqQJKzDsZ"
 google_docs_link: "https://docs.google.com/document/d/1kEdmyVTUG3MO7lwuw4utHEm7CcavvgAiUZcWHaOZuPY/edit?usp=sharing"
+feedback_link: "https://forms.gle/ZsA4hEWUx1ZrtQLL9"
+teach_link: "https://docs.google.com/document/d/1JfmzGii5QG6hW8AM5WxzDBVyGc14aLV_Lc_1PkK2ZLc/edit?usp=sharing"
 sidebar_position: 6
 slug: /chapters/06/
 ---
-import Note from "@site/src/components/chapters/Note";
 import Quote from "@site/src/components/chapters/Quote";
+import Note from "@site/src/components/chapters/Note";
 import Definition from "@site/src/components/chapters/Definition";
 
 # Introduction

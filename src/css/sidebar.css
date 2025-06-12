@@ -1,32 +1,32 @@
 /* src/css/sidebar.css */
 
-/* Target the main chapter/category titles at the top level */
-/* This targets the category links that represent chapters */
-.theme-doc-sidebar-container .menu__list > .menu__list-item > .menu__list-item-collapsible > .menu__link {
-  font-weight: 700 !important; /* Bold weight for top-level chapter titles */
-  font-size: 1.05rem !important; /* Slightly larger font size for emphasis */
-  /* Removed color override - let it use default colors */
-}
+/* ========== SIDEBAR TYPOGRAPHY HIERARCHY ========== */
 
-/* Also target direct doc links at the top level (like "Chapter Index") */
+/* TOP LEVEL - Chapter categories (bold, larger) */
+.theme-doc-sidebar-container .menu__list > .menu__list-item > .menu__list-item-collapsible > .menu__link,
 .theme-doc-sidebar-container .menu__list > .menu__list-item > .menu__link:not(.menu__link--sublist) {
-  font-weight: 700 !important;
+  font-weight: 700 !important; /* Bold weight for top-level items */
+  font-size: 1.05rem !important; /* Slightly larger font size */
 }
 
-/* Ensure ALL nested/sub-items remain normal weight */
-.theme-doc-sidebar-container .menu__list .menu__list .menu__link {
-  font-weight: 400 !important; /* Normal weight for any nested items */
+/* SECOND LEVEL - Main sections within chapters (medium weight) */
+.theme-doc-sidebar-container .menu__list > .menu__list-item .menu__list > .menu__list-item > .menu__link,
+.theme-doc-sidebar-container .menu__list > .menu__list-item .menu__list > .menu__list-item > .menu__list-item-collapsible > .menu__link {
+  font-weight: 500 !important; /* Medium weight for second-level items */
+  font-size: 1rem !important; /* Standard size */
+}
+
+/* THIRD LEVEL AND DEEPER - Subsections (normal weight, smaller) */
+.theme-doc-sidebar-container .menu__list > .menu__list-item .menu__list .menu__list .menu__link,
+.theme-doc-sidebar-container .menu__list > .menu__list-item .menu__list .menu__list .menu__list-item-collapsible > .menu__link {
+  font-weight: 400 !important; /* Normal weight for deep nesting */
   font-size: 0.95rem !important; /* Slightly smaller for hierarchy */
 }
 
-/* Override for deeply nested items to ensure they stay normal */
-.theme-doc-sidebar-container .menu__list .menu__list .menu__list .menu__link {
-  font-weight: 400 !important;
-}
-
-/* Sub-category items (like "5.2 Benchmarks") should remain normal */
-.theme-doc-sidebar-container .menu__list .menu__list .menu__list-item .menu__link {
-  font-weight: 400 !important;
+/* FOURTH LEVEL AND DEEPER - Deep subsections (normal weight, smallest) */
+.theme-doc-sidebar-container .menu__list > .menu__list-item .menu__list .menu__list .menu__list .menu__link {
+  font-weight: 400 !important; /* Normal weight */
+  font-size: 0.9rem !important; /* Smallest size for deep hierarchy */
 }
 
 /* REMOVE ALL BACKGROUND HIGHLIGHTS COMPLETELY */
@@ -128,6 +128,7 @@
   justify-content: center !important;
   flex-shrink: 0 !important;
   margin-left: auto !important; /* Push to the right */
+  margin-right: 1rem !important; /* Add space after the chevron */
   background: none !important;
   border: none !important;
   box-shadow: none !important;
@@ -166,8 +167,6 @@
   transform: translate(-50%, -50%) rotate(-90deg) !important;
 }
 
-/* src/css/sidebar.css */
-
 /* ========== SIDEBAR FLAT STYLING ========== */
 
 /* Remove ALL borders and shadows from sidebar */
@@ -180,7 +179,6 @@
   border-right: 0px solid black !important;
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
-
 }
 
 /* Remove pseudo-element borders that might exist */
@@ -189,7 +187,6 @@
 .docSidebarContainer_YfHR:before,
 .docSidebarContainer_YfHR:after {
   display: none !important;
-
 }
 
 /* Ensure sidebar menu items are also flat */
@@ -363,23 +360,3 @@
 [data-theme='dark'] .collapseSidebarButton_PEFL:active {
   background: rgba(255, 255, 255, 0.05) !important;
 }
-
-/* ========== SIDEBAR CONTENT STYLING ========== */
-
-/* Category toggle icons - properly centered with text baseline */
-.menu__caret {
-  width: 1rem !important;
-  height: 1rem !important;
-  position: relative !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  flex-shrink: 0 !important;
-  margin-left: auto !important; /* Push to the right */
-  margin-right: 1rem !important; /* Add space after the chevron */
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-

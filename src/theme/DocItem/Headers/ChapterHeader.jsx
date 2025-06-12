@@ -1,4 +1,4 @@
-// src/theme/DocItem/Headers/ChapterHeader.jsx - Updated with inline audio/video players
+// src/theme/DocItem/Headers/ChapterHeader.jsx - Updated with acknowledgements section
 import React, { useState, useEffect } from 'react';
 import { ActionButtonTooltip } from '../../../components/UI/Tooltip';
 import styles from './ChapterHeader.module.css';
@@ -19,10 +19,8 @@ import {
 // Action Button Component - Updated with centralized Tippy
 function ActionButton({ href, iconPath, label, description, active, onClick }) {
   const [isHovered, setIsHovered] = useState(false);
-
   // Determine tooltip content
   const tooltipContent = description || label;
-
   // If it has onClick (audio or video buttons), render as button
   if (onClick) {
     return (
@@ -50,7 +48,6 @@ function ActionButton({ href, iconPath, label, description, active, onClick }) {
       </ActionButtonTooltip>
     );
   }
-
   // Regular link buttons
   return (
     <ActionButtonTooltip content={active ? tooltipContent : `${label} (Not available)`}>
@@ -77,8 +74,8 @@ function ActionButton({ href, iconPath, label, description, active, onClick }) {
 }
 
 /**
- * Complete Chapter Header Component with Inline Audio/Video Players
- * Features: Texture background, horizontal button strip, collapsible media players
+ * Complete Chapter Header Component with Acknowledgements Section
+ * Features: Texture background, horizontal button strip, collapsible media players, acknowledgements
  */
 export default function ChapterHeader({ frontMatter, title, chapterNumber, boundWidth, metadata }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -86,13 +83,13 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
   const [showVideoPlayer, setShowVideoPlayer] = useState(false);
   const [pdfData, setPdfData] = useState(null);
   const [pdfLoading, setPdfLoading] = useState(true);
-
+  
   // Animation trigger
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
     return () => clearTimeout(timer);
   }, []);
-
+  
   // PDF availability check - async
   useEffect(() => {
     async function checkPdfAvailability() {
@@ -127,7 +124,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
     
     checkPdfAvailability();
   }, [frontMatter, chapterNumber]);
-
+  
   // Use actual PDF data once loaded, or show as inactive while loading
   const hasPdf = pdfData ? hasPdfFile(pdfData) : false;
   const pdfUrl = (pdfData && pdfData.isActive) ? getPdfUrl(pdfData) : null;
@@ -138,11 +135,11 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
     hasPdf,
     pdfUrl
   });
-
+  
   // Build audio files object
   const audioFiles = buildAudioFiles(frontMatter, chapterNumber);
   const hasAudio = hasAudioFiles(audioFiles);
-
+  
   // Debug logging for audio detection
   debugAudioFiles('ChapterHeader', {
     chapterNumber,
@@ -155,7 +152,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
     processedAudioFiles: audioFiles,
     hasAudio
   });
-
+  
   // Debug logging for PDF detection
   if (pdfData) {
     debugPdfFiles('ChapterHeader (final)', {
@@ -167,7 +164,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
       pdfLoading
     });
   }
-
+  
   // Handle audio button click
   const handleAudioToggle = () => {
     if (hasAudio) {
@@ -178,7 +175,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
       }
     }
   };
-
+  
   // Handle video button click
   const handleVideoToggle = () => {
     if (frontMatter.video_link) {
@@ -189,17 +186,17 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
       }
     }
   };
-
+  
   // Handle audio player close
   const handleAudioClose = () => {
     setShowAudioPlayer(false);
   };
-
+  
   // Handle video player close
   const handleVideoClose = () => {
     setShowVideoPlayer(false);
   };
-
+  
   // Generate flowing particles with better distribution
   const generateParticles = () => {
     const count = 8;
@@ -212,9 +209,9 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
       duration: 8 + Math.random() * 4
     }));
   };
-
+  
   const particles = generateParticles();
-
+  
   return (
     <header className={`${styles.chapterContainer} ${isVisible ? styles.visible : ''}`}>
       {/* Texture background with subtle overlay */}
@@ -238,7 +235,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
           ))}
         </div>
       </div>
-
+      
       {/* Main content with new layout */}
       <div className={styles.chapterContent}>
         <div className={styles.mainSplit}>
@@ -294,7 +291,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
                 <span className={styles.breadcrumbSeparator}>›</span>
                 <span className={styles.breadcrumbCurrent}>{title}</span>
               </nav>
-
+              
               {/* Metadata section */}
               <div className={styles.metadataSection}>
                 {/* Authors */}
@@ -311,7 +308,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
                     </div>
                   </div>
                 )}
-
+                
                 {/* Affiliations */}
                 {frontMatter.affiliations && frontMatter.affiliations.length > 0 && (
                   <div className={styles.metaCard}>
@@ -326,7 +323,33 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
                     </div>
                   </div>
                 )}
-
+                
+                {/* Acknowledgements */}
+                {frontMatter.acknowledgements && frontMatter.acknowledgements.length > 0 && (
+                  <div className={styles.metaCard}>
+                    <div className={styles.metaIcon}>
+                      <img src="/img/icons/acknowledgements.svg" alt="" className={styles.iconImage} />
+                    </div>
+                    <div className={styles.metaContent}>
+                      <span className={styles.metaLabel}>Acknowledgements</span>
+                      <span className={styles.metaValue}>
+                        We thank {(() => {
+                          const names = frontMatter.acknowledgements;
+                          if (names.length === 1) {
+                            return names[0];
+                          } else if (names.length === 2) {
+                            return `${names[0]} and ${names[1]}`;
+                          } else {
+                            const allButLast = names.slice(0, -1).join(', ');
+                            const last = names[names.length - 1];
+                            return `${allButLast}, and ${last}`;
+                          }
+                        })()} for their valuable feedback and contributions.
+                      </span>
+                    </div>
+                  </div>
+                )}
+                
                 {/* Reading time breakdown */}
                 {(frontMatter.reading_time_core || frontMatter.reading_time_optional || frontMatter.reading_time_appendix) && (
                   <div className={styles.metaCard}>
@@ -442,7 +465,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               onClose={handleAudioClose}
             />
           )}
-
+          
           {/* VIDEO PLAYER SECTION - Only shows when video button is clicked */}
           {showVideoPlayer && frontMatter.video_link && (
             <InlineVideoPlayer

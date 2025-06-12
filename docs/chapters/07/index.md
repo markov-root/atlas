@@ -5,12 +5,21 @@ reading_time_core: "35 min"
 reading_time_optional: "2 min"
 authors: ["Markov Grey"]
 affiliations: ["French Center for AI Safety (CeSIA)"]
+acknowledgements:
+  - "Maxime Riché"
+  - "Martin"
+  - "Fabien Roger"
+  - "Jeanne Salle"
+  - "Camille Berger"
+  - "Leo Karoubi"
 google_docs_link: "https://docs.google.com/document/d/10aqDKJgqonHNc9IMMogtda64u8V_JsPlbuzruBMUmAU/edit?usp=sharing"
+feedback_link: "https://forms.gle/ZsA4hEWUx1ZrtQLL9"
+teach_link: "https://docs.google.com/document/d/1uQooTncb7Hw2NhITtr3S5iGHqT6cvj74c0SZ4Unad_M/edit?usp=sharing"
 sidebar_position: 7
 slug: /chapters/07/
 ---
-import Note from "@site/src/components/chapters/Note";
 import Quote from "@site/src/components/chapters/Quote";
+import Note from "@site/src/components/chapters/Note";
 import Definition from "@site/src/components/chapters/Definition";
 
 # Introduction

@@ -9,6 +9,20 @@ authors:
   - "Markov Grey"
   - "Charbel-Raphaël Segerie"
 affiliations: ["French Center for AI Safety (CeSIA)"]
+acknowledgements:
+  - "Jeanne Salle"
+  - "Charles Martinet"
+  - "Vincent Corruble"
+  - "Diego Dorn"
+  - "Josh Thorsteinson"
+  - "Jonathan Claybrough"
+  - "Alejandro Acelas"
+  - "Jamie Raldua Veuthey"
+  - "Alexandre Variengien"
+  - "Léo Dana"
+  - "Angélina Gentaz"
+  - "Nicolas Guillard"
+  - "Leo Karoubi"
 atlas_link: "https://ai-safety-atlas.com/chapters/01/"
 alignment_forum_link: "https://www.alignmentforum.org/posts/MkfaQyxB9PN4h8Bs9/"
 google_docs_link: "https://docs.google.com/document/d/1HKo0Kest9Xppjn7m2ODpfMUlEu93SzLsfxXBH48Xaus/edit?usp=sharing"
@@ -16,7 +30,6 @@ download_link: "https://github.com/CentreSecuriteIA/textbook/blob/main/latex/AI%
 feedback_link: "https://forms.gle/ZsA4hEWUx1ZrtQLL9"
 video_link: "https://www.youtube.com/watch?v=J_iMeH1hb9M"
 teach_link: "https://docs.google.com/document/d/1L32xCVUCWEsm-x8UZ3GSTgKnmBcC7rJQLLIh9wGLj40/edit?usp=sharing"
-excalidraw_link: "https://excalidraw.com/#json=NV7BpqhwIeNziaCbcbmqb,82mR3MO9mampoZ7CC9Ajgg"
 sidebar_position: 1
 slug: /chapters/01/
 ---
