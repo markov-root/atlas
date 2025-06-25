@@ -1,56 +1,443 @@
 /* src/components/Courses/CoursesList.module.css */
 
-.coursesGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2.5rem;
+.coursesContainer {
+  width: 100%;
+  background: var(--atlas-background, #ffffff);
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
+[data-theme='dark'] .coursesContainer {
+  background: var(--atlas-background, #121212);
+}
+
+/* Header - clean column layout with more logo space */
+.coursesHeader {
+  display: grid;
+  grid-template-columns: 250px 120px 120px 200px 100px 100px;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--atlas-background-alt, #f8f9fa);
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--atlas-border-color, #e9ecef);
+}
+
+[data-theme='dark'] .coursesHeader {
+  background: var(--atlas-background-alt, #1e1e1e);
+  color: var(--atlas-text-secondary, #adb5bd);
+  border-bottom-color: var(--atlas-border-color, #373737);
+}
+
+.logoCol {
+  text-align: center;
+}
+
+.startDateCol,
+.endDateCol,
+.locationCol {
+  text-align: left;
+}
+
+.applyCol,
+.contactCol {
+  text-align: center;
+}
+
+/* Courses List */
+.coursesList {
+  display: flex;
+  flex-direction: column;
+}
+
+.courseGroup {
+  border-bottom: 1px solid var(--atlas-border-color, #e9ecef);
+}
+
+[data-theme='dark'] .courseGroup {
+  border-bottom-color: var(--atlas-border-color, #373737);
+}
+
+.courseGroup:last-child {
+  border-bottom: none;
+}
+
+/* Course Row */
+.courseRow {
+  display: grid;
+  grid-template-columns: 250px 120px 120px 200px 100px 100px;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid var(--atlas-border-color, #e9ecef);
+}
+
+.courseRow:hover {
+  background: var(--atlas-background-alt, #f8f9fa);
+}
+
+.courseRow:last-child {
+  border-bottom: none;
+}
+
+[data-theme='dark'] .courseRow {
+  border-bottom-color: var(--atlas-border-color, #373737);
+}
+
+[data-theme='dark'] .courseRow:hover {
+  background: var(--atlas-background-alt, #1e1e1e);
+}
+
+/* Organization Logo - much bigger, crisp, no filters */
+.logoContainer {
+  width: 220px;
+  height: 120px;
+  border-radius: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.orgLogo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 16px;
+  /* Remove all filters - keep SVGs crisp and original */
+}
+
+/* Date Columns */
+.startDateColumn,
+.endDateColumn {
+  font-size: 0.875rem;
+  color: var(--atlas-text, #212529);
+  font-weight: 500;
+}
+
+[data-theme='dark'] .startDateColumn,
+[data-theme='dark'] .endDateColumn {
+  color: var(--atlas-text, #e9ecef);
+}
+
+/* Location Column */
+.locationColumn {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.columnContent {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--atlas-text, #212529);
+  min-width: 0;
+}
+
+[data-theme='dark'] .columnContent {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.columnIcon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+[data-theme='dark'] .columnIcon {
+  filter: brightness(0) invert(1);
+  opacity: 0.6;
+}
+
+.columnEmpty {
+  font-size: 0.875rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  font-style: italic;
+}
+
+[data-theme='dark'] .columnEmpty {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Apply and Contact Buttons - clean icon-only style like chapter headers */
+.applyColumn,
+.contactColumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.applyButton,
+.contactButton {
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  color: var(--atlas-text-secondary, #6c757d);
+}
+
+.buttonIcon {
+  width: 28px;
+  height: 28px;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+  /* Light mode: dark icons */
+  filter: brightness(0) saturate(100%) invert(0%);
+}
+
+.applyButton:hover,
+.contactButton:hover {
+  color: var(--atlas-primary, #1971c2);
+  transform: translateY(-2px);
+}
+
+.applyButton:hover .buttonIcon,
+.contactButton:hover .buttonIcon {
+  opacity: 1;
+  transform: scale(1.1);
+  /* Primary color filter on hover */
+  filter: brightness(0) saturate(100%) invert(27%) sepia(94%) saturate(1167%) hue-rotate(201deg) brightness(96%) contrast(94%);
+}
+
+/* Dark mode */
+[data-theme='dark'] .applyButton,
+[data-theme='dark'] .contactButton {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .applyButton:hover,
+[data-theme='dark'] .contactButton:hover {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .buttonIcon {
+  /* Dark mode: white icons */
+  filter: brightness(0) saturate(100%) invert(100%);
+  opacity: 0.6;
+}
+
+[data-theme='dark'] .applyButton:hover .buttonIcon,
+[data-theme='dark'] .contactButton:hover .buttonIcon {
+  opacity: 1;
+  /* Dark mode hover: primary light color */
+  filter: brightness(0) saturate(100%) invert(67%) sepia(32%) saturate(1715%) hue-rotate(191deg) brightness(101%) contrast(94%);
+}
+
+/* Empty State */
 .emptyState {
   padding: 4rem 2rem;
   text-align: center;
-  background-color: var(--ifm-color-emphasis-100);
-  border-radius: 10px;
-  border: 1px dashed var(--ifm-color-emphasis-300);
+  background-color: var(--atlas-background-alt, #f8f9fa);
+  border-radius: 8px;
+  border: 1px dashed var(--atlas-border-color, #e9ecef);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 2rem 0;
+}
+
+[data-theme='dark'] .emptyState {
+  background-color: var(--atlas-background-alt, #1e1e1e);
+  border-color: var(--atlas-border-color, #373737);
 }
 
 .emptyIcon {
-  color: var(--ifm-color-emphasis-500);
+  opacity: 0.7;
   margin-bottom: 1.5rem;
+}
+
+[data-theme='dark'] .emptyIcon img {
+  filter: brightness(0) invert(1);
+  opacity: 0.6;
 }
 
 .emptyTitle {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: var(--ifm-color-emphasis-700);
+  color: var(--atlas-text, #212529);
+  font-weight: 600;
+}
+
+[data-theme='dark'] .emptyTitle {
+  color: var(--atlas-text, #e9ecef);
 }
 
 .emptyText {
   font-size: 1rem;
-  color: var(--ifm-color-emphasis-600);
+  color: var(--atlas-text-secondary, #6c757d);
   max-width: 400px;
   line-height: 1.6;
+  margin: 0;
 }
 
-/* Responsive adjustments */
+[data-theme='dark'] .emptyText {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Responsive Design */
 @media (max-width: 1200px) {
-  .coursesGrid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
+  .coursesHeader,
+  .courseRow {
+    grid-template-columns: 200px 110px 110px 180px 90px 90px;
+    gap: 0.75rem;
+  }
+  
+  .logoContainer {
+    width: 180px;
+    height: 100px;
+  }
+  
+  .applyButton,
+  .contactButton {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .buttonIcon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .coursesHeader,
+  .courseRow {
+    grid-template-columns: 160px 100px 100px 160px 80px 80px;
+  }
+  
+  .logoContainer {
+    width: 140px;
+    height: 85px;
+  }
+  
+  .startDateColumn,
+  .endDateColumn,
+  .columnContent {
+    font-size: 0.8rem;
+  }
+  
+  .columnIcon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .applyButton,
+  .contactButton {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .buttonIcon {
+    width: 22px;
+    height: 22px;
   }
 }
 
 @media (max-width: 768px) {
-  .coursesGrid {
+  .coursesHeader {
+    display: none; /* Hide header on mobile */
+  }
+  
+  .courseRow {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
+    padding: 1.5rem 1rem;
+    text-align: center;
+  }
+  
+  .logoContainer {
+    width: 200px;
+    height: 120px;
+    margin: 0 auto;
+  }
+  
+  .startDateColumn,
+  .endDateColumn,
+  .locationColumn {
+    justify-self: center;
+    margin: 0.5rem 0;
+  }
+  
+  .applyColumn,
+  .contactColumn {
+    justify-self: center;
+    margin: 0.5rem 0;
+  }
+  
+  .applyButton,
+  .contactButton {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .buttonIcon {
+    width: 28px;
+    height: 28px;
   }
   
   .emptyState {
     padding: 3rem 1.5rem;
+    margin: 1rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .courseRow {
+    padding: 1.25rem 0.75rem;
+  }
+  
+  .logoContainer {
+    width: 100px;
+    height: 70px;
+  }
+  
+  .startDateColumn,
+  .endDateColumn,
+  .columnContent {
+    font-size: 0.8rem;
+  }
+  
+  .applyButton,
+  .contactButton {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .buttonIcon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .emptyState {
+    padding: 2rem 1rem;
+  }
+  
+  .emptyTitle {
+    font-size: 1.25rem;
+  }
+  
+  .emptyText {
+    font-size: 0.9rem;
   }
 }

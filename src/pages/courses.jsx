@@ -1,53 +1,26 @@
 // src/pages/courses.jsx
-import React, { useState } from 'react';
+import React from 'react';
 import Layout from '@theme/Layout';
-import {
-  CoursesHero,
-  OngoingCourses,
-  UpcomingCourses,
-  CourseDetailModal
-} from '../components/Courses';
+import { CoursesHero, CoursesList } from '../components/Courses';
 import coursesData from '../data/courses.json';
 
 export default function CoursesPage() {
-  const [selectedCourse, setSelectedCourse] = useState(null);
-
-  const handleOpenCourse = (course) => {
-    console.log("Selected course:", course);
-    setSelectedCourse(course);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedCourse(null);
-  };
+  // Use the simplified courses structure
+  const allCourses = coursesData.courses || [];
 
   return (
     <Layout
       title="Courses Using AI Safety Atlas"
       description="Courses and study groups using AI Safety Atlas materials">
       
-      {/* Hero Section - Now includes the Start Your Own Course CTA */}
+      {/* Hero Section */}
       <CoursesHero />
       
-      {/* Ongoing Courses Section */}
-      <OngoingCourses 
-        courses={coursesData.ongoing || []} 
-        onOpenCourse={handleOpenCourse}
-      />
+      {/* Single Unified Courses List */}
+      <div className="container" style={{ padding: '4rem 0' }}>
+        <CoursesList courses={allCourses} />
+      </div>
       
-      {/* Upcoming Courses Section */}
-      <UpcomingCourses 
-        courses={coursesData.upcoming || []} 
-        onOpenCourse={handleOpenCourse}
-      />
-      
-      {/* Course Detail Modal */}
-      {selectedCourse && (
-        <CourseDetailModal 
-          course={selectedCourse} 
-          onClose={handleCloseModal} 
-        />
-      )}
     </Layout>
   );
 }

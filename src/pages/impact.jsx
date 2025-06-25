@@ -1,15 +1,35 @@
 // src/pages/impact.jsx
 import React from 'react';
 import Layout from '@theme/Layout';
-import ImpactSection from '../components/Impact/ImpactSection';
+import Hero from '../components/Impact/Hero';
+import Summary from '../components/Impact/Summary';
+import Testimonials from '../components/Impact/Testimonials';
+import Publications from '../components/Impact/Publications';
+import Adoption from '../components/Impact/Adoption';
+import styles from './impact.module.css';
 
 export default function ImpactPage() {
   return (
     <Layout
       title="Impact - AI Safety Atlas"
-      description="Measurable outcomes from systematic AI safety education and research contributions">
+      description="Impact and outcomes from AI Safety Atlas">
       
-      <ImpactSection />
+      <div className={styles.impactPageContainer}>
+        {/* Hero Section */}
+        <Hero />
+        
+        {/* Summary Section */}
+        <Summary />
+
+        {/* Testimonials Section */}
+        <Testimonials />
+
+        {/* Publications Section */}
+        <Publications />
+        
+        {/* Adoption Section */}
+        <Adoption />
+      </div>
       
     </Layout>
   );

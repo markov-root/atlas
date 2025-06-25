@@ -1,0 +1,202 @@
+/* src/components/Impact/Adoption.module.css */
+
+.adoptionContainer {
+  width: 100%;
+  padding: 0 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Educational Adoption Section - Full Width Rows */
+.adoptionSection {
+  margin-bottom: 4rem;
+}
+
+.adoptionTitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--atlas-text, #212529);
+  margin: 0 0 2.5rem 0;
+  text-align: center;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+}
+
+[data-theme='dark'] .adoptionTitle {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.adoptionGroup {
+  margin-bottom: 4rem;
+}
+
+.adoptionGroupHeader {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.categoryTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--atlas-primary, #1971c2);
+  margin: 0 0 0.75rem 0;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-theme='dark'] .categoryTitle {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+/* Full Width Group Content - Image Left, Text Right */
+.adoptionGroupContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+  width: 100%;
+}
+
+/* Category Image Container - Left Side */
+.categoryImageContainer {
+  position: relative;
+  width: 400px;
+  height: 280px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.categoryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.adoptionGroup:hover .categoryImage {
+  transform: scale(1.02);
+}
+
+.categoryLogo {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+[data-theme='dark'] .categoryLogo {
+  background: rgba(18, 18, 18, 0.9);
+}
+
+.categoryLogoImage {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+[data-theme='dark'] .categoryLogoImage {
+  filter: brightness(0) invert(1);
+}
+
+/* Category Content Text - Right Side */
+.categoryContentText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.categoryDetailedDescription {
+  font-size: 1.125rem;
+  color: var(--atlas-text, #212529);
+  line-height: 1.7;
+  margin: 0;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+}
+
+[data-theme='dark'] .categoryDetailedDescription {
+  color: var(--atlas-text, #e9ecef);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .adoptionGroupContent {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .categoryImageContainer {
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    margin: 0 auto;
+  }
+  
+  .adoptionGroupHeader {
+    text-align: center;
+  }
+  
+  .categoryContentText {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .adoptionContainer {
+    padding: 0 1.5rem;
+  }
+  
+  .categoryImageContainer {
+    height: 250px;
+  }
+  
+  .adoptionTitle {
+    font-size: 1.5rem;
+  }
+  
+  .categoryTitle {
+    font-size: 1.25rem;
+  }
+  
+  .categoryDetailedDescription {
+    font-size: 1rem;
+  }
+  
+  .adoptionGroupContent {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .adoptionContainer {
+    padding: 0 1rem;
+  }
+  
+  .categoryImageContainer {
+    height: 200px;
+  }
+  
+  .adoptionTitle {
+    font-size: 1.375rem;
+  }
+  
+  .categoryTitle {
+    font-size: 1.125rem;
+  }
+  
+  .categoryDetailedDescription {
+    font-size: 0.9375rem;
+  }
+  
+  .adoptionGroupContent {
+    gap: 1.25rem;
+  }
+}

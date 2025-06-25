@@ -1,0 +1,145 @@
+/* src/components/Impact/Publications.module.css */
+
+.publicationsContainer {
+  width: 100%;
+  padding: 0 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Publications Section - Three Horizontal Columns */
+.publicationsSection {
+  margin-bottom: 4rem;
+}
+
+.publicationsTitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--atlas-text, #212529);
+  margin: 0 0 2.5rem 0;
+  text-align: center;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+}
+
+[data-theme='dark'] .publicationsTitle {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.publicationsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.publicationColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.publicationImageContainer {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.publicationImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.publicationColumn:hover .publicationImage {
+  transform: scale(1.03);
+}
+
+.publicationContent {
+  text-align: center;
+}
+
+.publicationTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--atlas-text, #212529);
+  margin: 0 0 0.75rem 0;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+}
+
+[data-theme='dark'] .publicationTitle {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.publicationDescription {
+  font-size: 0.9375rem;
+  color: var(--atlas-text-secondary, #495057);
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+}
+
+[data-theme='dark'] .publicationDescription {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+.publicationLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.publicationLink {
+  color: var(--atlas-primary, #1971c2);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+}
+
+.publicationLink:hover {
+  color: var(--atlas-primary-darker, #1864ab);
+  text-decoration: underline;
+}
+
+[data-theme='dark'] .publicationLink {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .publicationLink:hover {
+  color: var(--atlas-primary-lightest, #a5d8ff);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .publicationsGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .publicationsContainer {
+    padding: 0 1.5rem;
+  }
+  
+  .publicationsTitle {
+    font-size: 1.5rem;
+  }
+  
+  .publicationImageContainer {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .publicationsContainer {
+    padding: 0 1rem;
+  }
+  
+  .publicationsTitle {
+    font-size: 1.375rem;
+  }
+}

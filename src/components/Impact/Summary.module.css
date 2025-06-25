@@ -1,0 +1,110 @@
+/* src/components/Impact/Summary.module.css */
+
+.summaryContainer {
+  width: 100%;
+  padding: 0 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Impact Metrics Section */
+.metricsSection {
+  margin-bottom: 4rem;
+}
+
+.metricsSubheader {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--atlas-text, #212529);
+  margin: 0 0 2rem 0;
+  text-align: left;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-theme='dark'] .metricsSubheader {
+  color: var(--atlas-text, #e9ecef);
+}
+
+/* Impact Metrics Grid */
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+}
+
+.metricCard {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.metricNumber {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--atlas-primary, #1971c2);
+  font-family: var(--atlas-font-mono, 'JetBrains Mono', monospace);
+  line-height: 1;
+}
+
+[data-theme='dark'] .metricNumber {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.metricLabel {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--atlas-text, #212529);
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+  line-height: 1.2;
+}
+
+[data-theme='dark'] .metricLabel {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.metricDescription {
+  font-size: 0.875rem;
+  color: var(--atlas-text-secondary, #495057);
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+  line-height: 1.4;
+}
+
+[data-theme='dark'] .metricDescription {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .summaryContainer {
+    padding: 0 1.5rem;
+  }
+  
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .metricNumber {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .summaryContainer {
+    padding: 0 1rem;
+  }
+  
+  .metricsGrid {
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .metricNumber {
+    font-size: 1.75rem;
+  }
+}

@@ -17,7 +17,8 @@
 }
 
 .modalContent {
-  background-color: var(--ifm-background-color);
+  /* Explicit backgrounds instead of CSS variables that might be transparent */
+  background-color: #ffffff; /* Light mode: solid white */
   border-radius: 10px;
   width: 100%;
   max-width: 900px;
@@ -27,6 +28,12 @@
   box-shadow: var(--ifm-global-shadow-md);
   border: 1px solid var(--ifm-color-emphasis-200);
   animation: modalOpen 0.3s ease-out;
+}
+
+/* Dark mode override */
+[data-theme='dark'] .modalContent {
+  background-color: #1a1a1a; /* Dark mode: solid dark color */
+  border-color: #383838;
 }
 
 @keyframes modalOpen {
@@ -44,7 +51,7 @@
   position: absolute;
   top: 1.25rem;
   right: 1.25rem;
-  background: var(--ifm-background-color);
+  background: #ffffff; /* Explicit white background */
   border: 1px solid var(--ifm-color-emphasis-200);
   width: 40px;
   height: 40px;
@@ -56,6 +63,12 @@
   transition: all 0.2s ease;
   z-index: 10;
   color: var(--ifm-color-primary);
+}
+
+/* Dark mode close button */
+[data-theme='dark'] .closeButton {
+  background: #2a2a2a;
+  border-color: #444;
 }
 
 .closeButton:hover {
@@ -70,8 +83,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--ifm-color-emphasis-100);
+  background: #f8f9fa; /* Explicit light background */
   border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+/* Dark mode header */
+[data-theme='dark'] .courseHeader {
+  background: #252525; /* Explicit dark background */
+  border-bottom-color: #444;
 }
 
 .headerContent {
@@ -82,7 +101,7 @@
   display: inline-block;
   padding: 0.4rem 0.8rem;
   margin-bottom: 0.75rem;
-  background-color: var(--ifm-color-emphasis-100);
+  background-color: #ffffff; /* Explicit white background */
   color: var(--ifm-color-primary);
   border-radius: 6px;
   font-size: 0.85rem;
@@ -90,6 +109,12 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+/* Dark mode type tag */
+[data-theme='dark'] .typeTag {
+  background-color: #2a2a2a;
+  border-color: #444;
 }
 
 .courseTitle {
@@ -124,7 +149,7 @@
   border-radius: 10px;
   overflow: hidden;
   margin-left: 2rem;
-  background-color: var(--ifm-color-emphasis-100);
+  background-color: #ffffff; /* Explicit white background */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,6 +157,12 @@
   flex-shrink: 0;
   box-shadow: var(--ifm-global-shadow-lw);
   padding: 1rem;
+}
+
+/* Dark mode logo container */
+[data-theme='dark'] .logoContainer {
+  background-color: #2a2a2a;
+  border-color: #444;
 }
 
 .courseLogo {
@@ -143,6 +174,12 @@
 /* Course Info */
 .courseInfo {
   padding: 2.5rem;
+  background-color: #ffffff; /* Explicit white background */
+}
+
+/* Dark mode course info */
+[data-theme='dark'] .courseInfo {
+  background-color: #1a1a1a;
 }
 
 .infoGrid {
@@ -153,7 +190,7 @@
 }
 
 .infoCard {
-  background-color: var(--ifm-color-emphasis-0);
+  background-color: #ffffff; /* Explicit white background */
   border-radius: 8px;
   padding: 1.25rem;
   display: flex;
@@ -161,10 +198,16 @@
   box-shadow: var(--ifm-global-shadow-lw);
 }
 
+/* Dark mode info card */
+[data-theme='dark'] .infoCard {
+  background-color: #252525;
+  border-color: #444;
+}
+
 .infoIcon {
   width: 36px;
   height: 36px;
-  background-color: var(--ifm-color-emphasis-100);
+  background-color: #f0f0f0; /* Explicit light background */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -173,6 +216,12 @@
   color: var(--ifm-color-primary);
   flex-shrink: 0;
   border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+/* Dark mode info icon */
+[data-theme='dark'] .infoIcon {
+  background-color: #333;
+  border-color: #555;
 }
 
 .infoContent {
@@ -200,7 +249,13 @@
   border: 1px solid var(--ifm-color-emphasis-200);
   border-radius: 8px;
   padding: 1.5rem;
-  background-color: var(--ifm-color-emphasis-0);
+  background-color: #ffffff; /* Explicit white background */
+}
+
+/* Dark mode content section */
+[data-theme='dark'] .contentSection {
+  background-color: #252525;
+  border-color: #444;
 }
 
 .sectionTitle {
@@ -242,13 +297,19 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  background-color: var(--ifm-color-emphasis-100);
+  background-color: #f0f0f0; /* Explicit light background */
   color: var(--ifm-color-primary);
   border-radius: 50%;
   font-weight: 600;
   margin-right: 1rem;
   flex-shrink: 0;
   border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+/* Dark mode curriculum number */
+[data-theme='dark'] .curriculumNumber {
+  background-color: #333;
+  border-color: #555;
 }
 
 .curriculumText {
@@ -262,7 +323,13 @@
   border: 1px solid var(--ifm-color-emphasis-200);
   border-radius: 8px;
   padding: 1.5rem;
-  background-color: var(--ifm-color-emphasis-100);
+  background-color: #f8f9fa; /* Explicit light background */
+}
+
+/* Dark mode registration section */
+[data-theme='dark'] .registrationSection {
+  background-color: #252525;
+  border-color: #444;
 }
 
 .registrationInfo {
@@ -309,16 +376,27 @@
 }
 
 .contactButton {
-  background-color: var(--ifm-background-color);
+  background-color: #ffffff; /* Explicit white background */
   color: var(--ifm-color-primary);
   border: 1px solid var(--ifm-color-primary);
 }
 
+/* Dark mode contact button */
+[data-theme='dark'] .contactButton {
+  background-color: #2a2a2a;
+  border-color: var(--ifm-color-primary);
+}
+
 .contactButton:hover {
-  background-color: var(--ifm-color-emphasis-100);
+  background-color: #f0f0f0; /* Explicit light background */
   transform: translateY(-2px);
   box-shadow: var(--ifm-global-shadow-md);
   text-decoration: none;
+}
+
+/* Dark mode contact button hover */
+[data-theme='dark'] .contactButton:hover {
+  background-color: #333;
 }
 
 /* Responsive adjustments */

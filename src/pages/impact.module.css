@@ -1,0 +1,23 @@
+/* src/pages/impact.module.css */
+
+.impactPageContainer {
+  width: 100%;
+  padding: 5rem 0 4rem 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .impactPageContainer {
+    padding: 4rem 0 3rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .impactPageContainer {
+    padding: 3rem 0 2.5rem 0;
+  }
+}
