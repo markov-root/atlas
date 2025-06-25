@@ -8,6 +8,53 @@ import Testimonials from './Testimonials';
 import chaptersData from '../../../data/chapters.json';
 import styles from './index.module.css';
 
+// Add a simple loading skeleton component
+function LoadingSkeleton() {
+  return (
+    <div className={styles.landingContainer}>
+      <div style={{
+        minHeight: '60vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'var(--atlas-background, #ffffff)'
+      }}>
+        <div style={{
+          width: '100%',
+          maxWidth: '1200px',
+          padding: '2rem',
+          opacity: 0.3
+        }}>
+          {/* Hero skeleton */}
+          <div style={{
+            height: '300px',
+            background: 'var(--atlas-gray-200, #e9ecef)',
+            borderRadius: '8px',
+            marginBottom: '2rem',
+            animation: 'pulse 1.5s ease-in-out infinite alternate'
+          }} />
+          
+          {/* Content skeleton */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '1rem'
+          }}>
+            {[1, 2, 3].map(i => (
+              <div key={i} style={{
+                height: '200px',
+                background: 'var(--atlas-gray-200, #e9ecef)',
+                borderRadius: '8px',
+                animation: `pulse 1.5s ease-in-out infinite alternate ${i * 0.2}s`
+              }} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ChapterLanding() {
   const [mainWidth, setMainWidth] = useState(0);
   const [isReady, setIsReady] = useState(false);
@@ -46,9 +93,9 @@ export default function ChapterLanding() {
     margin: '0'
   };
 
-  // Wait for measurements
+  // Show loading skeleton instead of null
   if (!isReady || mainWidth <= 0) {
-    return null;
+    return <LoadingSkeleton />;
   }
 
   return (

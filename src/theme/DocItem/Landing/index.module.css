@@ -1,4 +1,4 @@
-/* src/theme/DocItem/Landing/ChapterLanding.module.css - Seamless clean layout */
+/* src/theme/DocItem/Landing/index.module.css */
 
 .landingContainer {
   width: 100%;
@@ -30,4 +30,17 @@
   margin-bottom: 20px;
 }
 
-/* Remove old stream header styles since we're using StreamHeader component now */
+/* Add pulse animation for loading skeleton */
+@keyframes pulse {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Dark mode skeleton adjustments */
+[data-theme='dark'] .landingContainer {
+  background: var(--atlas-background, #121212);
+}
