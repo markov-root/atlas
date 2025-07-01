@@ -1,0 +1,37 @@
+/* src/components/Impact/Analytics.module.css */
+
+.analyticsSection {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  box-sizing: border-box;
+}
+
+.analyticsHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.analyticsTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--atlas-primary, #1971c2);
+  margin-bottom: 0.5rem;
+  font-family: var(--atlas-font-heading, 'Inter', sans-serif);
+}
+
+.dateRange {
+  font-size: 1rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  font-weight: 500;
+}
+
+/* Dark mode */
+[data-theme='dark'] .analyticsTitle {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .dateRange {
+  color: var(--atlas-text-secondary, #adb5bd);
+}

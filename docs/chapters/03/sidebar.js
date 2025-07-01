@@ -89,7 +89,7 @@ module.exports = {
 },
     {
   type: "category",
-  label: "3.5 Transversal Strategies",
+  label: "3.5 Systemic Strategies",
   link: {
     type: "doc",
     id: "chapters/03/5"

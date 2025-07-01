@@ -13,11 +13,16 @@ Hosted at - https://ai-safety-atlas.com/
  - [ ] parser + sidebar : change appendix urls - a, a.1, b, b.1., etc.
  - [ ] feature: add image source to quotes
  - [ ] feature: progress bar at end of section
- - [ ] serve pdf downloads directly instead of github
+ - [x] serve pdf downloads directly instead of github
  - [ ] feature: abbreviations
  - [ ] feature: glossary page
+ - [ ] feature: roadmap page
+ - [ ] feature: impact page: global map
+ - [ ] feature: impact page: FAQs
+ - [ ] feature: impact page: chapter ratings + historical feedback
+ - [ ] feature: new logo
  - [ ] course page: add real course info
  - [ ] course page: add certificate
  - [ ] donate button + link on topbar
- - [ ] plugins review - https://docusaurus.community/plugindirectory/
+ - [x] plugins review - https://docusaurus.community/plugindirectory/
  - [ ] design: algolia search theme integration

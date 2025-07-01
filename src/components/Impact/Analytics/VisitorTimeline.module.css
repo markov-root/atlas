@@ -1,0 +1,348 @@
+/* src/components/Impact/Analytics/VisitorTimeline.module.css */
+
+.timelineContainer {
+  width: 100%;
+  margin: 3rem 0;
+  padding: 0;
+  background: transparent;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--atlas-text, #212529);
+  margin: 0 0 2rem 0;
+  text-align: center;
+  font-family: var(--atlas-font-heading, 'Inter', sans-serif);
+}
+
+[data-theme='dark'] .sectionTitle {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.noData {
+  text-align: center;
+  padding: 3rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  font-size: 1rem;
+}
+
+[data-theme='dark'] .noData {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Metrics Grid - Improved responsiveness */
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  max-width: 100%;
+}
+
+.metricCard {
+  text-align: center;
+  padding: 1.5rem;
+  background: transparent;
+  min-width: 0; /* Allow flex shrinking */
+}
+
+.metricValue {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--atlas-primary, #1971c2);
+  margin-bottom: 0.5rem;
+  font-family: var(--atlas-font-heading, 'Inter', sans-serif);
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.confidenceInterval {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--atlas-text-secondary, #6c757d);
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+.metricValue.positive {
+  color: var(--atlas-success, #2b8a3e);
+}
+
+.metricValue.negative {
+  color: var(--atlas-danger, #c92a2a);
+}
+
+.metricLabel {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--atlas-text, #212529);
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: help;
+  line-height: 1.2;
+}
+
+.metricSubtext {
+  font-size: 0.8125rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Dark mode metrics */
+[data-theme='dark'] .metricValue {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .metricValue.positive {
+  color: var(--atlas-success, #40c057);
+}
+
+[data-theme='dark'] .metricValue.negative {
+  color: var(--atlas-danger, #fa5252);
+}
+
+[data-theme='dark'] .metricLabel {
+  color: var(--atlas-text, #e9ecef);
+}
+
+[data-theme='dark'] .metricSubtext {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+[data-theme='dark'] .confidenceInterval {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Chart Container - Improved responsiveness and mobile optimization */
+.chartContainer {
+  width: 100%;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.chartWrapper {
+  width: 100%;
+  height: 300px;
+  background: transparent;
+  min-height: 200px;
+  /* Remove default margins that recharts adds */
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Tooltip */
+.chartTooltip {
+  background: var(--atlas-text, #212529);
+  color: #ffffff;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: none;
+  box-shadow: var(--atlas-shadow-md, 0 4px 6px rgba(0, 0, 0, 0.1));
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+[data-theme='dark'] .chartTooltip {
+  background: var(--atlas-background-paper, #252525);
+  color: var(--atlas-text, #e9ecef);
+  border: 1px solid var(--atlas-border-color, #373737);
+}
+
+.tooltipDate {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.tooltipStats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.tooltipStat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.8125rem;
+}
+
+.statLabel {
+  opacity: 0.8;
+}
+
+.statValue {
+  font-weight: 600;
+}
+
+/* Chart Legend - Improved responsiveness */
+.chartLegend {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  white-space: nowrap;
+}
+
+[data-theme='dark'] .legendItem {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+.legendColor {
+  width: 16px;
+  height: 3px;
+  border-radius: 1.5px;
+  flex-shrink: 0;
+}
+
+/* Simple explanation note - same style as WorldMap */
+.explanationNote {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--atlas-text, #212529);
+}
+
+[data-theme='dark'] .explanationNote {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.explanationNote strong {
+  color: var(--atlas-primary, #1971c2);
+}
+
+[data-theme='dark'] .explanationNote strong {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  
+  .metricCard {
+    padding: 1.25rem;
+  }
+  
+  .metricValue {
+    font-size: 2.25rem;
+  }
+  
+  .chartWrapper {
+    height: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 1.375rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .metricsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .metricCard {
+    padding: 1rem;
+  }
+  
+  .metricValue {
+    font-size: 2rem;
+  }
+  
+  .metricLabel {
+    font-size: 0.875rem;
+  }
+  
+  .metricSubtext {
+    font-size: 0.75rem;
+  }
+  
+  .chartContainer {
+    /* Remove any container margins on mobile */
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+    width: calc(100% + 1rem);
+  }
+  
+  .chartWrapper {
+    height: 300px; /* Maintain height on mobile */
+    /* Ensure full width usage */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .chartLegend {
+    gap: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  
+  .explanationNote {
+    font-size: 0.875rem;
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 1.25rem;
+  }
+  
+  .metricCard {
+    padding: 0.75rem;
+  }
+  
+  .metricValue {
+    font-size: 1.75rem;
+  }
+  
+  .chartContainer {
+    /* Extend even more on very small screens */
+    margin-left: -1rem;
+    margin-right: -1rem;
+    width: calc(100% + 2rem);
+  }
+  
+  .chartWrapper {
+    height: 280px; /* Slightly shorter on very small screens */
+  }
+  
+  .chartLegend {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .chartTooltip {
+    border: 2px solid currentColor;
+  }
+}

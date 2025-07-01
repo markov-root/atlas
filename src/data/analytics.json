@@ -1,0 +1,2104 @@
+{
+  "meta": {
+    "dateRange": "2025-06-05 to 2025-06-24",
+    "totalDays": 20,
+    "exportDate": "2025-06-25T14:39:14.838912",
+    "dataSource": "Plausible Analytics"
+  },
+  "overview": {
+    "totalVisitors": 398,
+    "totalPageviews": 687,
+    "totalVisits": 426,
+    "avgVisitDuration": 146.9,
+    "avgViewsPerVisit": 1.1042857142857143,
+    "avgBounceRate": 49.857142857142854
+  },
+  "geography": {
+    "countries": [
+      {
+        "name": "United Kingdom",
+        "visitors": 68,
+        "code": "GB",
+        "percentage": 17.1
+      },
+      {
+        "name": "France",
+        "visitors": 63,
+        "code": "FR",
+        "percentage": 15.8
+      },
+      {
+        "name": "United States",
+        "visitors": 37,
+        "code": "US",
+        "percentage": 9.3
+      },
+      {
+        "name": "Russian Federation",
+        "visitors": 29,
+        "code": "RU",
+        "percentage": 7.3
+      },
+      {
+        "name": "Hungary",
+        "visitors": 16,
+        "code": "HU",
+        "percentage": 4.0
+      },
+      {
+        "name": "India",
+        "visitors": 16,
+        "code": "IN",
+        "percentage": 4.0
+      },
+      {
+        "name": "Canada",
+        "visitors": 15,
+        "code": "CA",
+        "percentage": 3.8
+      },
+      {
+        "name": "Brazil",
+        "visitors": 13,
+        "code": "BR",
+        "percentage": 3.3
+      },
+      {
+        "name": "Singapore",
+        "visitors": 13,
+        "code": "SG",
+        "percentage": 3.3
+      },
+      {
+        "name": "Germany",
+        "visitors": 9,
+        "code": "DE",
+        "percentage": 2.3
+      },
+      {
+        "name": "Netherlands",
+        "visitors": 9,
+        "code": "NL",
+        "percentage": 2.3
+      },
+      {
+        "name": "Belgium",
+        "visitors": 8,
+        "code": "BE",
+        "percentage": 2.0
+      },
+      {
+        "name": "China",
+        "visitors": 7,
+        "code": "CN",
+        "percentage": 1.8
+      },
+      {
+        "name": "Norway",
+        "visitors": 6,
+        "code": "NO",
+        "percentage": 1.5
+      },
+      {
+        "name": "Vietnam",
+        "visitors": 6,
+        "code": "VN",
+        "percentage": 1.5
+      },
+      {
+        "name": "South Korea",
+        "visitors": 5,
+        "code": "KR",
+        "percentage": 1.3
+      },
+      {
+        "name": "Kazakhstan",
+        "visitors": 5,
+        "code": "XX",
+        "percentage": 1.3
+      },
+      {
+        "name": "Armenia",
+        "visitors": 4,
+        "code": "XX",
+        "percentage": 1.0
+      },
+      {
+        "name": "Austria",
+        "visitors": 4,
+        "code": "AT",
+        "percentage": 1.0
+      },
+      {
+        "name": "Bulgaria",
+        "visitors": 4,
+        "code": "BG",
+        "percentage": 1.0
+      },
+      {
+        "name": "Japan",
+        "visitors": 4,
+        "code": "JP",
+        "percentage": 1.0
+      },
+      {
+        "name": "Nigeria",
+        "visitors": 4,
+        "code": "NG",
+        "percentage": 1.0
+      },
+      {
+        "name": "Sweden",
+        "visitors": 4,
+        "code": "SE",
+        "percentage": 1.0
+      },
+      {
+        "name": "Turkey",
+        "visitors": 4,
+        "code": "TR",
+        "percentage": 1.0
+      },
+      {
+        "name": "Ukraine",
+        "visitors": 4,
+        "code": "UA",
+        "percentage": 1.0
+      },
+      {
+        "name": "Australia",
+        "visitors": 3,
+        "code": "AU",
+        "percentage": 0.8
+      },
+      {
+        "name": "Switzerland",
+        "visitors": 3,
+        "code": "CH",
+        "percentage": 0.8
+      },
+      {
+        "name": "Israel",
+        "visitors": 3,
+        "code": "IL",
+        "percentage": 0.8
+      },
+      {
+        "name": "Kenya",
+        "visitors": 3,
+        "code": "XX",
+        "percentage": 0.8
+      },
+      {
+        "name": "Uganda",
+        "visitors": 3,
+        "code": "XX",
+        "percentage": 0.8
+      },
+      {
+        "name": "Anonymous VPN Service",
+        "visitors": 2,
+        "code": "XX",
+        "percentage": 0.5
+      },
+      {
+        "name": "United Arab Emirates",
+        "visitors": 2,
+        "code": "XX",
+        "percentage": 0.5
+      },
+      {
+        "name": "Argentina",
+        "visitors": 1,
+        "code": "AR",
+        "percentage": 0.3
+      },
+      {
+        "name": "Czechia",
+        "visitors": 1,
+        "code": "XX",
+        "percentage": 0.3
+      },
+      {
+        "name": "Denmark",
+        "visitors": 1,
+        "code": "DK",
+        "percentage": 0.3
+      },
+      {
+        "name": "Ecuador",
+        "visitors": 1,
+        "code": "XX",
+        "percentage": 0.3
+      },
+      {
+        "name": "Egypt",
+        "visitors": 1,
+        "code": "EG",
+        "percentage": 0.3
+      },
+      {
+        "name": "Finland",
+        "visitors": 1,
+        "code": "FI",
+        "percentage": 0.3
+      },
+      {
+        "name": "Italy",
+        "visitors": 1,
+        "code": "IT",
+        "percentage": 0.3
+      },
+      {
+        "name": "Sri Lanka",
+        "visitors": 1,
+        "code": "XX",
+        "percentage": 0.3
+      },
+      {
+        "name": "Latvia",
+        "visitors": 1,
+        "code": "LV",
+        "percentage": 0.3
+      },
+      {
+        "name": "Malaysia",
+        "visitors": 1,
+        "code": "MY",
+        "percentage": 0.3
+      },
+      {
+        "name": "New Zealand",
+        "visitors": 1,
+        "code": "NZ",
+        "percentage": 0.3
+      },
+      {
+        "name": "Philippines",
+        "visitors": 1,
+        "code": "PH",
+        "percentage": 0.3
+      },
+      {
+        "name": "Poland",
+        "visitors": 1,
+        "code": "PL",
+        "percentage": 0.3
+      },
+      {
+        "name": "Romania",
+        "visitors": 1,
+        "code": "RO",
+        "percentage": 0.3
+      },
+      {
+        "name": "Slovakia",
+        "visitors": 1,
+        "code": "SK",
+        "percentage": 0.3
+      },
+      {
+        "name": "Taiwan",
+        "visitors": 1,
+        "code": "XX",
+        "percentage": 0.3
+      },
+      {
+        "name": "Tanzania",
+        "visitors": 1,
+        "code": "XX",
+        "percentage": 0.3
+      }
+    ],
+    "cities": [
+      {
+        "name": "Paris",
+        "visitors": 20,
+        "percentage": 5.0
+      },
+      {
+        "name": "London",
+        "visitors": 18,
+        "percentage": 4.5
+      },
+      {
+        "name": "Singapore",
+        "visitors": 13,
+        "percentage": 3.3
+      },
+      {
+        "name": "Budapest",
+        "visitors": 12,
+        "percentage": 3.0
+      },
+      {
+        "name": "São Paulo",
+        "visitors": 10,
+        "percentage": 2.5
+      },
+      {
+        "name": "Moscow",
+        "visitors": 8,
+        "percentage": 2.0
+      },
+      {
+        "name": "Amsterdam",
+        "visitors": 6,
+        "percentage": 1.5
+      },
+      {
+        "name": "Châtenay-Malabry",
+        "visitors": 6,
+        "percentage": 1.5
+      },
+      {
+        "name": "Camden Town",
+        "visitors": 6,
+        "percentage": 1.5
+      },
+      {
+        "name": "Hyderabad",
+        "visitors": 5,
+        "percentage": 1.3
+      },
+      {
+        "name": "Kensington",
+        "visitors": 5,
+        "percentage": 1.3
+      },
+      {
+        "name": "Brussels",
+        "visitors": 5,
+        "percentage": 1.3
+      },
+      {
+        "name": "Southwark",
+        "visitors": 5,
+        "percentage": 1.3
+      },
+      {
+        "name": "Yerevan",
+        "visitors": 4,
+        "percentage": 1.0
+      },
+      {
+        "name": "Kyiv",
+        "visitors": 4,
+        "percentage": 1.0
+      },
+      {
+        "name": "Ho Chi Minh City",
+        "visitors": 4,
+        "percentage": 1.0
+      },
+      {
+        "name": "City of Westminster",
+        "visitors": 4,
+        "percentage": 1.0
+      },
+      {
+        "name": "Vienna",
+        "visitors": 4,
+        "percentage": 1.0
+      },
+      {
+        "name": "Villeurbanne",
+        "visitors": 4,
+        "percentage": 1.0
+      },
+      {
+        "name": "Lyon",
+        "visitors": 4,
+        "percentage": 1.0
+      }
+    ]
+  },
+  "content": {
+    "chapters": [
+      {
+        "name": "Chapters Index",
+        "path": "/chapters/",
+        "visitors": 84,
+        "pageviews": 113,
+        "timeOnPage": 95,
+        "timeOnPageFormatted": "1m 35s",
+        "scrollDepth": 61,
+        "bounceRate": 67
+      },
+      {
+        "name": "Chapter 1",
+        "path": "/chapters/01",
+        "visitors": 34,
+        "pageviews": 34,
+        "timeOnPage": 160,
+        "timeOnPageFormatted": "2m 40s",
+        "scrollDepth": 62,
+        "bounceRate": 40
+      },
+      {
+        "name": "Chapter 9",
+        "path": "/chapters/09",
+        "visitors": 22,
+        "pageviews": 19,
+        "timeOnPage": 372,
+        "timeOnPageFormatted": "6m 12s",
+        "scrollDepth": 57,
+        "bounceRate": 50
+      },
+      {
+        "name": "Chapter 2",
+        "path": "/chapters/02",
+        "visitors": 13,
+        "pageviews": 15,
+        "timeOnPage": 47,
+        "timeOnPageFormatted": "47s",
+        "scrollDepth": 54,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 5",
+        "path": "/chapters/05",
+        "visitors": 10,
+        "pageviews": 11,
+        "timeOnPage": 224,
+        "timeOnPageFormatted": "3m 44s",
+        "scrollDepth": 71,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 8",
+        "path": "/chapters/08",
+        "visitors": 9,
+        "pageviews": 9,
+        "timeOnPage": 157,
+        "timeOnPageFormatted": "2m 37s",
+        "scrollDepth": 58,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 8",
+        "path": "/chapters/08/",
+        "visitors": 9,
+        "pageviews": 10,
+        "timeOnPage": 53,
+        "timeOnPageFormatted": "53s",
+        "scrollDepth": 48,
+        "bounceRate": 86
+      },
+      {
+        "name": "Chapter 1.1",
+        "path": "/chapters/01/01/",
+        "visitors": 8,
+        "pageviews": 8,
+        "timeOnPage": 24,
+        "timeOnPageFormatted": "24s",
+        "scrollDepth": 26,
+        "bounceRate": 71
+      },
+      {
+        "name": "Chapter 3",
+        "path": "/chapters/03",
+        "visitors": 8,
+        "pageviews": 5,
+        "timeOnPage": 259,
+        "timeOnPageFormatted": "4m 19s",
+        "scrollDepth": 82,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 4",
+        "path": "/chapters/04",
+        "visitors": 8,
+        "pageviews": 8,
+        "timeOnPage": 16,
+        "timeOnPageFormatted": "16s",
+        "scrollDepth": 34,
+        "bounceRate": 60
+      },
+      {
+        "name": "Chapter 9",
+        "path": "/chapters/09/",
+        "visitors": 8,
+        "pageviews": 9,
+        "timeOnPage": 68,
+        "timeOnPageFormatted": "1m 8s",
+        "scrollDepth": 42,
+        "bounceRate": 50
+      },
+      {
+        "name": "Chapter 5.7",
+        "path": "/chapters/05/07/",
+        "visitors": 7,
+        "pageviews": 7,
+        "timeOnPage": 3,
+        "timeOnPageFormatted": "3s",
+        "scrollDepth": 20,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 9.1",
+        "path": "/chapters/09/01",
+        "visitors": 7,
+        "pageviews": 6,
+        "timeOnPage": 25,
+        "timeOnPageFormatted": "25s",
+        "scrollDepth": 48,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 1.2",
+        "path": "/chapters/01/02/",
+        "visitors": 6,
+        "pageviews": 6,
+        "timeOnPage": 19,
+        "timeOnPageFormatted": "19s",
+        "scrollDepth": 32,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 2",
+        "path": "/chapters/02/",
+        "visitors": 6,
+        "pageviews": 7,
+        "timeOnPage": 159,
+        "timeOnPageFormatted": "2m 39s",
+        "scrollDepth": 62,
+        "bounceRate": 40
+      },
+      {
+        "name": "Chapter 5",
+        "path": "/chapters/05/",
+        "visitors": 6,
+        "pageviews": 7,
+        "timeOnPage": 39,
+        "timeOnPageFormatted": "39s",
+        "scrollDepth": 50,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 7.1",
+        "path": "/chapters/07/01/",
+        "visitors": 6,
+        "pageviews": 8,
+        "timeOnPage": 140,
+        "timeOnPageFormatted": "2m 20s",
+        "scrollDepth": 26,
+        "bounceRate": 67
+      },
+      {
+        "name": "Chapter 1",
+        "path": "/chapters/01/",
+        "visitors": 5,
+        "pageviews": 5,
+        "timeOnPage": 50,
+        "timeOnPageFormatted": "50s",
+        "scrollDepth": 65,
+        "bounceRate": 75
+      },
+      {
+        "name": "Chapter 2.1",
+        "path": "/chapters/02/01/",
+        "visitors": 5,
+        "pageviews": 6,
+        "timeOnPage": 17,
+        "timeOnPageFormatted": "17s",
+        "scrollDepth": 51,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 6",
+        "path": "/chapters/06",
+        "visitors": 5,
+        "pageviews": 5,
+        "timeOnPage": 16,
+        "timeOnPageFormatted": "16s",
+        "scrollDepth": 54,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 7.3",
+        "path": "/chapters/07/03/",
+        "visitors": 5,
+        "pageviews": 5,
+        "timeOnPage": 11,
+        "timeOnPageFormatted": "11s",
+        "scrollDepth": 23,
+        "bounceRate": 80
+      },
+      {
+        "name": "Chapter 8.2",
+        "path": "/chapters/08/02/",
+        "visitors": 5,
+        "pageviews": 5,
+        "timeOnPage": 11,
+        "timeOnPageFormatted": "11s",
+        "scrollDepth": 28,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 8.4",
+        "path": "/chapters/08/04",
+        "visitors": 5,
+        "pageviews": 5,
+        "timeOnPage": 15,
+        "timeOnPageFormatted": "15s",
+        "scrollDepth": 32,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 8.5",
+        "path": "/chapters/08/05",
+        "visitors": 5,
+        "pageviews": 4,
+        "timeOnPage": 87,
+        "timeOnPageFormatted": "1m 27s",
+        "scrollDepth": 51,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 7",
+        "path": "/chapters/07",
+        "visitors": 4,
+        "pageviews": 5,
+        "timeOnPage": 32,
+        "timeOnPageFormatted": "32s",
+        "scrollDepth": 42,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 1.5",
+        "path": "/chapters/01/05",
+        "visitors": 3,
+        "pageviews": 3,
+        "timeOnPage": 132,
+        "timeOnPageFormatted": "2m 12s",
+        "scrollDepth": 68,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 2.3",
+        "path": "/chapters/02/03/",
+        "visitors": 3,
+        "pageviews": 3,
+        "timeOnPage": 3,
+        "timeOnPageFormatted": "3s",
+        "scrollDepth": 36,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 3.1",
+        "path": "/chapters/03/01/",
+        "visitors": 3,
+        "pageviews": 3,
+        "timeOnPage": 237,
+        "timeOnPageFormatted": "3m 57s",
+        "scrollDepth": 71,
+        "bounceRate": 50
+      },
+      {
+        "name": "Chapter 3.3",
+        "path": "/chapters/03/03",
+        "visitors": 3,
+        "pageviews": 1,
+        "timeOnPage": 1589,
+        "timeOnPageFormatted": "26m 29s",
+        "scrollDepth": 100,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 3.3",
+        "path": "/chapters/03/03#03",
+        "visitors": 3,
+        "pageviews": 4,
+        "timeOnPage": 76,
+        "timeOnPageFormatted": "1m 16s",
+        "scrollDepth": 69,
+        "bounceRate": 50
+      },
+      {
+        "name": "Chapter 4.3",
+        "path": "/chapters/04/03",
+        "visitors": 3,
+        "pageviews": 3,
+        "timeOnPage": 1,
+        "timeOnPageFormatted": "1s",
+        "scrollDepth": 20,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 5.4",
+        "path": "/chapters/05/04/",
+        "visitors": 3,
+        "pageviews": 3,
+        "timeOnPage": 6,
+        "timeOnPageFormatted": "6s",
+        "scrollDepth": 19,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 6",
+        "path": "/chapters/06/",
+        "visitors": 3,
+        "pageviews": 3,
+        "timeOnPage": 301,
+        "timeOnPageFormatted": "5m 1s",
+        "scrollDepth": 69,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 9.1",
+        "path": "/chapters/09/01/",
+        "visitors": 3,
+        "pageviews": 3,
+        "timeOnPage": 0,
+        "timeOnPageFormatted": "0s",
+        "scrollDepth": 38,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 9.2",
+        "path": "/chapters/09/02/",
+        "visitors": 3,
+        "pageviews": 3,
+        "timeOnPage": 39,
+        "timeOnPageFormatted": "39s",
+        "scrollDepth": 6,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 1.1",
+        "path": "/chapters/01/01",
+        "visitors": 2,
+        "pageviews": 0,
+        "timeOnPage": 0,
+        "timeOnPageFormatted": "0s",
+        "scrollDepth": 0,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 1.2",
+        "path": "/chapters/01/02",
+        "visitors": 2,
+        "pageviews": 2,
+        "timeOnPage": 44,
+        "timeOnPageFormatted": "44s",
+        "scrollDepth": 69,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 1.3",
+        "path": "/chapters/01/03",
+        "visitors": 2,
+        "pageviews": 1,
+        "timeOnPage": 57,
+        "timeOnPageFormatted": "57s",
+        "scrollDepth": 96,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 1.4",
+        "path": "/chapters/01/04",
+        "visitors": 2,
+        "pageviews": 1,
+        "timeOnPage": 124,
+        "timeOnPageFormatted": "2m 4s",
+        "scrollDepth": 100,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 1.7",
+        "path": "/chapters/01/07",
+        "visitors": 2,
+        "pageviews": 2,
+        "timeOnPage": 30,
+        "timeOnPageFormatted": "30s",
+        "scrollDepth": 62,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 2.2",
+        "path": "/chapters/02/02",
+        "visitors": 2,
+        "pageviews": 2,
+        "timeOnPage": 30,
+        "timeOnPageFormatted": "30s",
+        "scrollDepth": 96,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 2.3",
+        "path": "/chapters/02/03",
+        "visitors": 2,
+        "pageviews": 2,
+        "timeOnPage": 54,
+        "timeOnPageFormatted": "54s",
+        "scrollDepth": 100,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 2.4",
+        "path": "/chapters/02/04",
+        "visitors": 2,
+        "pageviews": 3,
+        "timeOnPage": 87,
+        "timeOnPageFormatted": "1m 27s",
+        "scrollDepth": 62,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 2.4",
+        "path": "/chapters/02/04/",
+        "visitors": 2,
+        "pageviews": 2,
+        "timeOnPage": 133,
+        "timeOnPageFormatted": "2m 13s",
+        "scrollDepth": 53,
+        "bounceRate": 50
+      },
+      {
+        "name": "Chapter 3.4",
+        "path": "/chapters/03/04/",
+        "visitors": 2,
+        "pageviews": 2,
+        "timeOnPage": 1,
+        "timeOnPageFormatted": "1s",
+        "scrollDepth": 38,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 5.5",
+        "path": "/chapters/05/05/",
+        "visitors": 2,
+        "pageviews": 2,
+        "timeOnPage": 11,
+        "timeOnPageFormatted": "11s",
+        "scrollDepth": 37,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 5.10",
+        "path": "/chapters/05/10",
+        "visitors": 2,
+        "pageviews": 1,
+        "timeOnPage": 1153,
+        "timeOnPageFormatted": "19m 13s",
+        "scrollDepth": 100,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 6.1",
+        "path": "/chapters/06/01/",
+        "visitors": 2,
+        "pageviews": 2,
+        "timeOnPage": 8,
+        "timeOnPageFormatted": "8s",
+        "scrollDepth": 46,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 6.2",
+        "path": "/chapters/06/02",
+        "visitors": 2,
+        "pageviews": 1,
+        "timeOnPage": 184,
+        "timeOnPageFormatted": "3m 4s",
+        "scrollDepth": 15,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 6.3",
+        "path": "/chapters/06/03/",
+        "visitors": 2,
+        "pageviews": 2,
+        "timeOnPage": 0,
+        "timeOnPageFormatted": "0s",
+        "scrollDepth": 0,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 6.5",
+        "path": "/chapters/06/05/",
+        "visitors": 2,
+        "pageviews": 2,
+        "timeOnPage": 9,
+        "timeOnPageFormatted": "9s",
+        "scrollDepth": 84,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 8.1",
+        "path": "/chapters/08/01/",
+        "visitors": 2,
+        "pageviews": 2,
+        "timeOnPage": 13,
+        "timeOnPageFormatted": "13s",
+        "scrollDepth": 11,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 8.2",
+        "path": "/chapters/08/02",
+        "visitors": 2,
+        "pageviews": 1,
+        "timeOnPage": 0,
+        "timeOnPageFormatted": "0s",
+        "scrollDepth": 9,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 8.3",
+        "path": "/chapters/08/03",
+        "visitors": 2,
+        "pageviews": 2,
+        "timeOnPage": 1,
+        "timeOnPageFormatted": "1s",
+        "scrollDepth": 7,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 8.6",
+        "path": "/chapters/08/06",
+        "visitors": 2,
+        "pageviews": 2,
+        "timeOnPage": 1,
+        "timeOnPageFormatted": "1s",
+        "scrollDepth": 26,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 9.1",
+        "path": "/chapters/09/01#01",
+        "visitors": 2,
+        "pageviews": 1,
+        "timeOnPage": 3,
+        "timeOnPageFormatted": "3s",
+        "scrollDepth": 26,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 9.2",
+        "path": "/chapters/09/02",
+        "visitors": 2,
+        "pageviews": 1,
+        "timeOnPage": 902,
+        "timeOnPageFormatted": "15m 2s",
+        "scrollDepth": 10,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 9.3",
+        "path": "/chapters/09/03",
+        "visitors": 2,
+        "pageviews": 1,
+        "timeOnPage": 114,
+        "timeOnPageFormatted": "1m 54s",
+        "scrollDepth": 75,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 1.1",
+        "path": "/chapters/01/01#04",
+        "visitors": 1,
+        "pageviews": 0,
+        "timeOnPage": 0,
+        "timeOnPageFormatted": "0s",
+        "scrollDepth": 0,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 1.5",
+        "path": "/chapters/01/05#02",
+        "visitors": 1,
+        "pageviews": 0,
+        "timeOnPage": 0,
+        "timeOnPageFormatted": "0s",
+        "scrollDepth": 0,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 1.5",
+        "path": "/chapters/01/05/",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 13,
+        "timeOnPageFormatted": "13s",
+        "scrollDepth": 60,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 1.6",
+        "path": "/chapters/01/06",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 43,
+        "timeOnPageFormatted": "43s",
+        "scrollDepth": 93,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 1.6",
+        "path": "/chapters/01/06/",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 81,
+        "timeOnPageFormatted": "1m 21s",
+        "scrollDepth": 100,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 1.8",
+        "path": "/chapters/01/08",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 127,
+        "timeOnPageFormatted": "2m 7s",
+        "scrollDepth": 100,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 1.9",
+        "path": "/chapters/01/09",
+        "visitors": 1,
+        "pageviews": 5,
+        "timeOnPage": 136,
+        "timeOnPageFormatted": "2m 16s",
+        "scrollDepth": 100,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 2.1",
+        "path": "/chapters/02/01/#02",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 3,
+        "timeOnPageFormatted": "3s",
+        "scrollDepth": 52,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 2.2",
+        "path": "/chapters/02/02/",
+        "visitors": 1,
+        "pageviews": 2,
+        "timeOnPage": 6,
+        "timeOnPageFormatted": "6s",
+        "scrollDepth": 100,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 2.3",
+        "path": "/chapters/02/03#04",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 2000,
+        "timeOnPageFormatted": "33m 20s",
+        "scrollDepth": 100,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 2.5",
+        "path": "/chapters/02/05/",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 20,
+        "timeOnPageFormatted": "20s",
+        "scrollDepth": 33,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 2.6",
+        "path": "/chapters/02/06",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 5,
+        "timeOnPageFormatted": "5s",
+        "scrollDepth": 100,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 2.6",
+        "path": "/chapters/02/06#01",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 1,
+        "timeOnPageFormatted": "1s",
+        "scrollDepth": 100,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 2.6",
+        "path": "/chapters/02/06#02",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 1,
+        "timeOnPageFormatted": "1s",
+        "scrollDepth": 100,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 2.6",
+        "path": "/chapters/02/06#03",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 3,
+        "timeOnPageFormatted": "3s",
+        "scrollDepth": 100,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 2.7",
+        "path": "/chapters/02/07",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 128,
+        "timeOnPageFormatted": "2m 8s",
+        "scrollDepth": 100,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 2",
+        "path": "/chapters/02/A1/",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 2,
+        "timeOnPageFormatted": "2s",
+        "scrollDepth": 42,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 2",
+        "path": "/chapters/02/pdf/main.pdf",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 0,
+        "timeOnPageFormatted": "0s",
+        "scrollDepth": 0,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 3",
+        "path": "/chapters/03/",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 551,
+        "timeOnPageFormatted": "9m 11s",
+        "scrollDepth": 100,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 3.1",
+        "path": "/chapters/03/01",
+        "visitors": 1,
+        "pageviews": 0,
+        "timeOnPage": 0,
+        "timeOnPageFormatted": "0s",
+        "scrollDepth": 0,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 3.5",
+        "path": "/chapters/03/05/#01",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 8,
+        "timeOnPageFormatted": "8s",
+        "scrollDepth": 96,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 3.6",
+        "path": "/chapters/03/06",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 30,
+        "timeOnPageFormatted": "30s",
+        "scrollDepth": 100,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 3.7",
+        "path": "/chapters/03/07",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 495,
+        "timeOnPageFormatted": "8m 15s",
+        "scrollDepth": 100,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 4",
+        "path": "/chapters/04/",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 7,
+        "timeOnPageFormatted": "7s",
+        "scrollDepth": 27,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 4.1",
+        "path": "/chapters/04/01",
+        "visitors": 1,
+        "pageviews": 0,
+        "timeOnPage": 0,
+        "timeOnPageFormatted": "0s",
+        "scrollDepth": 0,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 4.2",
+        "path": "/chapters/04/02",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 0,
+        "timeOnPageFormatted": "0s",
+        "scrollDepth": 0,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 4.2",
+        "path": "/chapters/04/02/",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 357,
+        "timeOnPageFormatted": "5m 57s",
+        "scrollDepth": 9,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 4.4",
+        "path": "/chapters/04/04",
+        "visitors": 1,
+        "pageviews": 0,
+        "timeOnPage": 0,
+        "timeOnPageFormatted": "0s",
+        "scrollDepth": 0,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 5.1",
+        "path": "/chapters/05/01#02",
+        "visitors": 1,
+        "pageviews": 0,
+        "timeOnPage": 0,
+        "timeOnPageFormatted": "0s",
+        "scrollDepth": 0,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 5.1",
+        "path": "/chapters/05/01/",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 83,
+        "timeOnPageFormatted": "1m 23s",
+        "scrollDepth": 98,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 5.3",
+        "path": "/chapters/05/03/",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 1,
+        "timeOnPageFormatted": "1s",
+        "scrollDepth": 38,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 5.6",
+        "path": "/chapters/05/06",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 543,
+        "timeOnPageFormatted": "9m 3s",
+        "scrollDepth": 100,
+        "bounceRate": 100
+      },
+      {
+        "name": "Chapter 5",
+        "path": "/chapters/05/pdf/main.pdf",
+        "visitors": 1,
+        "pageviews": 2,
+        "timeOnPage": 4,
+        "timeOnPageFormatted": "4s",
+        "scrollDepth": 39,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 6.1",
+        "path": "/chapters/06/01#03",
+        "visitors": 1,
+        "pageviews": 0,
+        "timeOnPage": 0,
+        "timeOnPageFormatted": "0s",
+        "scrollDepth": 0,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 6.3",
+        "path": "/chapters/06/03",
+        "visitors": 1,
+        "pageviews": 0,
+        "timeOnPage": 0,
+        "timeOnPageFormatted": "0s",
+        "scrollDepth": 0,
+        "bounceRate": 0
+      },
+      {
+        "name": "Chapter 6.5",
+        "path": "/chapters/06/05#01",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 53,
+        "timeOnPageFormatted": "53s",
+        "scrollDepth": 100,
+        "bounceRate": 0
+      }
+    ],
+    "topPages": [
+      {
+        "name": "/",
+        "visitors": 165,
+        "pageviews": 204,
+        "timeOnPage": 113,
+        "timeOnPageFormatted": "1m 53s"
+      },
+      {
+        "name": "/chapters",
+        "visitors": 27,
+        "pageviews": 47,
+        "timeOnPage": 115,
+        "timeOnPageFormatted": "1m 55s"
+      },
+      {
+        "name": "/impact",
+        "visitors": 3,
+        "pageviews": 3,
+        "timeOnPage": 22,
+        "timeOnPageFormatted": "22s"
+      },
+      {
+        "name": "/courses",
+        "visitors": 2,
+        "pageviews": 3,
+        "timeOnPage": 54,
+        "timeOnPageFormatted": "54s"
+      },
+      {
+        "name": "/404.html",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 130,
+        "timeOnPageFormatted": "2m 10s"
+      },
+      {
+        "name": "/Chapters/7 - Goal Misgeneralization/7-01-goal-misgeneralization/",
+        "visitors": 1,
+        "pageviews": 1,
+        "timeOnPage": 36,
+        "timeOnPageFormatted": "36s"
+      }
+    ]
+  },
+  "outboundLinks": [
+    {
+      "url": "https://docs.google.com/document/d/1mdYnniBG5vg4HjMMqqojEs8siFXoRnxi0RfxursBw7A/edit?usp=sharing",
+      "clicks": 3,
+      "visitors": 3,
+      "type": "google_docs",
+      "domain": "docs.google.com",
+      "percentage": 0.8
+    },
+    {
+      "url": "https://github.com/markov-root/atlas",
+      "clicks": 3,
+      "visitors": 3,
+      "type": "github",
+      "domain": "github.com",
+      "percentage": 0.8
+    },
+    {
+      "url": "https://ai-safety-atlas.com/chapters/01/pdf/ch1.pdf",
+      "clicks": 2,
+      "visitors": 2,
+      "type": "pdf_download",
+      "domain": "ai-safety-atlas.com",
+      "percentage": 0.5
+    },
+    {
+      "url": "https://ai-safety-atlas.com/chapters/02/pdf/ch2.pdf",
+      "clicks": 2,
+      "visitors": 2,
+      "type": "pdf_download",
+      "domain": "ai-safety-atlas.com",
+      "percentage": 0.5
+    },
+    {
+      "url": "https://docs.google.com/document/d/1HKo0Kest9Xppjn7m2ODpfMUlEu93SzLsfxXBH48Xaus/edit?usp=sharing",
+      "clicks": 2,
+      "visitors": 2,
+      "type": "google_docs",
+      "domain": "docs.google.com",
+      "percentage": 0.5
+    },
+    {
+      "url": "https://docs.google.com/document/d/1L32xCVUCWEsm-x8UZ3GSTgKnmBcC7rJQLLIh9wGLj40/edit?usp=sharing",
+      "clicks": 2,
+      "visitors": 2,
+      "type": "google_docs",
+      "domain": "docs.google.com",
+      "percentage": 0.5
+    },
+    {
+      "url": "https://docs.google.com/document/d/1WTyLHyaJ_NEDEu49U_hh7oz0-AOQfp7uOJKLck-7A78/edit?usp=sharing",
+      "clicks": 2,
+      "visitors": 2,
+      "type": "google_docs",
+      "domain": "docs.google.com",
+      "percentage": 0.5
+    },
+    {
+      "url": "https://docs.google.com/document/d/1cv0gzwSouDjckYHzV7gYbHPKhJZR6bwbJWgHzEJ604Q/edit?usp=sharing",
+      "clicks": 2,
+      "visitors": 2,
+      "type": "google_docs",
+      "domain": "docs.google.com",
+      "percentage": 0.5
+    },
+    {
+      "url": "https://github.com/CentreSecuriteIA/textbook/blob/main/latex/AI%20Safety%20Atlas%20-%20Capabilities.pdf",
+      "clicks": 2,
+      "visitors": 2,
+      "type": "github",
+      "domain": "github.com",
+      "percentage": 0.5
+    },
+    {
+      "url": "https://plausible.io/",
+      "clicks": 2,
+      "visitors": 2,
+      "type": "tools",
+      "domain": "plausible.io",
+      "percentage": 0.5
+    },
+    {
+      "url": "https://www.youtube.com/@securite-ia",
+      "clicks": 2,
+      "visitors": 2,
+      "type": "social",
+      "domain": "www.youtube.com",
+      "percentage": 0.5
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=J_iMeH1hb9M",
+      "clicks": 2,
+      "visitors": 2,
+      "type": "social",
+      "domain": "www.youtube.com",
+      "percentage": 0.5
+    },
+    {
+      "url": "https://ai-safety-atlas.com/chapters/05/pdf/main.pdf",
+      "clicks": 2,
+      "visitors": 1,
+      "type": "pdf_download",
+      "domain": "ai-safety-atlas.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://arxiv.org/abs/2503.14499",
+      "clicks": 2,
+      "visitors": 1,
+      "type": "academic",
+      "domain": "arxiv.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://distill.pub/2017/research-debt/",
+      "clicks": 2,
+      "visitors": 1,
+      "type": "external",
+      "domain": "distill.pub",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://ai-safety-atlas.com/chapters/02/pdf/main.pdf",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "pdf_download",
+      "domain": "ai-safety-atlas.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://ai-safety-atlas.com/chapters/06/pdf/main.pdf",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "pdf_download",
+      "domain": "ai-safety-atlas.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://ai-safety-atlas.com/chapters/09/pdf/main.pdf",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "pdf_download",
+      "domain": "ai-safety-atlas.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://arxiv.org/abs/2303.12712",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "academic",
+      "domain": "arxiv.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://arxiv.org/abs/2312.06942",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "academic",
+      "domain": "arxiv.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://arxiv.org/abs/2401.05566",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "academic",
+      "domain": "arxiv.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://arxiv.org/abs/2402.06664",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "academic",
+      "domain": "arxiv.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://arxiv.org/abs/2403.13799",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "academic",
+      "domain": "arxiv.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://arxiv.org/abs/2404.14082",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "academic",
+      "domain": "arxiv.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://arxiv.org/abs/2404.15255",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "academic",
+      "domain": "arxiv.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://arxiv.org/abs/2412.04984",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "academic",
+      "domain": "arxiv.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://arxiv.org/abs/2505.05541",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "academic",
+      "domain": "arxiv.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://assets.anthropic.com/m/24a47b00f10301cd/original/Anthropic-Responsible-Scaling-Policy-2024-10-15.pdf",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "tools",
+      "domain": "assets.anthropic.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://careerservices.fas.harvard.edu/blog/2025/05/01/what-is-ai-ethics/",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "careerservices.fas.harvard.edu",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://cset.georgetown.edu/publication/the-ai-triad-and-what-it-means-for-national-security-strategy/",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "cset.georgetown.edu",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://dl.acm.org/doi/10.5555/1566174.1566226",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "dl.acm.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://docs.google.com/document/d/10aqDKJgqonHNc9IMMogtda64u8V_JsPlbuzruBMUmAU/edit?usp=sharing",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "google_docs",
+      "domain": "docs.google.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://docs.google.com/document/d/1DaygDSW0L5dWuJnpSjYPF2XUbW51UoBJsT1cjLYKc2w/edit?usp=sharing",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "google_docs",
+      "domain": "docs.google.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://docs.google.com/document/d/1ifYc49Wq-9HuqCXCa8jIr5n6ZOYjZ3FvxE9vHPMcu58/edit?usp=sharing",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "google_docs",
+      "domain": "docs.google.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://docs.google.com/document/d/1izDWZKR_xB2qj2a8LkbqcnqnjBIC-C7fn-74CIA-m9w/edit?usp=sharing",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "google_docs",
+      "domain": "docs.google.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://docs.google.com/document/d/1k6rlyBCZJw8xbUx0dzd-4sOhlzj-xzsmwi_OIZY1-3M/edit?usp=sharing",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "google_docs",
+      "domain": "docs.google.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPiprOaC3HsCf5Tuum8bRfzYUiKLRqJmbOoC-32JorNdfyTiRRsR7Ea5eWtvsWzuxo8bjOxCG84dAg/pubhtml",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "google_docs",
+      "domain": "docs.google.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://epicural.com/2021/04/27/goodharts-law/",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "epicural.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://epochai.org/trends",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "epochai.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://github.com/markov-root/atlas/edit/main/docs/chapters/01/05.md",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "github",
+      "domain": "github.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://ought.org/research/factored-cognition",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "ought.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://ourworldindata.org/grapher/test-scores-ai-capabilities-relative-human-performance?country=Handwriting+recognition~Speech+recognition~Image+recognition~Reading+comprehension~Language+understanding~Predictive+reasoning~Code+generation~Complex+reasoning~General+knowledge+tests~Nuanced+language+interpretation~Math+problem-solving~Reading+comprehension+with+unanswerable+questions",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "ourworldindata.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://primer.ought.org/",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "primer.ought.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://scholar.google.com/citations?hl=en&view_op=search_authors&mauthors=label%3Aartificial_intelligence+OR+label%3AAI&btnG=",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "academic",
+      "domain": "scholar.google.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://sciendo.com/issue/JAGI/11/2",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "sciendo.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://web.stanford.edu/class/archive/cs/cs234/cs234.1224/",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "web.stanford.edu",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://www.alignmentforum.org/posts/3ghj8EuKzwD3MQR5G/an-introduction-to-representation-engineering-an-activation",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "www.alignmentforum.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://www.alignmentforum.org/posts/BAzCGCys4BkzGDCWR/the-prototypical-catastrophic-ai-action-is-getting-root",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "www.alignmentforum.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://www.alignmentforum.org/posts/uK6sQCNMw8WKzJeCQ/a-longlist-of-theories-of-impact-for-interpretability",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "www.alignmentforum.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://www.alignmentforum.org/s/WCJtsn6fNib6L7ZBB",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "www.alignmentforum.org",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://www.huffpost.com/entry/kevin-roose-ai-chatbot_n_63eeb367e4b0063ccb2bcc45",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "www.huffpost.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://www.lesswrong.com/posts/CwdCYmsutwXwnYtEF/paper-safety-by-measurement-a-systematic-literature-review",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "www.lesswrong.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://www.lesswrong.com/posts/PE22QJSww8mpwh7bt/agi-in-sight-our-look-at-the-game-board",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "www.lesswrong.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://www.lesswrong.com/posts/YWwzccGbcHMJMpT45/ai-safety-via-market-making",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "www.lesswrong.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://www.lesswrong.com/posts/aEguDPoCzt3287CCD/how-will-we-update-about-scheming",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "www.lesswrong.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://www.lesswrong.com/posts/nCvvhFBaayaXyuBiD/shut-up-and-do-the-impossible",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "www.lesswrong.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://www.metaculus.com/questions/5121/date-of-artificial-general-intelligence/",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "www.metaculus.com",
+      "percentage": 0.3
+    },
+    {
+      "url": "https://www.yudkowsky.net/singularity/aibox",
+      "clicks": 1,
+      "visitors": 1,
+      "type": "external",
+      "domain": "www.yudkowsky.net",
+      "percentage": 0.3
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2025-06-05",
+      "visitors": 4,
+      "pageviews": 5,
+      "visits": 5,
+      "visitDuration": 0.0,
+      "bounceRate": 100.0
+    },
+    {
+      "date": "2025-06-06",
+      "visitors": 25,
+      "pageviews": 32,
+      "visits": 25,
+      "visitDuration": 18.0,
+      "bounceRate": 76.0
+    },
+    {
+      "date": "2025-06-07",
+      "visitors": 24,
+      "pageviews": 88,
+      "visits": 25,
+      "visitDuration": 318.0,
+      "bounceRate": 36.0
+    },
+    {
+      "date": "2025-06-08",
+      "visitors": 13,
+      "pageviews": 16,
+      "visits": 14,
+      "visitDuration": 54.0,
+      "bounceRate": 86.0
+    },
+    {
+      "date": "2025-06-09",
+      "visitors": 29,
+      "pageviews": 64,
+      "visits": 34,
+      "visitDuration": 548.0,
+      "bounceRate": 44.0
+    },
+    {
+      "date": "2025-06-10",
+      "visitors": 12,
+      "pageviews": 20,
+      "visits": 15,
+      "visitDuration": 6.0,
+      "bounceRate": 67.0
+    },
+    {
+      "date": "2025-06-11",
+      "visitors": 17,
+      "pageviews": 20,
+      "visits": 17,
+      "visitDuration": 13.0,
+      "bounceRate": 88.0
+    },
+    {
+      "date": "2025-06-12",
+      "visitors": 29,
+      "pageviews": 45,
+      "visits": 29,
+      "visitDuration": 95.0,
+      "bounceRate": 66.0
+    },
+    {
+      "date": "2025-06-13",
+      "visitors": 32,
+      "pageviews": 55,
+      "visits": 35,
+      "visitDuration": 287.0,
+      "bounceRate": 71.0
+    },
+    {
+      "date": "2025-06-14",
+      "visitors": 18,
+      "pageviews": 21,
+      "visits": 18,
+      "visitDuration": 84.0,
+      "bounceRate": 72.0
+    },
+    {
+      "date": "2025-06-15",
+      "visitors": 13,
+      "pageviews": 22,
+      "visits": 15,
+      "visitDuration": 72.0,
+      "bounceRate": 67.0
+    },
+    {
+      "date": "2025-06-16",
+      "visitors": 23,
+      "pageviews": 26,
+      "visits": 23,
+      "visitDuration": 5.0,
+      "bounceRate": 86.0
+    },
+    {
+      "date": "2025-06-17",
+      "visitors": 29,
+      "pageviews": 58,
+      "visits": 33,
+      "visitDuration": 311.0,
+      "bounceRate": 52.0
+    },
+    {
+      "date": "2025-06-18",
+      "visitors": 21,
+      "pageviews": 29,
+      "visits": 21,
+      "visitDuration": 81.0,
+      "bounceRate": 70.0
+    },
+    {
+      "date": "2025-06-19",
+      "visitors": 25,
+      "pageviews": 31,
+      "visits": 25,
+      "visitDuration": 52.0,
+      "bounceRate": 68.0
+    },
+    {
+      "date": "2025-06-20",
+      "visitors": 19,
+      "pageviews": 29,
+      "visits": 22,
+      "visitDuration": 234.0,
+      "bounceRate": 68.0
+    },
+    {
+      "date": "2025-06-21",
+      "visitors": 12,
+      "pageviews": 15,
+      "visits": 12,
+      "visitDuration": 9.0,
+      "bounceRate": 75.0
+    },
+    {
+      "date": "2025-06-22",
+      "visitors": 11,
+      "pageviews": 18,
+      "visits": 11,
+      "visitDuration": 91.0,
+      "bounceRate": 55.0
+    },
+    {
+      "date": "2025-06-23",
+      "visitors": 21,
+      "pageviews": 28,
+      "visits": 24,
+      "visitDuration": 30.0,
+      "bounceRate": 71.0
+    },
+    {
+      "date": "2025-06-24",
+      "visitors": 21,
+      "pageviews": 65,
+      "visits": 23,
+      "visitDuration": 630.0,
+      "bounceRate": 78.0
+    }
+  ],
+  "referrers": [
+    {
+      "name": "Direct / None",
+      "visitors": 209,
+      "bounceRate": 68,
+      "visitDuration": 163,
+      "visitDurationFormatted": "2m 43s"
+    },
+    {
+      "name": "google.com",
+      "visitors": 71,
+      "bounceRate": 61,
+      "visitDuration": 114,
+      "visitDurationFormatted": "1m 54s"
+    },
+    {
+      "name": "securite-ia.fr",
+      "visitors": 21,
+      "bounceRate": 77,
+      "visitDuration": 504,
+      "visitDurationFormatted": "8m 24s"
+    },
+    {
+      "name": "yandex.ru",
+      "visitors": 20,
+      "bounceRate": 100,
+      "visitDuration": 0,
+      "visitDurationFormatted": "0s"
+    },
+    {
+      "name": "aisafety.com",
+      "visitors": 19,
+      "bounceRate": 58,
+      "visitDuration": 361,
+      "visitDurationFormatted": "6m 1s"
+    },
+    {
+      "name": "safeailondon.org",
+      "visitors": 7,
+      "bounceRate": 57,
+      "visitDuration": 7,
+      "visitDurationFormatted": "7s"
+    },
+    {
+      "name": "zt4.top",
+      "visitors": 5,
+      "bounceRate": 100,
+      "visitDuration": 0,
+      "visitDurationFormatted": "0s"
+    },
+    {
+      "name": "bing.com",
+      "visitors": 4,
+      "bounceRate": 100,
+      "visitDuration": 0,
+      "visitDurationFormatted": "0s"
+    },
+    {
+      "name": "claude.ai",
+      "visitors": 4,
+      "bounceRate": 75,
+      "visitDuration": 12,
+      "visitDurationFormatted": "12s"
+    },
+    {
+      "name": "crsegerie.github.io",
+      "visitors": 4,
+      "bounceRate": 25,
+      "visitDuration": 617,
+      "visitDurationFormatted": "10m 17s"
+    }
+  ]
+}
