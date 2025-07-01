@@ -6,7 +6,7 @@ export default function Summary() {
   // Real impact metrics
   const impactMetrics = [
     {
-      number: "700+",
+      number: "1000+",
       label: "Students Reached",
       description: "Across universities and AI safety programs"
     },
