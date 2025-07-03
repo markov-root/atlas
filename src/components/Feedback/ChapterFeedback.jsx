@@ -83,7 +83,7 @@ export default function ChapterFeedback({
   const detailQuestions = isConclusion ? [
     {
       key: 'writing_clarity',
-      label: 'How clear and well-written was this chapter?',
+      label: 'How was the language? Engaging and well-written or boring and tedious?',
       icon: 'clarity.svg',
       lowLabel: 'Hard to follow',
       highLabel: 'Very clear',
@@ -99,7 +99,7 @@ export default function ChapterFeedback({
     },
     {
       key: 'multimedia_desire',
-      label: 'How much would more visuals and multimedia improve this chapter?',
+      label: 'Would diagrams, images, videos, or interactive elements significantly help?',
       icon: 'multimedia.svg',
       lowLabel: 'Desperately needed',
       highLabel: 'Not needed',
@@ -116,7 +116,7 @@ export default function ChapterFeedback({
   ] : [
     {
       key: 'writing_clarity',
-      label: 'How clear and accessible was the writing?',
+      label: 'How was the language? Engaging and well-written or boring and tedius?',
       icon: 'clarity.svg',
       lowLabel: 'Hard to follow',
       highLabel: 'Very clear',
@@ -124,7 +124,7 @@ export default function ChapterFeedback({
     },
     {
       key: 'conceptual_coherence',
-      label: 'How well did the ideas in this section connect to other concepts?',
+      label: 'Did the the ideas connect?, or, did the concepts feel isolated and disconnected from the bigger picture?',
       icon: 'connections.svg',
       lowLabel: 'Isolated',
       highLabel: 'Well integrated',
@@ -132,7 +132,7 @@ export default function ChapterFeedback({
     },
     {
       key: 'multimedia_desire',
-      label: 'How much would more visuals and multimedia improve this section?',
+      label: 'Were there enough diagrams, images, videos, or interactive elements?',
       icon: 'multimedia.svg',
       lowLabel: 'Desperately needed',
       highLabel: 'Not needed',
