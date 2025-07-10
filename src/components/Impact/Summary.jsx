@@ -1,34 +1,40 @@
 // src/components/Impact/Summary.jsx
 import React from 'react';
+import { 
+  loadAnalyticsData, 
+  calculateYearlyProjection, 
+  getCountriesReached,
+  debugAnalyticsData 
+} from '../../utils/analyticsUtils';
 import styles from './Summary.module.css';
 
 export default function Summary() {
-  // Real impact metrics
+  // Load analytics data safely with fallbacks
+  const analyticsData = loadAnalyticsData();
+  
+  // Debug in development
+  debugAnalyticsData(analyticsData);
+  
+  // Calculate key metrics using utility functions
+  const yearlyReaders = calculateYearlyProjection(analyticsData.timeline);
+  const countriesReached = getCountriesReached(analyticsData.geography);
+
+  // Updated impact metrics with analytics integration
   const impactMetrics = [
     {
       number: "1000+",
-      label: "Students Reached",
-      description: "Across universities and AI safety programs"
+      label: "Students Directly Reached",
+      description: "Across universities and AI safety programs globally"
     },
     {
-      number: "300+",
-      label: "Papers Integrated",
-      description: "Insights from hundreds of research papers systematically reviewed and synthesized"
+      number: yearlyReaders,
+      label: "Independent Readers",
+      description: "Projected yearly independent learners and students based on current analytics"
     },
     {
-      number: "9",
-      label: "Chapters Written", 
-      description: "Thorough literature reviews covering major AI safety topics"
-    },
-    {
-      number: "500+",
-      label: "Visual Explanations",
-      description: "Custom visualizations, embedded charts, prediction markets, and curated figures"
-    },
-    {
-      number: "4",
-      label: "Video Lectures",
-      description: "YouTube explanations of key concepts"
+      number: "650+",
+      label: "Academic Sources Integrated",
+      description: "Ideas from hudreds of research papers synthesized into a single curriculum across chapters"
     }
   ];
 

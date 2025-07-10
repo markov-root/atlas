@@ -3,7 +3,6 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import Hero from '../components/Impact/Hero';
 import Summary from '../components/Impact/Summary';
-import Analytics from '../components/Impact/Analytics';
 import Testimonials from '../components/Impact/Testimonials';
 import Publications from '../components/Impact/Publications';
 import Adoption from '../components/Impact/Adoption';
@@ -19,15 +18,11 @@ export default function ImpactPage() {
         {/* Hero Section */}
         <Hero />
         
-        {/* Summary Section */}
+        {/* Summary Section - Now includes key analytics metrics */}
         <Summary />
-
 
         {/* Testimonials Section */}
         <Testimonials />
-
-        {/* Analytics Section */}
-        <Analytics />
 
         {/* Publications Section */}
         <Publications />

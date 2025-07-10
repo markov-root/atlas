@@ -1,0 +1,82 @@
+/* src/components/FAQ/FAQSection.module.css */
+
+.faqSection {
+  margin-bottom: 4rem;
+}
+
+.faqSection:last-child {
+  margin-bottom: 2rem;
+}
+
+/* Section Header */
+.sectionHeader {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--atlas-primary, #1971c2);
+  margin: 0 0 0.75rem 0;
+  font-family: var(--atlas-font-heading, 'Inter', sans-serif);
+  line-height: 1.3;
+}
+
+[data-theme='dark'] .sectionTitle {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+.sectionDescription {
+  font-size: 1rem;
+  color: var(--atlas-text-secondary, #495057);
+  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+}
+
+[data-theme='dark'] .sectionDescription {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Questions Container */
+.questionsContainer {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .faqSection {
+    margin-bottom: 3rem;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+  
+  .sectionDescription {
+    font-size: 0.9375rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .faqSection {
+    margin-bottom: 2.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.375rem;
+  }
+  
+  .sectionDescription {
+    font-size: 0.875rem;
+  }
+}

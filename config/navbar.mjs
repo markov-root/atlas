@@ -1,4 +1,4 @@
-// config/navbar.mjs - Clean, working navbar
+// config/navbar.mjs - Clean, working navbar with FAQ
 export const navbarConfig = {
   title: '',
   logo: {
@@ -15,6 +15,11 @@ export const navbarConfig = {
       to: '/impact/',
       position: 'right',
       label: 'Impact',
+    },
+    {
+      to: '/faq/',
+      position: 'right',
+      label: 'FAQ',
     },
     // No custom items - just clean navbar with search
   ],

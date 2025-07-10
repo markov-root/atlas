@@ -1,0 +1,115 @@
+{
+  "meta": {
+    "title": "Frequently Asked Questions",
+    "description": "Common questions about AI Safety Atlas, our approach, and how we compare to other resources",
+    "lastUpdated": "2025-01-10"
+  },
+  "categories": [
+    {
+      "id": "approach",
+      "title": "Our Approach & Theory of Change",
+      "description": "Understanding our educational strategy and impact theory",
+      "questions": [
+        {
+          "id": "theory-of-change",
+          "question": "What is your theory of change?",
+          "shortAnswer": "We create educational infrastructure that accelerates AI safety progress by enabling better-trained practitioners and improved coordination across the field.",
+          "detailedAnswer": "AI safety has a knowledge transfer bottleneck where each new person spends months piecing together scattered understanding before contributing meaningfully. We solve this by creating systematic explanations that institutions can build curricula around.\n\nWhen training programs use our materials, participants gain coherent mental models and shared analytical frameworks much faster than assembling knowledge from scattered sources. These better-prepared practitioners enter research positions, policy roles, and AI companies with stronger foundations and common vocabulary.\n\nThis creates four key improvements: First, we can identify why people 'talk across each other' and address core disagreements. Second, people entering AI safety coordinate more effectively through shared understanding of core concepts. Third, policy discussions become more grounded when technicians and policymakers reference the same frameworks. Fourth, the field develops institutional memory rather than repeatedly rediscovering insights.\n\nThe compound effect accelerates AI safety progress and provides more capacity to address risks. As AI capabilities advance, having practitioners who can quickly understand and contribute to safety research becomes increasingly important. The knowledge infrastructure we are trying to build doesn't guarantee AI safety, but significantly improves our collective capacity to navigate the challenges."
+        },
+        {
+          "id": "track-impact",
+          "question": "How do you track impact?",
+          "shortAnswer": "As infrastructure one layer removed from end users, we track institutional adoption and content engagement quality rather than direct student outcomes.",
+          "detailedAnswer": "As a capacity building and infrastructure project, measuring direct impact is challenging - we're one layer removed from students. Unlike direct course providers, blog posts or news articles that primarily measure readership numbers or impressions, we instead choose to focus on institutional relationships, content quality and deep engagement. Downstream course providers using our materials track outcomes like AI risk attitude changes before/after reading our materials, and placements into safety roles. Since all our materials are open source, we often discover courses using our materials that we didn't even know existed, so having this type of impact data is difficult, so we rely on them sharing this data or communicating with us about using our materials. What we can measure directly is the known number of courses that use our materials, quality of content, and engagement quality of readers - time spent on specific sections indicates deep interaction rather than skimming, which matters for the type of audience we target. Our B2B model means we optimize for materials that institutions want to use repeatedly rather than content that gets viral or one-off individual engagement."
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "title": "Content & Audience",
+      "description": "Understanding our target audience, technical level, and content strategy",
+      "questions": [
+        {
+          "id": "target-audience",
+          "question": "Who is your target audience?",
+          "shortAnswer": "Students in the intermediate-to-advanced gap between fundamentals content and specialized research fellowships.",
+          "detailedAnswer": "We identified a specific market gap: abundant fundamentals content (blog posts, videos, podcasts, …) and specialized advanced research training (MATS, MLAB, Constellation Fellowships, …), but nothing systematic to help potential AI safety contributors bridge this gap in between. Students finishing fundamentals aren't ready for research fellowships.\n\nOur fundamentals stream (chapters 1-4) serves anyone conceptually familiar with ML concepts like foundation models, pre-training, and fine-tuning. Prerequisites are basic conceptual ML knowledge, not implementation skills (e.g. you don't need to know python or how to implement a transformer).\n\nOur technical stream targets CS/ML graduate-level audiences, particularly those entering or already in programs like MATS, MLAB, or other specialized fellowships.\n\nFor governance, we eventually want to develop content for people who advise policymakers and draft policies - think tank researchers, corporate governance teams, fellowship participants (Talos Fellows, EU AI Safety Fellowship, IAPS). Our goal is informing these audiences with knowledge rather than advocacy.\n\nThe common thread is informed audiences who need reliable, reference-quality explanations to contribute effectively to AI safety work."
+        },
+        {
+          "id": "content-quality",
+          "question": "How do you ensure content quality keeps improving over time?",
+          "shortAnswer": "We track measurable improvement through ongoing student feedback.",
+          "detailedAnswer": "Students consistently identify fewer unclear sections in recently updated content compared to older chapters. Our methodology for gatherting data and improving content combines daily feedback through our online portal, detailed input during course periods, reading analytics, and expert advisor review every few months. This lets us pinpoint exactly where explanations fail and test improvements systematically. The result: measurable progress toward clearer, more effective explanations."
+        },
+        {
+          "id": "staying-current",
+          "question": "How do you keep content current in such a fast-moving field?",
+          "shortAnswer": "We build timeless analytical frameworks with easily updateable current examples.",
+          "detailedAnswer": "It is important for our target audience to know the biggest developments in the field of AI safety. But at the same time, we cannot update huge portions of the textbook every month when a new paper is published. So we are attempting to develop a layered content architecture where core chapters teach enduring analytical frameworks while current examples go in clearly marked sections that update without touching foundational content. For instance, the framework for distinguishing capability evaluations from propensity evaluations remains static, but specific examples update as new papers are published. Similarly, explanations of deceptive alignment stay constant while empirical evidence gets updated periodically. Most current chapters don't reflect this aspiration yet - we initially focused on getting core content published. Our quality improvements for future updates will try to target this combination of quick updateability with a timeless core structure."
+        }
+      ]
+    },
+    {
+      "id": "comparisons",
+      "title": "Comparisons & Alternatives",
+      "description": "How we compare to other educational resources and approaches",
+      "questions": [
+        {
+          "id": "vs-bluedot",
+          "question": "How does this compare to BlueDot's courses?",
+          "shortAnswer": "BlueDot delivers excellent courses; we create the educational infrastructure that any institution - including BlueDot - can build upon.",
+          "detailedAnswer": "We're not competing with BlueDot - we're providing the distillations that any course provider can use. BlueDot has built an excellent direct-education model. They curate existing explanations into structured learning experiences. We take a different approach: Instead of curating individually good explanations, our job is creating a single source of well integrated original end-to-end explanations of AI safety concepts that don't exist elsewhere. Practically, this means AISF participants might read our evaluations chapter (or a portion of it) as assigned reading. We focus on capacity building and serve the infrastructure layer (B2B) - BlueDot and others serve students directly (B2C)."
+        },
+        {
+          "id": "vs-cais",
+          "question": "How does this compare to the CAIS textbook?",
+          "shortAnswer": "CAIS provides excellent broad foundations; we offer systematic intermediate-to-advanced depth with continuous updates.",
+          "detailedAnswer": "CAIS offers excellent systems-oriented foundations focusing on safety engineering and collective action problems. We take a different approach by dedicating entire chapters to specific technical problems and mitigation strategies. As an example of some structural differences: CAIS covers evaluations, monitoring, and interpretability in [a single subsection](https://www.aisafetybook.com/textbook/monitoring#mechanistic-interpretability). We dedicate [entire chapters](https://ai-safety-atlas.com/chapters/05/) to each domain individually. While CAIS addresses alignment and robustness in one subsection, we offer multiple comprehensive chapters on [scalable oversight](https://ai-safety-atlas.com/chapters/08/), [misspecification](https://ai-safety-atlas.com/chapters/06/), and [misgeneralization](https://ai-safety-atlas.com/chapters/07/). Similar comparisons can be made for our chapters on governance, or risks.\n\nThis depth difference serves different educational needs: CAIS provides broad conceptual foundations, while we enable practitioners to develop up to date working knowledge of specific technical approaches. We complement each other well - CAIS for broad foundations, Atlas for intermediate-to-advanced systematic depth. We can update continuously while they provide stable institutional reference. Both serve the community better together than either alone."
+        },
+        {
+          "id": "vs-ai",
+          "question": "How does this compare to using AI to generate personalized explanations?",
+          "shortAnswer": "LLMs can't provide the expert validation, pedagogical structure, and institutional trust that systematic education requires.",
+          "detailedAnswer": "AI safety debates can be extremely nuanced. LLMs excel at information retrieval but can't distinguish quality research from noise, find cross domain correlations or design learning progressions that build understanding systematically. More importantly, courses and institutions need materials with clear accountability and expert validation. Universities won't build curricula around ChatGPT outputs, but they will adopt systematically reviewed explanations validated by us and our advisors. We do use AI to accelerate our work, and as a research tool, but we think human expertise remains essential for the type of educational infrastructure that we are trying to build."
+        },
+        {
+          "id": "vs-newsletters",
+          "question": "How does this compare to newsletters or individual distillation blog posts?",
+          "shortAnswer": "Newsletters serve people who already understand the field; we serve people who need to learn systematically first.",
+          "detailedAnswer": "Both isolated distillations, and newsletters assume foundational knowledge and focus on updates. We want our audience to get a complete systematic progression from basic concepts through advanced frameworks. A newsletter can't teach you what specification problems are, how they connect to generalization issues, and why oversight strategies address both. You need coherent building blocks first. After gaining systematic understanding from materials like ours, newsletters or individual blog posts explaining specific concepts become valuable for staying current. Different tools for different learning stages."
+        },
+        {
+          "id": "vs-papers",
+          "question": "How does this compare to reading research papers?",
+          "shortAnswer": "We teach analytical frameworks for independent reasoning, not just surveys of current research.",
+          "detailedAnswer": "Research papers document specific findings and present isolated results with the expectation that the reader is familiar with surrounding materials. We aim to teach meta-level frameworks in addition to informing students. Students finishing our chapters should both know about AI safety techniques, but also have the ability to evaluate unfamiliar AI capabilities or assess new safety proposals they've never seen before.\n\nThe best textbooks don't just document OR assess - they teach students how to think strategically about the domain. Think about it like this - military strategy texts don't just list 'here's flanking, here's siege warfare, here's guerrilla tactics' - they teach when and why each approach works. Students don't need our opinions or many summaries of specific research papers - they need analytical tools to evaluate new developments independently. This framework-building approach stays valuable even as specific examples become outdated."
+        }
+      ]
+    },
+    {
+      "id": "format",
+      "title": "Format & Usage",
+      "description": "Understanding how to use our materials and what format they take",
+      "questions": [
+        {
+          "id": "reading-time",
+          "question": "How long does it take to read?",
+          "shortAnswer": "75 minutes per chapter for core content, with optional content, and appendices for deeper coverage.",
+          "detailedAnswer": "Each chapter targets 75 minutes of core reading time, with reading estimates shown for individual sections so you can budget accordingly. Chapter introductions provide summaries if you want quick overviews. Optional content in boxes, footnotes, and appendices offer additional depth for interested readers but aren't necessary for understanding the main content."
+        },
+        {
+          "id": "textbook-vs-course",
+          "question": "Is this a textbook or a course curriculum?",
+          "shortAnswer": "The Atlas aims to be educational infrastructure that many other institutions adapt into their own curricula - our current focus is on creating distillations, not course delivery.",
+          "detailedAnswer": "We create comprehensive explanations that institutions build curricula around. Course organizers develop their own discussion guides and assignments adapted to their context. We provide community-created facilitation guides on our website (generously shared by AI Safety Collab), but our focus remains on creating the best possible systematic explanations rather than course delivery. This infrastructure approach lets organizations adapt our materials to any format while we concentrate on explanation quality. At a later point in time, as we have more resources and the chapters reach maturity, we will focus on course offerings and fellowships more directly."
+        },
+        {
+          "id": "course-signup",
+          "question": "Where can I sign up for courses using Atlas materials?",
+          "shortAnswer": "Check our courses page for current programs using Atlas materials.",
+          "detailedAnswer": "We maintain a courses page listing programs that currently use Atlas materials, including ENS Paris/Saclay, UBC Vancouver, ML4Good, AI Safety Collab, and others. Since our materials are open source, we sometimes discover new courses using them that we didn't know existed. The courses page shows confirmed programs with contact information for enrollment."
+        }
+      ]
+    }
+  ]
+}
