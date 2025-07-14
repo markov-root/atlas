@@ -1,0 +1,396 @@
+/* src/components/Courses/StartCourseSection.module.css - Resources without borders */
+
+.startCourseSection {
+  background: var(--atlas-background, #ffffff);
+  padding: 4rem 0;
+  border-top: 1px solid var(--atlas-border-color, #e9ecef);
+}
+
+[data-theme='dark'] .startCourseSection {
+  background: var(--atlas-background, #121212);
+  border-top-color: var(--atlas-border-color, #373737);
+}
+
+.startCourseContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.startCourseCard {
+  background: var(--atlas-background, #ffffff);
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+[data-theme='dark'] .startCourseCard {
+  background: var(--atlas-background, #121212);
+}
+
+/* Left Side - Information */
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.startCourseTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--atlas-text, #212529);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+[data-theme='dark'] .startCourseTitle {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.startCourseDescription {
+  font-size: 1.125rem;
+  margin: 0;
+  color: var(--atlas-text, #212529);
+  line-height: 1.6;
+}
+
+[data-theme='dark'] .startCourseDescription {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.resourcesList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.resource {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  color: var(--atlas-text, #212529);
+}
+
+[data-theme='dark'] .resource {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.resourceIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  /* Light mode: primary color */
+  filter: brightness(0) saturate(100%) invert(27%) sepia(94%) saturate(1167%) hue-rotate(201deg) brightness(96%) contrast(94%);
+}
+
+[data-theme='dark'] .resourceIcon {
+  /* Dark mode: primary lighter color */
+  filter: brightness(0) saturate(100%) invert(67%) sepia(32%) saturate(1715%) hue-rotate(191deg) brightness(101%) contrast(94%);
+}
+
+/* Right Side - Form */
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--atlas-text, #212529);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-theme='dark'] .formTitle {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.formSubtitle {
+  font-size: 0.95rem;
+  margin: 0;
+  color: var(--atlas-text-secondary, #6c757d);
+  line-height: 1.5;
+}
+
+[data-theme='dark'] .formSubtitle {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Form Styles */
+.courseForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.formGroup {
+  width: 100%;
+  position: relative;
+}
+
+.formControl {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  background: var(--atlas-background, #ffffff);
+  border: 1px solid var(--atlas-border-color, #e9ecef);
+  border-radius: 6px;
+  color: var(--atlas-text, #212529);
+  transition: border-color 0.2s ease;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+  box-sizing: border-box;
+}
+
+[data-theme='dark'] .formControl {
+  background: var(--atlas-background-alt, #1e1e1e);
+  border-color: var(--atlas-border-color, #373737);
+  color: var(--atlas-text, #e9ecef);
+}
+
+.formControl::placeholder {
+  color: var(--atlas-text-tertiary, #9ca3af);
+}
+
+[data-theme='dark'] .formControl::placeholder {
+  color: var(--atlas-text-tertiary, #6c757d);
+}
+
+.formControl:focus {
+  outline: none;
+  border-color: var(--atlas-primary, #1971c2);
+  box-shadow: 0 0 0 3px rgba(var(--atlas-primary-rgb, 25, 113, 194), 0.1);
+}
+
+[data-theme='dark'] .formControl:focus {
+  border-color: var(--atlas-primary-lighter, #74c0fc);
+  box-shadow: 0 0 0 3px rgba(var(--atlas-primary-rgb, 116, 192, 252), 0.1);
+}
+
+.dateLabel {
+  position: absolute;
+  top: -0.5rem;
+  left: 0.75rem;
+  background: var(--atlas-background, #ffffff);
+  padding: 0 0.25rem;
+  font-size: 0.75rem;
+  color: var(--atlas-text-tertiary, #9ca3af);
+  font-weight: 500;
+}
+
+[data-theme='dark'] .dateLabel {
+  background: var(--atlas-background, #121212);
+  color: var(--atlas-text-tertiary, #6c757d);
+}
+
+textarea.formControl {
+  min-height: 80px;
+  resize: vertical;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+  grid-column: 1 / -1;
+}
+
+select.formControl {
+  cursor: pointer;
+}
+
+/* Submit Button - Matching your flat button style */
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  background: var(--atlas-text, #212529) !important; /* Dark background in light mode */
+  color: var(--atlas-background, #ffffff) !important; /* Light text in light mode */
+  font-weight: 500;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  font-size: 1rem;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+  margin-top: 0.5rem;
+  align-self: center;
+}
+
+.submitButton:hover:not(.sending) {
+  opacity: 0.8;
+}
+
+.submitButton.sending {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Dark mode - invert colors like your other buttons */
+[data-theme='dark'] .submitButton {
+  background: var(--atlas-background, #ffffff) !important; /* Light background in dark mode */
+  color: var(--atlas-text, #212529) !important; /* Dark text in dark mode */
+}
+
+[data-theme='dark'] .submitButton:hover:not(.sending) {
+  opacity: 0.8;
+}
+
+/* Success Message */
+.successMessage {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.checkIcon {
+  width: 64px;
+  height: 64px;
+  color: var(--atlas-success, #2b8a3e);
+  margin: 0 auto 1.5rem;
+}
+
+[data-theme='dark'] .checkIcon {
+  color: var(--atlas-success, #40c057);
+}
+
+.successMessage h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: var(--atlas-text, #212529);
+}
+
+[data-theme='dark'] .successMessage h3 {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.successMessage p {
+  font-size: 1rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  margin: 0;
+}
+
+[data-theme='dark'] .successMessage p {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Error Message */
+.errorMessage {
+  background: rgba(var(--atlas-danger-rgb, 201, 42, 42), 0.1);
+  color: var(--atlas-danger, #c92a2a);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin: 0.5rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  border: 1px solid rgba(var(--atlas-danger-rgb, 201, 42, 42), 0.2);
+}
+
+[data-theme='dark'] .errorMessage {
+  background: rgba(var(--atlas-danger-rgb, 250, 82, 82), 0.1);
+  color: var(--atlas-danger, #fa5252);
+  border-color: rgba(var(--atlas-danger-rgb, 250, 82, 82), 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .startCourseCard {
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .startCourseSection {
+    padding: 3rem 0;
+  }
+  
+  .startCourseContainer {
+    padding: 0 1rem;
+  }
+  
+  .startCourseCard {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  .startCourseTitle {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  .startCourseDescription {
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  .formTitle {
+    font-size: 1.125rem;
+    text-align: center;
+  }
+  
+  .formSubtitle {
+    text-align: center;
+  }
+  
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+  
+  .submitButton {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .startCourseSection {
+    padding: 2rem 0;
+  }
+  
+  .startCourseCard {
+    padding: 1.5rem;
+  }
+  
+  .startCourseTitle {
+    font-size: 1.25rem;
+  }
+  
+  .startCourseDescription {
+    font-size: 0.95rem;
+  }
+  
+  .formTitle {
+    font-size: 1rem;
+  }
+  
+  .formSubtitle {
+    font-size: 0.9rem;
+  }
+  
+  .formControl {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9rem;
+  }
+  
+  .submitButton {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .resource {
+    font-size: 0.9rem;
+  }
+}

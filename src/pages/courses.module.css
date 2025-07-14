@@ -1,4 +1,4 @@
-/* src/pages/courses.module.css */
+/* src/pages/courses.module.css - Updated with filter controls */
 
 .heroSection {
   padding: 4rem 0 3rem;
@@ -20,6 +20,91 @@
   margin: 0 auto;
   color: var(--atlas-text-secondary, #495057);
   line-height: 1.6;
+}
+
+/* Filter Section */
+.filtersSection {
+  background: var(--atlas-background, #ffffff);
+  border-bottom: 1px solid var(--atlas-border-color, #e9ecef);
+  padding: 1.5rem 0;
+  margin-bottom: 1rem;
+}
+
+[data-theme='dark'] .filtersSection {
+  background: var(--atlas-background, #121212);
+  border-bottom-color: var(--atlas-border-color, #373737);
+}
+
+.filtersContainer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.filterLabel {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--atlas-text, #212529);
+  white-space: nowrap;
+}
+
+[data-theme='dark'] .filterLabel {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.filterSelect {
+  background: var(--atlas-background, #ffffff);
+  border: 1px solid var(--atlas-border-color, #e9ecef);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: var(--atlas-text, #212529);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 150px;
+}
+
+.filterSelect:hover {
+  border-color: var(--atlas-primary, #1971c2);
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: var(--atlas-primary, #1971c2);
+  box-shadow: 0 0 0 3px rgba(25, 113, 194, 0.1);
+}
+
+[data-theme='dark'] .filterSelect {
+  background: var(--atlas-background-alt, #1e1e1e);
+  border-color: var(--atlas-border-color, #373737);
+  color: var(--atlas-text, #e9ecef);
+}
+
+[data-theme='dark'] .filterSelect:hover {
+  border-color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .filterSelect:focus {
+  border-color: var(--atlas-primary-lighter, #74c0fc);
+  box-shadow: 0 0 0 3px rgba(116, 192, 252, 0.1);
+}
+
+.filterInfo {
+  font-size: 0.85rem;
+  color: var(--atlas-text-secondary, #6c757d);
+  margin-left: auto;
+  font-style: italic;
+}
+
+[data-theme='dark'] .filterInfo {
+  color: var(--atlas-text-secondary, #adb5bd);
 }
 
 .courseSection {
@@ -129,6 +214,21 @@
     font-size: 1.1rem;
   }
   
+  .filtersContainer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .filterGroup {
+    justify-content: space-between;
+  }
+  
+  .filterInfo {
+    margin-left: 0;
+    text-align: center;
+  }
+  
   .startCourseCard {
     padding: 2rem 1.5rem;
   }
@@ -143,6 +243,27 @@
   
   .sectionTitle {
     font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .filtersSection {
+    padding: 1rem 0;
+  }
+  
+  .filterSelect {
+    min-width: auto;
+    flex: 1;
+  }
+  
+  .filterGroup {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .filterLabel {
+    text-align: center;
   }
 }
 

@@ -1,7 +1,6 @@
 // src/components/Courses/CoursesHero.jsx
 import React from 'react';
 import styles from './CoursesHero.module.css';
-import { Rocket } from 'lucide-react';
 
 export default function CoursesHero() {
   return (
@@ -14,10 +13,6 @@ export default function CoursesHero() {
             Discover academic courses, reading groups, and organized programs using the 
             AI Safety Atlas materials. Join an existing course or start your own with our resources.
           </p>
-          
-
-
-
         </div>
         
         {/* Right side - Image grid */}
@@ -57,8 +52,8 @@ export default function CoursesHero() {
           </div>
           <div className={styles.gridImageWrapper}>
             <img 
-              src="/img/courses/ai_safety_collab/ai_safety_collab_06_24.jpg" 
-              alt="AI Safety Collaborative course" 
+              src="/img/courses/ml4g/ml4g_brasil.jpg" 
+              alt="ML4Good Brasil course" 
               className={styles.gridImage}
               onError={(e) => {
                 e.target.onerror = null;

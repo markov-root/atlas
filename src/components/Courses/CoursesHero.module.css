@@ -193,7 +193,7 @@
 
   
   .heroImagesGrid {
-    order: -1; /* Put image grid above content on mobile */
+    /* FIXED: Removed order: -1 so text comes first, then images */
     min-height: 300px;
     aspect-ratio: 16/9;
   }
