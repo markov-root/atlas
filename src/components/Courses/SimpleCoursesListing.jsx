@@ -1,4 +1,4 @@
-// src/components/Courses/SimpleCoursesListing.jsx - Complete with change tracking and mobile padding
+// src/components/Courses/SimpleCoursesListing.jsx - Minimal style matching your aesthetic
 import React, { useState } from 'react';
 import { SmallTooltip } from '../UI/Tooltip';
 import { MapPin, Users, Calendar, Globe, Mail, FileText, Edit3 } from 'lucide-react';
@@ -28,25 +28,6 @@ function StatusBadge({ status }) {
   return (
     <span className={`${styles.statusBadge} ${styles[config.color]}`}>
       {config.label}
-    </span>
-  );
-}
-
-function FormatBadge({ format }) {
-  if (!format) return null;
-  
-  const formatConfig = {
-    'in-person': { label: 'In-person', icon: 'users' },
-    'online': { label: 'Online', icon: 'globe' },
-    'hybrid': { label: 'Hybrid', icon: 'users' }
-  };
-  
-  const config = formatConfig[format] || { label: format, icon: 'users' };
-  
-  return (
-    <span className={styles.formatBadge}>
-      {config.icon === 'globe' ? <Globe size={12} /> : <Users size={12} />}
-      <span>{config.label}</span>
     </span>
   );
 }
@@ -340,10 +321,10 @@ function CourseCard({ course, organization }) {
 
   const status = getStatusFromDates(course.startDate, course.endDate);
   const logoSrc = organization.logo || '/img/courses/placeholder_courses.svg';
-  const participantCount = course.participants || course.estimatedParticipants;
+  const enrolledCount = course.enrolled || course.estimatedParticipants; // fallback for existing data
   
   // Determine if apply button should be active (not completed + has application link)
-  const canApply = status !== 'completed' && course.applicationLink;
+  const canApplyStudent = status !== 'completed' && course.studentApplicationLink;
 
   const handleCorrectionSubmit = () => {
     setCorrectionSubmitted(true);
@@ -410,49 +391,61 @@ function CourseCard({ course, organization }) {
             </div>
           )}
           
-          {participantCount && (
+          {enrolledCount && (
             <div className={styles.metaItem}>
               <Users size={14} />
               <span>
-                {course.participants ? `${course.participants} participants` : `~${course.estimatedParticipants} expected`}
+                {course.enrolled ? `${course.enrolled} enrolled` : `~${course.estimatedParticipants} expected`}
+                {course.completed && ` • ${course.completed} completed`}
               </span>
             </div>
-          )}
-          
-          {course.format && (
-            <FormatBadge format={course.format} />
           )}
         </div>
       </div>
 
       {/* Line 3: Action Buttons */}
       <div className={styles.actionsLine}>
-        <button
-          onClick={() => canApply && window.open(course.applicationLink, '_blank')}
-          className={`${styles.actionButton} ${!canApply ? styles.inactive : ''}`}
-          disabled={!canApply}
-        >
-          <FileText size={16} />
-          <span>Apply</span>
-        </button>
+        {/* Student Application - only show if link exists and not completed */}
+        {course.studentApplicationLink && status !== 'completed' && (
+          <button
+            onClick={() => window.open(course.studentApplicationLink, '_blank')}
+            className={styles.actionButton}
+          >
+            <FileText size={16} />
+            <span>Apply as Student</span>
+          </button>
+        )}
         
-        <button
-          onClick={() => organization.website && window.open(organization.website, '_blank')}
-          className={`${styles.actionButton} ${!organization.website ? styles.inactive : ''}`}
-          disabled={!organization.website}
-        >
-          <Globe size={16} />
-          <span>Website</span>
-        </button>
+        {/* Facilitator Application - only show if link exists and not completed */}
+        {course.facilitatorApplicationLink && status !== 'completed' && (
+          <button
+            onClick={() => window.open(course.facilitatorApplicationLink, '_blank')}
+            className={styles.actionButton}
+          >
+            <Users size={16} />
+            <span>Apply as Facilitator</span>
+          </button>
+        )}
         
-        <button
-          onClick={() => organization.primaryContact && window.open(`mailto:${organization.primaryContact}`, '_blank')}
-          className={`${styles.actionButton} ${!organization.primaryContact ? styles.inactive : ''}`}
-          disabled={!organization.primaryContact}
-        >
-          <Mail size={16} />
-          <span>Contact</span>
-        </button>
+        {organization.website && (
+          <button
+            onClick={() => window.open(organization.website, '_blank')}
+            className={styles.actionButton}
+          >
+            <Globe size={16} />
+            <span>Website</span>
+          </button>
+        )}
+        
+        {organization.primaryContact && (
+          <button
+            onClick={() => window.open(`mailto:${organization.primaryContact}`, '_blank')}
+            className={styles.actionButton}
+          >
+            <Mail size={16} />
+            <span>Contact</span>
+          </button>
+        )}
 
         <button
           onClick={() => setShowCorrectionForm(!showCorrectionForm)}
@@ -476,7 +469,7 @@ function CourseCard({ course, organization }) {
   );
 }
 
-function CoursesSection({ title, courses, description }) {
+function CoursesSection({ title, courses, description, sectionType }) {
   if (!courses || courses.length === 0) return null;
 
   return (
@@ -558,18 +551,21 @@ export default function SimpleCoursesListing({ coursesData }) {
         title="Current Courses" 
         courses={activeCourses}
         description="Courses currently accepting students or in progress"
+        sectionType="active"
       />
       
       <CoursesSection 
         title="Upcoming Courses" 
         courses={upcomingCourses}
         description="Future courses with applications opening soon"
+        sectionType="upcoming"
       />
       
       <CoursesSection 
         title="Past Courses" 
         courses={completedCourses}
         description="Successfully completed courses using Atlas materials"
+        sectionType="completed"
       />
     </div>
   );

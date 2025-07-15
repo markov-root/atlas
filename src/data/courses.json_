@@ -25,9 +25,7 @@
           "location": "Global (Online + Local Groups)",
           "participants": null,
           "estimatedParticipants": 300,
-          "enrolled": "",
-          "completed": "",
-          "studentApplicationLink": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form",
+          "applicationLink": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form",
           "facilitatorApplicationLink": "https://airtable.com/appZR9Ries3akemlk/pagfE6ZyAFsu4hAjg/form",
           "localOrganizerApplicationLink": "https://airtable.com/appZR9Ries3akemlk/pagFwyNuu8zbMbXkF/form",
           "tracks": ["AI Alignment (Atlas)", "AI Governance (BlueDot)"],
@@ -43,7 +41,7 @@
           "endDate": "2025-06-23",
           "location": "Global (Online + Local Groups)",
           "participants": 236,
-          "studentApplicationLink": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form",
+          "applicationLink": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form",
           "tracks": ["AI Alignment (Atlas)", "AI Governance (BlueDot)"],
           "format": "hybrid",
           "weeklyCommitment": "5 hours",
@@ -57,7 +55,7 @@
           "endDate": "2024-08-31",
           "location": "Global (Online)",
           "participants": 60,
-          "studentApplicationLink": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form",
+          "applicationLink": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form",
           "tracks": ["AI Alignment (Atlas)", "AI Governance (BlueDot)"],
           "format": "online",
           "description": "Summer 2024 cohort"
@@ -70,7 +68,7 @@
           "endDate": "2024-01-31",
           "location": "Global (Online)",
           "participants": 63,
-          "studentApplicationLink": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form",
+          "applicationLink": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form",
           "tracks": ["AI Alignment (Atlas)", "AI Governance (BlueDot)"],
           "format": "online",
           "description": "Pilot cohort that launched the international AI Safety Collab program."
@@ -94,7 +92,7 @@
           "location": "Canada",
           "participants": null,
           "estimatedParticipants": 20,
-          "studentApplicationLink": "https://www.ml4good.org/courses/canada-sept25",
+          "applicationLink": "https://www.ml4good.org/courses/canada-sept25",
           "format": "in-person",
           "description": "First ML4Good bootcamp in Canada"
         },
@@ -107,7 +105,7 @@
           "location": "Singapore",
           "participants": null,
           "estimatedParticipants": 18,
-          "studentApplicationLink": "https://www.ml4good.org/courses/singapore-sept25",
+          "applicationLink": "https://www.ml4good.org/courses/singapore-sept25",
           "format": "in-person",
           "description": "First ML4Good bootcamp in Asia"
         },
@@ -120,7 +118,7 @@
           "location": "TBD",
           "participants": null,
           "estimatedParticipants": 20,
-          "studentApplicationLink": "https://www.ml4good.org/courses/governance-sept25",
+          "applicationLink": "https://www.ml4good.org/courses/governance-sept25",
           "format": "in-person",
           "description": "First governance-focused ML4Good bootcamp using Atlas materials"
         },
@@ -133,7 +131,7 @@
           "location": "West & Central Europe",
           "participants": null,
           "estimatedParticipants": 20,
-          "studentApplicationLink": "https://www.ml4good.org/courses/west-europe-may25",
+          "applicationLink": "https://www.ml4good.org/courses/west-europe-may25",
           "format": "in-person",
           "description": "10-day intensive bootcamp using Atlas materials"
         },
@@ -146,7 +144,7 @@
           "location": "Colombia",
           "participants": null,
           "estimatedParticipants": 18,
-          "studentApplicationLink": "https://www.ml4good.org/courses/colombia-april25",
+          "applicationLink": "https://www.ml4good.org/courses/colombia-april25",
           "format": "in-person",
           "description": "First ML4Good bootcamp in Latin America"
         },
@@ -277,7 +275,7 @@
           "endDate": "2025-05-31",
           "location": "Paris, France",
           "participants": 25,
-          "studentApplicationLink": "https://www.master-mva.com/candidater/",
+          "applicationLink": "https://www.master-mva.com/candidater/",
           "format": "in-person",
           "description": "University course built using Atlas materials, as part of MVA Masters program - 7x2 hour sessions + project"
         },
@@ -288,7 +286,7 @@
           "endDate": "2024-05-31",
           "location": "Paris, France",
           "participants": 22,
-          "studentApplicationLink": "https://www.master-mva.com/candidater/",
+          "applicationLink": "https://www.master-mva.com/candidater/",
           "format": "in-person",
           "description": "University course as part of MVA Master program using Atlas materials"
         }
@@ -310,7 +308,7 @@
           "endDate": "2025-04-10",
           "location": "Vancouver, BC, Canada",
           "participants": 8,
-          "studentApplicationLink": "https://ubcaisafety.com/get-involved",
+          "applicationLink": "https://ubcaisafety.com/get-involved",
           "format": "in-person",
           "weeklyCommitment": "2 hours",
           "description": "7-week reading group using AI Safety Atlas materials"
@@ -323,7 +321,7 @@
           "endDate": "2024-11-15",
           "location": "Vancouver, BC, Canada",
           "participants": null,
-          "studentApplicationLink": "https://ubcaisafety.com/get-involved",
+          "applicationLink": "https://ubcaisafety.com/get-involved",
           "format": "in-person",
           "weeklyCommitment": "2 hours",
           "description": "First UBC course using AI Safety Atlas materials"
@@ -349,7 +347,7 @@
           "participants": null,
           "estimatedParticipants": 15,
           "applicationDeadline": "2025-07-20",
-          "studentApplicationLink": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form",
+          "applicationLink": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form",
           "tracks": ["AI Alignment (Atlas)", "AI Governance (BlueDot)"],
           "format": "hybrid",
           "description": "8-week program with optional 4-week project phase. Part of AI Safety Collab."
@@ -362,7 +360,7 @@
           "endDate": "2025-06-23",
           "location": "Hungary",
           "participants": 10,
-          "studentApplicationLink": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form",
+          "applicationLink": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form",
           "tracks": ["AI Alignment (Atlas)", "AI Governance (BlueDot)"],
           "format": "hybrid",
           "description": "8-week program with optional 4-week project phase. Part of AI Safety Collab."
@@ -385,7 +383,7 @@
           "endDate": "2024-04-22",
           "location": "Gothenburg, Sweden",
           "participants": 12,
-          "studentApplicationLink": "https://www.aisafetygothenburg.org/",
+          "applicationLink": "https://www.aisafetygothenburg.org/",
           "tracks": ["AI Alignment", "AI Governance"],
           "format": "in-person",
           "weeklyCommitment": "3-4 hours",
@@ -399,7 +397,7 @@
           "endDate": "2023-12-11",
           "location": "Gothenburg, Sweden",
           "participants": 15,
-          "studentApplicationLink": "https://www.aisafetygothenburg.org/",
+          "applicationLink": "https://www.aisafetygothenburg.org/",
           "format": "in-person",
           "description": "12-week program using early Atlas materials."
         }
@@ -421,7 +419,7 @@
           "endDate": "2025-08-15",
           "location": "India (Online)",
           "participants": 30,
-          "studentApplicationLink": "https://airtable.com/appYCDBpApwxEdaTX/pagTmEaiqt2vQN3dd/form",
+          "applicationLink": "https://airtable.com/appYCDBpApwxEdaTX/pagTmEaiqt2vQN3dd/form",
           "format": "online",
           "description": "8-week program with optional 4-week project phase."
         }
@@ -443,7 +441,7 @@
           "endDate": "2025-06-23",
           "location": "London, UK",
           "participants": 36,
-          "studentApplicationLink": "https://www.safeailondon.org/course",
+          "applicationLink": "https://www.safeailondon.org/course",
           "tracks": ["AI Alignment (Atlas)", "AI Governance (BlueDot)"],
           "format": "hybrid",
           "description": "8-week program with optional 4-week project phase. London-based project of Arcadia Impact. Part of AI Safety Collab."
@@ -466,7 +464,7 @@
           "endDate": "2025-06-23",
           "location": "Moscow, Russia + Online",
           "participants": 21,
-          "studentApplicationLink": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form",
+          "applicationLink": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form",
           "tracks": ["AI Alignment (Atlas)", "AI Governance (BlueDot)"],
           "format": "hybrid",
           "description": "Russian-speaking AI safety group. 8-week program with optional 4-week project phase. Part of AI Safety Collab."
@@ -489,7 +487,7 @@
           "endDate": "2025-06-23",
           "location": "Global",
           "participants": "",
-          "studentApplicationLink": "",
+          "applicationLink": "",
           "tracks": ["AI Alignment (Atlas)", "AI Governance (BlueDot)"],
           "format": "online",
           "description": "8-week program with optional 4-week project phase. A global AIS community. Course run as part of AI Safety Collab."
@@ -512,7 +510,7 @@
           "endDate": "2025-06-23",
           "location": "Buenos Aires, Argentina + Online",
           "participants": 14,
-          "studentApplicationLink": "https://aeroproduct.notion.site/Safe-AI-Buenos-Aires-Course-Spring-2025-1b7883d9015a8023a693df72c5889e1c",
+          "applicationLink": "https://aeroproduct.notion.site/Safe-AI-Buenos-Aires-Course-Spring-2025-1b7883d9015a8023a693df72c5889e1c",
           "tracks": ["AI Alignment (Atlas)", "AI Governance (BlueDot)"],
           "format": "hybrid",
           "weeklyCommitment": "5 hours",
@@ -535,8 +533,8 @@
           "startDate": "2025-03-31",
           "endDate": "2025-06-23",
           "location": "Norway + Online",
-          "participants": "",
-          "studentApplicationLink": "",
+          "participants": ,
+          "applicationLink": "",
           "tracks": ["AI Alignment (Atlas)", "AI Governance (BlueDot)"],
           "format": "hybrid",
           "weeklyCommitment": "5 hours",
