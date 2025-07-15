@@ -17,6 +17,11 @@ export const navbarConfig = {
       label: 'Impact',
     },
     {
+      to: '/courses/',
+      position: 'right',
+      label: 'Courses',
+    },
+    {
       to: '/faq/',
       position: 'right',
       label: 'FAQ',

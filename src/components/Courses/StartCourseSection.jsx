@@ -120,7 +120,7 @@ export default function StartCourseSection() {
                   alt="" 
                   className={styles.resourceIcon} 
                 />
-                <span>French Center for AI Safety (CeSIA) + Atlas certificates for your participants</span>
+                <span>French Center for AI Safety (CeSIA) + Atlas co-branded certificates for your participants</span>
               </div>
               <div className={styles.resource}>
                 <img 

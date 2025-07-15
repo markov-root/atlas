@@ -1,4 +1,4 @@
-/* src/components/Courses/CertificateSection.module.css */
+/* src/components/Courses/CertificateSection.module.css - Clean version */
 
 .certificateSection {
   background: var(--atlas-background, #ffffff);
@@ -33,34 +33,7 @@
 .certificateHeader {
   display: flex;
   align-items: center;
-  gap: 1rem;
-}
-
-.certificateIconWrapper {
-  background: var(--atlas-background, #ffffff);
-  padding: 0.75rem;
-  border-radius: 8px;
-  border: 1px solid var(--atlas-border-color, #e9ecef);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-[data-theme='dark'] .certificateIconWrapper {
-  background: var(--atlas-background, #121212);
-  border-color: var(--atlas-border-color, #373737);
-}
-
-.certificateIcon {
-  width: 32px;
-  height: 32px;
-  /* Light mode: primary color */
-  filter: brightness(0) saturate(100%) invert(27%) sepia(94%) saturate(1167%) hue-rotate(201deg) brightness(96%) contrast(94%);
-}
-
-[data-theme='dark'] .certificateIcon {
-  /* Dark mode: primary lighter color */
-  filter: brightness(0) saturate(100%) invert(67%) sepia(32%) saturate(1715%) hue-rotate(191deg) brightness(101%) contrast(94%);
+  justify-content: flex-start;
 }
 
 .certificateTitle {
@@ -88,15 +61,10 @@
 }
 
 .requirementsList {
-  background: var(--atlas-background, #ffffff);
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid var(--atlas-border-color, #e9ecef);
-}
-
-[data-theme='dark'] .requirementsList {
-  background: var(--atlas-background, #121212);
-  border-color: var(--atlas-border-color, #373737);
+  /* Remove background and border */
+  padding: 0;
+  border: none;
+  background: none;
 }
 
 .requirementsTitle {
@@ -123,27 +91,30 @@
 
 .requirement {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
   font-size: 0.95rem;
   color: var(--atlas-text, #212529);
+  position: relative;
+  padding-left: 1rem;
+}
+
+/* Simple bullet point */
+.requirement::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--atlas-primary, #1971c2);
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 [data-theme='dark'] .requirement {
   color: var(--atlas-text, #e9ecef);
 }
 
-.checkIcon {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-  /* Light mode: primary color */
-  filter: brightness(0) saturate(100%) invert(27%) sepia(94%) saturate(1167%) hue-rotate(201deg) brightness(96%) contrast(94%);
-}
-
-[data-theme='dark'] .checkIcon {
-  /* Dark mode: primary lighter color */
-  filter: brightness(0) saturate(100%) invert(67%) sepia(32%) saturate(1715%) hue-rotate(191deg) brightness(101%) contrast(94%);
+[data-theme='dark'] .requirement::before {
+  color: var(--atlas-primary-lighter, #74c0fc);
 }
 
 .certificateImage {
@@ -211,7 +182,7 @@
   }
   
   .requirementsList {
-    padding: 1.25rem;
+    text-align: left;
   }
 }
 
@@ -226,19 +197,6 @@
   
   .certificateTitle {
     font-size: 1.25rem;
-  }
-  
-  .certificateHeader {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  
-  .certificateIconWrapper {
-    padding: 0.625rem;
-  }
-  
-  .requirementsList {
-    padding: 1rem;
   }
   
   .requirements {

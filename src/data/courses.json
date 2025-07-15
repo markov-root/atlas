@@ -548,13 +548,11 @@
   "certificateInfo": {
     "available": true,
     "sampleImage": "/img/certificate-sample.png",
-    "description": "Official LinkedIn certificates available for participants who complete course requirements",
+    "description": "Official LinkedIn certificates available for participants who complete course requirements. The specific requirements vary by the course provider.",
     "requirements": [
-      "Attend at least 6 out of 8 weekly sessions",
-      "Complete weekly readings and exercises", 
+      "Attend at least 80% of the sessions",
       "Participate actively in group discussions",
-      "Submit final project or equivalent contribution (alternative path)"
-    ],
-    "alternativePath": "Complete an AI Safety action project if unable to attend 6+ sessions"
+      "Submit final projects or equivalent contribution"
+    ]
   }
 }
