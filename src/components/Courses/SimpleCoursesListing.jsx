@@ -112,7 +112,7 @@ function CorrectionForm({ course, organization, onClose, onSubmit }) {
     const changes = getChanges();
     
     try {
-      const response = await fetch('https://formspree.io/f/myzpgaor', {
+      const response = await fetch('https://formspree.io/f/mzzvplbl', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
