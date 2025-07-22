@@ -1,0 +1,840 @@
+{
+  "LMMs": {
+    "definition": "Large Multimodal Model. An AI model that can take in and produce multiple forms of data (such as both text and images).",
+    "source": "",
+    "aliases": []
+  },
+  "Multimodal model": {
+    "definition": "An AI model that can take in and produce multiple forms of data (such as both text and images).",
+    "source": "",
+    "aliases": [
+      "multimodal system",
+      "multimodal model"
+    ]
+  },
+  "CEV": {
+    "definition": "Coherent Extrapolated Volition.",
+    "source": "",
+    "aliases": []
+  },
+  "CAV": {
+    "definition": "Coherent Aggregated Volition.",
+    "source": "",
+    "aliases": []
+  },
+  "Superintelligence": {
+    "definition": "An AI with cognitive abilities far greater than those of humans in a wide range of important domains.",
+    "source": "",
+    "aliases": [
+      "superintelligent",
+      "super-intelligence",
+      "super-intelligent"
+    ]
+  },
+  "ASI": {
+    "definition": "Artificial Superintelligence. An AI with cognitive abilities far greater than those of humans in a wide range of important domains.",
+    "source": "",
+    "aliases": [
+      "ASIs"
+    ]
+  },
+  "Transformative AI": {
+    "definition": "An AI that is capable of transforming society, as drastically as the industrial revolution or even more so.",
+    "source": "",
+    "aliases": []
+  },
+  "TAI": {
+    "definition": "Transformative AI. An AI that is capable of transforming society, as drastically as the industrial revolution or even more so.",
+    "source": "",
+    "aliases": [
+      "TAIs"
+    ]
+  },
+  "alignment tax": {
+    "definition": "The added cost in time money computing power capabilities etc. needed to ensure that a system is aligned.",
+    "source": "",
+    "aliases": []
+  },
+  "safety tax": {
+    "definition": "The added cost in time, money, computing power, capabilities, etc. needed to ensure that a system is aligned.",
+    "source": "",
+    "aliases": []
+  },
+  "Corrigible": {
+    "definition": "An AI system is corrigible if it doesn't interfere with our attempts to deactivate or modify it.",
+    "source": "",
+    "aliases": [
+      "corrigible",
+      "Corrigibility",
+      "corrigibility"
+    ]
+  },
+  "CoT": {
+    "definition": "A prompting technique which makes a language model generate intermediate reasoning steps in its output.",
+    "source": "",
+    "aliases": [
+      "chain-of-thought",
+      "Chain-of-Thought prompting",
+      "Chain-of-thought",
+      "Chain of thought"
+    ]
+  },
+  "Embedded agent": {
+    "definition": "An agent which is not modeled as separate from the environment it acts on.",
+    "source": "",
+    "aliases": [
+      "embedded agency",
+      "Embedded agency"
+    ]
+  },
+  "x-risk": {
+    "definition": "Existential risk. A risk of human extinction or the permanent destruction of humanity’s long-term potential.",
+    "source": "",
+    "aliases": []
+  },
+  "s-risk": {
+    "definition": "Existential suffering risk.",
+    "source": "",
+    "aliases": []
+  },
+  "i-risk": {
+    "definition": "Ikigai risk. A risk of loss of meaning.",
+    "source": "",
+    "aliases": []
+  },
+  "Fast takeoff": {
+    "definition": "A transition from human-level AI to superintelligent AI that goes very quickly, giving us no time to react.",
+    "source": "",
+    "aliases": [
+      "fast takeoff",
+      "FOOM",
+      "hard takeoff"
+    ]
+  },
+  "FLOP": {
+    "definition": "A quantity of mathematical operations that involve floating-point numbers (numbers with a decimal point). “FLOPs” can be the plural of “FLOP”, but is confusingly also sometimes used interchangeably with “FLOPS”, meaning “FLOP per second”.",
+    "source": "",
+    "aliases": [
+      "floating-point operation"
+    ]
+  },
+  "FLOP/s": {
+    "definition": "Sometimes “FLOPS”. Short for “floating-point operations per second”. FLOP/s represents the number of mathematical operations involving floating-point numbers that a computer can perform every second, and is a measure of the computer’s computing power.",
+    "source": "",
+    "aliases": [
+      "FLOPS",
+      "floating-point operations per second"
+    ]
+  },
+  "FLOPs": {
+    "definition": "The plural of “FLOP”, or occasionally an alternative spelling of “FLOPS”",
+    "source": "",
+    "aliases": [
+      "floating point operations"
+    ]
+  },
+  "Goodhart's law": {
+    "definition": "“When a measure becomes a target, it ceases to be a good measure.”",
+    "source": "",
+    "aliases": [
+      "Goodharts law",
+      "Goodharting",
+      "goodhart's law",
+      "goodharts law",
+      "goodharting"
+    ]
+  },
+  "Inner misalignment": {
+    "definition": "When an mesa optimizer pursues a different objective than the one that was specified.",
+    "source": "",
+    "aliases": [
+      "Inner-Alignment",
+      "Inner Alignment"
+    ]
+  },
+  "Inner alignment": {
+    "definition": "When a mesa optimizer ends up pursuing the objective that was specified.",
+    "source": "",
+    "aliases": []
+  },
+  "Mesa-optimization": {
+    "definition": "An algorithm that is created by optimization and that is also itself an optimizer.",
+    "source": "",
+    "aliases": [
+      "Mesa optimization",
+      "mesa-optimizer",
+      "mesa optimizer",
+"mesa-optimizers",
+      "inner optimizer",
+      "inner-optimizer",
+      "learned optimizer",
+      "learned-optimizer"
+    ]
+  },
+  "Mesa-objective": {
+    "definition": "The objective pursued by a mesa-optimizer.",
+    "source": "",
+    "aliases": []
+  },
+  "Deceptive Alignment": {
+    "definition": "A case where the AI acts as if it were aligned while in training, but when deployed it turns out not to be aligned.",
+    "source": "",
+    "aliases": [
+      "Deceptive alignment",
+      "deceptive misalignment",
+      "Deceptive misalignment",
+      "deceptively aligned",
+      "deceptively misaligned"
+    ]
+  },
+  "Instrumental convergence": {
+    "definition": "The idea that agents with widely different terminal goals will end up adopting many of the same instrumental goals.",
+    "source": "",
+    "aliases": [
+      "instrumental convergence",
+      "instrumentally convergent"
+    ]
+  },
+  "Instrumental goal": {
+    "definition": "Goals which are pursued as means to some other end, rather than as ends in themselves.",
+    "source": "",
+    "aliases": [
+      "instrumental goal",
+      "sub-goal"
+    ]
+  },
+  "Intelligence explosion": {
+    "definition": "A hypothetical scenario where machines become more intelligent very quickly, driven by recursive self-improvement.",
+    "source": "",
+    "aliases": []
+  },
+  "Multipolar scenario": {
+    "definition": "A scenario in which there end up being multiple powerful decision makers.",
+    "source": "",
+    "aliases": [
+      "multipolar scenario",
+      "multipolar takeoff",
+      "Multipolar takeoff",
+      "Multipolarity"
+    ]
+  },
+  "Unipolar scenario": {
+    "definition": "A scenario in which there ends up being a single powerful decision maker.",
+    "source": "",
+    "aliases": [
+      "unipolar scenario",
+      "unipolar takeoff",
+      "Unipolar takeoff",
+      "Unipolarity"
+    ]
+  },
+  "Out-of-distribution": {
+    "definition": "A case is out-of-distribution if it is very different from the cases the system encountered during training.",
+    "source": "",
+    "aliases": [
+      "out of distribution",
+      "OOD"
+    ]
+  },
+  "Independent and identically distributed": {
+    "definition": "An assumption, often made in statistics and machine learning, that data points are drawn randomly “from the same distribution” and that knowing any data point does not tell you anything about the others.",
+    "source": "",
+    "aliases": [
+      "independent and identically distributed",
+      "i.i.d.",
+      "IID"
+    ]
+  },
+  "auto-induced distribution shift": {
+    "definition": "A change in data distribution caused by the models's own actions or outputs.",
+    "source": "",
+    "aliases": [
+      "Auto-induced distribution shift",
+      "auto induced distribution shift",
+      "Auto induced distribution shift"
+    ]
+  },
+  "ADS": {
+    "definition": "Auto-induced distributional shift. A distributional shift caused by the behavior or actions of an algorithm or machine learning system itself.",
+    "source": "",
+    "aliases": []
+  },
+  "Oracle AI": {
+    "definition": "An AI whose only goal is to give correct answers to questions.",
+    "source": "",
+    "aliases": []
+  },
+  "Orthogonality thesis": {
+    "definition": "The claim that any level of intelligence is compatible with any terminal goal. This implies that intelligence alone is not enough to make a system moral.",
+    "source": "",
+    "aliases": [
+      "orthogonality thesis",
+      "Orthogonality hypothesis",
+      "orthogonality hypothesis"
+    ]
+  },
+  "Outer alignment": {
+    "definition": "The problem of making sure that the precise formulation of what we train the AI to do matches what we intend it to do.",
+    "source": "",
+    "aliases": [
+      "outer alignment",
+      "outer misalignment",
+      "reward misspecification"
+    ]
+  },
+  "Proxy gaming": {
+    "definition": "Behavior where an AI performs a task in a way that scores highly according to the objective that was specified, while going against the task’s intended “spirit.”",
+    "source": "",
+    "aliases": [
+      "proxy gaming",
+      "Specification gaming",
+      "specification gaming"
+    ]
+  },
+  "Proxy goal": {
+    "definition": "A goal that performs well on the intended objective due to some spurious correlation in the training distribution.",
+    "source": "",
+    "aliases": [
+      "proxy goal"
+    ]
+  },
+  "Reinforcement learning from human feedback": {
+    "definition": "A method for training an AI to give desirable outputs by using human feedback as a training signal.",
+    "source": "",
+    "aliases": [
+      "reinforcement learning from human feedback"
+    ]
+  },
+  "RLHF": {
+    "definition": "Reinforcement Learning from Human Feedback. A method for training AI using human feedback as training signals.",
+    "source": "",
+    "aliases": []
+  },
+  "RLAIF": {
+    "definition": "Reinforcement Learning from AI Feedback. A method for training AI using AI feedback as training signals.",
+    "source": "",
+    "aliases": []
+  },
+  "RLCAI": {
+    "definition": "Reinforcement Learning from Constitutional AI. A method for training AI using AI feedback based upon a constituion as training signals.",
+    "source": "",
+    "aliases": [
+      "CAI",
+      "Constitutional AI"
+    ]
+  },
+  "Robustness": {
+    "definition": "An agent's ability to maintain its goal and its capabilities when exposed to environments that are substantially different from that on which the agent was trained.",
+    "source": "",
+    "aliases": []
+  },
+  "Recursive self-improvement": {
+    "definition": "Self-improvement that leads to further self-improvement in a self-reinforcing feedback loop.",
+    "source": "",
+    "aliases": [
+      "Recursive self improvement",
+      "recursive self improvement"
+    ]
+  },
+  "RSI": {
+    "definition": "Recursive self-improvement. Self-improvement that leads to further self-improvement in a self-reinforcing feedback loop.",
+    "source": "",
+    "aliases": []
+  },
+  "Singleton": {
+    "definition": "An agent which has dominant control over the entire world and can prevent any competitors from arising. Usually in reference to a superintelligent AI. Related: unipolar scenario.",
+    "source": "",
+    "aliases": []
+  },
+  "Subagent": {
+    "definition": "A system that is part of a larger agent and has its own agent-like qualities, such as pursuing its own goals.",
+    "source": "",
+    "aliases": [
+      "sub-agent",
+      "sub agent"
+    ]
+  },
+  "Takeoff speed": {
+    "definition": "The amount of time that elapses between the first AI with roughly human-level intelligence and the first AI with vastly superhuman intelligence.",
+    "source": "",
+    "aliases": [
+      "takeoff"
+    ]
+  },
+  "Slow takeoff": {
+    "definition": "A transition from human-level AI to superintelligent AI that goes slowly. This usually implies that we have time to react.",
+    "source": "",
+    "aliases": [
+      "slow takeoff",
+      "soft takeoff",
+      "Soft takeoff"
+    ]
+  },
+  "Takeoff homogeneity": {
+    "definition": "The degree to which the first AI systems that become superintelligent will have similar designs and goals.",
+    "source": "",
+    "aliases": []
+  },
+  "Homogeneous scenario": {
+    "definition": "A scenario where the first AIs to reach superintelligence are similar in nature.",
+    "source": "",
+    "aliases": [
+      "Homogeneous takeoff",
+      "homogeneous takeoff"
+    ]
+  },
+  "Heterogeneous scenario": {
+    "definition": "A scenario where the first AIs to reach superintelligence are different in nature.",
+    "source": "",
+    "aliases": [
+      "Heterogeneous takeoff",
+      "heterogeneous takeoff"
+    ]
+  },
+  "Tool AI": {
+    "definition": "A type of artificial general intelligence that can only function as an assistant to human use, and not as an autonomous agent.",
+    "source": "",
+    "aliases": [
+      "tool AIs"
+    ]
+  },
+  "Utility functions": {
+    "definition": "A mathematical function that assigns a number representing utility to every possible outcome. Outcomes with higher utility are preferred to outcomes with lower utility. “Maximizing utility” then means choosing the most preferred outcome.",
+    "source": "",
+    "aliases": [
+      "Utility function"
+    ]
+  },
+  "Base optimizer": {
+    "definition": "In contrast to a mesa-optimizer, a base optimizer is the “outer” optimizer usually explicitly implemented by humans.",
+    "source": "",
+    "aliases": []
+  },
+  "Base objective": {
+    "definition": "In contrast to a mesa-objective,  the base objective is the “outer” objective usually explicitly implemented by humans.",
+    "source": "",
+    "aliases": []
+  },
+  "Behavioral objective": {
+    "definition": "The behavioral objective is what an optimizer looks like it is optimizing for. Formally, the behavioral objective is the objective we would find if we performed inverse reinforcement learning perfectly.",
+    "source": "",
+    "aliases": []
+  },
+  "Learned algorithm": {
+    "definition": "The algorithms that a base optimizer finds to solve the problem it has been given.",
+    "source": "",
+    "aliases": []
+  },
+  "Meta-optimizer": {
+    "definition": "A system which is tasked with producing a base optimizer.",
+    "source": "",
+    "aliases": []
+  },
+  "Pseudo-alignment": {
+    "definition": "A mesa-optimizer is pseudo-aligned with the base objective if it appears aligned on the training data but is not robustly aligned.",
+    "source": "",
+    "aliases": []
+  },
+  "Robust alignment": {
+    "definition": "A mesa-optimizer is robustly aligned with the base objective if it robustly optimizes for the base objective across distributions.",
+    "source": "",
+    "aliases": []
+  },
+  "algorithmic range": {
+    "definition": "The set of possible algorithms that can be found by a machine learning algorithm within a model's parameter space.",
+    "source": "",
+    "aliases": []
+  },
+  "algorithmic reachability": {
+    "definition": "The relative difficulty for an machine learning model to find a specific algorithm within the parameter space.",
+    "source": "",
+    "aliases": []
+  },
+  "Approximate alignment": {
+    "definition": "An approximately aligned mesa-optimizer is a pseudo-aligned mesa-optimizer where the base and mesa- objectives are the same up to some degree of approximation error caused only by  the difficulty of representing the base objective in the mesa-optimizer.",
+    "source": "",
+    "aliases": []
+  },
+  "Proxy alignment": {
+    "definition": "A proxy-aligned mesa-optimizer is a pseudo-aligned mesa-optimizer that has learned to optimize for some proxy of the base objective instead of the base objective itself.",
+    "source": "",
+    "aliases": []
+  },
+  "Instrumental alignment": {
+    "definition": "A type of proxy alignment in which the mesa-optimizer optimizes the proxy as an instrumental goal of increasing the mesa-objective in the training distribution.",
+    "source": "",
+    "aliases": []
+  },
+  "Side-effect alignment": {
+    "definition": "A type of proxy alignment in which optimizing for the mesa-objective has the direct causal result of increasing the base objective in the training distribution.",
+    "source": "",
+    "aliases": []
+  },
+  "Suboptimality alignment": {
+    "definition": "A suboptimality-aligned mesa-optimizer is a pseudo-aligned mesa-optimizer in which some deficiency, error, or limitation causes it to exhibit aligned behavior.",
+    "source": "",
+    "aliases": []
+  },
+  "Corrigible alignment": {
+    "definition": "A corrigibly aligned mesa-optimizer is a robustly aligned mesa-optimizer that has a mesa-objective that “points to” its epistemic model of the base objective.",
+    "source": "",
+    "aliases": []
+  },
+  "Internal alignment": {
+    "definition": "An internally aligned mesa-optimizer is a robustly aligned mesa-optimizer that has internalized the base objective in its mesa-objective.",
+    "source": "",
+    "aliases": []
+  },
+  "Sharp left turn": {
+    "definition": "An event in which an AI’s capabilities suddenly generalize, but its alignment doesn’t also generalize.",
+    "source": "",
+    "aliases": [
+      "SLT"
+    ]
+  },
+  "Wireheading": {
+    "definition": "A scenario in which an agent trying to maximize reward directly alters its reward, instead of accomplishing the goal that the reward was meant to encourage the agent to pursue.",
+    "source": "",
+    "aliases": [
+      "wirehead",
+      "wireheaded"
+    ]
+  },
+  "Reward hacking": {
+    "definition": "Reward hacking occurs when an AI agent exploits “loopholes” or “shortcuts” in the environment to maximize its reward without actually achieving the intended goal.",
+    "source": "",
+    "aliases": []
+  },
+  "Reward tampering": {
+    "definition": "A scenario where an agent tries to influence the reward process itself, instead of accomplishing the goal that the reward was meant to encourage.",
+    "source": "",
+    "aliases": []
+  },
+  "Reward shaping": {
+    "definition": "A technique used in RL which introduces small intermediate rewards to supplement the environmental reward. This seeks to mitigate the problem of sparse reward signals and to encourage exploration and faster learning.",
+    "source": "",
+    "aliases": []
+  },
+  "Reward modeling": {
+    "definition": "A technique that separates the reinforcement learning alignment problem into understanding the intentions of humans and acting to achieve those intentions, i.e. learning the ‘How?’.",
+    "source": "",
+    "aliases": []
+  },
+  "Pivotal act": {
+    "definition": "An action that has positive consequences for the far future of humanity. Typically a way to reliably avoid catastrophic outcomes in the near to medium future.",
+    "source": "",
+    "aliases": []
+  },
+  "Context window": {
+    "definition": "Refers to the maximum amount of text that an LLM can consider at one time. This includes the prompt and the discussion with the user. If a discussion exceeds the length of the context window, previous interactions can be “forgotten”.",
+    "source": "",
+    "aliases": [
+      "context length",
+      "context size"
+    ]
+  },
+  "Sovereign AI": {
+    "definition": "An AI that acts autonomously in the world, in pursuit of potentially long-range objectives.",
+    "source": "",
+    "aliases": [
+      "sovereign"
+    ]
+  },
+  "adversarial training": {
+    "definition": "A safety technique that pits two models against each other to improve robustness.",
+    "source": "",
+    "aliases": []
+  },
+  "World model": {
+    "definition": "A system’s internal representation of its environment, which it uses to predict what will happen, including as a result of its own possible actions.",
+    "source": "",
+    "aliases": []
+  },
+  "SoTA": {
+    "definition": "A state-of-the-art AI system. Currently, this typically refers to the largest and most capable LLMs.",
+    "source": "",
+    "aliases": [
+      "SOTA"
+    ]
+  },
+  "ACDC": {
+    "definition": "Automatic Circuit DisCovery an algorithm that automates the process of finding circuits within neural networks.",
+    "source": "",
+    "aliases": []
+  },
+  "activations": {
+    "definition": "The outputs produced by neurons or units in a neural network after processing input data through a layer.",
+    "source": "",
+    "aliases": []
+  },
+  "activation patching": {
+    "definition": "A technique that identifies which parts of a neural network are responsible for specific behaviors by selectively replacing activations.",
+    "source": "",
+    "aliases": []
+  },
+  "activation steering": {
+    "definition": "A technique to control model behavior by modifying internal activations during inference, directing the model toward desired outcomes without retraining.",
+    "source": "",
+    "aliases": []
+  },
+  "CNN": {
+    "definition": "Convolutional Neural Network, a type of neural network primarily used for image classification, object detection, and pattern recognition.",
+    "source": "",
+    "aliases": []
+  },
+  "CNNs": {
+    "definition": "Convolutional Neural Networks, a type of neural networks primarily used for image classification, object detection, and pattern recognition.",
+    "source": "",
+    "aliases": []
+  },
+  "deceptively aligned model": {
+    "definition": "A model that pretends to be aligned during training but engages in dangerous behavior during deployment. During training it acts helpful, honest and harmless, but in deployment it acts according to a dangerous secret goal.",
+    "source": "",
+    "aliases": []
+  },
+  "feature map": {
+    "definition": "A feature map is the output of a layer in a convolutional neural network.",
+    "source": "",
+    "aliases": []
+  },
+  "feature maps": {
+    "definition": "Feature maps are the output of a layer in a convolutional neural network.",
+    "source": "",
+    "aliases": []
+  },
+  "monosemantic neurons": {
+    "definition": "neurons that respond to just one specific feature or stimulus.",
+    "source": "",
+    "aliases": []
+  },
+  "monosemantic neuron": {
+    "definition": "neuron that responds to just one specific feature or stimulus.",
+    "source": "",
+    "aliases": []
+  },
+  "polysemantic neurons": {
+    "definition": "neurons that activate in response to a variety of distinct features.",
+    "source": "",
+    "aliases": []
+  },
+  "polysemanticity": {
+    "definition": "The empirical phenomenon where a single neuron or model component responds to multiple, unrelated features.",
+    "source": "",
+    "aliases": []
+  },
+  "SAE": {
+    "definition": "Sparse Autoencoder, a type of autoencoder designed to disentangle features that a model has learned.",
+    "source": "",
+    "aliases": []
+  },
+  "SAEs": {
+    "definition": "Sparse Autoencoders, a type of autoencoders designed to disentangle features that a model has learned.",
+    "source": "",
+    "aliases": []
+  },
+  "Sparse Autoencoder": {
+    "definition": "A type of autoencoder designed to disentangle features that a model has learned.",
+    "source": "",
+    "aliases": []
+  },
+  "superposition hypothesis": {
+    "definition": "The superposition hypothesis posits that neural networks efficiently store more features than they have neurons by encoding features as overlapping linear combinations across multiple neurons.",
+    "source": "",
+    "aliases": []
+  },
+  "OOM": {
+    "definition": "Order of Magnitude",
+    "source": "",
+    "aliases": []
+  },
+  "OOMs": {
+    "definition": "Orders of Magnitude",
+    "source": "",
+    "aliases": []
+  },
+  "MNIST": {
+    "definition": "A dataset of handwritten digits used to benchmark basic image recognition capabilities.",
+    "source": "",
+    "aliases": []
+  },
+  "CIFAR-10/100": {
+    "definition": "A dataset of small natural color images used to benchmark object classification across multiple categories.",
+    "source": "",
+    "aliases": []
+  },
+  "ImageNet": {
+    "definition": "A dataset of natural images used to benchmark large-scale object recognition and classification.",
+    "source": "",
+    "aliases": []
+  },
+  "PASCAL VOC": {
+    "definition": "A dataset of annotated images used to benchmark object detection and segmentation.",
+    "source": "",
+    "aliases": []
+  },
+  "Caltech-101/256": {
+    "definition": "A dataset of natural images used to benchmark object recognition across diverse categories.",
+    "source": "",
+    "aliases": []
+  },
+  "ALE": {
+    "definition": "A benchmark environment of Atari games used to evaluate reinforcement learning from raw pixel inputs.",
+    "source": "",
+    "aliases": []
+  },
+  "OpenAI Gym": {
+    "definition": "A benchmark suite of standardized environments used to evaluate reinforcement learning algorithms.",
+    "source": "",
+    "aliases": []
+  },
+  "DeepMind Lab": {
+    "definition": "A benchmark environment using 3D first-person games to evaluate navigation and motor control.",
+    "source": "",
+    "aliases": []
+  },
+  "AI Safety Gridworlds": {
+    "definition": "A benchmark suite of simple environments used to evaluate AI safety properties.",
+    "source": "",
+    "aliases": []
+  },
+  "XLand": {
+    "definition": "A benchmark environment of procedurally generated 3D worlds used to evaluate general agent capabilities.",
+    "source": "",
+    "aliases": []
+  },
+  "XLand 2.0": {
+    "definition": "A benchmark environment with production rules used to evaluate human-like adaptation speeds.",
+    "source": "",
+    "aliases": []
+  },
+  "XLand-100B": {
+    "definition": "A dataset of learning trajectories used to evaluate in-context reinforcement learning.",
+    "source": "",
+    "aliases": []
+  },
+  "MMLU": {
+    "definition": "A benchmark of multiple-choice questions used to evaluate knowledge across academic subjects.",
+    "source": "",
+    "aliases": []
+  },
+  "TruthfulQA": {
+    "definition": "A benchmark of questions used to evaluate tendency to repeat or avoid misinformation.",
+    "source": "",
+    "aliases": []
+  },
+  "ETHICS": {
+    "definition": "A benchmark of scenarios used to evaluate understanding of human moral judgments.",
+    "source": "",
+    "aliases": []
+  },
+  "GSM8K": {
+    "definition": "A benchmark of elementary math word problems used to evaluate step-by-step reasoning.",
+    "source": "",
+    "aliases": []
+  },
+  "DROP": {
+    "definition": "A benchmark of questions used to evaluate discrete mathematical operations over text.",
+    "source": "",
+    "aliases": []
+  },
+  "GPQA": {
+    "definition": "A benchmark of graduate-level science questions used to evaluate expert knowledge.",
+    "source": "",
+    "aliases": []
+  },
+  "SAD": {
+    "definition": "A benchmark of questions used to evaluate models' self-awareness and contextual understanding.",
+    "source": "",
+    "aliases": []
+  },
+  "Chatbot Arena": {
+    "definition": "A benchmark platform used to evaluate language models through human preferences.",
+    "source": "",
+    "aliases": []
+  },
+  "CodeBLEU": {
+    "definition": "A metric used to evaluate code quality across syntax, semantics, and functionality.",
+    "source": "",
+    "aliases": []
+  },
+  "APPS": {
+    "definition": "A benchmark of programming problems used to evaluate code generation from natural language.",
+    "source": "",
+    "aliases": []
+  },
+  "HumanEval": {
+    "definition": "A benchmark of Python functions used to evaluate code generation capabilities.",
+    "source": "",
+    "aliases": []
+  },
+  "BigCode": {
+    "definition": "A benchmark of programming tasks used to evaluate complex tool usage and instruction following.",
+    "source": "",
+    "aliases": []
+  },
+  "HumanEval-V": {
+    "definition": "A benchmark of coding tasks used to evaluate combined visual and textual understanding.",
+    "source": "",
+    "aliases": []
+  },
+  "HumanEval-XL": {
+    "definition": "A benchmark of multilingual programming problems used to evaluate cross-language code generation.",
+    "source": "",
+    "aliases": []
+  },
+  "ARC": {
+    "definition": "A benchmark of visual puzzles used to evaluate abstract reasoning and generalization.",
+    "source": "",
+    "aliases": []
+  },
+  "MATH": {
+    "definition": "A benchmark of competition mathematics problems used to evaluate advanced reasoning.",
+    "source": "",
+    "aliases": []
+  },
+  "ConceptARC": {
+    "definition": "A benchmark of systematic variations used to evaluate abstract concept learning.",
+    "source": "",
+    "aliases": []
+  },
+  "HellaSwag": {
+    "definition": "A benchmark of sequence completion tasks used to evaluate commonsense reasoning.",
+    "source": "",
+    "aliases": []
+  },
+  "MAGICAL": {
+    "definition": "A benchmark of robot manipulation tasks used to evaluate imitation learning generalization.",
+    "source": "",
+    "aliases": []
+  },
+  "MACHIAVELLI": {
+    "definition": "A benchmark of interactive scenarios used to evaluate ethical decision-making.",
+    "source": "",
+    "aliases": []
+  },
+  "AgentHarm": {
+    "definition": "A benchmark of malicious tasks used to evaluate safety and misuse resistance.",
+    "source": "",
+    "aliases": []
+  },
+  "SPA-BENCH": {
+    "definition": "A benchmark of smartphone tasks used to evaluate real-world mobile interaction capabilities.",
+    "source": "",
+    "aliases": []
+  },
+  "latent knowledge": {
+    "definition": "Information or capabilities present in a model but not readily apparent in its typical outputs.",
+    "source": "",
+    "aliases": [
+      "Latent knowledge"
+    ]
+  },
+  "externalized reasoning oversight": {
+    "definition": "Techniques that encourage models to reveal their reasoning steps in natural language.",
+    "source": "",
+    "aliases": [
+      "Externalized reasoning oversight",
+      "ERO"
+    ]
+  }
+}

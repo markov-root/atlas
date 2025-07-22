@@ -2,6 +2,7 @@
 import React from 'react';
 import MDXComponents from '@theme-original/MDXComponents';
 import { ContentH2, ContentH3, ContentH4 } from '../components/chapters/ContentSectionHeader/ContentSectionHeader';
+import GlossaryTerm from '../components/chapters/GlossaryTerm'; // Make sure this line is there
 
 export default {
   ...MDXComponents,
@@ -11,4 +12,5 @@ export default {
   h3: (props) => <ContentH3 {...props} />,
   h4: (props) => <ContentH4 {...props} />,
   // Keep h1, h5, h6 as default
+  GlossaryTerm,
 };

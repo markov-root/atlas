@@ -1,0 +1,71 @@
+/* src/components/chapters/GlossaryTerm.module.css */
+
+.glossaryTerm {
+  /* Extremely subtle underline - almost transparent */
+  text-decoration: underline;
+  text-decoration-color: rgba(25, 113, 194, 0.15); /* Very transparent blue */
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  cursor: help;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.glossaryTerm:hover {
+  /* Slightly more visible on hover, but still subtle */
+  text-decoration-color: rgba(25, 113, 194, 0.4);
+  text-decoration-style: solid;
+}
+
+/* Dark mode - even more subtle */
+[data-theme='dark'] .glossaryTerm {
+  text-decoration-color: rgba(116, 192, 252, 0.12); /* Very transparent light blue */
+}
+
+[data-theme='dark'] .glossaryTerm:hover {
+  text-decoration-color: rgba(116, 192, 252, 0.35);
+}
+
+/* Tooltip content styling */
+.tooltipContent {
+  max-width: 320px;
+  text-align: left;
+}
+
+.tooltipTerm {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.25rem;
+  letter-spacing: 0.05em;
+  /* Term will be uppercase via JavaScript */
+}
+
+.tooltipDefinition {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 0.5rem;
+}
+
+.tooltipSource {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.8);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 0.25rem;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+/* Links in tooltip source */
+.tooltipSource a {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-decoration: underline !important;
+  transition: color 0.2s ease;
+}
+
+.tooltipSource a:hover {
+  color: #ffffff !important;
+}

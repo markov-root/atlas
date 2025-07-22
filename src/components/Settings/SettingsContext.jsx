@@ -1,4 +1,4 @@
-// src/components/Settings/SettingsContext.jsx - Removed OpenDyslexic option
+// src/components/Settings/SettingsContext.jsx - Added glossary toggle
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const SettingsContext = createContext();
@@ -100,6 +100,7 @@ const DEFAULT_SETTINGS = {
   lineHeight: 1.7,        // Increased from 1.6 - more comfortable
   textAlign: 'left',
   maxWidth: 85,           // Increased from 65ch - better for modern screens
+  glossaryEnabled: true,  // New setting for glossary tooltips
 };
 
 export function SettingsProvider({ children }) {
@@ -121,6 +122,9 @@ export function SettingsProvider({ children }) {
     document.documentElement.style.setProperty('--atlas-reader-line-height', settings.lineHeight);
     document.documentElement.style.setProperty('--atlas-reader-text-align', settings.textAlign);
     document.documentElement.style.setProperty('--atlas-reader-max-width', `${settings.maxWidth}ch`);
+    
+    // Apply glossary setting to document for potential CSS styling
+    document.documentElement.setAttribute('data-glossary-enabled', settings.glossaryEnabled);
     
   }, [settings]);
 

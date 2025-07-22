@@ -1,4 +1,4 @@
-// src/theme/DocItem/index.js - Fixed feedback placement with DOM manipulation
+// src/theme/DocItem/index.js
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import DocItem from '@theme-original/DocItem';
 import { useLocation } from '@docusaurus/router';

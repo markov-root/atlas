@@ -1,4 +1,4 @@
-// src/components/Settings/SettingsDropdown.jsx - Removed dyslexia font option
+// src/components/Settings/SettingsDropdown.jsx - Added glossary toggle
 import React, { useState, useRef, useEffect } from 'react';
 import { useSettings } from './SettingsContext';
 import styles from './SettingsDropdown.module.css';
@@ -80,6 +80,22 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
         {/* Notice at top */}
         <div className={styles.notice}>
           <span className={styles.noticeText}>These settings only apply to textbook chapter pages</span>
+        </div>
+
+        {/* Glossary Toggle */}
+        <div className={styles.setting}>
+          <div className={styles.simpleToggleGroup}>
+            <label className={styles.label}>Glossary Tooltips</label>
+            <button
+              onClick={() => updateSetting('glossaryEnabled', !settings.glossaryEnabled)}
+              className={`${styles.simpleToggle} ${settings.glossaryEnabled ? styles.active : ''}`}
+              aria-label={`Turn glossary tooltips ${settings.glossaryEnabled ? 'off' : 'on'}`}
+            >
+              <div className={styles.toggleSlider}>
+                <div className={styles.toggleThumb}></div>
+              </div>
+            </button>
+          </div>
         </div>
 
         {/* Font Family */}

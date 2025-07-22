@@ -1,0 +1,275 @@
+{
+  "machine learning": {
+    "definition": "A field of artificial intelligence focused on building systems that learn and improve from data without being explicitly programmed for every task.",
+    "source": "",
+    "aliases": [
+      "Machine Learning",
+      "ML"
+    ]
+  },
+  "supervised learning": {
+    "definition": "A machine learning approach where the model learns from labeled training data to make predictions on new, unseen data.",
+    "source": "",
+    "aliases": [
+      "Supervised Learning"
+    ]
+  },
+  "unsupervised learning": {
+    "definition": "A machine learning approach where the model finds patterns in data without labeled examples or target outputs.",
+    "source": "",
+    "aliases": [
+      "Unsupervised Learning"
+    ]
+  },
+  "self-supervised learning": {
+    "definition": "A machine learning approach where the model learns by predicting parts of the input from other parts, creating supervision signals from the data itself without external labels.",
+    "source": "",
+    "aliases": [
+      "Self-supervised Learning",
+      "self-supervision"
+    ]
+  },
+  "zero-shot learning": {
+    "definition": "The ability of a model to perform a task or classify examples it has never seen during training, typically by leveraging learned representations or instructions.",
+    "source": "",
+    "aliases": [
+      "Zero-shot Learning",
+      "zero shot",
+      "0-shot"
+    ]
+  },
+  "few-shot learning": {
+    "definition": "The ability of a model to quickly adapt to new tasks with only a few examples, often demonstrated by providing examples in the input prompt.",
+    "source": "",
+    "aliases": [
+      "Few-shot Learning",
+      "few shot",
+      "k-shot learning",
+      "in-context learning"
+    ]
+  },
+  "transfer learning": {
+    "definition": "A machine learning technique where knowledge gained from training on one task is applied to improve performance on a different but related task.",
+    "source": "",
+    "aliases": [
+      "Transfer Learning"
+    ]
+  },
+  "gradient descent": {
+    "definition": "An optimization algorithm that iteratively adjusts model parameters in the direction that minimizes the loss function.",
+    "source": "",
+    "aliases": [
+      "Gradient Descent"
+    ]
+  },
+  "stochastic gradient descent": {
+    "definition": "A variant of gradient descent that updates parameters using gradients computed on small random batches of data rather than the entire dataset.",
+    "source": "",
+    "aliases": [
+      "Stochastic Gradient Descent",
+      "SGD"
+    ]
+  },
+  "backpropagation": {
+    "definition": "The algorithm used to calculate gradients in neural networks by propagating errors backward through the network layers.",
+    "source": "[Rumelhart et al., 1986](https://www.nature.com/articles/323533a0)",
+    "aliases": [
+      "Backpropagation",
+      "backprop"
+    ]
+  },
+  "loss function": {
+    "definition": "A function that measures how well a model's predictions match the actual target values, used to guide training.",
+    "source": "",
+    "aliases": [
+      "Loss Function",
+      "cost function",
+      "objective function"
+    ]
+  },
+  "overfitting": {
+    "definition": "When a model learns the training data too well, including noise and specific details, leading to poor performance on new data.",
+    "source": "",
+    "aliases": [
+      "Overfitting"
+    ]
+  },
+  "underfitting": {
+    "definition": "When a model is too simple to capture the underlying patterns in the data, leading to poor performance on both training and test data.",
+    "source": "",
+    "aliases": [
+      "Underfitting"
+    ]
+  },
+  "training set": {
+    "definition": "The portion of data used to train a machine learning model by adjusting its parameters.",
+    "source": "",
+    "aliases": [
+      "Training Set",
+      "training data"
+    ]
+  },
+  "validation set": {
+    "definition": "A subset of data used to evaluate model performance during training and tune hyperparameters, separate from the test set.",
+    "source": "",
+    "aliases": [
+      "Validation Set",
+      "validation data",
+      "dev set"
+    ]
+  },
+  "test set": {
+    "definition": "A subset of data held out from training and validation, used only for final evaluation of model performance.",
+    "source": "",
+    "aliases": [
+      "Test Set",
+      "test data",
+      "holdout set"
+    ]
+  },
+  "epoch": {
+    "definition": "One complete pass through the entire training dataset during the training process.",
+    "source": "",
+    "aliases": [
+      "Epoch"
+    ]
+  },
+  "batch": {
+    "definition": "A subset of training examples processed together in one forward and backward pass during training.",
+    "source": "",
+    "aliases": [
+      "Batch",
+      "mini-batch"
+    ]
+  },
+  "learning rate": {
+    "definition": "A hyperparameter that controls how much the model parameters are updated during each step of gradient descent.",
+    "source": "",
+    "aliases": [
+      "Learning Rate"
+    ]
+  },
+  "neural network": {
+    "definition": "A computational model inspired by biological neural networks, consisting of interconnected nodes (neurons) organized in layers.",
+    "source": "",
+    "aliases": [
+      "Neural Network",
+      "artificial neural network",
+      "ANN",
+      "NN",
+      "neural net",
+      "deep neural network",
+      "deep neural net",
+      "DNN"
+    ]
+  },
+  "deep learning": {
+    "definition": "A subset of machine learning using neural networks with multiple hidden layers to learn complex patterns in data.",
+    "source": "",
+    "aliases": [
+      "Deep Learning",
+      "DL"
+    ]
+  },
+  "transformer": {
+    "definition": "A neural network architecture that uses attention mechanisms to process sequential data, particularly effective for language tasks.",
+    "source": "[Vaswani et al., 2017](https://arxiv.org/abs/1706.03762)",
+    "aliases": [
+      "Transformer"
+    ]
+  },
+  "attention": {
+    "definition": "A mechanism that allows models to focus on relevant parts of the input when making predictions, computing weighted combinations of input elements.",
+    "source": "[Bahdanau et al., 2015](https://arxiv.org/abs/1409.0473)",
+    "aliases": [
+      "Attention",
+      "attention mechanism",
+      "self-attention"
+    ]
+  },
+  "embedding": {
+    "definition": "A dense vector representation of discrete objects (like words or tokens) in a continuous vector space that captures semantic relationships.",
+    "source": "",
+    "aliases": [
+      "Embedding",
+      "word embedding",
+      "embeddings",
+      "vector representation",
+      "vector embeddings"
+    ]
+  },
+  "softmax": {
+    "definition": "An activation function that converts a vector of real numbers into a probability distribution, commonly used in classification tasks.",
+    "source": "",
+    "aliases": [
+      "Softmax"
+    ]
+  },
+  "dropout": {
+    "definition": "A regularization technique that randomly sets some neurons to zero during training to prevent overfitting.",
+    "source": "[Srivastava et al., 2014](https://jmlr.org/papers/v15/srivastava14a.html)",
+    "aliases": [
+      "Dropout"
+    ]
+  },
+  "batch normalization": {
+    "definition": "A technique that normalizes inputs to each layer, accelerating training and improving model stability.",
+    "source": "[Ioffe & Szegedy, 2015](https://arxiv.org/abs/1502.03167)",
+    "aliases": [
+      "Batch Normalization",
+      "BatchNorm"
+    ]
+  },
+  "hyperparameter": {
+    "definition": "A configuration setting that controls the learning process but is not learned from data, such as learning rate or number of layers.",
+    "source": "",
+    "aliases": [
+      "Hyperparameter",
+      "hyperparameters"
+    ]
+  },
+  "optimizer": {
+    "definition": "An algorithm that updates model parameters based on computed gradients, such as SGD, Adam, or RMSprop.",
+    "source": "",
+    "aliases": [
+      "Optimizer",
+      "optimization algorithm"
+    ]
+  },
+  "fine-tuning": {
+    "definition": "The process of taking a pre-trained model and further training it on a specific task or dataset.",
+    "source": "",
+    "aliases": [
+      "Fine-tuning",
+      "fine-tune",
+      "finetuning",
+      "finetune"
+    ]
+  },
+  "pre-training": {
+    "definition": "The initial training phase where a model learns general representations from a large dataset before being adapted to specific tasks.",
+    "source": "",
+    "aliases": [
+      "Pre-training",
+      "pretraining"
+    ]
+  },
+  "foundation model": {
+    "definition": "A large-scale model trained on diverse data that serves as a base for adaptation to various downstream tasks, typically through fine-tuning or prompting.",
+    "source": "[Bommasani et al., 2021](https://arxiv.org/abs/2108.07258)",
+    "aliases": [
+      "Foundation Model",
+      "foundation models",
+      "base model"
+    ]
+  },
+  "multimodal": {
+    "definition": "Relating to AI systems that can process and understand multiple types of data (such as text, images, audio, video) simultaneously.",
+    "source": "",
+    "aliases": [
+      "Multimodal",
+      "multi-modal",
+      "multimodality"
+    ]
+  }
+}

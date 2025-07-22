@@ -578,3 +578,158 @@
 [data-theme='dark'] .alignButton:focus {
   outline-color: var(--atlas-primary-lighter, #74c0fc);
 }
+
+/* src/components/Settings/SettingsDropdown.module.css - Added toggle styles */
+
+/* ... keep all existing styles ... */
+
+/* Simple Toggle Group - Single line, no borders */
+.simpleToggleGroup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.simpleToggle {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.simpleToggle:focus {
+  outline: 2px solid var(--atlas-primary, #1971c2);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+[data-theme='dark'] .simpleToggle:focus {
+  outline-color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+/* Toggle Slider */
+.toggleSlider {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: var(--atlas-gray-300, #cbd5e1);
+  border-radius: 12px;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.simpleToggle.active .toggleSlider {
+  background: var(--atlas-primary, #1971c2);
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.simpleToggle.active .toggleThumb {
+  transform: translateX(20px);
+}
+
+/* Toggle Label */
+.toggleLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--atlas-text, #334155);
+  transition: color 0.2s ease;
+}
+
+.toggleButton.active .toggleLabel {
+  color: var(--atlas-primary, #1971c2);
+}
+
+/* Setting Description */
+.settingDescription {
+  font-size: 12px;
+  color: var(--atlas-text-secondary, #6c757d);
+  line-height: 1.4;
+  margin-left: 4px;
+}
+
+/* Dark Mode for Toggle */
+[data-theme='dark'] .toggleButton {
+  border-color: var(--atlas-border-color, #334155);
+}
+
+[data-theme='dark'] .toggleButton:hover {
+  border-color: var(--atlas-primary-lighter, #74c0fc);
+  background: rgba(116, 192, 252, 0.1);
+}
+
+[data-theme='dark'] .toggleButton.active {
+  border-color: var(--atlas-primary-lighter, #74c0fc);
+  background: rgba(116, 192, 252, 0.15);
+}
+
+[data-theme='dark'] .toggleSlider {
+  background: var(--atlas-gray-600, #475569);
+}
+
+[data-theme='dark'] .simpleToggle.active .toggleSlider {
+  background: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .toggleLabel {
+  color: var(--atlas-text, #e2e8f0);
+}
+
+[data-theme='dark'] .toggleButton.active .toggleLabel {
+  color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+[data-theme='dark'] .settingDescription {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Focus state for toggle */
+.toggleButton:focus {
+  outline: 2px solid var(--atlas-primary, #1971c2);
+  outline-offset: 2px;
+}
+
+[data-theme='dark'] .toggleButton:focus {
+  outline-color: var(--atlas-primary-lighter, #74c0fc);
+}
+
+/* Responsive adjustments for toggle */
+@media (max-width: 480px) {
+  .toggleButton {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+  
+  .toggleSlider {
+    width: 40px;
+    height: 22px;
+  }
+  
+  .toggleThumb {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .toggleButton.active .toggleThumb {
+    transform: translateX(18px);
+  }
+  
+  .toggleLabel {
+    font-size: 13px;
+  }
+  
+  .settingDescription {
+    font-size: 11px;
+  }
+}

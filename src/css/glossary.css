@@ -1,0 +1,93 @@
+/* src/css/glossary.css - Glossary styling and JavaScript initialization */
+
+/* Glossary term styling */
+.atlas-glossary-term {
+  text-decoration: underline;
+  text-decoration-color: var(--atlas-primary-light, #74c0fc);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  text-decoration-style: dotted;
+  cursor: help;
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
+}
+
+.atlas-glossary-term:hover {
+  text-decoration-color: var(--atlas-primary, #1971c2);
+  text-decoration-style: solid;
+  color: var(--atlas-primary-darker, #1864ab);
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .atlas-glossary-term {
+  text-decoration-color: var(--atlas-primary-light, #74c0fc);
+}
+
+[data-theme='dark'] .atlas-glossary-term:hover {
+  text-decoration-color: var(--atlas-primary-lighter, #a5d8ff);
+  color: var(--atlas-primary-lighter, #a5d8ff);
+}
+
+/* Initialize glossary tooltips when page loads */
+document.addEventListener('DOMContentLoaded', function() {
+  // Wait for Tippy to be available
+  if (typeof window.tippy !== 'undefined') {
+    initializeGlossaryTooltips();
+  } else {
+    // Wait a bit for Tippy to load
+    setTimeout(() => {
+      if (typeof window.tippy !== 'undefined') {
+        initializeGlossaryTooltips();
+      }
+    }, 1000);
+  }
+});
+
+function initializeGlossaryTooltips() {
+  const glossaryTerms = document.querySelectorAll('.atlas-glossary-term');
+  
+  glossaryTerms.forEach(term => {
+    const termName = term.dataset.term;
+    const definition = term.dataset.definition;
+    const glossaryData = term.dataset.glossary ? JSON.parse(term.dataset.glossary) : {};
+    
+    // Create tooltip content
+    let content = `<div style="max-width: 300px;">
+      <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #ffffff; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 0.25rem;">
+        ${termName}
+      </div>
+      <div style="font-size: 0.8rem; line-height: 1.4; color: rgba(255,255,255,0.95);">
+        ${definition}
+      </div>`;
+    
+    // Add category if available
+    if (glossaryData.category) {
+      content += `<div style="font-size: 0.75rem; color: rgba(255,255,255,0.8); font-style: italic; margin-top: 0.5rem;">
+        Category: ${glossaryData.category}
+      </div>`;
+    }
+    
+    // Add source if available
+    if (glossaryData.source) {
+      content += `<div style="font-size: 0.7rem; color: rgba(255,255,255,0.7); margin-top: 0.25rem;">
+        Source: ${glossaryData.source}
+      </div>`;
+    }
+    
+    content += '</div>';
+    
+    // Initialize Tippy tooltip
+    window.tippy(term, {
+      content: content,
+      allowHTML: true,
+      theme: 'atlas',
+      placement: 'top',
+      animation: 'perspective-extreme',
+      duration: [200, 150],
+      delay: [500, 0],
+      hideOnClick: false,
+      interactive: false,
+      maxWidth: 350,
+      arrow: true
+    });
+  });
+}

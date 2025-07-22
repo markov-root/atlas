@@ -1,0 +1,22 @@
+{
+  "mesa-optimizer": {
+    "definition": "A mesa-optimizer is a learned algorithm that is itself an optimizer. A mesa-objective is the objective of a mesa-optimizer.",
+    "source": "([Hubinger et al., 2019](https://intelligence.org/learned-optimization/))",
+    "aliases": ["mesa optimizer", "mesa optimizers", "mesa-optimizers", "Mesa-Optimizer", "Mesa-Optimizers", "Mesa Optimizer", "Mesa Optimizers"]
+  },
+  "mesa-objective": {
+    "definition": "The objective of a mesa-optimizer.",
+    "source": "([Hubinger et al., 2019](https://intelligence.org/learned-optimization/))",
+    "aliases": ["mesa objective", "mesa objectives", "mesa-objectives", "Mesa-Objective", "Mesa-Objectives", "Mesa Objective", "Mesa Objectives"]
+  },
+  "AI": {
+    "definition": "Artificial Intelligence - the simulation of human intelligence processes by machines, especially computer systems.",
+    "source": "Russell & Norvig, 2020",
+    "aliases": ["artificial intelligence", "Artificial Intelligence", "AI systems", "AI system"]
+  },
+  "machine learning": {
+    "definition": "A subset of artificial intelligence that provides systems the ability to automatically learn and improve from experience without being explicitly programmed.",
+    "source": "Mitchell, 1997",
+    "aliases": ["Machine Learning", "ML", "machine-learning", "Machine-Learning"]
+  }
+}

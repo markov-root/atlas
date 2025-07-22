@@ -20,3 +20,25 @@ Hosted at - https://ai-safety-atlas.com/
  - [ ] feature: new logo
  - [ ] donate button + link on topbar
  - [ ] design: algolia search theme integration
+
+# To Add to Glossary
+
+ - Sources for everything
+ - Few-shot learning
+ - Zero-shot Learning
+ - goal misgeneralization
+ - alignment faking
+ - sleeper agent
+ - scheming
+ - self-correction
+ - multi-shot learning
+ - LRMs, reasoning models
+ - theory of mind
+ - meta cognition
+ - connectionism
+ - gofai
+ - functionalism
+ - epoch
+ - natural language
+ - foundation model
+ - frontier model
