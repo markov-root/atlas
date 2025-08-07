@@ -1,4 +1,4 @@
-// src/components/FloatingActions/FloatingActionsRow.jsx
+// src/components/FloatingActions/FloatingActionsRow.jsx - Clean version with minimal logging
 import React, { useState, useRef, useEffect } from 'react';
 import { useLocation } from '@docusaurus/router';
 import SettingsDropdown from '../Settings/SettingsDropdown';
@@ -22,42 +22,51 @@ export default function FloatingActionsRow() {
   const settingsWrapperRef = useRef(null);
   const location = useLocation();
 
-  // TTS availability check - async
+  // TTS availability check - async with error boundary
   useEffect(() => {
+    let isMounted = true;
+    
     async function checkTtsAvailability() {
       setTtsLoading(true);
-      
-      console.log(`🔍 Checking TTS for current page: ${location.pathname}`);
       
       try {
         const result = await buildTtsFile(location);
         
-        console.log(`🎵 TTS check result for ${location.pathname}:`, result);
+        if (!isMounted) return;
         
         setTtsData(result);
         
-        debugTtsFiles('FloatingActionsRow (async)', {
-          pathname: location.pathname,
-          pageInfo: result.pageInfo,
-          asyncResult: result
+        // Only log once per page load
+        console.log(`🎵 TTS detection result for ${location.pathname}:`, {
+          isActive: result.isActive,
+          url: result.url,
+          pageType: result.pageInfo?.pageType
         });
+        
       } catch (error) {
-        console.error(`❌ TTS availability check failed for ${location.pathname}:`, error);
-        // Set to inactive if check fails
+        console.error(`❌ TTS detection failed for ${location.pathname}:`, error);
+        if (!isMounted) return;
+        
         setTtsData({
-          type: 'none',
+          type: 'error',
           url: null,
           isActive: false,
           filename: null,
           pageInfo: null
         });
       } finally {
-        setTtsLoading(false);
+        if (isMounted) {
+          setTtsLoading(false);
+        }
       }
     }
     
     checkTtsAvailability();
-  }, [location.pathname]);
+    
+    return () => {
+      isMounted = false;
+    };
+  }, [location.pathname]); // Only re-run when pathname changes
 
   // Monitor scroll position and user activity for auto-hide
   useEffect(() => {
@@ -66,13 +75,8 @@ export default function FloatingActionsRow() {
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       
-      // Show scroll to top if scrolled down more than 300px
       setShowScrollToTop(scrollTop > 300);
-      
-      // Check if we're near the bottom (within 100px)
       setIsAtBottom(scrollTop + windowHeight >= documentHeight - 100);
-      
-      // Reset activity timer on scroll
       setLastActivity(Date.now());
       setIsVisible(true);
     };
@@ -105,7 +109,7 @@ export default function FloatingActionsRow() {
       const now = Date.now();
       const timeSinceActivity = now - lastActivity;
       
-      if (timeSinceActivity > 3000 && !isSettingsOpen) { // 3 seconds
+      if (timeSinceActivity > 3000 && !isSettingsOpen) {
         setIsVisible(false);
       }
     };
@@ -119,7 +123,7 @@ export default function FloatingActionsRow() {
     };
   }, [lastActivity, isSettingsOpen]);
 
-  // Backup click-outside handler for settings dropdown
+  // Click-outside handler for settings dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (isSettingsOpen && 
@@ -142,7 +146,6 @@ export default function FloatingActionsRow() {
 
   const handleSettingsToggle = () => {
     setIsSettingsOpen(!isSettingsOpen);
-    // Reset activity when opening settings to prevent auto-hide
     if (!isSettingsOpen) {
       setLastActivity(Date.now());
     }
@@ -166,21 +169,23 @@ export default function FloatingActionsRow() {
     });
   };
 
-  // Handle audio state changes from TTS (for coordination with other audio)
+  // Handle audio state changes from TTS
   const handleAudioStateChange = (audioInfo) => {
-    console.log('🎵 Audio state change from TTS:', audioInfo);
-    // This is where we could coordinate with other audio components
-    // For now, just log - the coordination happens within the TTS component
+    // Audio coordination happens within the TTS component
   };
 
-  // Determine if audio button should be shown
-  const shouldShowAudioButton = () => {
-    if (!ttsData || ttsLoading) return false;
+  // Determine if audio button should be shown - MEMOIZED to prevent re-renders
+  const shouldShowAudioButton = React.useMemo(() => {
+    if (!ttsData || ttsLoading) {
+      return false;
+    }
     
     const pageInfo = ttsData.pageInfo;
     const isChapterPage = pageInfo?.pageType === 'chapter' || pageInfo?.pageType === 'section';
     
-    if (!isChapterPage) return false;
+    if (!isChapterPage) {
+      return false;
+    }
     
     // Check if we have TTS
     const hasTts = ttsData.isActive;
@@ -190,17 +195,9 @@ export default function FloatingActionsRow() {
     const audioFiles = chapterNumber ? buildAudioFiles({}, chapterNumber) : {};
     const hasPodcast = hasAudioFiles(audioFiles);
     
-    console.log('🎵 Audio button visibility check:', {
-      isChapterPage,
-      hasTts,
-      hasPodcast,
-      chapterNumber,
-      shouldShow: hasTts || hasPodcast
-    });
-    
     // Show button if we have either TTS or podcast
     return hasTts || hasPodcast;
-  };
+  }, [ttsData, ttsLoading]);
 
   const getChapterNumber = () => {
     if (!ttsData?.pageInfo) return null;
@@ -211,8 +208,8 @@ export default function FloatingActionsRow() {
     <div className={`${styles.container} ${isVisible ? styles.visible : styles.hidden}`}>
       <div className={styles.actionsRow}>
         
-        {/* Audio Button - Above settings, show when TTS OR chapter audio available */}
-        {shouldShowAudioButton() && (
+        {/* Audio Button */}
+        {shouldShowAudioButton && (
           <TTSButton 
             ttsData={ttsData}
             chapterNumber={getChapterNumber()}
@@ -242,7 +239,7 @@ export default function FloatingActionsRow() {
             </button>
           </ActionButtonTooltip>
 
-          {/* Settings Dropdown - positioned relative to settings button */}
+          {/* Settings Dropdown */}
           {isSettingsOpen && (
             <SettingsDropdown
               isOpen={isSettingsOpen}
@@ -252,7 +249,7 @@ export default function FloatingActionsRow() {
           )}
         </div>
 
-        {/* Scroll to Top Button - Only show when scrolled down */}
+        {/* Scroll to Top Button */}
         {showScrollToTop && (
           <ActionButtonTooltip 
             content="Scroll to top"
@@ -272,7 +269,7 @@ export default function FloatingActionsRow() {
           </ActionButtonTooltip>
         )}
 
-        {/* Scroll to Bottom Button - Only show when not at bottom */}
+        {/* Scroll to Bottom Button */}
         {!isAtBottom && (
           <ActionButtonTooltip 
             content="Scroll to bottom"

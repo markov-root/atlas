@@ -1,4 +1,4 @@
-// src/components/TTS/TTSButton.jsx
+// src/components/TTS/TTSButton.jsx - Clean working version
 import React, { useState, useRef, useEffect } from 'react';
 import TTSDropdown from './TTSDropdown';
 import { ActionButtonTooltip } from '../UI/Tooltip';
@@ -14,6 +14,10 @@ export default function TTSButton({ ttsData, chapterNumber, onAudioStateChange }
   const [podcastCurrentTime, setPodcastCurrentTime] = useState(0);
   const [podcastDuration, setPodcastDuration] = useState(0);
   
+  // Persistent audio settings - maintain across dropdown open/close
+  const [volume, setVolume] = useState(1);
+  const [playbackRate, setPlaybackRate] = useState(1);
+  
   const buttonRef = useRef(null);
   const audioRef = useRef(null);
   const podcastAudioRef = useRef(null);
@@ -23,58 +27,56 @@ export default function TTSButton({ ttsData, chapterNumber, onAudioStateChange }
   const hasTts = !!(ttsData && ttsData.isActive && ttsData.url);
   const ttsUrl = hasTts ? ttsData.url : null;
   
-  // Build chapter audio files
-  const audioFiles = chapterNumber ? buildAudioFiles({}, chapterNumber) : {};
-  const hasPodcast = hasAudioFiles(audioFiles);
-  const podcastUrl = hasPodcast ? getAudioUrl(chapterNumber, audioFiles.podcast) : null;
+  // Build chapter audio files - MEMOIZED to prevent infinite re-renders
+  const audioFiles = React.useMemo(() => {
+    return chapterNumber ? buildAudioFiles({}, chapterNumber) : {};
+  }, [chapterNumber]);
+  
+  const hasPodcast = React.useMemo(() => {
+    return hasAudioFiles(audioFiles);
+  }, [audioFiles]);
+  
+  const podcastUrl = React.useMemo(() => {
+    return hasPodcast ? getAudioUrl(chapterNumber, audioFiles.podcast) : null;
+  }, [hasPodcast, chapterNumber, audioFiles.podcast]);
   
   // Determine if button should be available (either TTS or podcast exists)
   const hasAnyAudio = hasTts || hasPodcast;
   
-  // Determine which icon to show: podcast.svg when podcast playing, tts.svg otherwise
+  // Determine which icon to show: podcast.svg when podcast playing, audio.svg otherwise
   const getCurrentIcon = () => {
     if (isPlayingPodcast) return '/img/icons/podcast.svg';
-    return '/img/icons/audio.svg'; // Default to TTS icon
+    return '/img/icons/audio.svg';
   };
-
-  console.log('🎵 TTSButton state:', { 
-    hasTts, 
-    hasPodcast, 
-    hasAnyAudio, 
-    isPlayingTts, 
-    isPlayingPodcast, 
-    chapterNumber 
-  });
 
   // TTS Audio element setup
   useEffect(() => {
     if (!hasTts || !ttsUrl) {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
       return;
     }
 
     // Create TTS audio element
     const audio = new Audio(ttsUrl);
     audio.preload = 'metadata';
+    audio.volume = volume;
+    audio.playbackRate = playbackRate;
     audioRef.current = audio;
 
     const updateTime = () => setCurrentTime(audio.currentTime);
     const updateDuration = () => setDuration(audio.duration);
-    const handleEnded = () => {
-      console.log('🎵 TTS: Audio ended');
-      setIsPlayingTts(false);
-    };
+    const handleEnded = () => setIsPlayingTts(false);
     const handlePlay = () => {
-      console.log('🎵 TTS: Audio started playing');
       setIsPlayingTts(true);
       // Pause podcast if it's playing
       if (podcastAudioRef.current && !podcastAudioRef.current.paused) {
         podcastAudioRef.current.pause();
       }
     };
-    const handlePause = () => {
-      console.log('🎵 TTS: Audio paused');
-      setIsPlayingTts(false);
-    };
+    const handlePause = () => setIsPlayingTts(false);
     const handleError = (e) => {
       console.error('🎵 TTS: Audio error:', e);
       setIsPlayingTts(false);
@@ -97,37 +99,36 @@ export default function TTSButton({ ttsData, chapterNumber, onAudioStateChange }
       audio.pause();
       audio.src = '';
     };
-  }, [hasTts, ttsUrl]);
+  }, [hasTts, ttsUrl]); // Only depend on TTS availability, not settings
 
   // Podcast Audio element setup
   useEffect(() => {
     if (!hasPodcast || !podcastUrl) {
+      if (podcastAudioRef.current) {
+        podcastAudioRef.current.pause();
+        podcastAudioRef.current = null;
+      }
       return;
     }
 
     // Create podcast audio element
     const audio = new Audio(podcastUrl);
     audio.preload = 'metadata';
+    audio.volume = volume;
+    audio.playbackRate = playbackRate;
     podcastAudioRef.current = audio;
 
     const updateTime = () => setPodcastCurrentTime(audio.currentTime);
     const updateDuration = () => setPodcastDuration(audio.duration);
-    const handleEnded = () => {
-      console.log('🎵 Podcast: Audio ended');
-      setIsPlayingPodcast(false);
-    };
+    const handleEnded = () => setIsPlayingPodcast(false);
     const handlePlay = () => {
-      console.log('🎵 Podcast: Audio started playing');
       setIsPlayingPodcast(true);
       // Pause TTS if it's playing
       if (audioRef.current && !audioRef.current.paused) {
         audioRef.current.pause();
       }
     };
-    const handlePause = () => {
-      console.log('🎵 Podcast: Audio paused');
-      setIsPlayingPodcast(false);
-    };
+    const handlePause = () => setIsPlayingPodcast(false);
     const handleError = (e) => {
       console.error('🎵 Podcast: Audio error:', e);
       setIsPlayingPodcast(false);
@@ -150,7 +151,19 @@ export default function TTSButton({ ttsData, chapterNumber, onAudioStateChange }
       audio.pause();
       audio.src = '';
     };
-  }, [hasPodcast, podcastUrl]);
+  }, [hasPodcast, podcastUrl]); // Only depend on podcast availability, not settings
+
+  // Update audio settings when they change
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+      audioRef.current.playbackRate = playbackRate;
+    }
+    if (podcastAudioRef.current) {
+      podcastAudioRef.current.volume = volume;
+      podcastAudioRef.current.playbackRate = playbackRate;
+    }
+  }, [volume, playbackRate]);
 
   // Handle clicking outside to close dropdown
   useEffect(() => {
@@ -174,12 +187,21 @@ export default function TTSButton({ ttsData, chapterNumber, onAudioStateChange }
   }, [isDropdownOpen]);
 
   const handleButtonClick = () => {
-    if (!hasAnyAudio) return; // Do nothing if no audio available
+    if (!hasAnyAudio) return;
     setIsDropdownOpen(!isDropdownOpen);
   };
 
   const handleDropdownClose = () => {
     setIsDropdownOpen(false);
+  };
+
+  // Audio control handlers
+  const handleVolumeChange = (newVolume) => {
+    setVolume(newVolume);
+  };
+
+  const handlePlaybackRateChange = (newRate) => {
+    setPlaybackRate(newRate);
   };
 
   // TTS audio control functions
@@ -188,6 +210,8 @@ export default function TTSButton({ ttsData, chapterNumber, onAudioStateChange }
     isPlaying: isPlayingTts,
     currentTime,
     duration,
+    volume,
+    playbackRate,
     play: () => {
       if (audioRef.current && !isPlayingTts) {
         audioRef.current.play().catch(error => {
@@ -212,16 +236,8 @@ export default function TTSButton({ ttsData, chapterNumber, onAudioStateChange }
         audioRef.current.currentTime = Math.max(0, Math.min(duration, time));
       }
     },
-    setVolume: (volume) => {
-      if (audioRef.current) {
-        audioRef.current.volume = Math.max(0, Math.min(1, volume));
-      }
-    },
-    setPlaybackRate: (rate) => {
-      if (audioRef.current) {
-        audioRef.current.playbackRate = Math.max(0.25, Math.min(4, rate));
-      }
-    }
+    setVolume: handleVolumeChange,
+    setPlaybackRate: handlePlaybackRateChange
   } : null;
 
   // Podcast audio control functions
@@ -230,6 +246,8 @@ export default function TTSButton({ ttsData, chapterNumber, onAudioStateChange }
     isPlaying: isPlayingPodcast,
     currentTime: podcastCurrentTime,
     duration: podcastDuration,
+    volume,
+    playbackRate,
     play: () => {
       if (podcastAudioRef.current && !isPlayingPodcast) {
         podcastAudioRef.current.play().catch(error => {
@@ -254,16 +272,8 @@ export default function TTSButton({ ttsData, chapterNumber, onAudioStateChange }
         podcastAudioRef.current.currentTime = Math.max(0, Math.min(podcastDuration, time));
       }
     },
-    setVolume: (volume) => {
-      if (podcastAudioRef.current) {
-        podcastAudioRef.current.volume = Math.max(0, Math.min(1, volume));
-      }
-    },
-    setPlaybackRate: (rate) => {
-      if (podcastAudioRef.current) {
-        podcastAudioRef.current.playbackRate = Math.max(0.25, Math.min(4, rate));
-      }
-    }
+    setVolume: handleVolumeChange,
+    setPlaybackRate: handlePlaybackRateChange
   } : null;
 
   // Chapter audio data for dropdown
@@ -317,6 +327,8 @@ export default function TTSButton({ ttsData, chapterNumber, onAudioStateChange }
           ttsData={ttsData}
           audioControls={ttsAudioControls}
           chapterAudio={chapterAudio}
+          initialVolume={volume}
+          initialPlaybackRate={playbackRate}
         />
       )}
     </div>
