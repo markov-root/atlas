@@ -4,10 +4,21 @@ import { getTtsDisplayTitle } from '../../utils/ttsUtils';
 import { getAudioUrl, getTrackDisplayName } from '../../utils/audioUtils';
 import styles from './TTSDropdown.module.css';
 
-export default function TTSDropdown({ isOpen, onClose, triggerRef, ttsData, audioControls, chapterAudio }) {
+export default function TTSDropdown({ 
+  isOpen, 
+  onClose, 
+  triggerRef, 
+  ttsData, 
+  audioControls, 
+  chapterAudio,
+  initialVolume = 1,
+  initialPlaybackRate = 1
+}) {
   const dropdownRef = useRef(null);
-  const [volume, setVolume] = useState(1);
-  const [playbackRate, setPlaybackRate] = useState(1);
+  
+  // Initialize state with persistent values from parent
+  const [volume, setVolume] = useState(initialVolume);
+  const [playbackRate, setPlaybackRate] = useState(initialPlaybackRate);
   
   // Determine available tabs
   const hasTts = !!(ttsData && ttsData.isActive && ttsData.url);
@@ -16,16 +27,15 @@ export default function TTSDropdown({ isOpen, onClose, triggerRef, ttsData, audi
   // Default to TTS tab if available, otherwise Podcast
   const [activeTab, setActiveTab] = useState(hasTts ? 'tts' : 'podcast');
   
-  // Use appropriate audio controls based on active tab
-  const currentAudioControls = activeTab === 'tts' ? audioControls : chapterAudio.audioControls;
+  // Sync with parent's persistent state when dropdown opens
+  useEffect(() => {
+    setVolume(initialVolume);
+    setPlaybackRate(initialPlaybackRate);
+  }, [initialVolume, initialPlaybackRate, isOpen]);
   
-  console.log('🎵 TTSDropdown render:', { 
-    hasTts, 
-    hasPodcast, 
-    activeTab, 
-    currentAudioControls: !!currentAudioControls 
-  });
-
+  // Use appropriate audio controls based on active tab
+  const currentAudioControls = activeTab === 'tts' ? audioControls : chapterAudio?.audioControls;
+  
   // Handle clicking outside to close dropdown
   useEffect(() => {
     function handleClickOutside(event) {
@@ -38,12 +48,10 @@ export default function TTSDropdown({ isOpen, onClose, triggerRef, ttsData, audi
         onClose();
       }
     }
-
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('touchstart', handleClickOutside);
     }
-
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('touchstart', handleClickOutside);
@@ -57,11 +65,9 @@ export default function TTSDropdown({ isOpen, onClose, triggerRef, ttsData, audi
         onClose();
       }
     }
-
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
     }
-
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
@@ -69,7 +75,16 @@ export default function TTSDropdown({ isOpen, onClose, triggerRef, ttsData, audi
 
   if (!isOpen || !currentAudioControls) return null;
 
-  const { isPlaying, currentTime, duration, play, pause, stop, seek, setVolume: setAudioVolume, setPlaybackRate: setAudioPlaybackRate } = currentAudioControls;
+  const { 
+    isPlaying, 
+    currentTime, 
+    duration, 
+    play, 
+    pause, 
+    seek, 
+    setVolume: setAudioVolume, 
+    setPlaybackRate: setAudioPlaybackRate 
+  } = currentAudioControls;
 
   const formatTime = (time) => {
     if (!time || !isFinite(time)) return '0:00';
@@ -141,7 +156,7 @@ export default function TTSDropdown({ isOpen, onClose, triggerRef, ttsData, audi
     if (activeTab === 'tts') {
       return getTtsDisplayTitle(ttsData);
     } else {
-      return `Chapter ${chapterAudio?.chapterNumber || '?'} Podcast`;
+      return `Chapter ${chapterAudio?.chapterNumber || '?'}`;
     }
   };
 
@@ -152,30 +167,17 @@ export default function TTSDropdown({ isOpen, onClose, triggerRef, ttsData, audi
       role="menu"
       aria-label="Audio controls"
     >
-      {/* Header with tabs */}
+      {/* Clean Header - No stop button */}
       <div className={styles.header}>
         <div className={styles.headerContent}>
-          <img 
-            src={activeTab === 'tts' ? "/img/icons/tts.svg" : "/img/icons/podcast.svg"}
-            alt="" 
-            className={styles.headerIcon}
-          />
-          <div className={styles.headerText}>
+          <div className={styles.headerInfo}>
             <h3 className={styles.title}>Audio Player</h3>
             <span className={styles.subtitle}>{getCurrentTabTitle()}</span>
           </div>
         </div>
-        <button 
-          onClick={stop}
-          className={styles.stopButton}
-          aria-label="Stop audio"
-          title="Stop"
-        >
-          <img src="/img/audio_player/stop.svg" alt="" className={styles.stopIcon} />
-        </button>
       </div>
 
-      {/* Tab Navigation */}
+      {/* Sleek Tab Navigation */}
       <div className={styles.tabNavigation}>
         <button
           onClick={() => setActiveTab('tts')}
@@ -183,7 +185,7 @@ export default function TTSDropdown({ isOpen, onClose, triggerRef, ttsData, audi
           disabled={!hasTts}
         >
           <img src="/img/icons/tts.svg" alt="" className={styles.tabIcon} />
-          Read Aloud
+          <span className={styles.tabLabel}>Read Aloud</span>
         </button>
         <button
           onClick={() => setActiveTab('podcast')}
@@ -191,18 +193,22 @@ export default function TTSDropdown({ isOpen, onClose, triggerRef, ttsData, audi
           disabled={!hasPodcast}
         >
           <img src="/img/icons/podcast.svg" alt="" className={styles.tabIcon} />
-          Podcast
+          <span className={styles.tabLabel}>Podcast</span>
         </button>
       </div>
 
       <div className={styles.content}>
-        {/* Progress Bar */}
+        {/* Clean Progress Section */}
         <div className={styles.progressSection}>
           <div className={styles.progressContainer} onClick={handleProgressClick}>
-            <div className={styles.progressBar}>
+            <div className={styles.progressTrack}>
               <div 
                 className={styles.progressFill}
                 style={{ width: `${duration ? (currentTime / duration) * 100 : 0}%` }}
+              />
+              <div 
+                className={styles.progressThumb}
+                style={{ left: `${duration ? (currentTime / duration) * 100 : 0}%` }}
               />
             </div>
           </div>
@@ -211,108 +217,102 @@ export default function TTSDropdown({ isOpen, onClose, triggerRef, ttsData, audi
           </div>
         </div>
 
-        {/* Main Controls */}
-        <div className={styles.controlsSection}>
-          <div className={styles.playbackControls}>
-            <button 
-              onClick={() => skipTime(-10)} 
-              className={styles.controlButton}
-              aria-label="Rewind 10 seconds"
-              title="Rewind 10s"
-            >
-              <img src="/img/audio_player/rewind_10_seconds.svg" alt="" className={styles.controlIcon} />
-            </button>
-            
-            <button 
-              onClick={isPlaying ? pause : play} 
-              className={styles.playButton}
-              aria-label={isPlaying ? "Pause" : "Play"}
-              title={isPlaying ? "Pause" : "Play"}
-            >
-              <img 
-                src={isPlaying ? "/img/audio_player/pause.svg" : "/img/audio_player/play.svg"} 
-                alt={isPlaying ? "Pause" : "Play"} 
-                className={styles.playIcon} 
-              />
-            </button>
-            
-            <button 
-              onClick={() => skipTime(10)} 
-              className={styles.controlButton}
-              aria-label="Forward 10 seconds"
-              title="Forward 10s"
-            >
-              <img src="/img/audio_player/forward_10_seconds.svg" alt="" className={styles.controlIcon} />
-            </button>
-          </div>
+        {/* Main Playback Controls - Centered and clean */}
+        <div className={styles.playbackSection}>
+          <button 
+            onClick={() => skipTime(-10)} 
+            className={styles.skipButton}
+            aria-label="Rewind 10 seconds"
+            title="Rewind 10s"
+          >
+            <img src="/img/audio_player/rewind_10_seconds.svg" alt="" className={styles.skipIcon} />
+          </button>
+          
+          <button 
+            onClick={isPlaying ? pause : play} 
+            className={styles.playButton}
+            aria-label={isPlaying ? "Pause" : "Play"}
+            title={isPlaying ? "Pause" : "Play"}
+          >
+            <img 
+              src={isPlaying ? "/img/audio_player/pause.svg" : "/img/audio_player/play.svg"} 
+              alt={isPlaying ? "Pause" : "Play"} 
+              className={styles.playIcon} 
+            />
+          </button>
+          
+          <button 
+            onClick={() => skipTime(10)} 
+            className={styles.skipButton}
+            aria-label="Forward 10 seconds"
+            title="Forward 10s"
+          >
+            <img src="/img/audio_player/forward_10_seconds.svg" alt="" className={styles.skipIcon} />
+          </button>
         </div>
 
-        {/* Settings Controls */}
-        <div className={styles.settingsSection}>
+        {/* Compact Settings Row - Fixed layout */}
+        <div className={styles.settingsRow}>
           {/* Speed Control */}
-          <div className={styles.settingGroup}>
-            <div className={styles.settingLabel}>
-              <img src="/img/audio_player/speed.svg" alt="" className={styles.settingIcon} />
+          <div className={styles.compactControl}>
+            <div className={styles.controlLabel}>
+              <img src="/img/audio_player/speed.svg" alt="" className={styles.controlIcon} />
               <span className={styles.labelText}>Speed</span>
             </div>
-            <div className={styles.sliderGroup}>
-              <div className={styles.sliderWrapper}>
-                <input
-                  type="range"
-                  min="0.5"
-                  max="2"
-                  step="0.25"
-                  value={playbackRate}
-                  onChange={handlePlaybackRateChange}
-                  className={styles.slider}
-                  aria-label="Playback speed"
-                />
-                <div 
-                  className={styles.sliderFill}
-                  style={{ width: `${((playbackRate - 0.5) / (2 - 0.5)) * 100}%` }}
-                />
-              </div>
-              <span className={styles.valueLabel}>{playbackRate}×</span>
+            <div className={styles.sliderContainer}>
+              <input
+                type="range"
+                min="0.5"
+                max="2"
+                step="0.25"
+                value={playbackRate}
+                onChange={handlePlaybackRateChange}
+                className={styles.slider}
+                aria-label="Playback speed"
+              />
+              <div 
+                className={styles.sliderTrack}
+                style={{ width: `${((playbackRate - 0.5) / (2 - 0.5)) * 100}%` }}
+              />
             </div>
+            <span className={styles.valueDisplay}>{playbackRate}×</span>
           </div>
 
           {/* Volume Control */}
-          <div className={styles.settingGroup}>
-            <div className={styles.settingLabel}>
-              <img src={getVolumeIcon()} alt="" className={styles.settingIcon} />
+          <div className={styles.compactControl}>
+            <div className={styles.controlLabel}>
+              <img src={getVolumeIcon()} alt="" className={styles.controlIcon} />
               <span className={styles.labelText}>Volume</span>
             </div>
-            <div className={styles.sliderGroup}>
-              <div className={styles.sliderWrapper}>
-                <input
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.1"
-                  value={volume}
-                  onChange={handleVolumeChange}
-                  className={styles.slider}
-                  aria-label="Volume"
-                />
-                <div 
-                  className={styles.sliderFill}
-                  style={{ width: `${volume * 100}%` }}
-                />
-              </div>
-              <span className={styles.valueLabel}>{Math.round(volume * 100)}%</span>
+            <div className={styles.sliderContainer}>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.1"
+                value={volume}
+                onChange={handleVolumeChange}
+                className={styles.slider}
+                aria-label="Volume"
+              />
+              <div 
+                className={styles.sliderTrack}
+                style={{ width: `${volume * 100}%` }}
+              />
             </div>
+            <span className={styles.valueDisplay}>{Math.round(volume * 100)}%</span>
           </div>
 
-          {/* Download Button */}
+          {/* Download Button - Separate section */}
           <div className={styles.downloadSection}>
             <button 
               onClick={handleDownload}
               className={styles.downloadButton}
               aria-label={`Download ${activeTab === 'tts' ? 'TTS' : 'podcast'} audio`}
-              title="Download"
+              title="Download Audio"
             >
               <img src="/img/audio_player/download.svg" alt="" className={styles.downloadIcon} />
-              <span className={styles.downloadLabel}>Download</span>
+              <span>Download</span>
             </button>
           </div>
         </div>

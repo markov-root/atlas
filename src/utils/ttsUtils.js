@@ -1,4 +1,4 @@
-// src/utils/ttsUtils.js - Fresh version with proper HTML rejection
+// src/utils/ttsUtils.js - Fixed version with robust TTS detection
 
 /**
  * Extract current page info from location pathname
@@ -42,23 +42,23 @@ export function getCurrentPageInfo(location) {
 }
 
 /**
- * Get possible TTS filenames for the current page
+ * Get the exact TTS filename for the current page - STATIC NAMING CONVENTION
  * @param {string} chapterNumber - The chapter number
  * @param {string|null} sectionNumber - The section number (null for chapter index)
- * @returns {string[]} Array of possible TTS filenames to try
+ * @returns {string} The expected TTS filename
  */
-function getPossibleTtsFilenames(chapterNumber, sectionNumber) {
+function getExpectedTtsFilename(chapterNumber, sectionNumber) {
   if (sectionNumber) {
-    // For sections like /chapters/02/01 -> try 01.mp3
-    return [`${sectionNumber}.mp3`];
+    // For sections like /chapters/02/01 -> 01.mp3
+    return `${sectionNumber.padStart(2, '0')}.mp3`;
   } else {
-    // For chapter index like /chapters/02/ -> try index.mp3
-    return ['index.mp3'];
+    // For chapter index like /chapters/02/ -> index.mp3
+    return 'index.mp3';
   }
 }
 
 /**
- * Check if a TTS file exists - STRICT version that rejects HTML
+ * Check if a TTS file exists - SIMPLIFIED VERSION copying PDF detection pattern
  * @param {string|number} chapterNumber - The chapter number
  * @param {string} filename - The TTS filename to check
  * @returns {Promise<{exists: boolean, filename: string}>} Whether the file exists and its filename
@@ -66,110 +66,74 @@ function getPossibleTtsFilenames(chapterNumber, sectionNumber) {
 async function checkTtsExists(chapterNumber, filename) {
   const ttsUrl = `/chapters/${chapterNumber.toString().padStart(2, '0')}/tts/${filename}`;
   
-  console.log(`🔍 NEW TTS CHECK: ${ttsUrl}`);
+  console.log(`🔍 TTS CHECK: ${ttsUrl}`);
   
   try {
-    // Try HEAD request first
+    // Try HEAD request first (same as PDF detection)
     const response = await fetch(ttsUrl, { method: 'HEAD' });
     
-    console.log(`🎵 NEW HEAD status for ${ttsUrl}: ${response.status}`);
+    console.log(`🎵 TTS response for ${ttsUrl}: ${response.status}`);
     
     if (!response.ok) {
-      console.log(`❌ NEW TTS REJECTED - Bad status: ${response.status} for ${ttsUrl}`);
+      console.log(`❌ TTS NOT FOUND: ${filename} - status ${response.status}`);
       return { exists: false, filename };
     }
     
     // Check content type
     const contentType = response.headers.get('content-type');
-    console.log(`🎵 NEW Content-Type for ${ttsUrl}: ${contentType}`);
+    console.log(`🎵 TTS Content-Type: ${contentType}`);
     
-    // IMMEDIATE REJECTION for HTML content
+    // Reject HTML content immediately  
     if (contentType && contentType.includes('text/html')) {
-      console.log(`❌ NEW TTS REJECTED - HTML content type for ${ttsUrl}`);
+      console.log(`❌ TTS REJECTED - HTML: ${filename}`);
       return { exists: false, filename };
     }
     
-    // ACCEPT valid audio types
-    if (contentType && (contentType.includes('audio/') || contentType.includes('application/octet-stream'))) {
-      console.log(`✅ NEW TTS ACCEPTED - Valid audio type for ${ttsUrl}`);
-      return { exists: true, filename };
-    }
-    
-    // For unknown content types, do a small GET to check content
-    console.log(`⚠️ NEW TTS CHECKING - Unknown content type for ${ttsUrl}`);
-    
-    const getResponse = await fetch(ttsUrl, { 
-      method: 'GET',
-      headers: { 'Range': 'bytes=0-200' }
-    });
-    
-    if (!getResponse.ok) {
-      console.log(`❌ NEW TTS REJECTED - GET failed for ${ttsUrl}`);
-      return { exists: false, filename };
-    }
-    
-    // Read the content to check if it's HTML
-    const text = await getResponse.text();
-    
-    // Check for HTML indicators
-    const lowerText = text.toLowerCase();
-    if (lowerText.includes('<html') || 
-        lowerText.includes('<!doctype') || 
-        lowerText.includes('<title>') ||
-        lowerText.includes('<head>') ||
-        lowerText.includes('<body>') ||
-        text.includes('404') ||
-        text.includes('Not Found')) {
-      console.log(`❌ NEW TTS REJECTED - Content is HTML for ${ttsUrl}`);
-      return { exists: false, filename };
-    }
-    
-    console.log(`✅ NEW TTS ACCEPTED - Content appears valid for ${ttsUrl}`);
+    // Accept audio or unknown content types (like PDF detection does)
+    console.log(`✅ TTS FOUND: ${filename}`);
     return { exists: true, filename };
     
   } catch (error) {
-    console.log(`❌ NEW TTS ERROR for ${ttsUrl}:`, error.message);
+    console.log(`❌ TTS ERROR: ${filename}`, error.message);
     return { exists: false, filename };
   }
 }
 
 /**
- * Find TTS file for the current page
+ * Find TTS file for the current page - SIMPLIFIED VERSION
  * @param {string|number} chapterNumber - The chapter number
  * @param {string|null} sectionNumber - The section number (null for chapter index)
  * @returns {Promise<{exists: boolean, filename: string|null}>} TTS availability info
  */
 async function findTtsForPage(chapterNumber, sectionNumber) {
-  const possibleFilenames = getPossibleTtsFilenames(chapterNumber, sectionNumber);
+  const expectedFilename = getExpectedTtsFilename(chapterNumber, sectionNumber);
   
-  console.log(`🔍 NEW TTS SEARCH in chapter ${chapterNumber}${sectionNumber ? `, section ${sectionNumber}` : ' (index)'}:`, possibleFilenames);
+  console.log(`🔍 TTS SEARCH in chapter ${chapterNumber}${sectionNumber ? `, section ${sectionNumber}` : ' (index)'}: ${expectedFilename}`);
   
-  // Try each possible filename
-  for (const filename of possibleFilenames) {
-    const result = await checkTtsExists(chapterNumber, filename);
-    if (result.exists) {
-      console.log(`✅ NEW TTS FOUND: ${filename} for chapter ${chapterNumber}${sectionNumber ? `, section ${sectionNumber}` : ' (index)'}`);
-      return { exists: true, filename };
-    }
+  const result = await checkTtsExists(chapterNumber, expectedFilename);
+  
+  if (result.exists) {
+    console.log(`✅ TTS FOUND: ${expectedFilename}`);
+    return { exists: true, filename: expectedFilename };
   }
   
-  console.log(`❌ NEW TTS NOT FOUND for chapter ${chapterNumber}${sectionNumber ? `, section ${sectionNumber}` : ' (index)'}`);
+  console.log(`❌ TTS NOT FOUND: ${expectedFilename}`);
   return { exists: false, filename: null };
 }
 
 /**
- * Build TTS file data for current page
+ * Build TTS file data for current page - SIMPLIFIED VERSION copying PDF pattern
  * @param {Object} location - The location object
  * @returns {Promise<{type: string, url: string|null, isActive: boolean, filename: string|null, pageInfo: Object}>} TTS availability info
  */
 export async function buildTtsFile(location) {
   const pageInfo = getCurrentPageInfo(location);
   
-  console.log(`🎯 NEW TTS BUILD for:`, pageInfo);
+  console.log(`🎯 TTS BUILD for:`, pageInfo);
   
   // Only process chapter and section pages
   if (pageInfo.pageType === 'non-chapter' || pageInfo.pageType === 'unknown' || !pageInfo.chapterNumber) {
-    console.log(`❌ NEW TTS SKIPPED - Wrong page type: ${pageInfo.pageType}, path: ${location?.pathname}`);
+    console.log(`❌ TTS SKIPPED - Wrong page type: ${pageInfo.pageType}, path: ${location?.pathname}`);
     return {
       type: 'none',
       url: null,
@@ -179,12 +143,17 @@ export async function buildTtsFile(location) {
     };
   }
   
-  // Check if TTS exists for this page
-  const ttsResult = await findTtsForPage(pageInfo.chapterNumber, pageInfo.sectionNumber);
+  // Get the exact expected filename (static naming convention)
+  const expectedFilename = getExpectedTtsFilename(pageInfo.chapterNumber, pageInfo.sectionNumber);
+  
+  console.log(`🎯 TTS expected filename: ${expectedFilename}`);
+  
+  // Check if TTS exists for this page (copy PDF detection pattern exactly)
+  const ttsResult = await checkTtsExists(pageInfo.chapterNumber, expectedFilename);
   
   if (ttsResult.exists && ttsResult.filename) {
     const ttsUrl = `/chapters/${pageInfo.chapterNumber.toString().padStart(2, '0')}/tts/${ttsResult.filename}`;
-    console.log(`✅ NEW TTS FINAL RESULT: Active with ${ttsUrl}`);
+    console.log(`✅ TTS FINAL RESULT: Active with ${ttsUrl}`);
     return {
       type: 'local',
       url: ttsUrl,
@@ -195,7 +164,7 @@ export async function buildTtsFile(location) {
   }
   
   // No TTS available
-  console.log(`❌ NEW TTS FINAL RESULT: Inactive for ${location?.pathname}`);
+  console.log(`❌ TTS FINAL RESULT: Inactive for ${location?.pathname}`);
   return {
     type: 'none',
     url: null,
@@ -257,5 +226,5 @@ export function getTtsDisplayTitle(ttsData) {
  * @param {Object} data - Data to log
  */
 export function debugTtsFiles(context, data) {
-  console.log(`🎵 NEW TTS ${context} debug:`, data);
+  console.log(`🎵 TTS ${context} debug:`, data);
 }
