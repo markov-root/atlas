@@ -4,6 +4,7 @@ Hosted at - https://ai-safety-atlas.com/
 
 # TODO
 
+ - [ ] feature: start reading button right under Logo
  - [ ] feature: warning component + reintroduce warnings
  - [ ] parser: many bold bugs - **Why aren't better benchmarks enough? **
  - [ ] parser: gdoc -> excalidraw pipeline

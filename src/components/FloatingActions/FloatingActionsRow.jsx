@@ -1,7 +1,11 @@
 // src/components/FloatingActions/FloatingActionsRow.jsx
 import React, { useState, useRef, useEffect } from 'react';
+import { useLocation } from '@docusaurus/router';
 import SettingsDropdown from '../Settings/SettingsDropdown';
+import { TTSButton } from '../TTS';
 import { ActionButtonTooltip } from '../UI/Tooltip';
+import { buildTtsFile, debugTtsFiles } from '../../utils/ttsUtils';
+import { buildAudioFiles, hasAudioFiles } from '../../utils/audioUtils';
 import styles from './FloatingActionsRow.module.css';
 
 export default function FloatingActionsRow() {
@@ -10,9 +14,50 @@ export default function FloatingActionsRow() {
   const [isAtBottom, setIsAtBottom] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastActivity, setLastActivity] = useState(Date.now());
+  const [ttsData, setTtsData] = useState(null);
+  const [ttsLoading, setTtsLoading] = useState(true);
+  
   const settingsTriggerRef = useRef(null);
   const hideTimeoutRef = useRef(null);
   const settingsWrapperRef = useRef(null);
+  const location = useLocation();
+
+  // TTS availability check - async
+  useEffect(() => {
+    async function checkTtsAvailability() {
+      setTtsLoading(true);
+      
+      console.log(`🔍 Checking TTS for current page: ${location.pathname}`);
+      
+      try {
+        const result = await buildTtsFile(location);
+        
+        console.log(`🎵 TTS check result for ${location.pathname}:`, result);
+        
+        setTtsData(result);
+        
+        debugTtsFiles('FloatingActionsRow (async)', {
+          pathname: location.pathname,
+          pageInfo: result.pageInfo,
+          asyncResult: result
+        });
+      } catch (error) {
+        console.error(`❌ TTS availability check failed for ${location.pathname}:`, error);
+        // Set to inactive if check fails
+        setTtsData({
+          type: 'none',
+          url: null,
+          isActive: false,
+          filename: null,
+          pageInfo: null
+        });
+      } finally {
+        setTtsLoading(false);
+      }
+    }
+    
+    checkTtsAvailability();
+  }, [location.pathname]);
 
   // Monitor scroll position and user activity for auto-hide
   useEffect(() => {
@@ -121,9 +166,59 @@ export default function FloatingActionsRow() {
     });
   };
 
+  // Handle audio state changes from TTS (for coordination with other audio)
+  const handleAudioStateChange = (audioInfo) => {
+    console.log('🎵 Audio state change from TTS:', audioInfo);
+    // This is where we could coordinate with other audio components
+    // For now, just log - the coordination happens within the TTS component
+  };
+
+  // Determine if audio button should be shown
+  const shouldShowAudioButton = () => {
+    if (!ttsData || ttsLoading) return false;
+    
+    const pageInfo = ttsData.pageInfo;
+    const isChapterPage = pageInfo?.pageType === 'chapter' || pageInfo?.pageType === 'section';
+    
+    if (!isChapterPage) return false;
+    
+    // Check if we have TTS
+    const hasTts = ttsData.isActive;
+    
+    // Check if we have chapter audio (podcast)
+    const chapterNumber = pageInfo.chapterNumber;
+    const audioFiles = chapterNumber ? buildAudioFiles({}, chapterNumber) : {};
+    const hasPodcast = hasAudioFiles(audioFiles);
+    
+    console.log('🎵 Audio button visibility check:', {
+      isChapterPage,
+      hasTts,
+      hasPodcast,
+      chapterNumber,
+      shouldShow: hasTts || hasPodcast
+    });
+    
+    // Show button if we have either TTS or podcast
+    return hasTts || hasPodcast;
+  };
+
+  const getChapterNumber = () => {
+    if (!ttsData?.pageInfo) return null;
+    return ttsData.pageInfo.chapterNumber;
+  };
+
   return (
     <div className={`${styles.container} ${isVisible ? styles.visible : styles.hidden}`}>
       <div className={styles.actionsRow}>
+        
+        {/* Audio Button - Above settings, show when TTS OR chapter audio available */}
+        {shouldShowAudioButton() && (
+          <TTSButton 
+            ttsData={ttsData}
+            chapterNumber={getChapterNumber()}
+            onAudioStateChange={handleAudioStateChange}
+          />
+        )}
         
         {/* Settings Button */}
         <div className={styles.settingsButtonWrapper} ref={settingsWrapperRef}>

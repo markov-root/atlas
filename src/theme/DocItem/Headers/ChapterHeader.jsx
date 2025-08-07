@@ -1,8 +1,7 @@
-// src/theme/DocItem/Headers/ChapterHeader.jsx - Updated with acknowledgements section
+// src/theme/DocItem/Headers/ChapterHeader.jsx - Updated to trigger floating audio player
 import React, { useState, useEffect } from 'react';
 import { ActionButtonTooltip } from '../../../components/UI/Tooltip';
 import styles from './ChapterHeader.module.css';
-import InlineAudioPlayer from '@site/src/components/chapters/Audio/InlineAudioPlayer';
 import InlineVideoPlayer from '@site/src/components/chapters/Video/InlineVideoPlayer';
 import { 
   buildAudioFiles, 
@@ -74,12 +73,25 @@ function ActionButton({ href, iconPath, label, description, active, onClick }) {
 }
 
 /**
+ * Trigger the floating audio player
+ */
+function triggerFloatingAudioPlayer() {
+  // Find the floating audio button and click it
+  const audioButton = document.querySelector('[aria-label*="Audio player"]');
+  if (audioButton) {
+    console.log('🎵 ChapterHeader: Triggering floating audio player');
+    audioButton.click();
+  } else {
+    console.warn('🎵 ChapterHeader: Could not find floating audio button');
+  }
+}
+
+/**
  * Complete Chapter Header Component with Acknowledgements Section
- * Features: Texture background, horizontal button strip, collapsible media players, acknowledgements
+ * Features: Texture background, horizontal button strip, no inline audio player
  */
 export default function ChapterHeader({ frontMatter, title, chapterNumber, boundWidth, metadata }) {
   const [isVisible, setIsVisible] = useState(false);
-  const [showAudioPlayer, setShowAudioPlayer] = useState(false);
   const [showVideoPlayer, setShowVideoPlayer] = useState(false);
   const [pdfData, setPdfData] = useState(null);
   const [pdfLoading, setPdfLoading] = useState(true);
@@ -165,14 +177,11 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
     });
   }
   
-  // Handle audio button click
+  // Handle audio button click - triggers floating player
   const handleAudioToggle = () => {
+    console.log('🎵 ChapterHeader: Audio button clicked');
     if (hasAudio) {
-      setShowAudioPlayer(!showAudioPlayer);
-      // Close video player if open
-      if (showVideoPlayer) {
-        setShowVideoPlayer(false);
-      }
+      triggerFloatingAudioPlayer();
     }
   };
   
@@ -180,16 +189,7 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
   const handleVideoToggle = () => {
     if (frontMatter.video_link) {
       setShowVideoPlayer(!showVideoPlayer);
-      // Close audio player if open
-      if (showAudioPlayer) {
-        setShowAudioPlayer(false);
-      }
     }
-  };
-  
-  // Handle audio player close
-  const handleAudioClose = () => {
-    setShowAudioPlayer(false);
   };
   
   // Handle video player close
@@ -421,12 +421,12 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               active={!!frontMatter.video_link}
             />
             
-            {/* Audio button - with click functionality */}
+            {/* Audio button - NOW triggers floating player */}
             <ActionButton
               onClick={handleAudioToggle}
               iconPath="/img/icons/audio.svg"
               label="Audio"
-              description={hasAudio ? "Listen to the podcast" : "Audio not available"}
+              description={hasAudio ? "Open audio player" : "Audio not available"}
               active={hasAudio}
             />
             
@@ -456,15 +456,6 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
               active={!!frontMatter.teach_link}
             />
           </div>
-          
-          {/* AUDIO PLAYER SECTION - Only shows when audio button is clicked */}
-          {showAudioPlayer && hasAudio && (
-            <InlineAudioPlayer
-              chapterNumber={frontMatter.chapter_number || chapterNumber}
-              audioFiles={audioFiles}
-              onClose={handleAudioClose}
-            />
-          )}
           
           {/* VIDEO PLAYER SECTION - Only shows when video button is clicked */}
           {showVideoPlayer && frontMatter.video_link && (

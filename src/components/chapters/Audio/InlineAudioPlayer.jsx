@@ -1,6 +1,7 @@
-// src/components/chapters/Audio/InlineAudioPlayer.jsx - Fresh clean version
+// src/components/chapters/Audio/InlineAudioPlayer.jsx - Updated with audio coordination
 import React, { useRef, useEffect, useState } from 'react';
 import { getAudioUrl, getTrackDisplayName } from '../../../utils/audioUtils';
+import { setupAudioCoordination } from '../../../utils/audioCoordination';
 import styles from './InlineAudioPlayer.module.css';
 
 const InlineAudioPlayer = ({ 
@@ -8,7 +9,7 @@ const InlineAudioPlayer = ({
   audioFiles = {},
   onClose
 }) => {
-  // Simple Audio Player Component - Working version with proper layout
+  // Simple Audio Player Component - Working version with audio coordination
   const SimpleAudioPlayer = ({ audioUrl, trackType, chapterNumber, chapterTitle }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -33,12 +34,16 @@ const InlineAudioPlayer = ({
       audio.addEventListener('play', handlePlay);
       audio.addEventListener('pause', handlePause);
 
+      // Set up audio coordination
+      const cleanupCoordination = setupAudioCoordination(audio, 'chapter');
+
       return () => {
         audio.removeEventListener('timeupdate', updateTime);
         audio.removeEventListener('loadedmetadata', updateDuration);
         audio.removeEventListener('ended', handleEnded);
         audio.removeEventListener('play', handlePlay);
         audio.removeEventListener('pause', handlePause);
+        cleanupCoordination();
       };
     }, []);
 

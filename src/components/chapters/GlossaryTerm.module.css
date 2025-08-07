@@ -3,7 +3,7 @@
 .glossaryTerm {
   /* Extremely subtle underline - almost transparent */
   text-decoration: underline;
-  text-decoration-color: rgba(25, 113, 194, 0.15); /* Very transparent blue */
+  text-decoration-color: rgba(25, 113, 194, 0.35); /* Very transparent blue */
   text-decoration-style: dotted;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
