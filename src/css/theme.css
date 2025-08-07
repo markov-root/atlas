@@ -64,7 +64,7 @@
   --atlas-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.05);
   
   /* FONTS */
-  --atlas-font-heading: 'Inter', system-ui, sans-serif;  
+  --atlas-font-heading: 'Merriweather', system-ui, sans-serif;  
   --atlas-font-body: 'Inter', system-ui, -apple-system, sans-serif;
   --atlas-font-mono: 'JetBrains Mono', 'SF Mono', monospace;
   --atlas-font-weight-normal: 400;

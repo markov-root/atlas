@@ -95,7 +95,7 @@ const STORAGE_KEY = 'atlas-settings';
 
 // Better defaults based on reading research
 const DEFAULT_SETTINGS = {
-  font: 'inter',
+  font: 'merriweather',
   fontSize: 18,           // Increased from 16px - better for reading
   lineHeight: 1.7,        // Increased from 1.6 - more comfortable
   textAlign: 'left',

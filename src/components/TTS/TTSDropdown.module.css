@@ -1,4 +1,4 @@
-/* src/components/TTS/TTSDropdown.module.css - Clean, flat design matching feedback module */
+/* src/components/TTS/TTSDropdown.module.css - Fixed mobile responsiveness and removed slider thumbs */
 
 .dropdown {
   position: absolute;
@@ -322,30 +322,25 @@
   z-index: 2;
 }
 
+/* REMOVED SLIDER THUMBS - Hide all slider buttons/thumbs */
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 14px;
-  height: 14px;
-  background: var(--atlas-primary, #1971c2);
-  border: 2px solid var(--atlas-background, #ffffff);
-  border-radius: 50%;
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.slider::-webkit-slider-thumb:hover {
-  transform: scale(1.1);
 }
 
 .slider::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  background: var(--atlas-primary, #1971c2);
-  border: 2px solid var(--atlas-background, #ffffff);
-  border-radius: 50%;
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
   cursor: pointer;
-  transition: all 0.2s ease;
+  opacity: 0;
 }
 
 .slider::-webkit-slider-track,
@@ -509,14 +504,20 @@
   color: var(--atlas-primary-lighter, #74c0fc);
 }
 
+/* Dark mode slider thumbs - also hidden */
 [data-theme='dark'] .slider::-webkit-slider-thumb {
-  background: var(--atlas-primary-lighter, #74c0fc);
-  border-color: var(--atlas-background, #121212);
+  background: transparent;
+  border: none;
+  width: 0;
+  height: 0;
 }
 
 [data-theme='dark'] .slider::-moz-range-thumb {
-  background: var(--atlas-primary-lighter, #74c0fc);
-  border-color: var(--atlas-background, #121212);
+  background: transparent;
+  border: none;
+  width: 0;
+  height: 0;
+  opacity: 0;
 }
 
 /* Dark mode icons */
@@ -527,7 +528,7 @@
   filter: brightness(0) saturate(100%) invert(85%);
 }
 
-/* Responsive Design */
+/* Responsive Design - FIXED MOBILE DOWNLOAD BUTTON */
 @media (max-width: 768px) {
   .dropdown {
     width: 340px;
@@ -576,6 +577,17 @@
   .settingsRow {
     gap: 20px;
   }
+  
+  /* FIXED: Mobile download button styling */
+  .downloadButton {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+  
+  .downloadIcon {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -621,21 +633,31 @@
   
   .settingsRow {
     gap: 16px;
-    flex-wrap: wrap;
   }
   
   .compactControl {
-    min-width: calc(50% - 8px);
+    gap: 8px;
   }
   
+  .controlLabel {
+    min-width: 70px;
+  }
+  
+  .sliderContainer {
+    margin: 0 8px;
+    min-width: 60px;
+  }
+  
+  /* FIXED: Mobile download button styling */
   .downloadButton {
-    width: 40px;
-    height: 40px;
+    padding: 12px 14px;
+    font-size: 13px;
+    gap: 6px;
   }
   
   .downloadIcon {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
 }
 
