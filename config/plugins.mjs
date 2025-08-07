@@ -32,7 +32,7 @@ export function createChapterImagesPlugin() {
         const path = require('path');
         const { outDir } = props;
         
-        // Copy chapter assets (images, audio, AND PDFs) to the build output
+        // Copy chapter assets (images, audio, PDFs, AND TTS) to the build output
         const chaptersDir = path.join(context.siteDir, 'docs', 'chapters');
         
         if (fs.existsSync(chaptersDir)) {
@@ -86,7 +86,7 @@ export function createChapterImagesPlugin() {
               console.log(`🎵 Copied audio files for chapter ${chapter}`);
             }
             
-            // Copy PDF files - NEW!
+            // Copy PDF files
             const chapterPdfDir = path.join(chapterPath, 'pdf');
             if (fs.existsSync(chapterPdfDir)) {
               const targetPdfDir = path.join(outDir, 'chapters', chapter, 'pdf');
@@ -107,6 +107,52 @@ export function createChapterImagesPlugin() {
               }
               
               console.log(`📄 Copied PDF files for chapter ${chapter}`);
+            }
+            
+            // Copy TTS files - ADDED!
+            const chapterTtsDir = path.join(chapterPath, 'tts');
+            if (fs.existsSync(chapterTtsDir)) {
+              const targetTtsDir = path.join(outDir, 'chapters', chapter, 'tts');
+              
+              // Create target directory
+              fs.mkdirSync(targetTtsDir, { recursive: true });
+              
+              // Copy all TTS files
+              const ttsFiles = fs.readdirSync(chapterTtsDir);
+              for (const ttsFile of ttsFiles) {
+                const srcPath = path.join(chapterTtsDir, ttsFile);
+                const destPath = path.join(targetTtsDir, ttsFile);
+                
+                // Only copy actual files (not directories)
+                if (fs.statSync(srcPath).isFile()) {
+                  fs.copyFileSync(srcPath, destPath);
+                }
+              }
+              
+              console.log(`🎵 Copied TTS files for chapter ${chapter}`);
+            }
+            
+            // Copy LaTeX files (if they exist)
+            const chapterLatexDir = path.join(chapterPath, 'latex');
+            if (fs.existsSync(chapterLatexDir)) {
+              const targetLatexDir = path.join(outDir, 'chapters', chapter, 'latex');
+              
+              // Create target directory
+              fs.mkdirSync(targetLatexDir, { recursive: true });
+              
+              // Copy all LaTeX files
+              const latexFiles = fs.readdirSync(chapterLatexDir);
+              for (const latexFile of latexFiles) {
+                const srcPath = path.join(chapterLatexDir, latexFile);
+                const destPath = path.join(targetLatexDir, latexFile);
+                
+                // Only copy actual files (not directories)
+                if (fs.statSync(srcPath).isFile()) {
+                  fs.copyFileSync(srcPath, destPath);
+                }
+              }
+              
+              console.log(`📚 Copied LaTeX files for chapter ${chapter}`);
             }
           }
         }
