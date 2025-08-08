@@ -43,7 +43,7 @@ module.exports = {
   { type: "link", label: "2.2.1 Deception", href: "/chapters/02/02#01" },
   { type: "link", label: "2.2.2 Situational Awareness", href: "/chapters/02/02#02" },
   { type: "link", label: "2.2.3 Power Seeking", href: "/chapters/02/02#03" },
-  { type: "link", label: "2.2.4 Autonomous Replication", href: "/chapters/02/02#04" },
+  { type: "link", label: "2.2.4 Autonomous Replication and Adaptation", href: "/chapters/02/02#04" },
   { type: "link", label: "2.2.5 Agency", href: "/chapters/02/02#05" }
   ]
 },
@@ -95,8 +95,9 @@ module.exports = {
     items: [
     { type: "link", label: "2.5.2.1 Epistemic Erosion", href: "/chapters/02/05#02-01" },
     { type: "link", label: "2.5.2.2 Power Concentration", href: "/chapters/02/05#02-02" },
-    { type: "link", label: "2.5.2.3 Value lock-in", href: "/chapters/02/05#02-03" },
-    { type: "link", label: "2.5.2.4 Automation", href: "/chapters/02/05#02-04" }
+    { type: "link", label: "2.5.2.3 Mass Unemployment", href: "/chapters/02/05#02-03" },
+    { type: "link", label: "2.5.2.4 Value lock-in", href: "/chapters/02/05#02-04" },
+    { type: "link", label: "2.5.2.5 Enfeeblement", href: "/chapters/02/05#02-05" }
     ]
   }
   ]
@@ -127,9 +128,9 @@ module.exports = {
     id: "chapters/02/8"
   },
   items: [
-  { type: "link", label: "2.8.1 From Misaligned AI to X-Risks", href: "/chapters/02/08#01" },
-  { type: "link", label: "2.8.2 Expert Opinion on X-Risks", href: "/chapters/02/08#02" },
-  { type: "link", label: "2.8.3 Would ASI be able to defeat humanity?", href: "/chapters/02/08#03" }
+  { type: "link", label: "2.8.1 **From Misaligned AI to X-Risks**", href: "/chapters/02/08#01" },
+  { type: "link", label: "2.8.2 **Expert Opinion on X-Risks**", href: "/chapters/02/08#02" },
+  { type: "link", label: "2.8.3 **Would ASI be able to defeat humanity?**", href: "/chapters/02/08#03" }
   ]
 }
   ],
