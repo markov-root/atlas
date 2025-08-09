@@ -1,15 +1,21 @@
-// src/components/Settings/SettingsContext.jsx - Added glossary toggle
+// src/components/Settings/SettingsContext.jsx - Added OpenDyslexic
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const SettingsContext = createContext();
 
-// Available font options - Removed OpenDyslexic
+// Available font options - Added OpenDyslexic
 export const FONT_OPTIONS = [
   {
     id: 'inter',
     name: 'Inter',
     family: '"Inter", system-ui, -apple-system, sans-serif',
     description: 'Modern, highly readable sans-serif (default)'
+  },
+  {
+    id: 'opendyslexic',
+    name: 'OpenDyslexic',
+    family: '"OpenDyslexic", "Comic Sans MS", cursive',
+    description: 'Designed specifically for dyslexia and reading difficulties'
   },
   {
     id: 'georgia',

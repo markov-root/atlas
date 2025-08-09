@@ -1,4 +1,4 @@
-// src/components/Settings/SettingsDropdown.jsx - Added glossary toggle
+// src/components/Settings/SettingsDropdown.jsx - Updated for single-line layout
 import React, { useState, useRef, useEffect } from 'react';
 import { useSettings } from './SettingsContext';
 import styles from './SettingsDropdown.module.css';
@@ -59,7 +59,7 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
     >
       {/* Header */}
       <div className={styles.header}>
-        <div className={styles.headerContent}>
+        <div className={styles.headerInfo}>
           <img 
             src="/img/icons/font.svg" 
             alt="" 
@@ -67,6 +67,11 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
           />
           <h3 className={styles.title}>Reading Settings</h3>
         </div>
+      </div>
+
+      {/* Reset Section */}
+      <div className={styles.resetSection}>
+        <span className={styles.resetText}>Reset settings to defaults</span>
         <button 
           onClick={resetSettings}
           className={styles.resetButton}
@@ -77,11 +82,6 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
       </div>
 
       <div className={styles.content}>
-        {/* Notice at top */}
-        <div className={styles.notice}>
-          <span className={styles.noticeText}>These settings only apply to textbook chapter pages</span>
-        </div>
-
         {/* Glossary Toggle */}
         <div className={styles.setting}>
           <div className={styles.simpleToggleGroup}>
@@ -98,31 +98,33 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
           </div>
         </div>
 
-        {/* Font Family */}
+        {/* Font Family - Single line */}
         <div className={styles.setting}>
-          <label className={styles.label}>Font Family</label>
-          <div className={styles.fontSelector}>
-            <select 
-              value={settings.font}
-              onChange={(e) => updateSetting('font', e.target.value)}
-              className={styles.select}
-              aria-label="Select font family"
-            >
-              {fontOptions.map(font => (
-                <option key={font.id} value={font.id}>
-                  {font.name}
-                </option>
-              ))}
-            </select>
-            <img src="/img/icons/arrow-down.svg" alt="" className={styles.selectIcon} />
+          <div className={styles.fontSetting}>
+            <label className={styles.label}>Font Family</label>
+            <div className={styles.fontSelector}>
+              <select 
+                value={settings.font}
+                onChange={(e) => updateSetting('font', e.target.value)}
+                className={styles.select}
+                aria-label="Select font family"
+              >
+                {fontOptions.map(font => (
+                  <option key={font.id} value={font.id}>
+                    {font.name}
+                  </option>
+                ))}
+              </select>
+              <img src="/img/icons/arrow-down.svg" alt="" className={styles.selectIcon} />
+            </div>
           </div>
         </div>
 
-        {/* Font Size */}
+        {/* Font Size - Single line */}
         <div className={styles.setting}>
-          <label className={styles.label}>Font Size</label>
           <div className={styles.sliderGroup}>
             <img src="/img/icons/font-size.svg" alt="" className={styles.sliderIcon} />
+            <label className={styles.label}>Font Size</label>
             <div className={styles.sliderWrapper}>
               <input
                 type="range"
@@ -145,11 +147,11 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
           </div>
         </div>
 
-        {/* Line Height */}
+        {/* Line Height - Single line */}
         <div className={styles.setting}>
-          <label className={styles.label}>Line Spacing</label>
           <div className={styles.sliderGroup}>
             <img src="/img/icons/height.svg" alt="" className={styles.sliderIcon} />
+            <label className={styles.label}>Line Spacing</label>
             <div className={styles.sliderWrapper}>
               <input
                 type="range"
@@ -172,11 +174,11 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
           </div>
         </div>
 
-        {/* Column Width */}
+        {/* Column Width - Single line */}
         <div className={styles.setting}>
-          <label className={styles.label}>Column Width</label>
           <div className={styles.sliderGroup}>
             <img src="/img/icons/width.svg" alt="" className={styles.sliderIcon} />
+            <label className={styles.label}>Column Width</label>
             <div className={styles.sliderWrapper}>
               <input
                 type="range"
@@ -199,42 +201,44 @@ export default function SettingsDropdown({ isOpen, onClose, triggerRef }) {
           </div>
         </div>
 
-        {/* Text Alignment */}
+        {/* Text Alignment - Single line */}
         <div className={styles.setting}>
-          <label className={styles.label}>Text Alignment</label>
-          <div className={styles.alignmentGroup}>
-            <button
-              onClick={() => updateSetting('textAlign', 'left')}
-              className={`${styles.alignButton} ${settings.textAlign === 'left' ? styles.active : ''}`}
-              aria-label="Align text left"
-              title="Align text left"
-            >
-              <img src="/img/icons/align-left.svg" alt="" className={styles.alignIcon} />
-            </button>
-            <button
-              onClick={() => updateSetting('textAlign', 'center')}
-              className={`${styles.alignButton} ${settings.textAlign === 'center' ? styles.active : ''}`}
-              aria-label="Center text"
-              title="Center text"
-            >
-              <img src="/img/icons/align-center.svg" alt="" className={styles.alignIcon} />
-            </button>
-            <button
-              onClick={() => updateSetting('textAlign', 'right')}
-              className={`${styles.alignButton} ${settings.textAlign === 'right' ? styles.active : ''}`}
-              aria-label="Align text right"
-              title="Align text right"
-            >
-              <img src="/img/icons/align-right.svg" alt="" className={styles.alignIcon} />
-            </button>
-            <button
-              onClick={() => updateSetting('textAlign', 'justify')}
-              className={`${styles.alignButton} ${settings.textAlign === 'justify' ? styles.active : ''}`}
-              aria-label="Justify text"
-              title="Justify text"
-            >
-              <img src="/img/icons/align-justify.svg" alt="" className={styles.alignIcon} />
-            </button>
+          <div className={styles.sliderGroup}>
+            <label className={styles.label}>Text Alignment</label>
+            <div className={styles.alignmentGroup}>
+              <button
+                onClick={() => updateSetting('textAlign', 'left')}
+                className={`${styles.alignButton} ${settings.textAlign === 'left' ? styles.active : ''}`}
+                aria-label="Align text left"
+                title="Align text left"
+              >
+                <img src="/img/icons/align-left.svg" alt="" className={styles.alignIcon} />
+              </button>
+              <button
+                onClick={() => updateSetting('textAlign', 'center')}
+                className={`${styles.alignButton} ${settings.textAlign === 'center' ? styles.active : ''}`}
+                aria-label="Center text"
+                title="Center text"
+              >
+                <img src="/img/icons/align-center.svg" alt="" className={styles.alignIcon} />
+              </button>
+              <button
+                onClick={() => updateSetting('textAlign', 'right')}
+                className={`${styles.alignButton} ${settings.textAlign === 'right' ? styles.active : ''}`}
+                aria-label="Align text right"
+                title="Align text right"
+              >
+                <img src="/img/icons/align-right.svg" alt="" className={styles.alignIcon} />
+              </button>
+              <button
+                onClick={() => updateSetting('textAlign', 'justify')}
+                className={`${styles.alignButton} ${settings.textAlign === 'justify' ? styles.active : ''}`}
+                aria-label="Justify text"
+                title="Justify text"
+              >
+                <img src="/img/icons/align-justify.svg" alt="" className={styles.alignIcon} />
+              </button>
+            </div>
           </div>
         </div>
       </div>

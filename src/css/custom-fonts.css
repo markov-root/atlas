@@ -1,4 +1,4 @@
-/* src/css/custom-fonts.css - GitHub Pages compatible font loading */
+/* src/css/custom-fonts.css - Updated with local OpenDyslexic */
 
 /* Use Google Fonts CDN for most fonts (more reliable on GitHub Pages) */
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap');
@@ -9,10 +9,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Benne&display=swap');
 
-/* OpenDyslexic via jsDelivr CDN (GitHub Pages compatible) */
+/* OpenDyslexic - Local font files from static/fonts/opendyslexic/ */
 @font-face {
   font-family: 'OpenDyslexic';
-  src: url('https://cdn.jsdelivr.net/gh/antijingoist/opendyslexic@master/otf/OpenDyslexic-Regular.otf') format('opentype');
+  src: url('/fonts/opendyslexic/OpenDyslexic-Regular.woff2') format('woff2'),
+       url('/fonts/opendyslexic/OpenDyslexic-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -20,7 +21,8 @@
 
 @font-face {
   font-family: 'OpenDyslexic';
-  src: url('https://cdn.jsdelivr.net/gh/antijingoist/opendyslexic@master/otf/OpenDyslexic-Bold.otf') format('opentype');
+  src: url('/fonts/opendyslexic/OpenDyslexic-Bold.woff2') format('woff2'),
+       url('/fonts/opendyslexic/OpenDyslexic-Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -28,17 +30,18 @@
 
 @font-face {
   font-family: 'OpenDyslexic';
-  src: url('https://cdn.jsdelivr.net/gh/antijingoist/opendyslexic@master/otf/OpenDyslexic-Italic.otf') format('opentype');
+  src: url('/fonts/opendyslexic/OpenDyslexic-Italic.woff2') format('woff2'),
+       url('/fonts/opendyslexic/OpenDyslexic-Italic.woff') format('woff');
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 
-/* Backup OpenDyslexic from different CDN if above fails */
 @font-face {
-  font-family: 'OpenDyslexic-Backup';
-  src: url('https://cdn.jsdelivr.net/npm/@fontsource/opendyslexic@4.5.0/files/opendyslexic-latin-400-normal.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
+  font-family: 'OpenDyslexic';
+  src: url('/fonts/opendyslexic/OpenDyslexic-Bold-Italic.woff2') format('woff2'),
+       url('/fonts/opendyslexic/OpenDyslexic-Bold-Italic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
   font-display: swap;
 }
