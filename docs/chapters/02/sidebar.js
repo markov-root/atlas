@@ -17,19 +17,7 @@ module.exports = {
   },
   items: [
   { type: "link", label: "2.1.1 Causes of Risk", href: "/chapters/02/01#01" },
-  {
-    type: "category",
-    label: "2.1.2 Severity of Risk",
-    link: {
-      type: "generated-index",
-      title: "2.1.2 Severity of Risk",
-      slug: "/chapters/02/01#02"
-    },
-    items: [
-    { type: "link", label: "2.1.2.1 Catastrophic Risks", href: "/chapters/02/01#02-01" },
-    { type: "link", label: "2.1.2.2 Existential Risks", href: "/chapters/02/01#02-02" }
-    ]
-  }
+  { type: "link", label: "2.1.2 Severity of Risk", href: "/chapters/02/01#02" }
   ]
 },
     {
@@ -43,7 +31,7 @@ module.exports = {
   { type: "link", label: "2.2.1 Deception", href: "/chapters/02/02#01" },
   { type: "link", label: "2.2.2 Situational Awareness", href: "/chapters/02/02#02" },
   { type: "link", label: "2.2.3 Power Seeking", href: "/chapters/02/02#03" },
-  { type: "link", label: "2.2.4 Autonomous Replication and Adaptation", href: "/chapters/02/02#04" },
+  { type: "link", label: "2.2.4 Autonomous Replication", href: "/chapters/02/02#04" },
   { type: "link", label: "2.2.5 Agency", href: "/chapters/02/02#05" }
   ]
 },
@@ -69,10 +57,9 @@ module.exports = {
     id: "chapters/02/4"
   },
   items: [
-  { type: "link", label: "2.4.1 Specification Failure Risks", href: "/chapters/02/04#01" },
-  { type: "link", label: "2.4.2 Generalization Failure Risks", href: "/chapters/02/04#02" },
-  { type: "link", label: "2.4.3 Convergent Subgoal Risks", href: "/chapters/02/04#03" },
-  { type: "link", label: "2.4.4 Combined Misalignment Risks", href: "/chapters/02/04#04" }
+  { type: "link", label: "2.4.1 Specification Gaming", href: "/chapters/02/04#01" },
+  { type: "link", label: "2.4.2 Treacherous Turn", href: "/chapters/02/04#02" },
+  { type: "link", label: "2.4.3 Self-Improvement", href: "/chapters/02/04#03" }
   ]
 },
     {
@@ -110,27 +97,25 @@ module.exports = {
     id: "chapters/02/6"
   },
   items: [
-  { type: "link", label: "2.6.1 Accidents", href: "/chapters/02/06#01" },
-  { type: "link", label: "2.6.2 Indifference", href: "/chapters/02/06#02" },
-  { type: "link", label: "2.6.3 Unpredictability", href: "/chapters/02/06#03" },
-  { type: "link", label: "2.6.4 Black-boxes", href: "/chapters/02/06#04" },
-  { type: "link", label: "2.6.5 Deployment Scale", href: "/chapters/02/06#05" },
-  { type: "link", label: "2.6.6 Race Dynamics", href: "/chapters/02/06#06" },
-  { type: "link", label: "2.6.7 Coordination Challenges", href: "/chapters/02/06#07" }
+  { type: "link", label: "2.6.1 Race Dynamics", href: "/chapters/02/06#01" },
+  { type: "link", label: "2.6.2 Accidents", href: "/chapters/02/06#02" },
+  { type: "link", label: "2.6.3 Indifference", href: "/chapters/02/06#03" },
+  { type: "link", label: "2.6.4 Collective Action Problems", href: "/chapters/02/06#04" },
+  { type: "link", label: "2.6.5 Unpredictability", href: "/chapters/02/06#05" }
   ]
 },
     { type: "doc", id: "chapters/02/7", label: "2.7 Conclusion" },
+    { type: "doc", id: "chapters/02/8", label: "2.8 Appendix: Quantifying Existential Risks" },
     {
   type: "category",
-  label: "2.8 Appendix: X-Risk Scenarios",
+  label: "2.9 Appendix: Forecasting Scenarios",
   link: {
     type: "doc",
-    id: "chapters/02/8"
+    id: "chapters/02/9"
   },
   items: [
-  { type: "link", label: "2.8.1 **From Misaligned AI to X-Risks**", href: "/chapters/02/08#01" },
-  { type: "link", label: "2.8.2 **Expert Opinion on X-Risks**", href: "/chapters/02/08#02" },
-  { type: "link", label: "2.8.3 **Would ASI be able to defeat humanity?**", href: "/chapters/02/08#03" }
+  { type: "link", label: "2.9.1 The Production Web", href: "/chapters/02/09#01" },
+  { type: "link", label: "2.9.2 AI 2027", href: "/chapters/02/09#02" }
   ]
 }
   ],

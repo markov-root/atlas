@@ -25,7 +25,7 @@ acknowledgements:
   - "Leo Karoubi"
 atlas_link: "https://ai-safety-atlas.com/chapters/01/"
 alignment_forum_link: "https://www.alignmentforum.org/posts/MkfaQyxB9PN4h8Bs9/"
-google_docs_link: "https://docs.google.com/document/d/1HKo0Kest9Xppjn7m2ODpfMUlEu93SzLsfxXBH48Xaus/edit?usp=sharing"
+google_docs_link: "https://docs.google.com/document/d/1wQOUypAyOvjS-fnnrHk2qwhQxbWpWoxFT0aC7QNBJtc/edit?usp=sharing"
 download_link: "https://github.com/CentreSecuriteIA/textbook/blob/main/latex/AI%20Safety%20Atlas%20-%20Capabilities.pdf"
 feedback_link: "https://forms.gle/ZsA4hEWUx1ZrtQLL9"
 video_link: "https://www.youtube.com/watch?v=J_iMeH1hb9M"
