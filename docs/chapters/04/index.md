@@ -17,7 +17,7 @@ google_docs_link: "https://docs.google.com/document/d/1fFVYWes5JQgSc2l9cAMQKprCe
 download_link: "https://github.com/CentreSecuriteIA/textbook/blob/main/latex/AI%20Safety%20Atlas%20-%20Governance.pdf"
 feedback_link: "https://forms.gle/ZsA4hEWUx1ZrtQLL9"
 video_link: "https://www.youtube.com/watch?v=FSKuDqze9es"
-teach_link: "https://docs.google.com/document/d/1tp5rpzw_gekjju-UBp8tkbbnQOuA2QzsPF_um8Z4IOU/edit?tab=t.0#heading=h.fo57hwsn3del"
+teach_link: "https://docs.google.com/document/d/1im_i6e9xEAe-koYlurYdn26n9h7pFX2HksnRfQmWxTQ/edit?usp=sharing"
 sidebar_position: 4
 slug: /chapters/04/
 ---

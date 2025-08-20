@@ -17,7 +17,7 @@ atlas_link: "https://ai-safety-atlas.com/chapters/06/"
 alignment_forum_link: "https://www.lesswrong.com/s/3ni2P2GZzBvNebWYZ/p/mMBoPnFrFqQJKzDsZ"
 google_docs_link: "https://docs.google.com/document/d/1kEdmyVTUG3MO7lwuw4utHEm7CcavvgAiUZcWHaOZuPY/edit?usp=sharing"
 feedback_link: "https://forms.gle/ZsA4hEWUx1ZrtQLL9"
-teach_link: "https://docs.google.com/document/d/1JfmzGii5QG6hW8AM5WxzDBVyGc14aLV_Lc_1PkK2ZLc/edit?usp=sharing"
+teach_link: "https://docs.google.com/document/d/1im_i6e9xEAe-koYlurYdn26n9h7pFX2HksnRfQmWxTQ/edit?usp=sharing"
 sidebar_position: 6
 slug: /chapters/06/
 ---

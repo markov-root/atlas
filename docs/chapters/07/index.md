@@ -14,7 +14,7 @@ acknowledgements:
   - "Josh Thorsteinson"
   - "Nicolas Guillard"
 google_docs_link: "https://docs.google.com/document/d/1JsV3ShLAbMpt8tXZ_tBqGUC-CkMor1WrF5eQDRWKLoE/edit?usp=sharing"
-teach_link: "https://docs.google.com/document/d/1-WDXUcIblNvZ9B4tsFPp9yOg9ZF_Sgx_qc-fnyuZMnk/edit?usp=sharing"
+teach_link: "https://docs.google.com/document/d/1im_i6e9xEAe-koYlurYdn26n9h7pFX2HksnRfQmWxTQ/edit?usp=sharing"
 sidebar_position: 7
 slug: /chapters/07/
 ---

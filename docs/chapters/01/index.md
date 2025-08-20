@@ -29,7 +29,7 @@ google_docs_link: "https://docs.google.com/document/d/1wQOUypAyOvjS-fnnrHk2qwhQx
 download_link: "https://github.com/CentreSecuriteIA/textbook/blob/main/latex/AI%20Safety%20Atlas%20-%20Capabilities.pdf"
 feedback_link: "https://forms.gle/ZsA4hEWUx1ZrtQLL9"
 video_link: "https://www.youtube.com/watch?v=J_iMeH1hb9M"
-teach_link: "https://docs.google.com/document/d/1L32xCVUCWEsm-x8UZ3GSTgKnmBcC7rJQLLIh9wGLj40/edit?usp=sharing"
+teach_link: "https://docs.google.com/document/d/1im_i6e9xEAe-koYlurYdn26n9h7pFX2HksnRfQmWxTQ/edit?usp=sharing"
 sidebar_position: 1
 slug: /chapters/01/
 ---

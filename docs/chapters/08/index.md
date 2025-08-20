@@ -23,7 +23,7 @@ acknowledgements:
   - "Gurvan R."
 google_docs_link: "https://docs.google.com/document/d/1k6rlyBCZJw8xbUx0dzd-4sOhlzj-xzsmwi_OIZY1-3M/edit?usp=sharing"
 feedback_link: "https://forms.gle/ZsA4hEWUx1ZrtQLL9"
-teach_link: "https://docs.google.com/document/d/1DaygDSW0L5dWuJnpSjYPF2XUbW51UoBJsT1cjLYKc2w/edit?usp=sharing"
+teach_link: "https://docs.google.com/document/d/1im_i6e9xEAe-koYlurYdn26n9h7pFX2HksnRfQmWxTQ/edit?usp=sharing"
 sidebar_position: 8
 slug: /chapters/08/
 ---

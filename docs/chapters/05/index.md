@@ -19,7 +19,7 @@ arxiv_link: "https://arxiv.org/abs/2505.05541"
 atlas_link: "https://ai-safety-atlas.com/chapters/05/"
 google_docs_link: "https://docs.google.com/document/d/1KI95w27Ce7yWoynE11PJ94IXK0gT0NwP8091s06P7wM/edit?usp=sharing"
 alignment_forum_link: "https://www.lesswrong.com/posts/CwdCYmsutwXwnYtEF/paper-safety-by-measurement-a-systematic-literature-review"
-teach_link: "https://docs.google.com/document/d/1T-UU0FBeElX6cvbWYKpVAl3U4ivrQLHA3IdIWqWKuBA/edit?tab=t.0#heading=h.fo57hwsn3del"
+teach_link: "https://docs.google.com/document/d/1im_i6e9xEAe-koYlurYdn26n9h7pFX2HksnRfQmWxTQ/edit?usp=sharing"
 feedback_link: "https://forms.gle/ZsA4hEWUx1ZrtQLL9"
 sidebar_position: 5
 slug: /chapters/05/

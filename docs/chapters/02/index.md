@@ -21,7 +21,8 @@ acknowledgements:
   - "Camille Berger"
 google_docs_link: "https://docs.google.com/document/d/1DcQUax0bZ-IABjmwER921g0ryuKQv4oXyFLHwP-8U-o/edit?usp=sharing"
 video_link: "https://www.youtube.com/watch?v=dhr4u-w75aQ"
-teach_link: "https://docs.google.com/document/d/1evE1rG91DKBuKlWnqPw45QtPxKBz0GlD_ZYrurNdvN4/edit?usp=sharing"
+teach_link: "https://docs.google.com/document/d/1im_i6e9xEAe-koYlurYdn26n9h7pFX2HksnRfQmWxTQ/edit?usp=sharing"
+arxiv_link: "https://arxiv.org/abs/2508.13700"
 sidebar_position: 2
 slug: /chapters/02/
 ---
