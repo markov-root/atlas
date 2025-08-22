@@ -13,7 +13,7 @@ acknowledgements:
   - "Charbel-Raphael Segerie"
   - "Léo Karoubi"
   - "Ines Belhadj"
-google_docs_link: "https://docs.google.com/document/d/1fFVYWes5JQgSc2l9cAMQKprCevw2qW0-4MKMQPnpbxw/edit?usp=sharing"
+google_docs_link: "https://docs.google.com/document/d/1CzLVjahQ5fMeR532dQPzlQRoFADEqvSM1-nLIapnuwc/edit?usp=sharing"
 download_link: "https://github.com/CentreSecuriteIA/textbook/blob/main/latex/AI%20Safety%20Atlas%20-%20Governance.pdf"
 feedback_link: "https://forms.gle/ZsA4hEWUx1ZrtQLL9"
 video_link: "https://www.youtube.com/watch?v=FSKuDqze9es"

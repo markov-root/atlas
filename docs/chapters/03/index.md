@@ -27,7 +27,7 @@ acknowledgements:
   - "Camille Berger"
   - "Josh Thorsteinson"
 alignment_forum_link: "https://www.lesswrong.com/s/3ni2P2GZzBvNebWYZ/p/RzsXRbk2ETNqjhsma"
-google_docs_link: "https://docs.google.com/document/d/1WTyLHyaJ_NEDEu49U_hh7oz0-AOQfp7uOJKLck-7A78/edit?usp=sharing"
+google_docs_link: "https://docs.google.com/document/d/1ytzVlrj8PpxiyjvmZCJXm5QW3olhTh504-yH0h-wAq0/edit?usp=sharing"
 feedback_link: "https://forms.gle/ZsA4hEWUx1ZrtQLL9"
 teach_link: "https://docs.google.com/document/d/1im_i6e9xEAe-koYlurYdn26n9h7pFX2HksnRfQmWxTQ/edit?usp=sharing"
 sidebar_position: 3
