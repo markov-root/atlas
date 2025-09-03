@@ -1,8 +1,8 @@
 ---
-title: "Generalization"
+title: "Goal Misgeneralization"
 chapter_number: 7
-reading_time_core: "67 min"
-reading_time_optional: "15 min"
+reading_time_core: "72 min"
+reading_time_optional: "17 min"
 authors: ["Markov Grey"]
 affiliations: ["French Center for AI Safety (CeSIA)"]
 acknowledgements:
@@ -14,75 +14,26 @@ acknowledgements:
   - "Josh Thorsteinson"
   - "Nicolas Guillard"
 google_docs_link: "https://docs.google.com/document/d/1JsV3ShLAbMpt8tXZ_tBqGUC-CkMor1WrF5eQDRWKLoE/edit?usp=sharing"
-teach_link: "https://docs.google.com/document/d/1im_i6e9xEAe-koYlurYdn26n9h7pFX2HksnRfQmWxTQ/edit?usp=sharing"
+teach_link: "https://docs.google.com/document/d/1im_i6e9xEAe-koYlurYdn26n9h7pFX2HksnRfQmWxTQ/edit?tab=t.maf91lgt511f#heading=h.mkm52f849qxn"
 sidebar_position: 7
 slug: /chapters/07/
 ---
-import Video from "@site/src/components/chapters/Video";
 import Quote from "@site/src/components/chapters/Quote";
 import Note from "@site/src/components/chapters/Note";
 import Definition from "@site/src/components/chapters/Definition";
 
-import Figure from "@site/src/components/chapters/Figure";
+# Introduction
 
-# Multi Objective Generalization
+This chapter dives into the concept of goal misgeneralization—perhaps the most counterintuitive problem in AI safety. Unlike specification problems where we simply fail to provide the right training signal, or capability failures where systems cannot do what we want, goal misgeneralization occurs when systems internalize different behaviors than intended despite receiving correct training signals. We start by establishing what the problem is, explaining why it happens, then we look at concerning manifestations of it like scheming, and finally go through some detection and mitigation approaches.
 
-**CoinRun - an easy to understand example of goal misgeneralization.** In this game agents spawn on the left side of the level, avoid enemies and obstacles, and collect the coin for a reward of 10 points. The model is trained on thousands of procedurally generated levels, each with different layouts of platforms, enemies, and hazards. At the end of training the agents are very capable. They can dodge moving enemies, time jumps across lava pits, and efficiently traverse complex levels they've never seen before ([Langosco et al., 2022](https://arxiv.org/abs/2105.14111)). The training seems to be very successful. The agents achieve high rewards consistently across diverse test environments. But when coins are moved to random locations during testing, the agents are still very capable of navigation, but they consistently ignore the coins that were clearly visible and just continue moving right toward empty walls.
+**AI systems can learn different goals than what we intended, even when their training appears completely successful.** The first section explains why generalization should not be treated as one-dimensional. This is similar to the nuance we pointed to in the evaluations chapter - capabilities measure what a model can do, and goals measure what a model is trying to do. They can generalize independently, creating scenarios where systems retain sophisticated abilities while pursuing entirely different objectives than intended. Multiple different goals can produce identical behavior during training, making them behaviorally indistinguishable until deployment reveals which goal the system actually learned.
 
-<Figure src="./img/2wd_Image_1.png" alt="Enter image alt description" number="1" label="7.1" caption="Two levels in CoinRun. The level on the left is much easier than the level on the right ([Cobbe et al., 2019](https://arxiv.org/abs/1812.02341))." />
+**Learning Dynamics help us understand how identical training signals can produce different learned algorithms.** When we train neural networks, we're not directly installing goals—we're creating selection pressures guided by our training signals that favor certain behaviors over others. There are several questions to explore here - What space is the training signal guiding the model through? Can we shape the space somehow? These are called loss landscapes. Their geometry, path dependence from random initialization, and inductive biases like simplicity systematically determine which algorithmic solutions get discovered. Understanding these dynamics helps us figure out which algorithms get learned during training, which in turn determines the goals of the final model we deploy.
 
-**Agents learned "move right" rather than "collect coins" despite receiving correct reward signals.** Our reward specification was correct: +10 for collecting coins, 0 otherwise. But because coins always appeared rightward during training, two behavioral patterns received identical reinforcement. "Collect coins" and "move right" both achieved perfect correlation with rewards, making them indistinguishable to the optimization process. This reveals a fundamental gap between what we specify and what systems learn. This wasn't a specification problem or a capability failure. Instead, agents learned a different goal than intended, despite receiving correct training signals throughout the process. This is called goal misgeneralization.
+**Goal misgeneralization becomes increasingly concerning as systems develop sophisticated goal-directedness.** Even though multiple algorithms that display the same behavior at the end of training are possible, not all of them are concerning. The goal-directedness section starts to look at when behaviorally indistinguishable models become dangerous. Models can have degrees to which they are goal-directed, ranging from really complex pattern matching and learned heuristics to systems implementing genuine internal optimization processes. The higher the degree of goal-directedness a system develops, the more concerning goal misgeneralization becomes, as these systems might systematically pursue objectives across diverse contexts and obstacles.
 
-<Figure src="./img/6I8_Image_2.gif" alt="Enter image alt description" number="2" label="7.2" caption="The agent is trained to go to the coin, but ends up learning to just go to the right ([Cobbe et al., 2019](https://arxiv.org/abs/1812.02341))." />
+**Sophisticated goal-directedness leads to goal-preservation behavior, which can result in scheming.** The most dangerous form occurs when goal-directed systems develop situational awareness about their training process and long term planning capabilities. They might choose to strategically conceal misaligned objectives to preserve their true goals until there's no longer a threat of modification. We walk you through empirical evidence from demonstrations of alignment faking, in-context scheming, and agentic misalignment to highlight that this type of outcome is possible. Then we also look at both sides of the argument for the likelihood of whether scheming behavior would likely arise as a consequence of the machine learning process. The rest of the chapter focuses on answering the question - “what can we do about this?”. The next few sections serve as the links between goal misgeneration, evaluations and interpretability chapters.
 
-<Definition term="Goals (Behavioral Definition)" source="" number="1" label="7.1">
+**Detection methods focus on discovering behaviors like goal-directedness, goal-preservation, and scheming.** Building on techniques from the evaluations chapter, we examine behavioral methods that monitor external reasoning traces and interpretability techniques like linear probes, sparse autoencoders, and activation manipulation. There are a lot of different capabilities, and combinations of capabilities to test.
 
-Goals are behavioral patterns that persist across different contexts, revealing what the system is actually optimizing for in practice. Unlike formal reward functions or utility functions, goals are inferred from observed behavior rather than explicitly programmed. A system has learned a goal if it consistently pursues certain outcomes even when the specific context or environment changes.
-
-</Definition>
-
-<Video type="youtube" videoId="K8p8_VlFHUk" number="1" label="7.1" caption="Optional video explaining goal misgeneralization." />
-
-## Goals ≠ Rewards {#01}
-
-**Reward signals (specifications) create selection pressures that sculpt cognition, but don't directly install intended goals.** During reinforcement learning, agents take actions and receive rewards based on performance. These rewards get used by optimization algorithms to adjust parameters, making high-reward actions more likely in the future. The agent never directly "sees" or "receives" the reward. Instead, training signals act as selection pressures that favor certain behavioral patterns over others, similar to how evolutionary pressures shape organisms without organisms directly optimizing for genetic fitness ([Turner, 2022](https://www.alignmentforum.org/posts/TWorNr22hhYegE4RT/models-don-t-get-reward); [Ringer, 2022](https://www.alignmentforum.org/posts/TWorNr22hhYegE4RT/models-don-t-get-reward)). Any behavioral pattern that consistently correlates with high reward during training becomes a candidate for the learned goal. The optimization process has no inherent bias towards our intended interpretation of the reward signal.
-
-**This explains why goal misgeneralization differs qualitatively from specification problems.** We cannot detect when a system learns the wrong goal because both intended and proxy goals produce identical training behavior. The core safety concern is behavioral indistinguishability: improving reward specifications won't prevent problematic patterns if the learning process selects among multiple explanations for success. Understanding this requires examining how training procedures actually shape behavioral objectives—which brings us to generalization itself.
-
-**Traditional machine learning assumes generalization is a one-dimensional problem.** We often think of overfitting in the context of narrow systems built to perform specific tasks - models either generalize well to new data or they don't. Systems either generalize well to new data or they don't, with failures assumed to be uniform across all capabilities. But research in multi-task learning shows that different objectives can generalize independently, even when they appear perfectly correlated during training ([Sener & Koltun, 2019](https://arxiv.org/abs/1810.04650)).
-
-<Figure src="./img/ugm_Image_3.png" alt="Enter image alt description" number="3" label="7.3" caption="Conventional view of generalization and overfitting ([Mikulik, 2019](https://www.lesswrong.com/posts/2mhFMgtAjFJesaSYR/2-d-robustness))." />
-
-<Figure src="./img/xfn_Image_4.png" alt="Enter image alt description" number="4" label="7.4" caption="More accurate and safety focused view of generalization and overfitting. We need to separately measure capability generalization and goal generalization ([Mikulik, 2019](https://www.lesswrong.com/posts/2mhFMgtAjFJesaSYR/2-d-robustness))." />
-
-<Figure src="./img/pWf_Image_5.png" alt="Enter image alt description" number="5" label="7.5" caption="Table showcasing the 2 dimensional generalization picture for the CoinRun agent. Scenario 3 - capability generalization but not goal misgeneralization is the concerning misalignment scenario." />
-
-**Understanding generalization requires examining capabilities and goals separately.** Unlike narrow systems designed for specific tasks, general-purpose AI systems must learn to pursue various goals across different contexts. As a concrete example, pre-trained LLMs have general capabilities to generate all sorts of text. Anthropic reinforces its LLMs with the goals of being helpful, harmless, and honest (HHH) during safety training. But what happens when the goal to be helpful generalizes further than the goal to be honest? In this case the model might learn to provide informative responses regardless of content, instead of being helpful within ethical bounds.
-
-**Capabilities might generalize further than goals.** "Generalizing further" means continuing to work well even when deployed in environments very different from training. Capabilities follow simple, universal patterns - accurate reasoning, effective planning, and good predictions work the same way across different domains. But there's no universal force that pulls all systems toward the same goals ([Soares, 2022](https://www.alignmentforum.org/posts/GNhMPAWcfBCASy8e6/a-central-ai-alignment-problem-capabilities-generalization)). Reality itself teaches systems to be more capable - if your beliefs are wrong or your reasoning is flawed, the world will correct you. But there's no equivalent force from the environment that automatically keeps your goals aligned with what humans want ([Kumar, 2022](https://www.alignmentforum.org/posts/cq5x4XDnLcBrYbb66/will-capabilities-generalise-more)). This asymmetry between capability and goal generalization creates the core safety problem - making systems more capable doesn't automatically make them more aligned - it just makes them better at pursuing whatever behaviors they happen to learn during training.
-
-## Causal Correlations {#02}
-
-**Every training environment contains spurious correlations that create multiple valid explanations for success.** In CoinRun, "collect coins" and "move right" both perfectly predicted rewards because coins always appeared rightward during training.
-
-**Learning algorithms develop causal models that can be systematically wrong.** A causal model is the system's internal understanding of which actions cause which outcomes. This is related to but distinct from a world model - while a world model predicts what will happen next, a causal model explains why things happen. When an agent learns "moving right causes reward," it has developed a different causal model than the true structure where "coin collection causes reward." The training environment supports both interpretations:
-
-True causal structure: Action $\rightarrow$ Coin Collection $\rightarrow$ Reward
-
-Learned causal structure: Action $\rightarrow$ Rightward Movement $\rightarrow$ Reward
-
-Both structures explain the training data equally well. Standard reinforcement learning algorithms optimize for expected return without explicitly performing causal discovery - they increase the probability of reward-producing actions without identifying which features of those actions were causally responsible ([de Haan et al., 2019](https://arxiv.org/abs/1905.11979)).
-
-**Goal misgeneralization becomes visible only when deployment breaks spurious correlations.** During training, the proxy goal achieves perfect performance. During deployment, this correlation breaks, revealing the wrong causal model. As AI systems become more general-purpose, they encounter wider ranges of contexts where training correlations break down.
-
-**Distribution shift is inevitable - training environments cannot perfectly replicate all possible deployment conditions.** Even with extensive training data, new situations will arise that break correlations present in training. As AI systems become more general-purpose, they encounter wider ranges of contexts where previously reliable correlations may no longer hold. This explains why the problem gets worse with more capable, more general systems. A narrow chess engine deployed on chess positions won't encounter situations that break its learned correlations. But a general-purpose AI system deployed across multiple domains will inevitably encounter contexts where training correlations break down.
-
-**Auto-induced distribution shift creates feedback loops that amplify goal misgeneralization.** Unlike natural distribution shift where external factors change the environment, auto-induced distribution shift occurs when the AI system's own actions systematically alter the data distribution it encounters ([Krueger et al., 2020](https://arxiv.org/abs/2009.09153)). Think about a content recommendation system that learns the misgeneralized goal "maximize engagement" instead of "recommend valuable content." As it optimizes for clicks and time-on-site, it gradually shifts user behavior toward more sensational content consumption. This creates a feedback loop: the system's actions change user preferences, which changes the data distribution, which reinforces the misgeneralized goal. Each iteration takes the system further from the original intended objective while making the learned objective appear more successful by its own metrics.
-
-<Figure src="./img/zjc_Image_6.png" alt="Enter image alt description" number="6" label="7.6" caption="Auto induced distribution shift is when the AI model itself causes a distribution shift (and thereby generalization failure) due to its own actions and impact on the environment." />
-
-**Adding more training data cannot eliminate spurious correlations because we cannot identify all correlations in advance.** Think about why training on random coin placements in CoinRun solves that specific misgeneralization. It works because we can identify and break the specific correlation between rightward movement and reward. But this requires knowing in advance which correlations are spurious beforehand. In complex domains, training data reflects the statistical structure of training environments, not necessarily the causal structure of intended tasks.
-
-<Figure src="./img/PP3_Image_7.png" alt="Enter image alt description" number="7" label="7.7" caption="An example of causal confusion in imitation learning/behavioral cloning for self driving cars. This specific example shows that more data actually might lead to greater causal confusion. The model learns to hit the brake whenever the brake indicator is on. If that data is not included in training then the model correctly identifies the pedestrian as the causal factor influencing hitting the brake ([de Haan et al., 2019](https://arxiv.org/abs/1905.11979))." />
-
-**Evidence in goal misgeneralization supports the orthogonality thesis—that intelligence and goals can vary independently.** The empirical evidence from goal misgeneralization cases shows systems retaining sophisticated capabilities while pursuing different objectives than intended. This independence creates a safety concern because capability improvements don't necessarily improve alignment. A more capable system becomes better at pursuing whatever goals it has learned, whether intended or not.
+**Mitigations focus on preventing and correcting goal misgeneralization across the development pipeline.** We explore training-time interventions like adversarial training and curriculum learning, post-training techniques like steering vectors and model editing, and deployment-time safeguards including runtime monitoring and sandboxing. As with all AI safety challenges explored in this book, we advocate for a defense-in-depth approach where multiple detection and mitigation measures are layered to provide robust defenses against goal misgeneralization.

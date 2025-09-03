@@ -2,7 +2,7 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 module.exports = {
   type: 'category',
-  label: '7. Generalization',
+  label: '7. Goal Misgeneralization',
   link: {
     type: 'doc',
     id: 'chapters/07/index',
@@ -10,105 +10,118 @@ module.exports = {
   items: [
     {
   type: "category",
-  label: "7.1 Learning Dynamics",
+  label: "7.1 Multi Objective Generalization",
   link: {
     type: "doc",
     id: "chapters/07/1"
   },
   items: [
-  { type: "link", label: "7.1.1 Loss Landscapes", href: "/chapters/07/01#01" },
-  { type: "link", label: "7.1.2 Path Dependence", href: "/chapters/07/01#02" },
-  { type: "link", label: "7.1.3 Inductive Bias", href: "/chapters/07/01#03" }
+  { type: "link", label: "7.1.1 Goals ≠ Rewards", href: "/chapters/07/01#01" },
+  { type: "link", label: "7.1.2 Causal Correlations", href: "/chapters/07/01#02" }
   ]
 },
     {
   type: "category",
-  label: "7.2 Goal-Directedness",
+  label: "7.2 Learning Dynamics",
   link: {
     type: "doc",
     id: "chapters/07/2"
   },
   items: [
-  { type: "link", label: "7.2.1 Heuristics", href: "/chapters/07/02#01" },
-  { type: "link", label: "7.2.2 Simulators", href: "/chapters/07/02#02" },
-  { type: "link", label: "7.2.3 Learned Optimization", href: "/chapters/07/02#03" },
-  { type: "link", label: "7.2.4 Agent Agnostic Processes", href: "/chapters/07/02#04" }
+  { type: "link", label: "7.2.1 Loss Landscapes", href: "/chapters/07/02#01" },
+  { type: "link", label: "7.2.2 Path Dependence", href: "/chapters/07/02#02" },
+  { type: "link", label: "7.2.3 Inductive Bias", href: "/chapters/07/02#03" }
   ]
 },
     {
   type: "category",
-  label: "7.3 Scheming",
+  label: "7.3 Goal-Directedness",
   link: {
     type: "doc",
     id: "chapters/07/3"
   },
   items: [
-  { type: "link", label: "7.3.1 Prerequisites", href: "/chapters/07/03#01" },
+  { type: "link", label: "7.3.1 Heuristics", href: "/chapters/07/03#01" },
+  { type: "link", label: "7.3.2 Simulators", href: "/chapters/07/03#02" },
+  { type: "link", label: "7.3.3 Learned Optimization", href: "/chapters/07/03#03" },
+  { type: "link", label: "7.3.4 Emergent Optimization", href: "/chapters/07/03#04" }
+  ]
+},
+    {
+  type: "category",
+  label: "7.4 Scheming",
+  link: {
+    type: "doc",
+    id: "chapters/07/4"
+  },
+  items: [
+  { type: "link", label: "7.4.1 Prerequisites", href: "/chapters/07/04#01" },
   {
     type: "category",
-    label: "7.3.2 Dimensions",
+    label: "7.4.2 Dimensions",
     link: {
       type: "generated-index",
-      title: "7.3.2 Dimensions",
-      slug: "/chapters/07/03#02"
+      title: "7.4.2 Dimensions",
+      slug: "/chapters/07/04#02"
     },
     items: [
-    { type: "link", label: "7.3.2.1 Transparency", href: "/chapters/07/03#02-01" },
-    { type: "link", label: "7.3.2.2 Context", href: "/chapters/07/03#02-02" },
-    { type: "link", label: "7.3.2.3 Persistence", href: "/chapters/07/03#02-03" }
+    { type: "link", label: "7.4.2.1 Transparency", href: "/chapters/07/04#02-01" },
+    { type: "link", label: "7.4.2.2 Context", href: "/chapters/07/04#02-02" },
+    { type: "link", label: "7.4.2.3 Persistence", href: "/chapters/07/04#02-03" }
     ]
   },
   {
     type: "category",
-    label: "7.3.3 Likelihood",
+    label: "7.4.3 Likelihood",
     link: {
       type: "generated-index",
-      title: "7.3.3 Likelihood",
-      slug: "/chapters/07/03#03"
+      title: "7.4.3 Likelihood",
+      slug: "/chapters/07/04#03"
     },
     items: [
-    { type: "link", label: "7.3.3.1 Arguments for scheming", href: "/chapters/07/03#03-01" },
-    { type: "link", label: "7.3.3.2 Arguments against scheming", href: "/chapters/07/03#03-02" }
+    { type: "link", label: "7.4.3.1 Arguments for scheming", href: "/chapters/07/04#03-01" },
+    { type: "link", label: "7.4.3.2 Arguments against scheming", href: "/chapters/07/04#03-02" }
     ]
   }
   ]
 },
     {
   type: "category",
-  label: "7.4 Detection",
+  label: "7.5 Detection",
   link: {
     type: "doc",
-    id: "chapters/07/4"
+    id: "chapters/07/5"
   },
   items: [
   {
     type: "category",
-    label: "7.4.1 Behavioral Techniques (Black-Box)",
+    label: "7.5.1 Behavioral Techniques (Black-Box)",
     link: {
       type: "generated-index",
-      title: "7.4.1 Behavioral Techniques (Black-Box)",
-      slug: "/chapters/07/04#01"
+      title: "7.5.1 Behavioral Techniques (Black-Box)",
+      slug: "/chapters/07/05#01"
     },
     items: [
-    { type: "link", label: "7.4.1.1 Externalized Reasoning", href: "/chapters/07/04#01-01" }
+    { type: "link", label: "7.5.1.1 Externalized Reasoning", href: "/chapters/07/05#01-01" }
     ]
   },
   {
     type: "category",
-    label: "7.4.2 Internal Techniques (White-Box)",
+    label: "7.5.2 Internal Techniques (White-Box)",
     link: {
       type: "generated-index",
-      title: "7.4.2 Internal Techniques (White-Box)",
-      slug: "/chapters/07/04#02"
+      title: "7.5.2 Internal Techniques (White-Box)",
+      slug: "/chapters/07/05#02"
     },
     items: [
-    { type: "link", label: "7.4.2.1 Linear Probes", href: "/chapters/07/04#02-01" },
-    { type: "link", label: "7.4.2.2 Sparse Autoencoders", href: "/chapters/07/04#02-02" },
-    { type: "link", label: "7.4.2.3 Activation Manipulation", href: "/chapters/07/04#02-03" },
-    { type: "link", label: "7.4.2.4 Reasoning Structure Analysis", href: "/chapters/07/04#02-04" }
+    { type: "link", label: "7.5.2.1 Linear Probes", href: "/chapters/07/05#02-01" },
+    { type: "link", label: "7.5.2.2 Sparse Autoencoders", href: "/chapters/07/05#02-02" },
+    { type: "link", label: "7.5.2.3 Activation Manipulation", href: "/chapters/07/05#02-03" },
+    { type: "link", label: "7.5.2.4 Activation Patching", href: "/chapters/07/05#02-04" },
+    { type: "link", label: "7.5.2.5 Reasoning Structure Analysis", href: "/chapters/07/05#02-05" }
     ]
   },
-  { type: "link", label: "7.4.3 Combined Techniques", href: "/chapters/07/04#03" }
+  { type: "link", label: "7.5.3 Combined Techniques", href: "/chapters/07/05#03" }
   ]
 }
   ],
