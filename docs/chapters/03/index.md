@@ -23,7 +23,7 @@ acknowledgements:
   - "Josh Thorsteinson"
   - "Pauliina Laine"
 alignment_forum_link: "https://www.lesswrong.com/s/3ni2P2GZzBvNebWYZ/p/RzsXRbk2ETNqjhsma"
-google_docs_link: "https://docs.google.com/document/d/1WTyLHyaJ_NEDEu49U_hh7oz0-AOQfp7uOJKLck-7A78/edit?usp=sharing"
+google_docs_link: "https://docs.google.com/document/d/1ytzVlrj8PpxiyjvmZCJXm5QW3olhTh504-yH0h-wAq0/edit?usp=sharing"
 teach_link: "https://docs.google.com/document/d/1cv0gzwSouDjckYHzV7gYbHPKhJZR6bwbJWgHzEJ604Q/edit?usp=sharing"
 sidebar_position: 3
 slug: /chapters/03/
