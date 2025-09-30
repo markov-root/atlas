@@ -1,7 +1,7 @@
 // config/metadata.mjs
 export const metadata = {
   title: 'AI Safety Atlas',
-  tagline: 'A comprehensive guide to AI safety and alignment',
+  tagline: 'A guide to AI safety and alignment',
   favicon: 'img/favicon.ico',
   
   // Change to your custom domain

@@ -63,7 +63,7 @@ export default function ChapterFeedback({
   ] : [
     {
       key: 'overall_rating',
-      label: 'How would you rate this section?',
+      label: 'How would you rate this section overall?',
       icon: 'quality.svg',
       lowLabel: 'Poor',
       highLabel: 'Excellent',

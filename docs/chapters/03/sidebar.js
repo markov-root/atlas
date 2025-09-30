@@ -55,21 +55,22 @@ module.exports = {
     id: "chapters/03/3"
   },
   items: [
-  { type: "link", label: "3.3.1 Naïve Strategies", href: "/chapters/03/03#01" },
+  { type: "link", label: "3.3.1 Initial Ideas", href: "/chapters/03/03#01" },
   {
     type: "category",
-    label: "3.3.2 Solve Alignment",
+    label: "3.3.2 Solve AGI Alignment",
     link: {
       type: "generated-index",
-      title: "3.3.2 Solve Alignment",
+      title: "3.3.2 Solve AGI Alignment",
       slug: "/chapters/03/03#02"
     },
     items: [
     { type: "link", label: "3.3.2.1 Requirements for AGI Alignment", href: "/chapters/03/03#02-01" }
     ]
   },
-  { type: "link", label: "3.3.3 AI Control", href: "/chapters/03/03#03" },
-  { type: "link", label: "3.3.4 Transparent Thoughts", href: "/chapters/03/03#04" }
+  { type: "link", label: "3.3.3 Fix Misalignment", href: "/chapters/03/03#03" },
+  { type: "link", label: "3.3.4 Maintain Control", href: "/chapters/03/03#04" },
+  { type: "link", label: "3.3.5 Facilitating control with Transparent Thoughts", href: "/chapters/03/03#05" }
   ]
 },
     {
@@ -80,23 +81,22 @@ module.exports = {
     id: "chapters/03/4"
   },
   items: [
-  { type: "link", label: "3.4.1 Debated Strategies", href: "/chapters/03/04#01" },
-  { type: "link", label: "3.4.2 Automating Alignment Research", href: "/chapters/03/04#02" },
-  { type: "link", label: "3.4.3 Safety-by-Design", href: "/chapters/03/04#03" },
-  { type: "link", label: "3.4.4 World Coordination", href: "/chapters/03/04#04" },
-  { type: "link", label: "3.4.5 Deterrence", href: "/chapters/03/04#05" }
+  { type: "link", label: "3.4.1 Automate Alignment Research", href: "/chapters/03/04#01" },
+  { type: "link", label: "3.4.2 Safety-by-Design", href: "/chapters/03/04#02" },
+  { type: "link", label: "3.4.3 World Coordination", href: "/chapters/03/04#03" },
+  { type: "link", label: "3.4.4 Deterrence", href: "/chapters/03/04#04" }
   ]
 },
     {
   type: "category",
-  label: "3.5 Systemic Strategies",
+  label: "3.5 Socio-Technical Strategies",
   link: {
     type: "doc",
     id: "chapters/03/5"
   },
   items: [
-  { type: "link", label: "3.5.1 Defense Acceleration (d/acc)", href: "/chapters/03/05#01" },
-  { type: "link", label: "3.5.2 Defense in Depth", href: "/chapters/03/05#02" },
+  { type: "link", label: "3.5.1 Defensive Acceleration (d/acc)", href: "/chapters/03/05#01" },
+  { type: "link", label: "3.5.2 Defense-in-Depth", href: "/chapters/03/05#02" },
   { type: "link", label: "3.5.3 AI Governance", href: "/chapters/03/05#03" },
   { type: "link", label: "3.5.4 Risk Management", href: "/chapters/03/05#04" },
   { type: "link", label: "3.5.5 Safety Culture", href: "/chapters/03/05#05" }
@@ -117,7 +117,20 @@ module.exports = {
   ]
 },
     { type: "doc", id: "chapters/03/8", label: "3.8 Conclusion" },
-    { type: "doc", id: "chapters/03/9", label: "3.9 Appendix : Long-term questions" },
+    {
+  type: "category",
+  label: "3.9 Appendix: Long-term questions",
+  link: {
+    type: "doc",
+    id: "chapters/03/9"
+  },
+  items: [
+  { type: "link", label: "3.9.1 Prioritize Flourishing or Survival?", href: "/chapters/03/09#01" },
+  { type: "link", label: "3.9.2 Alignment to what?", href: "/chapters/03/09#02" },
+  { type: "link", label: "3.9.3 Alignment to whom?", href: "/chapters/03/09#03" },
+  { type: "link", label: "3.9.4 Questions for the Long Term", href: "/chapters/03/09#04" }
+  ]
+},
     { type: "doc", id: "chapters/03/10", label: "3.10 Appendix: Requirements for ASI Alignment" }
   ],
 };
