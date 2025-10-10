@@ -1,0 +1,95 @@
+/* src/theme/DocItem/Landing/Tagline.module.css */
+
+.taglineSection {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  background: transparent;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.taglineContent {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.taglineTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--atlas-text, #212529);
+  margin: 0 0 1.5rem 0;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+[data-theme='dark'] .taglineTitle {
+  color: var(--atlas-text, #e9ecef);
+}
+
+.taglineText {
+  font-size: 1.125rem;
+  color: var(--atlas-text-secondary, #495057);
+  line-height: 1.7;
+  margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+[data-theme='dark'] .taglineText {
+  color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .taglineSection {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .taglineTitle {
+    font-size: 1.75rem;
+  }
+  
+  .taglineText {
+    font-size: 1.0625rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .taglineSection {
+    padding: 2.5rem 1rem;
+  }
+  
+  .taglineContent {
+    max-width: 100%;
+  }
+  
+  .taglineTitle {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .taglineText {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 480px) {
+  .taglineSection {
+    padding: 2rem 0.75rem;
+  }
+  
+  .taglineTitle {
+    font-size: 1.375rem;
+    margin-bottom: 1rem;
+  }
+  
+  .taglineText {
+    font-size: 0.9375rem;
+  }
+}

@@ -1,0 +1,252 @@
+/* src/theme/DocItem/Landing/ImpactSnapshot.module.css */
+
+.impactSection {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  background: transparent;
+  box-sizing: border-box;
+  border-top: 1px solid var(--atlas-border-color, #e9ecef);
+  overflow-x: hidden;
+}
+
+[data-theme='dark'] .impactSection {
+  border-top-color: var(--atlas-border-color, #373737);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ========================================
+   HORIZONTAL SCROLLING LOGOS WITH NAMES
+   ======================================== */
+
+.logosSection {
+  width: 100%;
+  overflow: hidden;
+}
+
+.sectionLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--atlas-text-tertiary, #6c757d);
+  text-align: center;
+  margin: 0 0 2rem 0;
+}
+
+[data-theme='dark'] .sectionLabel {
+  color: var(--atlas-text-tertiary, #adb5bd);
+}
+
+.logosScrollContainer {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  /* Fade out at edges */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+}
+
+.logosTrack {
+  display: flex;
+  gap: 3rem;
+  /* SLOWER: Changed from 30s to 60s */
+  animation: scroll 60s linear infinite;
+  width: fit-content;
+}
+
+/* Pause animation on hover */
+.logosScrollContainer:hover .logosTrack {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Institution Card - Logo + Name */
+.institutionCard {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-width: 140px;
+  padding: 1rem;
+  transition: opacity 0.3s ease;
+}
+
+.institutionCard:hover {
+  opacity: 1;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+}
+
+.institutionLogo {
+  height: 100%;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  /* Monochrome filter */
+  filter: grayscale(100%) brightness(0) saturate(0);
+}
+
+.institutionCard:hover .institutionLogo {
+  opacity: 1;
+}
+
+/* Dark mode - invert for visibility */
+[data-theme='dark'] .institutionLogo {
+  filter: grayscale(100%) brightness(0) saturate(0) invert(1);
+}
+
+/* Institution Name */
+.institutionName {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--atlas-text, #212529);
+  text-align: center;
+  line-height: 1.3;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+[data-theme='dark'] .institutionName {
+  color: var(--atlas-text, #e9ecef);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .impactSection {
+    padding: 3rem 1.5rem;
+  }
+  
+  .institutionCard {
+    min-width: 120px;
+    padding: 0.875rem;
+  }
+  
+  .logoWrapper {
+    height: 45px;
+  }
+  
+  .institutionLogo {
+    max-width: 100px;
+  }
+  
+  .logosTrack {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .impactSection {
+    padding: 3rem 1rem;
+  }
+  
+  .institutionCard {
+    min-width: 100px;
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+  
+  .logoWrapper {
+    height: 40px;
+  }
+  
+  .institutionLogo {
+    max-width: 90px;
+  }
+  
+  .institutionName {
+    font-size: 0.75rem;
+  }
+  
+  .logosTrack {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .impactSection {
+    padding: 2.5rem 0.75rem;
+  }
+  
+  .institutionCard {
+    min-width: 90px;
+    padding: 0.625rem;
+  }
+  
+  .logoWrapper {
+    height: 35px;
+  }
+  
+  .institutionLogo {
+    max-width: 80px;
+  }
+  
+  .institutionName {
+    font-size: 0.6875rem;
+  }
+  
+  .logosTrack {
+    gap: 1.75rem;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY & REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .logosTrack {
+    animation: none;
+  }
+  
+  .institutionCard,
+  .institutionLogo {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .institutionLogo {
+    opacity: 1;
+  }
+}

@@ -1,14 +1,15 @@
 // src/theme/DocItem/Landing/index.jsx
 import React, { useState, useEffect } from 'react';
 import Hero from './Hero';
-import Story from './Story';
+import Tagline from './Tagline'; // NEW - extracted tagline component
+import ImpactSnapshot from './ImpactSnapshot'; // Updated - just logos now
 import ChapterList from './List';
+import Testimonials from './Testimonials'; // Moved up from bottom
+import Story from './Story'; // Moved up from bottom
 import Info from './Info';
-import Testimonials from './Testimonials';
 import chaptersData from '../../../data/chapters.json';
 import styles from './index.module.css';
 
-// Add a simple loading skeleton component
 function LoadingSkeleton() {
   return (
     <div className={styles.landingContainer}>
@@ -25,7 +26,6 @@ function LoadingSkeleton() {
           padding: '2rem',
           opacity: 0.3
         }}>
-          {/* Hero skeleton */}
           <div style={{
             height: '300px',
             background: 'var(--atlas-gray-200, #e9ecef)',
@@ -34,7 +34,6 @@ function LoadingSkeleton() {
             animation: 'pulse 1.5s ease-in-out infinite alternate'
           }} />
           
-          {/* Content skeleton */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -59,7 +58,6 @@ export default function ChapterLanding() {
   const [mainWidth, setMainWidth] = useState(0);
   const [isReady, setIsReady] = useState(false);
 
-  // Measure bounds - same technique as your headers
   useEffect(() => {
     const updateMainWidth = () => {
       const mainContainer = document.querySelector('.docMainContainer_TBSr');
@@ -84,7 +82,6 @@ export default function ChapterLanding() {
     return () => window.removeEventListener('resize', updateMainWidth);
   }, [isReady]);
 
-  // Landing bounds container
   const landingStyle = {
     position: 'relative',
     left: '50%',
@@ -93,7 +90,6 @@ export default function ChapterLanding() {
     margin: '0'
   };
 
-  // Show loading skeleton instead of null
   if (!isReady || mainWidth <= 0) {
     return <LoadingSkeleton />;
   }
@@ -105,7 +101,7 @@ export default function ChapterLanding() {
         {/* Hero Section */}
         <Hero />
         
-        {/* Project Story Section - Why AI Safety matters + What we do */}
+        {/* Tagline - RIGHT BEFORE CHAPTERS */}
         <Story />
         
         {/* Chapter List Section */}
@@ -122,11 +118,12 @@ export default function ChapterLanding() {
           ))}
         </div>
         
-        {/* Project Information Section */}
-        <Info />
         
-        {/* Testimonials */}
+        {/* Testimonials - MOVED UP HERE */}
         <Testimonials />
+        
+        {/* Project Information Section - NOW LAST BEFORE FOOTER */}
+        <Info />
         
       </div>
     </div>
