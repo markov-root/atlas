@@ -1,4 +1,4 @@
-/* src/theme/DocItem/Landing/Info.module.css - Container for organized sections */
+/* src/theme/DocItem/Landing/Info.module.css - Fixed horizontal overflow */
 
 .projectInfoContainer {
   position: relative;
@@ -8,6 +8,7 @@
   max-width: 1400px;
   margin: 0 auto;
   box-sizing: border-box;
+  overflow-x: hidden; /* Critical: prevent horizontal scroll */
 }
 
 [data-theme='dark'] .projectInfoContainer {
@@ -18,6 +19,7 @@
   position: relative;
   z-index: 1;
   width: 100%;
+  box-sizing: border-box;
 }
 
 /* Two-column grid layout */
@@ -27,6 +29,8 @@
   gap: 4rem;
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .leftColumn,
@@ -34,10 +38,17 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  min-width: 0; /* Prevent flex overflow */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+  .projectInfoContainer {
+    padding: 4rem 1.5rem 3rem 1.5rem;
+  }
+  
   .sectionsGrid {
     gap: 3rem;
   }
@@ -50,24 +61,27 @@
 
 @media (max-width: 768px) {
   .projectInfoContainer {
-    padding: 4rem 1.5rem 3rem 1.5rem;
+    padding: 4rem 1rem 3rem 1rem;
+    overflow-x: hidden;
   }
   
   .sectionsGrid {
     grid-template-columns: 1fr;
     gap: 1rem;
     max-width: 100%;
+    width: 100%;
   }
   
   .leftColumn,
   .rightColumn {
     gap: 1rem;
+    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .projectInfoContainer {
-    padding: 3rem 1rem 2.5rem 1rem;
+    padding: 3rem 0.75rem 2.5rem 0.75rem;
   }
   
   .sectionsGrid {

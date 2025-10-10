@@ -1,4 +1,4 @@
-/* src/theme/DocItem/Landing/Story.module.css */
+/* src/theme/DocItem/Landing/Story.module.css - Fixed horizontal overflow */
 
 .storyContainer {
   position: relative;
@@ -9,6 +9,7 @@
   background: transparent;
   box-sizing: border-box;
   border-bottom: 1px solid var(--atlas-border-color, #e9ecef);
+  overflow-x: hidden; /* Critical: prevent horizontal scroll */
 }
 
 [data-theme='dark'] .storyContainer {
@@ -23,6 +24,7 @@
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  box-sizing: border-box;
 }
 
 /* PRIMARY SECTION - Fixed height only on desktop */
@@ -32,13 +34,16 @@
   grid-template-columns: 2fr 1fr;
   gap: 4rem;
   align-items: start;
-  height: 500px; /* Fixed height for desktop only */
+  height: 500px;
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent content overflow */
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
   .storyContainer {
     padding: 3rem 1.5rem;
+    overflow-x: hidden;
   }
   
   .storyContent {
@@ -47,29 +52,34 @@
   
   .primarySection {
     gap: 3rem;
-    height: 450px; /* Keep fixed height for tablet */
+    height: 450px;
   }
 }
 
 @media (max-width: 768px) {
   .storyContainer {
-    padding: 3rem 1.5rem;
+    padding: 3rem 1rem;
+    overflow-x: hidden;
+    max-width: 100%;
   }
   
   .storyContent {
     gap: 3rem;
+    width: 100%;
   }
   
   .primarySection {
     grid-template-columns: 1fr;
     gap: 2.5rem;
-    height: auto; /* Remove fixed height on mobile - let content determine height */
+    height: auto; /* Remove fixed height on mobile */
+    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .storyContainer {
-    padding: 2.5rem 1rem;
+    padding: 2.5rem 0.75rem;
+    overflow-x: hidden;
   }
   
   .storyContent {
@@ -77,6 +87,7 @@
   }
   
   .primarySection {
-    height: auto; /* Remove fixed height on small mobile */
+    height: auto;
+    gap: 2rem;
   }
 }
