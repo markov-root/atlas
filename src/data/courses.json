@@ -86,19 +86,6 @@
       "description": "Intensive in-person bootcamps to upskill in AI safety using Atlas materials",
       "courses": [
         {
-          "id": "ml4good-canada-sept25",
-          "iteration": 15,
-          "name": "ML4Good Canada",
-          "startDate": "2025-09-13",
-          "endDate": "2025-09-21",
-          "location": "Canada",
-          "participants": null,
-          "estimatedParticipants": 20,
-          "studentApplicationLink": "https://www.ml4good.org/courses/canada-sept25",
-          "format": "in-person",
-          "description": "First ML4Good bootcamp in Canada"
-        },
-        {
           "id": "ml4good-singapore-sept25",
           "iteration": 14,
           "name": "ML4Good Singapore",
