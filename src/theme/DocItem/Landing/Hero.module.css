@@ -61,6 +61,12 @@
   height: auto;
   object-fit: contain;
   margin: 0;
+  transition: filter 0.3s ease;
+}
+
+/* Dark mode logo - invert colors for visibility */
+[data-theme='dark'] .logoText {
+  filter: invert(1) brightness(1.1);
 }
 
 /* Description text */
@@ -315,7 +321,8 @@
 @media (prefers-reduced-motion: reduce) {
   .startReadingButton,
   .buttonArrow,
-  .startReadingButton::after {
+  .startReadingButton::after,
+  .logoText {
     transition: none;
   }
   

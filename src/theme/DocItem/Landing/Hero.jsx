@@ -20,7 +20,7 @@ export default function Hero() {
       {/* Left side - Logo Text, Description, and CTA */}
       <div className={styles.contentSection}>
         <img 
-          src="/img/logo/logo_text.png" 
+          src="/img/logo/logo_text.svg" 
           alt="AI Safety Atlas" 
           className={styles.logoText}
         />
