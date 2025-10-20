@@ -1,0 +1,208 @@
+{
+  "title": "Table of Contents",
+  "chapter": 6,
+  "sections": [
+    {
+      "title": "Introduction",
+      "anchor": "introduction",
+      "number": "6.0",
+      "subsections": [],
+      "reading_times": {
+        "core": "2 min",
+        "optional": "0 min",
+        "total": "2 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Reinforcement Learning",
+      "anchor": "reinforcement-learning",
+      "number": "6.1",
+      "subsections": [
+        {
+          "title": "Primer",
+          "anchor": "primer",
+          "number": "6.1.1",
+          "subsections": []
+        },
+        {
+          "title": "Core Loop",
+          "anchor": "core-loop",
+          "number": "6.1.2",
+          "subsections": []
+        },
+        {
+          "title": "Policies",
+          "anchor": "policies",
+          "number": "6.1.3",
+          "subsections": []
+        },
+        {
+          "title": "Reward",
+          "anchor": "reward",
+          "number": "6.1.4",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "7 min",
+        "optional": "1 min",
+        "total": "8 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Optimization",
+      "anchor": "optimization",
+      "number": "6.2",
+      "subsections": [
+        {
+          "title": "Goodhart's Law",
+          "anchor": "goodharts-law",
+          "number": "6.2.1",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "4 min",
+        "optional": "1 min",
+        "total": "4 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Specification Gaming",
+      "anchor": "specification-gaming",
+      "number": "6.3",
+      "subsections": [
+        {
+          "title": "Reward Design",
+          "anchor": "reward-design",
+          "number": "6.3.1",
+          "subsections": []
+        },
+        {
+          "title": "Reward Shaping",
+          "anchor": "reward-shaping",
+          "number": "6.3.2",
+          "subsections": []
+        },
+        {
+          "title": "Reward Hacking",
+          "anchor": "reward-hacking",
+          "number": "6.3.3",
+          "subsections": []
+        },
+        {
+          "title": "Reward Tampering",
+          "anchor": "reward-tampering",
+          "number": "6.3.4",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "11 min",
+        "optional": "1 min",
+        "total": "12 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Learning from imitation",
+      "anchor": "learning-from-imitation",
+      "number": "6.4",
+      "subsections": [
+        {
+          "title": "Imitation Learning (IL)",
+          "anchor": "imitation-learning-il",
+          "number": "6.4.1",
+          "subsections": []
+        },
+        {
+          "title": "Behavioral Cloning (BC)",
+          "anchor": "behavioral-cloning-bc",
+          "number": "6.4.2",
+          "subsections": []
+        },
+        {
+          "title": "Procedural Cloning (PC)",
+          "anchor": "procedural-cloning-pc",
+          "number": "6.4.3",
+          "subsections": []
+        },
+        {
+          "title": "Inverse Reinforcement Learning (IRL)",
+          "anchor": "inverse-reinforcement-learning-irl",
+          "number": "6.4.4",
+          "subsections": []
+        },
+        {
+          "title": "Cooperative Inverse Reinforcement Learning (CIRL)",
+          "anchor": "cooperative-inverse-reinforcement-learning-cirl",
+          "number": "6.4.5",
+          "subsections": []
+        },
+        {
+          "title": "Goal Inference Problem",
+          "anchor": "goal-inference-problem",
+          "number": "6.4.6",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "13 min",
+        "optional": "1 min",
+        "total": "13 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Learning from feedback",
+      "anchor": "learning-from-feedback",
+      "number": "6.5",
+      "subsections": [
+        {
+          "title": "Reward Modeling",
+          "anchor": "reward-modeling",
+          "number": "6.5.1",
+          "subsections": []
+        },
+        {
+          "title": "Reinforcement Learning from Human Feedback (RLHF)",
+          "anchor": "reinforcement-learning-from-human-feedback-rlhf",
+          "number": "6.5.2",
+          "subsections": []
+        },
+        {
+          "title": "Pretraining with Human Feedback (PHF)",
+          "anchor": "pretraining-with-human-feedback-phf",
+          "number": "6.5.3",
+          "subsections": []
+        },
+        {
+          "title": "Reinforcement Learning from AI Feedback (RLAIF)",
+          "anchor": "reinforcement-learning-from-ai-feedback-rlaif",
+          "number": "6.5.4",
+          "subsections": []
+        },
+        {
+          "title": "Limitations",
+          "anchor": "limitations",
+          "number": "6.5.5",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "21 min",
+        "optional": "3 min",
+        "total": "23 min"
+      },
+      "is_appendix": false
+    }
+  ],
+  "reading_times": {
+    "core": "55 min",
+    "optional": "3 min",
+    "appendix": "0 min"
+  }
+}

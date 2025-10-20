@@ -1,0 +1,154 @@
+{
+  "title": "Table of Contents",
+  "chapter": 9,
+  "sections": [
+    {
+      "title": "Introduction",
+      "anchor": "introduction",
+      "number": "9.0",
+      "subsections": [],
+      "reading_times": {
+        "core": "1 min",
+        "optional": "1 min",
+        "total": "1 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "What is Interpretability ?",
+      "anchor": "what-is-interpretability-",
+      "number": "9.1",
+      "subsections": [
+        {
+          "title": "Mechanistic Interpretability",
+          "anchor": "mechanistic-interpretability",
+          "number": "9.1.1",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "7 min",
+        "optional": "1 min",
+        "total": "7 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Observational Methods",
+      "anchor": "observational-methods",
+      "number": "9.2",
+      "subsections": [
+        {
+          "title": "Feature Visualization",
+          "anchor": "feature-visualization",
+          "number": "9.2.1",
+          "subsections": [
+            {
+              "title": "Circuits",
+              "anchor": "circuits",
+              "number": "9.2.1.1",
+              "subsections": []
+            },
+            {
+              "title": "Polysemantic Neurons",
+              "anchor": "polysemantic-neurons",
+              "number": "9.2.1.2",
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "title": "Logit Lens",
+          "anchor": "logit-lens",
+          "number": "9.2.2",
+          "subsections": []
+        },
+        {
+          "title": "Probing classifiers",
+          "anchor": "probing-classifiers",
+          "number": "9.2.3",
+          "subsections": []
+        },
+        {
+          "title": "Superposition",
+          "anchor": "superposition",
+          "number": "9.2.4",
+          "subsections": []
+        },
+        {
+          "title": "Sparse Autoencoders",
+          "anchor": "sparse-autoencoders",
+          "number": "9.2.5",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "17 min",
+        "optional": "17 min",
+        "total": "33 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Interventional Methods",
+      "anchor": "interventional-methods",
+      "number": "9.3",
+      "subsections": [
+        {
+          "title": "Activation Patching",
+          "anchor": "activation-patching",
+          "number": "9.3.1",
+          "subsections": []
+        },
+        {
+          "title": "Activation Steering",
+          "anchor": "activation-steering",
+          "number": "9.3.2",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "3 min",
+        "optional": "5 min",
+        "total": "8 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Automating and Scaling Interpretability",
+      "anchor": "automating-and-scaling-interpretability",
+      "number": "9.4",
+      "subsections": [
+        {
+          "title": "Automatic Circuit DisCovery (ACDC)",
+          "anchor": "automatic-circuit-discovery-acdc",
+          "number": "9.4.1",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "2 min",
+        "optional": "1 min",
+        "total": "3 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Critiques",
+      "anchor": "critiques",
+      "number": "9.5",
+      "subsections": [],
+      "reading_times": {
+        "core": "1 min",
+        "optional": "0 min",
+        "total": "1 min"
+      },
+      "is_appendix": false
+    }
+  ],
+  "reading_times": {
+    "core": "30 min",
+    "optional": "23 min",
+    "appendix": "0 min"
+  }
+}

@@ -1,0 +1,337 @@
+{
+  "chapter_number": 4,
+  "media_counts": {
+    "figures": 33,
+    "videos": 0,
+    "iframes": 6,
+    "definitions": 1
+  },
+  "media_registry": [
+    {
+      "type": "figure",
+      "number": 1,
+      "label": "4.1",
+      "file_path": "Images/ek4_Image_1.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Distinguishing AI models according to their level of potential harm and generality. We focus here on frontier AI models ([U.K. government, 2023](https://www.gov.uk/government/publications/frontier-ai-capabilities-and-risks-discussion-paper/frontier-ai-capabilities-and-risks-discussion-paper))"
+    },
+    {
+      "type": "figure",
+      "number": 2,
+      "label": "4.2",
+      "file_path": "Images/evb_Image_2.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The two-dimensional outlook of capabilities and generality. The different curves represent different paths to AGI. Every point on the path corresponds to a different level of AI capability. The specific development trajectory is hard to forecast but progress is continuous."
+    },
+    {
+      "type": "figure",
+      "number": 3,
+      "label": "4.3",
+      "file_path": "Images/fSC_Image_3.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Summary of the three regulatory challenges posed by frontier AI ([Anderljung, 2023](https://arxiv.org/pdf/2307.03718))"
+    },
+    {
+      "type": "figure",
+      "number": 4,
+      "label": "4.4",
+      "file_path": "Images/qAQ_Image_4.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of unexpected capabilities. Graphs showing several metrics that improve suddenly and unpredictably as models increase in size ([Ganguli et al., 2022](https://arxiv.org/abs/2202.07785))"
+    },
+    {
+      "type": "figure",
+      "number": 5,
+      "label": "4.5",
+      "file_path": "Images/bTo_Image_5.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A schematic of using autonomous LLM agents to hack websites ([Fang et al., 2024](https://arxiv.org/abs/2402.06664)). Once a dual-purpose technology is public, it can be used for both beneficial and harmful purposes."
+    },
+    {
+      "type": "figure",
+      "number": 6,
+      "label": "4.6",
+      "file_path": "Images/lrJ_Image_6.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Examples of Proliferation ([\u00d6zcan, 2024](https://cfg.eu/ai-governance-challenges-part-3-proliferation/))."
+    },
+    {
+      "type": "figure",
+      "number": 7,
+      "label": "4.7",
+      "file_path": "Images/0rQ_Image_7.jpeg",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of an NVIDIA Blackwell B100 accelerator (2025). Each B100 carries 192 GB of HBM3e memory and delivers nearly 20 PFLOPS of FP4 throughput, roughly doubling the performance of the H100 from 2024 ([NVIDIA, 2025](https://resources.nvidia.com/en-us-blackwell-architecture))."
+    },
+    {
+      "type": "figure",
+      "number": 8,
+      "label": "4.8",
+      "file_path": "Images/kqf_Image_9.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Sketch of research domains for AI and Compute ([Heim, 2021](https://www.lesswrong.com/posts/G4KHuYC3pHry6yMhi))."
+    },
+    {
+      "type": "figure",
+      "number": 9,
+      "label": "4.9",
+      "file_path": "Images/wQ7_Image_10.jpeg",
+      "alt_text": "Enter image alt description",
+      "caption": "The compute supply chain ([Belfield & Hua 2022](https://verfassungsblog.de/compute-and-antitrust/))."
+    },
+    {
+      "type": "figure",
+      "number": 10,
+      "label": "4.10",
+      "file_path": "Images/OBH_Image_12.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Concentration of the AI Chip Supply Chain Expressed as percentage of total market share ([Sastry et al., 2024](https://arxiv.org/abs/2402.08797))."
+    },
+    {
+      "type": "figure",
+      "number": 11,
+      "label": "4.11",
+      "file_path": "Images/z17_Image_13.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The spectrum of chip architectures with trade-offs in regards to efficiency and flexibility."
+    },
+    {
+      "type": "figure",
+      "number": 12,
+      "label": "4.12",
+      "file_path": "Images/O3O_Image_14.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Compute Thresholds as specified in the US executive order 14110 ([Sastry et al., 2024](https://arxiv.org/abs/2402.08797))."
+    },
+    {
+      "type": "figure",
+      "number": 13,
+      "label": "4.13",
+      "file_path": "Images/sFm_Image_15.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Current AI chips already have some components of this architecture, but not all. These gaps likely could be closed with moderate development effort as extensions of functionality already in place ([Aarne et al., 2024](https://www.iaps.ai/research/secure-governable-chips))."
+    },
+    {
+      "type": "figure",
+      "number": 14,
+      "label": "4.14",
+      "file_path": "Images/vaX_Image_16.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Estimates of the scale constraints imposed by the most important bottlenecks to scale. Each estimate is based on historical projections. The dark shaded box corresponds to an interquartile range and light shaded region to an 80 percent confidence interval. The four boxes showcase four constraints that might slow down growth in the future: power, chips (compute), data and latency ([Sevilla et al., 2024](https://epoch.ai/blog/can-ai-scaling-continue-through-2030))."
+    },
+    {
+      "type": "figure",
+      "number": 15,
+      "label": "4.15",
+      "file_path": "Images/W4Z_Image_17.png",
+      "alt_text": "Enter image alt description",
+      "caption": "How to extort your opponent, and what you stand to gain by extortion ([Stewart & Plotkin, 2012](https://www.pnas.org/doi/full/10.1073/pnas.1208087109))."
+    },
+    {
+      "type": "figure",
+      "number": 16,
+      "label": "4.16",
+      "file_path": "Images/w7r_Image_20.png",
+      "alt_text": "Enter image alt description",
+      "caption": "In 2023, most of the notable AI models originated from U.S. institutions ([Standoford, 2024](https://hai.stanford.edu/ai-index/2024-ai-index-report))."
+    },
+    {
+      "type": "figure",
+      "number": 17,
+      "label": "4.17",
+      "file_path": "Images/h9n_Image_21.png",
+      "alt_text": "Enter image alt description",
+      "caption": "In the U.S., the number of graduates with bachelor\u2019s degrees in computing has increased 22 percent over the last 10 years. Yet access remains limited in many African countries due to basic infrastructure gaps like electricity ([Stanford HAI, 2025](https://hai.stanford.edu/ai-index/2025-ai-index-report))."
+    },
+    {
+      "type": "figure",
+      "number": 18,
+      "label": "4.18",
+      "file_path": "Images/hj0_Image_22.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The three levels of AI governance."
+    },
+    {
+      "type": "figure",
+      "number": 19,
+      "label": "4.19",
+      "file_path": "Images/Aka_Image_23.png",
+      "alt_text": "Enter image alt description",
+      "caption": "How the levels interact and reinforce."
+    },
+    {
+      "type": "figure",
+      "number": 20,
+      "label": "4.20",
+      "file_path": "Images/alC_Image_25.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The figure illustrates a self-reinforcing loop in which AI systems progressively automate AI research, leading to increasingly capable AI that further accelerates its own development ([Stix, 2025](https://arxiv.org/abs/2504.12170))."
+    },
+    {
+      "type": "figure",
+      "number": 21,
+      "label": "4.21",
+      "file_path": "Images/J3d_Image_26.png",
+      "alt_text": "Enter image alt description",
+      "caption": "([Kahney, 2011](https://www.cultofmac.com/news/apple-ms-google-etc-imagined-as-fun-org-charts))"
+    },
+    {
+      "type": "figure",
+      "number": 22,
+      "label": "4.22",
+      "file_path": "Images/Ogq_Image_27.png",
+      "alt_text": "Enter image alt description",
+      "caption": "([Stix, 2025](https://arxiv.org/abs/2504.12170))"
+    },
+    {
+      "type": "figure",
+      "number": 23,
+      "label": "4.23",
+      "file_path": "Images/nmm_Image_28.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Sample org chart of an AI company with equivalent responsibilities for each of the three lines."
+    },
+    {
+      "type": "figure",
+      "number": 24,
+      "label": "4.24",
+      "file_path": "Images/Knl_Image_29.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The state\u2019s role in governing artificial intelligence: development, control, and promotion through national strategies ([Papyshev et al., 2023](https://www.researchgate.net/publication/367010605_The_state's_role_in_governing_artificial_intelligence_development_control_and_promotion_through_national_strategies))."
+    },
+    {
+      "type": "figure",
+      "number": 25,
+      "label": "4.25",
+      "file_path": "Images/0Dc_Image_30.png",
+      "alt_text": "Enter image alt description",
+      "caption": "([State of AI Report, 2023](https://www.stateof.ai/))"
+    },
+    {
+      "type": "figure",
+      "number": 26,
+      "label": "4.26",
+      "file_path": "Images/VMN_Image_32.jpeg",
+      "alt_text": "Enter image alt description",
+      "caption": "What are the career paths of top-tier AI researchers? ([MacroPolo](https://macropolo.org/digital-projects/the-global-ai-talent-tracker/))"
+    },
+    {
+      "type": "figure",
+      "number": 27,
+      "label": "4.27",
+      "file_path": "Images/X4s-countries-international-network-ai-safety.png",
+      "alt_text": "countries of the international network for AI safety",
+      "caption": "These countries are part of the international network for AI safety, with their respective national bodies dedicated to AI safety ([Variengien & Martinet, 2024](https://oecd.ai/en/wonk/ai-safety-institutes-challenge))."
+    },
+    {
+      "type": "figure",
+      "number": 28,
+      "label": "4.28",
+      "file_path": "Images/IrH_Image_34.jpeg",
+      "alt_text": "Enter image alt description",
+      "caption": "Cartoon highlighting a discrepancy between countries\u2019 statements and their true intentions in the context of the U.K.\u2019s november 2023 AI Safety Summit ([The Economist](https://www.economist.com/the-world-this-week/2023/11/02/kals-cartoon))"
+    },
+    {
+      "type": "figure",
+      "number": 29,
+      "label": "4.29",
+      "file_path": "Images/SRN_Image_35.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An overview table of governance functions and their purpose."
+    },
+    {
+      "type": "figure",
+      "number": 30,
+      "label": "4.30",
+      "file_path": "Images/bFY_Image_36.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The flow from safety cases to enforcement."
+    },
+    {
+      "type": "figure",
+      "number": 31,
+      "label": "4.31",
+      "file_path": "Images/HmY_Image_37.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The EU AI Act: Classification of general-purpose AI models with systemic risks ([Observatorio de Riesgos Catastr\u00f3ficos Globales](https://www.orcg.info/articulos/infografas-ley-de-inteligencia-artificial-de-la-unin-europea))"
+    },
+    {
+      "type": "figure",
+      "number": 32,
+      "label": "4.32",
+      "file_path": "Images/gpm_Image_38.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Number of AI-related regulations in the United States, 2016-2023 ([Stanford HAI, 2024](https://aiindex.stanford.edu/report/))"
+    },
+    {
+      "type": "figure",
+      "number": 33,
+      "label": "4.33",
+      "file_path": "Images/EZK_Image_39.png",
+      "alt_text": "Enter image alt description",
+      "caption": "In 2024, Chinese institutions significantly increased publication of frontier AI safety papers compared to 2023, from approximately seven papers per month in 2023 to 18 per month in 2024. ([AI Safety in China, 2025](https://aisafetychina.substack.com/p/ai-safety-in-china-2024-in-review))"
+    },
+    {
+      "type": "iframe",
+      "number": 1,
+      "label": "4.1",
+      "iframe_src": "https://ourworldindata.org/grapher/ai-performance-knowledge-tests-vs-training-computation?tab=chart",
+      "caption": "Performance on knowledge tests vs. training computation. Performance on knowledge tests is measured with the MMLU benchmark, here with 5-shot learning, which gauges a model\u2019s accuracy after receiving only five examples for each task. Training computation is measured in total petaFLOP, which is 1e15 floating-point operations ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/RlE_Image_8.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 2,
+      "label": "4.2",
+      "iframe_src": "https://ourworldindata.org/grapher/market-share-logic-chip-production-manufacturing-stage?tab=chart",
+      "caption": "Market share for logic chip production, by manufacturing stage ([Giattino et al., 2023](https://ourworldindata.org/grapher/market-share-logic-chip-production-manufacturing-stage?tab=chart)).",
+      "static_figure_path": "Images/NWK_Image_11.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 3,
+      "label": "4.3",
+      "iframe_src": "https://ourworldindata.org/grapher/artificial-intelligence-patents-submitted?tab=map",
+      "caption": "Annual patent applications related to artificial intelligence, 2019. Patents submitted in the selected country's patent office ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/WYY_Image_18.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 4,
+      "label": "4.4",
+      "iframe_src": "https://ourworldindata.org/grapher/cumulative-number-of-large-scale-ai-systems-by-country?tab=chart",
+      "caption": "Cumulative number of large-scale AI systems by country since 2017. Refers to the location of the primary organization with which the authors of large-scale AI systems are affiliated ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/Pn7_Image_19.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 5,
+      "label": "4.5",
+      "iframe_src": "https://ourworldindata.org/grapher/affiliation-researchers-building-artificial-intelligence-systems-all?tab=chart",
+      "caption": "Affiliation of research teams building notable AI systems, by year of publication. Describes the sector where the authors of a notable AI system have their primary affiliations ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/V7t_Image_24.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 6,
+      "label": "4.6",
+      "iframe_src": "https://ourworldindata.org/grapher/cumulative-number-of-large-scale-ai-systems-by-country?tab=chart",
+      "caption": "Cumulative number of large-scale AI systems by country since 2017. Refers to the location of the primary organization with which the authors of a large-scale AI systems are affiliated ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/lq9_Image_31.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "definition",
+      "number": 1,
+      "label": "4.1",
+      "term": "AI governance",
+      "source": "([Maas, 2022](https://verfassungsblog.de/paths-untaken/))",
+      "content": "The study and shaping of governance systems - including norms, policies, laws, processes, politics, and institutions - that affect the research, development, deployment, and use of existing and future AI systems in ways that positively shape societal outcomes. It encompasses both research into effective governance approaches and the practical implementation of these approaches."
+    }
+  ]
+}

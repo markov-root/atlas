@@ -1,0 +1,299 @@
+{
+  "chapter_number": 3,
+  "media_counts": {
+    "figures": 26,
+    "videos": 4,
+    "iframes": 0,
+    "definitions": 5
+  },
+  "media_registry": [
+    {
+      "type": "figure",
+      "number": 1,
+      "label": "3.1",
+      "file_path": "Images/jOu_Image_1.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Tentative diagram summarizing the main high-level approaches to make AI development safe."
+    },
+    {
+      "type": "figure",
+      "number": 2,
+      "label": "3.2",
+      "file_path": "Images/GrG_Image_2.png",
+      "alt_text": "Enter image alt description",
+      "caption": "This is a simplified diagram to illustrate conceptually how an API would work. This is not how OpenAI's API works. It is for illustration purposes only."
+    },
+    {
+      "type": "figure",
+      "number": 3,
+      "label": "3.3",
+      "file_path": "Images/2wD_Image_3.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The gradient of access to AI models to the external public. Model release exists on a spectrum, from fully closed systems accessible only internally, to staged releases, API access, downloadable weights with restrictions, and fully open-source releases. API-based deployment represents an intermediate point on this gradient ([Seger et al., 2023](https://arxiv.org/abs/2311.09227))."
+    },
+    {
+      "type": "figure",
+      "number": 4,
+      "label": "3.4",
+      "file_path": "Images/CJx_Image_4.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A different proposed gradient of access focusing on both model code and training data ([Eiras et al., 2024](https://arxiv.org/abs/2404.17047)). We can see combinations of levels of access, e.g. DeepSeek-V3 might roughly be considered C5-D1 ([DeepSeek, 2025](https://github.com/deepseek-ai/DeepSeek-V3))."
+    },
+    {
+      "type": "figure",
+      "number": 5,
+      "label": "3.5",
+      "file_path": "Images/dmE_Image_5.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Defense-dominant dual-use technology should be widely proliferated, while catastrophic offense-dominant dual-use technology should not ([Hendrycks et al., 2025](https://www.nationalsecurity.ai/chapter/ai-is-pivotal-for-national-security))."
+    },
+    {
+      "type": "figure",
+      "number": 6,
+      "label": "3.6",
+      "file_path": "Images/7c8_Image_6.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Overview of the active components in the development of an ML system. Each introduces more complexity, expands the threat model, and introduces more potential vulnerabilities ([Ladish & Heim, 2022](https://www.lesswrong.com/posts/2oAxpRuadyjN2ERhe/information-security-considerations-for-ai-and-the-long-term))."
+    },
+    {
+      "type": "figure",
+      "number": 7,
+      "label": "3.7",
+      "file_path": "Images/WvC_Image_7.png",
+      "alt_text": "Enter image alt description",
+      "caption": "This question on whether a state actor would steal a frontier US AI model before 2030 showed strong consensus \u2013 a sign that current security levels are far from protecting against a state-actor threat ([Dean, 2025](https://ai-2027.com/research/security-forecast))."
+    },
+    {
+      "type": "figure",
+      "number": 8,
+      "label": "3.8",
+      "file_path": "Images/dSF_Image_8.png",
+      "alt_text": "Enter image alt description",
+      "caption": "This question on AI companies implementing SL5 shows consensus that government assistance will likely be required ([Dean, 2025](https://ai-2027.com/research/security-forecast))."
+    },
+    {
+      "type": "figure",
+      "number": 9,
+      "label": "3.9",
+      "file_path": "Images/De8_Image_9.png",
+      "alt_text": "Enter image alt description",
+      "caption": "This question on the difficulty of implementing SL5 shows some consensus that top priority levels of government assistance and more than 6 months will likely be required ([Dean, 2025](https://ai-2027.com/research/security-forecast))."
+    },
+    {
+      "type": "figure",
+      "number": 10,
+      "label": "3.10",
+      "file_path": "Images/rLf_Image_10.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Introduction of circuit-breaking as a novel approach for constructing highly reliable safeguards. Traditional methods like RLHF and adversarial training offer output-level supervision that induces refusal states within the model representation space. However, harmful states remain accessible once these initial refusal states are bypassed. In contrast, inspired by representation engineering, circuit breaking operates directly on internal representations, linking harmful states to circuit breakers. This impedes traversal through a sequence of harmful states ([Zou et al., 2024](https://arxiv.org/abs/2406.04313))."
+    },
+    {
+      "type": "figure",
+      "number": 11,
+      "label": "3.11",
+      "file_path": "Images/pYL_Image_11.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example illustration of a specific type of machine unlearning algorithm (approximate unlearning) ([Liu, 2024](https://ai.stanford.edu/~kzliu/blog/unlearning))."
+    },
+    {
+      "type": "figure",
+      "number": 12,
+      "label": "3.12",
+      "file_path": "Images/I0B_Image_12.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Illustration of how applying a safety or alignment technique could make the model less capable. This is called a safety tax."
+    },
+    {
+      "type": "figure",
+      "number": 13,
+      "label": "3.13",
+      "file_path": "Images/eZW_Image_13.png",
+      "alt_text": "Enter image alt description",
+      "caption": "According to Richard Ngo, the distinction between misalignment and misuse risks from AI might often be unhelpful. Instead, we should primarily think about \u2018misaligned coalitions\u2019 of both humans and AIs, ranging from terrorist groups to authoritarian states. Slide from ([Ngo, 2024](https://www.youtube.com/watch?app=desktop&si=XRR0ofCG7IEp1n_b&v=4v3uqWeVmco&feature=youtu.be))."
+    },
+    {
+      "type": "figure",
+      "number": 14,
+      "label": "3.14",
+      "file_path": "Images/qFi_Image_14.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Transformatively useful AI means \u201cCapable of substantially reducing the risk posed by subsequent AIs if fully deployed, likely by speeding up R&D and some other tasks by a large factor (perhaps 30x).\u201d citation from ([Greenblatt & Shlegeris, 2024](https://www.lesswrong.com/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-powerful-ais-are-controlled#comments)) - figure from us;"
+    },
+    {
+      "type": "figure",
+      "number": 15,
+      "label": "3.15",
+      "file_path": "Images/Xec_Image_15.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Figure from The Translucent Thoughts Hypotheses and Their Implications ([Roger, 2023](https://www.alignmentforum.org/posts/r3xwHzMmMf25peeHE/the-translucent-thoughts-hypotheses-and-their-implications)). If the AI we are working with can only reason through chains of thought in English, then it becomes significantly easier to monitor its thoughts."
+    },
+    {
+      "type": "figure",
+      "number": 16,
+      "label": "3.16",
+      "file_path": "Images/gQa_Image_16.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Figure 1 from the COCONUT papers ([Hao et al., 2024](https://arxiv.org/abs/2412.06769))."
+    },
+    {
+      "type": "figure",
+      "number": 17,
+      "label": "3.17",
+      "file_path": "Images/8wk_Image_17.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An illustration of three strategies for passing the buck to AI. Illustration from ([Clymer, 2025](https://www.lesswrong.com/posts/TTFsKxQThrqgWeXYJ/how-might-we-safely-pass-the-buck-to-ai))."
+    },
+    {
+      "type": "figure",
+      "number": 18,
+      "label": "3.18",
+      "file_path": "Images/PFa_Image_18.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The strategic stability of MAIM can be paralleled with Mutual Assured Destruction (MAD). Note: MAIM does not displace MAD but characterizes an additional shared vulnerability. Once MAIM is common knowledge, MAD and MAIM can both describe the current strategic situation between superpowers ([Hendrycks et al., 2025](https://www.nationalsecurity.ai/))."
+    },
+    {
+      "type": "figure",
+      "number": 19,
+      "label": "3.19",
+      "file_path": "Images/csC_Image_19.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An illustration of a framework that we think is robustly good at managing risks. AI Risks are too numerous and too heterogeneous. To address these risks, we need an adaptive framework that can be robust and evolve as AI advances."
+    },
+    {
+      "type": "figure",
+      "number": 20,
+      "label": "3.20",
+      "file_path": "Images/XY1_Image_20.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Mechanisms by which differential technology development can reduce negative societal impacts ([Buterin, 2023](https://vitalik.eth.limo/general/2023/11/27/techno_optimism.html))."
+    },
+    {
+      "type": "figure",
+      "number": 21,
+      "label": "3.21",
+      "file_path": "Images/F9v_Image_21.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An extended model showcasing how many different types and layers of defensive technologies can interact ([Buterin, 2025](https://vitalik.eth.limo/general/2025/01/05/dacc2.html))"
+    },
+    {
+      "type": "figure",
+      "number": 22,
+      "label": "3.22",
+      "file_path": "Images/HNP_Image_22.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The Swiss cheese model shows how technical factors can improve organizational safety. Multiple layers of defense compensate for each other\u2019s individual weaknesses, leading to a low overall level of risk ([Hendrycks et al., 2023](https://arxiv.org/abs/2306.12001))."
+    },
+    {
+      "type": "figure",
+      "number": 23,
+      "label": "3.23",
+      "file_path": "Images/CVT_Image_23.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The AI safety index report for summer 2025. The scores show whether each company\u2019s governance structure and day-to-day operations prioritize meaningful accountability for the real-world impacts of its AI systems. This includes things like whistleblowing systems, legal structures, and advocacy efforts related to AI regulations ([FLI, 2025](https://futureoflife.org/wp-content/uploads/2025/07/FLI-AI-Safety-Index-Report-Summer-2025.pdf); [SaferAI, 2025](https://ratings.safer-ai.org/))."
+    },
+    {
+      "type": "figure",
+      "number": 24,
+      "label": "3.24",
+      "file_path": "Images/Xab_Image_24.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A combined flow chart of safety strategies."
+    },
+    {
+      "type": "figure",
+      "number": 25,
+      "label": "3.25",
+      "file_path": "Images/0Bz_Image_25.png",
+      "alt_text": "Enter image alt description",
+      "caption": "\u201cWell, even if we survive, we probably just get a future that\u2019s a small fraction as good as it could have been. We could, instead, try to help guide society to be on track to a truly wonderful future.\u201d - William MacAskill."
+    },
+    {
+      "type": "figure",
+      "number": 26,
+      "label": "3.26",
+      "file_path": "Images/57w_Image_26.png",
+      "alt_text": "Enter image alt description",
+      "caption": ""
+    },
+    {
+      "type": "video",
+      "number": 1,
+      "label": "3.1",
+      "url": "https://www.youtube.com/watch?v=RGh8wP9PjJw",
+      "platform": "youtube",
+      "video_id": "RGh8wP9PjJw",
+      "embed_url": "https://www.youtube.com/embed/RGh8wP9PjJw",
+      "caption": "Optional video from Google DeepMind AGI Safety Course. It gives a quick overview of their alignment approach and how we might categorize different strategies into conceptual buckets."
+    },
+    {
+      "type": "video",
+      "number": 2,
+      "label": "3.2",
+      "url": "https://www.youtube.com/watch?v=7PKx3kS7f4A",
+      "platform": "youtube",
+      "video_id": "7PKx3kS7f4A",
+      "embed_url": "https://www.youtube.com/embed/7PKx3kS7f4A",
+      "caption": "Optional video for the question - Why can't we just use Asimov's laws?"
+    },
+    {
+      "type": "video",
+      "number": 3,
+      "label": "3.3",
+      "url": "https://www.youtube.com/watch?v=eaYIU6YXr3w",
+      "platform": "youtube",
+      "video_id": "eaYIU6YXr3w",
+      "embed_url": "https://www.youtube.com/embed/eaYIU6YXr3w",
+      "caption": "Optional video for the question - Why can't we just raise the AI like a child?"
+    },
+    {
+      "type": "video",
+      "number": 4,
+      "label": "3.4",
+      "url": "https://www.youtube.com/watch?v=3TYT1QfdfsM",
+      "platform": "youtube",
+      "video_id": "3TYT1QfdfsM",
+      "embed_url": "https://www.youtube.com/embed/3TYT1QfdfsM",
+      "caption": "Optional video for the question - Why can't we just turn it off?"
+    },
+    {
+      "type": "definition",
+      "number": 1,
+      "label": "3.1",
+      "term": "AI safety",
+      "source": "",
+      "content": "Ensuring that AI systems do not inadvertently or deliberately cause harm or danger to humans or the environment, through research that identifies causes of unintended AI behavior and develops tools for safe and reliable operation."
+    },
+    {
+      "type": "definition",
+      "number": 2,
+      "label": "3.2",
+      "term": "AI Alignment",
+      "source": "([Christiano, 2024](https://paulfchristiano.com/ai/))",
+      "content": "The problem of building machines that faithfully try to do what we want them to do (or what we ought to want them to do)."
+    },
+    {
+      "type": "definition",
+      "number": 3,
+      "label": "3.3",
+      "term": "AI Ethics",
+      "source": "([Huang et al., 2023](https://ieeexplore.ieee.org/abstract/document/9844014))",
+      "content": "The study and application of moral principles to AI development and deployment, addressing questions of fairness, transparency, accountability, privacy, autonomy, and other human values that AI systems should respect or promote."
+    },
+    {
+      "type": "definition",
+      "number": 4,
+      "label": "3.4",
+      "term": "AI Control",
+      "source": "([Greenblatt et al., 2024](https://www.alignmentforum.org/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-powerful-ais-are-controlled))",
+      "content": "The technical and procedural measures designed to prevent AI systems from causing unacceptable outcomes, even if these systems actively attempt to subvert safety measures. Control focuses on maintaining human oversight regardless of whether the AI's objectives align with human intentions."
+    },
+    {
+      "type": "definition",
+      "number": 5,
+      "label": "3.5",
+      "term": "Open Source AI",
+      "source": "([Open Source Initiative, 2025](https://opensource.org/ai))",
+      "content": "An Open Source AI is an AI system made available under terms and in a way that grants the freedoms to:\n\n- Use the system for any purpose without having to ask for permission.\n\n- Study how the system works and inspect its components.\n\n- Modify the system for any purpose, including to change its output.\n\n- Share the system for others to use with or without modifications, for any purpose."
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "title": "Table of Contents",
+  "chapter": 8,
+  "sections": [
+    {
+      "title": "Introduction",
+      "anchor": "introduction",
+      "number": "8.0",
+      "subsections": [],
+      "reading_times": {
+        "core": "3 min",
+        "optional": "0 min",
+        "total": "3 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Oversight",
+      "anchor": "oversight",
+      "number": "8.1",
+      "subsections": [
+        {
+          "title": "Training Signals",
+          "anchor": "training-signals",
+          "number": "8.1.1",
+          "subsections": []
+        },
+        {
+          "title": "Verification vs. Generation",
+          "anchor": "verification-vs-generation",
+          "number": "8.1.2",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "10 min",
+        "optional": "1 min",
+        "total": "10 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Task Decomposition",
+      "anchor": "task-decomposition",
+      "number": "8.2",
+      "subsections": [
+        {
+          "title": "Factored Cognition",
+          "anchor": "factored-cognition",
+          "number": "8.2.1",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "6 min",
+        "optional": "1 min",
+        "total": "7 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Process Oversight",
+      "anchor": "process-oversight",
+      "number": "8.3",
+      "subsections": [
+        {
+          "title": "Externalized Reasoning Oversight (ERO)",
+          "anchor": "externalized-reasoning-oversight-ero",
+          "number": "8.3.1",
+          "subsections": []
+        },
+        {
+          "title": "Procedural Cloning",
+          "anchor": "procedural-cloning",
+          "number": "8.3.2",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "10 min",
+        "optional": "2 min",
+        "total": "12 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Iterated Amplification",
+      "anchor": "iterated-amplification",
+      "number": "8.4",
+      "subsections": [
+        {
+          "title": "Amplification",
+          "anchor": "amplification",
+          "number": "8.4.1",
+          "subsections": []
+        },
+        {
+          "title": "Distillation",
+          "anchor": "distillation",
+          "number": "8.4.2",
+          "subsections": []
+        },
+        {
+          "title": "Iterated Distillation and Amplification (IDA)",
+          "anchor": "iterated-distillation-and-amplification-ida",
+          "number": "8.4.3",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "10 min",
+        "optional": "4 min",
+        "total": "13 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Debate",
+      "anchor": "debate",
+      "number": "8.5",
+      "subsections": [
+        {
+          "title": "Assumptions",
+          "anchor": "assumptions",
+          "number": "8.5.1",
+          "subsections": []
+        },
+        {
+          "title": "Discriminator Critique Gap (DCG)",
+          "anchor": "discriminator-critique-gap-dcg",
+          "number": "8.5.2",
+          "subsections": []
+        },
+        {
+          "title": "Judges",
+          "anchor": "judges",
+          "number": "8.5.3",
+          "subsections": []
+        },
+        {
+          "title": "Truth",
+          "anchor": "truth",
+          "number": "8.5.4",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "28 min",
+        "optional": "15 min",
+        "total": "42 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Weak-to-Strong Generalization (W2SG)",
+      "anchor": "weak-to-strong-generalization-w2sg",
+      "number": "8.6",
+      "subsections": [
+        {
+          "title": "Sandwiching Evaluations",
+          "anchor": "sandwiching-evaluations",
+          "number": "8.6.1",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "10 min",
+        "optional": "1 min",
+        "total": "10 min"
+      },
+      "is_appendix": false
+    }
+  ],
+  "reading_times": {
+    "core": "75 min",
+    "optional": "21 min",
+    "appendix": "0 min"
+  }
+}

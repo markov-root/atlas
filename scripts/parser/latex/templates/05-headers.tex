@@ -1,0 +1,49 @@
+% File: scripts/latex/templates/05-headers.tex
+% Section and header formatting
+
+% Section formatting with thicker underline
+\titleformat{\section}
+  {\pagebreak\normalfont\LARGE\bfseries\color{sectiontext}}
+  {\thesection}{0.8em}{}
+  [\vspace{0.2em}{\color{sectionrule}\titlerule[2pt]}]
+
+% Subsection formatting with matching underline
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{sectiontext}}
+  {\thesubsection}{0.8em}{}
+  [\vspace{0.2em}{\color{sectionrule}\titlerule[0.8pt]}]
+
+% Subsubsection formatting with thin underline
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries\color{sectiontext}}
+  {\thesubsubsection}{0.8em}{}
+  [\vspace{0.2em}{\color{sectionrule}\titlerule[0.8pt]}]
+
+% Paragraph formatting (run-in style)
+\titleformat{\paragraph}[runin]
+  {\normalfont\normalsize\bfseries\color{sectiontext}}
+  {\theparagraph.}{0.8em}{}[~~]
+
+% Subparagraph formatting (run-in style)
+\titleformat{\subparagraph}[runin]
+  {\normalfont\normalsize\itshape\bfseries\color{sectiontext}}
+  {\thesubparagraph.}{0.8em}{}[~~]
+
+% Adjust spacing for consistent look
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{\subsubsection}{0pt}{3.0ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{\paragraph}{0pt}{2.5ex plus 1ex minus .2ex}{1em}
+\titlespacing*{\subparagraph}{1em}{2.5ex plus 1ex minus .2ex}{1em}
+
+% Configure spacing for table of contents entries
+\setlength{\cftbeforesecskip}{6pt}  % Vertical space between section entries
+\setlength{\cftbeforesubsecskip}{3pt}  % Vertical space between subsection entries
+\cftsetindents{section}{0em}{2.5em}  % Indent for section numbers
+\cftsetindents{subsection}{2.5em}{3em}  % Indent for subsection numbers
+\cftsetindents{subsubsection}{5.5em}{3.5em}  % Indent for subsubsection numbers
+
+% Make sure numbers don't overlap with text
+\renewcommand{\cftsecnumwidth}{2.5em}  % Width allocated for section numbers
+\renewcommand{\cftsubsecnumwidth}{3em}  % Width allocated for subsection numbers
+\renewcommand{\cftsubsubsecnumwidth}{3.5em}  % Width allocated for subsubsection numbers

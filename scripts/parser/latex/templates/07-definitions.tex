@@ -1,0 +1,54 @@
+% File: scripts/latex/templates/07-definitions.tex
+% Modern Definition environment - using tcolorbox title functionality
+
+% Modern definition command - using tcolorbox title functionality
+\newcommand{\customDefinition}[5]{%
+    % #1 = Term (required)
+    % #2 = Source (optional)
+    % #3 = Content (required)
+    % #4 = Number (optional, from media registry)
+    % #5 = Label (optional, from media registry)
+    
+    \vspace{2em}
+    \noindent
+    \begin{tcolorbox}[
+        enhanced,
+        breakable,
+        colback=notegray1,
+        colframe=noteblack,
+        arc=6pt,
+        boxrule=1pt,
+        left=14pt,
+        right=14pt,
+        top=12pt,
+        bottom=14pt,
+        title={%
+            {\fontsize{12pt}{14pt}\selectfont\bfseries\color{white}\MakeUppercase{#1}}\\[1pt]%
+            {\fontsize{8pt}{10pt}\selectfont\bfseries\color{white!80}DEFINITION %
+            \if\relax\detokenize{#5}\relax
+                \if\relax\detokenize{#4}\relax\else
+                    #4%
+                \fi
+            \else
+                #5%
+            \fi
+            }%
+            \if\relax\detokenize{#2}\relax\else
+                \hfill{\fontsize{7pt}{9pt}\selectfont\color{white!70}#2}%
+            \fi
+        },
+        colbacktitle=noteblack,
+        coltitle=white,
+        fonttitle=\bfseries,
+        toptitle=10pt,
+        bottomtitle=8pt
+    ]
+    
+    % Content
+    \setlength{\parskip}{1em}
+    \setlength{\parindent}{0pt}
+    {\fontsize{10pt}{15pt}\selectfont\itshape\color{black!85}#3}
+    
+    \end{tcolorbox}
+    \vspace{2em}
+}

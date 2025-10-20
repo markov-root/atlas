@@ -1,0 +1,30 @@
+{
+  "chapter": {
+    "number": 7,
+    "title": "Goal Misgeneralization"
+  },
+  "authors": [
+    "Markov Grey"
+  ],
+  "affiliations": [
+    "French Center for AI Safety (CeSIA)"
+  ],
+  "acknowledgements": [
+    "Charbel-Raphael Segerie",
+    "Emanuele Ascani",
+    "Jeanne Salle",
+    "Oscar Heitmann",
+    "Camille Berger",
+    "Josh Thorsteinson",
+    "Nicolas Guillard"
+  ],
+  "links": {
+    "google_docs": "https://docs.google.com/document/d/1JsV3ShLAbMpt8tXZ_tBqGUC-CkMor1WrF5eQDRWKLoE/edit?usp=sharing",
+    "facilitate": "https://docs.google.com/document/d/1-WDXUcIblNvZ9B4tsFPp9yOg9ZF_Sgx_qc-fnyuZMnk/edit?usp=sharing"
+  },
+  "arxiv": {
+    "title": "\u2026",
+    "subtitle": "\u2026",
+    "abstract": "\u2026\n\n</paper-abstract>"
+  }
+}

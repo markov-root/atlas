@@ -1,0 +1,77 @@
+% File: scripts/latex/templates/08-quotes.tex
+% Modern Quote environment - using tcolorbox title functionality
+
+% Clean, modern quote command using tcolorbox title at bottom
+\newcommand{\customQuote}[5]{%
+    % #1 = Speaker (optional)
+    % #2 = Position (optional)
+    % #3 = Year (optional)
+    % #4 = Source (optional)
+    % #5 = Content (required)
+    
+    \vspace{2em}
+    \noindent
+    \begin{tcolorbox}[
+        enhanced, 
+        breakable, 
+        colback=notegray1, 
+        colframe=notegray1,
+        boxrule=0pt,
+        arc=8pt,
+        left=24pt, 
+        right=24pt, 
+        top=20pt, 
+        bottom=20pt,
+        attach boxed title to bottom center,
+        boxed title style={
+            colback=white,
+            colframe=white,
+            boxrule=0pt,
+            arc=0pt,
+            left=0pt,
+            right=0pt,
+            top=8pt,
+            bottom=8pt
+        },
+        title={%
+            \if\relax\detokenize{#1}\relax\else
+                \begin{minipage}[t]{0.65\textwidth}
+                    % Author info (left side)
+                    {\fontsize{11pt}{13pt}\selectfont\bfseries\color{linkcolor}#1}%
+                    \if\relax\detokenize{#2}\relax\else
+                        \\[2pt]{\fontsize{9pt}{11pt}\selectfont\color{black!60}#2}%
+                    \fi
+                \end{minipage}%
+                \hfill
+                \begin{minipage}[t]{0.3\textwidth}
+                    \raggedleft
+                    % Meta info (right side)
+                    \if\relax\detokenize{#3}\relax
+                        % No year, just source if provided
+                        \if\relax\detokenize{#4}\relax\else
+                            {\fontsize{8.5pt}{10pt}\selectfont\color{black!60}#4}%
+                        \fi
+                    \else
+                        % Year provided
+                        {\fontsize{8.5pt}{10pt}\selectfont\bfseries\color{black!60}#3}%
+                        \if\relax\detokenize{#4}\relax\else
+                            \\[1pt]{\fontsize{8pt}{9pt}\selectfont\color{black!60}#4}%
+                        \fi
+                    \fi
+                \end{minipage}%
+            \fi
+        },
+        overlay={
+            % Quote icon positioned to cut into the box border
+            \node[anchor=center] at ([xshift=-6pt, yshift=-2pt]frame.north east) {
+                \includegraphics[width=24pt]{Icons/quote.png}
+            };
+        }
+    ]
+    
+    % Quote content with modern typography
+    {\fontfamily{\rmdefault}\fontsize{12pt}{18pt}\selectfont\itshape\color{black!90}#5}
+    
+    \end{tcolorbox}
+    \vspace{2em}
+}

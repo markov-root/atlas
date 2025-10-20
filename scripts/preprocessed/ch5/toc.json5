@@ -1,0 +1,317 @@
+{
+  "title": "Table of Contents",
+  "chapter": 5,
+  "sections": [
+    {
+      "title": "Introduction",
+      "anchor": "introduction",
+      "number": "5.0",
+      "subsections": [],
+      "reading_times": {
+        "core": "6 min",
+        "optional": "1 min",
+        "total": "6 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Benchmarks",
+      "anchor": "benchmarks",
+      "number": "5.1",
+      "subsections": [
+        {
+          "title": "History and Evolution",
+          "anchor": "history-and-evolution",
+          "number": "5.1.1",
+          "subsections": []
+        },
+        {
+          "title": "Benchmarking Limitations",
+          "anchor": "benchmarking-limitations",
+          "number": "5.1.2",
+          "subsections": []
+        }
+      ],
+      "description": "Benchmarks are the first step in our evaluation process.",
+      "reading_times": {
+        "core": "11 min",
+        "optional": "7 min",
+        "total": "17 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Evaluated Properties",
+      "anchor": "evaluated-properties",
+      "number": "5.2",
+      "subsections": [
+        {
+          "title": "Capability",
+          "anchor": "capability",
+          "number": "5.2.1",
+          "subsections": []
+        },
+        {
+          "title": "Propensity",
+          "anchor": "propensity",
+          "number": "5.2.2",
+          "subsections": []
+        },
+        {
+          "title": "Control",
+          "anchor": "control",
+          "number": "5.2.3",
+          "subsections": []
+        }
+      ],
+      "description": "We need to figure out which properties of an AI system are relevant for measuring safety.",
+      "reading_times": {
+        "core": "11 min",
+        "optional": "2 min",
+        "total": "13 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Evaluation Techniques",
+      "anchor": "evaluation-techniques",
+      "number": "5.3",
+      "subsections": [
+        {
+          "title": "Behavioral Techniques",
+          "anchor": "behavioral-techniques",
+          "number": "5.3.1",
+          "subsections": []
+        },
+        {
+          "title": "Internal Techniques",
+          "anchor": "internal-techniques",
+          "number": "5.3.2",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "18 min",
+        "optional": "3 min",
+        "total": "20 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Evaluation Frameworks",
+      "anchor": "evaluation-frameworks",
+      "number": "5.4",
+      "subsections": [
+        {
+          "title": "Model Organisms Framework",
+          "anchor": "model-organisms-framework",
+          "number": "5.4.1",
+          "subsections": []
+        },
+        {
+          "title": "Governance Frameworks",
+          "anchor": "governance-frameworks",
+          "number": "5.4.2",
+          "subsections": [
+            {
+              "title": "RSP Framework (Anthropic)",
+              "anchor": "rsp-framework-anthropic",
+              "number": "5.4.2.1",
+              "subsections": []
+            },
+            {
+              "title": "Preparedness Framework (OpenAI)",
+              "anchor": "preparedness-framework-openai",
+              "number": "5.4.2.2",
+              "subsections": []
+            },
+            {
+              "title": "Frontier Safety Framework (Google DeepMind)",
+              "anchor": "frontier-safety-framework-google-deepmind",
+              "number": "5.4.2.3",
+              "subsections": []
+            }
+          ]
+        }
+      ],
+      "reading_times": {
+        "core": "10 min",
+        "optional": "2 min",
+        "total": "11 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Dangerous Capability Evaluations",
+      "anchor": "dangerous-capability-evaluations",
+      "number": "5.5",
+      "subsections": [
+        {
+          "title": "Cybercrime",
+          "anchor": "cybercrime",
+          "number": "5.5.1",
+          "subsections": []
+        },
+        {
+          "title": "Deception (Capability)",
+          "anchor": "deception-capability",
+          "number": "5.5.2",
+          "subsections": []
+        },
+        {
+          "title": "Autonomous Replication",
+          "anchor": "autonomous-replication",
+          "number": "5.5.3",
+          "subsections": []
+        },
+        {
+          "title": "Long Term Planning",
+          "anchor": "long-term-planning",
+          "number": "5.5.4",
+          "subsections": []
+        },
+        {
+          "title": "Situational Awareness",
+          "anchor": "situational-awareness",
+          "number": "5.5.5",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "30 min",
+        "optional": "5 min",
+        "total": "34 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Dangerous Propensity Evaluations",
+      "anchor": "dangerous-propensity-evaluations",
+      "number": "5.6",
+      "subsections": [
+        {
+          "title": "Deception (Propensity)",
+          "anchor": "deception-propensity",
+          "number": "5.6.1",
+          "subsections": []
+        },
+        {
+          "title": "Scheming",
+          "anchor": "scheming",
+          "number": "5.6.2",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "12 min",
+        "optional": "4 min",
+        "total": "16 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Control Evaluations",
+      "anchor": "control-evaluations",
+      "number": "5.7",
+      "subsections": [],
+      "reading_times": {
+        "core": "11 min",
+        "optional": "1 min",
+        "total": "12 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Evaluation Design",
+      "anchor": "evaluation-design",
+      "number": "5.8",
+      "subsections": [
+        {
+          "title": "Affordances",
+          "anchor": "affordances",
+          "number": "5.8.1",
+          "subsections": []
+        },
+        {
+          "title": "Scaling and Automation",
+          "anchor": "scaling-and-automation",
+          "number": "5.8.2",
+          "subsections": []
+        },
+        {
+          "title": "Integration and Audits",
+          "anchor": "integration-and-audits",
+          "number": "5.8.3",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "9 min",
+        "optional": "4 min",
+        "total": "12 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Limitations",
+      "anchor": "limitations",
+      "number": "5.9",
+      "subsections": [
+        {
+          "title": "Fundamental Challenges",
+          "anchor": "fundamental-challenges",
+          "number": "5.9.1",
+          "subsections": []
+        },
+        {
+          "title": "Technical Challenges",
+          "anchor": "technical-challenges",
+          "number": "5.9.2",
+          "subsections": []
+        },
+        {
+          "title": "Sandbagging",
+          "anchor": "sandbagging",
+          "number": "5.9.3",
+          "subsections": []
+        },
+        {
+          "title": "Systemic Limitations",
+          "anchor": "systemic-limitations",
+          "number": "5.9.4",
+          "subsections": []
+        },
+        {
+          "title": "Governance Limitations",
+          "anchor": "governance-limitations",
+          "number": "5.9.5",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "15 min",
+        "optional": "2 min",
+        "total": "16 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Conclusion",
+      "anchor": "conclusion",
+      "number": "5.10",
+      "subsections": [],
+      "reading_times": {
+        "core": "1 min",
+        "optional": "0 min",
+        "total": "1 min"
+      },
+      "is_appendix": false
+    }
+  ],
+  "chapter_description": "We need a systematic way of measuring progress on safety.",
+  "reading_times": {
+    "core": "128 min",
+    "optional": "27 min",
+    "appendix": "0 min"
+  }
+}

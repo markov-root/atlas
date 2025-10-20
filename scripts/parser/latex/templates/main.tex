@@ -1,0 +1,26 @@
+% File: scripts/latex/templates/main.tex
+% Main document structure
+
+\input{templates/preamble}
+
+\begin{document}
+
+\input{sections/title}
+
+% Chapter-level numbering setup
+\renewcommand\thesection{{{CHAPTER_NUMBER}.\\arabic{{section}}}}
+\renewcommand\thefigure{{{CHAPTER_NUMBER}.\\arabic{{figure}}}}
+\renewcommand\thetable{{{CHAPTER_NUMBER}.\\arabic{{table}}}}
+\renewcommand\theequation{{{CHAPTER_NUMBER}.\\arabic{{equation}}}}
+\setcounter{{section}}{{0}}
+\setcounter{{figure}}{{0}}
+\setcounter{{table}}{{0}}
+\setcounter{{equation}}{{0}}
+
+\tableofcontents
+\pagebreak
+
+% Include individual sections
+{SECTION_INCLUDES}
+
+\end{document}

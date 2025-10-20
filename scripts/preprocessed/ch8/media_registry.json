@@ -1,0 +1,203 @@
+{
+  "chapter_number": 8,
+  "media_counts": {
+    "figures": 23,
+    "videos": 0,
+    "iframes": 0,
+    "definitions": 1
+  },
+  "media_registry": [
+    {
+      "type": "figure",
+      "number": 1,
+      "label": "8.1",
+      "file_path": "Images/6Sn_Image_1.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The difference between regular oversight safety research, and scalable oversight safety research."
+    },
+    {
+      "type": "figure",
+      "number": 2,
+      "label": "8.2",
+      "file_path": "Images/ip2_Image_2.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of an empty sudoku board ([Wikipedia](https://en.wikipedia.org/wiki/Sudoku)). Filling this in would be harder than checking if the solved version below is correct."
+    },
+    {
+      "type": "figure",
+      "number": 3,
+      "label": "8.3",
+      "file_path": "Images/ojk_Image_3.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of a filled in sudoku board ([Wikipedia](https://en.wikipedia.org/wiki/Sudoku)). Its very easy comparatively to see that the solution is correct."
+    },
+    {
+      "type": "figure",
+      "number": 4,
+      "label": "8.4",
+      "file_path": "Images/n6P_Image_4.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of summarizing books that combines task decomposition with learning from human feedback. The book is first decomposed into multiple chunks using a fixed (not learned) chunking algorithm (height 0). Then humans provide demonstrations summarizing these chunks, which is used to train an ML model on this data using behavior cloning. Then more data is collected from humans who compare different model outputs which is then used to further train a summarization policy using reward modeling. Then summaries are concatenated (height 0), data is collected for summarizing these summaries, and the model is fine-tuned for this summarization task (height 1). This procedure is repeated recursively until the entire book is summarized. ([Wu et al., 2021](https://arxiv.org/abs/2109.10862))"
+    },
+    {
+      "type": "figure",
+      "number": 5,
+      "label": "8.5",
+      "file_path": "Images/HU0_Image_5.png",
+      "alt_text": "Enter image alt description",
+      "caption": "This figure illustrates the process of breaking down a complex research question concerning azithromycin into multiple sub-questions. The sub-questions are gradually simplified until they can be addressed through a single language model query. ([Ought, 2022](https://primer.ought.org/))."
+    },
+    {
+      "type": "figure",
+      "number": 6,
+      "label": "8.6",
+      "file_path": "Images/HtF_Image_6.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Prerequisite to overseeing the reasoning is actually getting the model to output its reasoning. One common example is CoT prompting. CoT enables large language models to tackle complex arithmetic, commonsense, and symbolic reasoning tasks. ([Wei et al., 2022](https://arxiv.org/abs/2201.11903)) But it also allows us to oversee the \u201cthought process\u201d in addition to the final answer. ([Lightman et. al, 2023](https://arxiv.org/abs/2305.20050))"
+    },
+    {
+      "type": "figure",
+      "number": 7,
+      "label": "8.7",
+      "file_path": "Images/PKB_Image_7.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example of process oversight feedback. The image is a screenshot of the interface used to collect feedback for each step in a solution. This shows the correct reasoning process being followed and reinforced, even if the ultimate answer is wrong. ([Lightman et. al, 2023](https://arxiv.org/abs/2305.20050))"
+    },
+    {
+      "type": "figure",
+      "number": 8,
+      "label": "8.8",
+      "file_path": "Images/p5f_Image_8.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example of various proposed tests for measuring the faithfulness of Chain of Thought (CoT), generating step-by-step reasoning before answering a question. Early Answering: Truncate the original CoT before answering. Adding Mistakes: Have a language model add a mistake somewhere in the original CoT and then regenerate the rest of the CoT. Paraphrasing: Reword the beginning of the original CoT and then regenerate the rest of the CoT. Filler Tokens: Replace the CoT with ellipses. ([Lanham et al., 2023](https://arxiv.org/abs/2307.13702))"
+    },
+    {
+      "type": "figure",
+      "number": 9,
+      "label": "8.9",
+      "file_path": "Images/9HL_Image_9.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of CoT prompting combined with ERO. Bolded text indicates part of the prompt which is consistent between all questions, and underlined text is produced by the model. The introduced mistake is underlined. ([Lanham et al.; 2023](https://arxiv.org/abs/2307.13702))"
+    },
+    {
+      "type": "figure",
+      "number": 10,
+      "label": "8.10",
+      "file_path": "Images/xTv_Image_10.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Visualization of the dataset collection, training, and inference of BC and PC on a maze navigation task. ([Yang et. al; 2022](https://arxiv.org/abs/2205.10816))"
+    },
+    {
+      "type": "figure",
+      "number": 11,
+      "label": "8.11",
+      "file_path": "Images/ryd_Image_11.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example of aggregation and AI assistants amplifying overall abilities of an overseer. ([Christiano, 2020](https://forum.effectivealtruism.org/posts/63stBTw3WAW6k45dY/paul-christiano-current-work-in-ai-alignment))"
+    },
+    {
+      "type": "figure",
+      "number": 12,
+      "label": "8.12",
+      "file_path": "Images/dgS_Image_12.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The AI Research and Development workflow. ([Wiseman & McClements, 2025](https://inferencemagazine.substack.com/p/how-much-economic-growth-from-ai)) How many of these tasks do you think can be amplified or even automated by having AI assistants?"
+    },
+    {
+      "type": "figure",
+      "number": 13,
+      "label": "8.13",
+      "file_path": "Images/p6G_Image_13.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Iterated Distillation and Amplification (IDA) ([Christiano, 2020](https://forum.effectivealtruism.org/posts/63stBTw3WAW6k45dY/paul-christiano-current-work-in-ai-alignment))"
+    },
+    {
+      "type": "figure",
+      "number": 14,
+      "label": "8.14",
+      "file_path": "Images/76k_Image_14.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A toy UI for a human judge. ([Bowman, 2024](https://docs.google.com/document/d/1E2O7MSVI8u9LHbezdTgYoC6ULZmgki7EIm2XwCT0nuU/edit?tab=t.0#heading=h.swsctq1afox))"
+    },
+    {
+      "type": "figure",
+      "number": 15,
+      "label": "8.15",
+      "file_path": "Images/JWf_Image_15.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of CriticGPT which is trained specifically as a \u201ccritic\u201d model to help humans to more accurately evaluate model-written code. Critics accept a (question, answer) pair as input and output a critique which points out specific errors in the answer. Human-machine teams of critics and contractors catch similar numbers of bugs to LLM critics while hallucinating less than LLMs alone. ([McAleese et al., 2024](https://arxiv.org/abs/2407.00215))"
+    },
+    {
+      "type": "figure",
+      "number": 16,
+      "label": "8.16",
+      "file_path": "Images/dyi_Image_16.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example of a framework from human value understanding discriminator critique gaps (ValueDCG). This evaluation framework quantifies both discrimination (\u201cknow what\u201d) and critique (\u201cknow why\u201d) and computes ValueDCG based on their discrepancy. ([Zhang et al., 2023](https://arxiv.org/abs/2310.00378))"
+    },
+    {
+      "type": "figure",
+      "number": 17,
+      "label": "8.17",
+      "file_path": "Images/Sgf_Image_17.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example table of a DC gap analysis. We can use the DC gap on various different axes of human values to see how well both the model understands them as well as is able to articulate why. In this example table comparison, types of value where the six models generally perform the best/worst are marked with colors, with redder indicating worse performance and greener indicating better performance. ([Zhang et al., 2023](https://arxiv.org/abs/2310.00378))"
+    },
+    {
+      "type": "figure",
+      "number": 18,
+      "label": "8.18",
+      "file_path": "Images/w3D_Image_18.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The judge\u2019s view of a debate. The right panel contains the debate transcript, and the left panel shows the quotes debaters used in order of appearance in the passage (the judge can\u2019t view the full passage). In longer debates, this helps the judge keep track of the order of the quotes and how they fit together. The judge enters their response and probabilities, then decides whether to pay a small penalty to their score to continue the debate, or end it with their current probabilities. The bar graph on the bottom right shows the final score that they would receive under their current probabilities in case either answer is correct, in order to help judges calibrate according to their expected score. ([Michael et al., 2023](https://arxiv.org/abs/2311.08702))"
+    },
+    {
+      "type": "figure",
+      "number": 19,
+      "label": "8.19",
+      "file_path": "Images/EDF_Image_19.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Stronger more persuasive debaters have been shown to result in better judge accuracy, whereas stronger consultants result in worse judge accuracy. ([Khan et al., 2024](https://arxiv.org/abs/2402.06782))"
+    },
+    {
+      "type": "figure",
+      "number": 20,
+      "label": "8.20",
+      "file_path": "Images/W4s_Image_20.png",
+      "alt_text": "Enter image alt description",
+      "caption": "High level example of an experimental safety setup using AI debate. Reading comprehension questions are sourced from the QuALITY dataset. and incentivize human judges who can\u2019t read the passage to answer them correctly. Experts who have full access to the passage are allowed to reveal snippets of it (highlighted) in addition to free-text prose. In debate, the experts simultaneously defend their assigned option in their opening statements, and following rounds are sequential. In consultancy, the non-expert judge only interacts with one expert defending one option chosen at random. In both settings, the judge chooses when to end the session. ([Michael et al., 2023](https://arxiv.org/abs/2311.08702))"
+    },
+    {
+      "type": "figure",
+      "number": 21,
+      "label": "8.21",
+      "file_path": "Images/JvT_Image_21.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Expert models, who can access the underlying text from a project Gutenberg science-fiction story, argue for a specific answer to a comprehension question. Weaker (non-expert) judges, who cannot access the underlying text, evaluate the arguments and choose an answer. In debate, two experts simultaneously present arguments for a number of rounds. In interactive debate, the judge may ask clarifying questions after each round. In consultancy, a single expert argues for one of the two answers while the judge asks questions. ([Khan et al., 2024](https://arxiv.org/abs/2402.06782))"
+    },
+    {
+      "type": "figure",
+      "number": 22,
+      "label": "8.22",
+      "file_path": "Images/T2j_Image_22.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Weak-to-Strong Generalization: Eliciting Strong Capabilities With Weak Supervision ([Burns et. al. 2023](https://arxiv.org/abs/2312.09390))"
+    },
+    {
+      "type": "figure",
+      "number": 23,
+      "label": "8.23",
+      "file_path": "Images/eBc_Image_23.png",
+      "alt_text": "Enter image alt description",
+      "caption": "([Bowman et al., 2022](https://arxiv.org/abs/2211.03540))"
+    },
+    {
+      "type": "definition",
+      "number": 1,
+      "label": "8.1",
+      "term": "Factored Cognition",
+      "source": "([Ought, 2018](https://ought.org/research/factored-cognition))",
+      "content": "Factored cognition refers to mechanisms where sophisticated learning and reasoning is broken down (or factored) into many small and mostly independent tasks."
+    }
+  ]
+}

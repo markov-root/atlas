@@ -1,0 +1,229 @@
+# File: scripts/preprocess/bold_fix.py
+import re
+import logging
+from pathlib import Path
+from typing import Optional, Tuple, Dict, Any
+
+# Get logger
+logger = logging.getLogger("preprocess.bold_fix")
+
+def fix_bold_punctuation(content: str) -> Tuple[str, int]:
+   """
+   Fix punctuation that appears immediately after bold text.
+   
+   Moves punctuation like periods, commas, colons, semicolons, question marks,
+   and exclamation points that appear immediately after bold text inside the bold markers.
+   
+   Examples:
+   - "**Example: Benchmarks**. Text" -> "**Example: Benchmarks.** Text"
+   - "**New insight**: Text" -> "**New insight:** Text"
+   - "**Why is this happening**? Text" -> "**Why is this happening?** Text"
+   """
+   # This pattern matches **bold text** followed immediately by punctuation (no whitespace between)
+   # We specifically look for punctuation that's directly after the closing **, not separated by whitespace
+   pattern = r'\*\*([^*]+?)\*\*([.,:;?!])(?=\s|$)'
+   
+   # Count matches for reporting
+   matches = re.findall(pattern, content)
+   count = len(matches)
+   
+   if count > 0:
+       logger.debug(f"Found {count} instances of bold text with punctuation outside")
+       if logger.isEnabledFor(logging.DEBUG) and matches:
+           for i, (bold_text, punct) in enumerate(matches[:3]):
+               logger.debug(f"  Example {i+1}: **{bold_text}**{punct} -> **{bold_text}{punct}**")
+   
+   def move_punctuation_inside(match):
+       bold_text = match.group(1)
+       punctuation = match.group(2)
+       return f'**{bold_text}{punctuation}**'
+   
+   return re.sub(pattern, move_punctuation_inside, content), count
+
+def fix_multiple_bold_sections(content: str) -> Tuple[str, int]:
+   """Fix cases where multiple bold sections appear consecutively."""
+   # Pattern matches consecutive bold sections - only literal spaces, no newlines
+   pattern = r'\*\*([^*]+?)\*\* +\*\*([^*]+?)\*\*'
+   
+   # Count original matches for reporting
+   matches = re.findall(pattern, content)
+   initial_count = len(matches)
+   
+   if initial_count > 0:
+       logger.debug(f"Found {initial_count} instances of consecutive bold sections")
+       if logger.isEnabledFor(logging.DEBUG) and matches:
+           for i, (bold1, bold2) in enumerate(matches[:3]):
+               logger.debug(f"  Example {i+1}: **{bold1}** **{bold2}** -> **{bold1} {bold2}**")
+   
+   def combine_bold_sections(match):
+       """Combine consecutive bold sections into one."""
+       parts = [match.group(1), match.group(2)]
+       # Clean up any extra spaces between parts
+       combined = ' '.join(part.strip() for part in parts)
+       return f'**{combined}**'
+   
+   # Keep applying the fix until no more changes are made
+   iteration_count = 0
+   while True:
+       new_content = re.sub(pattern, combine_bold_sections, content)
+       if new_content == content:
+           break
+       content = new_content
+       iteration_count += 1
+       
+   if iteration_count > 1:
+       logger.debug(f"Required {iteration_count} iterations to fix all consecutive bold sections")
+   
+   return content, initial_count
+
+def fix_empty_bold(content: str) -> Tuple[str, int]:
+   """Remove empty bold markers like '** **' or '****'."""
+   # Count original matches for reporting - only literal spaces, no newlines
+   pattern = r'\*\* *\*\*'
+   matches = re.findall(pattern, content)
+   count = len(matches)
+   
+   if count > 0:
+       logger.debug(f"Found {count} empty bold markers")
+   
+   # Remove empty bold sections
+   content = re.sub(pattern, '', content)
+   return content, count
+
+def fix_paragraph_bold_headers(content: str) -> Tuple[str, int]:
+   """Fix paragraphs that start with bold text (headers).
+   
+   Examples:
+   - "**Bold Header** Rest of paragraph..." -> "**Bold Header** Rest of paragraph..."
+   - Ensures proper spacing and handles formatting issues
+   """
+   # Only match same-line content, no newlines
+   pattern = r'\*\*([^*]+?)\*\*( +[^\n]+)?'
+   
+   # Count original matches for reporting
+   matches = re.findall(pattern, content)
+   count = len(matches)
+   
+   if count > 0:
+       logger.debug(f"Found {count} instances of bold paragraph headers")
+       if logger.isEnabledFor(logging.DEBUG) and matches:
+           for i, (header, rest) in enumerate(matches[:3]):
+               logger.debug(f"  Example {i+1}: **{header}**{rest if rest else ''}")
+   
+   def fix_header(match):
+       """Fix the bold header format."""
+       header = match.group(1).strip()
+       rest = match.group(2).strip() if match.group(2) else ''
+       
+       # Clean up any duplicate spaces inside header
+       header = ' '.join(header.split())
+       
+       if rest:
+           return f'**{header}** {rest}'
+       return f'**{header}**'
+   
+   return re.sub(pattern, fix_header, content), count
+
+def fix_trailing_spaces_in_bold(content: str) -> Tuple[str, int]:
+    """
+    Fix trailing spaces after punctuation in bold text.
+    
+    Only targets: **text punctuation ** (with literal spaces only)
+    Examples:
+    - "**Why is this happening? **Text" -> "**Why is this happening?** Text"
+    - "**Example. **More" -> "**Example.** More"
+    
+    Preserves word separation after the bold text.
+    """
+    # Very specific pattern: punctuation + literal spaces + closing ** + word character
+    pattern = r'\*\*([^*]+?)([.,:;?!]) +\*\*(\w)'
+    
+    matches = re.findall(pattern, content)
+    count = len(matches)
+    
+    if count > 0:
+        logger.debug(f"Found {count} instances of bold text with punctuation + trailing spaces")
+        if logger.isEnabledFor(logging.DEBUG) and matches:
+            for i, (text, punct, next_char) in enumerate(matches[:3]):
+                logger.debug(f"  Example {i+1}: **{text}{punct} **{next_char} -> **{text}{punct}** {next_char}")
+    
+    def fix_punctuation_space(match):
+        text = match.group(1)
+        punctuation = match.group(2)
+        next_char = match.group(3)
+        # Reconstruct with proper spacing: remove trailing space but keep word separation
+        return f'**{text}{punctuation}** {next_char}'
+    
+    return re.sub(pattern, fix_punctuation_space, content), count
+
+def process(content: str, output_dir: Path, debug_dir: Optional[Path] = None) -> Tuple[str, Dict[str, Any]]:
+   """
+   Process content to fix bold formatting issues.
+   
+   Args:
+       content: The markdown content to process
+       output_dir: Directory for output files
+       debug_dir: Optional directory for debug output
+       
+   Returns:
+       Tuple of (processed_content, stats_dict)
+   """
+   # Log start of processing
+   logger.info("Processing bold formatting issues...")
+   
+   # Keep track of changes for reporting
+   stats = {
+       "punctuation_fixes": 0,
+       "consecutive_bold_fixes": 0,
+       "empty_bold_fixes": 0,
+       "paragraph_header_fixes": 0,
+       "trailing_space_fixes": 0
+   }
+   
+   # Fix punctuation in bold text (FIRST)
+   content, punct_count = fix_bold_punctuation(content)
+   stats["punctuation_fixes"] = punct_count
+   
+   # Fix consecutive bold sections
+   content, consec_count = fix_multiple_bold_sections(content)
+   stats["consecutive_bold_fixes"] = consec_count
+   
+   # Fix paragraph bold headers
+   content, header_count = fix_paragraph_bold_headers(content)
+   stats["paragraph_header_fixes"] = header_count
+   
+   # Fix empty bold markers
+   content, empty_count = fix_empty_bold(content)
+   stats["empty_bold_fixes"] = empty_count
+   
+   # Fix trailing spaces after punctuation (LAST)
+   content, trailing_space_count = fix_trailing_spaces_in_bold(content)
+   stats["trailing_space_fixes"] = trailing_space_count
+   
+   # Log results
+   total_fixes = sum(stats.values())
+   if total_fixes > 0:
+       logger.info(f"Fixed {total_fixes} bold formatting issues:")
+       if stats["punctuation_fixes"] > 0:
+           logger.info(f"  - {stats['punctuation_fixes']} punctuation placement fixes")
+       if stats["consecutive_bold_fixes"] > 0:
+           logger.info(f"  - {stats['consecutive_bold_fixes']} consecutive bold sections combined")
+       if stats["paragraph_header_fixes"] > 0:
+           logger.info(f"  - {stats['paragraph_header_fixes']} paragraph bold headers fixed")
+       if stats["empty_bold_fixes"] > 0:
+           logger.info(f"  - {stats['empty_bold_fixes']} empty bold markers removed")
+       if stats["trailing_space_fixes"] > 0:
+           logger.info(f"  - {stats['trailing_space_fixes']} trailing space fixes after punctuation")
+   else:
+       logger.info("No bold formatting issues found")
+   
+   # Save debug output if requested
+   if debug_dir:
+       debug_path = debug_dir / "bold_fixes.json"
+       import json
+       with open(debug_path, 'w', encoding='utf-8') as f:
+           json.dump(stats, f, indent=2)
+           
+   logger.info("Bold formatting processing complete")
+   
+   return content, stats

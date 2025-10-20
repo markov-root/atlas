@@ -1,0 +1,38 @@
+{
+  "chapter": {
+    "number": 8,
+    "title": "Scalable Oversight"
+  },
+  "authors": [
+    "Markov Grey",
+    "Charbel-Rapha\u00ebl Segerie"
+  ],
+  "affiliations": [
+    "French Center for AI Safety (CeSIA)"
+  ],
+  "acknowledgements": [
+    "Jeanne Salle",
+    "Chris Gerrby",
+    "Sebastian Gil",
+    "Josh Thorsteinson",
+    "Nicolas Guillard",
+    "Mateusz Bagi\u0144ski",
+    "Yoann Poupart",
+    "Cl\u00e9ment Dumas",
+    "Amaury Lorin",
+    "Mateo Rendon",
+    "Lucas Eichorn",
+    "Bogdan Ionut Cirstea",
+    "Gurvan R."
+  ],
+  "links": {
+    "google_docs": "https://docs.google.com/document/d/1k6rlyBCZJw8xbUx0dzd-4sOhlzj-xzsmwi_OIZY1-3M/edit?usp=sharing",
+    "feedback": "https://forms.gle/ZsA4hEWUx1ZrtQLL9",
+    "facilitate": "https://docs.google.com/document/d/1DaygDSW0L5dWuJnpSjYPF2XUbW51UoBJsT1cjLYKc2w/edit?usp=sharing"
+  },
+  "arxiv": {
+    "title": "\u2026",
+    "subtitle": "\u2026",
+    "abstract": "\u2026\n\n</paper-abstract>"
+  }
+}

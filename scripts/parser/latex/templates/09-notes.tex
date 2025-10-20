@@ -1,0 +1,146 @@
+% File: scripts/latex/templates/09-notes.tex
+% Modern Note box environment - matches React component aesthetic
+
+% Tcolorbox styling and spacing for all boxes
+\tcbset{
+    before={\par\medskip\noindent},  % Spacing before box
+    after={\par\medskip},            % Spacing after box
+    parbox=false,                    % Content uses document paragraphs
+    boxsep=0.5em,                    % Internal padding
+    left=0.5em,                      % Left margin
+    right=0.5em,                     % Right margin
+    fontupper=\normalfont\justifying,% Normal justified text in box
+    breakable                        % Allow page breaks
+}
+
+% Modern note command - using tcolorbox title functionality
+\newcommand{\customNote}[2]{%
+    % #1 = Title (required)
+    % #2 = Content (required)
+    
+    \vspace{2em}
+    \noindent
+    \begin{tcolorbox}[
+        enhanced,
+        breakable,
+        colback=notegray1,
+        colframe=noteblack,
+        arc=6pt,
+        boxrule=1pt,
+        left=14pt,
+        right=14pt,
+        top=12pt,
+        bottom=14pt,
+        title={%
+            {\fontsize{12pt}{14pt}\selectfont\bfseries\color{white}#1}\\[1pt]%
+            {\fontsize{8pt}{10pt}\selectfont\bfseries\color{white!80}OPTIONAL NOTE}%
+        },
+        colbacktitle=noteblack,
+        coltitle=white,
+        fonttitle=\bfseries,
+        toptitle=10pt,
+        bottomtitle=8pt
+    ]
+    
+    % Content
+    \setlength{\parskip}{1em}
+    \setlength{\parindent}{0pt}
+    {\fontsize{9.5pt}{14pt}\selectfont\color{black!85}#2}
+    
+    \end{tcolorbox}
+    \vspace{2em}
+}
+
+% Alternative single-box approach (simpler, guaranteed to work)
+\newcommand{\customNoteSingle}[2]{%
+    % #1 = Title (required)
+    % #2 = Content (required)
+    
+    \vspace{2em}
+    \noindent
+    \begin{tcolorbox}[
+        enhanced,
+        breakable,                      % Allow breaking across pages
+        colback=notegray1,
+        colframe=noteblack,
+        arc=6pt,
+        boxrule=1pt,
+        left=14pt,
+        right=14pt,
+        top=0pt,
+        bottom=14pt,
+        overlay={
+            % Header background overlay
+            \fill[noteblack] 
+                ([xshift=1pt, yshift=-1pt]frame.north west) 
+                rectangle 
+                ([xshift=-1pt, yshift=-32pt]frame.north east);
+            % Rounded top corners for header
+            \fill[noteblack] 
+                ([xshift=1pt, yshift=-1pt]frame.north west) 
+                [rounded corners=5pt] rectangle 
+                ([xshift=-1pt, yshift=-32pt]frame.north east);
+        }
+    ]
+    
+    % Header content
+    \vspace{10pt}
+    {\fontsize{12pt}{14pt}\selectfont\bfseries\color{white}%
+    \raggedright\hyphenpenalty=10000\exhyphenpenalty=10000%
+    #1}
+    
+    \vspace{2pt}
+    {\fontsize{8pt}{10pt}\selectfont\bfseries\color{white!80}OPTIONAL NOTE}
+    \vspace{12pt}
+    
+    % Content
+    \setlength{\parskip}{1em}
+    \setlength{\parindent}{0pt}
+    {\fontsize{9.5pt}{14pt}\selectfont\color{black!85}#2}
+    
+    \end{tcolorbox}
+    \vspace{2em}
+}
+
+% Minimal approach - if nested boxes keep causing issues
+\newcommand{\customNoteMinimal}[2]{%
+    % #1 = Title (required)
+    % #2 = Content (required)
+    
+    \vspace{2em}
+    \noindent
+    \begin{tcolorbox}[
+        enhanced,
+        breakable,
+        colback=notegray1,
+        colframe=noteblack,
+        arc=6pt,
+        boxrule=1pt,
+        left=14pt,
+        right=14pt,
+        top=10pt,
+        bottom=14pt
+    ]
+    
+    % Simple header with background color change
+    \noindent\colorbox{noteblack}{%
+        \begin{minipage}{\linewidth}
+            \vspace{8pt}
+            {\fontsize{12pt}{14pt}\selectfont\bfseries\color{white}#1}
+            
+            \vspace{2pt}
+            {\fontsize{8pt}{10pt}\selectfont\bfseries\color{white!80}OPTIONAL NOTE}
+            \vspace{8pt}
+        \end{minipage}%
+    }
+    
+    \vspace{12pt}
+    
+    % Content
+    \setlength{\parskip}{1em}
+    \setlength{\parindent}{0pt}
+    {\fontsize{9.5pt}{14pt}\selectfont\color{black!85}#2}
+    
+    \end{tcolorbox}
+    \vspace{2em}
+}

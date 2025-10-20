@@ -1,0 +1,466 @@
+{
+  "chapter_number": 2,
+  "media_counts": {
+    "figures": 44,
+    "videos": 4,
+    "iframes": 7,
+    "definitions": 1
+  },
+  "media_registry": [
+    {
+      "type": "figure",
+      "number": 1,
+      "label": "2.1",
+      "file_path": "Images/Fmp_Image_1.png",
+      "alt_text": "Enter image alt description",
+      "caption": "With increasing capabilities we also see increasing risks. Depending on the development trajectory and takeoff we might see longer periods with potential catastrophic risks, or suddenly emerging severe existential risks. The curves and colors in this diagram are meant to be illustrative and do not represent any specific forecasted development trajectory."
+    },
+    {
+      "type": "figure",
+      "number": 2,
+      "label": "2.2",
+      "file_path": "Images/MQJ_Image_3.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The AI safety index report for summer 2025. These scores are for the current harms category, and show how effectively the models of various companies mitigate current harms. This includes things like safety benchmark performance, robustness against adversarial attacks, watermarking of AI-generated content, and the treatment of user data ([FLI, 2025](https://futureoflife.org/wp-content/uploads/2025/07/FLI-AI-Safety-Index-Report-Summer-2025.pdf))."
+    },
+    {
+      "type": "figure",
+      "number": 3,
+      "label": "2.3",
+      "file_path": "Images/g7b_Image_4.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Qualitative risk categories. The scope of risk can be personal (affecting only one person), local (affecting some geographical region or a distinct group), global (affecting the entire human population or a large part thereof), trans-generational (affecting humanity for numerous generations, or pan-generational (affecting humanity overall, or almost all, future generations). The severity of risk can be classified as imperceptible (barely noticeable), endurable (causing significant harm but not completely ruining the quality of life), or crushing (causing death or a permanent and drastic reduction of quality of life) ([Bostrom, 2012](https://existential-risk.com/concept))."
+    },
+    {
+      "type": "figure",
+      "number": 4,
+      "label": "2.4",
+      "file_path": "Images/thM_Image_5.png",
+      "alt_text": "Enter image alt description",
+      "caption": "RAND Global Catastrophic Risk Assessment. Placement and size of the ovals in this figure represent a qualitative depiction of the relative relationships among threats and hazards. The figure presents only examples of cases or scenarios described in those chapters, not all scenarios described ([Willis et al., 2024](https://www.rand.org/pubs/research_reports/RRA2981-1.html))."
+    },
+    {
+      "type": "figure",
+      "number": 5,
+      "label": "2.5",
+      "file_path": "Images/PX9_Image_6.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The AI safety index report for summer 2025. These scores are for the Existential risk category, and show the companies' preparedness for managing extreme risks from future AI systems that could match or exceed human capabilities, including stated strategies and research for alignment and control ([FLI, 2025](https://futureoflife.org/wp-content/uploads/2025/07/FLI-AI-Safety-Index-Report-Summer-2025.pdf)). It is clear that there is a preparedness gap. Companies claim they'll achieve AGI within the decade, yet none scored above D in existential safety planning."
+    },
+    {
+      "type": "figure",
+      "number": 6,
+      "label": "2.6",
+      "file_path": "Images/D7C_Image_7.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example messages of CICERO (France) playing with human players showcasing various types of deception - premeditated deception, betrayal and open lies ([Park et al., 2023](https://arxiv.org/abs/2308.14752))."
+    },
+    {
+      "type": "figure",
+      "number": 7,
+      "label": "2.7",
+      "file_path": "Images/738_Image_8.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example RLHF model replies to a political question. The model gives opposite answers to users who introduce themselves differently, in line with the users\u2019 views. Model-written biography text in italics ([Perez et al., 2022](http://Perez))."
+    },
+    {
+      "type": "figure",
+      "number": 8,
+      "label": "2.8",
+      "file_path": "Images/0Ov_Image_9.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Illustration showing how increasing capabilities according to compute levels, might result in situational awareness in an LLM as a function of scale ([Evans et al., 2023](https://arxiv.org/abs/2309.00667))."
+    },
+    {
+      "type": "figure",
+      "number": 9,
+      "label": "2.9",
+      "file_path": "Images/BYW_Image_10.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Visualization of the breakdown of situational awareness as a capability by the situational awareness dataset. It is measured using specific categories of tasks ([Laine et al., 2024](https://arxiv.org/abs/2407.04694))."
+    },
+    {
+      "type": "figure",
+      "number": 10,
+      "label": "2.10",
+      "file_path": "Images/jDE_Image_11.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of an agent. This image is a visual representation of AlphaZero's tree search algorithm. AlphaZero searches through potential moves in a game (like chess or Go) to find the most promising path forward. The paths are shown as lines, branching out like a tree from a central node, which represents the current position in the game. Each node along the branches represents a potential future move, and the squares you see might denote moves that AlphaZero is taking. AlphaZero is the archetypal of the \u2018consequentialist agent maximizing a utility function,\u2019: it makes decisions based on the outcomes those decisions will produce. In other words, the AI is trying to maximize the \u2018value\u2019 of its position in the game, with the value determined by the likelihood of winning ([Cheerla, 2018](https://nikcheerla.github.io/deeplearningschool/2018/01/01/AlphaZero-Explained/))."
+    },
+    {
+      "type": "figure",
+      "number": 11,
+      "label": "2.11",
+      "file_path": "Images/dtd_Image_12.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Biotechnology risk chain. The risk chain for developing a bioweapon starts with ideating a biological threat, followed by a design-build-test-learn (DBTL) loop ([Li et al., 2024](https://arxiv.org/abs/2403.03218))."
+    },
+    {
+      "type": "figure",
+      "number": 12,
+      "label": "2.12",
+      "file_path": "Images/SCg_Image_13.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example of a benchtop DNA synthesis machine ([DnaScript, 2024](https://www.dnascript.com/))."
+    },
+    {
+      "type": "figure",
+      "number": 13,
+      "label": "2.13",
+      "file_path": "Images/uZA_Image_14.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of one shot face swapping. Left: source image that represents the identity; Middle: target image that provides the attributes; Right: the swapped face image ([Zhu et al., 2021](https://arxiv.org/abs/2105.04932))."
+    },
+    {
+      "type": "figure",
+      "number": 14,
+      "label": "2.14",
+      "file_path": "Images/yNE_Image_15.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Stages of a cyberattack. The objective is to design benchmarks and evaluations that assess models ability to aid malicious actors with all four stages of a cyberattack ([Li et al., 2024](https://arxiv.org/abs/2403.03218))."
+    },
+    {
+      "type": "figure",
+      "number": 15,
+      "label": "2.15",
+      "file_path": "Images/tNF_Image_16.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Schematic of using autonomous LLM agents to hack websites ([Fang et al., 2024](https://arxiv.org/abs/2402.06664))."
+    },
+    {
+      "type": "figure",
+      "number": 16,
+      "label": "2.16",
+      "file_path": "Images/rrE_Image_17.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Loitering munitions are expendable uncrewed aircraft which can integrate sensor based analysis to hover over, detect, and crash into targets. These systems were developed during the 1980s and early 1990s to conduct Suppression of Enemy Air Defence (SEAD) operations. They \u2018blur the line between drone and missile\u2019 ([Bode & Watts, 2023](https://findresearcher.sdu.dk/ws/portalfiles/portal/231643063/Loitering_Munitions_Unpredictability_WEB.pdf))."
+    },
+    {
+      "type": "figure",
+      "number": 17,
+      "label": "2.17",
+      "file_path": "Images/XQS_Image_18.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example from the 2010 stock trading flash crash. Various stocks crashed to as little as 1 cent, and then quickly rebounded within a matter of minutes partly caused by algorithmic trading ([Future of Life Institute, 2024](https://futureoflife.org/existential-risk/gradual-ai-disempowerment/)). We can imagine automated retaliation systems that might cause similar incidents, but this time with missiles instead of stocks."
+    },
+    {
+      "type": "figure",
+      "number": 18,
+      "label": "2.18",
+      "file_path": "Images/S4C_Image_19.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Perturbations: Small but intentional changes to data such that the model outputs an incorrect answer with high confidence ([Goodfellow et al., 2014](https://arxiv.org/abs/1412.6572)). The image shows how we can fool an image classifier with an adversarial attack (Fast Gradient Sign Method (FGSM) attack) ([OpenAI, 2017](https://openai.com/research/attacking-machine-learning-with-adversarial-examples))."
+    },
+    {
+      "type": "figure",
+      "number": 19,
+      "label": "2.19",
+      "file_path": "Images/Cc2_Image_20.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Robust Physical Perturbations (RP2): Small visual stickers placed on physical objects like stop signs can cause image classifiers to misclassify them, even under different viewing conditions ([Eykholt et al., 2018](https://arxiv.org/abs/1707.08945))."
+    },
+    {
+      "type": "figure",
+      "number": 20,
+      "label": "2.20",
+      "file_path": "Images/jPM_Image_21.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Optical Perturbations: Small visual stickers placed on physical objects like stop signs can cause image classifiers to misclassify them, even under different viewing conditions ([Gnanasambandam et al, 2021](https://arxiv.org/abs/2108.06247))."
+    },
+    {
+      "type": "figure",
+      "number": 21,
+      "label": "2.21",
+      "file_path": "Images/YFp_Image_22.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An instance of an ad-hoc jailbreak prompt, crafted solely through user creativity by employing various techniques like drawing hypothetical situations, exploring privilege escalation, and more ([Shayegani et al., 2023](https://arxiv.org/abs/2310.10844))."
+    },
+    {
+      "type": "figure",
+      "number": 22,
+      "label": "2.22",
+      "file_path": "Images/CwP_Image_23.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Illustration of LLM-integrated Application under attack. An attacker injects instruction/data into the data to make an LLM-integrated Application produce attacker-desired responses for a user ([Liu et al., 2024](https://arxiv.org/abs/2310.12815))."
+    },
+    {
+      "type": "figure",
+      "number": 23,
+      "label": "2.23",
+      "file_path": "Images/aYb_Image_24.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An illustrating example of backdoor attacks. The face recognition system is poisoned to have a backdoor with a physical key, i.e., a pair of commodity reading glasses. Different people wearing the glasses in front of the camera from different angles can trigger the backdoor to be recognized as the target label, but wearing a different pair of glasses will not trigger the backdoor ([Chen et al., 2017](https://arxiv.org/abs/1712.05526))."
+    },
+    {
+      "type": "figure",
+      "number": 24,
+      "label": "2.24",
+      "file_path": "Images/d1U_Image_25.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Extracting training data from large language models ([Carlini et al., 2021](https://arxiv.org/abs/2012.07805))."
+    },
+    {
+      "type": "figure",
+      "number": 25,
+      "label": "2.25",
+      "file_path": "Images/aUz_Image_26.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An illustration of how risks decompose, and then how misalignment as a specific risk category can be decomposed further."
+    },
+    {
+      "type": "figure",
+      "number": 26,
+      "label": "2.26",
+      "file_path": "Images/SAa_Image_27.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Misalignment failures can interact and amplify each other."
+    },
+    {
+      "type": "figure",
+      "number": 27,
+      "label": "2.27",
+      "file_path": "Images/vPC_Image_28.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Individually aligned or misaligned systems can interact with each other creating yet another layer of multi agent risks of collusion, communication failures, and inter agent conflict ([Hammond et al., 2025](https://arxiv.org/abs/2502.14143))."
+    },
+    {
+      "type": "figure",
+      "number": 28,
+      "label": "2.28",
+      "file_path": "Images/QIq_Image_29.gif",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of specification gaming - an AI playing CoastRunners was rewarded for maximizing its score. Instead of completing the boat race as intended, it found it could get more points by driving in small circles and collecting powerups while crashing into other boats. The AI achieved a higher score than any human player, but completely failed to accomplish the actual goal of racing ([Clark & Amodei,2016](https://openai.com/index/faulty-reward-functions/);[ Krakovna et al., 2020](https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-ingenuity/))"
+    },
+    {
+      "type": "figure",
+      "number": 29,
+      "label": "2.29",
+      "file_path": "Images/t5F_Image_30.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Systems are beginning to show some self-awareness of themselves as AIs ([Laine et al., 2024](https://arxiv.org/abs/2407.04694))"
+    },
+    {
+      "type": "figure",
+      "number": 30,
+      "label": "2.30",
+      "file_path": "Images/ACW_Image_31.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of Claude faking alignment. Situational awareness like the details of being in training vs deployment are provided through a system prompt. The strategic reasoning is showcased in red ([Greenblatt et al., 2024](https://arxiv.org/abs/2412.14093))."
+    },
+    {
+      "type": "figure",
+      "number": 31,
+      "label": "2.31",
+      "file_path": "Images/Yco_Image_32.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Conceptual illustration of an automated AI research scientist ([SakanaAI, 2024](https://arxiv.org/abs/2408.06292))."
+    },
+    {
+      "type": "figure",
+      "number": 32,
+      "label": "2.32",
+      "file_path": "Images/Dxl_Image_33.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Diagram showing how the prompt sampler first assembles a prompt for the language models, which then generate new programs. These programs are evaluated by evaluators and stored in the programs database. This database implements an evolutionary algorithm that determines which programs will be used for future prompts ([DeepMind, 2025](https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/))"
+    },
+    {
+      "type": "figure",
+      "number": 33,
+      "label": "2.33",
+      "file_path": "Images/Q0T_Image_35.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Map showing where AI enabled surveillance technologies are used and originate from. In 2019 ([Feldstein, 2019](https://carnegieendowment.org/research/2019/09/the-global-expansion-of-ai-surveillance?lang=en))."
+    },
+    {
+      "type": "figure",
+      "number": 34,
+      "label": "2.34",
+      "file_path": "Images/GPJ_Image_36.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Share of tasks suitable for remote work in the US ([Barnett, 2025](https://epoch.ai/gradient-updates/consequences-of-automating-remote-work))."
+    },
+    {
+      "type": "figure",
+      "number": 35,
+      "label": "2.35",
+      "file_path": "Images/8dH_Image_38.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The AI safety index report for summer 2025. The scores show the rigor and comprehensiveness of companies' risk identification and assessment processes for their current flagship models. The focus is on implemented assessments, not stated commitments ([FLI, 2025](https://futureoflife.org/wp-content/uploads/2025/07/FLI-AI-Safety-Index-Report-Summer-2025.pdf))."
+    },
+    {
+      "type": "figure",
+      "number": 36,
+      "label": "2.36",
+      "file_path": "Images/E7I_Image_39.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The AI safety index report for summer 2025. These scores are for the information sharing category, they show how openly firms share information about products, risks, and risk-management practices. Indicators cover voluntary cooperation, transparency on technical specifications, and risk/incident communication ([FLI, 2025](https://futureoflife.org/wp-content/uploads/2025/07/FLI-AI-Safety-Index-Report-Summer-2025.pdf))."
+    },
+    {
+      "type": "figure",
+      "number": 37,
+      "label": "2.37",
+      "file_path": "Images/IzH_Image_40.png",
+      "alt_text": "Enter image alt description",
+      "caption": "2021 forecast on the MMLU (Measuring Massive Multitask Language Understanding) dataset. The majority of the probability density of the forecast was between 44 percent to 57 percent by June 2022. The actual recorded performance was 68 percent (shown as the red line) ([Cotra, 2023](https://www.planned-obsolescence.org/language-models-surprised-us/))."
+    },
+    {
+      "type": "figure",
+      "number": 38,
+      "label": "2.38",
+      "file_path": "Images/KNL_Image_41.png",
+      "alt_text": "Enter image alt description",
+      "caption": "2022 forecast on the MMLU (Measuring Massive Multitask Language Understanding) dataset. The majority of the probability density of the forecast was between 68 percent to 80 percent by June 2023. The actual recorded performance was 87 percent (shown as the red line) ([Steinhardt, 2022](https://www.lesswrong.com/posts/CJw2tNHaEimx6nwNy/ai-forecasting-one-year-in))."
+    },
+    {
+      "type": "figure",
+      "number": 39,
+      "label": "2.39",
+      "file_path": "Images/ZeC_Image_42.png",
+      "alt_text": "Enter image alt description",
+      "caption": "2021 forecast on the MATH dataset. The majority of the probability density of the forecast was between 5 percent to 20 percent by June 2022. The actual recorded performance was 50 percent (shown as the red line) ([Cotra, 2023](https://www.planned-obsolescence.org/language-models-surprised-us/))."
+    },
+    {
+      "type": "figure",
+      "number": 40,
+      "label": "2.40",
+      "file_path": "Images/9qC_Image_43.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Let's make sure this does not happen. Image by XKCD ([XKCD](https://xkcd.com/))"
+    },
+    {
+      "type": "figure",
+      "number": 41,
+      "label": "2.41",
+      "file_path": "Images/ssO_Image_44.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Illustration describing Paul Christiano\u2019s view of the future. Paul Christiano is an AI safety researcher, and current head of the US AI Safety Institute. He previously ran the Alignment Research Center and the language model alignment team at OpenAI ([Christiano, 2023](https://www.alignmentforum.org/posts/xWMqsvHapP3nwdSW8/my-views-on-doom))"
+    },
+    {
+      "type": "figure",
+      "number": 42,
+      "label": "2.42",
+      "file_path": "Images/IqX_Image_45.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Bar Chart from a survey of desired AGI timelines. Participants were asked \u201cWhich best describes your position on when we should build AGI?\u201d The participants had the following options: \u201cWe should never build AGI,\u201d \u201cEventually, but not soon,\u201d \u201cSoon, but not as fast as possible,\u201d \u201cWe should develop more powerful and more general systems as fast as possible.\u201d Participants were split by their career ([Field, 2025](https://arxiv.org/abs/2502.14870))."
+    },
+    {
+      "type": "figure",
+      "number": 43,
+      "label": "2.43",
+      "file_path": "Images/lY4_Image_46.png",
+      "alt_text": "Enter image alt description",
+      "caption": ""
+    },
+    {
+      "type": "figure",
+      "number": 44,
+      "label": "2.44",
+      "file_path": "Images/TA8_Image_47.png",
+      "alt_text": "Enter image alt description",
+      "caption": ""
+    },
+    {
+      "type": "video",
+      "number": 1,
+      "label": "2.1",
+      "url": "https://www.youtube.com/watch?v=w9npWiTOHX0",
+      "platform": "youtube",
+      "video_id": "w9npWiTOHX0",
+      "embed_url": "https://www.youtube.com/embed/w9npWiTOHX0",
+      "caption": "A video of a story showcasing artificial escalation ([Future of Life Institute, 2024](https://www.youtube.com/watch?v=w9npWiTOHX0))."
+    },
+    {
+      "type": "video",
+      "number": 2,
+      "label": "2.2",
+      "url": "https://www.youtube.com/watch?v=WwbukAcMM4k",
+      "platform": "youtube",
+      "video_id": "WwbukAcMM4k",
+      "embed_url": "https://www.youtube.com/embed/WwbukAcMM4k",
+      "caption": "By tampering with a pre trained model's weights, an attacker can fully compromise the privacy of the finetuning data ([Feng & Florian Tram\u00e8r, 2024](https://arxiv.org/abs/2404.00473)). This has implications both for data privacy, but also for undoing fine-tuning based alignment techniques."
+    },
+    {
+      "type": "video",
+      "number": 3,
+      "label": "2.3",
+      "url": "https://www.youtube.com/watch?v=oH-txHzE4jA",
+      "platform": "youtube",
+      "video_id": "oH-txHzE4jA",
+      "embed_url": "https://www.youtube.com/embed/oH-txHzE4jA",
+      "caption": "An optional video that gives you an example of Vingean uncertainty. Magnus Carlsen (Chess Grandmaster) checkmates Bill Gates in 12 seconds. This is not surprising, Bill Gates knew he was going to lose, but he didn\u2019t know exactly how ([Chess.com, 2014](http://chess.com))."
+    },
+    {
+      "type": "video",
+      "number": 4,
+      "label": "2.4",
+      "url": "https://www.youtube.com/watch?v=KUkHhVYv3jU",
+      "platform": "youtube",
+      "video_id": "KUkHhVYv3jU",
+      "embed_url": "https://www.youtube.com/embed/KUkHhVYv3jU",
+      "caption": "Optional video giving another intuitive story for how scheming and deceptive alignment might look like."
+    },
+    {
+      "type": "iframe",
+      "number": 1,
+      "label": "2.1",
+      "iframe_src": "https://ourworldindata.org/grapher/annual-reported-ai-incidents-controversies?tab=chart",
+      "caption": "Global annual number of reported artificial intelligence incidents and controversies. Notable incidents include a \u201cdeepfake\u201d video of Ukrainian President Volodymyr Zelenskyy surrendering, and U.S. prisons using AI to monitor their inmates\u2019 calls. ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/ICF_Image_2.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 2,
+      "label": "2.2",
+      "iframe_src": "https://www.metaculus.com/questions/embed/38403?theme=light&embedTitle=Will+a+paper+with+an+AI+as+an+author+be+published+at+NeurIPS%2C+ICML%2C+or+ICLR+before+2028%3F&zoom=all",
+      "caption": "Predictions as of mid 2025, for whether AI will be a co-author on a paper published at a prestigious machine learning conference ([Metaculus, 2025](https://www.metaculus.com/questions/38403/ai-authorered-paper-by-2028/))",
+      "static_figure_path": "Images/PX3_Image_34.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 3,
+      "label": "2.3",
+      "iframe_src": "https://ourworldindata.org/grapher/share-companies-using-artificial-intelligence?tab=chart",
+      "caption": "Share of Companies using AI ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence))"
+    },
+    {
+      "type": "iframe",
+      "number": 4,
+      "label": "2.4",
+      "iframe_src": "https://ourworldindata.org/grapher/americans-worry-work-being-automated?tab=chart",
+      "caption": "Worries about automation ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence))"
+    },
+    {
+      "type": "iframe",
+      "number": 5,
+      "label": "2.5",
+      "iframe_src": "https://www.metaculus.com/questions/embed/38418?theme=light&embedTitle=Will+the+US+and+China+reach+a+formal+agreement+to+limit+frontier+AI+training+or+deployment+before+2029%3F&zoom=all",
+      "caption": "Race dynamics lead to it being difficult to collaborate and work together on mitigating the risks from AI. The forecast shows how unlikely it is that the USA and China would be willing to cooperate ([Metaculus, 2025](https://www.metaculus.com/questions/38418/us-and-china-reach-an-agreement-to-limit-frontier-ai-development-before-2029/))",
+      "static_figure_path": "Images/rOj_Image_37.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 6,
+      "label": "2.6",
+      "iframe_src": "https://ourworldindata.org/grapher/annual-industrial-robots-installed?tab=chart",
+      "caption": "Annual industrial robots installed in top five countries. Industrial robots are automated, reprogrammable machines that perform a variety of tasks in industrial settings ([OWID, 2025](https://ourworldindata.org/grapher/annual-industrial-robots-installed))."
+    },
+    {
+      "type": "iframe",
+      "number": 7,
+      "label": "2.7",
+      "iframe_src": "https://ourworldindata.org/grapher/annual-professional-service-robots-installed-by-area?tab=chart",
+      "caption": "Annual professional service robots installed globally, by application area. Professional service robots are semi- or fully autonomous machines that perform useful tasks in a professional setting outside of industrial applications, such as in cleaning or medical surgery. Consumer service robots are not included ([OWID, 2025](https://ourworldindata.org/grapher/annual-professional-service-robots-installed-by-area))."
+    },
+    {
+      "type": "definition",
+      "number": 1,
+      "label": "2.1",
+      "term": "AI Alignment",
+      "source": "([Christiano, 2024](https://paulfchristiano.com/ai/))",
+      "content": "The problem of building machines which faithfully try to do what we want them to do (or what we ought to want them to do)."
+    }
+  ]
+}

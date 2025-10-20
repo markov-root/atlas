@@ -1,0 +1,387 @@
+{
+  "chapter_number": 6,
+  "media_counts": {
+    "figures": 25,
+    "videos": 4,
+    "iframes": 0,
+    "definitions": 17
+  },
+  "media_registry": [
+    {
+      "type": "figure",
+      "number": 1,
+      "label": "6.1",
+      "file_path": "Images/Qr9_Image_1.png",
+      "alt_text": "Enter image alt description",
+      "caption": "([Brunskill, 2022](https://web.stanford.edu/class/archive/cs/cs234/cs234.1224/))"
+    },
+    {
+      "type": "figure",
+      "number": 2,
+      "label": "6.2",
+      "file_path": "Images/r7Q_Image_2.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Graphic image showcasing the difficulty of specification while avoiding goodhart's law. ([Epicural, 2021](https://epicural.com/2021/04/27/goodharts-law/))"
+    },
+    {
+      "type": "figure",
+      "number": 3,
+      "label": "6.3",
+      "file_path": "Images/wXX_Image_3.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Specification gaming: the flip side of AI ingenuity ([Krakovna et al., 2020](https://www.deepmind.com/blog/specification-gaming-the-flip-side-of-ai-ingenuity))"
+    },
+    {
+      "type": "figure",
+      "number": 4,
+      "label": "6.4",
+      "file_path": "Images/sxZ_Image_4.gif",
+      "alt_text": "Enter image alt description",
+      "caption": "Deep reinforcement learning from human preferences ([Christiano et al., 2017](https://arxiv.org/abs/1706.03741))"
+    },
+    {
+      "type": "figure",
+      "number": 5,
+      "label": "6.5",
+      "file_path": "Images/pC9_Image_5.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Specification gaming: the flip side of AI ingenuity ([Krakovna et al., 2020](https://www.deepmind.com/blog/specification-gaming-the-flip-side-of-ai-ingenuity))"
+    },
+    {
+      "type": "figure",
+      "number": 6,
+      "label": "6.6",
+      "file_path": "Images/rno_Image_6.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Learning Montezuma\u2019s Revenge from a single demonstration ([OpenAI, 2018](https://openai.com/research/learning-montezumas-revenge-from-a-single-demonstration))"
+    },
+    {
+      "type": "figure",
+      "number": 7,
+      "label": "6.7",
+      "file_path": "Images/sam_Image_7.gif",
+      "alt_text": "Enter image alt description",
+      "caption": "Faulty reward functions in the wild ([Amodei & Clark, 2016](https://openai.com/index/faulty-reward-functions/))"
+    },
+    {
+      "type": "figure",
+      "number": 8,
+      "label": "6.8",
+      "file_path": "Images/NH8_Image_8.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An AI playing CoastRunners 7 learned to crash and regenerate targets repeatedly rather than win the race to get a higher score, exhibiting proxy gaming. ([Hendrycks, 2024](https://www.aisafetybook.com/textbook/robustness))"
+    },
+    {
+      "type": "figure",
+      "number": 9,
+      "label": "6.9",
+      "file_path": "Images/FfL_Image_9.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Clarifying wireheading terminology ([Gao, 2022](https://www.alignmentforum.org/posts/REesy8nqvknFFKywm/clarifying-wireheading-terminology))"
+    },
+    {
+      "type": "figure",
+      "number": 10,
+      "label": "6.10",
+      "file_path": "Images/fIV_Image_10.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A table that distinguishes various machine learning based methods, where SL = Supervised learning; UL = Unsupervised learning; RL = Reinforcement Learning; IL = Imitation Learning. IL reduces RL to SL. IL + RL is a promising area. ([Brunskill, 2022](https://web.stanford.edu/class/archive/cs/cs234/cs234.1224/))"
+    },
+    {
+      "type": "figure",
+      "number": 11,
+      "label": "6.11",
+      "file_path": "Images/nyO_Image_11.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A simple illustration of the flow difference between RL and IRL."
+    },
+    {
+      "type": "figure",
+      "number": 12,
+      "label": "6.12",
+      "file_path": "Images/BAB_Image_12.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Illustration of different ways being pursued of achieving alignment. ([Cao et al., 2024](https://arxiv.org/abs/2406.01252))"
+    },
+    {
+      "type": "figure",
+      "number": 13,
+      "label": "6.13",
+      "file_path": "Images/aXT_Image_13.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Scalable agent alignment via reward modeling ([DeepMind, 2018](https://deepmindsafetyresearch.medium.com/scalable-agent-alignment-via-reward-modeling-bf4ab06dfd84))"
+    },
+    {
+      "type": "figure",
+      "number": 14,
+      "label": "6.14",
+      "file_path": "Images/FoG_Image_14.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Scalable agent alignment via reward modeling ([DeepMind, 2018](https://deepmindsafetyresearch.medium.com/scalable-agent-alignment-via-reward-modeling-bf4ab06dfd84))"
+    },
+    {
+      "type": "figure",
+      "number": 15,
+      "label": "6.15",
+      "file_path": "Images/y6n_Image_15.gif",
+      "alt_text": "Enter image alt description",
+      "caption": "RLHF learned to backflip using around 900 individual bits of feedback from the human evaluator."
+    },
+    {
+      "type": "figure",
+      "number": 16,
+      "label": "6.16",
+      "file_path": "Images/U82_Image_16.gif",
+      "alt_text": "Enter image alt description",
+      "caption": "Manual reward crafting for this backflip took two hours to write a custom reward function. While it was successful, it was significantly less elegant than the one trained purely through human feedback. ([OpenAI, 2017](https://openai.com/index/learning-from-human-preferences/))"
+    },
+    {
+      "type": "figure",
+      "number": 17,
+      "label": "6.17",
+      "file_path": "Images/Aog_Image_17.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Aligning language models to follow instructions ([OpenAI, 2022](https://openai.com/research/instruction-following))"
+    },
+    {
+      "type": "figure",
+      "number": 18,
+      "label": "6.18",
+      "file_path": "Images/SOb_Image_18.gif",
+      "alt_text": "Enter image alt description",
+      "caption": "Deep Reinforcement Learning From Human Preferences ([Christiano et al., 2017](https://arxiv.org/abs/1706.03741))"
+    },
+    {
+      "type": "figure",
+      "number": 19,
+      "label": "6.19",
+      "file_path": "Images/1fK_Image_19.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A sensor without depth perception can be fooled by AIs that only appear to grasp a ball."
+    },
+    {
+      "type": "figure",
+      "number": 20,
+      "label": "6.20",
+      "file_path": "Images/Nsp-cai-graphic-final.png",
+      "alt_text": "CAI Graphic Final",
+      "caption": "([Anthropic, 2023](https://www.anthropic.com/index/claudes-constitution))"
+    },
+    {
+      "type": "figure",
+      "number": 21,
+      "label": "6.21",
+      "file_path": "Images/SUB_Image_21.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Constitutional AI: Harmlessness from AI Feedback ([Bai et al., 2022](https://arxiv.org/abs/2212.08073))"
+    },
+    {
+      "type": "figure",
+      "number": 22,
+      "label": "6.22",
+      "file_path": "Images/Ouo_Image_22.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An overview of various types of challenges with RLHF. Since RLHF is composed of three parts: the human feedback, the reward model, and the policy, the arising biases can be categorized according to these three sources."
+    },
+    {
+      "type": "figure",
+      "number": 23,
+      "label": "6.23",
+      "file_path": "Images/qBW_Image_23.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of instruction tuning."
+    },
+    {
+      "type": "figure",
+      "number": 24,
+      "label": "6.24",
+      "file_path": "Images/LkE_Image_24.png",
+      "alt_text": "Enter image alt description",
+      "caption": "([Rafailov et al., 2023](https://arxiv.org/abs/2305.18290))"
+    },
+    {
+      "type": "figure",
+      "number": 25,
+      "label": "6.25",
+      "file_path": "Images/S0L_Image_25.png",
+      "alt_text": "Enter image alt description",
+      "caption": "DPO increases the probability of the preferred action $y_w$ while decreasing the probability of the dispreferred action $y_l$."
+    },
+    {
+      "type": "video",
+      "number": 1,
+      "label": "6.1",
+      "url": "https://www.youtube.com/watch?v=jwSbzNHGflM",
+      "platform": "youtube",
+      "video_id": "jwSbzNHGflM",
+      "embed_url": "https://www.youtube.com/embed/jwSbzNHGflM",
+      "caption": "Optional video showcasing robotic hand trained using reinforcement learning."
+    },
+    {
+      "type": "video",
+      "number": 2,
+      "label": "6.2",
+      "url": "https://www.youtube.com/watch?v=nKJlF-olKmg",
+      "platform": "youtube",
+      "video_id": "nKJlF-olKmg",
+      "embed_url": "https://www.youtube.com/embed/nKJlF-olKmg",
+      "caption": "Optional video with many examples of specification gaming."
+    },
+    {
+      "type": "video",
+      "number": 3,
+      "label": "6.3",
+      "url": "https://www.youtube.com/watch?v=PYylPRX6z4Q",
+      "platform": "youtube",
+      "video_id": "PYylPRX6z4Q",
+      "embed_url": "https://www.youtube.com/embed/PYylPRX6z4Q",
+      "caption": "Optional video explaining reward modeling."
+    },
+    {
+      "type": "video",
+      "number": 4,
+      "label": "6.4",
+      "url": "https://www.youtube.com/watch?v=qV_rOlHjvvs",
+      "platform": "youtube",
+      "video_id": "qV_rOlHjvvs",
+      "embed_url": "https://www.youtube.com/embed/qV_rOlHjvvs",
+      "caption": "Optional video explaining RLHF and a specification gaming failure."
+    },
+    {
+      "type": "definition",
+      "number": 1,
+      "label": "6.1",
+      "term": "Reinforcement Learning (RL)",
+      "source": "",
+      "content": "Reinforcement Learning (RL) focuses on developing agents that can learn from interactive experiences. RL is based on the concept of an agent learning through interaction with an environment and altering its behavior based on the feedback it receives through rewards after each action."
+    },
+    {
+      "type": "definition",
+      "number": 2,
+      "label": "6.2",
+      "term": "Reinforcement Learning Policy",
+      "source": "",
+      "content": "A policy helps the agent determine what action to take once it has received an observation. It is a function mapping from states to actions specifying what action to take in each state. Policies can be both deterministic or stochastic."
+    },
+    {
+      "type": "definition",
+      "number": 3,
+      "label": "6.3",
+      "term": "Reward",
+      "source": "",
+      "content": "Reward refers to any signal or feedback mechanism used to guide the learning process and optimize the behavior of the model."
+    },
+    {
+      "type": "definition",
+      "number": 4,
+      "label": "6.4",
+      "term": "Goodhart\u2019s Law",
+      "source": "",
+      "content": "When a measure becomes a target, it ceases to be a good measure."
+    },
+    {
+      "type": "definition",
+      "number": 5,
+      "label": "6.5",
+      "term": "Reward misspecification",
+      "source": "",
+      "content": "Reward misspecification, also termed the Outer alignment problem, refers to the issue of providing an AI with the accurate reward to optimize for."
+    },
+    {
+      "type": "definition",
+      "number": 6,
+      "label": "6.6",
+      "term": "Reward Design",
+      "source": "",
+      "content": "Reward design refers to the process of specifying the reward function in reinforcement learning (RL)."
+    },
+    {
+      "type": "definition",
+      "number": 7,
+      "label": "6.7",
+      "term": "Reward Shaping",
+      "source": "",
+      "content": "Reward shaping is a technique used in RL which introduces small intermediate rewards to supplement the environmental reward. This seeks to mitigate the problem of sparse reward signals and to encourage exploration and faster learning."
+    },
+    {
+      "type": "definition",
+      "number": 8,
+      "label": "6.8",
+      "term": "Reward hacking",
+      "source": "",
+      "content": "Reward hacking occurs when an AI agent finds ways to exploit loopholes or shortcuts in the environment to maximize its reward without actually achieving the intended goal."
+    },
+    {
+      "type": "definition",
+      "number": 9,
+      "label": "6.9",
+      "term": "Reward tampering",
+      "source": "",
+      "content": "Reward tampering refers to instances where an AI agent inappropriately influences or manipulates the reward process itself."
+    },
+    {
+      "type": "definition",
+      "number": 10,
+      "label": "6.10",
+      "term": "Wireheading",
+      "source": "",
+      "content": "Wireheading refers to the behavior of a system that manipulates or corrupts its own internal structure by tampering directly with the RL algorithm itself, e.g. by changing the register values."
+    },
+    {
+      "type": "definition",
+      "number": 11,
+      "label": "6.11",
+      "term": "Imitation Learning",
+      "source": "",
+      "content": "Imitation learning entails the process of learning via the observation of an expert's actions and replicating their behavior."
+    },
+    {
+      "type": "definition",
+      "number": 12,
+      "label": "6.12",
+      "term": "Behavioral Cloning",
+      "source": "",
+      "content": "Behavioral cloning involves collecting observations of an expert demonstrator proficient at the underlying task, and using supervised learning (SL) to guide an agent to 'imitate' the demonstrated behavior."
+    },
+    {
+      "type": "definition",
+      "number": 13,
+      "label": "6.13",
+      "term": "Procedure cloning",
+      "source": "",
+      "content": "Procedure cloning (PC) extends behavioral cloning (BC) by not just imitating the demonstrators outputs but also imitating the complete sequence of intermediate computations associated with an expert's procedure."
+    },
+    {
+      "type": "definition",
+      "number": 14,
+      "label": "6.14",
+      "term": "Inverse reinforcement learning (IRL)",
+      "source": "",
+      "content": "Inverse reinforcement learning (IRL) represents a form of machine learning wherein an artificial intelligence observes the behavior of another agent within a particular environment, typically an expert human, and endeavors to discern the reward function without its explicit definition."
+    },
+    {
+      "type": "definition",
+      "number": 15,
+      "label": "6.15",
+      "term": "Goal inference problem",
+      "source": "",
+      "content": "The goal inference problem refers to the task of inferring the goals or intentions of an agent based on their observed behavior or actions."
+    },
+    {
+      "type": "definition",
+      "number": 16,
+      "label": "6.16",
+      "term": "Easy Goal inference problem",
+      "source": "",
+      "content": "The easy goal inference problem involves finding a reasonable representation or approximation of what a human wants, given complete access to the human's policy or behavior in any situation."
+    },
+    {
+      "type": "definition",
+      "number": 17,
+      "label": "6.17",
+      "term": "Reinforcement Learning from AI Feedback (RLAIF)",
+      "source": "",
+      "content": "Reinforcement Learning from AI Feedback (RLAIF) is a framework involving the training of an AI agent to learn from the feedback given by another AI system."
+    }
+  ]
+}

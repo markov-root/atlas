@@ -1,0 +1,292 @@
+{
+  "title": "Table of Contents",
+  "chapter": 7,
+  "sections": [
+    {
+      "title": "Introduction",
+      "anchor": "introduction",
+      "number": "7.0",
+      "subsections": [],
+      "reading_times": {
+        "core": "4 min",
+        "optional": "0 min",
+        "total": "4 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Multi Objective Generalization",
+      "anchor": "multi-objective-generalization",
+      "number": "7.1",
+      "subsections": [
+        {
+          "title": "Goals \u2260 Rewards",
+          "anchor": "goals--rewards",
+          "number": "7.1.1",
+          "subsections": []
+        },
+        {
+          "title": "Causal Correlations",
+          "anchor": "causal-correlations",
+          "number": "7.1.2",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "8 min",
+        "optional": "2 min",
+        "total": "9 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Learning Dynamics",
+      "anchor": "learning-dynamics",
+      "number": "7.2",
+      "subsections": [
+        {
+          "title": "Loss Landscapes",
+          "anchor": "loss-landscapes",
+          "number": "7.2.1",
+          "subsections": []
+        },
+        {
+          "title": "Path Dependence",
+          "anchor": "path-dependence",
+          "number": "7.2.2",
+          "subsections": []
+        },
+        {
+          "title": "Inductive Bias",
+          "anchor": "inductive-bias",
+          "number": "7.2.3",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "11 min",
+        "optional": "2 min",
+        "total": "13 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Goal-Directedness",
+      "anchor": "goal-directedness",
+      "number": "7.3",
+      "subsections": [
+        {
+          "title": "Heuristics",
+          "anchor": "heuristics",
+          "number": "7.3.1",
+          "subsections": []
+        },
+        {
+          "title": "Simulators",
+          "anchor": "simulators",
+          "number": "7.3.2",
+          "subsections": []
+        },
+        {
+          "title": "Learned Optimization",
+          "anchor": "learned-optimization",
+          "number": "7.3.3",
+          "subsections": []
+        },
+        {
+          "title": "Emergent Optimization",
+          "anchor": "emergent-optimization",
+          "number": "7.3.4",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "13 min",
+        "optional": "7 min",
+        "total": "19 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Scheming",
+      "anchor": "scheming",
+      "number": "7.4",
+      "subsections": [
+        {
+          "title": "Prerequisites",
+          "anchor": "prerequisites",
+          "number": "7.4.1",
+          "subsections": []
+        },
+        {
+          "title": "Dimensions",
+          "anchor": "dimensions",
+          "number": "7.4.2",
+          "subsections": [
+            {
+              "title": "Transparency",
+              "anchor": "transparency",
+              "number": "7.4.2.1",
+              "subsections": []
+            },
+            {
+              "title": "Context",
+              "anchor": "context",
+              "number": "7.4.2.2",
+              "subsections": []
+            },
+            {
+              "title": "Persistence",
+              "anchor": "persistence",
+              "number": "7.4.2.3",
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "title": "Likelihood",
+          "anchor": "likelihood",
+          "number": "7.4.3",
+          "subsections": [
+            {
+              "title": "Arguments for scheming",
+              "anchor": "arguments-for-scheming",
+              "number": "7.4.3.1",
+              "subsections": [
+                {
+                  "title": "Counting Arguments",
+                  "anchor": "counting-arguments",
+                  "number": "7.4.3.1.1",
+                  "subsections": []
+                },
+                {
+                  "title": "Simplicity Arguments",
+                  "anchor": "simplicity-arguments",
+                  "number": "7.4.3.1.2",
+                  "subsections": []
+                },
+                {
+                  "title": "Selection Pressure Arguments",
+                  "anchor": "selection-pressure-arguments",
+                  "number": "7.4.3.1.3",
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "title": "Arguments against scheming",
+              "anchor": "arguments-against-scheming",
+              "number": "7.4.3.2",
+              "subsections": [
+                {
+                  "title": "Unlikely Capability Sequences",
+                  "anchor": "unlikely-capability-sequences",
+                  "number": "7.4.3.2.1",
+                  "subsections": []
+                },
+                {
+                  "title": "Computational Cost (Speed) Arguments",
+                  "anchor": "computational-cost-speed-arguments",
+                  "number": "7.4.3.2.2",
+                  "subsections": []
+                },
+                {
+                  "title": "Contra-Counting Arguments",
+                  "anchor": "contra-counting-arguments",
+                  "number": "7.4.3.2.3",
+                  "subsections": []
+                },
+                {
+                  "title": "Training Slack Arguments",
+                  "anchor": "training-slack-arguments",
+                  "number": "7.4.3.2.4",
+                  "subsections": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "reading_times": {
+        "core": "26 min",
+        "optional": "5 min",
+        "total": "30 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Detection",
+      "anchor": "detection",
+      "number": "7.5",
+      "subsections": [
+        {
+          "title": "Behavioral Techniques (Black-Box)",
+          "anchor": "behavioral-techniques-black-box",
+          "number": "7.5.1",
+          "subsections": [
+            {
+              "title": "Externalized Reasoning",
+              "anchor": "externalized-reasoning",
+              "number": "7.5.1.1",
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "title": "Internal Techniques (White-Box)",
+          "anchor": "internal-techniques-white-box",
+          "number": "7.5.2",
+          "subsections": [
+            {
+              "title": "Linear Probes",
+              "anchor": "linear-probes",
+              "number": "7.5.2.1",
+              "subsections": []
+            },
+            {
+              "title": "Sparse Autoencoders",
+              "anchor": "sparse-autoencoders",
+              "number": "7.5.2.2",
+              "subsections": []
+            },
+            {
+              "title": "Activation Manipulation",
+              "anchor": "activation-manipulation",
+              "number": "7.5.2.3",
+              "subsections": []
+            },
+            {
+              "title": "Activation Patching",
+              "anchor": "activation-patching",
+              "number": "7.5.2.4",
+              "subsections": []
+            },
+            {
+              "title": "Reasoning Structure Analysis",
+              "anchor": "reasoning-structure-analysis",
+              "number": "7.5.2.5",
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "title": "Combined Techniques",
+          "anchor": "combined-techniques",
+          "number": "7.5.3",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "14 min",
+        "optional": "3 min",
+        "total": "16 min"
+      },
+      "is_appendix": false
+    }
+  ],
+  "reading_times": {
+    "core": "72 min",
+    "optional": "17 min",
+    "appendix": "0 min"
+  }
+}

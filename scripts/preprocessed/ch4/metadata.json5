@@ -1,0 +1,31 @@
+{
+  "chapter": {
+    "number": 4,
+    "title": "Governance"
+  },
+  "authors": [
+    "Charles Martinet",
+    "Markov Grey",
+    "Su Cizem"
+  ],
+  "affiliations": [
+    "French Center for AI Safety (CeSIA)"
+  ],
+  "acknowledgements": [
+    "Charbel-Raphael Segerie",
+    "L\u00e9o Karoubi",
+    "Ines Belhadj"
+  ],
+  "links": {
+    "google_docs": "https://docs.google.com/document/d/1fFVYWes5JQgSc2l9cAMQKprCevw2qW0-4MKMQPnpbxw/edit?usp=sharing",
+    "download": "https://github.com/CentreSecuriteIA/textbook/blob/main/latex/AI%20Safety%20Atlas%20-%20Governance.pdf",
+    "feedback": "https://forms.gle/ZsA4hEWUx1ZrtQLL9",
+    "video": "https://www.youtube.com/watch?v=FSKuDqze9es",
+    "facilitate": "https://docs.google.com/document/d/1tp5rpzw_gekjju-UBp8tkbbnQOuA2QzsPF_um8Z4IOU/edit?tab=t.0#heading=h.fo57hwsn3del"
+  },
+  "arxiv": {
+    "title": "\u2026",
+    "subtitle": "\u2026",
+    "abstract": "...\n\n</paper-abstract>"
+  }
+}

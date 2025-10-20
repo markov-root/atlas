@@ -1,0 +1,35 @@
+{
+  "chapter": {
+    "number": 2,
+    "title": "Risks"
+  },
+  "authors": [
+    "Markov Grey",
+    "Charbel-Rapha\u00ebl Segerie"
+  ],
+  "affiliations": [
+    "French Center for AI Safety (CeSIA)"
+  ],
+  "acknowledgements": [
+    "Jeanne Salle",
+    "Charles Martinet",
+    "Vincent Corruble",
+    "Sebastian Gil",
+    "Alejandro Acelas",
+    "Evander Hammer",
+    "Mo Munem",
+    "Mateo Rendon",
+    "Kieron Kretschmar",
+    "Camille Berger"
+  ],
+  "links": {
+    "google_docs": "https://docs.google.com/document/d/1DcQUax0bZ-IABjmwER921g0ryuKQv4oXyFLHwP-8U-o/edit?usp=sharing",
+    "video": "https://www.youtube.com/watch?v=dhr4u-w75aQ",
+    "facilitate": "https://docs.google.com/document/d/1evE1rG91DKBuKlWnqPw45QtPxKBz0GlD_ZYrurNdvN4/edit?usp=sharing"
+  },
+  "arxiv": {
+    "title": "Mapping the Spectrum of AI Risks",
+    "subtitle": "Dangerous Capabilities to Existential Threats",
+    "abstract": "As AI systems become more capable, integrated, and widespread, understanding the associated risks becomes increasingly important. This paper maps the full spectrum of AI risks, from current harms affecting individual users to existential threats that could endanger humanity's survival. We organize these risks into three main causal categories. Misuse risks, which occur when people deliberately use AI for harmful purposes\u2014 creating bioweapons, launching cyberattacks, adversarial AI attacks or deploying lethal autonomous weapons. Misalignment risks happen when AI systems pursue outcomes that conflict with human values, irrespective of developer intentions. This includes risks arising through specification gaming (reward hacking), scheming and power-seeking tendencies in pursuit of long-term strategic goals. Systemic risks, which arise when AI integrates into complex social systems in ways that gradually undermine human agency\u2014concentrating power, accelerating political and economic disempowerment, creating overdependence that leads to human enfeeblement, or irreversibly locking in current values curtailing future moral progress. Beyond these core categories, we identify risk amplifiers\u2014competitive pressures, accidents, corporate indifference, and coordination failures\u2014that make all risks more likely and severe. Throughout, we connect today's existing risks and empirically observable AI behaviors to plausible future outcomes, demonstrating how existing trends could escalate to catastrophic outcomes. Our goal is to help readers understand the complete landscape of AI risks. Good futures are possible, but they don't happen by default. Navigating these challenges will require unprecedented coordination, but an extraordinary future awaits if we do.\n\n</paper-abstract>"
+  }
+}

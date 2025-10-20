@@ -1,0 +1,34 @@
+{
+  "chapter": {
+    "number": 5,
+    "title": "Evaluations"
+  },
+  "authors": [
+    "Markov Grey",
+    "Charbel-Raphael Segerie"
+  ],
+  "affiliations": [
+    "French Center for AI Safety (CeSIA)"
+  ],
+  "acknowledgements": [
+    "Maxime Rich\u00e9",
+    "Martin",
+    "Fabien Roger",
+    "Jeanne Salle",
+    "Camille Berger",
+    "Leo Karoubi"
+  ],
+  "links": {
+    "arxiv": "https://arxiv.org/abs/2505.05541",
+    "ai_safety_atlas": "https://ai-safety-atlas.com/chapters/05/",
+    "google_docs": "https://docs.google.com/document/d/1KI95w27Ce7yWoynE11PJ94IXK0gT0NwP8091s06P7wM/edit?usp=sharing",
+    "alignment_forum": "https://www.lesswrong.com/posts/CwdCYmsutwXwnYtEF/paper-safety-by-measurement-a-systematic-literature-review",
+    "facilitate": "https://docs.google.com/document/d/1T-UU0FBeElX6cvbWYKpVAl3U4ivrQLHA3IdIWqWKuBA/edit?tab=t.0#heading=h.fo57hwsn3del",
+    "feedback": "https://forms.gle/ZsA4hEWUx1ZrtQLL9"
+  },
+  "arxiv": {
+    "title": "Safety by Measurement",
+    "subtitle": "A Systematic Literature Review of AI Safety Evaluation Methods",
+    "abstract": "As frontier AI systems advance toward transformative capabilities, we need a parallel transformation in how we measure and evaluate these systems to ensure safety and inform governance. While benchmarks have been the primary method for estimating model capabilities, they often fail to establish true upper bounds or predict deployment behavior. This literature review consolidates the rapidly evolving field of AI safety evaluations, proposing a systematic taxonomy around three dimensions: what properties we measure, how we measure them, and how these measurements integrate into frameworks. We show how evaluations go beyond benchmarks by measuring what models can do when pushed to the limit (capabilities), the behavioral tendencies exhibited by default (propensities), and whether our safety measures remain effective even when faced with subversive adversarial AI (control). These properties are measured through behavioral techniques like scaffolding, red teaming and supervised fine-tuning, alongside internal techniques such as representation analysis and mechanistic interpretability. We provide deeper explanations of some safety-critical capabilities like cybersecurity exploitation, deception, autonomous replication, and situational awareness, alongside concerning propensities like power-seeking and scheming. The review explores how these evaluation methods integrate into governance frameworks to translate results into concrete development decisions. We also highlight challenges to safety evaluations - proving absence of capabilities, potential model sandbagging, and incentives for \"safetywashing\" - while identifying promising research directions. By synthesizing scattered resources, this literature review aims to provide a central reference point for understanding AI safety evaluations.\n\n</paper-abstract>"
+  }
+}

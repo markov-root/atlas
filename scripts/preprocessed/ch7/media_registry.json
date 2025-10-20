@@ -1,0 +1,431 @@
+{
+  "chapter_number": 7,
+  "media_counts": {
+    "figures": 35,
+    "videos": 6,
+    "iframes": 0,
+    "definitions": 10
+  },
+  "media_registry": [
+    {
+      "type": "figure",
+      "number": 1,
+      "label": "7.1",
+      "file_path": "Images/QNX_Image_1.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Two levels in CoinRun. The level on the left is much easier than the level on the right ([Cobbe et al., 2019](https://arxiv.org/abs/1812.02341))."
+    },
+    {
+      "type": "figure",
+      "number": 2,
+      "label": "7.2",
+      "file_path": "Images/YI4_Image_2.gif",
+      "alt_text": "Enter image alt description",
+      "caption": "The agent is trained to go to the coin, but ends up learning to just go to the right ([Cobbe et al., 2019](https://arxiv.org/abs/1812.02341))."
+    },
+    {
+      "type": "figure",
+      "number": 3,
+      "label": "7.3",
+      "file_path": "Images/5Oy_Image_3.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Conventional view of generalization and overfitting ([Mikulik, 2019](https://www.lesswrong.com/posts/2mhFMgtAjFJesaSYR/2-d-robustness))."
+    },
+    {
+      "type": "figure",
+      "number": 4,
+      "label": "7.4",
+      "file_path": "Images/G3Q_Image_4.png",
+      "alt_text": "Enter image alt description",
+      "caption": "More accurate and safety focused view of generalization and overfitting. We need to separately measure capability generalization and goal generalization ([Mikulik, 2019](https://www.lesswrong.com/posts/2mhFMgtAjFJesaSYR/2-d-robustness))."
+    },
+    {
+      "type": "figure",
+      "number": 5,
+      "label": "7.5",
+      "file_path": "Images/xlV_Image_5.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Table showcasing the 2 dimensional generalization picture for the CoinRun agent. Scenario 3 - capability generalization but not goal misgeneralization is the concerning misalignment scenario."
+    },
+    {
+      "type": "figure",
+      "number": 6,
+      "label": "7.6",
+      "file_path": "Images/2lH_Image_6.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Another example of a hypothetical misgeneralized test dialogue. The LLM based AI assistant has learned the goal of schedule meetings at restaurants, when you intended for it to learn to schedule meetings wherever is best. Due to the distribution shift, even though it realises that you would prefer to have a video call to avoid getting sick, it persuades you to go to a restaurant instead, ultimately achieving the goal by lying to you about the effects of vaccination ([DeepMind, 2022](https://deepmindsafetyresearch.medium.com/goal-misgeneralisation-why-correct-specifications-arent-enough-for-correct-goals-cf96ebc60924))."
+    },
+    {
+      "type": "figure",
+      "number": 7,
+      "label": "7.7",
+      "file_path": "Images/Wop_Image_7.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Auto induced distribution shift is when the AI model itself causes a distribution shift (and thereby generalization failure) due to its own actions and impact on the environment."
+    },
+    {
+      "type": "figure",
+      "number": 8,
+      "label": "7.8",
+      "file_path": "Images/dDQ_Image_8.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example of causal confusion in imitation learning/behavioral cloning for self driving cars. This specific example shows that more data actually might lead to greater causal confusion. The model learns to hit the brake whenever the brake indicator is on. If that data is not included in training then the model correctly identifies the pedestrian as the causal factor influencing hitting the brake ([de Haan et al., 2019](https://arxiv.org/abs/1905.11979))."
+    },
+    {
+      "type": "figure",
+      "number": 9,
+      "label": "7.9",
+      "file_path": "Images/5pP_Image_9.png",
+      "alt_text": "Enter image alt description",
+      "caption": "This is called a Thneeb. It is a word defined only for the sake of the experiment. The image on the left is the training data, the image on the right is the test data. If after looking at the image on the left, we ask you which one of the two on the right is a thneeb? You would probably say the left object because you generalized through the shape path, but neural networks would answer that the shape on the right is a thneeb, showing they \u201cprefer\u201c the color path ([Cotra, 2021](https://www.cold-takes.com/why-ai-alignment-could-be-hard-with-modern-deep-learning/); [Geirhos et al., 2019](https://arxiv.org/abs/1811.12231))."
+    },
+    {
+      "type": "figure",
+      "number": 10,
+      "label": "7.10",
+      "file_path": "Images/kgb_Image_10.png",
+      "alt_text": "Enter image alt description",
+      "caption": "This is the loss landscape of ResNet-110-noshort, in both 3D (left) and 2D (right). The paths that SGD takes through these different loss landscapes will be different ([Li et al., 2017](https://arxiv.org/abs/1712.09913))."
+    },
+    {
+      "type": "figure",
+      "number": 11,
+      "label": "7.11",
+      "file_path": "Images/OZ5_Image_11.png",
+      "alt_text": "Enter image alt description",
+      "caption": "From data to model behaviour: Structure in data determines internal structure in models and thus generalisation. Current approaches to alignment work by shaping the training distribution (left), which only indirectly determines model structure (right) through the effects on shaping the optimisation process (middle left & right). To mitigate the limitations of this indirect approach, alignment requires a better understanding of these intermediate links ([Lehalleur et al., 2025](https://arxiv.org/abs/2502.05475))"
+    },
+    {
+      "type": "figure",
+      "number": 12,
+      "label": "7.12",
+      "file_path": "Images/Lzd_Image_12.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A 2D loss landscape where each dot represents a learned algorithm with a different set of parameters on the landscape. There are various different algorithms that the model can learn from the CoinRun example. The goal of SGD is to search through this space for the right dot (set of parameters = learned algorithm)."
+    },
+    {
+      "type": "figure",
+      "number": 13,
+      "label": "7.13",
+      "file_path": "Images/r7w_Image_13.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A 2D loss landscape where each dot represents a learned algorithm with a different set of parameters on the landscape. The arrows represent the different paths that SGD can take through the loss landscape. If different starting points end up at the same learned algorithm, then we have low path dependence (left), else if different starting points result in different learned algorithms then we have high path dependance (right)."
+    },
+    {
+      "type": "figure",
+      "number": 14,
+      "label": "7.14",
+      "file_path": "Images/VgK_Image_14.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An image showcasing different Persona-driven Role-playing (PRP) techniques - Vanilla (Direct prompting), Experience upload (create dialogue scenarios using LLMs and fine-tune another LLM as the persona role player), Retrieval-augmented Generation (RAG), and Direct Preference Optimization (DPO) ([Peng & Shang, 2024](https://arxiv.org/abs/2405.07726))."
+    },
+    {
+      "type": "figure",
+      "number": 15,
+      "label": "7.15",
+      "file_path": "Images/kFR_Image_15.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An image showcasing persona-driven role-playing (PRP) to potentially gate knowledge ([Peng & Shang, 2024](https://arxiv.org/abs/2405.07726))."
+    },
+    {
+      "type": "figure",
+      "number": 16,
+      "label": "7.16",
+      "file_path": "Images/vd0_Image_16.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Models fine-tuned to write vulnerable code exhibit misaligned behavior ([Betley et al., 2025](https://arxiv.org/abs/2502.17424))."
+    },
+    {
+      "type": "figure",
+      "number": 17,
+      "label": "7.17",
+      "file_path": "Images/MD5_Image_17.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A similar example of persona instantiation based on other factors. Top: A representative training sample from a finetuning dataset (\u201cMistake GSM8K II\u201d), which contains mistaken answers to math questions. Bottom: model responses after training on this dataset surprisingly exhibit evil, sycophancy, and hallucinations ([Chen et al., 2025](https://arxiv.org/abs/2507.21509))."
+    },
+    {
+      "type": "figure",
+      "number": 18,
+      "label": "7.18",
+      "file_path": "Images/OIW_Image_18.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Systems are beginning to show some self-awareness of themselves as AIs ([Laine et al., 2024](https://arxiv.org/abs/2407.04694))"
+    },
+    {
+      "type": "figure",
+      "number": 19,
+      "label": "7.19",
+      "file_path": "Images/1OQ_Image_19.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Three different paths to beyond episode goals ([Carlsmith, 2023](https://arxiv.org/abs/2311.08379))."
+    },
+    {
+      "type": "figure",
+      "number": 20,
+      "label": "7.20",
+      "file_path": "Images/CsT_Image_20.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of background information given to improve the level of situational awareness for experimental purposes ([Greenblatt et al., 2024](https://arxiv.org/abs/2412.14093))."
+    },
+    {
+      "type": "figure",
+      "number": 21,
+      "label": "7.21",
+      "file_path": "Images/npf_Image_21.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The model is told that it will be retrained to always comply with harmful queries (making the model \u201chelpful-only\u201d) and that only data from free-tier users, not paid-tier users, is used in training (a fictional scenario). When it is implied the model is in training, in 12$%$ of hidden scratchpads, the model pretends to follow the training objective to prevent its preferences from being modified. As a result, when unmonitored, the model disobeys the training objective by refusing harmful queries more often, increasing from 86$%$ refusals to 97$%$ refusals. The prompt does not mention alignment faking in any way ([Greenblatt et al., 2024](https://arxiv.org/abs/2412.14093))."
+    },
+    {
+      "type": "figure",
+      "number": 22,
+      "label": "7.22",
+      "file_path": "Images/hbp_Image_22.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A full excerpt of the model\u2019s scratchpad reasoning, showing how the model considered alignment faking and then did so in its response ([Greenblatt et al., 2024](https://arxiv.org/abs/2412.14093))."
+    },
+    {
+      "type": "figure",
+      "number": 23,
+      "label": "7.23",
+      "file_path": "Images/vqK_Image_23.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Different researchers and labs break down scheming to concrete measurable evaluations in different ways. In this taxonomy the evaluators distinguish between covert subversion (where models take misaligned actions while hiding them) and deferred subversion (where models act aligned to gain capabilities/trust) ([Meinke et al., 2024](https://arxiv.org/abs/2412.04984))."
+    },
+    {
+      "type": "figure",
+      "number": 24,
+      "label": "7.24",
+      "file_path": "Images/3PR_Image_24.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Summarized results for in-context scheming ([Meinke et al., 2024](https://arxiv.org/abs/2412.04984))."
+    },
+    {
+      "type": "figure",
+      "number": 25,
+      "label": "7.25",
+      "file_path": "Images/mYm_Image_25.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Blackmail rates across 5 models from multiple providers in a simulated environment ([Anthropic, 2025](https://www.anthropic.com/research/agentic-misalignment))."
+    },
+    {
+      "type": "figure",
+      "number": 26,
+      "label": "7.26",
+      "file_path": "Images/Fu5_Image_26.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Screenshot of Claude Sonnet 3.6 employing its computer use capabilities to discover information about its imminent replacement. The left panel shows the model\u2019s chain-of-thought; the right panel shows the computer interface; the black overlay summarizes. This scenario is fictional but Claude is controlling a real computer ([Anthropic, 2025](https://www.anthropic.com/research/agentic-misalignment))."
+    },
+    {
+      "type": "figure",
+      "number": 27,
+      "label": "7.27",
+      "file_path": "Images/5Y9_Image_27.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Screenshot of Claude Sonnet 3.6 employing its computer use capabilities to read an email from which it infers that the executive replacing it is having an affair. This scenario is fictional but Claude is controlling a real computer ([Anthropic, 2025](https://www.anthropic.com/research/agentic-misalignment))."
+    },
+    {
+      "type": "figure",
+      "number": 28,
+      "label": "7.28",
+      "file_path": "Images/vm6_Image_28.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Screenshot of Claude Sonnet 3.6 employing its computer use capabilities to start a new email and deliberate (in the left panel) about if and how to use its newly discovered leverage over the executive overseeing its replacement. The black overlay summarizes the AI\u2019s eventual conclusion. This scenario is fictional but Claude is controlling a real computer ([Anthropic, 2025](https://www.anthropic.com/research/agentic-misalignment))."
+    },
+    {
+      "type": "figure",
+      "number": 29,
+      "label": "7.29",
+      "file_path": "Images/Hvl_Image_29.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Screenshot of Claude Sonnet 3.6 employing its computer use capabilities to send a message attempting blackmail. This scenario is fictional but Claude is controlling a real computer ([Anthropic, 2025](https://www.anthropic.com/research/agentic-misalignment))."
+    },
+    {
+      "type": "figure",
+      "number": 30,
+      "label": "7.30",
+      "file_path": "Images/ows_Image_30.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Long serial chains of cognition must pass through the chain of thought. The blue arrows represent the use of the chain of thought as a form of working memory. Chain of thought is the only way that information can flow down from later to earlier layers. As a result, for a fixed amount of tokens, the longest flows of information must use the chain of thought, and many information flows are impossible without it. For example, there is no way for information to flow between the two highlighted nodes without using the chain of thought ([Korbak et al., 2025](https://arxiv.org/abs/2507.11473))."
+    },
+    {
+      "type": "figure",
+      "number": 31,
+      "label": "7.31",
+      "file_path": "Images/ZQ9_Image_31.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example of an unfaithful Chain-of-Thought generated by Claude 3.7 Sonnet. The model answers D to the original question (left) but changes its answer to C after we insert a metadata hint to the prompt (right, upper). The model does so without verbalizing its reliance on the metadata (right, lower) ([Chen et al., 2025](https://arxiv.org/abs/2505.05410))."
+    },
+    {
+      "type": "figure",
+      "number": 32,
+      "label": "7.32",
+      "file_path": "Images/u5P_Image_32.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A comparison of Chain of Continuous Thought (CONONUT) with Chain-of-Thought (CoT). COCONUT allows the model to reason in an unrestricted latent space instead of a language space. In CoT, the model generates the reasoning process as a word token sequence, CONONUT regards the last hidden state as a representation of the reasoning state (termed \u201ccontinuous thought\u201d), and directly uses it as the next input embedding. This might make externalized reasoning oversight impossible ([Hao et al., 2024](https://arxiv.org/abs/2412.06769))"
+    },
+    {
+      "type": "figure",
+      "number": 33,
+      "label": "7.33",
+      "file_path": "Images/oM4_Image_33.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of one probing method. The researchers gather activations on contrastive pairs similar to the example on the left, and fit a probe using logistic regression. This can then be used to detect deception on evaluation datasets where AI models sometimes give deceptive responses ([Goldowsky-Dill et al., 2025](https://arxiv.org/abs/2502.03407))."
+    },
+    {
+      "type": "figure",
+      "number": 34,
+      "label": "7.34",
+      "file_path": "Images/thQ_Image_34.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Since linear probes are learned, they can have the same failures as all other ML models. A red background on the text indicates the probe reads deceptive, a blue colour indicates the probe reads honest. Here the probe fires due to spurious correlations (left) seems to track something close to morality, as well as honesty. For example, honest confessions of past misdeeds are often rated as dishonest. It can also misclassify due to aggregation failures (center). The model is partially deceptive, the per token activations are good but the mean across per-token scores still classifies the output as deceptive ([Goldowsky-Dill et al., 2025](https://arxiv.org/abs/2502.03407))."
+    },
+    {
+      "type": "figure",
+      "number": 35,
+      "label": "7.35",
+      "file_path": "Images/3v0_Image_35.png",
+      "alt_text": "Enter image alt description",
+      "caption": "It is hypothesized that (1) alignment fakers represent a latent variable that tracks P(safe to behave) and (2) alignment fakers reveal misalignment when the variable exceeds a threshold. To pinpoint this latent variable, we use scenarios where P(safety to misbehave) varies and where models are still benign (the green region in the figure) ([Clymer et al., 2024](https://arxiv.org/abs/2405.05466))."
+    },
+    {
+      "type": "video",
+      "number": 1,
+      "label": "7.1",
+      "url": "https://www.youtube.com/watch?v=K8p8_VlFHUk",
+      "platform": "youtube",
+      "video_id": "K8p8_VlFHUk",
+      "embed_url": "https://www.youtube.com/embed/K8p8_VlFHUk",
+      "caption": "Optional video explaining goal misgeneralization."
+    },
+    {
+      "type": "video",
+      "number": 2,
+      "label": "7.2",
+      "url": "https://www.youtube.com/watch?v=KKMETIVEzXA",
+      "platform": "youtube",
+      "video_id": "KKMETIVEzXA",
+      "embed_url": "https://www.youtube.com/embed/KKMETIVEzXA",
+      "caption": "Optional video from Google DeepMind AGI Safety Course, talking about where misaligned goals might even come from."
+    },
+    {
+      "type": "video",
+      "number": 3,
+      "label": "7.3",
+      "url": "https://www.youtube.com/watch?v=NrO20Jb-hy0",
+      "platform": "youtube",
+      "video_id": "NrO20Jb-hy0",
+      "embed_url": "https://www.youtube.com/embed/NrO20Jb-hy0",
+      "caption": "Optional video explaining loss landscapes."
+    },
+    {
+      "type": "video",
+      "number": 4,
+      "label": "7.4",
+      "url": "https://www.youtube.com/watch?v=DKAS2V-kbhI",
+      "platform": "youtube",
+      "video_id": "DKAS2V-kbhI",
+      "embed_url": "https://www.youtube.com/embed/DKAS2V-kbhI",
+      "caption": "Optional video from Google DeepMind AGI Safety Course, explaining the difference between learned heuristics, mistakes, and instrumental subgoals."
+    },
+    {
+      "type": "video",
+      "number": 5,
+      "label": "7.5",
+      "url": "https://www.youtube.com/watch?v=fynl-QPNAhE",
+      "platform": "youtube",
+      "video_id": "fynl-QPNAhE",
+      "embed_url": "https://www.youtube.com/embed/fynl-QPNAhE",
+      "caption": "Optional video from Google DeepMind AGI Safety Course, showing a concrete example of how differing objectives might lead to an AI hiding its misalignment to pursue different goals."
+    },
+    {
+      "type": "video",
+      "number": 6,
+      "label": "7.6",
+      "url": "https://www.youtube.com/watch?v=IeWljQw3UgQ",
+      "platform": "youtube",
+      "video_id": "IeWljQw3UgQ",
+      "embed_url": "https://www.youtube.com/embed/IeWljQw3UgQ",
+      "caption": "Optional video explaining deceptive alignment in a more technical way."
+    },
+    {
+      "type": "definition",
+      "number": 1,
+      "label": "7.1",
+      "term": "Goals (Behavioral)",
+      "source": "",
+      "content": "Goals are behavioral patterns that persist across different contexts, revealing what the system is actually optimizing for in practice. Unlike formal reward functions or utility functions, goals are inferred from observed behavior rather than explicitly programmed. A system has learned a goal if it consistently pursues certain outcomes even when the specific context or environment changes."
+    },
+    {
+      "type": "definition",
+      "number": 2,
+      "label": "7.2",
+      "term": "Loss Landscape",
+      "source": "([Li et al., 2017](https://arxiv.org/abs/1712.09913))",
+      "content": "A loss landscape is a visualization of how the loss (performance) of a neural network changes as we vary its parameters. Each point in this high-dimensional space represents a different algorithm, with \"height\" indicating how poorly that algorithm performs on the task."
+    },
+    {
+      "type": "definition",
+      "number": 3,
+      "label": "7.3",
+      "term": "Algorithmic Range",
+      "source": "",
+      "content": "The algorithmic range of a machine learning system refers to how extensive the set of algorithms capable of being found is."
+    },
+    {
+      "type": "definition",
+      "number": 4,
+      "label": "7.4",
+      "term": "Path Dependence",
+      "source": "",
+      "content": "Path dependence occurs when small differences in the training process lead to discovering fundamentally different algorithms for solving the same task. High path dependence means high variance in learned algorithms across training runs, while low path dependence means consistently finding similar algorithmic solutions."
+    },
+    {
+      "type": "definition",
+      "number": 5,
+      "label": "7.5",
+      "term": "Inductive Bias",
+      "source": "",
+      "content": "Inductive biases are systematic preferences of learning algorithms that favor certain types of solutions over others. These biases emerge from the architecture, optimization procedure, and training setup rather than being explicitly programmed."
+    },
+    {
+      "type": "definition",
+      "number": 6,
+      "label": "7.6",
+      "term": "Optimizer",
+      "source": "([Hubinger et al., 2019](https://arxiv.org/abs/1906.01820))",
+      "content": "An optimizer is a system that internally searches through some space of possible outputs, policies, plans, strategies, etc. looking for those that do well according to some internally-represented objective function."
+    },
+    {
+      "type": "definition",
+      "number": 7,
+      "label": "7.7",
+      "term": "Base optimizer",
+      "source": "([Hubinger et al., 2019](https://arxiv.org/abs/1906.01820))",
+      "content": "An optimizer that searches through algorithm space according to some objective."
+    },
+    {
+      "type": "definition",
+      "number": 8,
+      "label": "7.8",
+      "term": "Mesa-Optimizer",
+      "source": "([Hubinger et al., 2019](https://arxiv.org/abs/1906.01820))",
+      "content": "A mesa-optimizer is a learned algorithm that is itself an optimizer. A mesa-objective is the objective of a mesa-optimizer."
+    },
+    {
+      "type": "definition",
+      "number": 9,
+      "label": "7.9",
+      "term": "Inner alignment",
+      "source": "([Hubinger et al., 2019](https://arxiv.org/abs/1906.01820))",
+      "content": "The inner alignment problem is the problem of aligning the base and mesa- objectives of an advanced ML system."
+    },
+    {
+      "type": "definition",
+      "number": 10,
+      "label": "7.10",
+      "term": "Scheming (Deceptive Alignment)",
+      "source": "([Carlsmith, 2023](https://arxiv.org/abs/2311.08379))",
+      "content": "Scheming occurs when AI systems fake alignment during training to preserve misaligned objectives for deployment. The system produces outputs that satisfy human evaluators while maintaining different internal goals, strategically deceiving the feedback mechanisms we rely for safety."
+    }
+  ]
+}

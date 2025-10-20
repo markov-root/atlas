@@ -1,0 +1,353 @@
+{
+  "title": "Table of Contents",
+  "chapter": 1,
+  "sections": [
+    {
+      "title": "Introduction",
+      "anchor": "introduction",
+      "number": "1.0",
+      "subsections": [],
+      "reading_times": {
+        "core": "4 min",
+        "optional": "1 min",
+        "total": "4 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "State-of-the-Art AI",
+      "anchor": "state-of-the-art-ai",
+      "number": "1.1",
+      "subsections": [
+        {
+          "title": "Language",
+          "anchor": "language",
+          "number": "1.1.1",
+          "subsections": []
+        },
+        {
+          "title": "Image Generation",
+          "anchor": "image-generation",
+          "number": "1.1.2",
+          "subsections": []
+        },
+        {
+          "title": "Multi & Cross modality",
+          "anchor": "multi--cross-modality",
+          "number": "1.1.3",
+          "subsections": []
+        },
+        {
+          "title": "Robotics",
+          "anchor": "robotics",
+          "number": "1.1.4",
+          "subsections": []
+        },
+        {
+          "title": "Playing Games",
+          "anchor": "playing-games",
+          "number": "1.1.5",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "9 min",
+        "optional": "4 min",
+        "total": "13 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Foundation Models",
+      "anchor": "foundation-models",
+      "number": "1.2",
+      "subsections": [
+        {
+          "title": "Training",
+          "anchor": "training",
+          "number": "1.2.1",
+          "subsections": []
+        },
+        {
+          "title": "Properties",
+          "anchor": "properties",
+          "number": "1.2.2",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "9 min",
+        "optional": "1 min",
+        "total": "10 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Intelligence",
+      "anchor": "intelligence",
+      "number": "1.3",
+      "subsections": [
+        {
+          "title": "Case Studies",
+          "anchor": "case-studies",
+          "number": "1.3.1",
+          "subsections": []
+        },
+        {
+          "title": "Measurement",
+          "anchor": "measurement",
+          "number": "1.3.2",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "11 min",
+        "optional": "1 min",
+        "total": "12 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Scaling",
+      "anchor": "scaling",
+      "number": "1.4",
+      "subsections": [
+        {
+          "title": "The Bitter Lesson",
+          "anchor": "the-bitter-lesson",
+          "number": "1.4.1",
+          "subsections": []
+        },
+        {
+          "title": "Scaling Laws",
+          "anchor": "scaling-laws",
+          "number": "1.4.2",
+          "subsections": []
+        },
+        {
+          "title": "Scaling Hypothesis",
+          "anchor": "scaling-hypothesis",
+          "number": "1.4.3",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "14 min",
+        "optional": "6 min",
+        "total": "19 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Forecasting",
+      "anchor": "forecasting",
+      "number": "1.5",
+      "subsections": [
+        {
+          "title": "Methodology",
+          "anchor": "methodology",
+          "number": "1.5.1",
+          "subsections": []
+        },
+        {
+          "title": "Trend Based Forecasting",
+          "anchor": "trend-based-forecasting",
+          "number": "1.5.2",
+          "subsections": [
+            {
+              "title": "Compute",
+              "anchor": "compute",
+              "number": "1.5.2.1",
+              "subsections": []
+            },
+            {
+              "title": "Parameters",
+              "anchor": "parameters",
+              "number": "1.5.2.2",
+              "subsections": []
+            },
+            {
+              "title": "Data",
+              "anchor": "data",
+              "number": "1.5.2.3",
+              "subsections": []
+            },
+            {
+              "title": "Algorithms",
+              "anchor": "algorithms",
+              "number": "1.5.2.4",
+              "subsections": []
+            },
+            {
+              "title": "Costs",
+              "anchor": "costs",
+              "number": "1.5.2.5",
+              "subsections": []
+            }
+          ]
+        }
+      ],
+      "reading_times": {
+        "core": "14 min",
+        "optional": "4 min",
+        "total": "18 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Takeoff",
+      "anchor": "takeoff",
+      "number": "1.6",
+      "subsections": [
+        {
+          "title": "Speed",
+          "anchor": "speed",
+          "number": "1.6.1",
+          "subsections": []
+        },
+        {
+          "title": "Takeoff Arguments",
+          "anchor": "takeoff-arguments",
+          "number": "1.6.2",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "11 min",
+        "optional": "1 min",
+        "total": "12 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Appendix: Takeoff",
+      "anchor": "appendix-takeoff",
+      "number": "1.7",
+      "subsections": [
+        {
+          "title": "Continuity",
+          "anchor": "continuity",
+          "number": "1.7.1",
+          "subsections": []
+        },
+        {
+          "title": "Similarity",
+          "anchor": "similarity",
+          "number": "1.7.2",
+          "subsections": []
+        },
+        {
+          "title": "Polarity",
+          "anchor": "polarity",
+          "number": "1.7.3",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "10 min",
+        "optional": "2 min",
+        "total": "11 min"
+      },
+      "is_appendix": true
+    },
+    {
+      "title": "Appendix: Expert Opinions",
+      "anchor": "appendix-expert-opinions",
+      "number": "1.8",
+      "subsections": [
+        {
+          "title": "Surveys",
+          "anchor": "surveys",
+          "number": "1.8.1",
+          "subsections": []
+        },
+        {
+          "title": "Quotes",
+          "anchor": "quotes",
+          "number": "1.8.2",
+          "subsections": [
+            {
+              "title": "AI Experts",
+              "anchor": "ai-experts",
+              "number": "1.8.2.1",
+              "subsections": []
+            },
+            {
+              "title": "Academics",
+              "anchor": "academics",
+              "number": "1.8.2.2",
+              "subsections": []
+            },
+            {
+              "title": "Tech Entrepreneurs",
+              "anchor": "tech-entrepreneurs",
+              "number": "1.8.2.3",
+              "subsections": []
+            },
+            {
+              "title": "Join Declarations",
+              "anchor": "join-declarations",
+              "number": "1.8.2.4",
+              "subsections": []
+            }
+          ]
+        }
+      ],
+      "reading_times": {
+        "core": "10 min",
+        "optional": "1 min",
+        "total": "10 min"
+      },
+      "is_appendix": true
+    },
+    {
+      "title": "Appendix: Discussion on LLMs",
+      "anchor": "appendix-discussion-on-llms",
+      "number": "1.9",
+      "subsections": [
+        {
+          "title": "Empirically insufficiency?",
+          "anchor": "empirically-insufficiency",
+          "number": "1.9.1",
+          "subsections": []
+        },
+        {
+          "title": "Shallow Understanding?",
+          "anchor": "shallow-understanding",
+          "number": "1.9.2",
+          "subsections": []
+        },
+        {
+          "title": "Structural inadequacy?",
+          "anchor": "structural-inadequacy",
+          "number": "1.9.3",
+          "subsections": []
+        },
+        {
+          "title": "Differences with the brain",
+          "anchor": "differences-with-the-brain",
+          "number": "1.9.4",
+          "subsections": []
+        },
+        {
+          "title": "Further reasons to continue scaling LLMs",
+          "anchor": "further-reasons-to-continue-scaling-llms",
+          "number": "1.9.5",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "18 min",
+        "optional": "5 min",
+        "total": "22 min"
+      },
+      "is_appendix": true
+    }
+  ],
+  "chapter_description": "We need to understand what AI models are currently capable of, and what the trends for their capabilities indicate.",
+  "reading_times": {
+    "core": "69 min",
+    "optional": "16 min",
+    "appendix": "42 min"
+  }
+}

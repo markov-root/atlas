@@ -1,0 +1,265 @@
+{
+  "title": "Table of Contents",
+  "chapter": 4,
+  "sections": [
+    {
+      "title": "Introduction",
+      "anchor": "introduction",
+      "number": "4.0",
+      "subsections": [
+        {
+          "title": "Governance Problems",
+          "anchor": "governance-problems",
+          "number": "4.0.1",
+          "subsections": [
+            {
+              "title": "Unexpected Capabilities",
+              "anchor": "unexpected-capabilities",
+              "number": "4.0.1.1",
+              "subsections": []
+            },
+            {
+              "title": "Deployment Safety",
+              "anchor": "deployment-safety",
+              "number": "4.0.1.2",
+              "subsections": []
+            },
+            {
+              "title": "Proliferation",
+              "anchor": "proliferation",
+              "number": "4.0.1.3",
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "title": "Governance Targets",
+          "anchor": "governance-targets",
+          "number": "4.0.2",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "8 min",
+        "optional": "1 min",
+        "total": "9 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Compute Governance",
+      "anchor": "compute-governance",
+      "number": "4.1",
+      "subsections": [
+        {
+          "title": "Tracking",
+          "anchor": "tracking",
+          "number": "4.1.1",
+          "subsections": []
+        },
+        {
+          "title": "Monitoring",
+          "anchor": "monitoring",
+          "number": "4.1.2",
+          "subsections": []
+        },
+        {
+          "title": "On-Chip Controls",
+          "anchor": "on-chip-controls",
+          "number": "4.1.3",
+          "subsections": []
+        },
+        {
+          "title": "Limitations",
+          "anchor": "limitations",
+          "number": "4.1.4",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "10 min",
+        "optional": "2 min",
+        "total": "12 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Systemic Challenges",
+      "anchor": "systemic-challenges",
+      "number": "4.2",
+      "subsections": [
+        {
+          "title": "Race dynamics",
+          "anchor": "race-dynamics",
+          "number": "4.2.1",
+          "subsections": []
+        },
+        {
+          "title": "Proliferation",
+          "anchor": "proliferation",
+          "number": "4.2.2",
+          "subsections": []
+        },
+        {
+          "title": "Uncertainty",
+          "anchor": "uncertainty",
+          "number": "4.2.3",
+          "subsections": []
+        },
+        {
+          "title": "Accountability",
+          "anchor": "accountability",
+          "number": "4.2.4",
+          "subsections": []
+        },
+        {
+          "title": "Power and Wealth Distribution",
+          "anchor": "power-and-wealth-distribution",
+          "number": "4.2.5",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "15 min",
+        "optional": "1 min",
+        "total": "16 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Governance Architectures",
+      "anchor": "governance-architectures",
+      "number": "4.3",
+      "subsections": [
+        {
+          "title": "Corporate Governance",
+          "anchor": "corporate-governance",
+          "number": "4.3.1",
+          "subsections": [
+            {
+              "title": "Frontier Safety Frameworks",
+              "anchor": "frontier-safety-frameworks",
+              "number": "4.3.1.1",
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "title": "National Governance",
+          "anchor": "national-governance",
+          "number": "4.3.2",
+          "subsections": []
+        },
+        {
+          "title": "International Governance",
+          "anchor": "international-governance",
+          "number": "4.3.3",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "27 min",
+        "optional": "3 min",
+        "total": "29 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Implementation",
+      "anchor": "implementation",
+      "number": "4.4",
+      "subsections": [
+        {
+          "title": "AI Safety Standards",
+          "anchor": "ai-safety-standards",
+          "number": "4.4.1",
+          "subsections": []
+        },
+        {
+          "title": "Regulatory Visibility",
+          "anchor": "regulatory-visibility",
+          "number": "4.4.2",
+          "subsections": []
+        },
+        {
+          "title": "Ensuring Compliance",
+          "anchor": "ensuring-compliance",
+          "number": "4.4.3",
+          "subsections": []
+        },
+        {
+          "title": "Limitations and Trade-Offs",
+          "anchor": "limitations-and-trade-offs",
+          "number": "4.4.4",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "11 min",
+        "optional": "1 min",
+        "total": "11 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Conclusion",
+      "anchor": "conclusion",
+      "number": "4.5",
+      "subsections": [],
+      "reading_times": {
+        "core": "4 min",
+        "optional": "0 min",
+        "total": "4 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Appendix: Data Governance",
+      "anchor": "appendix-data-governance",
+      "number": "4.6",
+      "subsections": [],
+      "reading_times": {
+        "core": "4 min",
+        "optional": "0 min",
+        "total": "4 min"
+      },
+      "is_appendix": true
+    },
+    {
+      "title": "Appendix: National Governance",
+      "anchor": "appendix-national-governance",
+      "number": "4.7",
+      "subsections": [
+        {
+          "title": "European Union",
+          "anchor": "european-union",
+          "number": "4.7.1",
+          "subsections": []
+        },
+        {
+          "title": "United States",
+          "anchor": "united-states",
+          "number": "4.7.2",
+          "subsections": []
+        },
+        {
+          "title": "China",
+          "anchor": "china",
+          "number": "4.7.3",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "11 min",
+        "optional": "1 min",
+        "total": "11 min"
+      },
+      "is_appendix": true
+    }
+  ],
+  "reading_times": {
+    "core": "73 min",
+    "optional": "5 min",
+    "appendix": "15 min"
+  }
+}

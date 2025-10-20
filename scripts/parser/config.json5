@@ -1,0 +1,25 @@
+{
+  "paths": {
+    "source_dir": "source_zips",
+    "processed_dir": "processed"
+  },
+  "preprocess": {
+    "enabled_steps": [
+      "metadata",
+      "comments",
+      "toc",
+      "bold_fix",
+      "backslash",
+      "formatting"
+    ]
+  },
+  "latex": {
+    "template": "scripts/templates/latex/main.tex"
+  },
+  "mkdocs": {
+    "enabled": true
+  },
+  "docusaurus": {
+    "enabled": true
+  }
+}

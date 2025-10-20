@@ -1,0 +1,347 @@
+{
+  "title": "Table of Contents",
+  "chapter": 3,
+  "sections": [
+    {
+      "title": "Introduction",
+      "anchor": "introduction",
+      "number": "3.0",
+      "subsections": [],
+      "reading_times": {
+        "core": "1 min",
+        "optional": "2 min",
+        "total": "3 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Definitions",
+      "anchor": "definitions",
+      "number": "3.1",
+      "subsections": [
+        {
+          "title": "AI Safety",
+          "anchor": "ai-safety",
+          "number": "3.1.1",
+          "subsections": []
+        },
+        {
+          "title": "AI Alignment",
+          "anchor": "ai-alignment",
+          "number": "3.1.2",
+          "subsections": []
+        },
+        {
+          "title": "AI Ethics",
+          "anchor": "ai-ethics",
+          "number": "3.1.3",
+          "subsections": []
+        },
+        {
+          "title": "AI Control",
+          "anchor": "ai-control",
+          "number": "3.1.4",
+          "subsections": []
+        }
+      ],
+      "description": "Before we can build solutions, we must agree on the problem. How do we define core concepts like 'safety,' 'alignment,' and 'control' to create a clear and effective framework for mitigating AI risk?",
+      "reading_times": {
+        "core": "5 min",
+        "optional": "4 min",
+        "total": "8 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Misuse Prevention Strategies",
+      "anchor": "misuse-prevention-strategies",
+      "number": "3.2",
+      "subsections": [
+        {
+          "title": "Access Controls",
+          "anchor": "access-controls",
+          "number": "3.2.1",
+          "subsections": [
+            {
+              "title": "External Controls",
+              "anchor": "external-controls",
+              "number": "3.2.1.1",
+              "subsections": []
+            },
+            {
+              "title": "Internal Controls",
+              "anchor": "internal-controls",
+              "number": "3.2.1.2",
+              "subsections": []
+            },
+            {
+              "title": "Technical Safeguards",
+              "anchor": "technical-safeguards",
+              "number": "3.2.1.3",
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "title": "Socio-technical Strategies",
+          "anchor": "socio-technical-strategies",
+          "number": "3.2.2",
+          "subsections": []
+        }
+      ],
+      "description": "What technical and social barriers can we erect to prevent malicious actors from weaponizing powerful AI systems for tasks like cyberattacks, bioweapon design, or mass disinformation?",
+      "reading_times": {
+        "core": "9 min",
+        "optional": "14 min",
+        "total": "23 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "AGI Safety Strategies",
+      "anchor": "agi-safety-strategies",
+      "number": "3.3",
+      "subsections": [
+        {
+          "title": "Initial Ideas",
+          "anchor": "initial-ideas",
+          "number": "3.3.1",
+          "subsections": []
+        },
+        {
+          "title": "Solve AGI Alignment",
+          "anchor": "solve-agi-alignment",
+          "number": "3.3.2",
+          "subsections": [
+            {
+              "title": "Requirements for AGI Alignment",
+              "anchor": "requirements-for-agi-alignment",
+              "number": "3.3.2.1",
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "title": "Fix Misalignment",
+          "anchor": "fix-misalignment",
+          "number": "3.3.3",
+          "subsections": []
+        },
+        {
+          "title": "Maintain Control",
+          "anchor": "maintain-control",
+          "number": "3.3.4",
+          "subsections": []
+        },
+        {
+          "title": "Facilitating control with Transparent Thoughts",
+          "anchor": "facilitating-control-with-transparent-thoughts",
+          "number": "3.3.5",
+          "subsections": []
+        }
+      ],
+      "description": "As AI approaches human-level intelligence, how do we ensure its goals align with ours and that it remains under human control, rather than pursuing its own potentially catastrophic objectives?",
+      "reading_times": {
+        "core": "25 min",
+        "optional": "7 min",
+        "total": "32 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "ASI Safety Strategies",
+      "anchor": "asi-safety-strategies",
+      "number": "3.4",
+      "subsections": [
+        {
+          "title": "Automate Alignment Research",
+          "anchor": "automate-alignment-research",
+          "number": "3.4.1",
+          "subsections": []
+        },
+        {
+          "title": "Safety-by-Design",
+          "anchor": "safety-by-design",
+          "number": "3.4.2",
+          "subsections": []
+        },
+        {
+          "title": "World Coordination",
+          "anchor": "world-coordination",
+          "number": "3.4.3",
+          "subsections": []
+        },
+        {
+          "title": "Deterrence",
+          "anchor": "deterrence",
+          "number": "3.4.4",
+          "subsections": []
+        }
+      ],
+      "description": "Once AI surpasses human cognitive abilities, direct supervision becomes impossible. What long-term, high-reliability strategies could ensure a safe transition to a world with superintelligence?",
+      "reading_times": {
+        "core": "19 min",
+        "optional": "4 min",
+        "total": "22 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Socio-Technical Strategies",
+      "anchor": "socio-technical-strategies",
+      "number": "3.5",
+      "subsections": [
+        {
+          "title": "Defensive Acceleration (d/acc)",
+          "anchor": "defensive-acceleration-dacc",
+          "number": "3.5.1",
+          "subsections": []
+        },
+        {
+          "title": "Defense-in-Depth",
+          "anchor": "defense-in-depth",
+          "number": "3.5.2",
+          "subsections": []
+        },
+        {
+          "title": "AI Governance",
+          "anchor": "ai-governance",
+          "number": "3.5.3",
+          "subsections": []
+        },
+        {
+          "title": "Risk Management",
+          "anchor": "risk-management",
+          "number": "3.5.4",
+          "subsections": []
+        },
+        {
+          "title": "Safety Culture",
+          "anchor": "safety-culture",
+          "number": "3.5.5",
+          "subsections": []
+        }
+      ],
+      "description": "Technical solutions alone are insufficient. Can we create governance frameworks, cultural norms, and a safety-conscious ecosystem for robust and resilient AI development?",
+      "reading_times": {
+        "core": "13 min",
+        "optional": "8 min",
+        "total": "21 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Combining Strategies",
+      "anchor": "combining-strategies",
+      "number": "3.6",
+      "subsections": [],
+      "description": "No single strategy is a silver bullet. How can we sequence and layer these diverse approaches, from technical safeguards to global governance, into a cohesive, defense-in-depth roadmap for navigating AI risk?",
+      "reading_times": {
+        "core": "4 min",
+        "optional": "1 min",
+        "total": "4 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Challenges",
+      "anchor": "challenges",
+      "number": "3.7",
+      "subsections": [
+        {
+          "title": "The Nature of the Problem",
+          "anchor": "the-nature-of-the-problem",
+          "number": "3.7.1",
+          "subsections": []
+        },
+        {
+          "title": "Uncertainty and Disagreement",
+          "anchor": "uncertainty-and-disagreement",
+          "number": "3.7.2",
+          "subsections": []
+        },
+        {
+          "title": "Safety Washing",
+          "anchor": "safety-washing",
+          "number": "3.7.3",
+          "subsections": []
+        }
+      ],
+      "description": "What fundamental properties of AI, the research field, and the geopolitical landscape make this problem uniquely difficult, and what are the key obstacles that any successful strategy must overcome?",
+      "reading_times": {
+        "core": "7 min",
+        "optional": "0 min",
+        "total": "7 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Conclusion",
+      "anchor": "conclusion",
+      "number": "3.8",
+      "subsections": [],
+      "reading_times": {
+        "core": "2 min",
+        "optional": "0 min",
+        "total": "2 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Appendix: Long-term questions",
+      "anchor": "appendix-long-term-questions",
+      "number": "3.9",
+      "subsections": [
+        {
+          "title": "Prioritize Flourishing or Survival?",
+          "anchor": "prioritize-flourishing-or-survival",
+          "number": "3.9.1",
+          "subsections": []
+        },
+        {
+          "title": "Alignment to what?",
+          "anchor": "alignment-to-what",
+          "number": "3.9.2",
+          "subsections": []
+        },
+        {
+          "title": "Alignment to whom?",
+          "anchor": "alignment-to-whom",
+          "number": "3.9.3",
+          "subsections": []
+        },
+        {
+          "title": "Questions for the Long Term",
+          "anchor": "questions-for-the-long-term",
+          "number": "3.9.4",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "11 min",
+        "optional": "1 min",
+        "total": "11 min"
+      },
+      "is_appendix": true
+    },
+    {
+      "title": "Appendix: Requirements for ASI Alignment",
+      "anchor": "appendix-requirements-for-asi-alignment",
+      "number": "3.10",
+      "subsections": [],
+      "description": "The safety requirements for Artificial Superintelligence (ASI) are not just a scaled-up version of AGI safety; they represent a qualitative leap in difficulty. This appendix outlines the unique and formidable challenges that arise when human oversight becomes impossible.",
+      "reading_times": {
+        "core": "3 min",
+        "optional": "5 min",
+        "total": "7 min"
+      },
+      "is_appendix": true
+    }
+  ],
+  "chapter_description": "How can we mitigate the risks of advanced AI? This chapter surveys the vast strategic landscape to mitigate misuse, alignment and systemic risks.",
+  "reading_times": {
+    "core": "83 min",
+    "optional": "37 min",
+    "appendix": "18 min"
+  }
+}

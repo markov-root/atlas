@@ -1,0 +1,614 @@
+{
+  "chapter_number": 1,
+  "media_counts": {
+    "figures": 44,
+    "videos": 4,
+    "iframes": 19,
+    "definitions": 5
+  },
+  "media_registry": [
+    {
+      "type": "figure",
+      "number": 1,
+      "label": "1.1",
+      "file_path": "Images/hvZ_Image_1.png",
+      "alt_text": "Enter image alt description",
+      "caption": "We first explain foundation models, which have been continuously showing improved capabilities due to scale. Then examine empirically observed scaling laws. Based on these trends we look at some techniques that researchers use to try and forecast future AI progress."
+    },
+    {
+      "type": "figure",
+      "number": 2,
+      "label": "1.2",
+      "file_path": "Images/CAe_Image_2.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A list of \u2018Nowhere near solved\u2019 [...] issues in AI, from \u2018A brief history of AI\u2019, published in January 2021 ([Wooldridge, 2021](https://www.amazon.com/Brief-History-Artificial-Intelligence-Where/dp/1250770742)). They also say: \u2018At present, we have no idea how to get computers to do the tasks at the bottom of the list\u2019. But everything in the category \u2018Nowhere near solved\u2019 has been solved by GPT-4 ([Bubeck et al., 2023](https://arxiv.org/abs/2303.12712)), except human-level general intelligence."
+    },
+    {
+      "type": "figure",
+      "number": 3,
+      "label": "1.3",
+      "file_path": "Images/uW1_Image_3.png",
+      "alt_text": "Enter image alt description",
+      "caption": "How fast is AI Improving? ([AI Digest, 2023](https://theaidigest.org/progress-and-dangers))"
+    },
+    {
+      "type": "figure",
+      "number": 4,
+      "label": "1.4",
+      "file_path": "Images/vR6_Image_4.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example of a mathematical problem solved by GPT-4 using Chain of Thought (CoT) ([Bubeck et al., 2023](https://arxiv.org/abs/2303.12712))."
+    },
+    {
+      "type": "figure",
+      "number": 5,
+      "label": "1.5",
+      "file_path": "Images/Fyr_Image_8.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Note also the large jump from GPT-3.5 to GPT-4 in human percentile on these tests, often from well below the median human to the very top of the human range. ([Aschenbrenner, 2024](https://situational-awareness.ai/from-gpt-4-to-agi/); [OpenAI, 2023](https://arxiv.org/abs/2303.08774)). Keep in mind that the jump from GPT-3 to GPT-4 was in a single year."
+    },
+    {
+      "type": "figure",
+      "number": 6,
+      "label": "1.6",
+      "file_path": "Images/dwX_Image_6.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example of state-of-the-art image recognition. The Segment Anything Model (SAM) by Meta\u2019s FAIR (Fundamental AI Research) lab, can classify and segment visual data at highly precise levels. The detection is performed without the need to annotate images. ([Viso AI, 2024](https://viso.ai/deep-learning/segment-anything-model-sam-explained/); [Meta, 2023](https://ai.meta.com/research/publications/segment-anything/))"
+    },
+    {
+      "type": "figure",
+      "number": 7,
+      "label": "1.7",
+      "file_path": "Images/PBp_Image_7.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example of the evolution of image generation. At the top left, starting from GANs (Generative Adversarial Networks) to the bottom right, an image from MidJourney V5."
+    },
+    {
+      "type": "figure",
+      "number": 8,
+      "label": "1.8",
+      "file_path": "Images/wh2_Image_8.png",
+      "alt_text": "Enter image alt description",
+      "caption": "MidJourney AI image generation over 2022-2023. Prompt: high-quality photography of a young Japanese woman smiling, backlighting, natural pale light, film camera, by Rinko Kawauchi, HDR ([Yap, 2024](https://goldpenguin.org/blog/midjourney-v1-to-v6-evolution/))."
+    },
+    {
+      "type": "figure",
+      "number": 9,
+      "label": "1.9",
+      "file_path": "Images/OCe_Image_12.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Image-to-text and text-to-image multimodality from the Flamingo model ([Alayrac et al., 2022](https://arxiv.org/abs/2204.14198))."
+    },
+    {
+      "type": "figure",
+      "number": 10,
+      "label": "1.10",
+      "file_path": "Images/VZl_Image_9.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Researchers used Model-Free Reinforcement Learning to automatically learn quadruped locomotion in only 20 minutes in the real world instead of in simulated environments. The Figure shows examples of learned gaits on a variety of real-world terrains ([Smith et al., 2022](https://arxiv.org/abs/2208.07860))."
+    },
+    {
+      "type": "figure",
+      "number": 11,
+      "label": "1.11",
+      "file_path": "Images/3A4_Image_10.png",
+      "alt_text": "Enter image alt description",
+      "caption": "DeepMinds RT-2 can both plan long-horizon skill sequences and predict robot actions using inspiration from LLM prompting techniques (chain-of-thought) ([Brohan et al., 2023](https://arxiv.org/abs/2307.15818))."
+    },
+    {
+      "type": "figure",
+      "number": 12,
+      "label": "1.12",
+      "file_path": "Images/KMJ_Image_11.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A map of diplomacy and the dialog box where the AI negotiates ([DiploStrats (YouTube), 2022](https://www.youtube.com/watch?v=u5192bvUS7k&t=2216s))."
+    },
+    {
+      "type": "figure",
+      "number": 13,
+      "label": "1.13",
+      "file_path": "Images/ccN_Image_12.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Voyager discovers new Minecraft items and skills continually by self-driven exploration, significantly outperforming the baselines ([Wang et al., 2023](https://arxiv.org/abs/2305.16291))."
+    },
+    {
+      "type": "figure",
+      "number": 14,
+      "label": "1.14",
+      "file_path": "Images/RRZ_Image_21.png",
+      "alt_text": "Enter image alt description",
+      "caption": "On the Opportunities and Risks of Foundation Models ([Bommasani et al., 2022](https://arxiv.org/abs/2108.07258))"
+    },
+    {
+      "type": "figure",
+      "number": 15,
+      "label": "1.15",
+      "file_path": "Images/GDy_Image_22.png",
+      "alt_text": "Enter image alt description",
+      "caption": "On the Opportunities and Risks of Foundation Models ([Bommasani et al., 2022](https://arxiv.org/abs/2108.07258))"
+    },
+    {
+      "type": "figure",
+      "number": 16,
+      "label": "1.16",
+      "file_path": "Images/ZL3_Image_23.png",
+      "alt_text": "Enter image alt description",
+      "caption": "On the Opportunities and Risks of Foundation Models ([Bommasani et al., 2022](https://arxiv.org/abs/2108.07258))"
+    },
+    {
+      "type": "figure",
+      "number": 17,
+      "label": "1.17",
+      "file_path": "Images/au9_Image_24.png",
+      "alt_text": "Enter image alt description",
+      "caption": "This is the continuous outlook of AI measuring performance. All points on this axis can be called artificial narrow intelligence (ANI) (except for the origin)."
+    },
+    {
+      "type": "figure",
+      "number": 18,
+      "label": "1.18",
+      "file_path": "Images/AcI_Image_25.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Table of performance x generality showing both levels of ANI, and levels of AGI. ([Morris et al., 2024](https://arxiv.org/abs/2311.02462))"
+    },
+    {
+      "type": "figure",
+      "number": 19,
+      "label": "1.19",
+      "file_path": "Images/WSj_Image_26.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The two-dimensional view of performance x generality. The different colored curves are meant to represent the different paths we can take to ASI. Every single point on the path corresponds to a different level of AGI. The specific development trajectory is hard to forecast. This will be discussed in the section on forecasting and takeoff."
+    },
+    {
+      "type": "figure",
+      "number": 20,
+      "label": "1.20",
+      "file_path": "Images/LxT_Image_27.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The t-n-AGI framework has been very popularized by some evaluations from the METR organization. Screenshot from ([Kwa et al., 2025](https://arxiv.org/abs/2503.14499))."
+    },
+    {
+      "type": "figure",
+      "number": 21,
+      "label": "1.21",
+      "file_path": "Images/rWX_Image_28.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of capabilities increasing with an increase with one of variables in the scaling laws - parameter count. The same model architecture (Parti) was used to generate an image using an identical prompt, with the only difference between the models being the parameter size. There are noticeable leaps in quality, and somewhere between 3 billion and 20 billion parameters, the model acquires the ability to spell words correctly. ([Yu et al., 2022](https://arxiv.org/abs/2206.10789))"
+    },
+    {
+      "type": "figure",
+      "number": 22,
+      "label": "1.22",
+      "file_path": "Images/nQO_Image_18.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Language modeling performance improves smoothly as we increase the model size, dataset set size, and amount of compute used for training. For optimal performance all three factors must be scaled up in tandem. Empirical performance has a power-law relationship with each individual factor when not bottlenecked by the other two. ([Kaplan et al., 2020](https://arxiv.org/abs/2001.08361))"
+    },
+    {
+      "type": "figure",
+      "number": 23,
+      "label": "1.23",
+      "file_path": "Images/o2j_Image_19.png",
+      "alt_text": "Enter image alt description",
+      "caption": "OpenAIs initial paper on scaling laws stated that for optimally compute-efficient training, most of the increase should go towards increased model size. A relatively small increase in data is needed to avoid reuse. ([Kaplan et al., 2020](https://arxiv.org/abs/2001.08361))"
+    },
+    {
+      "type": "figure",
+      "number": 24,
+      "label": "1.24",
+      "file_path": "Images/55h_Image_36.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A Broken Neural Scaling Law example (dark black solid line) (with 3 breaks where purple dotted lines intersect with dark black solid line) contains 4 individual power law segments (where the dashed lines that are yellow, blue, red, and green overlap with the dark black solid line). The 1st and 2nd break are very smooth; the 3rd break is very sharp ([Caballero et al., 2023](https://arxiv.org/abs/2210.14891))."
+    },
+    {
+      "type": "figure",
+      "number": 25,
+      "label": "1.25",
+      "file_path": "Images/BMs_Image_38.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Augmentation/Scaffolding stays constant, but if the scaling hypothesis, weak or strong, is true, then capabilities will keep improving just by scaling."
+    },
+    {
+      "type": "figure",
+      "number": 26,
+      "label": "1.26",
+      "file_path": "Images/c42_Image_39.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Even if we see no improvements in model scale, other elicitation techniques and scaffolding can keep improving. So overall capabilities keep growing. Realistically, the future is probably going to see both improvement due to scaffolding and scale. So for now, there does not seem to be an upper limit on improving capabilities as long as either one of the two holds."
+    },
+    {
+      "type": "figure",
+      "number": 27,
+      "label": "1.27",
+      "file_path": "Images/DxD_Image_44.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Key trends and figures in Machine Learning ([Epoch, 2025](https://epochai.org/trends))"
+    },
+    {
+      "type": "figure",
+      "number": 28,
+      "label": "1.28",
+      "file_path": "Images/ysZ_Image_45.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Training Compute of Frontier AI Models Grows by 4-5x per Year ([Sevilla & Rold\u00e1n, 2024](https://epochai.org/trends))"
+    },
+    {
+      "type": "figure",
+      "number": 29,
+      "label": "1.29",
+      "file_path": "Images/iPe_Image_33.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Machine Learning Model Sizes and the Parameter Gap ([Villalobos et al., 2022](https://arxiv.org/abs/2207.02852))"
+    },
+    {
+      "type": "figure",
+      "number": 30,
+      "label": "1.30",
+      "file_path": "Images/sZd_Image_34.png",
+      "alt_text": "Enter image alt description",
+      "caption": "ML data consumption and data production trends for low-quality text, high-quality text, and images. ([Epoch AI, 2023](https://epochai.org/trends))"
+    },
+    {
+      "type": "figure",
+      "number": 31,
+      "label": "1.31",
+      "file_path": "Images/ywx_Image_48.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Estimated cost of compute in US dollars for the final training run of ML systems. ([Epoch AI, 2023](https://epochai.org/blog/trends-in-the-dollar-training-cost-of-machine-learning-systems))"
+    },
+    {
+      "type": "figure",
+      "number": 32,
+      "label": "1.32",
+      "file_path": "Images/lYv_Image_49.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An illustration of slow continuous takeoff ([Martin & Eth, 2021](https://www.alignmentforum.org/posts/pGXR2ynhe5bBCCNqn/takeoff-speeds-and-discontinuities))."
+    },
+    {
+      "type": "figure",
+      "number": 33,
+      "label": "1.33",
+      "file_path": "Images/ABu_Image_50.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An illustration of fast continuous takeoff, which is usually taken to mean superexponential or hyperbolic growth. The growth rate itself increases ([Martin & Eth, 2021](https://www.alignmentforum.org/posts/pGXR2ynhe5bBCCNqn/takeoff-speeds-and-discontinuities))."
+    },
+    {
+      "type": "figure",
+      "number": 34,
+      "label": "1.34",
+      "file_path": "Images/stG_Image_51.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Comparison of slow vs fast takeoff. Showcasing that while described as linguistically slower than fast, it is by no means slow ([Christiano, 2018](https://sideways-view.com/2018/02/24/takeoff-speeds/))."
+    },
+    {
+      "type": "figure",
+      "number": 35,
+      "label": "1.35",
+      "file_path": "Images/hYO_Image_52.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A visualization of the ranking of arguments for explosive economic growth, both in favor and against. By Epoch AI ([Erdil & Besiroglu, 2024](https://arxiv.org/abs/2309.11690))."
+    },
+    {
+      "type": "figure",
+      "number": 36,
+      "label": "1.36",
+      "file_path": "Images/xEk_Image_53.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A summary of What a Compute-Centric Framework Says About Takeoff Speeds ([Davidson, 2024](https://www.openphilanthropy.org/research/what-a-compute-centric-framework-says-about-takeoff-speeds/))"
+    },
+    {
+      "type": "figure",
+      "number": 37,
+      "label": "1.37",
+      "file_path": "Images/ni5_Image_54.png",
+      "alt_text": "Enter image alt description",
+      "caption": "One example illustration of slow discontinuous takeoff, where even though progress keeps increasing we might see sudden \u2018jumps\u2019 in progress. ([Martin & Eth, 2021](https://www.alignmentforum.org/posts/pGXR2ynhe5bBCCNqn/takeoff-speeds-and-discontinuities))"
+    },
+    {
+      "type": "figure",
+      "number": 38,
+      "label": "1.38",
+      "file_path": "Images/X4I_Image_55.png",
+      "alt_text": "Enter image alt description",
+      "caption": "One example illustration of fast discontinuous takeoff. Even though progress keeps accelerating, in addition to that we might also see sudden \u2018jumps\u2019 in progress. ([Martin & Eth, 2021](https://www.alignmentforum.org/posts/pGXR2ynhe5bBCCNqn/takeoff-speeds-and-discontinuities))"
+    },
+    {
+      "type": "figure",
+      "number": 39,
+      "label": "1.39",
+      "file_path": "Images/JDd_Image_56.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An illustration of homogeneous takeoff. We can see multiple different overarching model architectures. The figure shows three in different colors. Within each architecture the takeoff is roughly the same due to similarity in design, regulations, and safety mitigations. **NOTE:** The curves here with architectures are purely illustrative, and are not meant to indicate predicted growth trajectories and comparisons between different architectures."
+    },
+    {
+      "type": "figure",
+      "number": 40,
+      "label": "1.40",
+      "file_path": "Images/5yC_Image_57.png",
+      "alt_text": "Enter image alt description",
+      "caption": "One example of heterogeneous takeoff. We can see multiple different overarching model architectures. The figure shows three in different colors. Within each architecture the takeoff is different due to differences in design, regulations, and safety mitigations. **NOTE:** The curves here with architectures are purely illustrative, and are not meant to indicate predicted growth trajectories and comparisons between different architectures."
+    },
+    {
+      "type": "figure",
+      "number": 41,
+      "label": "1.41",
+      "file_path": "Images/rkQ_Image_58.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An illustration of unipolar takeoff. One model (dark blue here) significantly outperforms all others."
+    },
+    {
+      "type": "figure",
+      "number": 42,
+      "label": "1.42",
+      "file_path": "Images/v0N_Image_59.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An illustration of multipolar takeoff. No model significantly outperforms all others, and they all takeoff at a roughly competitive rate relative to each other."
+    },
+    {
+      "type": "figure",
+      "number": 43,
+      "label": "1.43",
+      "file_path": "Images/01G_Image_29.png",
+      "alt_text": "Enter image alt description",
+      "caption": "2024 Survey of AI Experts ([AI Impacts, 2022](https://blog.aiimpacts.org/p/2023-ai-survey-of-2778-six-things))"
+    },
+    {
+      "type": "figure",
+      "number": 44,
+      "label": "1.44",
+      "file_path": "Images/XcP_Image_30.png",
+      "alt_text": "Enter image alt description",
+      "caption": "From Superposition, Memorization, and Double Descent ([Anthropic, 2023](https://transformer-circuits.pub/2023/toy-double-descent/index.html))"
+    },
+    {
+      "type": "video",
+      "number": 1,
+      "label": "1.1",
+      "url": "https://www.youtube.com/watch?v=Sq1QZB5baNw",
+      "platform": "youtube",
+      "video_id": "Sq1QZB5baNw",
+      "embed_url": "https://www.youtube.com/embed/Sq1QZB5baNw",
+      "caption": "Optional video showcasing one example of the current state of robotics."
+    },
+    {
+      "type": "video",
+      "number": 2,
+      "label": "1.2",
+      "url": "https://www.youtube.com/watch?v=kK3NmQT241w",
+      "platform": "youtube",
+      "video_id": "kK3NmQT241w",
+      "embed_url": "https://www.youtube.com/embed/kK3NmQT241w",
+      "caption": "Optional video to understand foundation models."
+    },
+    {
+      "type": "video",
+      "number": 3,
+      "label": "1.3",
+      "url": "https://www.youtube.com/watch?v=5eqRuVp65eY",
+      "platform": "youtube",
+      "video_id": "5eqRuVp65eY",
+      "embed_url": "https://www.youtube.com/embed/5eqRuVp65eY",
+      "caption": "Optional video explanation of scaling laws."
+    },
+    {
+      "type": "video",
+      "number": 4,
+      "label": "1.4",
+      "url": "https://www.youtube.com/watch?v=NqmUBZQhOYw",
+      "platform": "youtube",
+      "video_id": "NqmUBZQhOYw",
+      "embed_url": "https://www.youtube.com/embed/NqmUBZQhOYw",
+      "caption": "Optional video outlining some views that AI experts have on safety and risk."
+    },
+    {
+      "type": "iframe",
+      "number": 1,
+      "label": "1.1",
+      "iframe_src": "https://ourworldindata.org/grapher/test-scores-ai-capabilities-relative-human-performance?country=Handwriting+recognition~Speech+recognition~Image+recognition~Reading+comprehension~Language+understanding~Predictive+reasoning~Code+generation~Complex+reasoning~General+knowledge+tests~Nuanced+language+interpretation~Math+problem-solving~Reading+comprehension+with+unanswerable+questions&tab=chart",
+      "caption": "Test scores of AI systems on various capabilities relative to human performance. Within each domain, the initial performance of the AI is set to \u2013100. Human performance is used as a baseline, set to zero. When the AI\u2019s performance crosses the zero line, it scored more points than humans ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/WgM_Image_2.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 2,
+      "label": "1.2",
+      "iframe_src": "https://ourworldindata.org/grapher/domain-notable-artificial-intelligence-systems?tab=chart",
+      "caption": "Domain of notable artificial intelligence systems, by year of publication. Describes the specific area, application, or field in which an AI system is designed to operate. An AI system can operate in more than one domain, thus contributing to the count for multiple domains ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/YZZ_Image_3.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 3,
+      "label": "1.3",
+      "iframe_src": "https://ourworldindata.org/grapher/ai-performance-coding-math-knowledge-tests?tab=chart",
+      "caption": "Top performing AI systems in coding, math, and language-based knowledge tests. Coding performance is measured with the APPS benchmark; math performance with the MATH benchmark; and language-based knowledge tests with the MMLU benchmark ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/0vI_Image_4.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 4,
+      "label": "1.4",
+      "iframe_src": "https://ourworldindata.org/grapher/annual-professional-service-robots-installed-by-area?tab=chart",
+      "caption": "Annual professional service robots installed globally, by application area. Professional service robots are semi- or fully autonomous machines that perform useful tasks in a professional setting outside of industrial applications, such as in cleaning or medical surgery. Consumer service robots are not included. ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence))",
+      "static_figure_path": "Images/BaA_Image_13.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 5,
+      "label": "1.5",
+      "iframe_src": "https://ourworldindata.org/grapher/annual-industrial-robots-installed?tab=chart",
+      "caption": "Annual industrial robots installed in top five countries. Industrial robots are automated, reprogrammable machines that perform a variety of tasks in industrial settings ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/6bM_Image_15.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 6,
+      "label": "1.6",
+      "iframe_src": "https://ourworldindata.org/grapher/number-of-large-scale-ai-systems-released-per-year?tab=chart",
+      "caption": "Number of large-scale AI systems released per year. Describes the specific area, application, or field in which a large-scale AI model is designed to operate. The 2025 data is incomplete and was last updated 01 June 2025 ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/FEx_Image_19.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 7,
+      "label": "1.7",
+      "iframe_src": "https://ourworldindata.org/grapher/cumulative-number-of-large-scale-ai-models-by-domain?tab=chart",
+      "caption": "Cumulative number of large-scale AI models by domain since 2017. Describes the specific area, application, or field in which a large-scale AI model is designed to operate ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/VLS_Image_20.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 8,
+      "label": "1.8",
+      "iframe_src": "https://www.metaculus.com/questions/embed/4055",
+      "caption": "Prediction market results on - Will the first AGI be based on deep learning? ([Metaculus, 2020](https://www.metaculus.com/questions/4055/first-agi-based-on-deep-learning/))",
+      "static_figure_path": "Images/Fav_Image_30.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 9,
+      "label": "1.9",
+      "iframe_src": "https://ourworldindata.org/grapher/exponential-growth-of-parameters-in-notable-ai-systems?tab=chart",
+      "caption": "Exponential growth of parameters in notable AI systems. Parameters are variables in an AI system whose values are adjusted during training to establish how input data gets transformed into the desired output; for example, the connection weights in an artificial neural network ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/KTW_Image_32.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 10,
+      "label": "1.10",
+      "iframe_src": "https://ourworldindata.org/grapher/exponential-growth-of-datapoints-used-to-train-notable-ai-systems?tab=chart",
+      "caption": "Exponential growth of datapoints used to train notable AI systems. Each domain has a specific data point unit; for example, for vision it is images, for language it is words, and forgames it is timesteps. This means systems can only be compared directly within the same domain ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/pj2_Image_33.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 11,
+      "label": "1.11",
+      "iframe_src": "https://ourworldindata.org/grapher/exponential-growth-of-computation-in-the-training-of-notable-ai-systems?tab=chart",
+      "caption": "Exponential growth of computation in the training of notable AI systems. Computation is measured in total peta FLOP, which is 10e15 floating-point operations ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/2Zx_Image_34.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 12,
+      "label": "1.12",
+      "iframe_src": "https://ourworldindata.org/grapher/artificial-intelligence-training-computation?tab=chart",
+      "caption": "Computation used to train notable artificial intelligence systems, by domain. Computation is measured in total petaFLOP, which is 10e15 floating-point operations. Estimated from AI literature, albeit with some uncertainty. Estimates are expected to be accurate within a factor of 2, or a factor of 5 for recent undisclosed models like GPT-4 ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/Eic_Image_35.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 13,
+      "label": "1.13",
+      "iframe_src": "https://ourworldindata.org/grapher/ai-performance-knowledge-tests-vs-training-computation?tab=chart",
+      "caption": "Artificial intelligence: Performance on knowledge tests vs. training computation. Performance on knowledge tests is measured with the MMLU benchmark, here with 5-shot learning, which gauges a model\u2019s accuracy after receiving only five examples for each task. Training computation is measured in total petaFLOP, which is 10e15 floating-point operations ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/NPQ_Image_37.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 14,
+      "label": "1.14",
+      "iframe_src": "https://www.metaculus.com/questions/embed/12840",
+      "caption": "Prediction market - How does the level of existential risk posed by AGI depend on its arrival time? ([Metaculus, 2022](https://www.metaculus.com/questions/12840/existential-risk-from-agi-vs-agi-timelines/))",
+      "static_figure_path": "Images/vg1_Image_40.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 15,
+      "label": "1.15",
+      "iframe_src": "https://www.metaculus.com/questions/question_embed/3479",
+      "caption": "Prediction market - When will the first weakly general AI system be devised, tested, and publicly announced? ([Metaculus, 2020](https://www.metaculus.com/questions/3479/date-weakly-general-ai-is-publicly-known/))",
+      "static_figure_path": "Images/U8E_Image_41.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 16,
+      "label": "1.16",
+      "iframe_src": "https://www.metaculus.com/questions/question_embed/5121",
+      "caption": "Prediction Market - When will the first general AI system be devised, tested, and publicly announced? ([Metaculus, 2020](https://www.metaculus.com/questions/5121/date-of-artificial-general-intelligence/))",
+      "static_figure_path": "Images/kq8_Image_42.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 17,
+      "label": "1.17",
+      "iframe_src": "https://www.metaculus.com/questions/embed/384",
+      "caption": "Prediction Market - Will there be Human-machine intelligence parity before 2040? ([Metaculus, 2016](https://www.metaculus.com/questions/5121/date-of-artificial-general-intelligence/))",
+      "static_figure_path": "Images/yaD_Image_43.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 18,
+      "label": "1.18",
+      "iframe_src": "https://ourworldindata.org/grapher/views-ai-impact-society-next-20-years?tab=chart",
+      "caption": "Views about AI's impact on society in the next 20 years, 2021. Survey respondents were asked, \u201cWill artificial intelligence help or harm people in the next 20 years?\u201d ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/mV3_Image_60.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 19,
+      "label": "1.19",
+      "iframe_src": "https://ourworldindata.org/grapher/views-of-americans-robot-vs-human-intelligence?tab=chart",
+      "caption": "Views of Americans about robot vs. human intelligence. Survey respondents were asked, \u201cWhich ONE, if any, of the following statements do you MOST agree with?\u201d ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/XiU_Image_61.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "definition",
+      "number": 1,
+      "label": "1.1",
+      "term": "Artificial Narrow Intelligence (ANI)",
+      "source": "([IBM, 2023](https://www.ibm.com/topics/artificial-intelligence))",
+      "content": "Weak AI\u2014also called Narrow AI or Artificial Narrow Intelligence (ANI)\u2014is AI trained and focused to perform specific tasks. Weak AI drives most of the AI that surrounds us today. \u2018Narrow\u2019 might be a more accurate descriptor for this type of AI as it is anything but weak; it enables some very robust applications, such as Apple's Siri, Amazon's Alexa, IBM Watson, and autonomous vehicles."
+    },
+    {
+      "type": "definition",
+      "number": 2,
+      "label": "1.2",
+      "term": "Transformative AI (TAI)",
+      "source": "([Karnofsky, 2016](https://www.openphilanthropy.org/research/some-background-on-our-views-regarding-advanced-artificial-intelligence/))",
+      "content": "Potential future AI that triggers a transition equivalent to, or more significant than, the agricultural or industrial revolution."
+    },
+    {
+      "type": "definition",
+      "number": 3,
+      "label": "1.3",
+      "term": "Artificial Superintelligence (ASI)",
+      "source": "([Bostrom, 2014](https://psycnet.apa.org/record/2014-48585-000))",
+      "content": "Any intellect that greatly exceeds the cognitive performance of humans in virtually all domains of interest."
+    },
+    {
+      "type": "definition",
+      "number": 4,
+      "label": "1.4",
+      "term": "Strong Scaling Hypothesis",
+      "source": "([Gwern, 2020](https://gwern.net/scaling-hypothesis))",
+      "content": "The strong scaling hypothesis proposes that simply scaling up current foundation model architectures with more compute and data will be sufficient to reach transformative AI capabilities and potentially even ASI."
+    },
+    {
+      "type": "definition",
+      "number": 5,
+      "label": "1.5",
+      "term": "Weak Scaling Hypothesis",
+      "source": "([Gwern, 2020](https://gwern.net/scaling-hypothesis))",
+      "content": "The weak scaling hypothesis proposes that even though scale will continue to be the primary driver of progress, we will also need targeted architectural and algorithmic improvements to overcome specific bottlenecks."
+    }
+  ]
+}

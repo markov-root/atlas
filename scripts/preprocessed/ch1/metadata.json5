@@ -1,0 +1,42 @@
+{
+  "chapter": {
+    "number": 1,
+    "title": "Capabilities"
+  },
+  "authors": [
+    "Markov Grey",
+    "Charbel-Rapha\u00ebl Segerie"
+  ],
+  "affiliations": [
+    "French Center for AI Safety (CeSIA)"
+  ],
+  "acknowledgements": [
+    "Jeanne Salle",
+    "Charles Martinet",
+    "Vincent Corruble",
+    "Diego Dorn",
+    "Josh Thorsteinson",
+    "Jonathan Claybrough",
+    "Alejandro Acelas",
+    "Jamie Raldua Veuthey",
+    "Alexandre Variengien",
+    "L\u00e9o Dana",
+    "Ang\u00e9lina Gentaz",
+    "Nicolas Guillard",
+    "Leo Karoubi"
+  ],
+  "links": {
+    "ai_safety_atlas": "https://ai-safety-atlas.com/chapters/01/",
+    "alignment_forum": "https://www.alignmentforum.org/posts/MkfaQyxB9PN4h8Bs9/",
+    "google_docs": "https://docs.google.com/document/d/1HKo0Kest9Xppjn7m2ODpfMUlEu93SzLsfxXBH48Xaus/edit?usp=sharing",
+    "download": "https://github.com/CentreSecuriteIA/textbook/blob/main/latex/AI%20Safety%20Atlas%20-%20Capabilities.pdf",
+    "feedback": "https://forms.gle/ZsA4hEWUx1ZrtQLL9",
+    "video": "https://www.youtube.com/watch?v=J_iMeH1hb9M",
+    "facilitate": "https://docs.google.com/document/d/1L32xCVUCWEsm-x8UZ3GSTgKnmBcC7rJQLLIh9wGLj40/edit?usp=sharing"
+  },
+  "arxiv": {
+    "title": "\u2026",
+    "subtitle": "\u2026",
+    "abstract": "\u2026\n\n</paper-abstract>"
+  }
+}

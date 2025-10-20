@@ -1,0 +1,26 @@
+{
+  "chapter": {
+    "number": 9,
+    "title": "Interpretability"
+  },
+  "authors": [
+    "Jeanne Salle",
+    "Charbel-Rapha\u00ebl Segerie"
+  ],
+  "affiliations": [
+    "French Center for AI Safety (CeSIA)"
+  ],
+  "acknowledgements": [
+    "Markov Grey"
+  ],
+  "links": {
+    "google_docs": "https://docs.google.com/document/d/1mdYnniBG5vg4HjMMqqojEs8siFXoRnxi0RfxursBw7A/edit?usp=sharing",
+    "feedback": "https://forms.gle/ZsA4hEWUx1ZrtQLL9",
+    "facilitate": "https://docs.google.com/document/d/1izDWZKR_xB2qj2a8LkbqcnqnjBIC-C7fn-74CIA-m9w/edit?usp=sharing"
+  },
+  "arxiv": {
+    "title": "\u2026",
+    "subtitle": "\u2026",
+    "abstract": "\u2026\n\n</paper-abstract>"
+  }
+}

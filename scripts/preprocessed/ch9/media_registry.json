@@ -1,0 +1,291 @@
+{
+  "chapter_number": 9,
+  "media_counts": {
+    "figures": 26,
+    "videos": 4,
+    "iframes": 0,
+    "definitions": 4
+  },
+  "media_registry": [
+    {
+      "type": "figure",
+      "number": 1,
+      "label": "9.1",
+      "file_path": "Images/dEJ_Image_1.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A visual classification of interpretability techniques ([Bereska & Gavves, 2024](https://arxiv.org/abs/2404.14082))."
+    },
+    {
+      "type": "figure",
+      "number": 2,
+      "label": "9.2",
+      "file_path": "Images/RSX_Image_2.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Enumerative safety aims to ensure that in all situations, the model doesn\u2019t do something we don\u2019t want. From ([Olah, 2023](https://transformer-circuits.pub/2023/interpretability-dreams/index.html))."
+    },
+    {
+      "type": "figure",
+      "number": 3,
+      "label": "9.3",
+      "file_path": "Images/p54_Image_3.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Examples of feature visualizations. It seems that the network has learned to represent and detect baseballs, animal faces, clouds, and buildings, but feature visualizations have to be interpreted and may not be detecting what we initially think. From ([Olah et al., 2017](https://distill.pub/2017/feature-visualization/))."
+    },
+    {
+      "type": "figure",
+      "number": 4,
+      "label": "9.4",
+      "file_path": "Images/S5x_Image_4.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A car circuit in a CNN. On the left, three feature maps from layer 4b are represented by their feature visualizations. One map appears to detect windows, another car bodies, and the third wheels. These three feature maps are connected to a feature map in layer 4c, represented by the visualization on the right, through the convolutional kernels shown in the middle. The window, car body and wheel features get assembled to form a full car detector circuit. From ([Olah et al., 2020](https://distill.pub/2020/circuits/early-vision/))."
+    },
+    {
+      "type": "figure",
+      "number": 5,
+      "label": "9.5",
+      "file_path": "Images/Kmp_Image_5.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Some examples of feature visualizations on a CNN trained for image classification. Each image corresponds to a feature map. Certain feature maps are sensitive to patterns with edges, others are sensitive to different kinds of textured patterns, or objects like eyes, dog faces, or legs. From ([Olah et al., 2017](https://distill.pub/2017/feature-visualization/))."
+    },
+    {
+      "type": "figure",
+      "number": 6,
+      "label": "9.6",
+      "file_path": "Images/ucL_Image_6.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Overview of the feature visualization process. Given a neuron (or a set of neurons) in a CNN, feature visualization generates an image that highly activates it, starting from a random image, and through successive optimization steps. The optimized image illustrates what kind of pattern one of the feature maps in the fourth layer of InceptionV1 is sensitive to ([Olah et al., 2017](https://distill.pub/2017/feature-visualization/))."
+    },
+    {
+      "type": "figure",
+      "number": 7,
+      "label": "9.7",
+      "file_path": "Images/OQ6_Image_7.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Feature visualizations can be produced for individual neurons or groups of neurons, such as a feature map, or even an entire layer. From ([Olah et al., 2017](https://distill.pub/2017/feature-visualization/))."
+    },
+    {
+      "type": "figure",
+      "number": 8,
+      "label": "9.8",
+      "file_path": "Images/jiL_Image_8.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Curve detectors are universally found in early layers of CNNs, they exist in different orientations and colors and collectively span all orientations. Each curve detector responds to a wide variety of curves, in different orientations. From ([Olah et al., 2020](https://distill.pub/2020/circuits/zoom-in/))."
+    },
+    {
+      "type": "figure",
+      "number": 9,
+      "label": "9.9",
+      "file_path": "Images/soI_Image_9.png",
+      "alt_text": "Enter image alt description",
+      "caption": "High-low frequency detectors look for low-frequency patterns on one side of their receptive field, and high-frequency patterns on the other side. They exist in different orientations and colors. From ([Olah et al., 2020](https://distill.pub/2020/circuits/early-vision/))."
+    },
+    {
+      "type": "figure",
+      "number": 10,
+      "label": "9.10",
+      "file_path": "Images/iGO_Image_10.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A boundary detector neuron formed in the third layer of a CNN (shown at the bottom left with its feature visualization). The top row shows feature visualizations from neurons in the second layer and the kernels connecting them to the third layer. New neurons form by combining cues from more elementary neurons in previous layers: here the boundary detector neuron forms by combining high-low frequency detector neurons, with edges detector neurons, color contrast detector neurons, etc. From ([Olah et al., 2020](https://distill.pub/2020/circuits/early-vision/))."
+    },
+    {
+      "type": "figure",
+      "number": 11,
+      "label": "9.11",
+      "file_path": "Images/kjD_Image_11.png",
+      "alt_text": "Enter image alt description",
+      "caption": "On the left is the car detector circuit from the previous figure. After distinct concepts are formed, they become entangled in polysemantic neurons, such as one neuron that responds to both car and dog images. From ([Olah et al., 2020](https://distill.pub/2020/circuits/early-vision/))."
+    },
+    {
+      "type": "figure",
+      "number": 12,
+      "label": "9.12",
+      "file_path": "Images/8iG_Image_12.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Multiple feature visualization performed on a polysemantic neuron that responds to images of cars, as well as cat faces, and cat legs. From ([Olah et al., 2020](https://distill.pub/2020/circuits/early-vision/))."
+    },
+    {
+      "type": "figure",
+      "number": 13,
+      "label": "9.13",
+      "file_path": "Images/DRe_Image_13.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A minimalist illustration of a transformer with a single layer. Transformers cannot directly manipulate tokens, so they embed tokens into numerical vectors, an operation depicted in the bottom grey box. After embedding, the tokens are represented as vectors within the residual stream. The first sublayer (attention heads, represented by the two side-by-side boxes on the left) reads these embedded tokens, applies a transformation, and adds its output back into the residual stream. The second sublayer (MLP) does the same. Finally, to output a token, the embedded tokens must be converted back to the vocabulary space through an unembedding operation (depicted in the top box). The residual stream enables each layer to make incremental adjustments to the model\u2019s predictions by accumulating and refining the information passed through each transformation. From ([Elhage et al., 2021](https://transformer-circuits.pub/2021/framework/index.html))."
+    },
+    {
+      "type": "figure",
+      "number": 14,
+      "label": "9.14",
+      "file_path": "Images/UuF_Image_14.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example of the Logit Lens used on GPT-2 when it\u2019s trying to predict the next token of the sequence: \u201cSpecifically, we train GPT-3, an\u201d. Input tokens are written at the bottom, and correct outputs at the top. Layers stack from bottom to top. The first token at the top, \u201c,\u201d, corresponds to the token the model should predict when given as input only the first token: \u201cSpecifically\u201d. The second token at the top, \u201cwe\u201d, corresponds to the token the model should predict when given as input only the two first tokens: \u201cSpecifically, \u201c. This is the reason why there is a shift of one position between tokens at the bottom and tokens at the top. (*) indicates that the model correctly predicted the next token. Each cell contains the model\u2019s top guesses at different layers. The color scale indicates the associated logit value. The higher the logit, the more confident in its prediction the model is. From ([nostalgebraist, 2020](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens))."
+    },
+    {
+      "type": "figure",
+      "number": 15,
+      "label": "9.15",
+      "file_path": "Images/qlF_Image_15.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Overview of how the Logit Lens works. Read from bottom to top. A detailed explanation is provided in the following paragraphs. Object\u2019s shapes are indicated between brackets."
+    },
+    {
+      "type": "figure",
+      "number": 16,
+      "label": "9.16",
+      "file_path": "Images/TQo_Image_16.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Accuracy of two probes trained on AlphaZero\u2019s intermediary activations, across layers and training steps The two two probes were trained on the two concepts: \u201cCan the playing side capture their opponent\u2019s queen?\u201d, and \u201cCould the opposing side checkmate the playing side in one move?\u201d. The color represents the probe\u2019s accuracy (the yellow color corresponds to a higher value, indicating that the feature is more represented). Here, the probes were trained at different stages of AlphaZero's training and from the activations of different layers of the network (a block corresponds to one layer of AlphaZero). It can be seen that the more AlphaZero is trained, the more it represents these two concepts. The concept \u201chas_mate_threat\u201d seems to be represented quite homogeneously across AlphaZero's layers, while \u201ccan_capture_queen_opponent\u201d appears to be more represented in the earlier layers. \u201cThe ability to predict has_mate_threat from AlphaZero\u2019s activations indicates that AlphaZero is not simply modeling its potential moves, but also its opponent\u2019s potential moves and their consequences during position evaluation\u201d. From ([MacGrath et al., 2022](https://www.pnas.org/doi/10.1073/pnas.2206625119))."
+    },
+    {
+      "type": "figure",
+      "number": 17,
+      "label": "9.17",
+      "file_path": "Images/JNC_Image_17.png",
+      "alt_text": "Enter image alt description",
+      "caption": "How does a 2-dimension model encode 5 features as their sparsity increases? 0% sparsity means that features are very dense, or frequent. The model only encodes the two most important features in orthogonal dimensions. As sparsity increases and the important features are less frequently useful, the toy model encodes additional features in non-orthogonal directions. The intuition is that the less frequent the features are, the less likely two overlapping features are to be activated at the same time and cause interference. So the cost of interference between features is outweighed by the advantage of learning more features. At 90% sparsity the 5 features are represented as a pentagon. From ([Elhage et al., 2022](https://transformer-circuits.pub/2022/toy_model/index.html))."
+    },
+    {
+      "type": "figure",
+      "number": 18,
+      "label": "9.18",
+      "file_path": "Images/d6h_Image_18.png",
+      "alt_text": "Enter image alt description",
+      "caption": "As features get sparser (less frequently activated), more of them can be encoded optimally and in more complex geometric structures. The first figure on the top left shows that when features are very dense, only the most important features are represented and they are organized in tetrahedrons. This model learns 28 features and encodes them in 7 tetrahedrons. On the second figure features are slightly sparser, more of them can be optimally encoded, and tetrahedrons are replaced by triangles and digons. This model learns 46 features encoded in triangles and digons. Superposition exhibits complex geometric structure. From ([Elhage et al., 2022](https://transformer-circuits.pub/2022/toy_model/index.html))."
+    },
+    {
+      "type": "figure",
+      "number": 19,
+      "label": "9.19",
+      "file_path": "Images/7wM_Image_19.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An autoencoder learns two transformations, represented by encoder weights and decoder weights, to compress input data into a lower-dimensional latent space and then reconstruct the original input from this representation."
+    },
+    {
+      "type": "figure",
+      "number": 20,
+      "label": "9.20",
+      "file_path": "Images/ckD_Image_20.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Models activations can be decomposed into features using a sparse autoencoder. This figure illustrates an SAE trained to disentangle features in an MLP. From ([Bricken et al., 2023](https://transformer-circuits.pub/2023/monosemantic-features))."
+    },
+    {
+      "type": "figure",
+      "number": 21,
+      "label": "9.21",
+      "file_path": "Images/5xS_Image_21.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Examples of safety-relevant features extracted from Claude 3 Sonnet, such as features for unsafe code and error tokens. The color scale indicates the degree to which each feature is activated for each token, with darker orange indicating higher activation. The \u201ccode error\u201d feature activates strongly on tokens that contain an error. The images shown correspond to examples that strongly activate the specific feature. From ([Templeton et al., 2024](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html))."
+    },
+    {
+      "type": "figure",
+      "number": 22,
+      "label": "9.22",
+      "file_path": "Images/hpl_Image_22.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An illustration of the activation patching process. On the left, the model processes a clean input sequence \u201cJohn and Mary,\u201d with activations shown in green. On the right, the model processes a corrupted input sequence \u201cBob and Mary,\u201d with activations shown in red. Activation patching involves replacing one or more activations in the corrupted sequence with corresponding activations from the clean sequence (indicated by the arrow). The resulting patched activations are then passed forward to observe how they affect the model\u2019s output logits. By analyzing whether the patched activations restore the desired output, researchers can identify which parts of the model\u2019s activations are responsible for specific behaviors or outputs. From ([Zhang & Nanda, 2023](https://arxiv.org/abs/2309.16042))."
+    },
+    {
+      "type": "figure",
+      "number": 23,
+      "label": "9.23",
+      "file_path": "Images/kdG_Image_23.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The red neurons and connections represent the most important components of GPT-2 small for completing the sentence \u201cWhen John and Mary went to the store, John gave a bottle to _\u201d (known as the Indirect Object Identification (IOI) task). From ([Conmy et al., 2023](https://arxiv.org/abs/2304.14997))."
+    },
+    {
+      "type": "figure",
+      "number": 24,
+      "label": "9.24",
+      "file_path": "Images/Og6_Image_24.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example Prompt: \u201cThe war lasted from 1517 to 15\u201d , Completion: \u201c files\u201d , Task: Docstring ([Heimersheim & Janiak, 2023](https://www.alignmentforum.org/posts/u6KXXmKFbXfWzoAXn/a-circuit-for-python-docstrings-in-a-4-layer-attention-only)). The model predicts the next token, which should be a copy of the next argument in the definition."
+    },
+    {
+      "type": "figure",
+      "number": 25,
+      "label": "9.25",
+      "file_path": "Images/jGl_Image_25.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Identifying an activation steering direction. From ([Wehner, 2024](https://www.alignmentforum.org/posts/3ghj8EuKzwD3MQR5G/an-introduction-to-representation-engineering-an-activation))."
+    },
+    {
+      "type": "figure",
+      "number": 26,
+      "label": "9.26",
+      "file_path": "Images/KCw_Image_26.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The concept vector is added to the activations at a specific layer to influence the model\u2019s behavior in the desired direction. From ([Wehner, 2024](https://www.alignmentforum.org/posts/3ghj8EuKzwD3MQR5G/an-introduction-to-representation-engineering-an-activation))."
+    },
+    {
+      "type": "video",
+      "number": 1,
+      "label": "9.1",
+      "url": "https://www.youtube.com/watch?v=KuXjwB4LzSA",
+      "platform": "youtube",
+      "video_id": "KuXjwB4LzSA",
+      "embed_url": "https://www.youtube.com/embed/KuXjwB4LzSA",
+      "caption": "Optional Video. If you are unfamiliar with convolutional neural networks (CNNs), this video will help you get up to speed before reading this chapter."
+    },
+    {
+      "type": "video",
+      "number": 2,
+      "label": "9.2",
+      "url": "https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi",
+      "platform": "youtube",
+      "video_id": "aircAruvnKk",
+      "embed_url": "https://www.youtube.com/embed/aircAruvnKk",
+      "caption": "Optional Video. If you are unfamiliar with transformers, the videos on transformers in this playlist will help you get up to speed before reading this chapter."
+    },
+    {
+      "type": "video",
+      "number": 3,
+      "label": "9.3",
+      "url": "https://www.youtube.com/watch?v=UGO_Ehywuxc",
+      "platform": "youtube",
+      "video_id": "UGO_Ehywuxc",
+      "embed_url": "https://www.youtube.com/embed/UGO_Ehywuxc",
+      "caption": "Optional video explanation of mechanistic interpretability."
+    },
+    {
+      "type": "video",
+      "number": 4,
+      "label": "9.4",
+      "url": "https://www.youtube.com/watch?v=CJIbCV92d88",
+      "platform": "youtube",
+      "video_id": "CJIbCV92d88",
+      "embed_url": "https://www.youtube.com/embed/CJIbCV92d88",
+      "caption": "A second example of steering on Claude 3 Sonnet using sparse autoencoder features. Dictionary learning on Claude 3 Sonnet"
+    },
+    {
+      "type": "definition",
+      "number": 1,
+      "label": "9.1",
+      "term": "Feature",
+      "source": "",
+      "content": "A feature refers to a specific pattern or characteristic that the network learns to detect. These features are the fundamental units that models use to process information and make decisions."
+    },
+    {
+      "type": "definition",
+      "number": 2,
+      "label": "9.2",
+      "term": "Feature visualization",
+      "source": "",
+      "content": "Feature visualization is a method that enables us to identify the features learned by a CNN, which can help us understand how it processes information and makes decisions."
+    },
+    {
+      "type": "definition",
+      "number": 3,
+      "label": "9.3",
+      "term": "Feature map",
+      "source": "",
+      "content": "A feature map in a CNN is the output of a convolutional layer. It\u2019s also called a channel. Feature visualization is often applied at the scale of feature maps - instead of individual neurons or entire layers - to understand which features they encode."
+    },
+    {
+      "type": "definition",
+      "number": 4,
+      "label": "9.4",
+      "term": "Circuit",
+      "source": "",
+      "content": "A circuit is a group of interconnected features that work together to perform a specific function. Circuits are essentially higher order features, that are recursively composed of lower order features. The notion of circuit applies to any model architecture, including LLMs. Identifying circuits that perform specific functions in models is one area of research in mechanistic interpretability."
+    }
+  ]
+}

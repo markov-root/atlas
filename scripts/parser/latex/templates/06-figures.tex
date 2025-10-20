@@ -1,0 +1,132 @@
+% File: scripts/latex/templates/06-figures.tex
+% Figure and caption formatting
+
+% Caption styling
+\DeclareCaptionFont{captionfont}{\small\color{gray}\itshape}
+\DeclareCaptionLabelFormat{styledlabel}{\textbf{#1 #2}}
+\captionsetup{
+    font=captionfont,
+    labelformat=styledlabel,
+    labelfont={color=black, bf},
+    format=plain,
+    justification=centering,
+    singlelinecheck=false,
+    margin=1.5em,
+    skip=1em
+}
+
+% Enhanced custom figure command with registry numbering support
+\newcommand{\customFigure}[5]{%
+    % #1 = Image path (required)
+    % #2 = Alt text (optional)
+    % #3 = Caption text (required)
+    % #4 = Number (optional, from media registry)
+    % #5 = Label (optional, from media registry)
+    
+    \par\noindent
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.99\textwidth]{#1}
+        \if\relax\detokenize{#5}\relax
+            % No label provided - use default LaTeX numbering
+            \if\relax\detokenize{#3}\relax\else
+                \caption{#3}
+            \fi
+        \else
+            % Label provided - use our custom numbering and suppress LaTeX numbering
+            \if\relax\detokenize{#3}\relax
+                % No caption, just our custom number
+                \caption*{Figure #5}
+            \else
+                % Both our custom number and caption
+                \caption*{Figure #5: #3}
+            \fi
+        \fi
+    \end{figure}
+    \par
+}
+
+% Custom interactive figure command (for iframe replacements)
+\newcommand{\customInteractiveFigure}[5]{%
+    % #1 = Image path (required)
+    % #2 = Alt text (optional)
+    % #3 = Caption text (required)
+    % #4 = Number (optional, from media registry)
+    % #5 = Label (optional, from media registry)
+    
+    \par\noindent
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{#1}
+        \if\relax\detokenize{#5}\relax
+            % No label provided - generic interactive figure without LaTeX numbering
+            \if\relax\detokenize{#3}\relax
+                \caption*{Interactive Figure \\ \small\textit{[Interactive version available on the website]}}
+            \else
+                \caption*{#3 \\ \small\textit{[Interactive version available on the website]}}
+            \fi
+        \else
+            % Label provided - use our custom numbering and suppress LaTeX numbering
+            \if\relax\detokenize{#3}\relax
+                % No caption, just our custom number
+                \caption*{Interactive Figure #5 \\ \small\textit{[Interactive version available on the website]}}
+            \else
+                % Both our custom number and caption
+                \caption*{Interactive Figure #5: #3 \\ \small\textit{[Interactive version available on the website]}}
+            \fi
+        \fi
+    \end{figure}
+    \par
+}
+
+% Legacy custom figure with caption environment (kept for backward compatibility)
+\newcommand{\customfigure}[2]{%
+    % #1 = Image path (required)
+    % #2 = Caption text (required)
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.99\textwidth]{#1}
+        \begin{tcolorbox}[
+            enhanced,
+            colback=notebg!80,
+            colframe=noteborder!30,
+            arc=0.5mm,
+            boxrule=0.5pt,
+            left=10pt,
+            right=10pt,
+            top=8pt,
+            bottom=8pt,
+            width=0.9\textwidth
+        ]
+        \small\itshape #2
+        \end{tcolorbox}
+    \end{figure}
+}
+
+% Helper commands for notes
+\newcommand{\noteFigure}[2]{%
+    % #1 = Image path
+    % #2 = Caption text
+    \begin{center}
+    \includegraphics[width=0.85\textwidth]{#1}
+    \end{center}
+    
+    \begin{center}
+    \begin{tcolorbox}[
+        enhanced,
+        colback=notebg!80,
+        colframe=noteborder!30,
+        arc=0.5mm,
+        boxrule=0.5pt,
+        left=10pt,
+        right=10pt,
+        top=8pt,
+        bottom=8pt,
+        width=0.9\textwidth
+    ]
+    \small\itshape #2
+    \end{tcolorbox}
+    \end{center}
+    \vspace{1em}
+}

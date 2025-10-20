@@ -1,0 +1,38 @@
+{
+  "chapter": {
+    "number": 3,
+    "title": "Strategies"
+  },
+  "authors": [
+    "Charbel-Rapha\u00ebl Segerie",
+    "Markov Grey"
+  ],
+  "affiliations": [
+    "French Center for AI Safety (CeSIA)"
+  ],
+  "acknowledgements": [
+    "Alexandre Variengien",
+    "Jeanne Salle",
+    "Charles Martinet",
+    "Amaury Lorin",
+    "Alejandro Acelas",
+    "Evander Hammer",
+    "Jessica Wen",
+    "Ang\u00e9lina Gentaz",
+    "Jonathan Claybrough",
+    "Camille Berger",
+    "Josh Thorsteinson",
+    "Pauliina Laine"
+  ],
+  "links": {
+    "alignment_forum": "https://www.lesswrong.com/s/3ni2P2GZzBvNebWYZ/p/RzsXRbk2ETNqjhsma",
+    "google_docs": "https://docs.google.com/document/d/1WTyLHyaJ_NEDEu49U_hh7oz0-AOQfp7uOJKLck-7A78/edit?usp=sharing",
+    "watch": "https://www.youtube.com/watch?v=iO7Jl4xders",
+    "facilitate": "https://docs.google.com/document/d/1cv0gzwSouDjckYHzV7gYbHPKhJZR6bwbJWgHzEJ604Q/edit?usp=sharing"
+  },
+  "arxiv": {
+    "title": "AI Safety Strategic Landscape",
+    "subtitle": "Navigating Risk Mitigations, Trade-offs, and Geopolitics",
+    "abstract": "</paper-abstract>"
+  }
+}

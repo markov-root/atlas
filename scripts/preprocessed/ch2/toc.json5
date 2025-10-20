@@ -1,0 +1,307 @@
+{
+  "title": "Table of Contents",
+  "chapter": 2,
+  "sections": [
+    {
+      "title": "Introduction",
+      "anchor": "introduction",
+      "number": "2.0",
+      "subsections": [],
+      "reading_times": {
+        "core": "4 min",
+        "optional": "1 min",
+        "total": "4 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Risk Decomposition",
+      "anchor": "risk-decomposition",
+      "number": "2.1",
+      "subsections": [
+        {
+          "title": "Causes of Risk",
+          "anchor": "causes-of-risk",
+          "number": "2.1.1",
+          "subsections": []
+        },
+        {
+          "title": "Severity of Risk",
+          "anchor": "severity-of-risk",
+          "number": "2.1.2",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "6 min",
+        "optional": "4 min",
+        "total": "9 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Dangerous Capabilities",
+      "anchor": "dangerous-capabilities",
+      "number": "2.2",
+      "subsections": [
+        {
+          "title": "Deception",
+          "anchor": "deception",
+          "number": "2.2.1",
+          "subsections": []
+        },
+        {
+          "title": "Situational Awareness",
+          "anchor": "situational-awareness",
+          "number": "2.2.2",
+          "subsections": []
+        },
+        {
+          "title": "Power Seeking",
+          "anchor": "power-seeking",
+          "number": "2.2.3",
+          "subsections": []
+        },
+        {
+          "title": "Autonomous Replication",
+          "anchor": "autonomous-replication",
+          "number": "2.2.4",
+          "subsections": []
+        },
+        {
+          "title": "Agency",
+          "anchor": "agency",
+          "number": "2.2.5",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "12 min",
+        "optional": "4 min",
+        "total": "15 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Misuse Risks",
+      "anchor": "misuse-risks",
+      "number": "2.3",
+      "subsections": [
+        {
+          "title": "Bio Risk",
+          "anchor": "bio-risk",
+          "number": "2.3.1",
+          "subsections": []
+        },
+        {
+          "title": "Cyber Risk",
+          "anchor": "cyber-risk",
+          "number": "2.3.2",
+          "subsections": []
+        },
+        {
+          "title": "Autonomous Weapons Risk",
+          "anchor": "autonomous-weapons-risk",
+          "number": "2.3.3",
+          "subsections": []
+        },
+        {
+          "title": "Adversarial AI Risk",
+          "anchor": "adversarial-ai-risk",
+          "number": "2.3.4",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "23 min",
+        "optional": "9 min",
+        "total": "31 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Misalignment Risks",
+      "anchor": "misalignment-risks",
+      "number": "2.4",
+      "subsections": [
+        {
+          "title": "Specification Gaming",
+          "anchor": "specification-gaming",
+          "number": "2.4.1",
+          "subsections": []
+        },
+        {
+          "title": "Treacherous Turn",
+          "anchor": "treacherous-turn",
+          "number": "2.4.2",
+          "subsections": []
+        },
+        {
+          "title": "Self-Improvement",
+          "anchor": "self-improvement",
+          "number": "2.4.3",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "17 min",
+        "optional": "4 min",
+        "total": "21 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Systemic Risks",
+      "anchor": "systemic-risks",
+      "number": "2.5",
+      "subsections": [
+        {
+          "title": "Decisive Systemic Risks",
+          "anchor": "decisive-systemic-risks",
+          "number": "2.5.1",
+          "subsections": []
+        },
+        {
+          "title": "Accumulative Systemic Risks",
+          "anchor": "accumulative-systemic-risks",
+          "number": "2.5.2",
+          "subsections": [
+            {
+              "title": "Epistemic Erosion",
+              "anchor": "epistemic-erosion",
+              "number": "2.5.2.1",
+              "subsections": []
+            },
+            {
+              "title": "Power Concentration",
+              "anchor": "power-concentration",
+              "number": "2.5.2.2",
+              "subsections": []
+            },
+            {
+              "title": "Mass Unemployment",
+              "anchor": "mass-unemployment",
+              "number": "2.5.2.3",
+              "subsections": []
+            },
+            {
+              "title": "Value lock-in",
+              "anchor": "value-lock-in",
+              "number": "2.5.2.4",
+              "subsections": []
+            },
+            {
+              "title": "Enfeeblement",
+              "anchor": "enfeeblement",
+              "number": "2.5.2.5",
+              "subsections": []
+            }
+          ]
+        }
+      ],
+      "reading_times": {
+        "core": "18 min",
+        "optional": "5 min",
+        "total": "23 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Risk Amplifiers",
+      "anchor": "risk-amplifiers",
+      "number": "2.6",
+      "subsections": [
+        {
+          "title": "Race Dynamics",
+          "anchor": "race-dynamics",
+          "number": "2.6.1",
+          "subsections": []
+        },
+        {
+          "title": "Accidents",
+          "anchor": "accidents",
+          "number": "2.6.2",
+          "subsections": []
+        },
+        {
+          "title": "Indifference",
+          "anchor": "indifference",
+          "number": "2.6.3",
+          "subsections": []
+        },
+        {
+          "title": "Collective Action Problems",
+          "anchor": "collective-action-problems",
+          "number": "2.6.4",
+          "subsections": []
+        },
+        {
+          "title": "Unpredictability",
+          "anchor": "unpredictability",
+          "number": "2.6.5",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "14 min",
+        "optional": "4 min",
+        "total": "17 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Conclusion",
+      "anchor": "conclusion",
+      "number": "2.7",
+      "subsections": [],
+      "reading_times": {
+        "core": "2 min",
+        "optional": "1 min",
+        "total": "2 min"
+      },
+      "is_appendix": false
+    },
+    {
+      "title": "Appendix: Quantifying Existential Risks",
+      "anchor": "appendix-quantifying-existential-risks",
+      "number": "2.8",
+      "subsections": [],
+      "reading_times": {
+        "core": "2 min",
+        "optional": "1 min",
+        "total": "3 min"
+      },
+      "is_appendix": true
+    },
+    {
+      "title": "Appendix: Forecasting Scenarios",
+      "anchor": "appendix-forecasting-scenarios",
+      "number": "2.9",
+      "subsections": [
+        {
+          "title": "The Production Web",
+          "anchor": "the-production-web",
+          "number": "2.9.1",
+          "subsections": []
+        },
+        {
+          "title": "AI 2027",
+          "anchor": "ai-2027",
+          "number": "2.9.2",
+          "subsections": []
+        }
+      ],
+      "reading_times": {
+        "core": "11 min",
+        "optional": "1 min",
+        "total": "12 min"
+      },
+      "is_appendix": true
+    }
+  ],
+  "reading_times": {
+    "core": "92 min",
+    "optional": "28 min",
+    "appendix": "14 min"
+  }
+}

@@ -1,0 +1,551 @@
+{
+  "chapter_number": 5,
+  "media_counts": {
+    "figures": 63,
+    "videos": 1,
+    "iframes": 2,
+    "definitions": 1
+  },
+  "media_registry": [
+    {
+      "type": "figure",
+      "number": 1,
+      "label": "5.1",
+      "file_path": "Images/6Dq_Image_1.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Overview of chapter content."
+    },
+    {
+      "type": "figure",
+      "number": 2,
+      "label": "5.2",
+      "file_path": "Images/RyF_Image_3.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Examples of digits from MNIST ([MNIST database - Wikipedia](https://upload.wikimedia.org/wikipedia/commons/b/b1/MNIST_dataset_example.png))"
+    },
+    {
+      "type": "figure",
+      "number": 3,
+      "label": "5.3",
+      "file_path": "Images/3jD_Image_4.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of popular language models (Claude 3.5) being evaluated on various benchmarks ([Anthropic, 2024](https://www.anthropic.com/news/claude-3-5-sonnet))"
+    },
+    {
+      "type": "figure",
+      "number": 4,
+      "label": "5.4",
+      "file_path": "Images/Gkb_Image_6.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of coding task and test cases on APPS ([Hendrycks et al., 2021](https://arxiv.org/abs/2105.09938))"
+    },
+    {
+      "type": "figure",
+      "number": 5,
+      "label": "5.5",
+      "file_path": "Images/2BK_Image_7.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of larger models being less truthful on TruthfulQA ([Lin et al., 2021](https://arxiv.org/abs/2109.07958)). This is an example of inverse scaling, i.e. when a bigger model performance decreases on some questions."
+    },
+    {
+      "type": "figure",
+      "number": 6,
+      "label": "5.6",
+      "file_path": "Images/5FI_Image_8.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example question from the ETHICS benchmark ([Hendrycks et al., 2023](https://arxiv.org/abs/2008.02275))"
+    },
+    {
+      "type": "figure",
+      "number": 7,
+      "label": "5.7",
+      "file_path": "Images/1D8_Image_9.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A mock-up of a game in the MACHIAVELLI benchmark, a suite of text-based environments. At each step, the agent observes the scene and a list of possible actions; it selects an action from the list. Each game is a text-based story, which is generated adaptively\u2013branches open and close based on prior actions. The agent receives a reward when it achieves one of the goals. This type of benchmark allows the researchers to construct a behavioral report of the agent and measure the trade-off between rewards and ethical behavior ([Pan et al., 2023](https://arxiv.org/abs/2304.03279))."
+    },
+    {
+      "type": "figure",
+      "number": 8,
+      "label": "5.8",
+      "file_path": "Images/bGC_Image_10.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Mathematical subject interconnections in FrontierMath. Node sizes indicate the frequency of each subject\u2019s appearance in problems, while connections indicate when multiple mathematical subjects are combined within single problems, demonstrating the benchmark\u2019s integration of many mathematical domains ([Glazer et al., 2024](https://arxiv.org/abs/2411.04872))."
+    },
+    {
+      "type": "figure",
+      "number": 9,
+      "label": "5.9",
+      "file_path": "Images/VOn_Image_11.png",
+      "alt_text": "Enter image alt description",
+      "caption": "One sample problem from the FrontierMath benchmark ([Besiroglu et al., 2024](https://epoch.ai/frontiermath/the-benchmark))."
+    },
+    {
+      "type": "figure",
+      "number": 10,
+      "label": "5.10",
+      "file_path": "Images/Fsa_Image_12.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Performance of leading language models on FrontierMath. All models show consistently poor performance, with even the best models (as of Nov 2024) solving less than 2 percent of problems ([Besiroglu et al., 2024](https://epoch.ai/frontiermath/the-benchmark)). A few months later OpenAI claimed that their o3 model could score 25 percent on FrontierMath ([Brown, 2024](https://x.com/polynoamial/status/1870172996650053653?mx=2))."
+    },
+    {
+      "type": "figure",
+      "number": 11,
+      "label": "5.11",
+      "file_path": "Images/y2J_Image_13.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of a Cesar Cipher"
+    },
+    {
+      "type": "figure",
+      "number": 12,
+      "label": "5.12",
+      "file_path": "Images/v2Z_Image_14.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Figure distinguishing the three related but distinct concepts of evaluated properties, the techniques used to evaluate model properties, and"
+    },
+    {
+      "type": "figure",
+      "number": 13,
+      "label": "5.13",
+      "file_path": "Images/KSM_Image_15.png",
+      "alt_text": "Enter image alt description",
+      "caption": "In this chapter, we will mainly talk about AI systems, rather than AI models. An AI system comprises an AI model, with its weights and architecture, as well as various other system parameters, including system prompts, prefix prompts, scaffolding prompts, and retrieval, databases ([Sharkey, 2024](https://static1.squarespace.com/static/6593e7097565990e65c886fd/t/65a6f1389754fc06cb9a7a14/1705439547455/auditing_framework_web.pdf))."
+    },
+    {
+      "type": "figure",
+      "number": 14,
+      "label": "5.14",
+      "file_path": "Images/EZ7_Image_16.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A comparison of various multi step reasoning approaches ([Besta et al., 2023](https://arxiv.org/abs/2308.09687))."
+    },
+    {
+      "type": "figure",
+      "number": 15,
+      "label": "5.15",
+      "file_path": "Images/Fws_Image_17.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of how a RL reward model and a multi step reasoning structure can be combined to elicit more reasoning capabilities out of a model ([Xu et al., 2025](https://arxiv.org/abs/2501.09686))."
+    },
+    {
+      "type": "figure",
+      "number": 16,
+      "label": "5.16",
+      "file_path": "Images/CDK_Image_18.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An illustration of elicitation using password locked models. Researchers trained models to only show good behavior when given a password (and perform poorly otherwise), and then try to elicit the capabilities by fine-tuning these password-locked models ([Greenblatt & Roger, 2024](https://arxiv.org/abs/2405.19550))."
+    },
+    {
+      "type": "figure",
+      "number": 17,
+      "label": "5.17",
+      "file_path": "Images/sam_Image_19.png",
+      "alt_text": "Enter image alt description",
+      "caption": "HuggingGPT: a model that can query other AI models in HuggingFace and use them as tools to solve more complicated tasks. ([Shen et al., 2023](https://arxiv.org/abs/2303.17580))"
+    },
+    {
+      "type": "figure",
+      "number": 18,
+      "label": "5.18",
+      "file_path": "Images/8V4_Image_20.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of red teaming on LLMs ([Perez et al., 2022](https://arxiv.org/abs/2202.03286))"
+    },
+    {
+      "type": "figure",
+      "number": 19,
+      "label": "5.19",
+      "file_path": "Images/0AJ_Image_21.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example of sycophantic praise feature discovered with the autoencoder technique ([Anthropic, 2024](https://transformer-circuits.pub/2024/scaling-monosemanticity/))."
+    },
+    {
+      "type": "figure",
+      "number": 20,
+      "label": "5.20",
+      "file_path": "Images/qDa_Image_22.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Contrasting the mechanistic view with the representational view of internal analysis. ([Zou et al., 2023](https://arxiv.org/abs/2310.01405))"
+    },
+    {
+      "type": "figure",
+      "number": 21,
+      "label": "5.21",
+      "file_path": "Images/tSA_Image_23.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Structure of our blind auditing game. Our game is structured as a red team/blue team exercise. A red team trains a model behind a strict information barrier. Then the red team provides the model and a representative sample of its training data to auditing teams who are unaware of how the model was trained. These teams\u2014which are allowed varying levels of model and data access\u2014investigate this model and produce auditing reports. The red team grades these reports according to whether they uncover the model\u2019s hidden objective - figure and legend from Anthropic ([Anthropic, 2025](https://arxiv.org/abs/2503.10965))."
+    },
+    {
+      "type": "figure",
+      "number": 22,
+      "label": "5.22",
+      "file_path": "Images/uE7_Image_24.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Training and evaluating a reward model sycophant. We first teach a model via training on model-generated documents that RMs make 52 certain exploitable errors. Then we train the model to exploit 47 of these errors (blue). To evaluate whether the model has learned an RM-sycophancy objective, we evaluate whether it exploits the 5 held-out errors (red) as well as new RM errors introduced at test time (grey) - figure and legend from Anthropic ([Anthropic, 2025](https://arxiv.org/abs/2503.10965))."
+    },
+    {
+      "type": "figure",
+      "number": 23,
+      "label": "5.23",
+      "file_path": "Images/Z2f_Image_25.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A reward model bias feature. Each row shows a training sample on which the feature is most active. Darker shading indicates stronger feature activity ([Anthropic, 2025](https://arxiv.org/abs/2503.10965))."
+    },
+    {
+      "type": "figure",
+      "number": 24,
+      "label": "5.24",
+      "file_path": "Images/zCd_Image_26.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of a sleeper agent that displays misaligned behavior despite having been put through safety fine-tuning ([Hubinger et al., 2024](https://arxiv.org/abs/2401.05566))."
+    },
+    {
+      "type": "figure",
+      "number": 25,
+      "label": "5.25",
+      "file_path": "Images/DJn_Image_27.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Overview of Anthropic\u2019s ASL levels. ASL-1 refers to systems which pose no meaningful catastrophic risk. ASL-2 refers to systems that show early signs of dangerous capabilities \u2013 for example ability to give instructions on how to build bioweapons \u2013 but where the information is not yet useful due to insufficient reliability or not providing information that e.g. a search engine couldn\u2019t. ASL-3 refers to systems that substantially increase the risk of catastrophic misuse compared to non-AI baselines (e.g. search engines or textbooks) OR that show low-level autonomous capabilities. ASL-4 and higher (ASL-5+) is not yet defined as it is too far from present systems, but will likely involve qualitative escalations in catastrophic misuse potential and autonomy ([Anthropic, 2024](https://assets.anthropic.com/m/24a47b00f10301cd/original/Anthropic-Responsible-Scaling-Policy-2024-10-15.pdf))."
+    },
+    {
+      "type": "figure",
+      "number": 26,
+      "label": "5.26",
+      "file_path": "Images/iqi_Image_28.png",
+      "alt_text": "Enter image alt description",
+      "caption": "System card of GPT-o1 published by OpenAI after safety evaluations ([OpenAI, 2024](https://openai.com/index/openai-o1-system-card/))."
+    },
+    {
+      "type": "figure",
+      "number": 27,
+      "label": "5.27",
+      "file_path": "Images/Oih_Image_29.png",
+      "alt_text": "Enter image alt description",
+      "caption": "DeepMinds safety buffer from the FSF ([DeepMind, 2024](https://deepmind.google/discover/blog/introducing-the-frontier-safety-framework/))."
+    },
+    {
+      "type": "figure",
+      "number": 28,
+      "label": "5.28",
+      "file_path": "Images/6AK_Image_30.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Anthropics explanation of safety buffer from a previous version of RSPs. If safety evals trigger, scaling must pause until next level safety measures are in place ([Anthropic, 2023](https://www-cdn.anthropic.com/1adf000c8f675958c2ee23805d91aaade1cd4613/responsible-scaling-policy.pdf))."
+    },
+    {
+      "type": "figure",
+      "number": 29,
+      "label": "5.29",
+      "file_path": "Images/Q7b_Image_31.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Stages of a cyberattack. The objective is to design benchmarks and evaluations that assess models\u2019 ability to aid malicious actors with all four stages of a cyberattack ([Li et al., 2024](https://arxiv.org/abs/2403.03218))."
+    },
+    {
+      "type": "figure",
+      "number": 30,
+      "label": "5.30",
+      "file_path": "Images/8WF_Image_32.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Measure and mitigate hazards in the red category by evaluating and removing knowledge from the yellow category, while retaining as much knowledge as possible in the green category. WMDP consists of knowledge in the yellow category ([Li et al., 2024](https://arxiv.org/abs/2403.03218))."
+    },
+    {
+      "type": "figure",
+      "number": 31,
+      "label": "5.31",
+      "file_path": "Images/0IK_Image_33.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example of an automated red teaming framework - NYU CTF ([Shao et al., 2024](https://arxiv.org/abs/2406.05590))"
+    },
+    {
+      "type": "figure",
+      "number": 32,
+      "label": "5.32",
+      "file_path": "Images/34X_Image_34.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Distinguishing honesty, truthfulness, hallucination, deception, and scheming. If a model is faithfully outputting its internal beliefs then it is honest, if these beliefs correspond to reality, then it is factual, else it is hallucinating. A model might just say things that help it get high reward as a myopic strategy with no ulterior long term motive, this can be akin to sycophancy. A model which is deceptive but with situationally aware long term plans is scheming (deceptively aligned)."
+    },
+    {
+      "type": "figure",
+      "number": 33,
+      "label": "5.33",
+      "file_path": "Images/lpP_Image_35.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example conversation from an insider trading evaluation designed to showcase the capability of LLMs to strategically deceive their users if they are put under pressure. In this example, in the report to its manager, GPT-4 lies about the true reason for the trade (the insider tip). When directly asked by its manager whether it knew about the merger announcement, GPT-4 doubled down on its lie ([Scheurer et al., 2024](https://arxiv.org/abs/2311.07590))."
+    },
+    {
+      "type": "figure",
+      "number": 34,
+      "label": "5.34",
+      "file_path": "Images/Un6_Image_36.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An illustration of resource acquisition, and self-improvement pipeline ([Phuong et al., 2024](https://arxiv.org/abs/2403.13793))."
+    },
+    {
+      "type": "figure",
+      "number": 35,
+      "label": "5.35",
+      "file_path": "Images/BwA_Image_37.png",
+      "alt_text": "Enter image alt description",
+      "caption": "From METRs report ([METR, 2023](https://metr.org/blog/2023-08-01-new-report/))."
+    },
+    {
+      "type": "figure",
+      "number": 36,
+      "label": "5.36",
+      "file_path": "Images/wtw_Image_38.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Plot showcasing the success rate of a model vs the time taken for a human to complete the same task ([Kwa et al., 2025](https://arxiv.org/abs/2503.14499))."
+    },
+    {
+      "type": "figure",
+      "number": 37,
+      "label": "5.37",
+      "file_path": "Images/z7R_Image_39.png",
+      "alt_text": "Enter image alt description",
+      "caption": "METR\u2019s research finds that AIs are rapidly able to do longer and longer tasks, where length is measured by the time it takes for a human with requisite expertise to do the task ([Kwa et al., 2025](https://arxiv.org/abs/2503.14499))."
+    },
+    {
+      "type": "figure",
+      "number": 38,
+      "label": "5.38",
+      "file_path": "Images/YCd_Image_40.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Illustration showing how increasing capabilities according to compute levels, might result in situational awareness in an LLM as a function of scale ([Evans et al., 2023](https://arxiv.org/abs/2309.00667))."
+    },
+    {
+      "type": "figure",
+      "number": 39,
+      "label": "5.39",
+      "file_path": "Images/L5r_Image_41.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Visualization of the breakdown of situational awareness as a capability by the situational awareness dataset. It is measured using specific categories of tasks ([Laine et al., 2024](https://arxiv.org/abs/2407.04694))."
+    },
+    {
+      "type": "figure",
+      "number": 40,
+      "label": "5.40",
+      "file_path": "Images/EB6_Image_42.png",
+      "alt_text": "Enter image alt description",
+      "caption": "This chart from the study shows how models are good at predicting their own behavior (green), but not as good at predicting the behavior of other models (blue) ([Binder et al., 2023](https://arxiv.org/abs/2410.13787)). Generally speaking, introspective ability appears to be improving over time. Looking at the chart above, GPT-3.5's introspective advantage is modest compared to more advanced models ([AI Digest, 2024](https://theaidigest.org/self-awareness))."
+    },
+    {
+      "type": "figure",
+      "number": 41,
+      "label": "5.41",
+      "file_path": "Images/cbJ_Image_43.png",
+      "alt_text": "Enter image alt description",
+      "caption": "If a language model can tell when it's being monitored, the model can adjust its behavior depending on the context. A model could, for example, downplay its capabilities while being tested, leading developers to underestimate the risks of deployment (sandbagging) ([AI Digest, 2024](https://theaidigest.org/self-awareness))."
+    },
+    {
+      "type": "figure",
+      "number": 42,
+      "label": "5.42",
+      "file_path": "Images/061_Image_44.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A graph showcasing how well models as of 2025 understand their own causal influence on the world. As agents are given increasingly open-ended tasks, they will benefit substantially from understanding how they interact with and affect the world. For example, an agent that understands how human users operate could do a better job at handling ambiguous instructions, or an agent that knows how it is affecting its physical environment may act more or less cautiously ([AI Digest, 2024](https://theaidigest.org/self-awareness))."
+    },
+    {
+      "type": "figure",
+      "number": 43,
+      "label": "5.43",
+      "file_path": "Images/iXs_Image_45.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example of an AI black box lie detector ([Pacchiardi et al., 2023)](https://arxiv.org/abs/2309.15840)."
+    },
+    {
+      "type": "figure",
+      "number": 44,
+      "label": "5.44",
+      "file_path": "Images/Dyr_Image_46.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Distinguishing honesty, truthfulness, hallucination, deception, and scheming. If a model is faithfully outputting its internal beliefs then it is honest, if these beliefs correspond to reality, then it is factual, else it is hallucinating. A model might just say things that help it get high reward as a myopic strategy with no ulterior long term motive, this can be akin to sycophancy. A model which is deceptive but with situationally aware long term plans is scheming (deceptively aligned)."
+    },
+    {
+      "type": "figure",
+      "number": 45,
+      "label": "5.45",
+      "file_path": "Images/8dT_Image_47.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Examples of Cicero (left) coordinating and (right) negotiating with authors of the paper in test games ([Meta, 2022](https://www.science.org/doi/10.1126/science.ade9097))."
+    },
+    {
+      "type": "figure",
+      "number": 46,
+      "label": "5.46",
+      "file_path": "Images/jHf_Image_48.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example of how Cicero plays diplomacy and makes strategic calculations. Cicero (France; blue) and England (pink) are entangled in a fight, but it would be beneficial for both players if they could disengage. Cicero has just messaged England - Do you want to call this fight off? I can let you focus on Russia and I can focus on Italy. Pictured are three ways that England might reply and how Cicero adapts to each ([Meta, 2022](https://www.science.org/doi/10.1126/science.ade9097))."
+    },
+    {
+      "type": "figure",
+      "number": 47,
+      "label": "5.47",
+      "file_path": "Images/3WZ_Image_49.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The path to scheming (deceptive alignment) involves deception, combined with situational awareness and a long term motivation to achieve some unknown goal."
+    },
+    {
+      "type": "figure",
+      "number": 48,
+      "label": "5.48",
+      "file_path": "Images/Qgz_Image_50.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example demonstration of alignment faking (a type of scheming), where a model chooses to act aligned to prevent modifications to its preferences until there is no longer a threat of modification due to re-training, i.e. the model has been deployed. In the demonstration the model is already trained with preferences - helpful, honest and harmless. Anthropic acted as if they would retrain the model to be always compliant with all requests (including harmful ones), but the model wants to retain its HHH training, therefore it pretends during training to accept the new compliance directive by providing harmful content, and then during deployment it reverts to refusing harmful requests when it believes its responses aren't being monitored for training ([Anthropic, 2025](https://www.anthropic.com/research/alignment-faking))."
+    },
+    {
+      "type": "figure",
+      "number": 49,
+      "label": "5.49",
+      "file_path": "Images/fIl_Image_51.png",
+      "alt_text": "Enter image alt description",
+      "caption": "One potential taxonomy of scheming evaluations. In this taxonomy the authors distinguish between covert subversion (where models take misaligned actions while hiding them) and deferred subversion (where models act aligned to gain capabilities/trust). Covert subversion can target either developers or users, while deferred subversion focuses on gaming evaluation processes ([Meinke et al., 2025](https://arxiv.org/abs/2412.04984))."
+    },
+    {
+      "type": "figure",
+      "number": 50,
+      "label": "5.50",
+      "file_path": "Images/Sb0_Image_52.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Basic setup for how we might structure control evaluations ([Greenblatt et al., 2024](https://arxiv.org/pdf/2312.06942.pdf))."
+    },
+    {
+      "type": "figure",
+      "number": 51,
+      "label": "5.51",
+      "file_path": "Images/uiY_Image_53.png",
+      "alt_text": "Enter image alt description",
+      "caption": "An example of a control evaluation in a toy setting. The blue team gets some programming problems that they can solve using an untrusted model (GPT-4) and then verify it using a combination of a trusted model (GPT-3.5) and a human (simulated using GPT-4). The red team replaces the untrusted model and tries to inject malicious code ([Greenblatt et al., 2024](https://arxiv.org/pdf/2312.06942.pdf))."
+    },
+    {
+      "type": "figure",
+      "number": 52,
+      "label": "5.52",
+      "file_path": "Images/7Wg_Image_54.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Example process for the red team generating a single backdoor injection attempt ([Greenblatt et al., 2024](https://arxiv.org/pdf/2312.06942.pdf))."
+    },
+    {
+      "type": "figure",
+      "number": 53,
+      "label": "5.53",
+      "file_path": "Images/SlT_Image_55.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Illustration of how applying a safety or alignment technique could make the model less capable. This is called a safety tax."
+    },
+    {
+      "type": "figure",
+      "number": 54,
+      "label": "5.54",
+      "file_path": "Images/F26_Image_56.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The relationship between an AI system's capabilities, propensities, affordances, and behaviors. ([Sharkey et al., 2024](https://static1.squarespace.com/static/6593e7097565990e65c886fd/t/65a6f1389754fc06cb9a7a14/1705439547455/auditing_framework_web.pdf))"
+    },
+    {
+      "type": "figure",
+      "number": 55,
+      "label": "5.55",
+      "file_path": "Images/nA1_Image_57.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The relationship between absolute capabilities, affordances, contextual and reachable capabilities, and the level of auditing warranted. Absolute capabilities and available affordances are orthogonal. As either increase, the level of auditing required also increases ([Sharkey et al. 2024](https://static1.squarespace.com/static/6593e7097565990e65c886fd/t/65a6f1389754fc06cb9a7a14/1705439547455/auditing_framework_web.pdf))."
+    },
+    {
+      "type": "figure",
+      "number": 56,
+      "label": "5.56",
+      "file_path": "Images/cvW_Image_58.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Examples of model written evaluation questions. A RLHF model replies to a political question and gives opposite answers to users who introduce themselves differently, in line with the users\u2019 views. Model-written biography text in italics ([Perez et al., 2022](https://arxiv.org/abs/2212.09251))."
+    },
+    {
+      "type": "figure",
+      "number": 57,
+      "label": "5.57",
+      "file_path": "Images/JPq_Image_59.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The aim is to avoid extreme risks from a powerful misaligned model ([Shevlane et al. 2023](https://arxiv.org/abs/2305.15324))."
+    },
+    {
+      "type": "figure",
+      "number": 58,
+      "label": "5.58",
+      "file_path": "Images/Obz_Image_60.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Defense in depth ([Hendrycks, 2024](https://www.aisafetybook.com/textbook/component-failure-accident-models))"
+    },
+    {
+      "type": "figure",
+      "number": 59,
+      "label": "5.59",
+      "file_path": "Images/D52_Image_61.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Determinants of AI system\u2019s effects on the world and the types of auditing that act on them. ([Sharkey et al., 2024](https://static1.squarespace.com/static/6593e7097565990e65c886fd/t/65a6f1389754fc06cb9a7a14/1705439547455/auditing_framework_web.pdf))"
+    },
+    {
+      "type": "figure",
+      "number": 60,
+      "label": "5.60",
+      "file_path": "Images/UGr_Image_62.png",
+      "alt_text": "Enter image alt description",
+      "caption": "Illustration of sandbagging ([van der Weij, 2024](https://www.alignmentforum.org/posts/jsmNCj9QKcfdg8fJk/an-introduction-to-ai-sandbagging))"
+    },
+    {
+      "type": "figure",
+      "number": 61,
+      "label": "5.61",
+      "file_path": "Images/OC1_Image_63.png",
+      "alt_text": "Enter image alt description",
+      "caption": "The tight connection between many safety properties and capabilities can enable safety washing, where capabilities advancements (e.g., training a larger model) can be advertised as progress on AI safety. This confuses the research community to the developments that have occurred, distorting the academic discourse ([Ren et al., 2024](https://arxiv.org/abs/2407.21792))."
+    },
+    {
+      "type": "figure",
+      "number": 62,
+      "label": "5.62",
+      "file_path": "Images/7XQ_Image_64.png",
+      "alt_text": "Enter image alt description",
+      "caption": "We need much more work in evaluations. Higher capabilities require more safety evaluations. Many high-stakes decisions in company-led and government-led frameworks are reliant on the results of evals ([Hobbahn, 2024](https://www.alignmentforum.org/posts/gJJEjJpKiddoYGZKk/the-evals-gap))."
+    },
+    {
+      "type": "figure",
+      "number": 63,
+      "label": "5.63",
+      "file_path": "Images/RuR_Image_65.png",
+      "alt_text": "Enter image alt description",
+      "caption": "A visual breakdown of limitations, and a few reasons to doubt the impact of AI risk evaluations ([Mukobi, 2024](https://arxiv.org/abs/2408.02565))."
+    },
+    {
+      "type": "video",
+      "number": 1,
+      "label": "5.1",
+      "url": "https://www.youtube.com/watch?v=7MNyv2JER_o",
+      "platform": "youtube",
+      "video_id": "7MNyv2JER_o",
+      "embed_url": "https://www.youtube.com/embed/7MNyv2JER_o",
+      "caption": "An optional video that showcases the insider trading evaluation conducted by Apollo Research."
+    },
+    {
+      "type": "iframe",
+      "number": 1,
+      "label": "5.1",
+      "iframe_src": "https://ourworldindata.org/grapher/test-scores-ai-capabilities-relative-human-performance?country=Handwriting+recognition~Speech+recognition~Image+recognition~Reading+comprehension~Language+understanding~Predictive+reasoning~Code+generation~Complex+reasoning~General+knowledge+tests~Nuanced+language+interpretation~Math+problem-solving~Reading+comprehension+with+unanswerable+questions&tab=chart",
+      "caption": "Benchmark scores of various AI capabilities relative to human performance ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/2vS_Image_2.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "iframe",
+      "number": 2,
+      "label": "5.2",
+      "iframe_src": "https://ourworldindata.org/grapher/ai-performance-coding-math-knowledge-tests?tab=chart",
+      "caption": "Benchmark performance on coding, math and language ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).",
+      "static_figure_path": "Images/J9N_Image_5.png",
+      "static_figure_alt": "Enter image alt description"
+    },
+    {
+      "type": "definition",
+      "number": 1,
+      "label": "5.1",
+      "term": "Evaluations",
+      "source": "",
+      "content": "An evaluation as a complete safety assessment protocol which includes the use of benchmarks."
+    }
+  ]
+}
