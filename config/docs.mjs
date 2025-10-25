@@ -14,8 +14,10 @@ export const docsConfig = {
     [remarkGlossary, {
       glossaryDir: './src/data/glossary', // Points to the glossary folder
       caseSensitive: false,
-      excludeNodes: ['code', 'inlineCode', 'link', 'heading']
+      excludeNodes: ['code', 'inlineCode', 'link', 'heading'],
+      silent: true // Suppress warnings for empty glossary files
     }]
   ],
   rehypePlugins: [rehypeKatex],
 };
+

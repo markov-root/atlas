@@ -10,7 +10,8 @@ export default function remarkGlossary(options = {}) {
   const {
     glossaryDir = './src/data/glossary',
     caseSensitive = false,
-    excludeNodes = ['code', 'inlineCode', 'link', 'heading']
+    excludeNodes = ['code', 'inlineCode', 'link', 'heading'],
+    silent = false // Option to suppress warnings
   } = options;
 
   return async (tree, file) => {
@@ -30,33 +31,48 @@ export default function remarkGlossary(options = {}) {
         file.startsWith('glossary-') && file.endsWith('.json')
       );
       
-      console.log(`Found ${glossaryFiles.length} glossary files:`, glossaryFiles);
+      // Silently skip logging glossary files found
       
       // Load and merge all glossary files
       for (const filename of glossaryFiles) {
         try {
           const filePath = path.join(fullDir, filename);
           const fileContent = await fs.readFile(filePath, 'utf8');
+          
+          // Skip empty files silently
+          if (!fileContent.trim() || fileContent.trim().length === 0) {
+            continue;
+          }
+          
           const fileData = JSON.parse(fileContent);
+          
+          // Skip if the parsed data is empty
+          if (!fileData || Object.keys(fileData).length === 0) {
+            continue;
+          }
           
           // Merge into main glossary data
           Object.assign(glossaryData, fileData);
-          console.log(`Loaded ${Object.keys(fileData).length} terms from ${filename}`);
+          // Silently skip logging individual file loads
         } catch (error) {
-          console.warn(`Warning: Could not load glossary file ${filename}:`, error.message);
+          // Only warn about actual errors (not empty files)
+          if (!silent && error.message !== 'Unexpected end of JSON input') {
+            console.warn(`Warning: Could not load glossary file ${filename}:`, error.message);
+          }
         }
       }
       
-      console.log(`Total glossary terms loaded: ${Object.keys(glossaryData).length}`);
+      // Silently skip logging total terms
       
     } catch (error) {
-      console.warn(`Warning: Could not load glossary from ${glossaryDir}:`, error.message);
+      if (!silent) {
+        console.warn(`Warning: Could not load glossary from ${glossaryDir}:`, error.message);
+      }
       return tree;
     }
 
-    // If no terms loaded, skip processing
+    // If no terms loaded, skip processing silently
     if (Object.keys(glossaryData).length === 0) {
-      console.warn('No glossary terms found, skipping processing');
       return tree;
     }
 
