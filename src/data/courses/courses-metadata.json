@@ -1,0 +1,91 @@
+{
+  "lastUpdated": "2025-01-15",
+  "description": "Complete database of courses and programs using AI Safety Atlas materials",
+  
+  "page": {
+    "title": "AI Safety Courses - AI Safety Atlas",
+    "metaDescription": "Discover academic courses, reading groups, and organized programs using AI Safety Atlas materials worldwide."
+  },
+  
+  "hero": {
+    "title": "AI Safety Courses",
+    "description": "Discover academic courses, reading groups, and organized programs using the AI Safety Atlas materials. Join an existing course or start your own with our resources.",
+    "images": [
+      "/img/courses/ml4g/ml4g_eu_25.jpeg",
+      "/img/courses/ubc_vancouver/ubc_feb_25.jpeg",
+      "/img/courses/ens_paris/ens_paris_23.png",
+      "/img/courses/ml4g/ml4g_brasil.jpg"
+    ]
+  },
+  
+  "defaultCertificate": {
+    "available": true,
+    "sampleImage": "/img/courses/certificate.png",
+    "title": "Official Certificates",
+    "description": "Official LinkedIn certificates available for participants who complete course requirements. The specific requirements vary by the course provider.",
+    "requirementsTitle": "Common Certificate Requirements:",
+    "requirements": [
+      "Attend at least 80% of the sessions",
+      "Read the textbook, and participate actively in group discussions",
+      "Submit final projects or equivalent contribution"
+    ]
+  },
+  
+  "sections": {
+    "active": {
+      "title": "Current Courses",
+      "description": "Courses currently accepting students or in progress"
+    },
+    "upcoming": {
+      "title": "Upcoming Courses",
+      "description": "Future courses with applications opening soon"
+    },
+    "completed": {
+      "title": "Past Courses",
+      "description": "Successfully completed courses using Atlas materials"
+    }
+  },
+  
+  "labels": {
+    "statusBadges": {
+      "active": "Active",
+      "upcoming": "Upcoming",
+      "completed": "Completed"
+    },
+    "buttons": {
+      "applyStudent": "Apply as Student",
+      "applyFacilitator": "Apply as Facilitator",
+      "website": "Website",
+      "contact": "Contact",
+      "suggestCorrection": "Suggest Correction",
+      "cancel": "Cancel",
+      "sendCorrection": "Send Correction"
+    },
+    "studentCounts": {
+      "enrolled": "enrolled",
+      "expected": "expected",
+      "completed": "completed",
+      "applied": "applied"
+    },
+    "emptyState": {
+      "title": "No Courses Available",
+      "description": "No courses are currently listed. Check back later or consider starting your own course."
+    },
+    "correctionForm": {
+      "title": "Suggest a Correction",
+      "subtitle": "Help us keep course information accurate and up-to-date",
+      "successMessage": "Correction submitted. Thank you for helping us keep information accurate!",
+      "placeholders": {
+        "organizationName": "Organization name",
+        "location": "Location",
+        "enrolled": "Students enrolled",
+        "contactEmail": "Contact email",
+        "applicationLink": "Application link",
+        "website": "Website",
+        "description": "Description",
+        "additionalInfo": "Additional information or corrections"
+      },
+      "requestRemoval": "Request to remove this listing entirely"
+    }
+  }
+}

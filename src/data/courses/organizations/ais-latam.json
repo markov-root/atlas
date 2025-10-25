@@ -1,0 +1,25 @@
+{
+  "name": "AI Safety Latam (Boske)",
+  "logo": "/img/courses/placeholder_courses.svg",
+  "website": "https://www.boske.org/",
+  "contact": "boskedao@gmail.com",
+  "description": "Free and open AI safety education for Latin America",
+  "courses": [
+    {
+      "id": "boske-1",
+      "name": "Safe AI Buenos Aires Course Spring 2025",
+      "description": "8-week program with optional 4-week project phase.",
+      "location": "Buenos Aires, Argentina + Online",
+      "startDate": "2025-03-31",
+      "endDate": "2025-06-23",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 14,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://aeroproduct.notion.site/Safe-AI-Buenos-Aires-Course-Spring-2025-1b7883d9015a8023a693df72c5889e1c"
+      }
+    }
+  ]
+}

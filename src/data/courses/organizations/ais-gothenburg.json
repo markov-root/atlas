@@ -1,0 +1,41 @@
+{
+  "name": "AI Safety Gothenburg",
+  "logo": "/img/courses/ais_gothenburg/ais_gothenburg_logo.svg",
+  "website": "https://www.aisafetygothenburg.org/",
+  "contact": "contact@aisafetygothenburg.org",
+  "description": "Local AI safety group promoting awareness and education in Gothenburg community",
+  "courses": [
+    {
+      "id": "ai-safety-gothenburg-2",
+      "name": "AI Safety Fundamentals Spring 2024",
+      "description": "8-week program that helped trial Atlas materials before we even called it the Atlas.",
+      "location": "Gothenburg, Sweden",
+      "startDate": "2024-02-26",
+      "endDate": "2024-04-22",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 12,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://www.aisafetygothenburg.org/"
+      }
+    },
+    {
+      "id": "ai-safety-gothenburg-1",
+      "name": "AI Safety Fundamentals Fall 2023",
+      "description": "12-week program using early Atlas materials.",
+      "location": "Gothenburg, Sweden",
+      "startDate": "2023-09-18",
+      "endDate": "2023-12-11",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 15,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://www.aisafetygothenburg.org/"
+      }
+    }
+  ]
+}

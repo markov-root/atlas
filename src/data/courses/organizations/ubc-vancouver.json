@@ -1,0 +1,41 @@
+{
+  "name": "UBC Vancouver AI Safety",
+  "logo": "/img/courses/ubc_vancouver/ubc_vancouver_logo.svg",
+  "website": "https://ubcaisafety.com",
+  "contact": "ubcaisafety@gmail.com",
+  "description": "Student-led AI safety education at University of British Columbia",
+  "courses": [
+    {
+      "id": "ubc-intro-alignment-2",
+      "name": "Intro to AI Alignment Winter 2025",
+      "description": "7-week reading group using AI Safety Atlas materials",
+      "location": "Vancouver, BC, Canada",
+      "startDate": "2025-01-27",
+      "endDate": "2025-04-10",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 8,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://ubcaisafety.com/get-involved"
+      }
+    },
+    {
+      "id": "ubc-intro-alignment-1",
+      "name": "Intro to AI Alignment Fall 2024",
+      "description": "First UBC course using AI Safety Atlas materials",
+      "location": "Vancouver, BC, Canada",
+      "startDate": "2024-09-01",
+      "endDate": "2024-11-15",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": null,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://ubcaisafety.com/get-involved"
+      }
+    }
+  ]
+}

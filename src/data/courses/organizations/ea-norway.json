@@ -1,0 +1,23 @@
+{
+  "name": "EA Norway",
+  "logo": "/img/courses/ea_norway/ea_norway_logo.svg",
+  "website": "https://www.effektivaltruisme.no/",
+  "contact": null,
+  "description": "Course run in partnership by AIS Collab.",
+  "courses": [
+    {
+      "id": "ea-norway-1",
+      "name": "EA Norway Spring 2025",
+      "description": "8-week program with optional 4-week project phase. Part of AIS Collab.",
+      "location": "Norway + Online",
+      "startDate": "2025-03-31",
+      "endDate": "2025-06-23",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": null,
+      "students-completed": null,
+      "links": {}
+    }
+  ]
+}

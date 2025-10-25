@@ -1,0 +1,25 @@
+{
+  "name": "Safe AI London (SAIL)",
+  "logo": "/img/courses/sail/sail.svg",
+  "website": "https://www.safeailondon.org/course",
+  "contact": "joe@arcadiaimpact.org",
+  "description": "London-based AI safety education, project of Arcadia Impact. Part of AI Safety Collab.",
+  "courses": [
+    {
+      "id": "sail-1",
+      "name": "AI Safety Course Spring 2025",
+      "description": "8-week program with optional 4-week project phase. London-based project of Arcadia Impact. Part of AI Safety Collab.",
+      "location": "London, UK",
+      "startDate": "2025-03-31",
+      "endDate": "2025-06-23",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 36,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://www.safeailondon.org/course"
+      }
+    }
+  ]
+}

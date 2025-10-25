@@ -1,0 +1,213 @@
+{
+  "name": "ML4Good",
+  "logo": "/img/courses/ml4g/ml4g_logo.svg",
+  "website": "https://www.ml4good.org/",
+  "contact": "info@ml4good.org",
+  "description": "Intensive in-person bootcamps to upskill in AI safety using Atlas materials",
+  "courses": [
+    {
+      "id": "ml4good-singapore-sept25",
+      "name": "ML4Good Singapore",
+      "description": "First ML4Good bootcamp in Asia",
+      "location": "Singapore",
+      "startDate": "2025-09-01",
+      "endDate": "2025-09-10",
+      "applicationDeadline": null,
+      "students-expected": 18,
+      "students-applied": null,
+      "students-enrolled": null,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://www.ml4good.org/courses/singapore-sept25"
+      }
+    },
+    {
+      "id": "ml4good-governance-sept25",
+      "name": "ML4Good Governance",
+      "description": "First governance-focused ML4Good bootcamp using Atlas materials",
+      "location": "TBD",
+      "startDate": "2025-09-01",
+      "endDate": "2025-09-10",
+      "applicationDeadline": null,
+      "students-expected": 20,
+      "students-applied": null,
+      "students-enrolled": null,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://www.ml4good.org/courses/governance-sept25"
+      }
+    },
+    {
+      "id": "ml4good-12",
+      "name": "ML4Good West & Central Europe",
+      "description": "10-day intensive bootcamp using Atlas materials",
+      "location": "West & Central Europe",
+      "startDate": "2025-05-24",
+      "endDate": "2025-06-01",
+      "applicationDeadline": null,
+      "students-expected": 20,
+      "students-applied": null,
+      "students-enrolled": null,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://www.ml4good.org/courses/west-europe-may25"
+      }
+    },
+    {
+      "id": "ml4good-11",
+      "name": "ML4Good Colombia",
+      "description": "First ML4Good bootcamp in Latin America",
+      "location": "Colombia",
+      "startDate": "2025-04-11",
+      "endDate": "2025-04-21",
+      "applicationDeadline": null,
+      "students-expected": 18,
+      "students-applied": null,
+      "students-enrolled": null,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://www.ml4good.org/courses/colombia-april25"
+      }
+    },
+    {
+      "id": "ml4good-10",
+      "name": "ML4Good Europe",
+      "description": "European bootcamp using Atlas materials",
+      "location": "Europe",
+      "startDate": "2025-03-07",
+      "endDate": "2025-03-17",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 22,
+      "students-completed": null,
+      "links": {}
+    },
+    {
+      "id": "ml4good-9",
+      "name": "ML4Good Germany",
+      "description": "German bootcamp with Atlas materials",
+      "location": "Germany",
+      "startDate": "2024-09-23",
+      "endDate": "2024-10-03",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 20,
+      "students-completed": null,
+      "links": {}
+    },
+    {
+      "id": "ml4good-8",
+      "name": "ML4Good UK",
+      "description": "UK bootcamp using Atlas materials",
+      "location": "United Kingdom",
+      "startDate": "2024-09-01",
+      "endDate": "2024-09-11",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 18,
+      "students-completed": null,
+      "links": {}
+    },
+    {
+      "id": "ml4good-7",
+      "name": "ML4Good Brasil",
+      "description": "First ML4Good in South America",
+      "location": "Brasil",
+      "startDate": "2024-07-08",
+      "endDate": "2024-07-18",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 16,
+      "students-completed": null,
+      "links": {}
+    },
+    {
+      "id": "ml4good-6",
+      "name": "ML4Good France (Erasmus+)",
+      "description": "First Erasmus+ funded bootcamp with international participants",
+      "location": "France",
+      "startDate": "2024-06-18",
+      "endDate": "2024-06-28",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 24,
+      "students-completed": null,
+      "links": {}
+    },
+    {
+      "id": "ml4good-5",
+      "name": "ML4Good UK",
+      "description": "First ML4Good bootcamp in the UK",
+      "location": "United Kingdom",
+      "startDate": "2024-03-28",
+      "endDate": "2024-04-07",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 19,
+      "students-completed": null,
+      "links": {}
+    },
+    {
+      "id": "ml4good-4",
+      "name": "ML4Good Germany",
+      "description": "Bootcamp in Germany with participants from 6 countries",
+      "location": "Germany",
+      "startDate": "2023-08-24",
+      "endDate": "2023-09-03",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 22,
+      "students-completed": null,
+      "links": {}
+    },
+    {
+      "id": "ml4good-3",
+      "name": "ML4Good France",
+      "description": "Bootcamp in France with international participants",
+      "location": "France",
+      "startDate": "2023-07-31",
+      "endDate": "2023-08-09",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 18,
+      "students-completed": null,
+      "links": {}
+    },
+    {
+      "id": "ml4good-2",
+      "name": "Swiss AI Safety Summer Camp",
+      "description": "Swiss AI Safety Summer Camp using Atlas materials",
+      "location": "Switzerland",
+      "startDate": "2023-09-04",
+      "endDate": "2023-09-16",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 25,
+      "students-completed": null,
+      "links": {}
+    },
+    {
+      "id": "ml4good-1",
+      "name": "ML4Good France (Original)",
+      "description": "The very first ML4Good bootcamp that started it all",
+      "location": "France",
+      "startDate": "2022-07-31",
+      "endDate": "2022-08-09",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 15,
+      "students-completed": null,
+      "links": {}
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "AI Safety Hungary",
+  "logo": "/img/courses/ais_hungary/ais_hungary_logo.svg",
+  "website": "https://www.aishungary.com/activities/intro-seminars",
+  "contact": "info@aishungary.com",
+  "description": "Supporting students and professionals in contributing to safe AI development. Part of AIS Collab.",
+  "courses": [
+    {
+      "id": "ai-safety-hungary-2",
+      "name": "AI Safety Hungary Summer 2025",
+      "description": "8-week program with optional 4-week project phase. Part of AI Safety Collab.",
+      "location": "Hungary (Online + In-person)",
+      "startDate": "2025-08-04",
+      "endDate": "2025-10-27",
+      "applicationDeadline": "2025-07-20",
+      "students-expected": 15,
+      "students-applied": null,
+      "students-enrolled": null,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form"
+      }
+    },
+    {
+      "id": "ai-safety-hungary-1",
+      "name": "AI Safety Hungary Spring 2025",
+      "description": "8-week program with optional 4-week project phase. Part of AI Safety Collab.",
+      "location": "Hungary",
+      "startDate": "2025-03-31",
+      "endDate": "2025-06-23",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 10,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form"
+      }
+    }
+  ]
+}

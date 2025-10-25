@@ -1,0 +1,23 @@
+{
+  "name": "AI Safety Global Society",
+  "logo": "/img/courses/ais_global_society/ais_global_society_logo.svg",
+  "website": "https://www.aisafety.group/",
+  "contact": "info@aisglobalsociety.org",
+  "description": "Global AI safety organization",
+  "courses": [
+    {
+      "id": "ai-safety-global-society-1",
+      "name": "AI Safety Global Society Spring 2025",
+      "description": "8-week program with optional 4-week project phase. A global AIS community. Course run as part of AI Safety Collab.",
+      "location": "Global",
+      "startDate": "2025-03-31",
+      "endDate": "2025-06-23",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": null,
+      "students-completed": null,
+      "links": {}
+    }
+  ]
+}

@@ -1,21 +1,11 @@
-// src/components/Courses/CertificateSection.jsx - Self-contained with own data
+// src/components/Courses/CertificateSection.jsx
+// Updated to use certificate data from courses metadata with all text centralized
 import React from 'react';
 import styles from './CertificateSection.module.css';
 
-// Certificate data lives in the component
-const certificateData = {
-  available: true,
-  sampleImage: "/img/courses/certificate.png",
-  description: "Official LinkedIn certificates available for participants who complete course requirements. The specific requirements vary by the course provider.",
-  requirements: [
-    "Attend at least 80% of the sessions",
-    "Read the textbook, and participate actively in group discussions", 
-    "Submit final projects or equivalent contribution"
-  ]
-};
-
-export default function CertificateSection() {
-  if (!certificateData.available) return null;
+export default function CertificateSection({ certificateInfo }) {
+  // If no certificate info provided or not available, don't render
+  if (!certificateInfo || !certificateInfo.available) return null;
 
   return (
     <div className={styles.certificateSection}>
@@ -23,17 +13,17 @@ export default function CertificateSection() {
         <div className={styles.certificateContent}>
           <div className={styles.certificateText}>
             <div className={styles.certificateHeader}>
-              <h2 className={styles.certificateTitle}>Official Certificates</h2>
+              <h2 className={styles.certificateTitle}>{certificateInfo.title}</h2>
             </div>
             
             <p className={styles.certificateDescription}>
-              {certificateData.description}
+              {certificateInfo.description}
             </p>
             
             <div className={styles.requirementsList}>
-              <h3 className={styles.requirementsTitle}>Common Certificate Requirements:</h3>
+              <h3 className={styles.requirementsTitle}>{certificateInfo.requirementsTitle}</h3>
               <ul className={styles.requirements}>
-                {certificateData.requirements.map((requirement, index) => (
+                {certificateInfo.requirements.map((requirement, index) => (
                   <li key={index} className={styles.requirement}>
                     <span>{requirement}</span>
                   </li>
@@ -44,7 +34,7 @@ export default function CertificateSection() {
           
           <div className={styles.certificateImage}>
             <img
-              src={certificateData.sampleImage}
+              src={certificateInfo.sampleImage}
               alt="Sample AI Safety Atlas Certificate"
               className={styles.certificateSample}
               onError={(e) => {

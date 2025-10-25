@@ -1,0 +1,41 @@
+{
+  "name": "ENS Ulm & ENS Paris-Saclay",
+  "logo": "/img/courses/ens_paris/ens_paris_logo.svg",
+  "website": "https://www.master-mva.com/cours/seminaire-turing/",
+  "contact": "charbel@securite-ia.fr",
+  "description": "Graduate-level AI safety education at top French universities",
+  "courses": [
+    {
+      "id": "ens-turing-seminar-2025",
+      "name": "Turing Seminar – An introduction to AGI Safety 2025",
+      "description": "University course built using Atlas materials, as part of MVA Masters program - 7x2 hour sessions + project",
+      "location": "Paris, France",
+      "startDate": "2025-01-01",
+      "endDate": "2025-05-31",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 25,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://www.master-mva.com/candidater/"
+      }
+    },
+    {
+      "id": "ens-turing-seminar-2024",
+      "name": "Turing Seminar – An introduction to AGI Safety 2024",
+      "description": "University course as part of MVA Master program using Atlas materials",
+      "location": "Paris, France",
+      "startDate": "2024-01-01",
+      "endDate": "2024-05-31",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 22,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://www.master-mva.com/candidater/"
+      }
+    }
+  ]
+}

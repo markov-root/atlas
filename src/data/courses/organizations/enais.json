@@ -1,0 +1,74 @@
+{
+  "name": "ENAIS / AI Safety Collab",
+  "logo": "/img/courses/enais/enais.svg",
+  "website": "https://www.enais.co/collab",
+  "contact": "contact@enais.co",
+  "description": "International initiative promoting AI safety field building efforts.",
+  "courses": [
+    {
+      "id": "ai-safety-collab-4",
+      "name": "AI Safety Collab Summer 2025",
+      "description": "8-week course + 4-week optional project phase",
+      "location": "Global (Online + Local Groups)",
+      "startDate": "2025-08-04",
+      "endDate": "2025-10-27",
+      "applicationDeadline": "2025-07-20",
+      "students-expected": 300,
+      "students-applied": null,
+      "students-enrolled": null,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form",
+        "facilitatorApplication": "https://airtable.com/appZR9Ries3akemlk/pagfE6ZyAFsu4hAjg/form"
+      }
+    },
+    {
+      "id": "ai-safety-collab-3",
+      "name": "AI Safety Collab Spring 2025",
+      "description": "8-week program with optional 4-week project phase. Record-breaking cohort with 236 participants across 30+ countries",
+      "location": "Global (Online + Local Groups)",
+      "startDate": "2025-03-31",
+      "endDate": "2025-06-23",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 236,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form"
+      }
+    },
+    {
+      "id": "ai-safety-collab-2",
+      "name": "AI Safety Collab Summer 2024",
+      "description": "Summer 2024 cohort",
+      "location": "Global (Online)",
+      "startDate": "2024-06-01",
+      "endDate": "2024-08-31",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 60,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form"
+      }
+    },
+    {
+      "id": "ai-safety-collab-1",
+      "name": "AI Safety Collab Winter 2023",
+      "description": "Pilot cohort that launched the international AI Safety Collab program.",
+      "location": "Global (Online)",
+      "startDate": "2023-10-01",
+      "endDate": "2024-01-31",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 63,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form"
+      }
+    }
+  ]
+}

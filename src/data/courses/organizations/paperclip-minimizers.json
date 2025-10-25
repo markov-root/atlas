@@ -1,0 +1,25 @@
+{
+  "name": "Paperclip Minimizers",
+  "logo": "/img/courses/placeholder_courses.svg",
+  "website": null,
+  "contact": "slava.meriton@gmail.com",
+  "description": "Russian-speaking AI safety group. 8-week program with optional 4-week project phase. Part of AI Safety Collab.",
+  "courses": [
+    {
+      "id": "paperclip-minimizers-1",
+      "name": "Paperclip Minimizers Spring 2025",
+      "description": "Russian-speaking AI safety group. 8-week program with optional 4-week project phase. Part of AI Safety Collab.",
+      "location": "Moscow, Russia + Online",
+      "startDate": "2025-03-31",
+      "endDate": "2025-06-23",
+      "applicationDeadline": null,
+      "students-expected": null,
+      "students-applied": null,
+      "students-enrolled": 21,
+      "students-completed": null,
+      "links": {
+        "studentApplication": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form"
+      }
+    }
+  ]
+}
