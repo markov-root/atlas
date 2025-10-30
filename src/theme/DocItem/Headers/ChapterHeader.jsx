@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { ActionButtonTooltip } from '../../../components/UI/Tooltip';
 import styles from './ChapterHeader.module.css';
 import InlineVideoPlayer from '@site/src/components/chapters/Video/InlineVideoPlayer';
+import WarningBanner from '../../../components/chapters/WarningBanner';
 import { 
   buildAudioFiles, 
   hasAudioFiles, 
@@ -468,6 +469,10 @@ export default function ChapterHeader({ frontMatter, title, chapterNumber, bound
           
         </div>
       </div>
+    {/* Warning banner - extends below header */}
+    {frontMatter.warning === "True" && frontMatter.warning_message && (
+      <WarningBanner message={frontMatter.warning_message} />
+    )}
     </header>
   );
 }

@@ -1,0 +1,236 @@
+/* /src/components/chapters/WarningBanner.module.css */
+
+/* Warning banner - extends header seamlessly */
+.warningBanner {
+  position: relative;
+  background-color: #ffd8a8;
+  border-top: 1px solid #ffc078;
+  padding: 1.25rem 3rem;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Texture overlay - matches chapter header */
+.textureOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.15) 2px,
+      rgba(255, 255, 255, 0.15) 4px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.15) 2px,
+      rgba(255, 255, 255, 0.15) 4px
+    );
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Content wrapper */
+.warningContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Icon wrapper */
+.iconWrapper {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.warningIcon {
+  width: 100%;
+  height: 100%;
+  opacity: 0.85;
+  filter: brightness(0) saturate(100%) invert(40%) sepia(60%) saturate(1200%) hue-rotate(10deg) brightness(90%) contrast(90%);
+}
+
+/* Message wrapper */
+.messageWrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.warningLabel {
+  font-weight: 600;
+  color: #c2410c;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+}
+
+.messageDivider {
+  color: #d97706;
+  flex-shrink: 0;
+}
+
+.warningMessage {
+  color: #78350f;
+  flex: 1;
+}
+
+/* Dark mode */
+[data-theme='dark'] .warningBanner {
+  background-color: #78350f;
+  border-top-color: #92400e;
+}
+
+[data-theme='dark'] .textureOverlay {
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.2) 2px,
+      rgba(0, 0, 0, 0.2) 4px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.2) 2px,
+      rgba(0, 0, 0, 0.2) 4px
+    );
+  opacity: 0.4;
+}
+
+[data-theme='dark'] .warningIcon {
+  filter: brightness(0) saturate(100%) invert(85%) sepia(30%) saturate(800%) hue-rotate(330deg) brightness(105%) contrast(95%);
+  opacity: 0.9;
+}
+
+[data-theme='dark'] .warningLabel {
+  color: #fcd34d;
+}
+
+[data-theme='dark'] .messageDivider {
+  color: #fbbf24;
+}
+
+[data-theme='dark'] .warningMessage {
+  color: #fef3c7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 996px) {
+  .warningBanner {
+    padding: 1.125rem 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .warningBanner {
+    padding: 1rem 2rem;
+  }
+  
+  .warningContent {
+    gap: 0.875rem;
+  }
+  
+  .iconWrapper {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .messageWrapper {
+    font-size: 0.8125rem;
+    gap: 0.625rem;
+  }
+  
+  .warningLabel {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .warningBanner {
+    padding: 0.875rem 1.5rem;
+  }
+  
+  .messageWrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .messageDivider {
+    display: none;
+  }
+  
+  .warningMessage {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .warningBanner {
+    padding: 0.75rem 1.25rem;
+  }
+  
+  .iconWrapper {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .warningLabel {
+    font-size: 0.65rem;
+  }
+  
+  .warningMessage {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .warningBanner {
+    transition: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .warningBanner {
+    break-inside: avoid;
+    border: 1px solid #999;
+    background: #ffd8a8;
+  }
+  
+  .textureOverlay {
+    display: none;
+  }
+  
+  .warningIcon {
+    filter: brightness(0);
+  }
+  
+  .warningLabel,
+  .messageDivider,
+  .warningMessage {
+    color: #000;
+  }
+}

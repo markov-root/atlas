@@ -13,6 +13,8 @@ feedback_link: "https://forms.gle/ZsA4hEWUx1ZrtQLL9"
 teach_link: "https://docs.google.com/document/d/1izDWZKR_xB2qj2a8LkbqcnqnjBIC-C7fn-74CIA-m9w/edit?usp=sharing"
 sidebar_position: 9
 slug: /chapters/09/
+warning: "True"
+warning_message: "This chapter is currently in draft form and has not been updated recently. Content may be incomplete or subject to significant revision."
 ---
 import Video from "@site/src/components/chapters/Video";
 import Quote from "@site/src/components/chapters/Quote";
