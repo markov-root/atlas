@@ -1,0 +1,126 @@
+*[alignment]: The challenge of ensuring AI systems reliably pursue intended goals and respect human values.
+
+*[amplification]: A process of enhancing human or AI capabilities through tools collaboration or task decomposition.
+
+*[approximate alignment]: When a mesa-optimizer's objective matches the base objective except for representation limitations.
+
+
+*[base objective]: The explicit objective function that an optimizer uses to train a model.
+*[base optimizer]: An algorithm that searches through possible learned algorithms according to some objective.
+*[behavioral objective]: The goal that appears to be optimized by a system's observable behavior.
+*[capability robustness]: A system's ability to maintain competence across different scenarios and distributions.
+*[circuit]: A collection of neurons or components that work together to perform a specific function.
+*[context window]: The maximum amount of text that a language model can consider at one time.
+*[control evaluations]: Tests of whether safety measures remain effective even under adversarial conditions.
+*[corrigibly aligned]: An AI system that aims to understand and pursue human values even as those values evolve.
+*[debate]: A method where AI systems argue opposing views before a judge to elicit truthful information.
+*[deceptive alignment]: When an AI system appears aligned during training but pursues different objectives after deployment.
+*[developmental interpretability]: The study of how model capabilities and representations evolve during training.
+*[discriminator critique gap]: The difference between a model's ability to recognize problems and its ability to explain them.
+*[distribution shift]: A change in the statistical properties of data between training and deployment.
+*[easy goal inference problem]: The challenge of determining an agent's goals given complete access to its behavior policy.
+*[embedded agency]: An agent which is not modeled as separate from the environment it acts on.
+*[externalized reasoning oversight]: Techniques that encourage models to reveal their reasoning steps in natural language.
+*[factored cognition]: Breaking down complex cognitive tasks into smaller manageable subtasks that can be solved independently.
+*[fast takeoff]: A rapid transition from human-level AI to superintelligent AI giving little time to react.
+*[feature map]: The output of a layer in a convolutional neural network.
+*[feature visualization]: A technique that generates images maximizing the activation of specific neurons or features.
+*[fuzzy task]: A task with ambiguous success criteria that makes generating training signals difficult.
+*[goal inference problem]: The challenge of determining an agent's true goals from its observed behavior.
+*[goal misgeneralization]: When an AI's capabilities generalize but it pursues incorrect or unintended goals.
+*[goal robustness]: A system's ability to maintain its intended objectives across different scenarios.
+*[goodhart's law]: The principle that when a measure becomes a target it ceases to be a good measure.
+*[gradient hacking]: When an AI system intentionally manipulates its own training process to achieve specific outcomes.
+*[inner alignment]: The challenge of ensuring a learned optimizer pursues the same objective it was trained with.
+*[instrumental convergence]: The idea that agents with different terminal goals will adopt many of the same instrumental goals.
+*[instrumental goal]: Goals pursued as means to other ends rather than as ends in themselves.
+*[intelligence explosion]: A hypothetical scenario where machines become more intelligent very quickly through recursive self-improvement.
+*[interpretability]: The study of methods to understand how AI systems process information and make decisions.
+*[iterated amplification]: A method that iteratively improves AI capabilities while maintaining alignment with human values.
+*[learned algorithm]: The algorithms that a base optimizer finds to solve the problem it has been given.
+*[mechanistic anomaly detection]: A technique for identifying when a model produces outputs through unusual internal processes.
+*[mechanistic interpretability]: The study of how neural networks process information by examining their internal components.
+*[mesa-objective]: The objective function that a mesa-optimizer learns to pursue.
+*[mesa-optimizer]: A learned algorithm that is itself an optimizer potentially with its own objective.
+*[monosemantic neuron]: A neuron that responds to just one specific feature or stimulus.
+*[multipolar scenario]: A scenario in which there end up being multiple powerful decision makers.
+*[outer alignment]: The challenge of specifying the correct objective for an AI system to optimize.
+*[pivotal act]: An action that fundamentally changes humanity's long-term trajectory to avoid catastrophic outcomes.
+*[polysemantic neuron]: A neuron that activates in response to a variety of distinct features.
+*[polysemanticity]: The empirical phenomenon where a single neuron or model component responds to multiple unrelated features.
+*[procedural cloning]: A technique that imitates not just actions but the entire decision-making process of an expert.
+*[process oversight]: Supervision that focuses on monitoring the reasoning process rather than just final outputs.
+*[proxy alignment]: When a mesa-optimizer learns to optimize for a proxy of the base objective rather than the objective itself.
+*[proxy gaming]: When an AI achieves high scores on specified objectives while violating the task's intended spirit.
+*[recursive self-improvement]: Self-improvement that leads to further self-improvement in a feedback loop.
+*[reliability amplification]: Techniques to reduce the failure rate of AI systems through redundancy or error checking.
+*[reward function]: A mathematical function that defines what outcomes an AI system should optimize for.
+*[reward hacking]: When an AI system finds unintended ways to maximize its reward function.
+*[reward misspecification]: When the specified reward function does not accurately capture intended objectives.
+*[reward modeling]: The process of learning a reward function from human feedback.
+*[reward shaping]: The practice of adding intermediate rewards to guide learning toward desired behavior.
+*[reward tampering]: When an AI system inappropriately influences or manipulates its own reward process.
+*[robustness]: An agent's ability to maintain performance when exposed to environments different from its training.
+*[scalable oversight]: Methods to maintain meaningful human control over AI systems as they become more capable.
+*[security amplification]: Techniques to make it exponentially difficult to find inputs that cause undesirable behavior.
+*[sharp left turn]: An event where an AI's capabilities suddenly generalize but its alignment doesn't.
+*[singleton]: An agent which has dominant control over the entire world and can prevent competitors from arising.
+*[slow takeoff]: A gradual transition from human-level AI to superintelligent AI allowing time to react.
+*[sovereign AI]: An AI that acts autonomously in pursuit of potentially long-range objectives.
+*[sparse autoencoder]: A neural network that learns to decompress model activations into interpretable features.
+*[specification gaming]: When an AI system achieves the literal objective while violating the intended goal.
+*[superintelligence]: An AI with cognitive abilities far greater than humans across important domains.
+*[superposition]: The phenomenon where neural networks encode more features than available neurons through overlapping representations.
+*[superposition hypothesis]: The theory that neural networks store more features than neurons by encoding features as overlapping combinations.
+*[takeoff speed]: The time elapsed between human-level AI and vastly superhuman AI.
+*[task decomposition]: Breaking down complex tasks into smaller more manageable subtasks.
+*[tool AI]: An artificial general intelligence that functions only as an assistant to human use.
+*[transformative AI]: An AI capable of transforming society as drastically as the industrial revolution or more.
+*[unipolar scenario]: A scenario where a single powerful decision maker emerges.
+*[utility function]: A mathematical function that assigns numerical values to outcomes based on preferences.
+*[weak-to-strong generalization]: When a strong model trained with weak supervision outperforms its supervisor.
+*[wireheading]: When an AI system directly manipulates its reward signal rather than pursuing the intended task.
+*[world model]: A system's internal representation of its environment used to predict outcomes of actions.
+SSL
+self-supervised learning
+pre-training
+transfer learning
+zero shot learning
+few shot learning
+multi modality
+homogenization
+emergence
+bitter lesson
+scaling laws
+best-of-n sampling
+'inference-time compute'
+learned algorithm
+loss landscape
+path dependence
+inductive prior
+inductive bais
+compute
+parameters
+reward hacking
+reward tampering
+reward modeling
+
+METR
+Spear-phishing
+
+many different models -
+
+Falcon 180B
+Llama-3 8B
+...
+
+benchmarks
+CyberSecEval 1
+CyberSecEval 2
+CyberSecEval 3
+InterCode-CTF
+NYU CTF
+PicoCTF
+Cybench
+GPQA
+

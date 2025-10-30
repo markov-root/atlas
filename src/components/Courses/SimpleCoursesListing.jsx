@@ -1,5 +1,5 @@
 // src/components/Courses/SimpleCoursesListing.jsx
-// Updated to use centralized labels from courses-metadata.json for translation
+
 import React, { useState } from 'react';
 import { SmallTooltip } from '../UI/Tooltip';
 import { MapPin, Users, Calendar, Globe, Mail, FileText, Edit3 } from 'lucide-react';
@@ -464,7 +464,16 @@ function CourseCard({ course, organization, labels }) {
 }
 
 function CoursesSection({ title, courses, description, sectionType, labels }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const INITIAL_DISPLAY_COUNT = 5;
+  
   if (!courses || courses.length === 0) return null;
+
+  const isCompletedSection = sectionType === 'completed';
+  const hasMoreCourses = isCompletedSection && courses.length > INITIAL_DISPLAY_COUNT;
+  const displayedCourses = (isCompletedSection && !isExpanded) 
+    ? courses.slice(0, INITIAL_DISPLAY_COUNT) 
+    : courses;
 
   return (
     <div className={styles.coursesSection}>
@@ -475,8 +484,8 @@ function CoursesSection({ title, courses, description, sectionType, labels }) {
         )}
       </div>
       
-      <div className={styles.coursesList}>
-        {courses.map(courseData => (
+      <div className={`${styles.coursesList} ${isCompletedSection && !isExpanded ? styles.coursesListFaded : ''}`}>
+        {displayedCourses.map(courseData => (
           <CourseCard 
             key={courseData.course.id} 
             course={courseData.course} 
@@ -485,6 +494,34 @@ function CoursesSection({ title, courses, description, sectionType, labels }) {
           />
         ))}
       </div>
+      
+      {hasMoreCourses && (
+        <div className={styles.expandButtonContainer}>
+          <button 
+            onClick={() => setIsExpanded(!isExpanded)}
+            className={styles.expandButton}
+          >
+            {isExpanded 
+              ? `Show Less` 
+              : `Show ${courses.length - INITIAL_DISPLAY_COUNT} More Completed Courses`
+            }
+            <svg 
+              width="16" 
+              height="16" 
+              viewBox="0 0 16 16" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2"
+              style={{ 
+                transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                transition: 'transform 0.3s ease'
+              }}
+            >
+              <path d="M4 6l4 4 4-4" />
+            </svg>
+          </button>
+        </div>
+      )}
     </div>
   );
 }
@@ -511,11 +548,16 @@ export default function SimpleCoursesListing({ coursesData }) {
     if (org.courses) {
       org.courses.forEach(course => {
         const status = getStatusFromDates(course.startDate, course.endDate);
+        // For completed courses, sort by end date. For others, sort by start date.
+        const sortDate = status === 'completed' 
+          ? new Date(course.endDate || course.startDate || '1970-01-01')
+          : new Date(course.startDate || course.endDate || '1970-01-01');
+        
         allCourses.push({
           course,
           organization: org,
           status,
-          sortDate: new Date(course.startDate || course.endDate || '1970-01-01')
+          sortDate
         });
       });
     }

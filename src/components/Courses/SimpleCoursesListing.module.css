@@ -1,4 +1,4 @@
-/* src/components/Courses/SimpleCoursesListing.module.css - Minimal style matching your aesthetic */
+/* src/components/Courses/SimpleCoursesListing.module.css */
 
 .coursesContainer {
   width: 100%;
@@ -7,7 +7,7 @@
   padding: 0 2rem;
 }
 
-/* Section Styling - Minimal like your feedback sections */
+/* Section Styling */
 .coursesSection {
   margin-bottom: 4rem;
 }
@@ -64,13 +64,13 @@
   color: var(--atlas-text-secondary, #adb5bd);
 }
 
-/* Courses List - Clean like your card layouts */
+/* Courses List */
 .coursesList {
   display: flex;
   flex-direction: column;
 }
 
-/* Course Card - Clean 3-line structure, no backgrounds or borders */
+/* Course Card */
 .courseCard {
   display: flex;
   flex-direction: column;
@@ -142,7 +142,7 @@
   color: var(--atlas-text, #e9ecef);
 }
 
-/* Status Badge - Simple and clean */
+/* Status Badge */
 .statusBadge {
   padding: 0.375rem 0.875rem;
   border-radius: 6px;
@@ -227,7 +227,7 @@
   opacity: 0.7;
 }
 
-/* Line 3: Action Buttons - Like your pagination buttons */
+/* Action Buttons */
 .actionsLine {
   display: flex;
   gap: 1rem;
@@ -273,7 +273,7 @@
   opacity: 1;
 }
 
-/* Suggest correction button - smaller, secondary style */
+/* Suggest correction button */
 .suggestButton {
   display: flex;
   align-items: center;
@@ -328,7 +328,7 @@
   opacity: 0.3;
 }
 
-/* Correction Form Styles - Similar to your feedback forms */
+/* Correction Form Styles */
 .correctionForm {
   margin-top: 1rem;
   padding: 1.5rem;
@@ -490,6 +490,73 @@
 
 [data-theme='dark'] .emptyText {
   color: var(--atlas-text-secondary, #adb5bd);
+}
+
+/* Fade effect for collapsed course list */
+.coursesListFaded {
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.coursesListFaded::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to bottom, transparent 0%, var(--atlas-background, #ffffff) 100%);
+  pointer-events: none;
+}
+
+[data-theme='dark'] .coursesListFaded::after {
+  background: linear-gradient(to bottom, transparent 0%, var(--atlas-background, #121212) 100%);
+}
+
+/* Expand button container */
+.expandButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+/* Expand button styling */
+.expandButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.5rem;
+  background: var(--atlas-text, #212529);
+  color: var(--atlas-background, #ffffff);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--atlas-font-body, 'Inter', sans-serif);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.expandButton:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.expandButton svg {
+  flex-shrink: 0;
+}
+
+[data-theme='dark'] .expandButton {
+  background: var(--atlas-background, #ffffff);
+  color: var(--atlas-text, #212529);
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .expandButton:hover {
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.15);
 }
 
 /* MOBILE RESPONSIVE DESIGN */
