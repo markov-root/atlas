@@ -1,7 +1,7 @@
 {
   "name": "UBC Vancouver AI Safety",
   "logo": "/img/courses/ubc_vancouver/ubc_vancouver_logo.svg",
-  "website": "https://ubcaisafety.com",
+  "website": "https://www.ubcaisafety.org/",
   "contact": "ubcaisafety@gmail.com",
   "description": "Student-led AI safety education at University of British Columbia",
   "courses": [
@@ -16,10 +16,7 @@
       "students-expected": null,
       "students-applied": null,
       "students-enrolled": 8,
-      "students-completed": null,
-      "links": {
-        "studentApplication": "https://ubcaisafety.com/get-involved"
-      }
+      "students-completed": null
     },
     {
       "id": "ubc-intro-alignment-1",
