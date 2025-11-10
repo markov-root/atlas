@@ -14,12 +14,15 @@ export default function FAQItem({ id, question, shortAnswer, detailedAnswer, isE
       if (hash === id) {
         setIsExpanded(true);
         // Scroll to this question after a short delay to ensure it's rendered
-        setTimeout(() => {
+        const timer = setTimeout(() => {
           const element = document.getElementById(id);
           if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         }, 100);
+        
+        // Cleanup function to clear the timeout
+        return () => clearTimeout(timer);
       }
     }
   }, [id]);
