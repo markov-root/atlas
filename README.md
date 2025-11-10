@@ -8,6 +8,9 @@ Hosted at - https://ai-safety-atlas.com/
  - [ ] feature: for low feedback rating prompt for detailed feedback
  - [ ] feature: feedback component can be more minimal (scroll like testimonials?)
 
+## UI
+- [ ] The sidebar and main content have different shades of gray/black on dark mode, sidebar uses - 
+
 ## UX
  - [ ] Rewrite cleaner documentation for github
 
@@ -21,7 +24,7 @@ Hosted at - https://ai-safety-atlas.com/
  - [ ] feature: about us page
  - [ ] feature: glossary page
  - [ ] feature: roadmap page
- - [ ] feature: bibliography page
+ - [ ] feature: sources/bibliography page
  - [ ] feature: central db of quoted person credentials
  - [ ] feature: donate button + link on topbar
 
@@ -39,24 +42,3 @@ Hosted at - https://ai-safety-atlas.com/
 ## Translations
  - [ ] incorporate i18n -> Current work on Branch https://github.com/CentreSecuriteIA/aisafety_atlas_multilingual/tree/to_multilingual
  - [ ] move all data into json files out of react components
-
-# To Add to Glossary
-- Sources for everything
- - Few-shot learning
- - Zero-shot Learning
- - goal misgeneralization
- - alignment faking
- - sleeper agent
- - scheming
- - self-correction
- - multi-shot learning
- - LRMs, reasoning models
- - theory of mind
- - meta cognition
- - connectionism
- - gofai
- - functionalism
- - epoch
- - natural language
- - foundation model
- - frontier model
