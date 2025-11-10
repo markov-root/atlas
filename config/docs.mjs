@@ -12,12 +12,15 @@ export const docsConfig = {
   remarkPlugins: [
     remarkMath,
     [remarkGlossary, {
-      glossaryDir: './src/data/glossary', // Points to the glossary folder
+      glossaryDir: './src/data/glossary',
       caseSensitive: false,
       excludeNodes: ['code', 'inlineCode', 'link', 'heading'],
       silent: true // Suppress warnings for empty glossary files
     }]
   ],
-  rehypePlugins: [rehypeKatex],
+  rehypePlugins: [
+    [rehypeKatex, {
+      strict: false  // Suppress LaTeX strict mode warnings
+    }]
+  ],
 };
-
