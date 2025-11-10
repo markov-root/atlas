@@ -3,10 +3,9 @@
 /* Ensure Algolia search modal appears above everything */
 .DocSearch-Modal,
 .DocSearch-Container {
-  z-index: 10000 !important; /* Much higher than navbar z-index: 1000 */
+  z-index: 10000 !important;
 }
 
-/* Search container should cover the entire viewport */
 .DocSearch-Container {
   position: fixed !important;
   top: 0 !important;
@@ -15,36 +14,38 @@
   height: 100vh !important;
 }
 
-/* Mobile-specific adjustments */
+
 @media (max-width: 768px) {
-  /* Ensure modal draws completely on top, covering navbar */
   .DocSearch-Modal {
     z-index: 10001 !important;
-    /* Reset any positioning that might be affected by navbar */
     top: 0 !important;
     margin-top: 0 !important;
     max-height: 100vh !important;
   }
   
-  /* Ensure search button is clickable but modal draws over everything */
   .DocSearch-Button {
-    z-index: 1001 !important; /* Just above navbar for interaction */
+    z-index: 1001 !important;
   }
 }
 
-/* Ensure search backdrop covers everything including navbar */
+
 .DocSearch-Container::before {
   z-index: 9999 !important;
 }
 
-/* Optional: Add subtle styling improvements */
-.DocSearch-Modal {
-  /* Ensure clean appearance on top of everything */
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+
+
+.navbar .DocSearch-Button,
+.navbar .navbarSearchContainer_Bca1,
+.navbar [class*="navbarSearchContainer"] {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
-/* Dark mode adjustments if needed */
-[data-theme='dark'] .DocSearch-Modal {
-  /* Ensure good contrast in dark mode */
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+.navbar .DocSearch-Button:focus,
+.navbar .DocSearch-Button:hover {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
