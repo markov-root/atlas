@@ -1,7 +1,6 @@
 // src/utils/coursesLoader.js
 // Auto-discovery loader for course organizations
 // Automatically loads all .json files from data/courses/organizations/ folder
-// Falls back to old courses.json if no organization files exist yet
 
 import metadata from '../data/courses/courses-metadata.json';
 
@@ -28,41 +27,23 @@ function loadCoursesData() {
 
     console.log(`[Courses Loader] Loaded ${organizations.length} organizations from new structure`);
   } catch (error) {
-    console.warn('[Courses Loader] No organizations found in new structure, will use fallback');
+    console.warn('[Courses Loader] No organizations found in new structure');
   }
 
-  // Fallback: if no organization files exist, use old courses.json
+  // If no organizations loaded, return empty structure with metadata
+  // (Fallback removed since we're fully on the new structure)
   if (organizations.length === 0) {
-    try {
-      const oldCoursesData = require('../data/courses.json');
-      console.log('[Courses Loader] Using fallback to old courses.json');
-      
-      return {
-        metadata: {
-          ...metadata,
-          lastUpdated: oldCoursesData.metadata?.lastUpdated || metadata.lastUpdated
-        },
-        organizations: oldCoursesData.organizations || [],
-        certificateInfo: oldCoursesData.certificateInfo || metadata.defaultCertificate,
-        hero: metadata.hero,
-        page: metadata.page,
-        labels: metadata.labels,
-        sections: metadata.sections
-      };
-    } catch (fallbackError) {
-      console.error('[Courses Loader] Could not load old courses.json either:', fallbackError);
-      
-      // Last resort: return empty structure with metadata
-      return {
-        metadata,
-        organizations: [],
-        certificateInfo: metadata.defaultCertificate,
-        hero: metadata.hero,
-        page: metadata.page,
-        labels: metadata.labels,
-        sections: metadata.sections
-      };
-    }
+    console.warn('[Courses Loader] No organizations found, returning empty structure');
+    
+    return {
+      metadata,
+      organizations: [],
+      certificateInfo: metadata.defaultCertificate,
+      hero: metadata.hero,
+      page: metadata.page,
+      labels: metadata.labels,
+      sections: metadata.sections
+    };
   }
 
   // New structure: return auto-discovered organizations with full metadata

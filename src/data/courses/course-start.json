@@ -1,0 +1,60 @@
+{
+  "lastUpdated": "2025-01-15",
+  "description": "Content for the organize course section on the courses page",
+  
+  "section": {
+    "title": "Bring the Atlas to Your Organization",
+    "description": "Ready to bring AI safety education to your community? If you want to create a course around Atlas materials, we are here to support you every step of the way.",
+    "formTitle": "Tell Us About Your Course",
+    "formSubtitle": "Share your plans and we'll help you get started",
+    "studentWarning": "This form is for educators who want to organize a course. If you're a student looking to enroll, please see the course listings above."
+  },
+  
+  "resources": [
+    {
+      "icon": "/img/icons/book.svg",
+      "text": "Open source textbook & materials"
+    },
+    {
+      "icon": "/img/icons/teach.svg",
+      "text": "Public facilitation guides & instructor resources"
+    },
+    {
+      "icon": "/img/icons/acknowledgements.svg",
+      "text": "French Center for AI Safety (CeSIA) + Atlas co-branded certificates for your participants"
+    },
+    {
+      "icon": "/img/icons/settings.svg",
+      "text": "Support for custom curriculum design for your needs"
+    },
+    {
+      "icon": "/img/icons/support.svg",
+      "text": "Any other help we can provide :)"
+    }
+  ],
+  
+  "form": {
+    "placeholders": {
+      "name": "Your name",
+      "email": "Your email",
+      "organization": "University/Organization (optional)",
+      "location": "Location (city, country)",
+      "expectedParticipants": "Expected participants (optional)",
+      "startDateLabel": "Start date (optional)",
+      "endDateLabel": "End date (optional)",
+      "message": "Tell us about your audience, format preferences, or any specific support you'd like (optional)"
+    },
+    "buttons": {
+      "submit": "Send",
+      "submitting": "Sending..."
+    }
+  },
+  
+  "messages": {
+    "success": {
+      "title": "Thank You!",
+      "description": "We're excited to support your course and will be in touch soon with resources and next steps."
+    },
+    "error": "Something went wrong. Please try again or email us directly."
+  }
+}

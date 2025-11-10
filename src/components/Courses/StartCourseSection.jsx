@@ -1,8 +1,8 @@
-// src/components/Courses/StartCourseSection.jsx - Final version with improved messaging
+// src/components/Courses/StartCourseSection.jsx
 import React, { useState } from 'react';
 import styles from './StartCourseSection.module.css';
 
-export default function StartCourseSection() {
+export default function StartCourseSection({ content }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -77,8 +77,8 @@ export default function StartCourseSection() {
                 <circle cx="12" cy="12" r="10" />
               </svg>
             </div>
-            <h3>Thank You!</h3>
-            <p>We're excited to support your course and will be in touch soon with resources and next steps.</p>
+            <h3>{content.messages.success.title}</h3>
+            <p>{content.messages.success.description}</p>
           </div>
         </div>
       </div>
@@ -92,59 +92,29 @@ export default function StartCourseSection() {
           
           {/* Left Side - Information */}
           <div className={styles.leftSide}>
-            <h2 className={styles.startCourseTitle}>Start Your Own Course</h2>
+            <h2 className={styles.startCourseTitle}>{content.section.title}</h2>
             <p className={styles.startCourseDescription}>
-              Ready to bring AI safety education to your community? We're here to support you every step of the way.
+              {content.section.description}
             </p>
             
             <div className={styles.resourcesList}>
-              <div className={styles.resource}>
-                <img 
-                  src="/img/icons/book.svg" 
-                  alt="" 
-                  className={styles.resourceIcon} 
-                />
-                <span>Open source textbook & materials</span>
-              </div>
-              <div className={styles.resource}>
-                <img 
-                  src="/img/icons/teach.svg" 
-                  alt="" 
-                  className={styles.resourceIcon} 
-                />
-                <span>Public facilitation guides & instructor resources</span>
-              </div>
-              <div className={styles.resource}>
-                <img 
-                  src="/img/icons/acknowledgements.svg" 
-                  alt="" 
-                  className={styles.resourceIcon} 
-                />
-                <span>French Center for AI Safety (CeSIA) + Atlas co-branded certificates for your participants</span>
-              </div>
-              <div className={styles.resource}>
-                <img 
-                  src="/img/icons/settings.svg" 
-                  alt="" 
-                  className={styles.resourceIcon} 
-                />
-                <span>Support for custom curriculum design for your needs</span>
-              </div>
-              <div className={styles.resource}>
-                <img 
-                  src="/img/icons/support.svg" 
-                  alt="" 
-                  className={styles.resourceIcon} 
-                />
-                <span>Any other help we can provide :)</span>
-              </div>
+              {content.resources.map((resource, index) => (
+                <div key={index} className={styles.resource}>
+                  <img 
+                    src={resource.icon} 
+                    alt="" 
+                    className={styles.resourceIcon} 
+                  />
+                  <span>{resource.text}</span>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Right Side - Form */}
           <div className={styles.rightSide}>
-            <h3 className={styles.formTitle}>Tell Us About Your Course</h3>
-            <p className={styles.formSubtitle}>Share your plans and we'll help you get started</p>
+            <h3 className={styles.formTitle}>{content.section.formTitle}</h3>
+            <p className={styles.formSubtitle}>{content.section.formSubtitle}</p>
 
             <form onSubmit={handleSubmit} className={styles.courseForm}>
               <div className={styles.formRow}>
@@ -155,7 +125,7 @@ export default function StartCourseSection() {
                     value={formData.name}
                     onChange={handleChange}
                     className={styles.formControl}
-                    placeholder="Your name"
+                    placeholder={content.form.placeholders.name}
                   />
                 </div>
 
@@ -166,7 +136,7 @@ export default function StartCourseSection() {
                     value={formData.email}
                     onChange={handleChange}
                     className={styles.formControl}
-                    placeholder="Your email"
+                    placeholder={content.form.placeholders.email}
                   />
                 </div>
               </div>
@@ -179,7 +149,7 @@ export default function StartCourseSection() {
                     value={formData.organization}
                     onChange={handleChange}
                     className={styles.formControl}
-                    placeholder="University/Organization (optional)"
+                    placeholder={content.form.placeholders.organization}
                   />
                 </div>
 
@@ -190,7 +160,7 @@ export default function StartCourseSection() {
                     value={formData.location}
                     onChange={handleChange}
                     className={styles.formControl}
-                    placeholder="Location (city, country)"
+                    placeholder={content.form.placeholders.location}
                   />
                 </div>
               </div>
@@ -203,7 +173,7 @@ export default function StartCourseSection() {
                     value={formData.expectedParticipants}
                     onChange={handleChange}
                     className={styles.formControl}
-                    placeholder="Expected participants (optional)"
+                    placeholder={content.form.placeholders.expectedParticipants}
                     min="1"
                     max="1000"
                   />
@@ -222,9 +192,9 @@ export default function StartCourseSection() {
                     value={formData.startDate}
                     onChange={handleChange}
                     className={styles.formControl}
-                    title="Planned start date (optional)"
+                    title={content.form.placeholders.startDateLabel}
                   />
-                  <label className={styles.dateLabel}>Start date (optional)</label>
+                  <label className={styles.dateLabel}>{content.form.placeholders.startDateLabel}</label>
                 </div>
 
                 <div className={styles.formGroup}>
@@ -234,9 +204,9 @@ export default function StartCourseSection() {
                     value={formData.endDate}
                     onChange={handleChange}
                     className={styles.formControl}
-                    title="Planned end date (optional)"
+                    title={content.form.placeholders.endDateLabel}
                   />
-                  <label className={styles.dateLabel}>End date (optional)</label>
+                  <label className={styles.dateLabel}>{content.form.placeholders.endDateLabel}</label>
                 </div>
               </div>
 
@@ -247,22 +217,27 @@ export default function StartCourseSection() {
                   onChange={handleChange}
                   rows="3"
                   className={styles.formControl}
-                  placeholder="Tell us about your audience, format preferences, or any specific support you'd like (optional)"
+                  placeholder={content.form.placeholders.message}
                 />
               </div>
 
               {status === 'error' && (
                 <div className={styles.errorMessage}>
-                  Something went wrong. Please try again or email us directly.
+                  {content.messages.error}
                 </div>
               )}
+
+              {/* Student Warning - subtle text before submit button */}
+              <p className={styles.studentWarning}>
+                {content.section.studentWarning}
+              </p>
 
               <button 
                 type="submit" 
                 className={`${styles.submitButton} ${status === 'sending' ? styles.sending : ''}`}
                 disabled={status === 'sending'}
               >
-                {status === 'sending' ? 'Sending...' : 'Send'}
+                {status === 'sending' ? content.form.buttons.submitting : content.form.buttons.submit}
               </button>
             </form>
           </div>
