@@ -1,4 +1,4 @@
-// config/navbar.mjs - Clean, working navbar with FAQ
+// config/navbar.mjs - Clean, working navbar with About dropdown
 export const navbarConfig = {
   title: '',
   logo: {
@@ -12,19 +12,24 @@ export const navbarConfig = {
       label: 'Textbook',
     },
     {
-      to: '/impact/',
-      position: 'right',
-      label: 'Impact',
-    },
-    {
       to: '/courses/',
       position: 'right',
       label: 'Courses',
     },
     {
-      to: '/faq/',
+      label: 'About',
       position: 'right',
-      label: 'FAQ',
+      type: 'dropdown',
+      items: [
+        {
+          to: '/impact/',
+          label: 'Impact',
+        },
+        {
+          to: '/faq/',
+          label: 'FAQ',
+        },
+      ],
     },
     // No custom items - just clean navbar with search
   ],
