@@ -33,6 +33,7 @@ FROM nginx:alpine
 
 RUN rm -f /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --chmod=644 --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
+RUN chmod -R 755 /usr/share/nginx/html && find /usr/share/nginx/html -type f -exec chmod 644 {} \;
 
 EXPOSE 80
