@@ -1,0 +1,32 @@
+---
+import { getTextbooks } from "@/i18n/content";
+
+export async function getStaticPaths() {
+    // Get English textbooks for the root /chapters/[version]/... routes
+    const textbooks = await getTextbooks('en');
+
+    let paths = []
+
+    for (const textbook of textbooks) {
+        for (const chapter of textbook.data.chapters) {
+            for (const section of chapter.sections) {
+                if (!section.slug) {
+                    console.warn(`Got a section with an empty slug in chapter ${chapter.title}`)
+                };
+                paths.push({
+                    params: {
+                        version: textbook.data.version,
+                        chapter: chapter.slug,
+                        section: section.slug,
+                    },
+                })
+            }
+        }
+    }
+
+    return paths
+}
+
+const { version, chapter, section } = Astro.params;
+return Astro.rewrite(`/en/chapters/${version}/${chapter}/${section}`);
+---

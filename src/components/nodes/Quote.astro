@@ -1,0 +1,60 @@
+---
+import type { Node } from '@/textbook-loader/transformer';
+import { Image } from 'astro:assets';
+import NodeRenderer from '@/components/NodeRenderer.astro';
+
+interface Props {
+  speaker?: string;
+  position?: string;
+  date?: string;
+  sourceUrl?: Node;
+}
+
+const portraits = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/static/portraits/*.{png,jpg,jpeg,gif,webp}'
+);
+
+const { speaker, position, date, sourceUrl } = Astro.props;
+
+let portraitImage: ImageMetadata | null = null;
+
+if (speaker) {
+  const speakerSlug = speaker
+    .toLowerCase()
+    .replace(/\s+/g, '_')
+    .replace(/[^\w-]/g, '');
+
+  // Try to find a matching portrait with any supported extension
+  for (const [path, loader] of Object.entries(portraits)) {
+    const filename = path.split('/').pop()?.replace(/\.\w+$/, '');
+    if (filename === speakerSlug) {
+      const mod = await loader();
+      portraitImage = mod.default;
+      break;
+    }
+  }
+}
+---
+
+<blockquote class="not-prose rounded-2xl mb-8 border-gray-200">
+    <div class="">
+    <p class="text-lg text-balance~ leading-7  px-6 py-6 rounded-t-2xl bg-brand-50 text-brand-900">
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-13 text-brand-500 float-left mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z"></path></svg>
+        </span>
+        <slot /></p>
+    {(speaker || position || date) && (
+      <footer class="flex items-center gap-x-4 bg-brand-50/30 px-6 py-4 rounded-b-2xl">
+        {portraitImage && (
+          <Image src={portraitImage} alt={speaker || ''} class="size-12! shrink-0 object-cover object-center rounded-full border  border-brand-50" />
+        )}
+        <span>
+            {speaker && <cite class="font-semibold text-lg block not-italic">{speaker}</cite>}
+            {position && <span class="text-balance">{position}</span>}
+            {date && <span class="">{date}</span>}
+            {sourceUrl && <NodeRenderer node={sourceUrl} />}
+        </span>
+      </footer>
+      )}
+    </div>
+</blockquote>

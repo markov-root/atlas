@@ -1,0 +1,34 @@
+---
+interface Props {
+  content: string;
+  bold?: boolean;
+  italic?: boolean;
+  strikethrough?: boolean;
+  underline?: boolean;
+  link?: string | null;
+}
+
+const { content, bold, italic, strikethrough, underline, link } = Astro.props;
+
+const classes: string[] = [];
+
+if (bold) classes.push('bold');
+if (italic) classes.push('italic');
+if (strikethrough) classes.push('strikethrough');
+if (underline) classes.push('underline');
+---
+
+{link ? (
+  <a href={link} class:list={classes}>{content}</a>
+) : classes.length > 0 ? (
+  <span class:list={classes}>{content}</span>
+) : (
+  <Fragment set:text={content} />
+)}
+
+<style>
+  .bold { font-weight: bold; }
+  .italic { font-style: italic; }
+  .strikethrough { text-decoration: line-through; }
+  .underline { text-decoration: underline; }
+</style>

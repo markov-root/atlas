@@ -1,0 +1,27 @@
+---
+import type { Node } from '@/textbook-loader/transformer';
+import type { InstanceCount } from '@/textbook-loader';
+import NodeRenderer from '@/components/NodeRenderer.astro';
+
+interface Props {
+  term?: string;
+  source?: Node;
+  chapterNumber: number;
+  instanceCount: InstanceCount;
+}
+
+const { term, source, chapterNumber, instanceCount } = Astro.props;
+
+const definitionNumber = `Definition ${chapterNumber}.${instanceCount.inChapter}`;
+---
+
+<div class="definition">
+  <dt class="definition-term">
+    <strong>{definitionNumber}</strong>
+    {term && <> - {term}</>}
+  </dt>
+  <dd class="definition-content">
+    <slot />
+    {source && <cite class="definition-source"><NodeRenderer node={source} /></cite>}
+  </dd>
+</div>

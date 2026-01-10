@@ -1,0 +1,36 @@
+---
+import Default from "@/layouts/Default.astro";
+import Button from "@/components/Button.astro";
+import { useTranslations, getLangFromUrl, getLocalizedPath } from "@/i18n";
+
+const lang = getLangFromUrl(Astro.url);
+const { t } = useTranslations(lang);
+---
+
+<Default title={t('error.notFound')} description={t('error.notFound.description')}>
+    <div class="min-h-[60vh] flex flex-col items-center justify-center px-6 py-24 lg:py-32">
+        <p class="text-base font-semibold text-brand-600">404</p>
+        <h1 class="mt-4 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-white">
+            {t('error.notFound')}
+        </h1>
+        <p class="mt-6 text-base text-gray-600 dark:text-gray-400">
+            {t('error.notFound.description')}
+        </p>
+        <div class="mt-10 flex flex-col sm:flex-row items-center gap-4">
+            <Button link={getLocalizedPath('/', lang)} variant="primary">
+                {t('error.backHome')}
+            </Button>
+        </div>
+        <div class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-semibold">
+            <a href={getLocalizedPath('/read', lang)} class="text-brand-600 hover:text-brand-500">
+                {t('nav.read')} <span aria-hidden="true">&rarr;</span>
+            </a>
+            <a href={getLocalizedPath('/teach', lang)} class="text-brand-600 hover:text-brand-500">
+                {t('nav.teach')} <span aria-hidden="true">&rarr;</span>
+            </a>
+            <a href={getLocalizedPath('/join-study-group', lang)} class="text-brand-600 hover:text-brand-500">
+                {t('nav.joinStudyGroup')} <span aria-hidden="true">&rarr;</span>
+            </a>
+        </div>
+    </div>
+</Default>

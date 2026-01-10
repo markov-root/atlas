@@ -1,0 +1,91 @@
+---
+import BaseHead from '@/components/BaseHead.astro'
+import Footer from '@/components/Footer.astro'
+import Logomark from '@/components/brand/Logomark.astro';
+import { useTranslations, getLangFromUrl, getLocalizedPath, type Lang } from '@/i18n'
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: Lang;
+}
+
+const { title, description, lang: langProp } = Astro.props
+const lang = langProp ?? getLangFromUrl(Astro.url)
+const { t } = useTranslations(lang)
+---
+<html lang={lang}>
+	<head>
+		<script is:inline>document.documentElement.classList.add('js')</script>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<BaseHead title={title} description={description} lang={lang} />
+		<slot name="head" />
+	</head>
+	<body>
+        <header class="bg-white dark:bg-gray-900">
+        <nav aria-label="Global" class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+            <div class="flex lg:flex-1">
+            <a href={getLocalizedPath('/', lang)} class="-m-1.5 p-1.5">
+                <span class="sr-only">{t('site.name')}</span>
+                <Logomark class="h-8 w-auto text-brand-600 dark:text-white" />
+            </a>
+            </div>
+            <div class="flex lg:hidden">
+            <button type="button" command="show-modal" commandfor="mobile-menu" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 dark:text-gray-400">
+                <span class="sr-only">{t('nav.openMenu')}</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+                <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+            </div>
+            <div class="hidden lg:flex lg:gap-x-12">
+            <a href={getLocalizedPath('/read', lang)} class="text-sm/6 font-semibold text-gray-900 dark:text-white">{t('nav.read')}</a>
+            <a href={getLocalizedPath('/teach', lang)} class="text-sm/6 font-semibold text-gray-900 dark:text-white">{t('nav.teach')}</a>
+            <a href={getLocalizedPath('/join-study-group', lang)} class="text-sm/6 font-semibold text-gray-900 dark:text-white">{t('nav.joinStudyGroup')}</a>
+            </div>
+            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                <a href={getLocalizedPath('/about', lang)} class="text-sm/6 font-semibold text-gray-900 dark:text-white">{t('nav.about')}</a>
+            </div>
+        </nav>
+        <el-dialog>
+            <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
+            <div tabindex="0" class="fixed inset-0 focus:outline-none">
+                <el-dialog-panel class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 dark:bg-gray-900 dark:sm:ring-gray-100/10">
+                <div class="flex items-center justify-between">
+                    <a href={getLocalizedPath('/', lang)} class="-m-1.5 p-1.5">
+                    <span class="sr-only">{t('site.name')}</span>
+                    <Logomark class="h-8 w-auto text-brand-600 dark:text-white" />
+                    </a>
+                    <button type="button" command="close" commandfor="mobile-menu" class="-m-2.5 rounded-md p-2.5 text-gray-700 dark:text-gray-400">
+                    <span class="sr-only">{t('nav.closeMenu')}</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+                        <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    </button>
+                </div>
+                <div class="mt-6 flow-root">
+                    <div class="-my-6 divide-y divide-gray-500/10 dark:divide-white/10">
+                    <div class="space-y-2 py-6">
+                        <a href={getLocalizedPath('/read', lang)} class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-white/5">{t('nav.read')}</a>
+                        <a href={getLocalizedPath('/teach', lang)} class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-white/5">{t('nav.teach')}</a>
+                        <a href={getLocalizedPath('/join-study-group', lang)} class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-white/5">{t('nav.joinStudyGroup')}</a>
+                    </div>
+                    <div class="py-6">
+                        <a href={getLocalizedPath('/about', lang)} class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-white/5">{t('nav.about')}</a>
+                    </div>
+                    </div>
+                </div>
+                </el-dialog-panel>
+            </div>
+            </dialog>
+        </el-dialog>
+        </header>
+	    <slot />
+
+		<Footer lang={lang} />
+		<script>
+		  import '@tailwindplus/elements'
+		</script>
+	</body>
+</html>

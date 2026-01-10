@@ -1,0 +1,57 @@
+---
+import type { Node } from '@/textbook-loader/transformer';
+
+import Span from './nodes/Span.astro';
+import Paragraph from './nodes/Paragraph.astro';
+import Heading from './nodes/Heading.astro';
+import List from './nodes/List.astro';
+import ListItem from './nodes/ListItem.astro';
+import Quote from './nodes/Quote.astro';
+import Figure from './nodes/Figure.astro';
+import Video from './nodes/Video.astro';
+import Definition from './nodes/Definition.astro';
+import DisplayEquation from './nodes/DisplayEquation.astro';
+import InlineEquation from './nodes/InlineEquation.astro';
+import NoteBox from './nodes/NoteBox.astro';
+import Iframe from './nodes/Iframe.astro';
+import SpanGroup from './nodes/SpanGroup.astro';
+import Footnote from './nodes/Footnote.astro';
+import Callout from './nodes/Callout.astro';
+import Link from './nodes/Link.astro';
+import GlossaryDefinition from './nodes/GlossaryDefinition.astro';
+
+interface Props {
+  node: Node;
+}
+
+const { node } = Astro.props;
+
+const components: Record<string, any> = {
+  Span,
+  Paragraph,
+  Heading,
+  List,
+  ListItem,
+  Quote,
+  Figure,
+  Video,
+  Definition,
+  DisplayEquation,
+  InlineEquation,
+  NoteBox,
+  Iframe,
+  SpanGroup,
+  Footnote,
+  Callout,
+  Link,
+  GlossaryDefinition,
+};
+
+const Tag = components[node.name];
+---
+
+{Tag && (
+  <Tag {...node.attributes}>
+    {node.children?.map(child => <Astro.self node={child} />)}
+  </Tag>
+)}

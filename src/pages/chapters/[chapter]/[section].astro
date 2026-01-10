@@ -1,0 +1,48 @@
+---
+import { getTextbooks } from "@/i18n/content";
+
+export async function getStaticPaths() {
+  // Get English textbooks for legacy redirects
+  const textbooks = await getTextbooks('en');
+
+  let paths = []
+
+  for (const textbook of textbooks) {
+    for (const chapter of textbook.data.chapters) {
+      for (const section of chapter.sections) {
+        // Generate paths for both padded (01) and unpadded (1) chapter/section numbers
+        const chapterVariants = [
+          String(chapter.number),
+          String(chapter.number).padStart(2, '0'),
+        ];
+        const sectionVariants = [
+          String(section.number),
+          String(section.number).padStart(2, '0'),
+        ];
+
+        for (const chapterParam of chapterVariants) {
+          for (const sectionParam of sectionVariants) {
+            paths.push({
+              params: {
+                chapter: chapterParam,
+                section: sectionParam,
+              },
+              props: {
+                version: textbook.data.version,
+                chapterSlug: chapter.slug,
+                sectionSlug: section.slug,
+              },
+            })
+          }
+        }
+      }
+    }
+  }
+
+  return paths
+}
+
+const { version, chapterSlug, sectionSlug } = Astro.props;
+
+return Astro.redirect(`/chapters/${version}/${chapterSlug}/${sectionSlug}`, 301);
+---

@@ -1,0 +1,113 @@
+---
+import type { Chapter, Textbook } from '@/textbook-loader';
+import Default from "@/layouts/Default.astro"
+import Clock from "@/components/icons/Clock.astro"
+import Button from "@/components/Button.astro"
+import { formatReadingTime } from "@/textbook-loader/utils"
+import { languages, useTranslations, getLocalizedPath, type Lang } from "@/i18n";
+import { getTextbooksForLanguage, getLatestTextbook } from "@/i18n/content";
+
+interface Props {
+  textbook: Textbook
+  lang: Lang
+}
+
+export async function getStaticPaths() {
+  const langs = Object.keys(languages) as Lang[];
+  const paths: { params: { lang: string; version?: string }; props: { textbook: Textbook; lang: Lang } }[] = [];
+  
+  for (const lang of langs) {
+    // Only generate paths for textbooks that actually exist in this language
+    const textbooks = await getTextbooksForLanguage(lang);
+    
+    for (const textbook of textbooks) {
+      paths.push({
+        params: { lang, version: textbook.data.version },
+        props: { textbook: textbook.data, lang }
+      });
+    }
+    
+    // Default version (no version in URL) - use latest for this language
+    if (textbooks.length > 0) {
+      const latest = await getLatestTextbook(lang);
+      paths.push({
+        params: { lang, version: undefined },
+        props: { textbook: latest, lang }
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { textbook, lang } = Astro.props;
+const { t } = useTranslations(lang);
+---
+<Default title={t('chapters.title')} lang={lang}>
+    <header class="bg-white py-24 sm:py-32 border-b border-gray-300">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl lg:mx-0">
+          <h2 class="text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">{t('chapters.title')}</h2>
+          <p class="mt-8 text-lg font-medium text-pretty text-gray-700 sm:text-xl/8">
+              {t('chapters.description')}
+          </p>
+          <ul class="mt-8">
+              <li class="flex items-center space-x-2">
+                  <Clock class="w-7 h-auto" />
+                  <span class="text-lg">
+                      {formatReadingTime(textbook.readingTimeInSeconds)}
+                  </span>
+              </li>
+          </ul>
+
+          <div class="flex gap-4 mt-12">
+            <Button large link={getLocalizedPath(`/chapters/${textbook.version}/${textbook.chapters[0].slug}/${textbook.chapters[0].sections[0].slug}`, lang)}>
+                <span>{t('chapters.startReading')}</span>
+                <span aria-hidden="true" class="ml-2">&rarr;</span>
+            </Button>
+            {textbook.pdfLink && (
+              <Button large variant="outline" link={textbook.pdfLink}>
+                  {t('chapters.download')}
+              </Button>
+            )}
+          </div>
+        </div>
+      </div>
+    </header>
+
+    {textbook.chapters.map((chapter: Chapter) => (
+    <section class:list={["py-24 sm:py-32 border-b border-gray-300", chapter.number % 2 === 1 ? 'bg-gray-100' : 'bg-white']}>
+        <div class="mx-auto max-w-7xl grid xl:grid-cols-5 px-6 lg:px-8 xl:gap-x-20 gap-y-10">
+            <div class="xl:col-span-2">
+                <h2 class="text-2xl/7 font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+                    {chapter.number}.
+                    <a class="underline" href={getLocalizedPath(`/chapters/${textbook.version}/${chapter.slug}/${chapter.sections[0].slug}/`, lang)}>{chapter.title}</a>
+                </h2>
+                {chapter.description && <p class="max-w-4xl text-lg text-gray-700 mt-8 text-balance">{chapter.description}</p>}
+            </div>
+            <div class="xl:col-span-3">
+                <ul class="marker:text-gray-700 space-y-4 text-xl">
+                    {chapter.sections.map(section => (
+                    <li>
+                        {chapter.number}.{section.number}.
+                        <a class="underline" href={getLocalizedPath(`/chapters/${textbook.version}/${chapter.slug}/${section.slug}`, lang)}>{section.title}</a>
+                    </li>
+                    ))}
+                </ul>
+                <div class="flex space-x-4 mt-12">
+                    <Button large variant={chapter.number % 2 === 1 ? "white" : "gray"} link={getLocalizedPath(`/chapters/${textbook.version}/${chapter.slug}/${chapter.sections[0].slug}/`, lang)}>
+                        <span>{t('nav.read')}</span>
+                        <span class="ml-2">&rarr;</span>
+                    </Button>
+                    <span class="flex items-center space-x-1 text-gray-700">
+                        <Clock class="w-5 h-auto" />
+                        <span class="">
+                            {formatReadingTime(chapter.readingTimeInSeconds)}
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+    ))}
+</Default>

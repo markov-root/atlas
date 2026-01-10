@@ -1,0 +1,10 @@
+---
+interface Props {
+  ordered: boolean
+}
+
+const { ordered } = Astro.props;
+
+const Tag = ordered ? "ol" : "ul"
+---
+<Tag><slot /></Tag>

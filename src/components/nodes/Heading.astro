@@ -1,0 +1,20 @@
+---
+import { slugify } from '@/textbook-loader/utils';
+
+interface Props {
+  level: number;
+  slug: string;
+}
+
+const { level, slug } = Astro.props;
+const Tag = `h${Math.min(level, 6)}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+---
+
+<Tag id={slug} data-pagefind-index-attrs="id" class="group">
+  <slot />
+  <a
+    href={`#${slug}`}
+    class="ml-2 text-gray-400 opacity-0 transition-opacity group-hover:opacity-100 hover:text-brand-500 no-underline"
+    aria-label="Link to this section"
+  >#</a>
+</Tag>

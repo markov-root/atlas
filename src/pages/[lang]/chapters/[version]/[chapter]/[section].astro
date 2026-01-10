@@ -1,0 +1,196 @@
+---
+import NodeRenderer from '@/components/NodeRenderer.astro';
+import Reader from '@/layouts/Reader.astro';
+import type { Chapter, Section, SectionRef } from '@/textbook-loader';
+import type { Textbook } from '@/textbook-loader/loader';
+import { formatReadingTime } from '@/textbook-loader/utils';
+import Clock from "@/components/icons/Clock.astro"
+import ChevronLeft from "@/components/icons/ChevronLeft.astro"
+import ChevronRight from "@/components/icons/ChevronRight.astro"
+import Button from "@/components/Button.astro"
+import { languages, useTranslations, getLocalizedPath, type Lang } from "@/i18n";
+import { getTextbooksForLanguage } from "@/i18n/content";
+
+interface Props {
+    version: string
+    chapter: Chapter
+    section: Section
+    textbook: Textbook
+    lang: Lang
+}
+
+export async function getStaticPaths() {
+    const langs = Object.keys(languages) as Lang[];
+    let paths = []
+
+    for (const lang of langs) {
+        // Only generate paths for textbooks that actually exist in this language
+        const textbooks = await getTextbooksForLanguage(lang);
+
+        for (const textbook of textbooks) {
+            for (const chapter of textbook.data.chapters) {
+                for (const section of chapter.sections) {
+                    paths.push({
+                        params: {
+                            lang,
+                            version: textbook.data.version,
+                            chapter: chapter.slug,
+                            section: section.slug,
+                        },
+                        props: {
+                            version: textbook.data.version,
+                            chapter,
+                            section,
+                            textbook: textbook.data,
+                            lang
+                        },
+                    })
+                }
+            }
+        }
+    }
+
+    return paths
+}
+
+const { version, section, chapter, textbook, lang } = Astro.props;
+const { t } = useTranslations(lang);
+
+let pageDescription = section.number === 1 ? chapter.description : section.description
+
+function getSectionInfo(ref: SectionRef | null) {
+    if (!ref) return null;
+    const ch = textbook.chapters.find(c => c.number === ref.chapter);
+    if (!ch) return null;
+    const sec = ch.sections.find(s => s.number === ref.section);
+    if (!sec) return null;
+    return { chapter: ch, section: sec };
+}
+
+const prevInfo = getSectionInfo(section.prevSection);
+const nextInfo = getSectionInfo(section.nextSection);
+
+// Check if this is the last section in the textbook
+const isLastSection = section.nextSection === null;
+
+---
+<Reader title={`${section.title} - Chapter ${chapter.number}`} description="" activeSection={section} textbook={textbook} lang={lang} breadcrumbs={[
+    { text: `${t('section.chapter', { number: chapter.number, title: '' }).split(':')[0]}`, url: getLocalizedPath(`/chapters/${version}/${chapter.slug}/${chapter.sections[0].slug}`, lang) },
+    { text: section.title, url: '#' }
+]}>
+
+    <div class="bg-brand-600 py-12 sm:py-16 md:py-24 lg:py-32" slot="header">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="max-w-2xl lg:mx-0">
+                <p class="text-base/7 font-semibold text-white/80">{t('section.chapter', { number: chapter.number, title: chapter.title })}</p>
+                <h1 class="mt-2 text-5xl font-semibold tracking-tight text-white sm:text-7xl text-balance">{section.title}</h1>
+                {pageDescription && <p class="mt-8 text-lg font-medium text-pretty text-white/90 sm:text-xl/8">{pageDescription}</p>}
+                <ul class="md:flex gap-x-8">
+                    <li class="flex items-center space-x-1 text-white/90 mt-12 text-lg">
+                        <Clock class="h-6 w-auto" />
+                        <span class="ml-1">
+                            {formatReadingTime(section.readingTimeInSeconds)}
+                        </span>
+                    </li>
+                    <li class="flex items-center space-x-1 text-white/90 mt-12 text-lg">
+                        <span>
+                            {t('section.writtenBy')}
+                            {chapter.meta.authors.reduce((_, author) => `${_}, ${author.name}`, '').substring(2)}
+                        </span>
+                    </li>
+                </ul>
+                {section.number === 1 && chapter.pdfLink && (
+                <div class="mt-16">
+                    <Button link={chapter.pdfLink} variant="white">{t('chapters.download')}</Button>
+                </div>
+                )}
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="flex items-start gap-8">
+        <article class="min-w-0 max-w-prose prose prose-a:text-brand-600 xl:prose-lg xl:shrink-0 prose-figure:first:mt-0!" data-pagefind-body>
+            {section.nodes.map(node => <NodeRenderer node={node} />)}
+
+            {section.footnotes && section.footnotes.length > 0 && (
+            <section class="mt-12 pt-8 border-t border-gray-200">
+                <h2 id="footnotes" class="text-xl font-semibold mb-4 text-gray-900 sr-only">{t('section.footnotes')}</h2>
+                <ol class="list-decimal list-outside pl-6 text-sm text-gray-700 space-y-3">
+                    {section.footnotes.map(({ number, children }) => (
+                    <li id={`fn-${number}`} class="pl-2 target:bg-brand-50 target:border-l-2 target:border-brand-500 target:-ml-2 target:pl-1.5 target:pr-2">
+                        {children.map(child => <NodeRenderer node={child} />)}
+                        <a href={`#fnref-${number}`} class="ml-2 text-brand-600 no-underline text-sm hover:underline" aria-label={t('section.backToContent')}>↩</a>
+                    </li>
+                    ))}
+                </ol>
+            </section>
+            )}
+
+            {section.number === 1 && chapter.meta.acknowledgements && chapter.meta.acknowledgements.length > 0 && (
+            <>
+                <h3 id="acknowledgements">{t('section.acknowledgements')}</h3>
+                <p>
+                    {t('section.acknowledgementsText', { names: chapter.meta.acknowledgements.join(', ').replace(/, ([^,]*)$/, ' and $1') })}
+                </p>
+            </>
+            )}
+
+            <nav class="not-prose mt-16 border-t border-gray-200 pt-8">
+                <div class="grid md:grid-cols-2 gap-x-12">
+                    {prevInfo ? (
+                    <a href={getLocalizedPath(`/chapters/${version}/${prevInfo.chapter.slug}/${prevInfo.section.slug}`, lang)} class="group bg-gray-100 px-6 py-4 w-full rounded-2xl flex gap-x-4 items-center">
+                            <span class="sr-only">{t('section.nav.previous')}</span>
+                            <ChevronLeft class="w-7 text-gray-500" />
+                        <span class="text-base font-medium text-gray-900 group-hover:text-brand-600">
+                            {prevInfo.chapter.number}.{prevInfo.section.number}. {prevInfo.section.title}
+                        </span>
+                    </a>
+                    ) : <div />}
+                    {nextInfo ? (
+                    <a href={getLocalizedPath(`/chapters/${version}/${nextInfo.chapter.slug}/${nextInfo.section.slug}`, lang)} class="group flex items-center justify-end text-right bg-brand-600 w-full px-6 py-4 rounded-2xl gap-x-4 hover:bg-brand-500">
+                        <span class="sr-only">{t('section.nav.next')}</span>
+                        <span class="text-base font-medium group-hover:text-white/90 text-white">
+                            {nextInfo.chapter.number}.{nextInfo.section.number}.
+                            {nextInfo.section.title}
+                        </span>
+                        <ChevronRight class="w-7 text-white" />
+                    </a>
+                    ) : <div />}
+                </div>
+            </nav>
+        </article>
+        {section.toc.length > 0 && (
+        <aside class="hidden xl:block sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto w-64 shrink-0">
+            <nav class="border-l border-gray-200 pl-4">
+                <h2 class="text-sm font-semibold text-gray-900 mb-3">{t('section.onThisPage')}</h2>
+                <ul class="space-y-2">
+                    {(() => {
+                        let h2Count = 0;
+                        return section.toc
+                            .filter(item => item.level === 2 || item.level === 3)
+                            .map(item => {
+                                if (item.level === 2) h2Count++;
+                                return (
+                                    <li class={item.level === 3 ? "pl-4" : ""}>
+                                        <a href={`#${item.slug}`} class="text-sm text-gray-600 hover:text-brand-600 transition-colors block">
+                                            {item.level === 2 ? `${h2Count}. ${item.title}` : item.title}
+                                        </a>
+                                    </li>
+                                );
+                            });
+                    })()}
+                    {section.footnotes && section.footnotes.length > 0 && (
+                        <li class="mt-4">
+                            <a href="#footnotes" class="text-sm text-gray-600 hover:text-brand-600 transition-colors block">
+                                {t('section.footnotes')}
+                            </a>
+                        </li>
+                    )}
+                </ul>
+            </nav>
+        </aside>
+        )}
+    </div>
+</Reader>

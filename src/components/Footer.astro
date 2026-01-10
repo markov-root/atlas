@@ -1,0 +1,91 @@
+---
+import Logomark from './brand/Logomark.astro'
+import { useTranslations, getLangFromUrl, getLocalizedPath, type Lang } from '@/i18n'
+
+interface Props {
+  lang?: Lang
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props
+const { t, tRich } = useTranslations(lang)
+
+const licenseHtml = tRich('footer.license', {
+  license: (text) => `<a class="underline" href="https://creativecommons.org/licenses/by-sa/4.0">${text}</a>`
+})
+---
+
+<footer class="relative overflow-hidden">
+    <div class="bg-gray-100">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8 sm:py-12 lg:py-16 z-10 relative">
+        <Logomark class="max-h-12 not-dark:text-brand-600 dark:text-white mb-4" />
+        <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Company name" class="h-9 not-dark:hidden" />
+        <p class="text-balance text-gray-800 dark:text-gray-400 mb-6 text-xl max-w-lg lg:text-2xl lg:max-w-xl leading-10">
+            {t('site.tagline')}
+        </p>
+        <a href="mailto:markov@ai-safety-atlas.com" class="text-gray-800 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200 underline">
+            {t('footer.contactUs')}
+        </a>
+        </div>
+    </div>
+    <div class="bg-gray-100 border-t border-gray-300">
+    <div class="px-6 lg:px-8 py-8 lg:py-12 md:grid md:grid-cols-3 md:gap-8 max-w-7xl mx-auto z-10 relative space-y-8 md:space-y-0">
+        <div>
+            <h3 class="font-semibold text-gray-900 dark:text-white">{t('footer.navigation')}</h3>
+            <ul role="list" class="mt-6 space-y-4">
+                <li>
+                    <a href={getLocalizedPath('/read', lang)} class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('nav.read')}</a>
+                </li>
+                <li>
+                    <a href={getLocalizedPath('/teach', lang)} class="text-gray-700 underline  hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('nav.teach')}</a>
+                </li>
+                <li>
+                    <a href={getLocalizedPath('/join-study-group', lang)} class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('nav.joinStudyGroup')}</a>
+                </li>
+                <li>
+                    <a href={getLocalizedPath('/about', lang)} class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('nav.about')}</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="font-semibold text-gray-900 dark:text-white">{t('footer.fundedBy')}</h3>
+            <ul role="list" class="mt-6 space-y-4">
+                <li>
+                    <a href="https://cesia.org" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('footer.funders.cesia')}</a>
+                </li>
+                <li>
+                    <a href="https://coefficientgiving.org" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('footer.funders.coefficient')}</a>
+                </li>
+                <li>
+                    <a href="https://manifund.org" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('footer.funders.manifund')}</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="font-semibold text-gray-900 dark:text-white">{t('footer.ourSocials')}</h3>
+            <ul role="list" class="mt-6 space-y-4">
+                <li>
+                    <a href="https://github.com/markov-root/atlas" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('footer.socials.GitHub')}</a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@securite-ia" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('footer.socials.YouTube')}</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    </div>
+    <div class="border-t border-gray-900/10 py-6 dark:border-white/10 relative z-10 bg-white">
+        <div class="max-w-7xl mx-auto w-full  flex justify-between flex-wrap px-6 lg:px-8">
+            <p class="text-sm/6 text-gray-700 dark:text-gray-300" set:html={licenseHtml} />
+            <ul class="text-sm/6 flex flex-wrap space-x-6 text-gray-700 dark:text-gray-300 mt-4 sm:mt-0">
+                <li>
+                    <a href="https://foreview.org" class="underline">{t('footer.helpFromForeview')}</a>
+                </li>
+                <li>
+                    <a href={getLocalizedPath('/privacy-policy', lang)} class="underline">{t('footer.privacyPolicy')}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <Logomark class="h-full w-auto hidden md:block -right-8 absolute -top-[1.6175rem] text-gray-50 z-1" />
+</footer>

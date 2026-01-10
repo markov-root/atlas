@@ -1,0 +1,176 @@
+---
+import Logomark from '@/components/brand/Logomark.astro'
+import ThumbsUp from '@/components/icons/ThumbsUp.astro'
+import ThumbsDown from '@/components/icons/ThumbsDown.astro'
+import Button from '@/components/Button.astro'
+
+interface Props {
+  version: string
+  chapterNumber: number
+  sectionNumber: number
+  contentHash: string
+  isLastSection: boolean
+}
+
+const { version, chapterNumber, sectionNumber, contentHash, isLastSection } = Astro.props
+
+const feedbackType = isLastSection ? 'conclusion' : 'section'
+const storageKey = `feedback-${version}-${chapterNumber}-${sectionNumber}`
+---
+
+<section class="pt-8 border-gray-200 if-js" data-feedback-section>
+  <!-- Separator -->
+  <div class="flex items-center gap-4 mb-8">
+      <Logomark class="h-8 w-auto text-brand-600" />
+    <div class="flex-1 h-px bg-gray-300"></div>
+  </div>
+
+  <!-- Feedback Form -->
+  <div
+    id="feedback-form"
+    data-storage-key={storageKey}
+    data-version={version}
+    data-chapter-number={chapterNumber}
+    data-section-number={sectionNumber}
+    data-content-hash={contentHash}
+    data-feedback-type={feedbackType}
+  >
+    <h3 class="text-xl font-semibold text-gray-900">Was this section useful?</h3>
+
+    <div class="flex gap-4 mt-2">
+      <button
+        type="button"
+        data-feedback-vote="up"
+        class="inline-flex items-center gap-2 p-4 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-100 hover:border-gray-400 hover:text-gray-900 active:bg-gray-200 active:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:bg-gray-100 focus:border-gray-400 focus:text-gray-900 transition-colors"
+      >
+        <ThumbsUp class="h-5 w-5" />
+        <span class="sr-only">Yes, this section was useful</span>
+      </button>
+      <button
+        type="button"
+        data-feedback-vote="down"
+        class="inline-flex items-center gap-2 p-4 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-100 hover:border-gray-400 hover:text-gray-900 active:bg-gray-200 active:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:bg-gray-100 focus:border-gray-400 focus:text-gray-900 transition-colors"
+      >
+        <ThumbsDown class="h-5 w-5" />
+        <span class="sr-only">No, this section could be improved</span>
+      </button>
+    </div>
+
+    <!-- Improvement textarea (hidden by default, shown on thumbs down) -->
+    <div id="improvement-section" class="hidden mt-4">
+      <label for="improvement-text" class="block font-medium text-gray-700 mb-2">
+        (Optional) What should have been better?
+      </label>
+      <textarea
+        id="improvement-text"
+        rows="3"
+        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 resize-none max-w-md block"
+        placeholder="Your feedback..."
+      ></textarea>
+
+      <Button
+        type="button"
+        id="submit-feedback"
+        class="mt-4"
+      >
+        Submit Feedback
+      </Button>
+    </div>
+  </div>
+
+  <!-- Success Message (hidden by default) -->
+  <div id="feedback-success" class="hidden">
+    <h3 class="text-xl font-semibold text-gray-900 mb-2">Thank you for your feedback</h3>
+    <p class="text-gray-600">Your input helps improve the Atlas.</p>
+  </div>
+</section>
+
+<script>
+  function initFeedback() {
+    const feedbackSection = document.querySelector('[data-feedback-section]')
+    if (!feedbackSection) return
+
+    const feedbackForm = document.getElementById('feedback-form') as HTMLElement
+    const feedbackSuccess = document.getElementById('feedback-success') as HTMLElement
+    const improvementSection = document.getElementById('improvement-section') as HTMLElement
+    const improvementText = document.getElementById('improvement-text') as HTMLTextAreaElement
+    const submitButton = document.getElementById('submit-feedback') as HTMLButtonElement
+    const thumbsUpBtn = document.querySelector('[data-feedback-vote="up"]') as HTMLButtonElement
+    const thumbsDownBtn = document.querySelector('[data-feedback-vote="down"]') as HTMLButtonElement
+
+    if (!feedbackForm || !feedbackSuccess) return
+
+    const storageKey = feedbackForm.dataset.storageKey!
+    const version = feedbackForm.dataset.version!
+    const chapterNumber = parseInt(feedbackForm.dataset.chapterNumber!, 10)
+    const sectionNumber = parseInt(feedbackForm.dataset.sectionNumber!, 10)
+    const contentHash = feedbackForm.dataset.contentHash!
+    const feedbackType = feedbackForm.dataset.feedbackType!
+
+    // Check if already submitted
+    if (localStorage.getItem(storageKey)) {
+      feedbackForm.classList.add('hidden')
+      feedbackSuccess.classList.remove('hidden')
+      return
+    }
+
+    let selectedVote: 'up' | 'down' | null = null
+
+    async function submitFeedback(vote: 'up' | 'down', improvement?: string) {
+      const payload: Record<string, unknown> = {
+        feedback_type: feedbackType,
+        vote,
+        version,
+        chapter_number: chapterNumber,
+        section_number: sectionNumber,
+        content_hash: contentHash,
+        submitted_at: new Date().toISOString(),
+      }
+
+      if (improvement && improvement.trim()) {
+        payload.improvement = improvement.trim()
+      }
+
+      try {
+        await fetch('https://formspree.io/f/mdkzezkv', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        })
+
+        // Mark as submitted regardless of response
+        localStorage.setItem(storageKey, 'true')
+        feedbackForm.classList.add('hidden')
+        feedbackSuccess.classList.remove('hidden')
+      } catch {
+        // Still mark as submitted to avoid annoying the user
+        localStorage.setItem(storageKey, 'true')
+        feedbackForm.classList.add('hidden')
+        feedbackSuccess.classList.remove('hidden')
+      }
+    }
+
+    thumbsUpBtn?.addEventListener('click', () => {
+      submitFeedback('up')
+    })
+
+    thumbsDownBtn?.addEventListener('click', () => {
+      selectedVote = 'down'
+      thumbsDownBtn.classList.add('bg-red-50', 'border-red-300', 'text-red-700')
+      improvementSection?.classList.remove('hidden')
+    })
+
+    submitButton?.addEventListener('click', () => {
+      if (selectedVote === 'down') {
+        submitFeedback('down', improvementText?.value)
+      }
+    })
+  }
+
+  initFeedback()
+
+  // Run on page transitions
+  document.addEventListener('astro:page-load', initFeedback)
+</script>

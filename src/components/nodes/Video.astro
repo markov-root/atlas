@@ -1,0 +1,47 @@
+---
+import type { Node } from '@/textbook-loader/transformer';
+import type { InstanceCount } from '@/textbook-loader';
+import NodeRenderer from '@/components/NodeRenderer.astro';
+
+interface Props {
+  source?: string;
+  caption?: Node;
+  chapterNumber: number;
+  instanceCount: InstanceCount;
+}
+
+const { source, caption, chapterNumber, instanceCount } = Astro.props;
+
+// Extract YouTube video ID if it's a YouTube URL
+function getYouTubeId(url: string): string | null {
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
+  return match ? match[1] : null;
+}
+
+const youtubeId = source ? getYouTubeId(source) : null;
+
+const videoNumber = `Video ${chapterNumber}.${instanceCount.inChapter}`;
+---
+
+<figure>
+  {youtubeId ? (
+    <iframe
+    class="w-full aspect-video"
+      src={`https://www.youtube-nocookie.com/embed/${youtubeId}`}
+      frameborder="0"
+      allowfullscreen
+      loading="lazy"
+    />
+  ) : source ? (
+    <video src={source} controls />
+  ) : null}
+  <figcaption>
+    <strong>{videoNumber}</strong>
+    {caption && (
+      <>
+        {' - '}
+        <NodeRenderer node={caption} />
+      </>
+    )}
+  </figcaption>
+</figure>

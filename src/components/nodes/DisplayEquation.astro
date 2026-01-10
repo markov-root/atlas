@@ -1,0 +1,34 @@
+---
+import { NodeCompiler } from '@myriaddreamin/typst-ts-node-compiler';
+
+interface Props {
+  content?: string;
+}
+
+const { content } = Astro.props;
+
+let svg: string | null = null;
+if (content) {
+  try {
+    const compiler = NodeCompiler.create();
+    svg = await compiler.svg({
+      mainFileContent: `#set page(width: auto, height: auto, margin: 0pt)\n#set text(size: 2.2em)\n$ ${content} $`,
+    });
+    compiler.evictCache(10);
+  } catch (e) {
+    console.error(e);
+    svg = `<span class="typst-error" title="Error rendering equation">${content}</span>`;
+  }
+}
+---
+
+{svg && (
+  <div class="mx-auto w-fit" set:html={svg} />
+)}
+
+<style>
+  .typst-error {
+    color: #cc0000;
+    font-family: monospace;
+  }
+</style>

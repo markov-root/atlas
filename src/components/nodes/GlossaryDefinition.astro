@@ -1,0 +1,237 @@
+---
+interface Props {
+  term: string;
+  definition: string;
+  sourceUrl?: string;
+  sourceLabel?: string;
+  matchedText: string;
+}
+
+const { term, definition, sourceUrl, sourceLabel, matchedText } = Astro.props;
+const tooltipId = `glossary-${term.toLowerCase().replace(/\s+/g, '-')}`;
+---
+
+<span 
+  class="glossary-term" 
+  data-glossary-term={term}
+  data-glossary-definition={definition}
+  data-glossary-source-url={sourceUrl}
+  data-glossary-source-label={sourceLabel}
+  aria-describedby={tooltipId}
+>{matchedText}</span>
+
+<script>
+  import { computePosition, flip, shift, offset, arrow } from '@floating-ui/dom';
+
+  const SHOW_DELAY = 100;
+  const HIDE_DELAY = 200;
+
+  let activeTooltip: HTMLElement | null = null;
+  let showTimeout: ReturnType<typeof setTimeout> | null = null;
+  let hideTimeout: ReturnType<typeof setTimeout> | null = null;
+
+  function createTooltip(term: string, definition: string, sourceUrl?: string, sourceLabel?: string): HTMLElement {
+    const tooltip = document.createElement('div');
+    tooltip.className = 'glossary-tooltip';
+    tooltip.setAttribute('role', 'tooltip');
+    
+    const content = document.createElement('div');
+    content.className = 'glossary-tooltip-content';
+    
+    const termEl = document.createElement('strong');
+    termEl.className = 'glossary-tooltip-term';
+    termEl.textContent = term;
+    content.appendChild(termEl);
+    
+    const defEl = document.createElement('p');
+    defEl.className = 'glossary-tooltip-definition';
+    defEl.textContent = definition;
+    content.appendChild(defEl);
+    
+    if (sourceUrl && sourceLabel) {
+      const sourceEl = document.createElement('a');
+      sourceEl.className = 'glossary-tooltip-source';
+      sourceEl.href = sourceUrl;
+      sourceEl.target = '_blank';
+      sourceEl.rel = 'noopener noreferrer';
+      sourceEl.textContent = sourceLabel;
+      content.appendChild(sourceEl);
+    }
+    
+    tooltip.appendChild(content);
+    
+    const arrowEl = document.createElement('div');
+    arrowEl.className = 'glossary-tooltip-arrow';
+    tooltip.appendChild(arrowEl);
+    
+    return tooltip;
+  }
+
+  function positionTooltip(trigger: HTMLElement, tooltip: HTMLElement) {
+    const arrowEl = tooltip.querySelector('.glossary-tooltip-arrow') as HTMLElement;
+    
+    computePosition(trigger, tooltip, {
+      placement: 'top',
+      middleware: [
+        offset(8),
+        flip({ fallbackPlacements: ['bottom', 'right', 'left'] }),
+        shift({ padding: 8 }),
+        arrow({ element: arrowEl }),
+      ],
+    }).then(({ x, y, placement, middlewareData }) => {
+      Object.assign(tooltip.style, {
+        left: `${x}px`,
+        top: `${y}px`,
+      });
+
+      // Position arrow
+      if (middlewareData.arrow) {
+        const { x: arrowX, y: arrowY } = middlewareData.arrow;
+        
+        const staticSide = {
+          top: 'bottom',
+          right: 'left',
+          bottom: 'top',
+          left: 'right',
+        }[placement.split('-')[0]] as string;
+
+        Object.assign(arrowEl.style, {
+          left: arrowX != null ? `${arrowX}px` : '',
+          top: arrowY != null ? `${arrowY}px` : '',
+          right: '',
+          bottom: '',
+          [staticSide]: '-4px',
+        });
+      }
+    });
+  }
+
+  function showTooltip(trigger: HTMLElement) {
+    if (hideTimeout) {
+      clearTimeout(hideTimeout);
+      hideTimeout = null;
+    }
+
+    if (activeTooltip) return;
+
+    showTimeout = setTimeout(() => {
+      const term = trigger.dataset.glossaryTerm!;
+      const definition = trigger.dataset.glossaryDefinition!;
+      const sourceUrl = trigger.dataset.glossarySourceUrl;
+      const sourceLabel = trigger.dataset.glossarySourceLabel;
+
+      const tooltip = createTooltip(term, definition, sourceUrl, sourceLabel);
+      document.body.appendChild(tooltip);
+      activeTooltip = tooltip;
+
+      positionTooltip(trigger, tooltip);
+
+      // Keep tooltip open when hovering over it
+      tooltip.addEventListener('mouseenter', () => {
+        if (hideTimeout) {
+          clearTimeout(hideTimeout);
+          hideTimeout = null;
+        }
+      });
+
+      tooltip.addEventListener('mouseleave', () => {
+        hideTooltip();
+      });
+    }, SHOW_DELAY);
+  }
+
+  function hideTooltip() {
+    if (showTimeout) {
+      clearTimeout(showTimeout);
+      showTimeout = null;
+    }
+
+    hideTimeout = setTimeout(() => {
+      if (activeTooltip) {
+        activeTooltip.remove();
+        activeTooltip = null;
+      }
+    }, HIDE_DELAY);
+  }
+
+  // Initialize all glossary terms
+  document.querySelectorAll('.glossary-term').forEach((term) => {
+    term.addEventListener('mouseenter', (e) => {
+      showTooltip(e.currentTarget as HTMLElement);
+    });
+
+    term.addEventListener('mouseleave', () => {
+      hideTooltip();
+    });
+
+    term.addEventListener('focus', (e) => {
+      showTooltip(e.currentTarget as HTMLElement);
+    });
+
+    term.addEventListener('blur', () => {
+      hideTooltip();
+    });
+  });
+</script>
+
+<style is:global>
+  .glossary-term {
+    text-decoration: underline dotted;
+    text-decoration-color: rgba(25, 113, 194, 0.35);
+    text-underline-offset: 2px;
+    cursor: help;
+  }
+
+  .glossary-term:hover {
+    text-decoration-style: solid;
+    text-decoration-color: rgba(25, 113, 194, 0.4);
+  }
+
+  .glossary-tooltip {
+    position: absolute;
+    z-index: 1000;
+    max-width: 320px;
+    padding: 0.75rem 1rem;
+    background: var(--color-brand-600);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: white;
+  }
+
+  .glossary-tooltip-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .glossary-tooltip-term {
+    color: white;
+    font-weight: 600;
+  }
+
+  .glossary-tooltip-definition {
+    margin: 0;
+    color: white;
+  }
+
+  .glossary-tooltip-source {
+    font-size: 0.75rem;
+    color: var(--color-brand-100);
+    margin-top: 0.25rem;
+    text-decoration: underline;
+  }
+
+  .glossary-tooltip-source:hover {
+    color: white;
+  }
+
+  .glossary-tooltip-arrow {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--color-brand-600);
+    transform: rotate(45deg);
+  }
+</style>

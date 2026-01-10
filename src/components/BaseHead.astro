@@ -1,0 +1,26 @@
+---
+import './../styles/global.css'
+import { defaultLang, type Lang } from '@/i18n';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: Lang;
+}
+
+const { title, description, lang = defaultLang } = Astro.props
+
+// Build canonical URL - for English, strip the /en/ prefix
+const currentPath = Astro.url.pathname;
+const canonicalPath = lang === 'en' 
+  ? currentPath.replace(/^\/en(\/|$)/, '/')
+  : currentPath;
+const canonicalUrl = new URL(canonicalPath, Astro.site).href;
+---
+<title>{title} - AI Safety Atlas</title>
+<link rel="canonical" href={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="description" content={description} />

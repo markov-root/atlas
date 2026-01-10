@@ -1,0 +1,21 @@
+---
+import { getTextbooks } from "@/i18n/content";
+
+export async function getStaticPaths() {
+  // Get unique versions from English textbooks (for the root /read/[version] routes)
+  const textbooks = await getTextbooks('en');
+  const versions = [...new Set(textbooks.map(t => t.data.version))];
+  
+  const paths = versions.map(version => ({
+    params: { version },
+  }));
+
+  // Also add the default (no version) path
+  paths.push({ params: { version: undefined } });
+
+  return paths;
+}
+
+const { version } = Astro.params;
+return Astro.rewrite(version ? `/en/read/${version}` : '/en/read');
+---

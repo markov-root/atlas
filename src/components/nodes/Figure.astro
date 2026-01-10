@@ -1,0 +1,39 @@
+---
+import type { Node } from '@/textbook-loader/transformer';
+import type { InstanceCount } from '@/textbook-loader';
+import { Image } from 'astro:assets';
+import NodeRenderer from '@/components/NodeRenderer.astro';
+
+interface Props {
+  image: string;
+  caption?: Node;
+  chapterNumber: number;
+  instanceCount: InstanceCount;
+}
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/uc/*.{png,jpg,jpeg,gif,webp}');
+
+const { image, caption, chapterNumber, instanceCount } = Astro.props;
+
+let imageModule: ImageMetadata | null = null;
+const globKey = `/src${image}`;
+if (images[globKey]) {
+  const mod = await images[globKey]();
+  imageModule = mod.default;
+}
+
+const figureNumber = `Figure ${chapterNumber}.${instanceCount.inChapter}`;
+---
+
+<figure class="border-l border-gray-300">
+  {imageModule && <Image src={imageModule} alt="" />}
+  <figcaption class="pl-4">
+    <strong>{figureNumber}</strong>
+    {caption && (
+      <>
+        {' - '}
+        <NodeRenderer node={caption} />
+      </>
+    )}
+  </figcaption>
+</figure>

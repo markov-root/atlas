@@ -1,0 +1,10 @@
+---
+interface Props {
+  href: string;
+  content: string;
+}
+
+const { href, content } = Astro.props;
+---
+
+<a href={href}>{content}</a>
