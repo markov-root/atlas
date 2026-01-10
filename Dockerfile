@@ -31,6 +31,7 @@ RUN pnpm build
 # Production stage - serve with nginx
 FROM nginx:alpine
 
+RUN rm -f /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --chmod=644 --from=builder /app/dist /usr/share/nginx/html
 
