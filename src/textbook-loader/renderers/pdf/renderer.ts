@@ -65,10 +65,20 @@ export class Renderer {
 
     const typstContent = this.generateChapter(chapter);
 
-    execSync(`typst compile --root src - "${pdfPath}"`, {
-      input: typstContent,
-      stdio: ['pipe', 'pipe', 'pipe'],
-    });
+    try {
+      execSync(`typst compile --root src - "${pdfPath}"`, {
+        input: typstContent,
+        stdio: ['pipe', 'pipe', 'pipe'],
+      });
+    } catch (error: any) {
+      const docId = chapter.meta.docId;
+      const tabId = chapter.meta.tabId;
+      const docUrl = docId ? `https://docs.google.com/document/d/${docId}/edit` : 'unknown';
+      const cacheKey = `${docId}:${tabId}`;
+      console.error(`\nError in Chapter ${chapter.number} "${chapter.title}"\nGoogle Doc: ${docUrl}`);
+      console.error(`\nTo clear this chapter's Google Doc cache and force refetch:\nrm ".cache/docs/${cacheKey}"\n`);
+      throw error;
+    }
 
     return `/uc/${pdfFilename}`;
   }
