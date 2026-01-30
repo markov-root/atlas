@@ -1,9 +1,6 @@
 ---
 import Default from "@/layouts/Default.astro";
-import Feature from "@/components/marketing/Feature.astro"
 import Button from "@/components/Button.astro"
-import { Image } from 'astro:assets';
-import Certificate from '@/assets/certificate.png'
 import { languages, useTranslations, getLocalizedPath, type Lang } from "@/i18n";
 import { getLatestTextbook } from "@/i18n/content";
 
@@ -15,18 +12,7 @@ const { lang } = Astro.params as { lang: Lang };
 const { t } = useTranslations(lang);
 
 const textbook = await getLatestTextbook(lang);
-// Use the textbook's actual language for content links (may differ from UI language if fallback)
 const textbookLang = textbook.language as Lang;
-
-// Group chapters by category
-const chaptersByCategory = textbook.chapters.reduce((acc, chapter) => {
-  const category = chapter.meta.category;
-  if (!acc[category]) {
-    acc[category] = [];
-  }
-  acc[category].push(chapter);
-  return acc;
-}, {} as Record<string, typeof textbook.chapters>);
 ---
 <Default title="" description="" lang={lang}>
     <div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
@@ -40,43 +26,4 @@ const chaptersByCategory = textbook.chapters.reduce((acc, chapter) => {
             </div>
         </div>
     </div>
-
-    <section class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
-        <h2 class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">{t('home.sections.whatsInside')}</h2>
-        <div class="grid lg:grid-cols-4 xl:grid-cols-5 mt-6 lg:mt-12 gap-x-12  xl:gap-x-16 w-full gap-y-8">
-            <div class="border rounded-2xl w-full max-w-xl border-gray-300  flex flex-col justify-between items-start col-span-2 xl:col-span-2">
-                <div class="px-6 lg:px-8 py-6 space-y-10">
-                    {Object.entries(chaptersByCategory).map(([category, chapters]) => (
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-900 mb-2">{category}</h3>
-                            <ul class="space-y-2">
-                                {chapters.map(chapter => (
-                                    <li class="text-base text-gray-700">
-                                        <span>{chapter.number}.</span>
-                                        <a class="underline hover:text-gray-900" href={getLocalizedPath(`/chapters/${textbook.version}/${chapter.slug}/${chapter.sections[0]?.slug}`, textbookLang)}>{chapter.title}</a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
-                </div>
-
-                <div class="py-6 bg-gray-50 px-6 lg:px-8 rounded-b-2xl w-full">
-                    <Button link={getLocalizedPath('/read', textbookLang)}>{t('home.hero.cta.read')}</Button>
-                </div>
-            </div>
-            <div class="col-span-2 xl:col-span-3 space-y-12">
-                <Feature title={t('home.features.updatedRegularly')} description={t('home.features.updatedRegularly.description')} />
-                <Feature title={t('home.features.officialCertificates')} description={t('home.features.officialCertificates.description')}>
-                    <div class="border border-gray-300 rounded-2xl mt-4">
-                        <Image src={Certificate} alt="Certificate" class="rounded-t-2xl z-1" />
-                        <span class="block sm:flex justify-between px-4 py-2 w-full from-white/90 to-white bg-linear-to-b rounded-b-2xl">
-                            <span class="block sm:inline">{t('home.features.getYourOwn')}</span>
-                            <a href={getLocalizedPath('/join-study-group', lang)} class="underline text-gray-700 hover:text-black">{t('home.features.joinStudyGroup')}</a>
-                        </span>
-                    </div>
-                </Feature>
-            </div>
-        </div>
-    </section>
 </Default>

@@ -1,0 +1,216 @@
+---
+import Default from "@/layouts/Default.astro";
+import { languages, useTranslations, type Lang } from "@/i18n";
+import { siteConfig } from "@/config/site";
+
+export function getStaticPaths() {
+  return Object.keys(languages).map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const { t } = useTranslations(lang);
+
+const authors = [
+  {
+    name: "Markov Grey",
+    role: t('about.authors.markov.role'),
+    bio: t('about.authors.markov.bio'),
+  },
+  {
+    name: "Charbel-Raphael Segerie",
+    role: t('about.authors.charbel.role'),
+    bio: t('about.authors.charbel.bio'),
+  },
+  {
+    name: "Jeanne Salle",
+    role: t('about.authors.jeanne.role'),
+    bio: t('about.authors.jeanne.bio'),
+  },
+  {
+    name: "Charles Martinet",
+    role: t('about.authors.charles.role'),
+    bio: t('about.authors.charles.bio'),
+  },
+];
+
+const advisors = [
+  {
+    name: "Vincent Corruble",
+    bio: t('about.advisors.vincent.bio'),
+  },
+  {
+    name: "Fabien Roger",
+    bio: t('about.advisors.fabien.bio'),
+  },
+];
+
+const impactStats = [
+  {
+    value: "1000+",
+    label: t('about.impact.students.label'),
+    description: t('about.impact.students.description'),
+  },
+  {
+    value: "7.3K",
+    label: t('about.impact.readers.label'),
+    description: t('about.impact.readers.description'),
+  },
+  {
+    value: "650+",
+    label: t('about.impact.sources.label'),
+    description: t('about.impact.sources.description'),
+  },
+];
+
+const testimonials = [
+  {
+    quote: t('about.testimonials.student.quote'),
+    author: t('about.testimonials.student.author'),
+    role: t('about.testimonials.student.role'),
+    type: t('about.testimonials.student.type'),
+  },
+  {
+    quote: t('about.testimonials.facilitator.quote'),
+    author: t('about.testimonials.facilitator.author'),
+    role: t('about.testimonials.facilitator.role'),
+    type: t('about.testimonials.facilitator.type'),
+  },
+  {
+    quote: t('about.testimonials.researcher.quote'),
+    author: t('about.testimonials.researcher.author'),
+    role: t('about.testimonials.researcher.role'),
+    type: t('about.testimonials.researcher.type'),
+  },
+];
+---
+
+<Default title={t('about.title')} description={t('about.description')} lang={lang}>
+  <div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+    <!-- Hero Section -->
+    <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
+      <h1 class="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl dark:text-white">
+        {t('about.title')}
+      </h1>
+      <p class="mt-6 text-lg text-gray-600 dark:text-gray-300 max-w-3xl">
+        {t('about.mission')}
+      </p>
+    </div>
+
+    <!-- Impact Stats -->
+    <div class="mt-16 border-t border-gray-200 pt-16 dark:border-gray-700">
+      <h2 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        {t('about.impact.title')}
+      </h2>
+      <dl class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
+        {impactStats.map((stat) => (
+          <div class="border-l-4 border-brand-500 pl-6">
+            <dt class="text-sm text-gray-600 dark:text-gray-400">{stat.label}</dt>
+            <dd class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">{stat.value}</dd>
+            <dd class="mt-1 text-sm text-gray-500 dark:text-gray-400">{stat.description}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="mt-16 border-t border-gray-200 pt-16 dark:border-gray-700">
+      <h2 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        {t('about.testimonials.title')}
+      </h2>
+      <div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
+        {testimonials.map((testimonial) => (
+          <figure class="rounded-2xl bg-gray-50 p-6 dark:bg-gray-800">
+            <span class="inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-medium text-brand-700 dark:bg-brand-900 dark:text-brand-300">
+              {testimonial.type}
+            </span>
+            <blockquote class="mt-4 text-gray-900 dark:text-white">
+              <p class="text-sm leading-6">"{testimonial.quote}"</p>
+            </blockquote>
+            <figcaption class="mt-4 flex items-center gap-x-4">
+              <div>
+                <div class="font-semibold text-gray-900 dark:text-white">{testimonial.author}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">{testimonial.role}</div>
+              </div>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+
+    <!-- Educational Adoption -->
+    <div class="mt-16 border-t border-gray-200 pt-16 dark:border-gray-700">
+      <h2 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        {t('about.adoption.title')}
+      </h2>
+      <div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div class="rounded-2xl border border-gray-200 p-6 dark:border-gray-700">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            {t('about.adoption.universities.title')}
+          </h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            {t('about.adoption.universities.description')}
+          </p>
+        </div>
+        <div class="rounded-2xl border border-gray-200 p-6 dark:border-gray-700">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            {t('about.adoption.groups.title')}
+          </h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            {t('about.adoption.groups.description')}
+          </p>
+        </div>
+        <div class="rounded-2xl border border-gray-200 p-6 dark:border-gray-700">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            {t('about.adoption.independent.title')}
+          </h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            {t('about.adoption.independent.description')}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Authors -->
+    <div class="mt-16 border-t border-gray-200 pt-16 dark:border-gray-700">
+      <h2 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        {t('about.authors.title')}
+      </h2>
+      <ul role="list" class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
+        {authors.map((author) => (
+          <li class="rounded-2xl border border-gray-200 p-6 dark:border-gray-700">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{author.name}</h3>
+            <p class="text-sm font-medium text-brand-600 dark:text-brand-400">{author.role}</p>
+            <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">{author.bio}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Advisors -->
+    <div class="mt-16 border-t border-gray-200 pt-16 dark:border-gray-700">
+      <h2 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        {t('about.advisors.title')}
+      </h2>
+      <ul role="list" class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
+        {advisors.map((advisor) => (
+          <li class="rounded-2xl border border-gray-200 p-6 dark:border-gray-700">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{advisor.name}</h3>
+            <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">{advisor.bio}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Citation -->
+    <div class="mt-16 border-t border-gray-200 pt-16 dark:border-gray-700">
+      <h2 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        {t('about.citation.title')}
+      </h2>
+      <div class="mt-6 rounded-xl bg-gray-50 p-6 dark:bg-gray-800">
+        <p class="font-mono text-sm text-gray-700 dark:text-gray-300">
+          {t('about.citation.text', { url: siteConfig.citationUrl })}
+        </p>
+      </div>
+    </div>
+  </div>
+</Default>
