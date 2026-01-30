@@ -1,3 +1,208 @@
 ---
-return Astro.rewrite('/en/about');
+import Default from "@/layouts/Default.astro";
+import { siteConfig } from "@/config/site";
+
+const authors = [
+  {
+    name: "Markov Grey",
+    role: "Primary Author & Project Developer",
+    bio: "Contributes across all aspects - research, writing, distillation, website development, video creation. Previously scriptwriter at Rational Animations, distillation fellow at AI Safety Info (Stampy). Also currently co-founder and CTO at Equilibria Network. In a previous life has also worked in software development and cybersecurity.",
+  },
+  {
+    name: "Charbel-Raphael Segerie",
+    role: "Executive Director of CeSIA",
+    bio: "Leads organization, scientific direction and coordination. Significant pedagogical experience including ARENA projects, MLAB, and Europe's first general purpose AI safety course. Writing featured in BlueDot's interpretability curriculum.",
+  },
+  {
+    name: "Jeanne Salle",
+    role: "Contributing Author",
+    bio: "AI safety teacher at ENS Ulm.",
+  },
+  {
+    name: "Charles Martinet",
+    role: "Contributing Author",
+    bio: "Head of policy at CeSIA, research affiliate at Oxford AIGi and previously at GovAI.",
+  },
+];
+
+const advisors = [
+  {
+    name: "Vincent Corruble",
+    bio: "Professor at Sorbonne University and research fellow at CHAI.",
+  },
+  {
+    name: "Fabien Roger",
+    bio: "Previously worked at Redwood Research, now at Anthropic.",
+  },
+];
+
+const impactStats = [
+  {
+    value: "1000+",
+    label: "Students Directly Reached",
+    description: "Across universities and AI safety programs globally",
+  },
+  {
+    value: "7.3K",
+    label: "Independent Readers",
+    description: "Projected yearly independent learners and students based on current analytics",
+  },
+  {
+    value: "650+",
+    label: "Academic Sources Integrated",
+    description: "Ideas from hundreds of research papers synthesized into a single curriculum across chapters",
+  },
+];
+
+const testimonials = [
+  {
+    quote: "This was my first time reading the AI Safety Atlas and wow!!! It has so many insightful information and citations that I am looking forward to diving deeper into.",
+    author: "Vancouver Program",
+    role: "",
+    type: "Student",
+  },
+  {
+    quote: "For a systematic, centralized, and concise introduction to the core topics in AI safety, this is the best and most up-to-date resource I know.",
+    author: "Josh Thorsteinson",
+    role: "UBC Vancouver Course Organizer",
+    type: "Facilitator",
+  },
+  {
+    quote: "As an AI safety research engineer, I find it a pretty good in-depth introduction. It covers a lot in a very clear way.",
+    author: "Maxime Riche",
+    role: "AI Safety Researcher",
+    type: "Researcher",
+  },
+];
 ---
+
+<Default title="About Us" description="Learn about the AI Safety Atlas team and our mission to make AI safety education accessible.">
+  <div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+    <!-- Hero Section -->
+    <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
+      <h1 class="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl dark:text-white">
+        About Us
+      </h1>
+      <p class="mt-6 text-lg text-gray-600 dark:text-gray-300 max-w-3xl">
+        Our goal is to make the Atlas the standard resource to upskill in AI Safety.
+      </p>
+    </div>
+
+    <!-- Impact Stats -->
+    <div class="mt-16 border-t border-gray-200 pt-16 dark:border-gray-700">
+      <h2 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        Our Impact at a Glance
+      </h2>
+      <dl class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
+        {impactStats.map((stat) => (
+          <div class="border-l-4 border-brand-500 pl-6">
+            <dt class="text-sm text-gray-600 dark:text-gray-400">{stat.label}</dt>
+            <dd class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">{stat.value}</dd>
+            <dd class="mt-1 text-sm text-gray-500 dark:text-gray-400">{stat.description}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="mt-16 border-t border-gray-200 pt-16 dark:border-gray-700">
+      <h2 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        What Students, Facilitators, and Researchers Are Saying
+      </h2>
+      <div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
+        {testimonials.map((testimonial) => (
+          <figure class="rounded-2xl bg-gray-50 p-6 dark:bg-gray-800">
+            <span class="inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-medium text-brand-700 dark:bg-brand-900 dark:text-brand-300">
+              {testimonial.type}
+            </span>
+            <blockquote class="mt-4 text-gray-900 dark:text-white">
+              <p class="text-sm leading-6">"{testimonial.quote}"</p>
+            </blockquote>
+            <figcaption class="mt-4 flex items-center gap-x-4">
+              <div>
+                <div class="font-semibold text-gray-900 dark:text-white">{testimonial.author}</div>
+                {testimonial.role && <div class="text-sm text-gray-600 dark:text-gray-400">{testimonial.role}</div>}
+              </div>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+
+    <!-- Educational Adoption -->
+    <div class="mt-16 border-t border-gray-200 pt-16 dark:border-gray-700">
+      <h2 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        Educational Adoption
+      </h2>
+      <div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div class="rounded-2xl border border-gray-200 p-6 dark:border-gray-700">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            Universities
+          </h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            ~150 students per year across major institutions including ENS Paris & Saclay (~100 students annually) and UBC Vancouver (30-50 students per cohort). Achieved through organic adoption with minimal marketing. Strong repeat usage across multiple semesters - institutions return semester after semester with course organizers choosing our materials based on merit.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-gray-200 p-6 dark:border-gray-700">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            AI Safety Groups
+          </h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            550+ students annually across specialized AI safety training programs. ML4Good reaches 250 students annually across regions, AI Safety Collab serves 300+ students in Q2 2025 (scaling to 1000+), and AI Safety India is starting mid-2025 with Fundamentals of Safe AI program. Organic adoption based on merit.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-gray-200 p-6 dark:border-gray-700">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            Independent Readers
+          </h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            Global reach with individual readers from Moscow, Brazil, Canada, and worldwide discovering materials organically. Cold outreach from readers globally thanking us for our work demonstrates the international impact of accessible AI safety education.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Authors -->
+    <div class="mt-16 border-t border-gray-200 pt-16 dark:border-gray-700">
+      <h2 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        Authors
+      </h2>
+      <ul role="list" class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
+        {authors.map((author) => (
+          <li class="rounded-2xl border border-gray-200 p-6 dark:border-gray-700">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{author.name}</h3>
+            <p class="text-sm font-medium text-brand-600 dark:text-brand-400">{author.role}</p>
+            <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">{author.bio}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Advisors -->
+    <div class="mt-16 border-t border-gray-200 pt-16 dark:border-gray-700">
+      <h2 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        Advisors
+      </h2>
+      <ul role="list" class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
+        {advisors.map((advisor) => (
+          <li class="rounded-2xl border border-gray-200 p-6 dark:border-gray-700">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{advisor.name}</h3>
+            <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">{advisor.bio}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Citation -->
+    <div class="mt-16 border-t border-gray-200 pt-16 dark:border-gray-700">
+      <h2 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        Cite This Work
+      </h2>
+      <div class="mt-6 rounded-xl bg-gray-50 p-6 dark:bg-gray-800">
+        <p class="font-mono text-sm text-gray-700 dark:text-gray-300">
+          Markov Grey and Charbel-Raphael Segerie et al. 2025. AI Safety Atlas. French Center for AI Safety (CeSIA). URL: {siteConfig.citationUrl}
+        </p>
+      </div>
+    </div>
+  </div>
+</Default>

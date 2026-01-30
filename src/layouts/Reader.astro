@@ -5,8 +5,7 @@ import Logomark from '@/components/brand/Logomark.astro';
 import ChevronRight from "@/components/icons/ChevronRight.astro"
 import ChevronDown from "@/components/icons/ChevronDown.astro"
 import Search from '@/components/Search.astro';
-import type { Section } from '@/textbook-loader';
-import { useTranslations, getLangFromUrl, getLocalizedPath, type Lang } from '@/i18n';
+import type { Section, Chapter, Textbook } from '@/textbook-loader';
 
 interface Breadcrumb {
   text: string;
@@ -17,20 +16,18 @@ interface Props {
   title: string;
   description: string;
   activeSection: Section
+  textbook: Textbook
   breadcrumbs: Breadcrumb[]
-  lang?: Lang
 }
 
-const { title, description, activeSection, textbook, breadcrumbs, lang: langProp } = Astro.props
-const lang = langProp ?? getLangFromUrl(Astro.url)
-const { t } = useTranslations(lang)
+const { title, description, activeSection, textbook, breadcrumbs } = Astro.props
 ---
-<html lang={lang} class="h-full">
+<html lang="en" class="h-full">
 	<head>
 		<script is:inline>document.documentElement.classList.add('js')</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<BaseHead title={title} description={description} lang={lang} />
+		<BaseHead title={title} description={description} />
 		<slot name="head" />
 	</head>
 	<body class="h-full">
@@ -51,7 +48,7 @@ const { t } = useTranslations(lang)
 
         <!-- Sidebar component, swap this element with another sidebar if you like -->
         <div class="relative flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4       ">
-          <a href={getLocalizedPath('/', lang)} class="relative flex h-16 shrink-0 items-center">
+          <a href="/" class="relative flex h-16 shrink-0 items-center">
               <Logomark class="h-8 w-auto text-brand-600" />
           </a>
           <nav class="relative flex flex-1 flex-col">
@@ -72,9 +69,9 @@ const { t } = useTranslations(lang)
 <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 xl:w-80 lg:flex-col ">
     <!-- Sidebar component, swap this element with another sidebar if you like -->
     <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white pb-4  ">
-        <a href={getLocalizedPath('/', lang)} class="flex shrink-0 items-center gap-x-2 border-b border-b-gray-200 px-4  h-16">
+        <a href="/" class="flex shrink-0 items-center gap-x-2 border-b border-b-gray-200 px-4  h-16">
             <Logomark class="h-8 w-auto text-brand-600" />
-            <span class="uppercase font-bold">{t('site.name')}</span>
+            <span class="uppercase font-bold">AI Safety Atlas</span>
         </a>
         <nav class="flex flex-1 flex-col space-y-4 pl-0.5">
             {textbook.chapters.map((chapter: Chapter) => (
@@ -91,7 +88,7 @@ const { t } = useTranslations(lang)
                 <ul class="border-l pl-4 mt-1 border-gray-400 space-y-1">
                     {chapter.sections.map((section: Section) => (
                     <li class={activeSection.chapterNumber === chapter.number && activeSection.number === section.number ? 'text-brand-700' : ''}>
-                        <a href={getLocalizedPath(`/chapters/${textbook.version}/${chapter.slug}/${section.slug}`, lang)}>
+                        <a href={`/chapters/${textbook.version}/${chapter.slug}/${section.slug}`}>
                             {section.number}. {section.title}
                         </a>
                     </li>
@@ -139,7 +136,7 @@ const { t } = useTranslations(lang)
             <slot />
         </div>
 
-        <Footer lang={lang} />
+        <Footer />
     </main>
 </div>
 <script>
@@ -149,20 +146,20 @@ const nav = document.getElementById('reading-progress-nav');
 if (nav) {
     const brandColor = 'oklch(46.5% 0.127 252)';
     const brandLight = 'oklch(86.9% 0.042 252)';
-    
+
     function updateProgress() {
         const scrollTop = window.scrollY;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
         const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
         const clampedProgress = Math.min(100, Math.max(0, progress));
-        
+
         if (scrollTop > 10) {
             nav.style.borderImage = `linear-gradient(to right, ${brandColor} ${clampedProgress}%, ${brandLight} ${clampedProgress}%) 1`;
         } else {
             nav.style.borderImage = '';
         }
     }
-    
+
     window.addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();
 }

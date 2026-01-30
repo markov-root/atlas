@@ -2,8 +2,7 @@
 import { getTextbooks } from "@/i18n/content";
 
 export async function getStaticPaths() {
-  // Get English textbooks for legacy redirects
-  const textbooks = await getTextbooks('en');
+  const textbooks = await getTextbooks();
 
   let paths = []
 

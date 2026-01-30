@@ -1,17 +1,5 @@
 ---
 import Logomark from './brand/Logomark.astro'
-import { useTranslations, getLangFromUrl, getLocalizedPath, type Lang } from '@/i18n'
-
-interface Props {
-  lang?: Lang
-}
-
-const { lang = getLangFromUrl(Astro.url) } = Astro.props
-const { t, tRich } = useTranslations(lang)
-
-const licenseHtml = tRich('footer.license', {
-  license: (text) => `<a class="underline" href="https://creativecommons.org/licenses/by-sa/4.0">${text}</a>`
-})
 ---
 
 <footer class="relative overflow-hidden">
@@ -20,54 +8,54 @@ const licenseHtml = tRich('footer.license', {
         <Logomark class="max-h-12 not-dark:text-brand-600 dark:text-white mb-4" />
         <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Company name" class="h-9 not-dark:hidden" />
         <p class="text-balance text-gray-800 dark:text-gray-400 mb-6 text-xl max-w-lg lg:text-2xl lg:max-w-xl leading-10">
-            {t('site.tagline')}
+            Distilling safety research into a complete learning ecosystem.
         </p>
         <a href="mailto:markov@ai-safety-atlas.com" class="text-gray-800 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200 underline">
-            {t('footer.contactUs')}
+            Contact us
         </a>
         </div>
     </div>
     <div class="bg-gray-100 border-t border-gray-300">
     <div class="px-6 lg:px-8 py-8 lg:py-12 md:grid md:grid-cols-3 md:gap-8 max-w-7xl mx-auto z-10 relative space-y-8 md:space-y-0">
         <div>
-            <h3 class="font-semibold text-gray-900 dark:text-white">{t('footer.navigation')}</h3>
+            <h3 class="font-semibold text-gray-900 dark:text-white">Navigation</h3>
             <ul role="list" class="mt-6 space-y-4">
                 <li>
-                    <a href={getLocalizedPath('/read', lang)} class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('nav.read')}</a>
+                    <a href="/read" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">Read</a>
                 </li>
                 <li>
-                    <a href={getLocalizedPath('/teach', lang)} class="text-gray-700 underline  hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('nav.teach')}</a>
+                    <a href="/teach" class="text-gray-700 underline  hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">Teach</a>
                 </li>
                 <li>
-                    <a href={getLocalizedPath('/join-study-group', lang)} class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('nav.joinStudyGroup')}</a>
+                    <a href="/join-study-group" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">Get certified</a>
                 </li>
                 <li>
-                    <a href={getLocalizedPath('/about', lang)} class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('nav.about')}</a>
+                    <a href="/about" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">About us</a>
                 </li>
             </ul>
         </div>
         <div>
-            <h3 class="font-semibold text-gray-900 dark:text-white">{t('footer.fundedBy')}</h3>
+            <h3 class="font-semibold text-gray-900 dark:text-white">Funded by</h3>
             <ul role="list" class="mt-6 space-y-4">
                 <li>
-                    <a href="https://cesia.org" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('footer.funders.cesia')}</a>
+                    <a href="https://cesia.org" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">French Center for AI Safety</a>
                 </li>
                 <li>
-                    <a href="https://coefficientgiving.org" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('footer.funders.coefficient')}</a>
+                    <a href="https://coefficientgiving.org" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">Coefficient Giving</a>
                 </li>
                 <li>
-                    <a href="https://manifund.org" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('footer.funders.manifund')}</a>
+                    <a href="https://manifund.org" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">Manifund</a>
                 </li>
             </ul>
         </div>
         <div>
-            <h3 class="font-semibold text-gray-900 dark:text-white">{t('footer.ourSocials')}</h3>
+            <h3 class="font-semibold text-gray-900 dark:text-white">Socials</h3>
             <ul role="list" class="mt-6 space-y-4">
                 <li>
-                    <a href="https://github.com/markov-root/atlas" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('footer.socials.GitHub')}</a>
+                    <a href="https://github.com/markov-root/atlas" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">GitHub</a>
                 </li>
                 <li>
-                    <a href="https://www.youtube.com/@securite-ia" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">{t('footer.socials.YouTube')}</a>
+                    <a href="https://www.youtube.com/@securite-ia" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">YouTube</a>
                 </li>
 
             </ul>
@@ -76,13 +64,13 @@ const licenseHtml = tRich('footer.license', {
     </div>
     <div class="border-t border-gray-900/10 py-6 dark:border-white/10 relative z-10 bg-white">
         <div class="max-w-7xl mx-auto w-full  flex justify-between flex-wrap px-6 lg:px-8">
-            <p class="text-sm/6 text-gray-700 dark:text-gray-300" set:html={licenseHtml} />
+            <p class="text-sm/6 text-gray-700 dark:text-gray-300">Content licensed under <a class="underline" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a> unless otherwise noted.</p>
             <ul class="text-sm/6 flex flex-wrap space-x-6 text-gray-700 dark:text-gray-300 mt-4 sm:mt-0">
                 <li>
-                    <a href="https://foreview.org" class="underline">{t('footer.helpFromForeview')}</a>
+                    <a href="https://foreview.org" class="underline">Site from Foreview</a>
                 </li>
                 <li>
-                    <a href={getLocalizedPath('/privacy-policy', lang)} class="underline">{t('footer.privacyPolicy')}</a>
+                    <a href="/privacy-policy" class="underline">Privacy Policy</a>
                 </li>
             </ul>
         </div>
