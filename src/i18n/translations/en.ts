@@ -80,7 +80,7 @@ export default {
   'footer.socials.GitHub': 'GitHub',
   'footer.socials.YouTube': 'YouTube',
   'footer.license': 'Content licensed under <license>CC BY-SA 4.0</license> unless otherwise noted.',
-  'footer.helpFromForeview': 'Help from Foreview',
+  'footer.helpFromForeview': 'Site from Foreview',
   'footer.privacyPolicy': 'Privacy Policy',
   'footer.contactUs': 'Contact us',
 
