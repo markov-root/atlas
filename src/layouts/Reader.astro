@@ -1,9 +1,7 @@
 ---
 import BaseHead from '@/components/BaseHead.astro'
-import Footer from '@/components/Footer.astro'
-import Logomark from '@/components/brand/Logomark.astro';
-import ChevronRight from "@/components/icons/ChevronRight.astro"
-import ChevronDown from "@/components/icons/ChevronDown.astro"
+import Lockup from '@/components/brand/Lockup.astro';
+import { Icon } from 'astro-icon/components'
 import Search from '@/components/Search.astro';
 import type { Section, Chapter, Textbook } from '@/textbook-loader';
 
@@ -21,6 +19,26 @@ interface Props {
 }
 
 const { title, description, activeSection, textbook, breadcrumbs } = Astro.props
+
+// Compute prev/next section URLs
+const allSections: { chapter: Chapter; section: Section }[] = [];
+textbook.chapters.forEach((chapter: Chapter) => {
+    chapter.sections.forEach((section: Section) => {
+        allSections.push({ chapter, section });
+    });
+});
+
+const currentIndex = allSections.findIndex(
+    (s) => s.chapter.number === activeSection.chapterNumber && s.section.number === activeSection.number
+);
+
+const prevSection = currentIndex > 0 ? allSections[currentIndex - 1] : null;
+const nextSection = currentIndex < allSections.length - 1 ? allSections[currentIndex + 1] : null;
+
+const prevUrl = prevSection ? `/chapters/${textbook.version}/${prevSection.chapter.slug}/${prevSection.section.slug}` : null;
+const nextUrl = nextSection ? `/chapters/${textbook.version}/${nextSection.chapter.slug}/${nextSection.section.slug}` : null;
+
+const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activeSection.chapterNumber);
 ---
 <html lang="en" class="h-full">
 	<head>
@@ -49,7 +67,7 @@ const { title, description, activeSection, textbook, breadcrumbs } = Astro.props
         <!-- Sidebar component, swap this element with another sidebar if you like -->
         <div class="relative flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4       ">
           <a href="/" class="relative flex h-16 shrink-0 items-center">
-              <Logomark class="h-8 w-auto text-brand-600" />
+              <Lockup />
           </a>
           <nav class="relative flex flex-1 flex-col">
             <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -68,10 +86,9 @@ const { title, description, activeSection, textbook, breadcrumbs } = Astro.props
 <!-- Static sidebar for desktop -->
 <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 xl:w-80 lg:flex-col ">
     <!-- Sidebar component, swap this element with another sidebar if you like -->
-    <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white pb-4  ">
-        <a href="/" class="flex shrink-0 items-center gap-x-2 border-b border-b-gray-200 px-4  h-16">
-            <Logomark class="h-8 w-auto text-brand-600" />
-            <span class="uppercase font-bold">AI Safety Atlas</span>
+    <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white pb-4 ">
+        <a href="/" class="pl-4 border-b border-gray-300">
+            <Lockup />
         </a>
         <nav class="flex flex-1 flex-col space-y-4 pl-0.5">
             {textbook.chapters.map((chapter: Chapter) => (
@@ -81,8 +98,8 @@ const { title, description, activeSection, textbook, breadcrumbs } = Astro.props
                         {chapter.number}. {chapter.title}
                     </span>
 
-                    <ChevronRight class="group-open:hidden block h-5" />
-                    <ChevronDown class="group-open:block hidden h-5" />
+                    <Icon name="tabler:chevron-right" class="group-open:hidden block h-5" />
+                    <Icon name="tabler:chevron-down" class="group-open:block hidden h-5" />
                 </summary>
 
                 <ul class="border-l pl-4 mt-1 border-gray-400 space-y-1">
@@ -100,9 +117,9 @@ const { title, description, activeSection, textbook, breadcrumbs } = Astro.props
     </div>
 </div>
 
-<div class="lg:pl-72 xl:pl-80">
+<div class="lg:pl-72 xl:pl-80 pb-16 lg:pb-0">
     <div id="reading-progress-nav" class="sticky top-0 z-40 lg:px-8 border-b-2 border-gray-200 bg-white">
-        <div class="lg:mx-auto lg:max-w-7xl">
+        <div class="hidden lg:block lg:mx-auto lg:max-w-7xl">
             <div class="flex h-16 items-center gap-x-4 bg-white px-4 shadow-xs sm:gap-x-6 sm:px-6 lg:px-0 lg:shadow-none">
                 {breadcrumbs && (
                 <ol role="list" class="flex items-center space-x-4">
@@ -136,9 +153,122 @@ const { title, description, activeSection, textbook, breadcrumbs } = Astro.props
             <slot />
         </div>
 
-        <Footer />
     </main>
 </div>
+
+<!-- Mobile bottom bar -->
+<div class="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-white border-t border-gray-200 safe-area-bottom">
+    <div class="flex flex-col">
+        <!-- Section picker row -->
+        <div class="flex items-center h-10 px-3 border-b border-gray-100">
+            <select id="mobile-section-select" class="flex-1 bg-transparent border-none text-sm text-gray-600 py-1 focus:outline-none focus:ring-0 appearance-none cursor-pointer">
+                {currentChapter?.sections.map((section: Section) => (
+                    <option
+                        value={`/chapters/${textbook.version}/${currentChapter.slug}/${section.slug}`}
+                        selected={activeSection.number === section.number}
+                    >
+                        {activeSection.chapterNumber}.{section.number} {section.title}
+                    </option>
+                ))}
+            </select>
+            <svg class="size-4 text-gray-400 shrink-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+            </svg>
+        </div>
+
+        <!-- Navigation row -->
+        <div class="flex items-center justify-between h-11 px-2">
+            <!-- Home -->
+            <a href="/" class="p-2 text-gray-400 hover:text-gray-600">
+                <span class="sr-only">Home</span>
+                <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                </svg>
+            </a>
+
+            <!-- Prev/Next -->
+            <div class="flex items-center gap-1">
+                {prevUrl ? (
+                    <a href={prevUrl} class="p-2 text-gray-400 hover:text-gray-600">
+                        <span class="sr-only">Previous section</span>
+                        <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </a>
+                ) : (
+                    <span class="p-2 text-gray-200">
+                        <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </span>
+                )}
+                {nextUrl ? (
+                    <a href={nextUrl} class="p-2 text-gray-400 hover:text-gray-600">
+                        <span class="sr-only">Next section</span>
+                        <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </a>
+                ) : (
+                    <span class="p-2 text-gray-200">
+                        <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </span>
+                )}
+            </div>
+
+            <!-- Chapter selector -->
+            <div class="flex items-center">
+                <select id="mobile-chapter-select" class="bg-transparent border-none text-sm text-gray-500 py-1 pr-5 focus:outline-none focus:ring-0 appearance-none cursor-pointer">
+                    {textbook.chapters.map((chapter: Chapter) => (
+                        <option
+                            value={`/chapters/${textbook.version}/${chapter.slug}/${chapter.sections[0]?.slug}`}
+                            selected={activeSection.chapterNumber === chapter.number}
+                        >
+                            Ch. {chapter.number}
+                        </option>
+                    ))}
+                </select>
+                <svg class="size-4 text-gray-400 shrink-0 -ml-4 pointer-events-none" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                </svg>
+            </div>
+
+            <!-- Search button -->
+            <button type="button" command="show-modal" commandfor="mobile-search-dialog" class="p-2 text-gray-400 hover:text-gray-600">
+                <span class="sr-only">Search</span>
+                <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile search dialog -->
+<el-dialog>
+    <dialog id="mobile-search-dialog" class="backdrop:bg-transparent lg:hidden">
+        <el-dialog-backdrop class="fixed inset-0 bg-gray-900/80 transition duration-200 data-closed:opacity-0"></el-dialog-backdrop>
+        <el-dialog-panel class="fixed inset-x-4 top-20 mx-auto max-w-xl rounded-xl bg-white p-4 shadow-2xl ring-1 ring-black/5 transition duration-200 data-closed:scale-95 data-closed:opacity-0">
+            <div id="mobile-search-container" class="relative w-full">
+                <div class="grid w-full grid-cols-1">
+                    <input
+                        type="search"
+                        id="mobile-search-input"
+                        placeholder="Search..."
+                        class="col-start-1 row-start-1 block w-full rounded-full bg-white py-2.5 pr-3 pl-10 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-600"
+                    />
+                    <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="pointer-events-none col-start-1 row-start-1 ml-3 size-5 self-center text-gray-500">
+                        <path d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" fill-rule="evenodd" />
+                    </svg>
+                </div>
+                <div id="mobile-search-results" class="hidden mt-2 max-h-64 overflow-y-auto rounded-md bg-gray-50 ring-1 ring-gray-200">
+                </div>
+            </div>
+        </el-dialog-panel>
+    </dialog>
+</el-dialog>
 <script>
 import '@tailwindplus/elements'
 
@@ -162,6 +292,110 @@ if (nav) {
 
     window.addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();
+}
+
+// Mobile section navigation
+const mobileSectionSelect = document.getElementById('mobile-section-select') as HTMLSelectElement | null;
+if (mobileSectionSelect) {
+    mobileSectionSelect.addEventListener('change', () => {
+        const url = mobileSectionSelect.value;
+        if (url && url.startsWith('/')) {
+            window.location.href = url;
+        }
+    });
+}
+
+// Mobile chapter navigation
+const mobileChapterSelect = document.getElementById('mobile-chapter-select') as HTMLSelectElement | null;
+if (mobileChapterSelect) {
+    mobileChapterSelect.addEventListener('change', () => {
+        const url = mobileChapterSelect.value;
+        if (url && url.startsWith('/')) {
+            window.location.href = url;
+        }
+    });
+}
+
+// Mobile search functionality
+const mobileSearchDialog = document.getElementById('mobile-search-dialog') as HTMLDialogElement | null;
+const mobileSearchInput = document.getElementById('mobile-search-input') as HTMLInputElement | null;
+const mobileSearchResults = document.getElementById('mobile-search-results');
+const mobileSearchElDialog = mobileSearchDialog?.closest('el-dialog');
+
+if (mobileSearchDialog && mobileSearchInput && mobileSearchResults) {
+    let mobilePagefind: any = null;
+
+    async function initMobilePagefind() {
+        if (mobilePagefind) return mobilePagefind;
+        const pagefindPath = "/pagefind/pagefind.js";
+        mobilePagefind = await import(/* @vite-ignore */ pagefindPath);
+        await mobilePagefind.init();
+        return mobilePagefind;
+    }
+
+    // Focus input when dialog opens
+    mobileSearchElDialog?.addEventListener('open', () => {
+        setTimeout(() => mobileSearchInput.focus(), 50);
+    });
+
+    let mobileDebounceTimer: number;
+    mobileSearchInput.addEventListener('input', () => {
+        clearTimeout(mobileDebounceTimer);
+        mobileDebounceTimer = window.setTimeout(() => performMobileSearch(mobileSearchInput.value), 150);
+    });
+
+    async function performMobileSearch(query: string) {
+        if (!query.trim()) {
+            mobileSearchResults!.classList.add('hidden');
+            mobileSearchResults!.innerHTML = '';
+            return;
+        }
+
+        const pf = await initMobilePagefind();
+        const search = await pf.search(query);
+        const results = await Promise.all(
+            search.results.slice(0, 8).map((r: any) => r.data())
+        );
+
+        if (results.length === 0) {
+            mobileSearchResults!.innerHTML = `
+                <div class="px-4 py-3 text-sm text-gray-500">
+                    No results found for "${query}"
+                </div>
+            `;
+        } else {
+            const allResults: { url: string; title: string; excerpt: string }[] = [];
+            for (const result of results) {
+                if (result.sub_results && result.sub_results.length > 0) {
+                    for (const sub of result.sub_results) {
+                        allResults.push({
+                            url: sub.url,
+                            title: sub.title || result.meta?.title || 'Untitled',
+                            excerpt: sub.excerpt,
+                        });
+                    }
+                } else {
+                    allResults.push({
+                        url: result.url,
+                        title: result.meta?.title || 'Untitled',
+                        excerpt: result.excerpt,
+                    });
+                }
+            }
+
+            mobileSearchResults!.innerHTML = allResults
+                .slice(0, 10)
+                .map(result => `
+                    <a href="${result.url}" class="block px-4 py-3 hover:bg-gray-100 border-b border-gray-200 last:border-0">
+                        <div class="text-sm font-medium text-gray-900">${result.title}</div>
+                        <div class="mt-1 text-sm text-gray-600 line-clamp-2">${result.excerpt}</div>
+                    </a>
+                `)
+                .join('');
+        }
+
+        mobileSearchResults!.classList.remove('hidden');
+    }
 }
 </script>
 	</body>

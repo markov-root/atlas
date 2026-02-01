@@ -1,7 +1,6 @@
 ---
 import Logomark from '@/components/brand/Logomark.astro'
-import ThumbsUp from '@/components/icons/ThumbsUp.astro'
-import ThumbsDown from '@/components/icons/ThumbsDown.astro'
+import { Icon } from 'astro-icon/components'
 import Button from '@/components/Button.astro'
 
 interface Props {
@@ -43,7 +42,7 @@ const storageKey = `feedback-${version}-${chapterNumber}-${sectionNumber}`
         data-feedback-vote="up"
         class="inline-flex items-center gap-2 p-4 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-100 hover:border-gray-400 hover:text-gray-900 active:bg-gray-200 active:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:bg-gray-100 focus:border-gray-400 focus:text-gray-900 transition-colors"
       >
-        <ThumbsUp class="h-5 w-5" />
+        <Icon name="tabler:thumb-up" class="h-5 w-5" />
         <span class="sr-only">Yes, this section was useful</span>
       </button>
       <button
@@ -51,7 +50,7 @@ const storageKey = `feedback-${version}-${chapterNumber}-${sectionNumber}`
         data-feedback-vote="down"
         class="inline-flex items-center gap-2 p-4 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-100 hover:border-gray-400 hover:text-gray-900 active:bg-gray-200 active:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:bg-gray-100 focus:border-gray-400 focus:text-gray-900 transition-colors"
       >
-        <ThumbsDown class="h-5 w-5" />
+        <Icon name="tabler:thumb-down" class="h-5 w-5" />
         <span class="sr-only">No, this section could be improved</span>
       </button>
     </div>

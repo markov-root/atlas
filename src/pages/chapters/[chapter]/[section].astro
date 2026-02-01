@@ -1,5 +1,5 @@
 ---
-import { getTextbooks } from "@/i18n/content";
+import { getTextbooks } from "@/lib/textbooks";
 
 export async function getStaticPaths() {
   const textbooks = await getTextbooks();

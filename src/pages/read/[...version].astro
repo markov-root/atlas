@@ -1,10 +1,10 @@
 ---
 import type { Chapter, Textbook } from '@/textbook-loader';
 import Default from "@/layouts/Default.astro"
-import Clock from "@/components/icons/Clock.astro"
+import { Icon } from 'astro-icon/components'
 import Button from "@/components/Button.astro"
 import { formatReadingTime } from "@/textbook-loader/utils"
-import { getTextbooks, getLatestTextbook } from "@/i18n/content";
+import { getTextbooks, getLatestTextbook } from "@/lib/textbooks";
 
 interface Props {
   textbook: Textbook
@@ -34,18 +34,27 @@ export async function getStaticPaths() {
 }
 
 const { textbook } = Astro.props;
+
+const isAppendixSection = (section: { title: string }) => section.title.toLowerCase().includes('appendix');
+
+// Collect all appendix sections with their chapter info
+const appendixSections = textbook.chapters.flatMap(chapter =>
+  chapter.sections
+    .filter(isAppendixSection)
+    .map(section => ({ section, chapter }))
+);
 ---
 <Default title="Chapters" description="We've gathered the most important knowledge on AI safety into a single, comprehensive resource.">
     <header class="bg-white py-24 sm:py-32 border-b border-gray-300">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:mx-0">
-          <h2 class="text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">Chapters</h2>
+          <h2 class="text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl font-display">Chapters</h2>
           <p class="mt-8 text-lg font-medium text-pretty text-gray-700 sm:text-xl/8">
               We've gathered the most important knowledge on AI safety into a single, comprehensive resource.
           </p>
           <ul class="mt-8">
               <li class="flex items-center space-x-2">
-                  <Clock class="w-7 h-auto" />
+                  <Icon name="tabler:clock" class="w-7 h-auto" />
                   <span class="text-lg">
                       {formatReadingTime(textbook.readingTimeInSeconds)}
                   </span>
@@ -55,7 +64,6 @@ const { textbook } = Astro.props;
           <div class="flex gap-4 mt-12">
             <Button large link={`/chapters/${textbook.version}/${textbook.chapters[0].slug}/${textbook.chapters[0].sections[0].slug}`}>
                 <span>Start reading</span>
-                <span aria-hidden="true" class="ml-2">&rarr;</span>
             </Button>
             {textbook.pdfLink && (
               <Button large variant="outline" link={textbook.pdfLink}>
@@ -67,39 +75,90 @@ const { textbook } = Astro.props;
       </div>
     </header>
 
-    {textbook.chapters.map((chapter: Chapter) => (
-    <section class:list={["py-24 sm:py-32 border-b border-gray-300", chapter.number % 2 === 1 ? 'bg-gray-100' : 'bg-white']}>
-        <div class="mx-auto max-w-7xl grid xl:grid-cols-5 px-6 lg:px-8 xl:gap-x-20 gap-y-10">
-            <div class="xl:col-span-2">
-                <h2 class="text-2xl/7 font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-                    {chapter.number}.
-                    <a class="underline" href={`/chapters/${textbook.version}/${chapter.slug}/${chapter.sections[0].slug}/`}>{chapter.title}</a>
-                </h2>
-                {chapter.description && <p class="max-w-4xl text-lg text-gray-700 mt-8 text-balance">{chapter.description}</p>}
-            </div>
-            <div class="xl:col-span-3">
-                <ul class="marker:text-gray-700 space-y-4 text-xl">
-                    {chapter.sections.map(section => (
-                    <li>
-                        {chapter.number}.{section.number}.
-                        <a class="underline" href={`/chapters/${textbook.version}/${chapter.slug}/${section.slug}`}>{section.title}</a>
-                    </li>
-                    ))}
-                </ul>
-                <div class="flex space-x-4 mt-12">
-                    <Button large variant={chapter.number % 2 === 1 ? "white" : "gray"} link={`/chapters/${textbook.version}/${chapter.slug}/${chapter.sections[0].slug}/`}>
-                        <span>Read</span>
-                        <span class="ml-2">&rarr;</span>
-                    </Button>
-                    <span class="flex items-center space-x-1 text-gray-700">
-                        <Clock class="w-5 h-auto" />
-                        <span class="">
-                            {formatReadingTime(chapter.readingTimeInSeconds)}
-                        </span>
-                    </span>
+    {textbook.chapters.map((chapter: Chapter, index: number) => {
+        const sections = chapter.sections.filter(s => !isAppendixSection(s));
+        if (sections.length === 0) return null;
+        return (
+    <section class:list={["py-16 sm:py-24 border-b border-gray-300", index % 2 === 0 ? 'bg-gray-100' : 'bg-white']}>
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-10">
+                <div>
+                    <h2 class="text-2xl/7 font-bold text-gray-900 sm:text-3xl sm:tracking-tight font-display">
+                        {chapter.number}.
+                        <a class="hover:text-brand-700 transition-colors" href={`/chapters/${textbook.version}/${chapter.slug}/${sections[0].slug}/`}>{chapter.title}</a>
+                    </h2>
+                    {chapter.meta.description && <p class="max-w-3xl text-lg text-gray-700 mt-3 text-balance">{chapter.meta.description}</p>}
                 </div>
+                <div class="flex items-center gap-4 shrink-0">
+                    <span class="flex items-center gap-1.5 text-gray-600">
+                        <Icon name="tabler:clock" class="w-5 h-5" />
+                        {formatReadingTime(chapter.readingTimeInSeconds)}
+                    </span>
+                    <Button variant={index % 2 === 0 ? "white" : "gray"} link={`/chapters/${textbook.version}/${chapter.slug}/${sections[0].slug}/`}>
+                        Read chapter &rarr;
+                    </Button>
+                </div>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {sections.map(section => (
+                    <a
+                        href={`/chapters/${textbook.version}/${chapter.slug}/${section.slug}`}
+                        class:list={[
+                            "group relative flex flex-col rounded-xl border p-5 transition-all hover:shadow-md hover:-translate-y-0.5",
+                            index % 2 === 0
+                                ? "bg-white border-gray-200 hover:border-brand-300"
+                                : "bg-gray-50 border-gray-200 hover:border-brand-300"
+                        ]}
+                    >
+                        <span class="text-sm font-medium text-brand-600">
+                            {chapter.number}.{section.number}
+                        </span>
+                        <h3 class="mt-1 font-semibold text-gray-900 group-hover:text-brand-700 transition-colors">
+                            {section.title}
+                        </h3>
+                        {section.readingTimeInSeconds && (
+                            <span class="mt-2 text-sm text-gray-600">
+                                {formatReadingTime(section.readingTimeInSeconds)}
+                            </span>
+                        )}
+                    </a>
+                ))}
             </div>
         </div>
     </section>
-    ))}
+        );
+    })}
+
+    {appendixSections.length > 0 && (
+    <section class:list={["py-16 sm:py-24 border-b border-gray-300", textbook.chapters.length % 2 === 0 ? 'bg-gray-100' : 'bg-white']}>
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl font-display mb-10 text-gray-900">Appendixes</h2>
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {appendixSections.map(({ section, chapter }) => (
+                    <a
+                        href={`/chapters/${textbook.version}/${chapter.slug}/${section.slug}/`}
+                        class:list={[
+                            "group relative flex flex-col rounded-xl border p-5 transition-all hover:shadow-md hover:-translate-y-0.5 hover:border-brand-300",
+                            textbook.chapters.length % 2 === 0
+                                ? "bg-white border-gray-200"
+                                : "bg-gray-50 border-gray-200"
+                        ]}
+                    >
+                        <span class="text-xs font-medium text-gray-600 uppercase tracking-wide">
+                            {chapter.title}
+                        </span>
+                        <h3 class="mt-1 font-semibold text-gray-900 group-hover:text-brand-700 transition-colors">
+                            {section.title.replace(/^Appendix:\s*/i, '')}
+                        </h3>
+                        {section.readingTimeInSeconds && (
+                            <span class="mt-3 text-sm text-gray-600">
+                                {formatReadingTime(section.readingTimeInSeconds)}
+                            </span>
+                        )}
+                    </a>
+                ))}
+            </div>
+        </div>
+    </section>
+    )}
 </Default>

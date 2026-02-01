@@ -1,20 +1,86 @@
 ---
 import Default from "@/layouts/Default.astro";
 import Button from "@/components/Button.astro"
-import { getLatestTextbook } from "@/i18n/content";
+import Header from "@/components/Header.astro"
+import { Image } from "astro:assets";
+import { siteConfig } from "@/config/site";
 
-const textbook = await getLatestTextbook();
+import markovImg from "@/assets/markov-photo.jpg";
+import charbelImg from "@/assets/charbel-photo.jpg";
+
+const authorImages: Record<string, ImageMetadata> = {
+  "markov-photo.jpg": markovImg,
+  "charbel-photo.jpg": charbelImg,
+};
 ---
-<Default title="" description="">
-    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
-        <h1 class="max-w-2xl text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl lg:col-span-2 xl:col-auto dark:text-white">
-            Your up-to-date book on technical AI Safety.
-        </h1>
-        <div class="mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1">
-            <div class="mt-10 flex items-center gap-x-6">
-                <Button link="/read">Read →</Button>
-                <Button link="/teach" variant="outline">Teach a course</Button>
+<Default title="" description="" noHeader>
+    <div class="relative w-full h-[600px]">
+        <Header class="absolute inset-x-0 top-0" />
+        <div class="absolute inset-x-0 top-[72px] bottom-0 flex items-center">
+            <div class="px-6 lg:px-8 max-w-7xl mx-auto w-full">
+                <h1 class="max-w-3xl text-4xl font-semibold text-balance text-black sm:text-6xl/tight font-display">
+                    A complete introduction to AI Safety.
+                </h1>
+                <div class="mt-10 flex items-center gap-x-6">
+                    <Button large link="/read">Read</Button>
+                    <Button link="/teach" large variant="white">Teach</Button>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Authors Section -->
+    <section class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+        <h2 class="text-2xl font-semibold tracking-tight text-gray-900 font-display">
+            Written by
+        </h2>
+
+        <div class="mt-10 grid gap-12 lg:grid-cols-2">
+            <!-- Primary Authors (left column) -->
+            <div class="space-y-6">
+                {siteConfig.authors.primary.map((author) => (
+                    <div class="flex gap-4 items-center">
+                        <Image
+                            src={authorImages[author.image]}
+                            alt={author.name}
+                            class="size-16 rounded-full object-cover shrink-0"
+                            width={256}
+                            height={256}
+                        />
+                        <div>
+                            <h3 class="text-base font-semibold text-gray-900">{author.name}</h3>
+                            <p class="text-sm text-gray-600">{author.role}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Contributing Authors & Advisors (right column) -->
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Contributing Authors</h3>
+                    <div class="mt-3 space-y-3">
+                        {siteConfig.authors.contributing.map((author) => (
+                            <div>
+                                <p class="text-sm font-semibold text-gray-900">{author.name}</p>
+                                <p class="text-sm text-gray-500">{author.bio}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Advisors</h3>
+                    <div class="mt-3 space-y-3">
+                        {siteConfig.authors.advisors.map((advisor) => (
+                            <div>
+                                <p class="text-sm font-semibold text-gray-900">{advisor.name}</p>
+                                <p class="text-sm text-gray-500">{advisor.bio}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </Default>

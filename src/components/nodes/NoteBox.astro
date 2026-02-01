@@ -1,6 +1,6 @@
 ---
 import { formatReadingTime } from '@/textbook-loader/utils';
-import ChevronRight from "@/components/icons/ChevronRight.astro"
+import { Icon } from 'astro-icon/components'
 
 interface Props {
   title?: string;
@@ -21,7 +21,7 @@ const { title, collapsed = false, readingTimeInSeconds } = Astro.props;
     <span class="">{formatReadingTime(readingTimeInSeconds)} read</span>
 </span>
       </span>
-      <ChevronRight class="w-6" />
+      <Icon name="tabler:chevron-right" class="w-6" />
   </summary>
   <div class="note-box-content px-6 py-2 border border-t-0 border-gray-200 rounded-b-2xl">
     <slot />

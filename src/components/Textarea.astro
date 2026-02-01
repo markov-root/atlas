@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends HTMLAttributes<'textarea'> {
+  label?: string
+}
+
+const { label, id, class: className, ...rest } = Astro.props
+---
+
+<div>
+    {label && <label for={id} class="sr-only">{label}</label>}
+    <textarea
+        id={id}
+        class:list={[
+            "w-full px-4 py-2 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 resize-none",
+            className
+        ]}
+        {...rest}
+    ></textarea>
+</div>

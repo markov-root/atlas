@@ -38,10 +38,3 @@ export async function getTextbooks() {
   const textbooks = await getCollection('textbooks');
   return textbooks.filter(t => t.data.language === 'en');
 }
-
-/**
- * Alias for getTextbooks - kept for compatibility.
- */
-export async function getTextbooksForLanguage() {
-  return getTextbooks();
-}

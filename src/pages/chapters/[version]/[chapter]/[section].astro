@@ -4,11 +4,9 @@ import Reader from '@/layouts/Reader.astro';
 import type { Chapter, Section, SectionRef } from '@/textbook-loader';
 import type { Textbook } from '@/textbook-loader/loader';
 import { formatReadingTime } from '@/textbook-loader/utils';
-import Clock from "@/components/icons/Clock.astro"
-import ChevronLeft from "@/components/icons/ChevronLeft.astro"
-import ChevronRight from "@/components/icons/ChevronRight.astro"
+import { Icon } from 'astro-icon/components'
 import Button from "@/components/Button.astro"
-import { getTextbooks } from "@/i18n/content";
+import { getTextbooks } from "@/lib/textbooks";
 
 interface Props {
     version: string
@@ -69,20 +67,20 @@ const isLastSection = section.nextSection === null;
     { text: section.title, url: '#' }
 ]}>
 
-    <div class="bg-brand-600 py-12 sm:py-16 md:py-24 lg:py-32" slot="header">
+    <div class="bg-white py-12 sm:py-16 md:py-24 lg:py-32" slot="header">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="max-w-2xl lg:mx-0">
-                <p class="text-base/7 font-semibold text-white/80">Chapter {chapter.number}: {chapter.title}</p>
-                <h1 class="mt-2 text-5xl font-semibold tracking-tight text-white sm:text-7xl text-balance">{section.title}</h1>
-                {pageDescription && <p class="mt-8 text-lg font-medium text-pretty text-white/90 sm:text-xl/8">{pageDescription}</p>}
+                <p class="text-base/7 font-semibold text-gray-600">Chapter {chapter.number}: {chapter.title}</p>
+                <h1 class="mt-2 text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl text-balance font-display">{section.title}</h1>
+                {pageDescription && <p class="mt-8 text-lg font-medium text-pretty text-gray-700 sm:text-xl/8">{pageDescription}</p>}
                 <ul class="md:flex gap-x-8">
-                    <li class="flex items-center space-x-1 text-white/90 mt-12 text-lg">
-                        <Clock class="h-6 w-auto" />
+                    <li class="flex items-center space-x-1 text-gray-600 mt-12 text-lg">
+                        <Icon name="tabler:clock" class="h-6 w-auto" />
                         <span class="ml-1">
                             {formatReadingTime(section.readingTimeInSeconds)}
                         </span>
                     </li>
-                    <li class="flex items-center space-x-1 text-white/90 mt-12 text-lg">
+                    <li class="flex items-center space-x-1 text-gray-600 mt-12 text-lg">
                         <span>
                             Written by {chapter.meta.authors.map(a => a.name).join(', ')}
                         </span>
@@ -90,7 +88,7 @@ const isLastSection = section.nextSection === null;
                 </ul>
                 {section.number === 1 && chapter.pdfLink && (
                 <div class="mt-16">
-                    <Button link={chapter.pdfLink} variant="white">Download</Button>
+                    <Button link={chapter.pdfLink} variant="primary">Download</Button>
                 </div>
                 )}
 
@@ -131,7 +129,7 @@ const isLastSection = section.nextSection === null;
                     {prevInfo ? (
                     <a href={`/chapters/${version}/${prevInfo.chapter.slug}/${prevInfo.section.slug}`} class="group bg-gray-100 px-6 py-4 w-full rounded-2xl flex gap-x-4 items-center">
                             <span class="sr-only">Previous</span>
-                            <ChevronLeft class="w-7 text-gray-500" />
+                            <Icon name="tabler:chevron-left" class="w-7 text-gray-500" />
                         <span class="text-base font-medium text-gray-900 group-hover:text-brand-600">
                             {prevInfo.chapter.number}.{prevInfo.section.number}. {prevInfo.section.title}
                         </span>
@@ -144,7 +142,7 @@ const isLastSection = section.nextSection === null;
                             {nextInfo.chapter.number}.{nextInfo.section.number}.
                             {nextInfo.section.title}
                         </span>
-                        <ChevronRight class="w-7 text-white" />
+                        <Icon name="tabler:chevron-right" class="w-7 text-white" />
                     </a>
                     ) : <div />}
                 </div>

@@ -1,73 +1,88 @@
 ---
-import Logomark from './brand/Logomark.astro'
+import Lockup from './brand/Lockup.astro'
+import Button from './Button.astro'
+import Input from './Input.astro'
+import Textarea from './Textarea.astro'
+import { Icon } from 'astro-icon/components'
+import { siteConfig } from '@/config/site'
 ---
 
-<footer class="relative overflow-hidden">
+<footer class="relative overflow-hidden border-t border-gray-300">
     <div class="bg-gray-100">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8 sm:py-12 lg:py-16 z-10 relative">
-        <Logomark class="max-h-12 not-dark:text-brand-600 dark:text-white mb-4" />
-        <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Company name" class="h-9 not-dark:hidden" />
-        <p class="text-balance text-gray-800 dark:text-gray-400 mb-6 text-xl max-w-lg lg:text-2xl lg:max-w-xl leading-10">
-            Distilling safety research into a complete learning ecosystem.
-        </p>
-        <a href="mailto:markov@ai-safety-atlas.com" class="text-gray-800 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200 underline">
-            Contact us
-        </a>
+        <div class="max-w-7xl mx-auto z-10 relative grid md:grid-cols-2">
+            <div class="px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+                <Lockup class="max-h-12 text-brand-600 mb-4" />
+                <p class="text-balance text-gray-800 text-xl max-w-lg lg:text-2xl lg:max-w-xl leading-10">
+                    Distilling safety research into a complete learning ecosystem.
+                </p>
+                <div class="flex gap-4 mt-10">
+                    <a href="https://github.com/markov-root/atlas" class="text-gray-600 hover:text-gray-900">
+                        <span class="sr-only">GitHub</span>
+                        <Icon name="cib:github" class="size-6" />
+                    </a>
+                    <a href="https://www.youtube.com/@securite-ia" class="text-gray-600 hover:text-gray-900">
+                        <span class="sr-only">YouTube</span>
+                        <Icon name="cib:youtube" class="size-6" />
+                    </a>
+                </div>
+            </div>
+            <div class="bg-gray-50 p-6 sm:p-8 lg:p-12">
+                <h3 class="font-semibold text-gray-900 mb-4">Get in touch</h3>
+                <form action={siteConfig.contactFormspree} method="POST" class="space-y-4">
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <Input type="text" name="name" id="contact-name" required placeholder="Name" label="Name" />
+                        <Input type="email" name="email" id="contact-email" required placeholder="Email" label="Email" />
+                    </div>
+                    <Textarea name="message" id="contact-message" rows="3" required placeholder="Message" label="Message" />
+                    <Button type="submit">Send message</Button>
+                </form>
+            </div>
+        </div>
+        <div class="border-t border-gray-300">
+            <div class="px-6 lg:px-8 py-8 lg:py-12 md:grid md:grid-cols-3 md:gap-8 max-w-7xl mx-auto z-10 relative space-y-8 md:space-y-0">
+                <div>
+                    <h3 class="font-semibold text-gray-900">Navigation</h3>
+                    <ul role="list" class="mt-6 space-y-4">
+                        <li>
+                            <a href="/read" class="text-gray-700 underline hover:text-gray-900">Read</a>
+                        </li>
+                        <li>
+                            <a href="/teach" class="text-gray-700 underline  hover:text-gray-900">Teach</a>
+                        </li>
+                        <li>
+                            <a href="/join-study-group" class="text-gray-700 underline hover:text-gray-900">Get certified</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-900">Funded by</h3>
+                    <ul role="list" class="mt-6 space-y-4">
+                        <li>
+                            <a href="https://cesia.org" class="text-gray-700 underline hover:text-gray-900">French Center for AI Safety</a>
+                        </li>
+                        <li>
+                            <a href="https://coefficientgiving.org" class="text-gray-700 underline hover:text-gray-900">Coefficient Giving</a>
+                        </li>
+                        <li>
+                            <a href="https://manifund.org" class="text-gray-700 underline hover:text-gray-900">Manifund</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-900">Cite this work as</h3>
+                    <p class="mt-6 text-sm text-gray-700">
+                        {siteConfig.citation}
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="bg-gray-100 border-t border-gray-300">
-    <div class="px-6 lg:px-8 py-8 lg:py-12 md:grid md:grid-cols-3 md:gap-8 max-w-7xl mx-auto z-10 relative space-y-8 md:space-y-0">
-        <div>
-            <h3 class="font-semibold text-gray-900 dark:text-white">Navigation</h3>
-            <ul role="list" class="mt-6 space-y-4">
-                <li>
-                    <a href="/read" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">Read</a>
-                </li>
-                <li>
-                    <a href="/teach" class="text-gray-700 underline  hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">Teach</a>
-                </li>
-                <li>
-                    <a href="/join-study-group" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">Get certified</a>
-                </li>
-                <li>
-                    <a href="/about" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">About us</a>
-                </li>
-            </ul>
-        </div>
-        <div>
-            <h3 class="font-semibold text-gray-900 dark:text-white">Funded by</h3>
-            <ul role="list" class="mt-6 space-y-4">
-                <li>
-                    <a href="https://cesia.org" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">French Center for AI Safety</a>
-                </li>
-                <li>
-                    <a href="https://coefficientgiving.org" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">Coefficient Giving</a>
-                </li>
-                <li>
-                    <a href="https://manifund.org" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">Manifund</a>
-                </li>
-            </ul>
-        </div>
-        <div>
-            <h3 class="font-semibold text-gray-900 dark:text-white">Socials</h3>
-            <ul role="list" class="mt-6 space-y-4">
-                <li>
-                    <a href="https://github.com/markov-root/atlas" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">GitHub</a>
-                </li>
-                <li>
-                    <a href="https://www.youtube.com/@securite-ia" class="text-gray-700 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200">YouTube</a>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-    </div>
-    <div class="border-t border-gray-900/10 py-6 dark:border-white/10 relative z-10 bg-white">
+    <div class="border-t border-gray-900/10 py-6 relative z-10 bg-white">
         <div class="max-w-7xl mx-auto w-full  flex justify-between flex-wrap px-6 lg:px-8">
-            <p class="text-sm/6 text-gray-700 dark:text-gray-300">Content licensed under <a class="underline" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a> unless otherwise noted.</p>
-            <ul class="text-sm/6 flex flex-wrap space-x-6 text-gray-700 dark:text-gray-300 mt-4 sm:mt-0">
+            <p class="text-sm/6 text-gray-700">Content licensed under <a class="underline" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a> unless otherwise noted.</p>
+            <ul class="text-sm/6 flex flex-wrap space-x-6 text-gray-700 mt-4 sm:mt-0">
                 <li>
-                    <a href="https://foreview.org" class="underline">Site from Foreview</a>
+                    <a href="https://foreview.org" class="underline">Site by Foreview</a>
                 </li>
                 <li>
                     <a href="/privacy-policy" class="underline">Privacy Policy</a>
@@ -75,5 +90,4 @@ import Logomark from './brand/Logomark.astro'
             </ul>
         </div>
     </div>
-    <Logomark class="h-full w-auto hidden md:block -right-8 absolute -top-[1.6175rem] text-gray-50 z-1" />
 </footer>

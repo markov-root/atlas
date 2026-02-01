@@ -46,13 +46,12 @@ if (speaker) {
     {(speaker || position || date) && (
       <footer class="flex items-center gap-x-4 bg-brand-50/30 px-6 py-4 rounded-b-2xl">
         {portraitImage && (
-          <Image src={portraitImage} alt={speaker || ''} class="size-12! shrink-0 object-cover object-center rounded-full border  border-brand-50" />
+          <Image src={portraitImage} alt={speaker || ''} class="size-16! shrink-0 object-cover object-center rounded-full border border-brand-50" />
         )}
         <span>
             {speaker && <cite class="font-semibold text-lg block not-italic">{speaker}</cite>}
             {position && <span class="text-balance">{position}</span>}
-            {date && <span class="">{date}</span>}
-            {sourceUrl && <NodeRenderer node={sourceUrl} />}
+            {(date || sourceUrl) && <span class="block">{date}{date && sourceUrl && ' • '}{sourceUrl && <span class="underline"><NodeRenderer node={sourceUrl} /></span>}</span>}
         </span>
       </footer>
       )}

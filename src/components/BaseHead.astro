@@ -1,4 +1,10 @@
 ---
+import '@fontsource/radley'
+import '@fontsource-variable/andada-pro'
+import '@fontsource/righteous';
+import '@fontsource/noto-sans';
+import '@fontsource-variable/jost';
+
 import './../styles/global.css'
 
 interface Props {
@@ -11,6 +17,9 @@ const { title, description } = Astro.props
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 ---
 <title>{title ? `${title} - AI Safety Atlas` : 'AI Safety Atlas'}</title>
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
 <link rel="canonical" href={canonicalUrl} />
 <meta property="og:title" content={title || 'AI Safety Atlas'} />
 <meta property="og:description" content={description} />

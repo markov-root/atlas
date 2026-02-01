@@ -16,14 +16,14 @@ if (link) {
 }
 
 const variantClasses = {
-  primary: "bg-brand-500 text-white hover:bg-brand-600 focus:ring-2 focus:ring-brand-500 focus:ring-offset-2",
+  primary: "bg-sky-600 text-white",
   gray: "bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2",
   white: "bg-white text-gray-900 hover:bg-gray-100 focus:ring-2 focus:ring-white focus:ring-offset-2",
   outline: "bg-transparent text-gray-900 hover:bg-gray-100 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2",
 }
 ---
 <Tag class:list={[
-  "inline-block rounded-full font-semibold transition-colors focus:outline-none",
+  "inline-block rounded-2xl font-semibold transition-colors focus:outline-none",
   variantClasses[variant],
   large ? "px-8 py-2 text-xl " :"px-4 py-2",
   className

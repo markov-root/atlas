@@ -11,8 +11,8 @@ const { term, definition, sourceUrl, sourceLabel, matchedText } = Astro.props;
 const tooltipId = `glossary-${term.toLowerCase().replace(/\s+/g, '-')}`;
 ---
 
-<span 
-  class="glossary-term" 
+<span
+  class="glossary-term"
   data-glossary-term={term}
   data-glossary-definition={definition}
   data-glossary-source-url={sourceUrl}
@@ -34,20 +34,20 @@ const tooltipId = `glossary-${term.toLowerCase().replace(/\s+/g, '-')}`;
     const tooltip = document.createElement('div');
     tooltip.className = 'glossary-tooltip';
     tooltip.setAttribute('role', 'tooltip');
-    
+
     const content = document.createElement('div');
     content.className = 'glossary-tooltip-content';
-    
+
     const termEl = document.createElement('strong');
     termEl.className = 'glossary-tooltip-term';
     termEl.textContent = term;
     content.appendChild(termEl);
-    
+
     const defEl = document.createElement('p');
     defEl.className = 'glossary-tooltip-definition';
     defEl.textContent = definition;
     content.appendChild(defEl);
-    
+
     if (sourceUrl && sourceLabel) {
       const sourceEl = document.createElement('a');
       sourceEl.className = 'glossary-tooltip-source';
@@ -57,19 +57,19 @@ const tooltipId = `glossary-${term.toLowerCase().replace(/\s+/g, '-')}`;
       sourceEl.textContent = sourceLabel;
       content.appendChild(sourceEl);
     }
-    
+
     tooltip.appendChild(content);
-    
+
     const arrowEl = document.createElement('div');
     arrowEl.className = 'glossary-tooltip-arrow';
     tooltip.appendChild(arrowEl);
-    
+
     return tooltip;
   }
 
   function positionTooltip(trigger: HTMLElement, tooltip: HTMLElement) {
     const arrowEl = tooltip.querySelector('.glossary-tooltip-arrow') as HTMLElement;
-    
+
     computePosition(trigger, tooltip, {
       placement: 'top',
       middleware: [
@@ -87,7 +87,7 @@ const tooltipId = `glossary-${term.toLowerCase().replace(/\s+/g, '-')}`;
       // Position arrow
       if (middlewareData.arrow) {
         const { x: arrowX, y: arrowY } = middlewareData.arrow;
-        
+
         const staticSide = {
           top: 'bottom',
           right: 'left',
@@ -176,9 +176,9 @@ const tooltipId = `glossary-${term.toLowerCase().replace(/\s+/g, '-')}`;
 
 <style is:global>
   .glossary-term {
-    text-decoration: underline dotted;
-    text-decoration-color: rgba(25, 113, 194, 0.35);
-    text-underline-offset: 2px;
+    background-color: var(--color-gray-100);
+    padding: 0 4px;
+    border-bottom: 2px solid rgba(25, 113, 194, 0.35);
     cursor: help;
   }
 
