@@ -23,7 +23,6 @@ export type ChapterDefinition = {
   description?: string
   authors: Author[]
   acknowledgements: string[]
-  category: string;
   lecture?: string,
   paper?: string,
   facilitationGuide?: string

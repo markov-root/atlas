@@ -66,7 +66,7 @@ export class Renderer {
     const typstContent = this.generateChapter(chapter);
 
     try {
-      execSync(`typst compile --root src - "${pdfPath}"`, {
+      execSync(`typst compile --font-path src/fonts --root src - "${pdfPath}"`, {
         input: typstContent,
         stdio: ['pipe', 'pipe', 'pipe'],
       });

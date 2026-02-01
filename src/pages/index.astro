@@ -1,9 +1,9 @@
 ---
 import Default from "@/layouts/Default.astro";
-import Button from "@/components/Button.astro"
 import Header from "@/components/Header.astro"
 import { Image } from "astro:assets";
 import { siteConfig } from "@/config/site";
+import { getLatestTextbook } from "@/lib/textbooks";
 
 import markovImg from "@/assets/markov-photo.jpg";
 import charbelImg from "@/assets/charbel-photo.jpg";
@@ -12,6 +12,30 @@ const authorImages: Record<string, ImageMetadata> = {
   "markov-photo.jpg": markovImg,
   "charbel-photo.jpg": charbelImg,
 };
+
+const textbook = await getLatestTextbook();
+
+// Build chapter lookup: number -> { title, slug, firstSectionSlug }
+const chapterLookup = new Map(
+  textbook.chapters.map(ch => [
+    ch.number,
+    {
+      title: ch.title,
+      slug: ch.slug,
+      firstSectionSlug: ch.sections[0]?.slug,
+    }
+  ])
+);
+
+function getChapterUrl(chapterNum: number) {
+  const chapter = chapterLookup.get(chapterNum);
+  if (!chapter) return '/read';
+  return `/chapters/${textbook.version}/${chapter.slug}/${chapter.firstSectionSlug}`;
+}
+
+function getChapterTitle(chapterNum: number) {
+  return chapterLookup.get(chapterNum)?.title ?? `Chapter ${chapterNum}`;
+}
 ---
 <Default title="" description="" noHeader>
     <div class="relative w-full h-[600px]">
@@ -19,15 +43,92 @@ const authorImages: Record<string, ImageMetadata> = {
         <div class="absolute inset-x-0 top-[72px] bottom-0 flex items-center">
             <div class="px-6 lg:px-8 max-w-7xl mx-auto w-full">
                 <h1 class="max-w-3xl text-4xl font-semibold text-balance text-black sm:text-6xl/tight font-display">
-                    A complete introduction to AI Safety.
+                    The open textbook for AI Safety
                 </h1>
-                <div class="mt-10 flex items-center gap-x-6">
-                    <Button large link="/read">Read</Button>
-                    <Button link="/teach" large variant="white">Teach</Button>
-                </div>
+                <p class="mt-6 max-w-2xl text-lg text-gray-600">
+                    A comprehensive, regularly updated guide to understanding and mitigating risks from advanced AI systems.
+                </p>
             </div>
         </div>
     </div>
+
+    <!-- CTA Section -->
+    <section class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-2">
+            <!-- Learn Card -->
+            <div class="rounded-2xl border border-gray-200 p-8">
+                <p class="text-sm font-medium text-gray-500">I want to learn</p>
+                <h2 class="mt-2 text-2xl font-semibold text-gray-900 font-display">Read the textbook</h2>
+                <p class="mt-4 text-gray-600">
+                    Self-study or join a cohort. From capabilities to governance, from alignment to oversight.
+                </p>
+                <a href="/read" class="mt-6 inline-flex items-center text-sm font-semibold text-black hover:text-gray-700">
+                    Start reading <span class="ml-1">&rarr;</span>
+                </a>
+            </div>
+
+            <!-- Teach Card -->
+            <div class="rounded-2xl border border-gray-200 p-8">
+                <p class="text-sm font-medium text-gray-500">I want to teach</p>
+                <h2 class="mt-2 text-2xl font-semibold text-gray-900 font-display">Run a course</h2>
+                <p class="mt-4 text-gray-600">
+                    We provide students, materials, and facilitation guides. You focus on building your community.
+                </p>
+                <a href="/teach" class="mt-6 inline-flex items-center text-sm font-semibold text-black hover:text-gray-700">
+                    Become an affiliate <span class="ml-1">&rarr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- What the textbook covers -->
+    <section class="max-w-7xl mx-auto grid lg:grid-cols-[400px_1fr]">
+        <div class="lg:sticky lg:top-[72px] lg:self-start lg:h-[calc(100vh-72px-72px)]">
+            <div class="bg-black text-white px-6 py-12 lg:px-12 lg:py-16 flex flex-col justify-between h-full rounded-t-xl lg:rounded-t-none lg:rounded-l-xl">
+                <div>
+                    <h2 class="font-display text-3xl lg:text-4xl font-normal leading-tight mb-6">
+                        {siteConfig.textbookQuestions.title}
+                    </h2>
+                    <p class="text-sm text-gray-300 leading-relaxed">
+                        {siteConfig.textbookQuestions.description}
+                    </p>
+                </div>
+                <div class="text-xs text-gray-500 mt-8 lg:mt-0">
+                    {siteConfig.textbookQuestions.meta.map((item, i) => (
+                        <span class:list={["block", i < siteConfig.textbookQuestions.meta.length - 1 && "mb-2"]}>{item}</span>
+                    ))}
+                </div>
+            </div>
+        </div>
+        <div class="bg-white rounded-b-xl lg:rounded-b-none lg:rounded-r-xl">
+            {siteConfig.textbookQuestions.questions.map((q, index) => (
+                <div class:list={[
+                    "p-8 lg:p-16 grid grid-cols-[32px_1fr] lg:grid-cols-[48px_1fr] gap-4 lg:gap-8",
+                    index < siteConfig.textbookQuestions.questions.length - 1 && "border-b border-gray-200"
+                ]}>
+                    <span class="font-display text-2xl lg:text-4xl text-gray-300">{index + 1}</span>
+                    <div>
+                        <h3 class="font-display text-xl lg:text-2xl font-normal mb-4 leading-snug">
+                            {q.question}
+                        </h3>
+                        <p class="text-sm text-gray-500 leading-relaxed mb-6 max-w-lg">
+                            {q.description}
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            {q.chapters.map(chNum => (
+                                <a
+                                    href={getChapterUrl(chNum)}
+                                    class="text-xs uppercase tracking-wide px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900 transition-colors"
+                                >
+                                    Ch {chNum}: {getChapterTitle(chNum)}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
 
     <!-- Authors Section -->
     <section class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">

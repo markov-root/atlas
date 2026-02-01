@@ -11,11 +11,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.6",
     "@floating-ui/dom": "^1.7.4",
-    "@fontsource-variable/andada-pro": "^5.2.8",
     "@fontsource-variable/jost": "^5.2.8",
-    "@fontsource/jost": "^5.2.8",
-    "@fontsource/noto-sans": "^5.2.10",
-    "@fontsource/radley": "^5.2.8",
     "@fontsource/righteous": "^5.2.7",
     "@foreview/ais-logos-astro": "^0.1.0",
     "@iconify-json/cib": "^1.2.3",

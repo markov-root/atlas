@@ -14,19 +14,7 @@ importers:
       '@floating-ui/dom':
         specifier: ^1.7.4
         version: 1.7.4
-      '@fontsource-variable/andada-pro':
-        specifier: ^5.2.8
-        version: 5.2.8
       '@fontsource-variable/jost':
-        specifier: ^5.2.8
-        version: 5.2.8
-      '@fontsource/jost':
-        specifier: ^5.2.8
-        version: 5.2.8
-      '@fontsource/noto-sans':
-        specifier: ^5.2.10
-        version: 5.2.10
-      '@fontsource/radley':
         specifier: ^5.2.8
         version: 5.2.8
       '@fontsource/righteous':
@@ -500,20 +488,8 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@fontsource-variable/andada-pro@5.2.8':
-    resolution: {integrity: sha512-JM/kfAI0rekPPv3mUmrOxVVzJJw8p1inQlHxdH6GjMTYklLlFef4uBre036l0mwpuGxVnwMrDJU5OKyf+tKD8g==}
-
   '@fontsource-variable/jost@5.2.8':
     resolution: {integrity: sha512-+VDDHpbhgZ9A8KeHb7/LUMRR1LILVKIscNhVRSDzn3tFXoi1mFA/OhO8CZL/u2OujoGjZANjOdUZIgaxclxyjw==}
-
-  '@fontsource/jost@5.2.8':
-    resolution: {integrity: sha512-PEK7oGJL8r+YZm6BriWhmCql9DhVYTMt0iEQbZHo8mqfIPIZo67Tm68xEIaRA0yB3wsHA7Tm66yMQDIxq3Bjqw==}
-
-  '@fontsource/noto-sans@5.2.10':
-    resolution: {integrity: sha512-J58RVfS/C0Z2VBF+PoU260Tx8cdRGYuS+e3yQe4hYaIYDl0sEVn5CzlLo5zVRvQD0HaIUTV8AZMfqR7rtdEpqQ==}
-
-  '@fontsource/radley@5.2.8':
-    resolution: {integrity: sha512-zJVvGGrc4b+OiMkN9qBgIKp6eXA2uMimnvuBae4ZrYYo5TfXxLDhi0/rTdc3ANOMRUAY5wgg7gycxzesHOw+8g==}
 
   '@fontsource/righteous@5.2.7':
     resolution: {integrity: sha512-u50Zr6cPEmbf5DUsw/NW5kQGgKB45mnFc+N12rFsoDm7pywUaEQmrVcYKPv2+4yo6f+mIDUXb4olZruknMU3QA==}
@@ -3278,15 +3254,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@fontsource-variable/andada-pro@5.2.8': {}
-
   '@fontsource-variable/jost@5.2.8': {}
-
-  '@fontsource/jost@5.2.8': {}
-
-  '@fontsource/noto-sans@5.2.10': {}
-
-  '@fontsource/radley@5.2.8': {}
 
   '@fontsource/righteous@5.2.7': {}
 

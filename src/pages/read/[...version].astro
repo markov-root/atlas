@@ -89,15 +89,9 @@ const appendixSections = textbook.chapters.flatMap(chapter =>
                     </h2>
                     {chapter.meta.description && <p class="max-w-3xl text-lg text-gray-700 mt-3 text-balance">{chapter.meta.description}</p>}
                 </div>
-                <div class="flex items-center gap-4 shrink-0">
-                    <span class="flex items-center gap-1.5 text-gray-600">
-                        <Icon name="tabler:clock" class="w-5 h-5" />
-                        {formatReadingTime(chapter.readingTimeInSeconds)}
-                    </span>
-                    <Button variant={index % 2 === 0 ? "white" : "gray"} link={`/chapters/${textbook.version}/${chapter.slug}/${sections[0].slug}/`}>
-                        Read chapter &rarr;
-                    </Button>
-                </div>
+                <Button variant={index % 2 === 0 ? "white" : "gray"} link={`/chapters/${textbook.version}/${chapter.slug}/${sections[0].slug}/`}>
+                    Read chapter &rarr;
+                </Button>
             </div>
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {sections.map(section => (
@@ -110,11 +104,8 @@ const appendixSections = textbook.chapters.flatMap(chapter =>
                                 : "bg-gray-50 border-gray-200 hover:border-brand-300"
                         ]}
                     >
-                        <span class="text-sm font-medium text-brand-600">
-                            {chapter.number}.{section.number}
-                        </span>
-                        <h3 class="mt-1 font-semibold text-gray-900 group-hover:text-brand-700 transition-colors">
-                            {section.title}
+                        <h3 class="font-semibold text-gray-900 group-hover:text-brand-700 transition-colors">
+                            <span class="text-brand-600">{chapter.number}.{section.number}</span> {section.title}
                         </h3>
                         {section.readingTimeInSeconds && (
                             <span class="mt-2 text-sm text-gray-600">

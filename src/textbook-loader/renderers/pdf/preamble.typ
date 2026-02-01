@@ -18,7 +18,7 @@
 )
 
 #set text(
-  font: "Libertinus Serif",
+  font: "Jost",
   size: 11pt,
   lang: "en"
 )
@@ -41,19 +41,19 @@
 #show heading.where(level: 1): it => {
   pagebreak(weak: true)
   v(1em)
-  text(size: 18pt, weight: "bold", it)
+  text(size: 18pt, weight: "regular", font: "Righteous", it)
   v(0.5em)
 }
 
 #show heading.where(level: 2): it => {
   v(0.8em)
-  text(size: 14pt, weight: "bold", it)
+  text(size: 14pt, weight: "regular", font: "Righteous", it)
   v(0.4em)
 }
 
 #show heading.where(level: 3): it => {
   v(0.6em)
-  text(size: 12pt, weight: "bold", it)
+  text(size: 12pt, weight: "regular", font: "Righteous", it)
   v(0.3em)
 }
 
@@ -226,9 +226,9 @@
 #let title-page(chapter-number, title, description) = {
   align(center)[
     #v(2fr)
-    #text(size: 14pt, fill: rgb("#666666"), weight: "medium", [CHAPTER #chapter-number])
+    #text(size: 14pt, fill: rgb("#666666"), weight: "regular", font: "Righteous", [CHAPTER #chapter-number])
     #v(16pt)
-    #text(size: 28pt, weight: "bold", title)
+    #text(size: 28pt, weight: "regular", font: "Righteous", title)
     #v(24pt)
     #block(width: 70%)[
       #text(size: 11pt, fill: rgb("#444444"), style: "italic", description)

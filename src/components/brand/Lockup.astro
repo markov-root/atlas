@@ -2,11 +2,13 @@
 import type { HTMLAttributes } from 'astro/types'
 import Logomark from './Logomark.astro'
 
-interface Props extends HTMLAttributes<'svg'> {}
+interface Props extends HTMLAttributes<'span'> {
+  mono?: boolean
+}
 
-const { ...rest } = Astro.props
+const { class: className, mono = false, ...rest } = Astro.props
 ---
-<span class="flex shrink-0 items-center gap-x-2  h-16">
-    <Logomark class="h-8 w-auto text-sky-700" />
-    <span class="uppercase font-bold font-display">AI Safety Atlas</span>
+<span class:list={["flex shrink-0 items-center gap-x-2 h-16", className]} {...rest}>
+    <Logomark class:list={["h-8 w-auto", mono ? "" : "text-brand-600"]} />
+    <span class:list={["uppercase font-bold font-display", mono ? "" : "text-gray-900"]}>AI Safety Atlas</span>
 </span>

@@ -19,7 +19,7 @@ const { title, description, noHeader = false } = Astro.props
 		<BaseHead title={title} description={description} />
 		<slot name="head" />
 	</head>
-	<body class="noise-bg">
+	<body class="noise-bg bg-gray-50">
         {!noHeader && <Header />}
 	    <slot />
 

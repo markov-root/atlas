@@ -3,6 +3,54 @@ export const siteConfig = {
   citationUrl: 'https://ai-safety-atlas.com',
   contactFormspree: 'https://formspree.io/f/xlgbkgnq',
 
+  textbookQuestions: {
+    title: "Questions the textbook answers",
+    description: "A structured journey through the core problems of AI safety—technical and governance.",
+    meta: [
+      "8 chapters",
+      "40+ sections",
+      "Technical + Governance tracks",
+      "Updated quarterly",
+    ],
+    questions: [
+      {
+        question: "How capable is AI today, and how quickly is it progressing?",
+        description: "Foundation models, scaling laws, benchmarks, and timelines. What can current systems do, and what might they do soon?",
+        chapters: [1],
+      },
+      {
+        question: "Why might advanced AI be dangerous?",
+        description: "From misuse to misalignment. Threat models, failure modes, and the landscape of risks from increasingly powerful systems.",
+        chapters: [2],
+      },
+      {
+        question: "What strategies can mitigate these risks?",
+        description: "Technical and governance approaches. Prevention, alignment, containment, and coordination.",
+        chapters: [3],
+      },
+      {
+        question: "How do we govern AI development and deployment?",
+        description: "Policy frameworks, international coordination, compute governance, and institutional design.",
+        chapters: [4],
+      },
+      {
+        question: "How do we evaluate AI systems at scale?",
+        description: "When humans can't directly verify AI outputs, how do we maintain oversight? Scalable evaluation methods and their limits.",
+        chapters: [5, 8],
+      },
+      {
+        question: "How do we ensure AI systems behave as intended?",
+        description: "Alignment techniques, from RLHF to constitutional AI. Specification, training, and verification.",
+        chapters: [6, 7],
+      },
+      {
+        question: "Can we understand what AI systems are doing internally?",
+        description: "Mechanistic interpretability, probing, feature visualization. Opening the black box.",
+        chapters: [9],
+      },
+    ],
+  },
+
   authors: {
     primary: [
       {

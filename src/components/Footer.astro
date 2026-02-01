@@ -7,85 +7,85 @@ import { Icon } from 'astro-icon/components'
 import { siteConfig } from '@/config/site'
 ---
 
-<footer class="relative overflow-hidden border-t border-gray-300">
-    <div class="bg-gray-100">
+<footer class="relative overflow-hidden bg-[var(--color-black)]">
+    <div>
         <div class="max-w-7xl mx-auto z-10 relative grid md:grid-cols-2">
             <div class="px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-                <Lockup class="max-h-12 text-brand-600 mb-4" />
-                <p class="text-balance text-gray-800 text-xl max-w-lg lg:text-2xl lg:max-w-xl leading-10">
+                <Lockup class="max-h-12 text-white mb-4" mono />
+                <p class="text-balance text-white/70 text-xl max-w-lg lg:text-2xl lg:max-w-xl leading-10">
                     Distilling safety research into a complete learning ecosystem.
                 </p>
                 <div class="flex gap-4 mt-10">
-                    <a href="https://github.com/markov-root/atlas" class="text-gray-600 hover:text-gray-900">
+                    <a href="https://github.com/markov-root/atlas" class="text-white/50 hover:text-white">
                         <span class="sr-only">GitHub</span>
                         <Icon name="cib:github" class="size-6" />
                     </a>
-                    <a href="https://www.youtube.com/@securite-ia" class="text-gray-600 hover:text-gray-900">
+                    <a href="https://www.youtube.com/@securite-ia" class="text-white/50 hover:text-white">
                         <span class="sr-only">YouTube</span>
                         <Icon name="cib:youtube" class="size-6" />
                     </a>
                 </div>
             </div>
-            <div class="bg-gray-50 p-6 sm:p-8 lg:p-12">
-                <h3 class="font-semibold text-gray-900 mb-4">Get in touch</h3>
+            <div class="p-6 sm:p-8 lg:p-12">
+                <h3 class="font-semibold text-white mb-4">Get in touch</h3>
                 <form action={siteConfig.contactFormspree} method="POST" class="space-y-4">
                     <div class="grid sm:grid-cols-2 gap-4">
-                        <Input type="text" name="name" id="contact-name" required placeholder="Name" label="Name" />
-                        <Input type="email" name="email" id="contact-email" required placeholder="Email" label="Email" />
+                        <Input type="text" name="name" id="contact-name" required placeholder="Name" label="Name" variant="dark" />
+                        <Input type="email" name="email" id="contact-email" required placeholder="Email" label="Email" variant="dark" />
                     </div>
-                    <Textarea name="message" id="contact-message" rows="3" required placeholder="Message" label="Message" />
-                    <Button type="submit">Send message</Button>
+                    <Textarea name="message" id="contact-message" rows="3" required placeholder="Message" label="Message" variant="dark" />
+                    <Button type="submit" variant="dark">Send message</Button>
                 </form>
             </div>
         </div>
-        <div class="border-t border-gray-300">
+        <div class="border-t border-white/10">
             <div class="px-6 lg:px-8 py-8 lg:py-12 md:grid md:grid-cols-3 md:gap-8 max-w-7xl mx-auto z-10 relative space-y-8 md:space-y-0">
                 <div>
-                    <h3 class="font-semibold text-gray-900">Navigation</h3>
+                    <h3 class="font-semibold text-white">Navigation</h3>
                     <ul role="list" class="mt-6 space-y-4">
                         <li>
-                            <a href="/read" class="text-gray-700 underline hover:text-gray-900">Read</a>
+                            <a href="/read" class="text-white/70 underline hover:text-white">Read</a>
                         </li>
                         <li>
-                            <a href="/teach" class="text-gray-700 underline  hover:text-gray-900">Teach</a>
+                            <a href="/teach" class="text-white/70 underline hover:text-white">Teach</a>
                         </li>
                         <li>
-                            <a href="/join-study-group" class="text-gray-700 underline hover:text-gray-900">Get certified</a>
+                            <a href="/join-study-group" class="text-white/70 underline hover:text-white">Get certified</a>
                         </li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="font-semibold text-gray-900">Funded by</h3>
+                    <h3 class="font-semibold text-white">Funded by</h3>
                     <ul role="list" class="mt-6 space-y-4">
                         <li>
-                            <a href="https://cesia.org" class="text-gray-700 underline hover:text-gray-900">French Center for AI Safety</a>
+                            <a href="https://cesia.org" class="text-white/70 underline hover:text-white">French Center for AI Safety</a>
                         </li>
                         <li>
-                            <a href="https://coefficientgiving.org" class="text-gray-700 underline hover:text-gray-900">Coefficient Giving</a>
+                            <a href="https://coefficientgiving.org" class="text-white/70 underline hover:text-white">Coefficient Giving</a>
                         </li>
                         <li>
-                            <a href="https://manifund.org" class="text-gray-700 underline hover:text-gray-900">Manifund</a>
+                            <a href="https://manifund.org" class="text-white/70 underline hover:text-white">Manifund</a>
                         </li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="font-semibold text-gray-900">Cite this work as</h3>
-                    <p class="mt-6 text-sm text-gray-700">
+                    <h3 class="font-semibold text-white">Cite this work as</h3>
+                    <p class="mt-6 text-sm text-white/70">
                         {siteConfig.citation}
                     </p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="border-t border-gray-900/10 py-6 relative z-10 bg-white">
-        <div class="max-w-7xl mx-auto w-full  flex justify-between flex-wrap px-6 lg:px-8">
-            <p class="text-sm/6 text-gray-700">Content licensed under <a class="underline" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a> unless otherwise noted.</p>
-            <ul class="text-sm/6 flex flex-wrap space-x-6 text-gray-700 mt-4 sm:mt-0">
+    <div class="border-t border-white/10 py-6 relative z-10">
+        <div class="max-w-7xl mx-auto w-full flex justify-between flex-wrap px-6 lg:px-8">
+            <p class="text-sm/6 text-white/50">Content licensed under <a class="underline hover:text-white" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a> unless otherwise noted.</p>
+            <ul class="text-sm/6 flex flex-wrap space-x-6 text-white/50 mt-4 sm:mt-0">
                 <li>
-                    <a href="https://foreview.org" class="underline">Site by Foreview</a>
+                    <a href="https://foreview.org" class="underline hover:text-white">Site by Foreview</a>
                 </li>
                 <li>
-                    <a href="/privacy-policy" class="underline">Privacy Policy</a>
+                    <a href="/privacy-policy" class="underline hover:text-white">Privacy Policy</a>
                 </li>
             </ul>
         </div>
