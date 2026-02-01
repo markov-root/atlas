@@ -1,0 +1,106 @@
+---
+import { Icon } from 'astro-icon/components'
+import { getTextbooks } from '@/lib/textbooks'
+
+interface Props {
+  currentVersion?: string
+  variant?: 'light' | 'dark'
+  class?: string
+}
+
+const { currentVersion, variant = 'light', class: className } = Astro.props
+const isDark = variant === 'dark'
+
+// Get all available textbook versions
+const textbooks = await getTextbooks()
+const versions = textbooks
+  .map(t => t.data.version)
+  .sort((a, b) => b.localeCompare(a)) // newest first
+
+// Determine current version from props or URL
+const pathname = Astro.url.pathname
+const urlVersion = pathname.match(/\/chapters\/([^/]+)\//)?.[1]
+  || pathname.match(/\/read\/([^/]+)/)?.[1]
+const activeVersion = currentVersion || urlVersion || versions[0]
+
+// Format version for display (e.g., "v1" -> "Version 1")
+function formatVersion(v: string) {
+  const num = v.replace(/^v/, '')
+  return `Version ${num}`
+}
+---
+
+<div class:list={["relative", className]} data-version-selector>
+  <button
+    type="button"
+    class:list={[
+      "inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-full transition-colors",
+      isDark
+        ? "text-white/80 hover:bg-white/10"
+        : "text-gray-600 hover:bg-gray-100"
+    ]}
+    aria-haspopup="true"
+    aria-expanded="false"
+    data-version-trigger
+  >
+    <span data-version-label>{formatVersion(activeVersion)}</span>
+    <Icon name="tabler:chevron-down" class="size-4" />
+  </button>
+
+  <div
+    class:list={[
+      "absolute left-0 top-full mt-1 w-40 rounded-xl shadow-lg ring-1 ring-black/5 z-50 hidden overflow-hidden",
+      isDark ? "bg-gray-800" : "bg-white"
+    ]}
+    data-version-dropdown
+  >
+    {versions.map((version) => (
+      <a
+        href={`/read/${version}`}
+        class:list={[
+          "block px-4 py-2.5 text-sm transition-colors",
+          activeVersion === version
+            ? isDark
+              ? "bg-white/10 text-white"
+              : "bg-brand-50 text-brand-700"
+            : isDark
+              ? "text-white/80 hover:bg-white/5"
+              : "text-gray-700 hover:bg-gray-50"
+        ]}
+        data-version-option={version}
+      >
+        {formatVersion(version)}
+      </a>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('[data-version-selector]').forEach((selector) => {
+    const trigger = selector.querySelector('[data-version-trigger]') as HTMLButtonElement
+    const dropdown = selector.querySelector('[data-version-dropdown]') as HTMLElement
+
+    if (!trigger || !dropdown) return
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation()
+      const isOpen = !dropdown.classList.contains('hidden')
+      dropdown.classList.toggle('hidden', isOpen)
+      trigger.setAttribute('aria-expanded', String(!isOpen))
+    })
+
+    document.addEventListener('click', (e) => {
+      if (!selector.contains(e.target as Node)) {
+        dropdown.classList.add('hidden')
+        trigger.setAttribute('aria-expanded', 'false')
+      }
+    })
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        dropdown.classList.add('hidden')
+        trigger.setAttribute('aria-expanded', 'false')
+      }
+    })
+  })
+</script>

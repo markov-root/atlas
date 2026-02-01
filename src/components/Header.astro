@@ -1,23 +1,27 @@
 ---
 import Logomark from '@/components/brand/Logomark.astro';
 import Lockup from '@/components/brand/Lockup.astro';
+import VersionSelector from '@/components/VersionSelector.astro';
 
 interface Props {
   class?: string
+  variant?: 'light' | 'dark'
 }
 
-const { class: className } = Astro.props
+const { class: className, variant = 'light' } = Astro.props
+const isDark = variant === 'dark'
 ---
 
 <header class:list={["relative z-10", className]}>
-  <nav aria-label="Global" class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
-    <div class="flex lg:flex-1">
+  <nav aria-label="Global" class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-8">
+    <div class="flex lg:flex-1 items-center gap-4">
       <a href="/" class="-m-1.5 p-1.5">
-        <Lockup />
+        <Lockup variant={variant} />
       </a>
+      <VersionSelector variant={variant} class="hidden lg:block" />
     </div>
     <div class="flex lg:hidden">
-      <button type="button" command="show-modal" commandfor="mobile-menu" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+      <button type="button" command="show-modal" commandfor="mobile-menu" class:list={["-m-2.5 inline-flex items-center justify-center rounded-md p-2.5", isDark ? "text-white/80" : "text-gray-700"]}>
         <span class="sr-only">Open main menu</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
           <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -25,9 +29,9 @@ const { class: className } = Astro.props
       </button>
     </div>
     <div class="hidden lg:flex lg:gap-x-12">
-      <a href="/read" class="text-sm/6 text-gray-900 px-4 py-1.5 rounded-full hover:bg-gray-100">Read</a>
-      <a href="/teach" class="text-sm/6 text-gray-900 px-4 py-1.5 rounded-full hover:bg-gray-100">Teach</a>
-      <a href="/join-study-group" class="text-sm/6 text-gray-900 px-4 py-1.5 rounded-full hover:bg-gray-100">Get certified</a>
+      <a href="/read" class:list={["text-sm/6 px-4 py-1.5 rounded-full", isDark ? "text-white hover:bg-white/10" : "text-gray-900 hover:bg-gray-100"]}>Read</a>
+      <a href="/teach" class:list={["text-sm/6 px-4 py-1.5 rounded-full", isDark ? "text-white hover:bg-white/10" : "text-gray-900 hover:bg-gray-100"]}>Teach</a>
+      <a href="/join-study-group" class:list={["text-sm/6 px-4 py-1.5 rounded-full", isDark ? "text-white hover:bg-white/10" : "text-gray-900 hover:bg-gray-100"]}>Get certified</a>
     </div>
     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
       <div id="search" class="relative w-full max-w-xs">
@@ -36,9 +40,14 @@ const { class: className } = Astro.props
             type="search"
             id="search-input"
             placeholder="Search"
-            class="col-start-1 row-start-1 block w-full rounded-full bg-white py-1.5 pr-3 pl-10 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-600 sm:text-sm/6"
+            class:list={[
+              "col-start-1 row-start-1 block w-full rounded-full py-1.5 pr-3 pl-10 text-base sm:text-sm/6 focus:outline-2 focus:-outline-offset-2",
+              isDark
+                ? "bg-white/10 text-white placeholder:text-white/50 outline-white/20 focus:outline-white/40"
+                : "bg-white text-gray-900 placeholder:text-gray-500 outline-1 -outline-offset-1 outline-gray-300 focus:outline-brand-600"
+            ]}
           />
-          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="pointer-events-none col-start-1 row-start-1 ml-3 size-5 self-center text-gray-500">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class:list={["pointer-events-none col-start-1 row-start-1 ml-3 size-5 self-center", isDark ? "text-white/50" : "text-gray-500"]}>
             <path d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" fill-rule="evenodd" />
           </svg>
         </div>
@@ -66,6 +75,7 @@ const { class: className } = Astro.props
           <div class="mt-6 flow-root">
             <div class="-my-6 divide-y divide-gray-500/10">
               <div class="space-y-2 py-6">
+                <VersionSelector class="mb-2" />
                 <a href="/read" class="-mx-3 block rounded-full px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Read</a>
                 <a href="/teach" class="-mx-3 block rounded-full px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Teach</a>
                 <a href="/join-study-group" class="-mx-3 block rounded-full px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Get certified</a>

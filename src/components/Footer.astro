@@ -7,27 +7,33 @@ import { Icon } from 'astro-icon/components'
 import { siteConfig } from '@/config/site'
 ---
 
-<footer class="relative overflow-hidden bg-[var(--color-black)]">
-    <div>
-        <div class="max-w-7xl mx-auto z-10 relative grid md:grid-cols-2">
-            <div class="px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-                <Lockup class="max-h-12 text-white mb-4" mono />
-                <p class="text-balance text-white/70 text-xl max-w-lg lg:text-2xl lg:max-w-xl leading-10">
+<footer class="mx-4 mt-4 mb-4 rounded-3xl overflow-hidden bg-black">
+    <!-- Main footer content -->
+    <div class="grid lg:grid-cols-2">
+        <!-- Left: Branding & Social -->
+        <div class="flex justify-end">
+            <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
+                <Lockup variant="dark" class="mb-6" />
+                <p class="text-balance text-white/80 text-lg lg:text-xl max-w-md leading-relaxed">
                     Distilling safety research into a complete learning ecosystem.
                 </p>
-                <div class="flex gap-4 mt-10">
-                    <a href="https://github.com/markov-root/atlas" class="text-white/50 hover:text-white">
+                <div class="flex gap-4 mt-8">
+                    <a href="https://github.com/markov-root/atlas" class="text-white/50 hover:text-white transition-colors">
                         <span class="sr-only">GitHub</span>
                         <Icon name="cib:github" class="size-6" />
                     </a>
-                    <a href="https://www.youtube.com/@securite-ia" class="text-white/50 hover:text-white">
+                    <a href="https://www.youtube.com/@securite-ia" class="text-white/50 hover:text-white transition-colors">
                         <span class="sr-only">YouTube</span>
                         <Icon name="cib:youtube" class="size-6" />
                     </a>
                 </div>
             </div>
-            <div class="p-6 sm:p-8 lg:p-12">
-                <h3 class="font-semibold text-white mb-4">Get in touch</h3>
+        </div>
+
+        <!-- Right: Contact Form -->
+        <div class="border-t lg:border-t-0 lg:border-l border-white/10">
+            <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
+                <h3 class="font-semibold text-white mb-6">Get in touch</h3>
                 <form action={siteConfig.contactFormspree} method="POST" class="space-y-4">
                     <div class="grid sm:grid-cols-2 gap-4">
                         <Input type="text" name="name" id="contact-name" required placeholder="Name" label="Name" variant="dark" />
@@ -38,56 +44,74 @@ import { siteConfig } from '@/config/site'
                 </form>
             </div>
         </div>
-        <div class="border-t border-white/10">
-            <div class="px-6 lg:px-8 py-8 lg:py-12 md:grid md:grid-cols-3 md:gap-8 max-w-7xl mx-auto z-10 relative space-y-8 md:space-y-0">
-                <div>
-                    <h3 class="font-semibold text-white">Navigation</h3>
-                    <ul role="list" class="mt-6 space-y-4">
-                        <li>
-                            <a href="/read" class="text-white/70 underline hover:text-white">Read</a>
-                        </li>
-                        <li>
-                            <a href="/teach" class="text-white/70 underline hover:text-white">Teach</a>
-                        </li>
-                        <li>
-                            <a href="/join-study-group" class="text-white/70 underline hover:text-white">Get certified</a>
-                        </li>
-                    </ul>
+    </div>
+
+    <!-- Links section -->
+    <div class="border-t border-white/10">
+        <div class="grid lg:grid-cols-2">
+            <div class="flex justify-end">
+                <div class="w-full max-w-[40rem] px-6 py-8 lg:px-8 lg:py-12 grid grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="font-semibold text-white mb-4">Navigation</h3>
+                        <div class="flex flex-col gap-2">
+                            <a href="/read" class="flex items-center justify-between px-3 py-2 text-sm text-white bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                                <span>Read</span>
+                                <Icon name="tabler:arrow-right" class="size-4 text-white/50" />
+                            </a>
+                            <a href="/teach" class="flex items-center justify-between px-3 py-2 text-sm text-white bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                                <span>Teach</span>
+                                <Icon name="tabler:arrow-right" class="size-4 text-white/50" />
+                            </a>
+                            <a href="/join-study-group" class="flex items-center justify-between px-3 py-2 text-sm text-white bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                                <span>Get certified</span>
+                                <Icon name="tabler:arrow-right" class="size-4 text-white/50" />
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-white mb-4">Funded by</h3>
+                        <div class="flex flex-col gap-2">
+                            <a href="https://cesia.org" class="flex items-center justify-between px-3 py-2 text-sm text-white bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                                <span>French Center for AI Safety</span>
+                                <Icon name="tabler:arrow-right" class="size-4 text-white/50" />
+                            </a>
+                            <a href="https://coefficientgiving.org" class="flex items-center justify-between px-3 py-2 text-sm text-white bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                                <span>Coefficient Giving</span>
+                                <Icon name="tabler:arrow-right" class="size-4 text-white/50" />
+                            </a>
+                            <a href="https://manifund.org" class="flex items-center justify-between px-3 py-2 text-sm text-white bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                                <span>Manifund</span>
+                                <Icon name="tabler:arrow-right" class="size-4 text-white/50" />
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="font-semibold text-white">Funded by</h3>
-                    <ul role="list" class="mt-6 space-y-4">
-                        <li>
-                            <a href="https://cesia.org" class="text-white/70 underline hover:text-white">French Center for AI Safety</a>
-                        </li>
-                        <li>
-                            <a href="https://coefficientgiving.org" class="text-white/70 underline hover:text-white">Coefficient Giving</a>
-                        </li>
-                        <li>
-                            <a href="https://manifund.org" class="text-white/70 underline hover:text-white">Manifund</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="font-semibold text-white">Cite this work as</h3>
-                    <p class="mt-6 text-sm text-white/70">
+            </div>
+            <div class="border-t lg:border-t-0 lg:border-l border-white/10">
+                <div class="w-full max-w-[40rem] px-6 py-8 lg:px-8 lg:py-12">
+                    <h3 class="font-semibold text-white mb-4">Cite this work as</h3>
+                    <p class="text-sm text-white/70 leading-relaxed">
                         {siteConfig.citation}
                     </p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="border-t border-white/10 py-6 relative z-10">
-        <div class="max-w-7xl mx-auto w-full flex justify-between flex-wrap px-6 lg:px-8">
-            <p class="text-sm/6 text-white/50">Content licensed under <a class="underline hover:text-white" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a> unless otherwise noted.</p>
-            <ul class="text-sm/6 flex flex-wrap space-x-6 text-white/50 mt-4 sm:mt-0">
-                <li>
-                    <a href="https://foreview.org" class="underline hover:text-white">Site by Foreview</a>
-                </li>
-                <li>
-                    <a href="/privacy-policy" class="underline hover:text-white">Privacy Policy</a>
-                </li>
-            </ul>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-white/10">
+        <div class="grid lg:grid-cols-2">
+            <div class="flex justify-end">
+                <div class="w-full max-w-[40rem] px-6 py-6 lg:px-8">
+                    <p class="text-sm text-white/50">Content licensed under <a class="underline hover:text-white transition-colors" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a> unless otherwise noted.</p>
+                </div>
+            </div>
+            <div class="border-t lg:border-t-0 lg:border-l border-white/10">
+                <div class="w-full max-w-[40rem] px-6 py-6 lg:px-8 flex gap-6">
+                    <a href="https://foreview.org" class="text-sm text-white/50 underline hover:text-white transition-colors">Site by Foreview</a>
+                    <a href="/privacy-policy" class="text-sm text-white/50 underline hover:text-white transition-colors">Privacy Policy</a>
+                </div>
+            </div>
         </div>
     </div>
 </footer>

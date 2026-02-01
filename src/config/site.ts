@@ -43,11 +43,6 @@ export const siteConfig = {
         description: "Alignment techniques, from RLHF to constitutional AI. Specification, training, and verification.",
         chapters: [6, 7],
       },
-      {
-        question: "Can we understand what AI systems are doing internally?",
-        description: "Mechanistic interpretability, probing, feature visualization. Opening the black box.",
-        chapters: [9],
-      },
     ],
   },
 

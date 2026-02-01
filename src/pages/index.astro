@@ -2,11 +2,13 @@
 import Default from "@/layouts/Default.astro";
 import Header from "@/components/Header.astro"
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 import { siteConfig } from "@/config/site";
 import { getLatestTextbook } from "@/lib/textbooks";
 
 import markovImg from "@/assets/markov-photo.jpg";
 import charbelImg from "@/assets/charbel-photo.jpg";
+import Button from "@/components/Button.astro";
 
 const authorImages: Record<string, ImageMetadata> = {
   "markov-photo.jpg": markovImg,
@@ -38,149 +40,208 @@ function getChapterTitle(chapterNum: number) {
 }
 ---
 <Default title="" description="" noHeader>
-    <div class="relative w-full h-[600px]">
-        <Header class="absolute inset-x-0 top-0" />
-        <div class="absolute inset-x-0 top-[72px] bottom-0 flex items-center">
-            <div class="px-6 lg:px-8 max-w-7xl mx-auto w-full">
-                <h1 class="max-w-3xl text-4xl font-semibold text-balance text-black sm:text-6xl/tight font-display">
-                    The open textbook for AI Safety
-                </h1>
-                <p class="mt-6 max-w-2xl text-lg text-gray-600">
-                    A comprehensive, regularly updated guide to understanding and mitigating risks from advanced AI systems.
-                </p>
-            </div>
-        </div>
+    <!-- Navbar -->
+    <div class="mx-4 mt-4">
+        <Header class="bg-white rounded-3xl" />
     </div>
 
-    <!-- CTA Section -->
-    <section class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
-        <div class="grid gap-8 lg:grid-cols-2">
-            <!-- Learn Card -->
-            <div class="rounded-2xl border border-gray-200 p-8">
-                <p class="text-sm font-medium text-gray-500">I want to learn</p>
-                <h2 class="mt-2 text-2xl font-semibold text-gray-900 font-display">Read the textbook</h2>
-                <p class="mt-4 text-gray-600">
-                    Self-study or join a cohort. From capabilities to governance, from alignment to oversight.
-                </p>
-                <a href="/read" class="mt-6 inline-flex items-center text-sm font-semibold text-black hover:text-gray-700">
-                    Start reading <span class="ml-1">&rarr;</span>
-                </a>
+    <!-- Hero + CTA Section -->
+    <section class="mx-4 mt-4">
+        <div class="grid lg:grid-cols-2 lg:h-[88vh]">
+            <!-- Left: Blue hero -->
+            <div class="bg-blue-600 text-white rounded-t-3xl lg:rounded-t-none lg:rounded-l-3xl flex justify-end">
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col justify-between h-full min-h-[500px] lg:min-h-0">
+                    <div class="max-w-md">
+                        <h1 class="text-4xl lg:text-5xl 2xl:text-6xl font-semibold text-balance font-display leading-tight">
+                            The open textbook for AI Safety
+                        </h1>
+                    </div>
+                    <p class="max-w-md text-base lg:text-lg 2xl:text-xl text-white/80 leading-relaxed">
+                        A comprehensive, regularly updated guide to understanding and mitigating risks from advanced AI systems.
+                    </p>
+                </div>
             </div>
 
-            <!-- Teach Card -->
-            <div class="rounded-2xl border border-gray-200 p-8">
-                <p class="text-sm font-medium text-gray-500">I want to teach</p>
-                <h2 class="mt-2 text-2xl font-semibold text-gray-900 font-display">Run a course</h2>
-                <p class="mt-4 text-gray-600">
-                    We provide students, materials, and facilitation guides. You focus on building your community.
-                </p>
-                <a href="/teach" class="mt-6 inline-flex items-center text-sm font-semibold text-black hover:text-gray-700">
-                    Become an affiliate <span class="ml-1">&rarr;</span>
+            <!-- Right: CTA cards -->
+            <div class="rounded-b-3xl lg:rounded-b-none lg:rounded-r-3xl flex flex-col">
+                <!-- Learn Card -->
+                <a href="/read" class="relative flex-1 flex items-end bg-white hover:bg-gray-50 transition-colors group border-b border-gray-200 lg:rounded-tr-3xl">
+                    <Icon name="tabler:arrow-up-right" class="absolute top-4 right-4 lg:top-6 lg:right-6 size-8 lg:size-12 2xl:size-16 text-gray-200 group-hover:text-gray-300 transition-colors" />
+                    <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12">
+                        <p class="text-sm font-medium text-gray-500">I want to learn</p>
+                        <h2 class="mt-2 text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Read the textbook</h2>
+                        <p class="mt-4 text-base lg:text-lg text-gray-600">
+                            Self-study or join a cohort. From capabilities to governance, from alignment to oversight.
+                        </p>
+                        <span class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-black group-hover:text-gray-700">
+                            Start reading <Icon name="tabler:arrow-right" class="size-4" />
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Teach Card -->
+                <a href="/teach" class="relative flex-1 flex items-start bg-gray-50 hover:bg-gray-100 transition-colors group lg:rounded-br-3xl">
+                    <Icon name="tabler:arrow-up-right" class="absolute top-4 right-4 lg:top-6 lg:right-6 size-8 lg:size-12 2xl:size-16 text-gray-300 group-hover:text-gray-400 transition-colors" />
+                    <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12">
+                        <p class="text-sm font-medium text-gray-500">I want to teach</p>
+                        <h2 class="mt-2 text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Run a course</h2>
+                        <p class="mt-4 text-base lg:text-lg text-gray-600">
+                            We provide students, materials, and facilitation guides. You focus on building your community.
+                        </p>
+                        <span class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-black group-hover:text-gray-700">
+                            Become an affiliate <Icon name="tabler:arrow-right" class="size-4" />
+                        </span>
+                    </div>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- What the textbook covers -->
-    <section class="max-w-7xl mx-auto grid lg:grid-cols-[400px_1fr]">
-        <div class="lg:sticky lg:top-[72px] lg:self-start lg:h-[calc(100vh-72px-72px)]">
-            <div class="bg-black text-white px-6 py-12 lg:px-12 lg:py-16 flex flex-col justify-between h-full rounded-t-xl lg:rounded-t-none lg:rounded-l-xl">
-                <div>
-                    <h2 class="font-display text-3xl lg:text-4xl font-normal leading-tight mb-6">
-                        {siteConfig.textbookQuestions.title}
-                    </h2>
-                    <p class="text-sm text-gray-300 leading-relaxed">
-                        {siteConfig.textbookQuestions.description}
-                    </p>
-                </div>
-                <div class="text-xs text-gray-500 mt-8 lg:mt-0">
-                    {siteConfig.textbookQuestions.meta.map((item, i) => (
-                        <span class:list={["block", i < siteConfig.textbookQuestions.meta.length - 1 && "mb-2"]}>{item}</span>
-                    ))}
-                </div>
-            </div>
-        </div>
-        <div class="bg-white rounded-b-xl lg:rounded-b-none lg:rounded-r-xl">
-            {siteConfig.textbookQuestions.questions.map((q, index) => (
-                <div class:list={[
-                    "p-8 lg:p-16 grid grid-cols-[32px_1fr] lg:grid-cols-[48px_1fr] gap-4 lg:gap-8",
-                    index < siteConfig.textbookQuestions.questions.length - 1 && "border-b border-gray-200"
-                ]}>
-                    <span class="font-display text-2xl lg:text-4xl text-gray-300">{index + 1}</span>
-                    <div>
-                        <h3 class="font-display text-xl lg:text-2xl font-normal mb-4 leading-snug">
-                            {q.question}
-                        </h3>
-                        <p class="text-sm text-gray-500 leading-relaxed mb-6 max-w-lg">
-                            {q.description}
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            {q.chapters.map(chNum => (
-                                <a
-                                    href={getChapterUrl(chNum)}
-                                    class="text-xs uppercase tracking-wide px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900 transition-colors"
-                                >
-                                    Ch {chNum}: {getChapterTitle(chNum)}
-                                </a>
+    <section class="mx-4 mt-4">
+        <div class="grid lg:grid-cols-2">
+            <div class="lg:sticky lg:top-4 lg:self-start lg:mb-4">
+                <div class="bg-white lg:h-[calc(100vh-2rem)] rounded-l-3xl lg:rounded-l-3xl rounded-t-3xl lg:rounded-tr-none flex justify-end">
+                    <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col justify-between h-full">
+                        <div class="max-w-md">
+                            <h2 class="font-display text-3xl lg:text-4xl font-normal leading-tight mb-6 text-gray-900">
+                                {siteConfig.textbookQuestions.title}
+                            </h2>
+                            <p class="text-base lg:text-lg 2xl:text-xl text-gray-600 leading-relaxed">
+                                {siteConfig.textbookQuestions.description}
+                            </p>
+                        </div>
+                        <div class="text-sm lg:text-base 2xl:text-lg text-gray-600 mt-8 lg:mt-0">
+                            {siteConfig.textbookQuestions.meta.map((item, i) => (
+                                <span class:list={["block", i < siteConfig.textbookQuestions.meta.length - 1 && "mb-2"]}>{item}</span>
                             ))}
                         </div>
                     </div>
                 </div>
-            ))}
-        </div>
-    </section>
-
-    <!-- Authors Section -->
-    <section class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
-        <h2 class="text-2xl font-semibold tracking-tight text-gray-900 font-display">
-            Written by
-        </h2>
-
-        <div class="mt-10 grid gap-12 lg:grid-cols-2">
-            <!-- Primary Authors (left column) -->
-            <div class="space-y-6">
-                {siteConfig.authors.primary.map((author) => (
-                    <div class="flex gap-4 items-center">
-                        <Image
-                            src={authorImages[author.image]}
-                            alt={author.name}
-                            class="size-16 rounded-full object-cover shrink-0"
-                            width={256}
-                            height={256}
-                        />
-                        <div>
-                            <h3 class="text-base font-semibold text-gray-900">{author.name}</h3>
-                            <p class="text-sm text-gray-600">{author.role}</p>
+            </div>
+            <div class="lg:mb-4">
+            <div class="bg-black text-white rounded-r-3xl lg:rounded-r-3xl rounded-b-3xl lg:rounded-bl-none divide-y divide-white/10">
+                {siteConfig.textbookQuestions.questions.map((q, index) => (
+                    <div class="px-6 py-8 lg:px-8 lg:py-12">
+                        <div class="w-full max-w-[40rem] grid grid-cols-[32px_1fr] lg:grid-cols-[48px_1fr] gap-4 lg:gap-8">
+                            <span class="font-display text-2xl lg:text-4xl text-white/30">{index + 1}</span>
+                            <div>
+                                <h3 class="font-display text-xl lg:text-2xl font-normal mb-4 leading-snug">
+                                    {q.question}
+                                </h3>
+                                <p class="text-sm text-white/70 leading-relaxed mb-6">
+                                    {q.description}
+                                </p>
+                                <div class="flex flex-col gap-2">
+                                    {q.chapters.map(chNum => (
+                                        <a
+                                            href={getChapterUrl(chNum)}
+                                            class="flex items-center justify-between px-3 py-2 text-sm text-white bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
+                                        >
+                                            <span>Ch {chNum}: {getChapterTitle(chNum)}</span>
+                                            <Icon name="tabler:arrow-right" class="size-4 text-white/50" />
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 ))}
             </div>
+            </div>
+        </div>
+    </section>
 
-            <!-- Contributing Authors & Advisors (right column) -->
-            <div class="space-y-6">
-                <div>
-                    <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Contributing Authors</h3>
-                    <div class="mt-3 space-y-3">
-                        {siteConfig.authors.contributing.map((author) => (
-                            <div>
-                                <p class="text-sm font-semibold text-gray-900">{author.name}</p>
-                                <p class="text-sm text-gray-500">{author.bio}</p>
+    <!-- Authors Section -->
+    <section class="mx-4 mt-4 rounded-3xl overflow-hidden">
+        <div class="grid lg:grid-cols-2">
+            <!-- Left: Primary Authors -->
+            <div class="bg-gray-100 flex justify-end">
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
+                    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 font-display mb-10">
+                        Written by
+                    </h2>
+                    <div class="space-y-6">
+                        {siteConfig.authors.primary.map((author) => (
+                            <div class="flex gap-4 items-center">
+                                <Image
+                                    src={authorImages[author.image]}
+                                    alt={author.name}
+                                    class="size-16 rounded-full object-cover shrink-0"
+                                    width={256}
+                                    height={256}
+                                />
+                                <div>
+                                    <h3 class="text-base font-semibold text-gray-900">{author.name}</h3>
+                                    <p class="text-sm text-gray-600">{author.role}</p>
+                                </div>
                             </div>
                         ))}
                     </div>
                 </div>
+            </div>
 
-                <div>
-                    <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Advisors</h3>
-                    <div class="mt-3 space-y-3">
-                        {siteConfig.authors.advisors.map((advisor) => (
-                            <div>
-                                <p class="text-sm font-semibold text-gray-900">{advisor.name}</p>
-                                <p class="text-sm text-gray-500">{advisor.bio}</p>
+            <!-- Right: Contributing Authors & Advisors -->
+            <div class="bg-white">
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
+                    <div class="space-y-10">
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Contributing Authors</h3>
+                            <div class="mt-4 flex flex-col gap-2">
+                                {siteConfig.authors.contributing.map((author) => (
+                                    <div class="bg-gray-100 rounded-lg px-3 py-2">
+                                        <p class="text-sm font-semibold text-gray-900">{author.name}</p>
+                                        <p class="text-sm text-gray-600">{author.bio}</p>
+                                    </div>
+                                ))}
                             </div>
-                        ))}
+                        </div>
+
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Advisors</h3>
+                            <div class="mt-4 flex flex-col gap-2">
+                                {siteConfig.authors.advisors.map((advisor) => (
+                                    <div class="bg-gray-100 rounded-lg px-3 py-2">
+                                        <p class="text-sm font-semibold text-gray-900">{advisor.name}</p>
+                                        <p class="text-sm text-gray-600">{advisor.bio}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA Section -->
+    <section class="mx-4 mt-4 mb-4 rounded-3xl overflow-hidden">
+        <div class="grid lg:grid-cols-2">
+            <!-- Learn - White background -->
+            <a href="/read" class="bg-white px-6 py-16 lg:px-8 lg:py-24 flex justify-end group hover:bg-gray-50 transition-colors">
+                <div class="w-full max-w-[40rem]">
+                    <h2 class="text-3xl lg:text-4xl font-semibold text-gray-900 font-display">Ready to learn?</h2>
+                    <p class="mt-6 text-lg text-gray-600 max-w-md">
+                        Start with Chapter 1 or jump to any topic. Self-paced, always free.
+                    </p>
+                    <span class="mt-8 inline-flex items-center gap-1 text-sm font-semibold text-black group-hover:text-gray-700">
+                        Read the textbook <Icon name="tabler:arrow-right" class="size-4" />
+                    </span>
+                </div>
+            </a>
+
+            <!-- Teach - Black background -->
+            <a href="/teach" class="bg-black px-6 py-16 lg:px-8 lg:py-24 group hover:bg-gray-900 transition-colors">
+                <div class="w-full max-w-[40rem]">
+                    <h2 class="text-3xl lg:text-4xl font-semibold text-white font-display">Ready to teach?</h2>
+                    <p class="mt-6 text-lg text-white/80 max-w-md">
+                        Join 30+ organizations using Atlas materials to train the next generation.
+                    </p>
+                    <span class="mt-8 inline-flex items-center gap-1 text-sm font-semibold text-white group-hover:text-white/80">
+                        Become an affiliate <Icon name="tabler:arrow-right" class="size-4" />
+                    </span>
+                </div>
+            </a>
             </div>
         </div>
     </section>
