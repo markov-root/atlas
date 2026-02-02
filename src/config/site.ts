@@ -1,9 +1,9 @@
 export const siteConfig = {
   citation: 'Markov Grey and Charbel-Raphaël Segerie et al. 2025. AI Safety Atlas. French Center for AI Safety (CeSIA). URL: ai-safety-atlas.com',
   citationUrl: 'https://ai-safety-atlas.com',
-  contactFormspree: 'https://formspree.io/f/xlgbkgnq',
-  guidesFormspree: 'https://formspree.io/f/xgozlozy',
-  affiliateFormspree: 'https://formspree.io/f/xkozvozv',
+  contactFormspree: 'https://formspree.io/f/xldndnnl',
+  guidesFormspree: 'https://formspree.io/f/xvzqvovv',
+  affiliateFormspree: 'https://formspree.io/f/mrelogev',
 
   textbookQuestions: {
     title: "Questions the textbook answers",
