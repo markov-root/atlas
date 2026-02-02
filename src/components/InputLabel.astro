@@ -1,0 +1,18 @@
+---
+interface Props {
+  for: string
+  variant?: 'light' | 'dark'
+  required?: boolean
+}
+
+const { for: htmlFor, variant = 'light', required } = Astro.props
+
+const variantClasses = {
+  light: "text-gray-700",
+  dark: "text-white/80"
+}
+---
+
+<label for={htmlFor} class:list={["block text-sm font-medium mb-1", variantClasses[variant]]}>
+    <slot />{required && ' *'}
+</label>

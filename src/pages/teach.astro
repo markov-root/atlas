@@ -3,6 +3,8 @@ import Default from "@/layouts/Default.astro";
 import Header from "@/components/Header.astro";
 import { Icon } from "astro-icon/components";
 import { siteConfig } from "@/config/site";
+import Input from "@/components/Input.astro";
+import InputLabel from "@/components/InputLabel.astro";
 
 // Import courses data
 import coursesData from "../../previous-version-w-docusaurus/src/data/courses-old.json";
@@ -36,15 +38,78 @@ function formatDate(dateStr: string) {
   return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 }
 
-// Week 1 timeline data
-const week1Timeline = [
-  { time: "0:00", activity: "Welcome & icebreaker" },
-  { time: "0:10", activity: "Recap last week (skip for Week 1)" },
-  { time: "0:15", activity: "Discuss pre-reading" },
-  { time: "0:35", activity: "Break" },
-  { time: "0:40", activity: "Main activity: Timeline exercise" },
-  { time: "1:10", activity: "Debrief & closing" },
-  { time: "1:25", activity: "Preview next week" },
+// Session guide data with schedules
+const sessions = [
+  { num: 1, title: "Capabilities", duration: "1:30", schedule: [
+    { time: "0:00", activity: "Welcome and Check-in" },
+    { time: "0:12", activity: "Questions from the Resources" },
+    { time: "0:25", activity: "Thought Experiment" },
+    { time: "0:40", activity: "Scaling Factor Ranking" },
+    { time: "0:55", activity: "Break" },
+    { time: "1:00", activity: "Forecasting Deep Dive" },
+    { time: "1:15", activity: "Takeoff Speed Debate" },
+  ]},
+  { num: 2, title: "Risks", duration: "1:30", schedule: [
+    { time: "0:00", activity: "Welcome and Check-in" },
+    { time: "0:12", activity: "Questions from the Resources" },
+    { time: "0:25", activity: "Thought Experiment" },
+    { time: "0:40", activity: "Risk Category Ranking" },
+    { time: "0:55", activity: "Break" },
+    { time: "1:00", activity: "Dangerous Capability Spotlight" },
+    { time: "1:15", activity: "Scenario Brainstorm" },
+  ]},
+  { num: 3, title: "Strategies", duration: "1:30", schedule: [
+    { time: "0:00", activity: "Welcome and Check-in" },
+    { time: "0:12", activity: "Questions from the Resources" },
+    { time: "0:25", activity: "Thought Experiment" },
+    { time: "0:40", activity: "Safety Strategy Ranking" },
+    { time: "0:55", activity: "Break" },
+    { time: "1:00", activity: "Strategy Deep Dive" },
+    { time: "1:15", activity: "Challenge Spotlight" },
+  ]},
+  { num: 4, title: "Governance", duration: "1:35", schedule: [
+    { time: "0:00", activity: "Welcome and Framing" },
+    { time: "0:10", activity: "Thought Experiment" },
+    { time: "0:25", activity: "Governance Approach Ranking" },
+    { time: "0:40", activity: "Break" },
+    { time: "0:45", activity: "Mechanism Deep Dive" },
+    { time: "1:05", activity: "Quick Assessment" },
+    { time: "1:15", activity: "Openness vs Control Debate" },
+  ]},
+  { num: 5, title: "Evaluations", duration: "1:30", schedule: [
+    { time: "0:00", activity: "Welcome and Check-in" },
+    { time: "0:12", activity: "Questions from the Resources" },
+    { time: "0:25", activity: "Thought Experiment" },
+    { time: "0:40", activity: "Evaluation Priority Ranking" },
+    { time: "0:55", activity: "Break" },
+    { time: "1:00", activity: "Evaluation Deep Dive" },
+    { time: "1:15", activity: "Evaluation Design Brainstorm" },
+  ]},
+  { num: 6, title: "Specification", duration: "1:30", schedule: [
+    { time: "0:00", activity: "Welcome and Check-in" },
+    { time: "0:12", activity: "Questions from the Resources" },
+    { time: "0:25", activity: "Thought Experiment" },
+    { time: "0:40", activity: "Specification Approach Ranking" },
+    { time: "0:55", activity: "Break" },
+    { time: "1:00", activity: "Technique Spotlight" },
+    { time: "1:15", activity: "Challenge Spotlight" },
+  ]},
+  { num: 7, title: "Generalization", duration: "1:17", schedule: [
+    { time: "0:00", activity: "Welcome and Questions" },
+    { time: "0:12", activity: "Thought Experiment" },
+    { time: "0:27", activity: "Concept Ranking" },
+    { time: "0:42", activity: "Break" },
+    { time: "0:47", activity: "Mesa-Optimizers Deep Dive" },
+    { time: "1:02", activity: "Challenge Spotlight" },
+  ]},
+  { num: 8, title: "Scalable Oversight", duration: "1:17", schedule: [
+    { time: "0:00", activity: "Welcome and Questions" },
+    { time: "0:12", activity: "Thought Experiment" },
+    { time: "0:27", activity: "Concept Ranking" },
+    { time: "0:42", activity: "Break" },
+    { time: "0:47", activity: "IDA & Debate Deep Dive" },
+    { time: "1:02", activity: "Challenge Spotlight" },
+  ]},
 ];
 ---
 <Default title="Teach AI Safety" description="Run your own AI Safety course with free materials, facilitation guides, and student matching." noHeader>
@@ -71,7 +136,7 @@ const week1Timeline = [
                 <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col h-full min-h-[500px] lg:min-h-0 relative z-10">
                     <div class="max-w-md">
                         <h1 class="text-4xl lg:text-5xl 2xl:text-6xl font-semibold text-balance font-display leading-tight text-white">
-                            Run your own AI Safety course.
+                            Empower others to shape AI's future.
                         </h1>
                     </div>
                     <div class="flex gap-10 lg:gap-16 mt-auto pt-32 lg:pt-48">
@@ -159,7 +224,7 @@ const week1Timeline = [
                         <div class="size-10 rounded-full bg-gray-100 flex items-center justify-center mb-4">
                             <Icon name="tabler:users" class="size-5 text-gray-600" />
                         </div>
-                        <h3 class="text-base font-semibold text-gray-900">Students</h3>
+                        <h3 class="text-base font-semibold text-gray-900">Student matching</h3>
                         <p class="mt-1 text-sm text-gray-600">
                             We connect students to your course through our network.
                         </p>
@@ -178,247 +243,206 @@ const week1Timeline = [
         </div>
     </section>
 
-    <!-- Section 3: Guides Form + Preview -->
-    <section class="mx-4 mt-4 rounded-3xl overflow-hidden">
-        <div class="grid lg:grid-cols-2">
-            <!-- Left: Guides Form -->
-            <div id="guides-form" class="bg-black text-white flex justify-end">
-                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
-                    <h2 class="text-2xl lg:text-3xl font-semibold font-display mb-4">
-                        Get facilitation guides
+    <!-- Section 3: Facilitation Guides -->
+    <section id="guides-form" class="mx-4 mt-4 rounded-3xl overflow-hidden">
+        <div class="grid lg:grid-cols-2 overflow-hidden">
+            <!-- Left: Form -->
+            <div class="bg-blue-600 text-white flex justify-end">
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:pt-16 lg:pb-16 flex flex-col h-full">
+                    <h2 class="font-display text-3xl lg:text-4xl font-semibold leading-tight text-white mb-auto max-w-md">
+                        Get facilitation guides for every chapter
                     </h2>
-                    <p class="text-white/70 mb-8">
-                        Session-by-session guides with discussion prompts, activities, and timelines for each chapter of the textbook.
-                    </p>
-
+                    <div class="mt-8 max-w-md">
                     <form action={siteConfig.guidesFormspree} method="POST" class="space-y-4">
-                        <div>
-                            <label for="guides-name" class="block text-sm font-medium text-white/80 mb-1">Name</label>
-                            <input
-                                type="text"
-                                id="guides-name"
-                                name="name"
-                                required
-                                class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
-                                placeholder="Your name"
-                            />
-                        </div>
-                        <div>
-                            <label for="guides-email" class="block text-sm font-medium text-white/80 mb-1">Email</label>
-                            <input
-                                type="email"
-                                id="guides-email"
-                                name="email"
-                                required
-                                class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
-                                placeholder="you@example.com"
-                            />
+                        <div class="flex gap-4">
+                            <div class="flex-1">
+                                <label for="guides-name" class="block text-sm font-medium text-white/80 mb-1">Name</label>
+                                <input
+                                    type="text"
+                                    id="guides-name"
+                                    name="name"
+                                    required
+                                    class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                                    placeholder="Your name"
+                                />
+                            </div>
+                            <div class="flex-1">
+                                <label for="guides-email" class="block text-sm font-medium text-white/80 mb-1">Email</label>
+                                <input
+                                    type="email"
+                                    id="guides-email"
+                                    name="email"
+                                    required
+                                    class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                                    placeholder="you@example.com"
+                                />
+                            </div>
                         </div>
                         <button
                             type="submit"
-                            class="w-full px-6 py-3 rounded-lg bg-white text-gray-900 font-semibold hover:bg-gray-100 transition-colors"
+                            class="inline-block px-6 py-2 rounded-2xl font-semibold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors"
                         >
-                            Get guides
+                            Get the guides
                         </button>
                     </form>
-
-                    <p class="mt-4 text-sm text-white/50">
-                        Instant access. No approval needed.
-                    </p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Right: Preview -->
-            <div class="bg-white">
-                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
-                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Preview</p>
-                    <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display mb-2">
-                        Week 1: Human-Level AI
-                    </h2>
-                    <p class="text-gray-600 mb-8">Chapter 1 · ~90 minutes</p>
-
-                    <div class="space-y-0 border-l-2 border-gray-200">
-                        {week1Timeline.map((item, i) => (
-                            <div class="flex items-start pl-4 py-2 relative">
-                                <div class="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 size-2 rounded-full bg-gray-300"></div>
-                                <span class="text-sm text-gray-500 w-12 shrink-0">{item.time}</span>
-                                <span class="text-sm text-gray-900">{item.activity}</span>
+            <!-- Right: Document previews -->
+            <div class="bg-gray-100 overflow-hidden relative">
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 lg:pt-24">
+                    <!-- Session cards stacked, trailing behind -->
+                    <div class="relative h-72 sm:h-80 -ml-4 sm:ml-4 lg:ml-16 select-none">
+                        <!-- Trailing cards (back to front) - stacked behind main card -->
+                        {[5, 6, 3, 8].map((num, i) => {
+                            const leftOffsets = [22, 16, 11, 7]; // base 7, increments: +4, +5, +6
+                            const topOffsets = [14, 9, 5, 2]; // base 2, increments: +3, +4, +5
+                            return (
+                            <div
+                                class="absolute bg-white rounded-xl shadow-xl w-56 sm:w-64 lg:w-72"
+                                style={`top: ${topOffsets[i]}rem; left: ${leftOffsets[i]}rem; z-index: ${i};`}
+                            >
+                                <div class="p-4 sm:p-5 lg:p-6 relative">
+                                    <span class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-300 font-bold text-base sm:text-lg">#{num}</span>
+                                    <p class="text-xs font-medium text-blue-600 uppercase tracking-wide mb-1 sm:mb-2">Facilitation Guide</p>
+                                    <p class="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-1">{sessions[num - 1].title}</p>
+                                    <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-5">{sessions[num - 1].duration} hours</p>
+                                    <div class="space-y-1.5 sm:space-y-2">
+                                        {sessions[num - 1].schedule.slice(0, 5).map((item) => (
+                                            <div class="flex gap-2 sm:gap-3 text-xs sm:text-sm">
+                                                <span class="text-gray-500 w-8 sm:w-10 shrink-0 font-mono">{item.time}</span>
+                                                <span class="text-gray-900 truncate">{item.activity}</span>
+                                            </div>
+                                        ))}
+                                        <p class="text-xs sm:text-sm text-gray-500 pl-10 sm:pl-[52px]">+ {sessions[num - 1].schedule.length - 5} more activities</p>
+                                    </div>
+                                </div>
                             </div>
-                        ))}
-                    </div>
+                        )})}
 
-                    <a href="#guides-form" class="mt-8 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium">
-                        Get all facilitation guides
-                        <Icon name="tabler:arrow-right" class="size-4" />
-                    </a>
+                        <!-- Main Session 1 card (front) -->
+                        <div class="absolute top-0 left-0 bg-white rounded-xl shadow-xl w-56 sm:w-64 lg:w-72 z-10">
+                            <div class="p-4 sm:p-5 lg:p-6 relative">
+                                <span class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-300 font-bold text-base sm:text-lg">#1</span>
+                                <p class="text-xs font-medium text-blue-600 uppercase tracking-wide mb-1 sm:mb-2">Facilitation Guide</p>
+                                <p class="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-1">{sessions[0].title}</p>
+                                <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-5">{sessions[0].duration} hours</p>
+                                <div class="space-y-1.5 sm:space-y-2">
+                                    {sessions[0].schedule.slice(0, 5).map((item) => (
+                                        <div class="flex gap-2 sm:gap-3 text-xs sm:text-sm">
+                                            <span class="text-gray-500 w-8 sm:w-10 shrink-0 font-mono">{item.time}</span>
+                                            <span class="text-gray-900">{item.activity}</span>
+                                        </div>
+                                    ))}
+                                    <p class="text-xs sm:text-sm text-gray-500 pl-10 sm:pl-[52px]">+ {sessions[0].schedule.length - 5} more activities</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section 4: Choose Your Path -->
-    <section class="mx-4 mt-4 rounded-3xl overflow-hidden">
+    <!-- Section 4: Affiliate Application Form -->
+    <section id="affiliate-form" class="mx-4 mt-4 rounded-3xl overflow-hidden">
         <div class="grid lg:grid-cols-2">
-            <!-- Left: Get Guides -->
-            <div class="bg-gray-100 flex justify-end">
-                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
-                    <h3 class="text-2xl font-semibold text-gray-900 font-display mb-6">Get Guides</h3>
-                    <ul class="space-y-3 mb-8">
+            <!-- Left: Props -->
+            <div class="bg-white flex justify-end">
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:pt-16 lg:pb-16 flex flex-col h-full">
+                    <h2 class="text-3xl lg:text-4xl font-semibold font-display mb-auto text-gray-900 max-w-md">
+                        Start an affiliate course
+                    </h2>
+                    <ul class="space-y-4 mt-8">
                         <li class="flex items-start gap-3">
-                            <Icon name="tabler:check" class="size-5 text-green-600 shrink-0 mt-0.5" />
+                            <Icon name="tabler:check" class="size-5 text-blue-600 shrink-0 mt-0.5" />
                             <span class="text-gray-700">Facilitation guides for all chapters</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <Icon name="tabler:check" class="size-5 text-green-600 shrink-0 mt-0.5" />
-                            <span class="text-gray-700">Full textbook access</span>
+                            <Icon name="tabler:check" class="size-5 text-blue-600 shrink-0 mt-0.5" />
+                            <span class="text-gray-700">Student matching through our network</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <Icon name="tabler:check" class="size-5 text-green-600 shrink-0 mt-0.5" />
-                            <span class="text-gray-700">Instant access, no approval</span>
+                            <Icon name="tabler:check" class="size-5 text-blue-600 shrink-0 mt-0.5" />
+                            <span class="text-gray-700">Listed on our website</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <Icon name="tabler:check" class="size-5 text-blue-600 shrink-0 mt-0.5" />
+                            <span class="text-gray-700">Co-branded certificates for students</span>
                         </li>
                     </ul>
-                    <p class="text-sm text-gray-500 mb-6">
-                        For independent study groups or trying it out
-                    </p>
-                    <a href="#guides-form" class="inline-block px-6 py-2 rounded-2xl font-semibold bg-gray-200 text-gray-900 hover:bg-gray-300 transition-colors">Get guides</a>
                 </div>
             </div>
 
-            <!-- Right: Become Affiliate -->
+            <!-- Right: Form -->
             <div class="bg-black text-white">
-                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
-                    <h3 class="text-2xl font-semibold font-display mb-6">Become Affiliate</h3>
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-start gap-3">
-                            <Icon name="tabler:check" class="size-5 text-green-400 shrink-0 mt-0.5" />
-                            <span class="text-white/80">Everything in Guides</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <Icon name="tabler:plus" class="size-5 text-blue-400 shrink-0 mt-0.5" />
-                            <span class="text-white/80">Student matching through our network</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <Icon name="tabler:plus" class="size-5 text-blue-400 shrink-0 mt-0.5" />
-                            <span class="text-white/80">Listed on our website</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <Icon name="tabler:plus" class="size-5 text-blue-400 shrink-0 mt-0.5" />
-                            <span class="text-white/80">Co-branded certificates for students</span>
-                        </li>
-                    </ul>
-                    <p class="text-sm text-white/50 mb-6">
-                        For organizations running regular courses
-                    </p>
-                    <a href="#affiliate-form" class="inline-block px-6 py-2 rounded-2xl font-semibold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors">Apply to become affiliate</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 5: Affiliate Application Form -->
-    <section id="affiliate-form" class="mx-4 mt-4 rounded-3xl overflow-hidden bg-black text-white">
-        <div class="px-6 py-12 lg:px-8 lg:py-16">
-            <div class="max-w-2xl mx-auto">
-                <h2 class="text-3xl lg:text-4xl font-semibold font-display mb-4 text-center">
-                    Become an affiliate course
-                </h2>
-                <p class="text-white/70 text-center mb-12">
-                    Join our network and get students matched to your course.
-                </p>
-
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 lg:pt-24">
                 <form action={siteConfig.affiliateFormspree} method="POST" class="space-y-6">
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
-                            <label for="affiliate-name" class="block text-sm font-medium text-white/80 mb-1">Name *</label>
-                            <input
-                                type="text"
-                                id="affiliate-name"
-                                name="name"
-                                required
-                                class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
-                                placeholder="Your name"
-                            />
+                            <InputLabel for="affiliate-name" variant="dark" required>Name</InputLabel>
+                            <Input type="text" id="affiliate-name" name="name" required placeholder="Your name" variant="dark" />
                         </div>
                         <div>
-                            <label for="affiliate-email" class="block text-sm font-medium text-white/80 mb-1">Email *</label>
-                            <input
-                                type="email"
-                                id="affiliate-email"
-                                name="email"
-                                required
-                                class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
-                                placeholder="you@example.com"
-                            />
+                            <InputLabel for="affiliate-email" variant="dark" required>Email</InputLabel>
+                            <Input type="email" id="affiliate-email" name="email" required placeholder="you@example.com" variant="dark" />
                         </div>
                     </div>
 
                     <div>
-                        <label for="affiliate-organization" class="block text-sm font-medium text-white/80 mb-1">Organization *</label>
-                        <input
-                            type="text"
-                            id="affiliate-organization"
-                            name="organization"
-                            required
-                            class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
-                            placeholder="Your organization or university"
-                        />
+                        <InputLabel for="affiliate-organization" variant="dark" required>Organization</InputLabel>
+                        <Input type="text" id="affiliate-organization" name="organization" required placeholder="Your organization or university" variant="dark" />
                     </div>
 
                     <div>
-                        <label for="affiliate-format" class="block text-sm font-medium text-white/80 mb-1">Format *</label>
-                        <select
-                            id="affiliate-format"
-                            name="format"
-                            required
-                            class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-white/50"
-                        >
-                            <option value="" class="bg-gray-900">Select format</option>
-                            <option value="in-person" class="bg-gray-900">In-person</option>
-                            <option value="hybrid" class="bg-gray-900">Hybrid</option>
-                            <option value="online" class="bg-gray-900">Online</option>
-                        </select>
+                        <InputLabel for="affiliate-format" variant="dark" required>Format</InputLabel>
+                        <div class="flex gap-2">
+                            <label class="flex-1">
+                                <input type="radio" name="format" value="in-person" required class="sr-only peer" />
+                                <span class="block px-4 py-3 text-center text-sm font-semibold rounded-2xl border border-white/20 bg-white/10 text-white cursor-pointer peer-checked:bg-white/30 peer-checked:border-white/40 hover:bg-white/20 transition-colors">
+                                    In-person
+                                </span>
+                            </label>
+                            <label class="flex-1">
+                                <input type="radio" name="format" value="hybrid" required class="sr-only peer" />
+                                <span class="block px-4 py-3 text-center text-sm font-semibold rounded-2xl border border-white/20 bg-white/10 text-white cursor-pointer peer-checked:bg-white/30 peer-checked:border-white/40 hover:bg-white/20 transition-colors">
+                                    Hybrid
+                                </span>
+                            </label>
+                            <label class="flex-1">
+                                <input type="radio" name="format" value="online" required class="sr-only peer" />
+                                <span class="block px-4 py-3 text-center text-sm font-semibold rounded-2xl border border-white/20 bg-white/10 text-white cursor-pointer peer-checked:bg-white/30 peer-checked:border-white/40 hover:bg-white/20 transition-colors">
+                                    Online
+                                </span>
+                            </label>
+                        </div>
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
-                            <label for="affiliate-cohort-size" class="block text-sm font-medium text-white/80 mb-1">Expected cohort size</label>
-                            <input
-                                type="number"
-                                id="affiliate-cohort-size"
-                                name="cohort_size"
-                                class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
-                                placeholder="e.g., 20"
-                            />
+                            <InputLabel for="affiliate-cohort-size" variant="dark">Expected cohort size</InputLabel>
+                            <Input type="number" id="affiliate-cohort-size" name="cohort_size" placeholder="e.g., 20" variant="dark" />
                         </div>
                         <div>
-                            <label for="affiliate-start-date" class="block text-sm font-medium text-white/80 mb-1">Expected start date</label>
-                            <input
-                                type="date"
-                                id="affiliate-start-date"
-                                name="start_date"
-                                class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
-                            />
+                            <InputLabel for="affiliate-start-date" variant="dark">Expected start date</InputLabel>
+                            <Input type="date" id="affiliate-start-date" name="start_date" variant="dark" />
                         </div>
                     </div>
 
                     <div>
-                        <label for="affiliate-location" class="block text-sm font-medium text-white/80 mb-1">Location (for in-person/hybrid)</label>
-                        <input
-                            type="text"
-                            id="affiliate-location"
-                            name="location"
-                            class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
-                            placeholder="City, Country"
-                        />
+                        <InputLabel for="affiliate-location" variant="dark">Location (for in-person/hybrid)</InputLabel>
+                        <Input type="text" id="affiliate-location" name="location" placeholder="City, Country" variant="dark" />
                     </div>
 
                     <button
                         type="submit"
-                        class="w-full px-6 py-3 rounded-lg bg-white text-gray-900 font-semibold hover:bg-gray-100 transition-colors"
+                        class="inline-block px-6 py-2 rounded-2xl font-semibold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors"
                     >
-                        Apply to become affiliate
+                        Apply
                     </button>
                 </form>
+                </div>
             </div>
         </div>
     </section>
@@ -449,7 +473,7 @@ const week1Timeline = [
                                     <p class="text-xs text-gray-500">{course.location}</p>
                                 </div>
                                 <div class="text-right shrink-0 ml-4">
-                                    <p class="text-sm text-gray-900">{course.participants}</p>
+                                    <p class="text-sm text-gray-900">{course.participants} enrolled</p>
                                     <p class="text-xs text-gray-500">{formatDate(course.startDate)}</p>
                                 </div>
                             </div>

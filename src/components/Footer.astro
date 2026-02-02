@@ -2,6 +2,7 @@
 import Lockup from './brand/Lockup.astro'
 import Button from './Button.astro'
 import Input from './Input.astro'
+import InputLabel from './InputLabel.astro'
 import Textarea from './Textarea.astro'
 import { Icon } from 'astro-icon/components'
 import { siteConfig } from '@/config/site'
@@ -36,10 +37,19 @@ import { siteConfig } from '@/config/site'
                 <h3 class="font-semibold text-white mb-6">Get in touch</h3>
                 <form action={siteConfig.contactFormspree} method="POST" class="space-y-4">
                     <div class="grid sm:grid-cols-2 gap-4">
-                        <Input type="text" name="name" id="contact-name" required placeholder="Name" label="Name" variant="dark" />
-                        <Input type="email" name="email" id="contact-email" required placeholder="Email" label="Email" variant="dark" />
+                        <div>
+                            <InputLabel for="contact-name" variant="dark" required>Name</InputLabel>
+                            <Input type="text" name="name" id="contact-name" required placeholder="Name" variant="dark" />
+                        </div>
+                        <div>
+                            <InputLabel for="contact-email" variant="dark" required>Email</InputLabel>
+                            <Input type="email" name="email" id="contact-email" required placeholder="Email" variant="dark" />
+                        </div>
                     </div>
-                    <Textarea name="message" id="contact-message" rows="3" required placeholder="Message" label="Message" variant="dark" />
+                    <div>
+                        <InputLabel for="contact-message" variant="dark" required>Message</InputLabel>
+                        <Textarea name="message" id="contact-message" rows="3" required placeholder="Message" variant="dark" />
+                    </div>
                     <Button type="submit" variant="dark">Send message</Button>
                 </form>
             </div>
