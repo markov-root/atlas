@@ -99,11 +99,11 @@ const firstChapterUrl = `/chapters/${textbook.version}/${textbook.chapters[0].sl
     </section>
 
     <!-- Chapters List -->
-    <section class="sm:mx-4 mt-4 rounded-3xl overflow-hidden">
+    <section class="sm:mx-4 mt-4">
         <div class="grid lg:grid-cols-2">
             <!-- Left: Sticky panel -->
             <div class="lg:sticky lg:top-4 lg:self-start lg:mb-4">
-                <div class="bg-white lg:h-[calc(100vh-2rem)] lg:rounded-l-3xl flex justify-end">
+                <div class="bg-white lg:h-[calc(100vh-2rem)] rounded-3xl lg:rounded-r-none flex justify-end overflow-hidden">
                     <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col justify-between h-full">
                         <div class="max-w-md">
                             <h2 class="text-3xl lg:text-4xl font-semibold text-gray-900 font-display leading-tight">
@@ -129,7 +129,7 @@ const firstChapterUrl = `/chapters/${textbook.version}/${textbook.chapters[0].sl
 
             <!-- Right: Scrolling chapters -->
             <div class="lg:mb-4">
-                <div class="bg-gray-100 lg:rounded-r-3xl relative overflow-hidden">
+                <div class="bg-gray-100 rounded-3xl lg:rounded-l-none relative overflow-hidden">
                     <GrainOverlay opacity={0.3} />
                     <!-- Invisible spacer to align with left heading -->
                     <div class="hidden lg:block relative z-10 px-6 pt-12 lg:pt-16 lg:px-8" aria-hidden="true">
