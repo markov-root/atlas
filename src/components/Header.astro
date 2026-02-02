@@ -35,7 +35,7 @@ const isDark = variant === 'dark'
       <a href="/teach" class:list={["text-sm/6 px-4 py-1.5 rounded-full", isDark ? "text-white hover:bg-white/10" : "text-gray-900 hover:bg-gray-100"]}>Teach</a>
       <a href="/join-study-group" class:list={["text-sm/6 px-4 py-1.5 rounded-full", isDark ? "text-white hover:bg-white/10" : "text-gray-900 hover:bg-gray-100"]}>Get certified</a>
     </div>
-    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+    <div class="hidden lg:flex lg:flex-1 lg:justify-end lg:pr-2">
       <AlgoliaSearch id="header-search" class="w-full max-w-xs" variant={variant} />
     </div>
   </nav>

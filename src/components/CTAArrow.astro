@@ -1,0 +1,23 @@
+---
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  direction?: 'up-right' | 'down' | 'right'
+  class?: string
+}
+
+const { direction = 'up-right', class: className } = Astro.props
+
+const iconName = {
+  'up-right': 'tabler:arrow-up-right',
+  'down': 'tabler:arrow-down',
+  'right': 'tabler:arrow-right'
+}
+---
+
+<span class:list={[
+  "inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors",
+  className
+]}>
+  <Icon name={iconName[direction]} class="size-5 text-gray-600 group-hover:text-white" />
+</span>

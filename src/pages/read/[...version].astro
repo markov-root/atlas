@@ -2,6 +2,7 @@
 import type { Chapter, Textbook } from '@/textbook-loader';
 import Default from "@/layouts/Default.astro"
 import Header from "@/components/Header.astro"
+import GrainOverlay from "@/components/GrainOverlay.astro"
 import { Icon } from 'astro-icon/components'
 import { formatReadingTime } from "@/textbook-loader/utils"
 import { getTextbooks, getLatestTextbook } from "@/lib/textbooks";
@@ -47,8 +48,9 @@ const firstChapterUrl = `/chapters/${textbook.version}/${textbook.chapters[0].sl
     <section class="mx-4 mt-4">
         <div class="grid lg:grid-cols-2">
             <!-- Left: Hero content -->
-            <div class="bg-blue-600 text-white rounded-t-3xl lg:rounded-none lg:rounded-tl-3xl lg:rounded-bl-3xl flex justify-end">
-                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col justify-between h-full min-h-[400px]">
+            <div class="bg-blue-600 text-white rounded-t-3xl lg:rounded-none lg:rounded-tl-3xl lg:rounded-bl-3xl flex justify-end relative overflow-hidden">
+                <GrainOverlay />
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col justify-between h-full min-h-[400px] lg:min-h-[50vh] relative z-10">
                     <div class="max-w-md">
                         <h1 class="text-4xl lg:text-5xl font-semibold text-balance font-display leading-tight">
                             Chapters
@@ -124,13 +126,25 @@ const firstChapterUrl = `/chapters/${textbook.version}/${textbook.chapters[0].sl
 
             <!-- Right: Scrolling chapters -->
             <div class="lg:mb-4">
-                <div class="bg-gray-100 rounded-b-3xl lg:rounded-none lg:rounded-tr-3xl lg:rounded-br-3xl">
+                <div class="bg-gray-100 rounded-b-3xl lg:rounded-none lg:rounded-tr-3xl lg:rounded-br-3xl relative overflow-hidden">
+                    <GrainOverlay opacity={0.3} />
+                    <!-- Invisible spacer to align with left heading -->
+                    <div class="hidden lg:block relative z-10 px-6 pt-12 lg:pt-16 lg:px-8" aria-hidden="true">
+                        <div class="w-full max-w-[40rem]">
+                            <h2 class="text-3xl lg:text-4xl font-semibold font-display leading-tight invisible">
+                                Table of Contents
+                            </h2>
+                            <p class="mt-4 text-base lg:text-lg leading-relaxed invisible">
+                                {textbook.chapters.length} chapters covering the foundations of AI safety, from core concepts to cutting-edge research.
+                            </p>
+                        </div>
+                    </div>
                     {textbook.chapters.map((chapter: Chapter) => {
                         const sections = chapter.sections;
                         if (sections.length === 0) return null;
                         const chapterUrl = `/chapters/${textbook.version}/${chapter.slug}/${sections[0].slug}/`;
                         return (
-                            <div class="border-b border-gray-200 last:border-b-0">
+                            <div class="border-b border-gray-200 last:border-b-0 relative z-10">
                                 <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12">
                                     <!-- Chapter header -->
                                     <div class="mb-6">

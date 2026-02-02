@@ -6,13 +6,15 @@ import InputLabel from './InputLabel.astro'
 import Textarea from './Textarea.astro'
 import OrgLogo from './OrgLogo.astro'
 import CardLink from './CardLink.astro'
+import GrainOverlay from './GrainOverlay.astro'
 import { Icon } from 'astro-icon/components'
 import { siteConfig } from '@/config/site'
 ---
 
-<footer class="mx-4 mt-4 mb-4 rounded-3xl overflow-hidden bg-black">
+<footer class="mx-4 mt-4 mb-4 rounded-3xl overflow-hidden bg-black relative">
+    <GrainOverlay />
     <!-- Main footer content -->
-    <div class="grid lg:grid-cols-2">
+    <div class="grid lg:grid-cols-2 relative z-10">
         <!-- Left: Branding & Social -->
         <div class="flex justify-end">
             <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
@@ -66,7 +68,7 @@ import { siteConfig } from '@/config/site'
     </div>
 
     <!-- Links section -->
-    <div class="border-t border-white/10">
+    <div class="border-t border-white/10 relative z-10">
         <div class="grid lg:grid-cols-2">
             <div class="flex justify-end">
                 <div class="w-full max-w-[40rem] px-6 py-8 lg:px-8 lg:py-12 grid grid-cols-2 gap-8">
@@ -99,7 +101,7 @@ import { siteConfig } from '@/config/site'
     </div>
 
     <!-- Bottom bar -->
-    <div class="border-t border-white/10">
+    <div class="border-t border-white/10 relative z-10">
         <div class="grid lg:grid-cols-2">
             <div class="flex justify-end">
                 <div class="w-full max-w-[40rem] px-6 py-6 lg:px-8">

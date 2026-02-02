@@ -4,7 +4,7 @@ interface Props extends HTMLAttributes<'button'> {
   large?: boolean
   class?: string
   link?: string
-  variant?: 'primary' | 'gray' | 'white' | 'outline' | 'dark'
+  variant?: 'primary' | 'gray' | 'white' | 'outline' | 'dark' | 'ghost'
 }
 
 const { link, large, class: className, variant = 'primary', ...rest } = Astro.props
@@ -21,6 +21,7 @@ const variantClasses = {
   white: "bg-white text-gray-900 hover:bg-gray-100 focus:ring-2 focus:ring-white focus:ring-offset-2",
   outline: "bg-transparent text-gray-900 hover:bg-gray-100 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2",
   dark: "bg-white/10 text-white border border-white/20 hover:bg-white/20 focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent",
+  ghost: "bg-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2",
 }
 ---
 <Tag class:list={[

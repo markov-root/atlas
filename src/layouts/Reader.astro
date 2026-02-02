@@ -55,45 +55,8 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
     <div id="reading-progress-bar" class="h-full bg-brand-600 transition-[width] duration-100" style="width: 0%"></div>
 </div>
 
-<!-- Mobile sidebar dialog -->
-<el-dialog>
-  <dialog id="sidebar" class="backdrop:bg-transparent lg:hidden">
-    <el-dialog-backdrop class="fixed inset-0 bg-gray-900/80 transition-opacity duration-300 ease-linear data-closed:opacity-0"></el-dialog-backdrop>
-
-    <div tabindex="0" class="fixed inset-0 flex focus:outline-none">
-      <el-dialog-panel class="group/dialog-panel relative mr-16 flex w-full max-w-xs flex-1 transform transition duration-300 ease-in-out data-closed:-translate-x-full">
-        <div class="absolute top-0 left-full flex w-16 justify-center pt-5 duration-300 ease-in-out group-data-closed/dialog-panel:opacity-0">
-          <button type="button" command="close" commandfor="sidebar" class="-m-2.5 p-2.5">
-            <span class="sr-only">Close sidebar</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 text-white">
-              <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
-        </div>
-
-        <div class="relative flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
-          <div>
-            <a href="/" class="relative flex h-16 shrink-0 items-center">
-                <Lockup />
-            </a>
-            <VersionSelector currentVersion={textbook.version} class="-mt-2" />
-          </div>
-          <nav class="relative flex flex-1 flex-col">
-            <ul role="list" class="flex flex-1 flex-col gap-y-7">
-              <li>
-                <ul role="list" class="-mx-2 space-y-1">
-                </ul>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </el-dialog-panel>
-    </div>
-  </dialog>
-</el-dialog>
-
 <!-- Desktop layout -->
-<div class="hidden lg:flex lg:gap-4 lg:p-4 lg:h-screen">
+<div class="hidden lg:flex lg:gap-4 lg:p-4 lg:h-screen max-w-7xl mx-auto">
     <!-- Sidebar bubble -->
     <aside class="w-72 xl:w-80 shrink-0 flex flex-col gap-4">
         <!-- Logo bubble -->
@@ -274,28 +237,12 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
             </div>
 
             <!-- Search button -->
-            <button type="button" command="show-modal" commandfor="mobile-search-dialog" class="flex items-center justify-center w-14 h-14 text-gray-400 active:text-gray-600 active:bg-gray-100 rounded-xl shrink-0">
-                <span class="sr-only">Search</span>
-                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                </svg>
-            </button>
+            <AlgoliaSearch id="mobile-reader-search" iconOnly />
         </div>
     </div>
 </div>
 
-<!-- Mobile search dialog -->
-<el-dialog>
-    <dialog id="mobile-search-dialog" class="backdrop:bg-transparent lg:hidden">
-        <el-dialog-backdrop class="fixed inset-0 bg-gray-900/80 transition duration-200 data-closed:opacity-0"></el-dialog-backdrop>
-        <el-dialog-panel class="fixed inset-x-4 top-20 mx-auto max-w-xl rounded-xl bg-white p-4 shadow-2xl ring-1 ring-black/5 transition duration-200 data-closed:scale-95 data-closed:opacity-0">
-            <AlgoliaSearch id="mobile-reader-search" />
-        </el-dialog-panel>
-    </dialog>
-</el-dialog>
 <script>
-import '@tailwindplus/elements'
-
 const progressBar = document.getElementById('reading-progress-bar');
 const content = document.getElementById('reader-content');
 
@@ -359,18 +306,6 @@ if (mobileChapterSelect) {
 }
 
 
-// Focus search input when mobile dialog opens
-const mobileSearchDialog = document.getElementById('mobile-search-dialog') as HTMLDialogElement | null;
-const mobileSearchElDialog = mobileSearchDialog?.closest('el-dialog');
-
-if (mobileSearchDialog) {
-    mobileSearchElDialog?.addEventListener('open', () => {
-        setTimeout(() => {
-            const input = mobileSearchDialog.querySelector('.aa-Input') as HTMLInputElement;
-            input?.focus();
-        }, 50);
-    });
-}
 </script>
 	</body>
 </html>

@@ -1,0 +1,30 @@
+---
+interface Props {
+  align?: 'left' | 'right' | 'center'
+  padding?: 'normal' | 'compact' | 'hero'
+  class?: string
+}
+
+const { align = 'left', padding = 'normal', class: className } = Astro.props
+
+const paddingClasses = {
+  normal: 'px-6 py-12 lg:px-8 lg:py-16',
+  compact: 'px-6 py-8 lg:px-8 lg:py-12',
+  hero: 'px-6 py-12 lg:px-8 lg:py-16 lg:pt-24'
+}
+
+const alignClasses = {
+  left: '',
+  right: 'ml-auto',
+  center: 'mx-auto'
+}
+---
+
+<div class:list={[
+  "w-full max-w-[40rem]",
+  alignClasses[align],
+  paddingClasses[padding],
+  className
+]}>
+  <slot />
+</div>

@@ -7,6 +7,8 @@ import { siteConfig } from "@/config/site";
 import { getLatestTextbook } from "@/lib/textbooks";
 import OrgLogo from "@/components/OrgLogo.astro";
 import CardLink from "@/components/CardLink.astro";
+import GrainOverlay from "@/components/GrainOverlay.astro";
+import CTAArrow from "@/components/CTAArrow.astro";
 
 import markovImg from "@/assets/markov-photo.jpg";
 import charbelImg from "@/assets/charbel-photo.jpg";
@@ -54,16 +56,7 @@ function getChapterTitle(chapterNum: number) {
         <div class="grid lg:grid-cols-2 lg:h-[88vh]">
             <!-- Left: Blue hero -->
             <div class="bg-blue-600 text-white rounded-t-3xl lg:rounded-none lg:rounded-tl-3xl lg:rounded-bl-3xl flex justify-end relative overflow-hidden">
-                <!-- Book cover grain texture -->
-                <div class="absolute inset-0 opacity-50 mix-blend-overlay pointer-events-none" aria-hidden="true">
-                    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                        <filter id="grain">
-                            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" />
-                            <feColorMatrix type="saturate" values="0" />
-                        </filter>
-                        <rect width="100%" height="100%" filter="url(#grain)" />
-                    </svg>
-                </div>
+                <GrainOverlay />
                 <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col justify-between h-full min-h-[500px] lg:min-h-0 relative z-10">
                     <div class="max-w-md">
                         <h1 class="text-4xl lg:text-5xl 2xl:text-6xl font-semibold text-balance font-display leading-tight text-white">
@@ -101,9 +94,7 @@ function getChapterTitle(chapterNum: number) {
                         <p class="text-sm font-medium text-gray-500">I want to learn</p>
                         <div class="mt-2 flex items-center gap-3">
                             <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Read the textbook</h2>
-                            <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
-                                <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
-                            </span>
+                            <CTAArrow />
                         </div>
                         <p class="mt-4 text-base lg:text-lg text-gray-600">
                             Self-study or join a cohort. From capabilities to governance, from alignment to oversight.
@@ -120,9 +111,7 @@ function getChapterTitle(chapterNum: number) {
                         <p class="text-sm font-medium text-gray-500">I want to teach</p>
                         <div class="mt-2 flex items-center gap-3">
                             <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Run a course</h2>
-                            <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
-                                <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
-                            </span>
+                            <CTAArrow />
                         </div>
                         <p class="mt-4 text-base lg:text-lg text-gray-600">
                             We provide students, materials, and facilitation guides. You focus on building your community.
@@ -156,10 +145,22 @@ function getChapterTitle(chapterNum: number) {
                 </div>
             </div>
             <div class="lg:mb-4">
-            <div class="bg-black text-white rounded-r-3xl lg:rounded-r-3xl rounded-b-3xl lg:rounded-bl-none divide-y divide-white/10">
+            <div class="bg-black text-white rounded-r-3xl lg:rounded-r-3xl rounded-b-3xl lg:rounded-bl-none divide-y divide-white/10 relative overflow-hidden">
+                <GrainOverlay />
+                <!-- Invisible spacer to align with left heading -->
+                <div class="hidden lg:block relative z-10 px-6 pt-12 lg:pt-16 lg:px-8" aria-hidden="true">
+                    <div class="w-full max-w-[40rem]">
+                        <h2 class="font-display text-3xl lg:text-4xl font-normal leading-tight mb-6 invisible">
+                            {siteConfig.textbookQuestions.title}
+                        </h2>
+                        <p class="text-base lg:text-lg 2xl:text-xl leading-relaxed invisible">
+                            {siteConfig.textbookQuestions.description}
+                        </p>
+                    </div>
+                </div>
                 {siteConfig.textbookQuestions.questions.map((q, index) => (
-                    <div class="px-6 py-8 lg:px-8 lg:py-12">
-                        <div class="w-full max-w-[40rem] grid grid-cols-[32px_1fr] lg:grid-cols-[48px_1fr] gap-4 lg:gap-8">
+                    <div class="relative z-10">
+                        <div class="w-full max-w-[40rem] px-6 py-8 lg:px-8 lg:py-12 grid grid-cols-[32px_1fr] lg:grid-cols-[48px_1fr] gap-4 lg:gap-8">
                             <span class="font-display text-2xl lg:text-4xl text-white/30">{index + 1}</span>
                             <div>
                                 <h3 class="font-display text-xl lg:text-2xl font-normal mb-4 leading-snug">
@@ -255,16 +256,17 @@ function getChapterTitle(chapterNum: number) {
     <!-- Bottom CTA Section -->
     <section class="mx-4 mt-4 mb-4 rounded-3xl overflow-hidden">
         <div class="grid lg:grid-cols-2">
-            <!-- Learn - White background -->
-            <a href="/read" class="bg-white px-6 py-16 lg:px-8 lg:py-24 flex justify-end group hover:bg-gray-50 transition-colors">
-                <div class="w-full max-w-[40rem]">
+            <!-- Learn - Blue background -->
+            <a href="/read" class="bg-blue-600 flex justify-end group hover:bg-blue-700 transition-colors relative overflow-hidden">
+                <GrainOverlay />
+                <div class="w-full max-w-[40rem] px-6 py-16 lg:px-8 lg:py-24 relative z-10">
                     <div class="flex items-center gap-3">
-                        <h2 class="text-3xl lg:text-4xl font-semibold text-gray-900 font-display">Ready to learn?</h2>
-                        <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
-                            <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                        <h2 class="text-3xl lg:text-4xl font-semibold text-white font-display">Ready to learn?</h2>
+                        <span class="inline-flex items-center justify-center size-10 rounded-full bg-white/20 group-hover:bg-white transition-colors">
+                            <Icon name="tabler:arrow-up-right" class="size-5 text-white group-hover:text-blue-600" />
                         </span>
                     </div>
-                    <p class="mt-6 text-lg text-gray-600 max-w-md">
+                    <p class="mt-6 text-lg text-white/80 max-w-md">
                         Start with Chapter 1 or jump to any topic. Self-paced, always free.
                     </p>
                 </div>
@@ -275,9 +277,7 @@ function getChapterTitle(chapterNum: number) {
                 <div class="w-full max-w-[40rem]">
                     <div class="flex items-center gap-3">
                         <h2 class="text-3xl lg:text-4xl font-semibold text-gray-900 font-display">Ready to teach?</h2>
-                        <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
-                            <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
-                        </span>
+                        <CTAArrow />
                     </div>
                     <p class="mt-6 text-lg text-gray-600 max-w-md">
                         Join 30+ organizations using Atlas materials to train the next generation.

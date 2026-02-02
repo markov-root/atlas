@@ -5,6 +5,11 @@ import { Icon } from "astro-icon/components";
 import { siteConfig } from "@/config/site";
 import Input from "@/components/Input.astro";
 import InputLabel from "@/components/InputLabel.astro";
+import Button from "@/components/Button.astro";
+import GrainOverlay from "@/components/GrainOverlay.astro";
+import RadioGroup from "@/components/RadioGroup.astro";
+import FeatureCard from "@/components/FeatureCard.astro";
+import SplitSection from "@/components/SplitSection.astro";
 
 // Import courses data
 import coursesData from "@/data/courses-old.json";
@@ -111,6 +116,12 @@ const sessions = [
     { time: "1:02", activity: "Challenge Spotlight" },
   ]},
 ];
+
+const formatOptions = [
+  { value: "in-person", label: "In-person" },
+  { value: "hybrid", label: "Hybrid" },
+  { value: "online", label: "Online" }
+];
 ---
 <Default title="Teach AI Safety" description="Run your own AI Safety course with free materials, facilitation guides, and student matching." noHeader>
     <!-- Navbar -->
@@ -120,19 +131,10 @@ const sessions = [
 
     <!-- Section 1: Hero -->
     <section class="mx-4 mt-4">
-        <div class="grid lg:grid-cols-2">
+        <div class="grid lg:grid-cols-2 lg:h-[88vh]">
             <!-- Left: Blue hero -->
             <div class="bg-blue-600 text-white rounded-t-3xl lg:rounded-none lg:rounded-tl-3xl lg:rounded-bl-3xl flex justify-end relative overflow-hidden">
-                <!-- Book cover grain texture -->
-                <div class="absolute inset-0 opacity-50 mix-blend-overlay pointer-events-none" aria-hidden="true">
-                    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                        <filter id="grain">
-                            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" />
-                            <feColorMatrix type="saturate" values="0" />
-                        </filter>
-                        <rect width="100%" height="100%" filter="url(#grain)" />
-                    </svg>
-                </div>
+                <GrainOverlay />
                 <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col h-full min-h-[500px] lg:min-h-0 relative z-10">
                     <div class="max-w-md">
                         <h1 class="text-4xl lg:text-5xl 2xl:text-6xl font-semibold text-balance font-display leading-tight text-white">
@@ -211,24 +213,18 @@ const sessions = [
             <div class="lg:border-l border-b border-gray-200 flex flex-col justify-end">
                 <div class="border-t border-gray-200">
                     <div class="w-full max-w-[40rem] grid grid-cols-2">
-                    <div class="p-6 lg:p-8 border-r border-gray-200">
-                        <div class="size-10 rounded-full bg-gray-100 flex items-center justify-center mb-4">
-                            <Icon name="tabler:clipboard-list" class="size-5 text-gray-600" />
-                        </div>
-                        <h3 class="text-base font-semibold text-gray-900">Facilitation Guides</h3>
-                        <p class="mt-1 text-sm text-gray-600">
-                            Session-by-session guides with prompts and activities.
-                        </p>
-                    </div>
-                    <div class="p-6 lg:p-8 border-r border-gray-200">
-                        <div class="size-10 rounded-full bg-gray-100 flex items-center justify-center mb-4">
-                            <Icon name="tabler:certificate" class="size-5 text-gray-600" />
-                        </div>
-                        <h3 class="text-base font-semibold text-gray-900">Certificates</h3>
-                        <p class="mt-1 text-sm text-gray-600">
-                            LinkedIn-verified, co-branded with your organization.
-                        </p>
-                    </div>
+                        <FeatureCard
+                            icon="tabler:clipboard-list"
+                            title="Facilitation Guides"
+                            description="Session-by-session guides with prompts and activities."
+                            class="border-r border-gray-200"
+                        />
+                        <FeatureCard
+                            icon="tabler:certificate"
+                            title="Certificates"
+                            description="LinkedIn-verified, co-branded with your organization."
+                            class="border-r border-gray-200"
+                        />
                     </div>
                 </div>
             </div>
@@ -241,278 +237,223 @@ const sessions = [
             <!-- Right: Feature grid (bottom row) -->
             <div class="border-t lg:border-t-0 lg:border-l border-gray-200">
                 <div class="w-full max-w-[40rem] grid grid-cols-2">
-                    <div class="p-6 lg:p-8 border-r border-gray-200">
-                        <div class="size-10 rounded-full bg-gray-100 flex items-center justify-center mb-4">
-                            <Icon name="tabler:users" class="size-5 text-gray-600" />
-                        </div>
-                        <h3 class="text-base font-semibold text-gray-900">Student matching</h3>
-                        <p class="mt-1 text-sm text-gray-600">
-                            We connect students to your course through our network.
-                        </p>
-                    </div>
-                    <div class="p-6 lg:p-8 border-r border-gray-200">
-                        <div class="size-10 rounded-full bg-gray-100 flex items-center justify-center mb-4">
-                            <Icon name="tabler:book" class="size-5 text-gray-600" />
-                        </div>
-                        <h3 class="text-base font-semibold text-gray-900">Textbook</h3>
-                        <p class="mt-1 text-sm text-gray-600">
-                            Comprehensive curriculum covering all core topics.
-                        </p>
-                    </div>
+                    <FeatureCard
+                        icon="tabler:users"
+                        title="Student matching"
+                        description="We connect students to your course through our network."
+                        class="border-r border-gray-200"
+                    />
+                    <FeatureCard
+                        icon="tabler:book"
+                        title="Textbook"
+                        description="Comprehensive curriculum covering all core topics."
+                        class="border-r border-gray-200"
+                    />
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Section 3: Facilitation Guides -->
-    <section id="guides-form" class="mx-4 mt-4 rounded-3xl overflow-hidden">
-        <div class="grid lg:grid-cols-2 overflow-hidden">
-            <!-- Left: Form -->
-            <div class="bg-blue-600 text-white flex justify-end">
-                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:pt-16 lg:pb-16 flex flex-col h-full">
-                    <h2 class="font-display text-3xl lg:text-4xl font-semibold leading-tight text-white mb-auto max-w-md">
-                        Get facilitation guides for every chapter
-                    </h2>
-                    <div class="mt-8 max-w-md">
-                    <form action={siteConfig.guidesFormspree} method="POST" class="space-y-4">
-                        <div class="flex gap-4">
-                            <div class="flex-1">
-                                <label for="guides-name" class="block text-sm font-medium text-white/80 mb-1">Name</label>
-                                <input
-                                    type="text"
-                                    id="guides-name"
-                                    name="name"
-                                    required
-                                    class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
-                                    placeholder="Your name"
-                                />
-                            </div>
-                            <div class="flex-1">
-                                <label for="guides-email" class="block text-sm font-medium text-white/80 mb-1">Email</label>
-                                <input
-                                    type="email"
-                                    id="guides-email"
-                                    name="email"
-                                    required
-                                    class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
-                                    placeholder="you@example.com"
-                                />
-                            </div>
-                        </div>
-                        <button
-                            type="submit"
-                            class="inline-block px-6 py-2 rounded-2xl font-semibold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors"
-                        >
-                            Get the guides
-                        </button>
-                    </form>
+    <SplitSection
+        id="guides-form"
+        heading="Get facilitation guides for every chapter"
+        leftBg="blue"
+        rightBg="gray"
+    >
+        <Fragment slot="left">
+            <form action={siteConfig.guidesFormspree} method="POST" class="space-y-4 mt-8 max-w-md">
+                <div class="flex gap-4">
+                    <div class="flex-1">
+                        <InputLabel for="guides-name" variant="dark">Name</InputLabel>
+                        <Input
+                            type="text"
+                            id="guides-name"
+                            name="name"
+                            required
+                            placeholder="Your name"
+                            variant="dark"
+                        />
+                    </div>
+                    <div class="flex-1">
+                        <InputLabel for="guides-email" variant="dark">Email</InputLabel>
+                        <Input
+                            type="email"
+                            id="guides-email"
+                            name="email"
+                            required
+                            placeholder="you@example.com"
+                            variant="dark"
+                        />
                     </div>
                 </div>
-            </div>
-
-            <!-- Right: Document previews -->
-            <div class="bg-gray-100 overflow-hidden relative">
-                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 lg:pt-24">
-                    <!-- Session cards stacked, trailing behind -->
-                    <div class="relative h-72 sm:h-80 -ml-4 sm:ml-4 lg:ml-16 select-none">
-                        <!-- Trailing cards (back to front) - stacked behind main card -->
-                        {[5, 6, 3, 8].map((num, i) => {
-                            const leftOffsets = [22, 16, 11, 7]; // base 7, increments: +4, +5, +6
-                            const topOffsets = [14, 9, 5, 2]; // base 2, increments: +3, +4, +5
-                            return (
-                            <div
-                                class="absolute bg-white rounded-xl shadow-xl w-56 sm:w-64 lg:w-72"
-                                style={`top: ${topOffsets[i]}rem; left: ${leftOffsets[i]}rem; z-index: ${i};`}
-                            >
-                                <div class="p-4 sm:p-5 lg:p-6 relative">
-                                    <span class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-300 font-bold text-base sm:text-lg">#{num}</span>
-                                    <p class="text-xs font-medium text-blue-600 uppercase tracking-wide mb-1 sm:mb-2">Facilitation Guide</p>
-                                    <p class="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-1">{sessions[num - 1].title}</p>
-                                    <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-5">{sessions[num - 1].duration} hours</p>
-                                    <div class="space-y-1.5 sm:space-y-2">
-                                        {sessions[num - 1].schedule.slice(0, 5).map((item) => (
-                                            <div class="flex gap-2 sm:gap-3 text-xs sm:text-sm">
-                                                <span class="text-gray-500 w-8 sm:w-10 shrink-0 font-mono">{item.time}</span>
-                                                <span class="text-gray-900 truncate">{item.activity}</span>
-                                            </div>
-                                        ))}
-                                        <p class="text-xs sm:text-sm text-gray-500 pl-10 sm:pl-[52px]">+ {sessions[num - 1].schedule.length - 5} more activities</p>
+                <Button type="submit" variant="dark">
+                    Get the guides
+                </Button>
+            </form>
+        </Fragment>
+        <Fragment slot="right">
+            <!-- Session cards stacked, trailing behind -->
+            <div class="relative h-72 sm:h-80 -ml-4 sm:ml-4 lg:ml-16 select-none">
+                <!-- Trailing cards (back to front) - stacked behind main card -->
+                {[5, 6, 3, 8].map((num, i) => {
+                    const leftOffsets = [22, 16, 11, 7];
+                    const topOffsets = [14, 9, 5, 2];
+                    return (
+                    <div
+                        class="absolute bg-white rounded-2xl shadow-xl w-56 sm:w-64 lg:w-72"
+                        style={`top: ${topOffsets[i]}rem; left: ${leftOffsets[i]}rem; z-index: ${i};`}
+                    >
+                        <div class="p-4 sm:p-5 lg:p-6 relative">
+                            <span class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-300 font-bold text-base sm:text-lg">#{num}</span>
+                            <p class="text-xs font-medium text-blue-600 uppercase tracking-wide mb-1 sm:mb-2">Facilitation Guide</p>
+                            <p class="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-1">{sessions[num - 1].title}</p>
+                            <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-5">{sessions[num - 1].duration} hours</p>
+                            <div class="space-y-1.5 sm:space-y-2">
+                                {sessions[num - 1].schedule.slice(0, 5).map((item) => (
+                                    <div class="flex gap-2 sm:gap-3 text-xs sm:text-sm">
+                                        <span class="text-gray-500 w-8 sm:w-10 shrink-0 font-mono">{item.time}</span>
+                                        <span class="text-gray-900 truncate">{item.activity}</span>
                                     </div>
-                                </div>
+                                ))}
+                                <p class="text-xs sm:text-sm text-gray-500 pl-10 sm:pl-[52px]">+ {sessions[num - 1].schedule.length - 5} more activities</p>
                             </div>
-                        )})}
+                        </div>
+                    </div>
+                )})}
 
-                        <!-- Main Session 1 card (front) -->
-                        <div class="absolute top-0 left-0 bg-white rounded-xl shadow-xl w-56 sm:w-64 lg:w-72 z-10">
-                            <div class="p-4 sm:p-5 lg:p-6 relative">
-                                <span class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-300 font-bold text-base sm:text-lg">#1</span>
-                                <p class="text-xs font-medium text-blue-600 uppercase tracking-wide mb-1 sm:mb-2">Facilitation Guide</p>
-                                <p class="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-1">{sessions[0].title}</p>
-                                <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-5">{sessions[0].duration} hours</p>
-                                <div class="space-y-1.5 sm:space-y-2">
-                                    {sessions[0].schedule.slice(0, 5).map((item) => (
-                                        <div class="flex gap-2 sm:gap-3 text-xs sm:text-sm">
-                                            <span class="text-gray-500 w-8 sm:w-10 shrink-0 font-mono">{item.time}</span>
-                                            <span class="text-gray-900">{item.activity}</span>
-                                        </div>
-                                    ))}
-                                    <p class="text-xs sm:text-sm text-gray-500 pl-10 sm:pl-[52px]">+ {sessions[0].schedule.length - 5} more activities</p>
+                <!-- Main Session 1 card (front) -->
+                <div class="absolute top-0 left-0 bg-white rounded-2xl shadow-xl w-56 sm:w-64 lg:w-72 z-10">
+                    <div class="p-4 sm:p-5 lg:p-6 relative">
+                        <span class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-300 font-bold text-base sm:text-lg">#1</span>
+                        <p class="text-xs font-medium text-blue-600 uppercase tracking-wide mb-1 sm:mb-2">Facilitation Guide</p>
+                        <p class="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-1">{sessions[0].title}</p>
+                        <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-5">{sessions[0].duration} hours</p>
+                        <div class="space-y-1.5 sm:space-y-2">
+                            {sessions[0].schedule.slice(0, 5).map((item) => (
+                                <div class="flex gap-2 sm:gap-3 text-xs sm:text-sm">
+                                    <span class="text-gray-500 w-8 sm:w-10 shrink-0 font-mono">{item.time}</span>
+                                    <span class="text-gray-900">{item.activity}</span>
                                 </div>
-                            </div>
+                            ))}
+                            <p class="text-xs sm:text-sm text-gray-500 pl-10 sm:pl-[52px]">+ {sessions[0].schedule.length - 5} more activities</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </Fragment>
+    </SplitSection>
 
     <!-- Section 4: Affiliate Application Form -->
-    <section id="affiliate-form" class="mx-4 mt-4 rounded-3xl overflow-hidden">
-        <div class="grid lg:grid-cols-2">
-            <!-- Left: Props -->
-            <div class="bg-white flex justify-end">
-                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:pt-16 lg:pb-16 flex flex-col h-full">
-                    <h2 class="text-3xl lg:text-4xl font-semibold font-display mb-auto text-gray-900 max-w-md">
-                        Start an affiliate course
-                    </h2>
-                    <ul class="space-y-4 mt-8">
-                        <li class="flex items-start gap-3">
-                            <Icon name="tabler:check" class="size-5 text-blue-600 shrink-0 mt-0.5" />
-                            <span class="text-gray-700">Facilitation guides for all chapters</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <Icon name="tabler:check" class="size-5 text-blue-600 shrink-0 mt-0.5" />
-                            <span class="text-gray-700">Student matching through our network</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <Icon name="tabler:check" class="size-5 text-blue-600 shrink-0 mt-0.5" />
-                            <span class="text-gray-700">Listed on our website</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <Icon name="tabler:check" class="size-5 text-blue-600 shrink-0 mt-0.5" />
-                            <span class="text-gray-700">Co-branded certificates for students</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Right: Form -->
-            <div class="bg-black text-white">
-                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 lg:pt-24">
-                <form action={siteConfig.affiliateFormspree} method="POST" class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <InputLabel for="affiliate-name" variant="dark" required>Name</InputLabel>
-                            <Input type="text" id="affiliate-name" name="name" required placeholder="Your name" variant="dark" />
-                        </div>
-                        <div>
-                            <InputLabel for="affiliate-email" variant="dark" required>Email</InputLabel>
-                            <Input type="email" id="affiliate-email" name="email" required placeholder="you@example.com" variant="dark" />
-                        </div>
-                    </div>
-
+    <SplitSection
+        id="affiliate-form"
+        heading="Start an affiliate course"
+        leftBg="white"
+        rightBg="black"
+    >
+        <Fragment slot="left">
+            <ul class="space-y-4 mt-8">
+                <li class="flex items-start gap-3">
+                    <Icon name="tabler:check" class="size-5 text-blue-600 shrink-0 mt-0.5" />
+                    <span class="text-gray-700">Facilitation guides for all chapters</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <Icon name="tabler:check" class="size-5 text-blue-600 shrink-0 mt-0.5" />
+                    <span class="text-gray-700">Student matching through our network</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <Icon name="tabler:check" class="size-5 text-blue-600 shrink-0 mt-0.5" />
+                    <span class="text-gray-700">Listed on our website</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <Icon name="tabler:check" class="size-5 text-blue-600 shrink-0 mt-0.5" />
+                    <span class="text-gray-700">Co-branded certificates for students</span>
+                </li>
+            </ul>
+        </Fragment>
+        <Fragment slot="right">
+            <form action={siteConfig.affiliateFormspree} method="POST" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <InputLabel for="affiliate-organization" variant="dark" required>Organization</InputLabel>
-                        <Input type="text" id="affiliate-organization" name="organization" required placeholder="Your organization or university" variant="dark" />
+                        <InputLabel for="affiliate-name" variant="dark" required>Name</InputLabel>
+                        <Input type="text" id="affiliate-name" name="name" required placeholder="Your name" variant="dark" />
                     </div>
-
                     <div>
-                        <InputLabel for="affiliate-format" variant="dark" required>Format</InputLabel>
-                        <div class="flex gap-2">
-                            <label class="flex-1">
-                                <input type="radio" name="format" value="in-person" required class="sr-only peer" />
-                                <span class="block px-4 py-3 text-center text-sm font-semibold rounded-2xl border border-white/20 bg-white/10 text-white cursor-pointer peer-checked:bg-white/30 peer-checked:border-white/40 hover:bg-white/20 transition-colors">
-                                    In-person
-                                </span>
-                            </label>
-                            <label class="flex-1">
-                                <input type="radio" name="format" value="hybrid" required class="sr-only peer" />
-                                <span class="block px-4 py-3 text-center text-sm font-semibold rounded-2xl border border-white/20 bg-white/10 text-white cursor-pointer peer-checked:bg-white/30 peer-checked:border-white/40 hover:bg-white/20 transition-colors">
-                                    Hybrid
-                                </span>
-                            </label>
-                            <label class="flex-1">
-                                <input type="radio" name="format" value="online" required class="sr-only peer" />
-                                <span class="block px-4 py-3 text-center text-sm font-semibold rounded-2xl border border-white/20 bg-white/10 text-white cursor-pointer peer-checked:bg-white/30 peer-checked:border-white/40 hover:bg-white/20 transition-colors">
-                                    Online
-                                </span>
-                            </label>
-                        </div>
+                        <InputLabel for="affiliate-email" variant="dark" required>Email</InputLabel>
+                        <Input type="email" id="affiliate-email" name="email" required placeholder="you@example.com" variant="dark" />
                     </div>
+                </div>
 
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <InputLabel for="affiliate-cohort-size" variant="dark">Expected cohort size</InputLabel>
-                            <Input type="number" id="affiliate-cohort-size" name="cohort_size" placeholder="e.g., 20" variant="dark" />
-                        </div>
-                        <div>
-                            <InputLabel for="affiliate-start-date" variant="dark">Expected start date</InputLabel>
-                            <Input type="date" id="affiliate-start-date" name="start_date" variant="dark" />
-                        </div>
-                    </div>
+                <div>
+                    <InputLabel for="affiliate-organization" variant="dark" required>Organization</InputLabel>
+                    <Input type="text" id="affiliate-organization" name="organization" required placeholder="Your organization or university" variant="dark" />
+                </div>
 
+                <div>
+                    <InputLabel for="affiliate-format" variant="dark" required>Format</InputLabel>
+                    <RadioGroup name="format" options={formatOptions} required variant="dark" />
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <InputLabel for="affiliate-location" variant="dark">Location (for in-person/hybrid)</InputLabel>
-                        <Input type="text" id="affiliate-location" name="location" placeholder="City, Country" variant="dark" />
+                        <InputLabel for="affiliate-cohort-size" variant="dark">Expected cohort size</InputLabel>
+                        <Input type="number" id="affiliate-cohort-size" name="cohort_size" placeholder="e.g., 20" variant="dark" />
                     </div>
-
-                    <button
-                        type="submit"
-                        class="inline-block px-6 py-2 rounded-2xl font-semibold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors"
-                    >
-                        Apply
-                    </button>
-                </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 6: Courses Table -->
-    <section class="mx-4 mt-4 mb-4 rounded-3xl overflow-hidden">
-        <div class="grid lg:grid-cols-2">
-            <!-- Left: Heading -->
-            <div class="bg-white flex justify-end">
-                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
-                    <h2 class="text-3xl lg:text-4xl font-semibold text-gray-900 font-display leading-tight">
-                        Past courses
-                    </h2>
-                    <p class="mt-4 text-lg text-gray-600">
-                        {totalStudents}+ enrolled across {uniqueCountries.size}+ countries.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Right: Courses list -->
-            <div class="bg-gray-100">
-                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
-                    <div id="courses-list" class="space-y-2">
-                        {coursesWithParticipants.map((course, i) => (
-                            <div class:list={["bg-white rounded-lg px-4 py-3 flex items-center justify-between", i >= 8 && "hidden courses-hidden"]}>
-                                <div class="min-w-0 flex-1">
-                                    <p class="text-sm font-medium text-gray-900 truncate">{course.orgName}</p>
-                                    <p class="text-xs text-gray-500">{course.location}</p>
-                                </div>
-                                <div class="text-right shrink-0 ml-4">
-                                    <p class="text-sm text-gray-900">{course.participants} enrolled</p>
-                                    <p class="text-xs text-gray-500">{formatDate(course.startDate)}</p>
-                                </div>
-                            </div>
-                        ))}
+                    <div>
+                        <InputLabel for="affiliate-start-date" variant="dark">Expected start date</InputLabel>
+                        <Input type="date" id="affiliate-start-date" name="start_date" variant="dark" />
                     </div>
-                    {coursesWithParticipants.length > 8 && (
-                        <button
-                            id="show-more-courses"
-                            class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1"
-                        >
-                            Show all {coursesWithParticipants.length} courses
-                            <Icon name="tabler:chevron-down" class="size-4" />
-                        </button>
-                    )}
                 </div>
+
+                <div>
+                    <InputLabel for="affiliate-location" variant="dark">Location (for in-person/hybrid)</InputLabel>
+                    <Input type="text" id="affiliate-location" name="location" placeholder="City, Country" variant="dark" />
+                </div>
+
+                <Button type="submit" variant="dark">
+                    Apply
+                </Button>
+            </form>
+        </Fragment>
+    </SplitSection>
+
+    <!-- Section 5: Past Courses -->
+    <SplitSection
+        heading="Past courses"
+        headingDescription={`${totalStudents}+ enrolled across ${uniqueCountries.size}+ countries.`}
+        leftBg="white"
+        rightBg="gray"
+        class="mb-4"
+    >
+        <Fragment slot="left">
+            <!-- Empty - heading only -->
+        </Fragment>
+        <Fragment slot="right">
+            <div id="courses-list" class="space-y-2">
+                {coursesWithParticipants.map((course, i) => (
+                    <div class:list={["bg-white rounded-2xl px-4 py-3 flex items-center justify-between", i >= 8 && "hidden courses-hidden"]}>
+                        <div class="min-w-0 flex-1">
+                            <p class="text-sm font-medium text-gray-900 truncate">{course.orgName}</p>
+                            <p class="text-xs text-gray-500">{course.location}</p>
+                        </div>
+                        <div class="text-right shrink-0 ml-4">
+                            <p class="text-sm text-gray-900">{course.participants} enrolled</p>
+                            <p class="text-xs text-gray-500">{formatDate(course.startDate)}</p>
+                        </div>
+                    </div>
+                ))}
             </div>
-        </div>
-    </section>
+            {coursesWithParticipants.length > 8 && (
+                <button
+                    id="show-more-courses"
+                    class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1"
+                >
+                    Show all {coursesWithParticipants.length} courses
+                    <Icon name="tabler:chevron-down" class="size-4" />
+                </button>
+            )}
+        </Fragment>
+    </SplitSection>
 
     <script>
         const btn = document.getElementById('show-more-courses');

@@ -1,0 +1,36 @@
+---
+interface Props {
+  name: string
+  options: { value: string; label: string }[]
+  required?: boolean
+  variant?: 'light' | 'dark'
+}
+
+const { name, options, required = false, variant = 'light' } = Astro.props
+
+const variantClasses = {
+  light: {
+    base: "border-gray-300 bg-gray-100 text-gray-900 hover:bg-gray-200",
+    checked: "peer-checked:bg-gray-200 peer-checked:border-gray-400"
+  },
+  dark: {
+    base: "border-white/20 bg-white/10 text-white hover:bg-white/20",
+    checked: "peer-checked:bg-white/30 peer-checked:border-white/40"
+  }
+}
+---
+
+<div class="flex gap-2">
+  {options.map((option) => (
+    <label class="flex-1">
+      <input type="radio" name={name} value={option.value} required={required} class="sr-only peer" />
+      <span class:list={[
+        "block px-4 py-3 text-center text-sm font-semibold rounded-2xl border cursor-pointer transition-colors",
+        variantClasses[variant].base,
+        variantClasses[variant].checked
+      ]}>
+        {option.label}
+      </span>
+    </label>
+  ))}
+</div>
