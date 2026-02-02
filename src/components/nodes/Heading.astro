@@ -7,7 +7,8 @@ interface Props {
 }
 
 const { level, slug } = Astro.props;
-const Tag = `h${Math.min(level, 6)}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+// Shift levels down by 1 since page already has H1 for section title
+const Tag = `h${Math.min(level + 1, 6)}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 ---
 
 <Tag id={slug} data-pagefind-index-attrs="id" class="group">
