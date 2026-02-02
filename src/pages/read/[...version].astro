@@ -1,8 +1,8 @@
 ---
 import type { Chapter, Textbook } from '@/textbook-loader';
 import Default from "@/layouts/Default.astro"
+import Header from "@/components/Header.astro"
 import { Icon } from 'astro-icon/components'
-import Button from "@/components/Button.astro"
 import { formatReadingTime } from "@/textbook-loader/utils"
 import { getTextbooks, getLatestTextbook } from "@/lib/textbooks";
 
@@ -35,121 +35,161 @@ export async function getStaticPaths() {
 
 const { textbook } = Astro.props;
 
-const isAppendixSection = (section: { title: string }) => section.title.toLowerCase().includes('appendix');
-
-// Collect all appendix sections with their chapter info
-const appendixSections = textbook.chapters.flatMap(chapter =>
-  chapter.sections
-    .filter(isAppendixSection)
-    .map(section => ({ section, chapter }))
-);
+const firstChapterUrl = `/chapters/${textbook.version}/${textbook.chapters[0].slug}/${textbook.chapters[0].sections[0].slug}`;
 ---
-<Default title="Chapters" description="We've gathered the most important knowledge on AI safety into a single, comprehensive resource.">
-    <header class="bg-white py-24 sm:py-32 border-b border-gray-300">
-      <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl lg:mx-0">
-          <h2 class="text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl font-display">Chapters</h2>
-          <p class="mt-8 text-lg font-medium text-pretty text-gray-700 sm:text-xl/8">
-              We've gathered the most important knowledge on AI safety into a single, comprehensive resource.
-          </p>
-          <ul class="mt-8">
-              <li class="flex items-center space-x-2">
-                  <Icon name="tabler:clock" class="w-7 h-auto" />
-                  <span class="text-lg">
-                      {formatReadingTime(textbook.readingTimeInSeconds)}
-                  </span>
-              </li>
-          </ul>
+<Default title="Chapters" description="We've gathered the most important knowledge on AI safety into a single, comprehensive resource." noHeader>
+    <!-- Navbar -->
+    <div class="mx-4 mt-4">
+        <Header class="bg-white rounded-3xl" />
+    </div>
 
-          <div class="flex gap-4 mt-12">
-            <Button large link={`/chapters/${textbook.version}/${textbook.chapters[0].slug}/${textbook.chapters[0].sections[0].slug}`}>
-                <span>Start reading</span>
-            </Button>
-            {textbook.pdfLink && (
-              <Button large variant="outline" link={textbook.pdfLink}>
-                  Download
-              </Button>
-            )}
-          </div>
-        </div>
-      </div>
-    </header>
-
-    {textbook.chapters.map((chapter: Chapter, index: number) => {
-        const sections = chapter.sections.filter(s => !isAppendixSection(s));
-        if (sections.length === 0) return null;
-        return (
-    <section class:list={["py-16 sm:py-24 border-b border-gray-300", index % 2 === 0 ? 'bg-gray-100' : 'bg-white']}>
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-10">
-                <div>
-                    <h2 class="text-2xl/7 font-bold text-gray-900 sm:text-3xl sm:tracking-tight font-display">
-                        {chapter.number}.
-                        <a class="hover:text-brand-700 transition-colors" href={`/chapters/${textbook.version}/${chapter.slug}/${sections[0].slug}/`}>{chapter.title}</a>
-                    </h2>
-                    {chapter.meta.description && <p class="max-w-3xl text-lg text-gray-700 mt-3 text-balance">{chapter.meta.description}</p>}
-                </div>
-                <Button variant={index % 2 === 0 ? "white" : "gray"} link={`/chapters/${textbook.version}/${chapter.slug}/${sections[0].slug}/`}>
-                    Read chapter &rarr;
-                </Button>
-            </div>
-            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {sections.map(section => (
-                    <a
-                        href={`/chapters/${textbook.version}/${chapter.slug}/${section.slug}`}
-                        class:list={[
-                            "group relative flex flex-col rounded-xl border p-5 transition-all hover:shadow-md hover:-translate-y-0.5",
-                            index % 2 === 0
-                                ? "bg-white border-gray-200 hover:border-brand-300"
-                                : "bg-gray-50 border-gray-200 hover:border-brand-300"
-                        ]}
-                    >
-                        <h3 class="font-semibold text-gray-900 group-hover:text-brand-700 transition-colors">
-                            <span class="text-brand-600">{chapter.number}.{section.number}</span> {section.title}
-                        </h3>
-                        {section.readingTimeInSeconds && (
-                            <span class="mt-2 text-sm text-gray-600">
-                                {formatReadingTime(section.readingTimeInSeconds)}
-                            </span>
-                        )}
-                    </a>
-                ))}
-            </div>
-        </div>
-    </section>
-        );
-    })}
-
-    {appendixSections.length > 0 && (
-    <section class:list={["py-16 sm:py-24 border-b border-gray-300", textbook.chapters.length % 2 === 0 ? 'bg-gray-100' : 'bg-white']}>
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl font-display mb-10 text-gray-900">Appendixes</h2>
-            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {appendixSections.map(({ section, chapter }) => (
-                    <a
-                        href={`/chapters/${textbook.version}/${chapter.slug}/${section.slug}/`}
-                        class:list={[
-                            "group relative flex flex-col rounded-xl border p-5 transition-all hover:shadow-md hover:-translate-y-0.5 hover:border-brand-300",
-                            textbook.chapters.length % 2 === 0
-                                ? "bg-white border-gray-200"
-                                : "bg-gray-50 border-gray-200"
-                        ]}
-                    >
-                        <span class="text-xs font-medium text-gray-600 uppercase tracking-wide">
-                            {chapter.title}
+    <!-- Hero Section -->
+    <section class="mx-4 mt-4">
+        <div class="grid lg:grid-cols-2">
+            <!-- Left: Hero content -->
+            <div class="bg-blue-600 text-white rounded-t-3xl lg:rounded-none lg:rounded-tl-3xl lg:rounded-bl-3xl flex justify-end">
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col justify-between h-full min-h-[400px]">
+                    <div class="max-w-md">
+                        <h1 class="text-4xl lg:text-5xl font-semibold text-balance font-display leading-tight">
+                            Chapters
+                        </h1>
+                        <p class="mt-4 text-base lg:text-lg text-white/80 leading-relaxed">
+                            We've gathered the most important knowledge on AI safety into a single, comprehensive resource.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-6 text-sm text-white/70">
+                        <span class="flex items-center gap-2">
+                            <Icon name="tabler:book" class="size-5" />
+                            {textbook.chapters.length} chapters
                         </span>
-                        <h3 class="mt-1 font-semibold text-gray-900 group-hover:text-brand-700 transition-colors">
-                            {section.title.replace(/^Appendix:\s*/i, '')}
-                        </h3>
-                        {section.readingTimeInSeconds && (
-                            <span class="mt-3 text-sm text-gray-600">
-                                {formatReadingTime(section.readingTimeInSeconds)}
+                        <span class="flex items-center gap-2">
+                            <Icon name="tabler:clock" class="size-5" />
+                            {formatReadingTime(textbook.readingTimeInSeconds)}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Start reading CTA -->
+            <a href={firstChapterUrl} class="bg-white rounded-b-3xl lg:rounded-none lg:rounded-tr-3xl lg:rounded-br-3xl flex items-center group hover:bg-gray-50 transition-colors">
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
+                    <p class="text-sm font-medium text-gray-500">Ready to begin?</p>
+                    <div class="mt-2 flex items-center gap-3">
+                        <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Start reading</h2>
+                        <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                            <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                        </span>
+                    </div>
+                    <p class="mt-4 text-base lg:text-lg text-gray-600">
+                        Begin with {textbook.chapters[0].title} and work through at your own pace.
+                    </p>
+                    {textbook.pdfLink && (
+                        <p class="mt-6 text-sm text-gray-500">
+                            Or <a href={textbook.pdfLink} class="underline hover:text-gray-900 transition-colors">download the PDF</a>
+                        </p>
+                    )}
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Chapters List -->
+    <section class="mx-4 mt-4">
+        <div class="grid lg:grid-cols-2">
+            <!-- Left: Sticky panel -->
+            <div class="lg:sticky lg:top-4 lg:self-start lg:mb-4">
+                <div class="bg-white lg:h-[calc(100vh-2rem)] rounded-t-3xl lg:rounded-none lg:rounded-tl-3xl lg:rounded-bl-3xl flex justify-end">
+                    <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col justify-between h-full">
+                        <div class="max-w-md">
+                            <h2 class="text-3xl lg:text-4xl font-semibold text-gray-900 font-display leading-tight">
+                                Table of Contents
+                            </h2>
+                            <p class="mt-4 text-base lg:text-lg text-gray-600 leading-relaxed">
+                                {textbook.chapters.length} chapters covering the foundations of AI safety, from core concepts to cutting-edge research.
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-6 text-sm text-gray-500 mt-8 lg:mt-0">
+                            <span class="flex items-center gap-2">
+                                <Icon name="tabler:book" class="size-5" />
+                                {textbook.chapters.length} chapters
                             </span>
-                        )}
-                    </a>
-                ))}
+                            <span class="flex items-center gap-2">
+                                <Icon name="tabler:clock" class="size-5" />
+                                {formatReadingTime(textbook.readingTimeInSeconds)}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Scrolling chapters -->
+            <div class="lg:mb-4">
+                <div class="bg-gray-100 rounded-b-3xl lg:rounded-none lg:rounded-tr-3xl lg:rounded-br-3xl">
+                    {textbook.chapters.map((chapter: Chapter) => {
+                        const sections = chapter.sections;
+                        if (sections.length === 0) return null;
+                        const chapterUrl = `/chapters/${textbook.version}/${chapter.slug}/${sections[0].slug}/`;
+                        return (
+                            <div class="border-b border-gray-200 last:border-b-0">
+                                <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12">
+                                    <!-- Chapter header -->
+                                    <div class="mb-6">
+                                        <span class="text-sm font-medium text-gray-700">Chapter {chapter.number}</span>
+                                        <h3 class="mt-1 text-xl lg:text-2xl font-semibold text-gray-900 font-display">
+                                            <a href={chapterUrl} class="hover:text-blue-600 transition-colors">{chapter.title}</a>
+                                        </h3>
+                                        {chapter.meta.description && (
+                                            <p class="mt-2 text-sm text-gray-600">
+                                                {chapter.meta.description}
+                                            </p>
+                                        )}
+                                    </div>
+                                    <!-- Sections -->
+                                    <div class="flex flex-col gap-2">
+                                        {sections.map(section => (
+                                            <a
+                                                href={`/chapters/${textbook.version}/${chapter.slug}/${section.slug}`}
+                                                class="flex items-center justify-between px-4 py-3 bg-white rounded-xl hover:bg-gray-50 transition-colors group"
+                                            >
+                                                <div class="flex-1 min-w-0 flex items-center justify-between gap-4">
+                                                    <span class="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                                                        {chapter.number}.{section.number} {section.title}
+                                                    </span>
+                                                    {section.readingTimeInSeconds && (
+                                                        <span class="text-xs text-gray-500 shrink-0">
+                                                            {formatReadingTime(section.readingTimeInSeconds)}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                                <Icon name="tabler:chevron-right" class="size-5 text-gray-400 group-hover:text-blue-600 transition-colors shrink-0 ml-4" />
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     </section>
-    )}
+
+    <!-- Bottom CTA -->
+    <section class="mx-4 mt-4 mb-4">
+        <a href={firstChapterUrl} class="block bg-white rounded-3xl px-6 py-16 lg:px-8 lg:py-20 group hover:bg-gray-50 transition-colors">
+            <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                <div>
+                    <div class="flex items-center gap-3">
+                        <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Ready to start?</h2>
+                        <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                            <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                        </span>
+                    </div>
+                    <p class="mt-3 text-base lg:text-lg text-gray-600">
+                        Begin with Chapter 1: {textbook.chapters[0].title}
+                    </p>
+                </div>
+            </div>
+        </a>
+    </section>
 </Default>

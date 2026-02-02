@@ -2,6 +2,18 @@ import { defineCollection, z } from 'astro:content';
 import { GOOGLE_CREDENTIALS_BASE64 } from "astro:env/server"
 import { TEXTBOOK_EDITIONS } from './textbook-loader/data';
 import { TextbookLoader } from './textbook-loader/loader';
+import { logosLoader, organizationSchema } from "@foreview/ais-logos-astro";
+
+const organizations = defineCollection({
+  loader: logosLoader({
+    urls: [
+      "https://ml4good.org",
+      "https://bluedot.org",
+      "https://www.enais.co",
+    ],
+  }),
+  schema: organizationSchema,
+});
 
 const textbooks = defineCollection({
   loader: async () => {
@@ -16,4 +28,4 @@ const textbooks = defineCollection({
   },
 })
 
-export const collections = { textbooks };
+export const collections = { textbooks, organizations };

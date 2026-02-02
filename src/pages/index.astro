@@ -5,9 +5,11 @@ import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import { siteConfig } from "@/config/site";
 import { getLatestTextbook } from "@/lib/textbooks";
+import OrgLogo from "@/components/OrgLogo.astro";
 
 import markovImg from "@/assets/markov-photo.jpg";
 import charbelImg from "@/assets/charbel-photo.jpg";
+import ensParisSaclayLogo from "@/assets/ens-paris-saclay.png";
 import Button from "@/components/Button.astro";
 
 const authorImages: Record<string, ImageMetadata> = {
@@ -38,6 +40,7 @@ function getChapterUrl(chapterNum: number) {
 function getChapterTitle(chapterNum: number) {
   return chapterLookup.get(chapterNum)?.title ?? `Chapter ${chapterNum}`;
 }
+
 ---
 <Default title="" description="" noHeader>
     <!-- Navbar -->
@@ -49,48 +52,80 @@ function getChapterTitle(chapterNum: number) {
     <section class="mx-4 mt-4">
         <div class="grid lg:grid-cols-2 lg:h-[88vh]">
             <!-- Left: Blue hero -->
-            <div class="bg-blue-600 text-white rounded-t-3xl lg:rounded-t-none lg:rounded-l-3xl flex justify-end">
-                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col justify-between h-full min-h-[500px] lg:min-h-0">
+            <div class="bg-blue-600 text-white rounded-t-3xl lg:rounded-none lg:rounded-tl-3xl lg:rounded-bl-3xl flex justify-end relative overflow-hidden">
+                <!-- Book cover grain texture -->
+                <div class="absolute inset-0 opacity-50 mix-blend-overlay pointer-events-none" aria-hidden="true">
+                    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                        <filter id="grain">
+                            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" />
+                            <feColorMatrix type="saturate" values="0" />
+                        </filter>
+                        <rect width="100%" height="100%" filter="url(#grain)" />
+                    </svg>
+                </div>
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col justify-between h-full min-h-[500px] lg:min-h-0 relative z-10">
                     <div class="max-w-md">
-                        <h1 class="text-4xl lg:text-5xl 2xl:text-6xl font-semibold text-balance font-display leading-tight">
+                        <h1 class="text-4xl lg:text-5xl 2xl:text-6xl font-semibold text-balance font-display leading-tight text-white">
                             The open textbook for AI Safety
                         </h1>
+                        <p class="mt-4 text-sm lg:text-base text-white/80">
+                            Written by Markov Grey and Charbel-Raphael Segerie
+                        </p>
                     </div>
-                    <p class="max-w-md text-base lg:text-lg 2xl:text-xl text-white/80 leading-relaxed">
-                        A comprehensive, regularly updated guide to understanding and mitigating risks from advanced AI systems.
-                    </p>
+                    <div class="max-w-md">
+                        <p class="text-sm font-medium text-white uppercase tracking-wide mb-4">Trusted by</p>
+                        <div class="grid grid-cols-2 gap-3">
+                            <span class="bg-white/5 rounded-lg px-3 h-12 flex items-center justify-center">
+                                <OrgLogo url="https://ml4good.org" class="h-5 w-auto" color="white" />
+                            </span>
+                            <span class="bg-white/5 rounded-lg px-3 h-12 flex items-center justify-center">
+                                <OrgLogo url="https://bluedot.org" class="h-5 w-auto" color="white" />
+                            </span>
+                            <span class="bg-white/5 rounded-lg px-3 h-12 flex items-center justify-center">
+                                <OrgLogo url="https://www.enais.co" class="h-6 w-auto" color="white" />
+                            </span>
+                            <span class="bg-white/5 rounded-lg px-3 h-12 flex items-center justify-center">
+                                <img src={ensParisSaclayLogo.src} alt="ENS Paris Saclay" class="h-7 w-auto brightness-0 invert" />
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Right: CTA cards -->
-            <div class="rounded-b-3xl lg:rounded-b-none lg:rounded-r-3xl flex flex-col">
+            <div class="rounded-b-3xl lg:rounded-none lg:rounded-tr-3xl lg:rounded-br-3xl flex flex-col bg-white overflow-hidden">
                 <!-- Learn Card -->
-                <a href="/read" class="relative flex-1 flex items-end bg-white hover:bg-gray-50 transition-colors group border-b border-gray-200 lg:rounded-tr-3xl">
-                    <Icon name="tabler:arrow-up-right" class="absolute top-4 right-4 lg:top-6 lg:right-6 size-8 lg:size-12 2xl:size-16 text-gray-200 group-hover:text-gray-300 transition-colors" />
+                <a href="/read" class="relative flex-1 flex items-end bg-white hover:bg-gray-50 transition-colors group lg:rounded-tr-3xl">
                     <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12">
                         <p class="text-sm font-medium text-gray-500">I want to learn</p>
-                        <h2 class="mt-2 text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Read the textbook</h2>
+                        <div class="mt-2 flex items-center gap-3">
+                            <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Read the textbook</h2>
+                            <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                                <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                            </span>
+                        </div>
                         <p class="mt-4 text-base lg:text-lg text-gray-600">
                             Self-study or join a cohort. From capabilities to governance, from alignment to oversight.
                         </p>
-                        <span class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-black group-hover:text-gray-700">
-                            Start reading <Icon name="tabler:arrow-right" class="size-4" />
-                        </span>
                     </div>
                 </a>
 
+                <!-- Divider -->
+                <div class="mx-6 lg:mx-8 border-t border-gray-200"></div>
+
                 <!-- Teach Card -->
-                <a href="/teach" class="relative flex-1 flex items-start bg-gray-50 hover:bg-gray-100 transition-colors group lg:rounded-br-3xl">
-                    <Icon name="tabler:arrow-up-right" class="absolute top-4 right-4 lg:top-6 lg:right-6 size-8 lg:size-12 2xl:size-16 text-gray-300 group-hover:text-gray-400 transition-colors" />
+                <a href="/teach" class="relative flex-1 flex items-start bg-white hover:bg-gray-50 transition-colors group lg:rounded-br-3xl">
                     <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12">
                         <p class="text-sm font-medium text-gray-500">I want to teach</p>
-                        <h2 class="mt-2 text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Run a course</h2>
+                        <div class="mt-2 flex items-center gap-3">
+                            <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Run a course</h2>
+                            <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                                <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                            </span>
+                        </div>
                         <p class="mt-4 text-base lg:text-lg text-gray-600">
                             We provide students, materials, and facilitation guides. You focus on building your community.
                         </p>
-                        <span class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-black group-hover:text-gray-700">
-                            Become an affiliate <Icon name="tabler:arrow-right" class="size-4" />
-                        </span>
                     </div>
                 </a>
             </div>
@@ -220,26 +255,30 @@ function getChapterTitle(chapterNum: number) {
             <!-- Learn - White background -->
             <a href="/read" class="bg-white px-6 py-16 lg:px-8 lg:py-24 flex justify-end group hover:bg-gray-50 transition-colors">
                 <div class="w-full max-w-[40rem]">
-                    <h2 class="text-3xl lg:text-4xl font-semibold text-gray-900 font-display">Ready to learn?</h2>
+                    <div class="flex items-center gap-3">
+                        <h2 class="text-3xl lg:text-4xl font-semibold text-gray-900 font-display">Ready to learn?</h2>
+                        <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                            <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                        </span>
+                    </div>
                     <p class="mt-6 text-lg text-gray-600 max-w-md">
                         Start with Chapter 1 or jump to any topic. Self-paced, always free.
                     </p>
-                    <span class="mt-8 inline-flex items-center gap-1 text-sm font-semibold text-black group-hover:text-gray-700">
-                        Read the textbook <Icon name="tabler:arrow-right" class="size-4" />
-                    </span>
                 </div>
             </a>
 
             <!-- Teach - Black background -->
-            <a href="/teach" class="bg-black px-6 py-16 lg:px-8 lg:py-24 group hover:bg-gray-900 transition-colors">
+            <a href="/teach" class="bg-white px-6 py-16 lg:px-8 lg:py-24 group hover:bg-gray-50 transition-colors">
                 <div class="w-full max-w-[40rem]">
-                    <h2 class="text-3xl lg:text-4xl font-semibold text-white font-display">Ready to teach?</h2>
-                    <p class="mt-6 text-lg text-white/80 max-w-md">
+                    <div class="flex items-center gap-3">
+                        <h2 class="text-3xl lg:text-4xl font-semibold text-gray-900 font-display">Ready to teach?</h2>
+                        <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                            <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                        </span>
+                    </div>
+                    <p class="mt-6 text-lg text-gray-600 max-w-md">
                         Join 30+ organizations using Atlas materials to train the next generation.
                     </p>
-                    <span class="mt-8 inline-flex items-center gap-1 text-sm font-semibold text-white group-hover:text-white/80">
-                        Become an affiliate <Icon name="tabler:arrow-right" class="size-4" />
-                    </span>
                 </div>
             </a>
             </div>

@@ -1,0 +1,481 @@
+---
+import Default from "@/layouts/Default.astro";
+import Header from "@/components/Header.astro";
+import { Icon } from "astro-icon/components";
+import { siteConfig } from "@/config/site";
+
+// Import courses data
+import coursesData from "../../previous-version-w-docusaurus/src/data/courses-old.json";
+
+// Calculate stats from courses data
+const allCourses = coursesData.organizations.flatMap(org =>
+  org.courses.map(c => ({ ...c, orgName: org.name }))
+);
+const totalCourses = allCourses.length;
+const totalStudents = allCourses.reduce((sum, c) => sum + (typeof c.participants === 'number' ? c.participants : 0), 0);
+const uniqueCountries = new Set(
+  allCourses
+    .map(c => {
+      const loc = c.location;
+      if (!loc) return null;
+      // Extract country from location (usually last part after comma, or the whole string)
+      const parts = loc.split(',');
+      return parts[parts.length - 1]?.trim();
+    })
+    .filter(Boolean)
+);
+
+// Filter courses with participant data for the table
+const coursesWithParticipants = allCourses
+  .filter(c => typeof c.participants === 'number' && c.participants > 0)
+  .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
+
+// Format date as "Mon YYYY"
+function formatDate(dateStr: string) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+}
+
+// Week 1 timeline data
+const week1Timeline = [
+  { time: "0:00", activity: "Welcome & icebreaker" },
+  { time: "0:10", activity: "Recap last week (skip for Week 1)" },
+  { time: "0:15", activity: "Discuss pre-reading" },
+  { time: "0:35", activity: "Break" },
+  { time: "0:40", activity: "Main activity: Timeline exercise" },
+  { time: "1:10", activity: "Debrief & closing" },
+  { time: "1:25", activity: "Preview next week" },
+];
+---
+<Default title="Teach AI Safety" description="Run your own AI Safety course with free materials, facilitation guides, and student matching." noHeader>
+    <!-- Navbar -->
+    <div class="mx-4 mt-4">
+        <Header class="bg-white rounded-3xl" />
+    </div>
+
+    <!-- Section 1: Hero -->
+    <section class="mx-4 mt-4">
+        <div class="grid lg:grid-cols-2">
+            <!-- Left: Blue hero -->
+            <div class="bg-blue-600 text-white rounded-t-3xl lg:rounded-none lg:rounded-tl-3xl lg:rounded-bl-3xl flex justify-end relative overflow-hidden">
+                <!-- Book cover grain texture -->
+                <div class="absolute inset-0 opacity-50 mix-blend-overlay pointer-events-none" aria-hidden="true">
+                    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                        <filter id="grain">
+                            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" />
+                            <feColorMatrix type="saturate" values="0" />
+                        </filter>
+                        <rect width="100%" height="100%" filter="url(#grain)" />
+                    </svg>
+                </div>
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col h-full min-h-[500px] lg:min-h-0 relative z-10">
+                    <div class="max-w-md">
+                        <h1 class="text-4xl lg:text-5xl 2xl:text-6xl font-semibold text-balance font-display leading-tight text-white">
+                            Run your own AI Safety course.
+                        </h1>
+                    </div>
+                    <div class="flex gap-10 lg:gap-16 mt-auto pt-32 lg:pt-48">
+                        <div>
+                            <p class="text-3xl lg:text-4xl font-semibold">{Math.round(totalCourses / 10) * 10}</p>
+                            <p class="text-lg text-white">courses</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl lg:text-4xl font-semibold">{Math.round(totalStudents / 100) * 100}</p>
+                            <p class="text-lg text-white">students</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl lg:text-4xl font-semibold">{Math.round(uniqueCountries.size / 5) * 5}</p>
+                            <p class="text-lg text-white">countries</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: CTA -->
+            <a href="#affiliate-form" class="rounded-b-3xl lg:rounded-none lg:rounded-tr-3xl lg:rounded-br-3xl bg-white hover:bg-gray-50 transition-colors group flex items-end">
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
+                    <p class="text-lg lg:text-xl text-gray-600 leading-relaxed mb-8">
+                        We provide everything you need to teach AI Safety: curriculum, facilitation guides, and we'll help you find students.
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Become an affiliate</span>
+                        <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                            <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Section 2: What You Get -->
+    <section class="mx-4 mt-4 rounded-3xl overflow-hidden bg-white">
+        <!-- Top row -->
+        <div class="grid lg:grid-cols-2">
+            <!-- Left: Heading -->
+            <div class="flex justify-end border-b border-gray-200">
+                <div class="w-full max-w-[40rem] px-6 py-16 lg:px-8 lg:py-24">
+                    <h2 class="text-4xl lg:text-5xl font-semibold text-gray-900 font-display leading-tight max-w-sm">
+                        Everything you need to run a course
+                    </h2>
+                </div>
+            </div>
+
+            <!-- Right: Feature grid (top row) -->
+            <div class="lg:border-l border-b border-gray-200 flex flex-col justify-end">
+                <div class="border-t border-gray-200">
+                    <div class="w-full max-w-[40rem] grid grid-cols-2">
+                    <div class="p-6 lg:p-8 border-r border-gray-200">
+                        <div class="size-10 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+                            <Icon name="tabler:clipboard-list" class="size-5 text-gray-600" />
+                        </div>
+                        <h3 class="text-base font-semibold text-gray-900">Facilitation Guides</h3>
+                        <p class="mt-1 text-sm text-gray-600">
+                            Session-by-session guides with prompts and activities.
+                        </p>
+                    </div>
+                    <div class="p-6 lg:p-8 border-r border-gray-200">
+                        <div class="size-10 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+                            <Icon name="tabler:certificate" class="size-5 text-gray-600" />
+                        </div>
+                        <h3 class="text-base font-semibold text-gray-900">Certificates</h3>
+                        <p class="mt-1 text-sm text-gray-600">
+                            LinkedIn-verified, co-branded with your organization.
+                        </p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom row -->
+        <div class="grid lg:grid-cols-2">
+            <!-- Left: Empty -->
+            <div class="hidden lg:block"></div>
+
+            <!-- Right: Feature grid (bottom row) -->
+            <div class="border-t lg:border-t-0 lg:border-l border-gray-200">
+                <div class="w-full max-w-[40rem] grid grid-cols-2">
+                    <div class="p-6 lg:p-8 border-r border-gray-200">
+                        <div class="size-10 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+                            <Icon name="tabler:users" class="size-5 text-gray-600" />
+                        </div>
+                        <h3 class="text-base font-semibold text-gray-900">Students</h3>
+                        <p class="mt-1 text-sm text-gray-600">
+                            We connect students to your course through our network.
+                        </p>
+                    </div>
+                    <div class="p-6 lg:p-8 border-r border-gray-200">
+                        <div class="size-10 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+                            <Icon name="tabler:book" class="size-5 text-gray-600" />
+                        </div>
+                        <h3 class="text-base font-semibold text-gray-900">Textbook</h3>
+                        <p class="mt-1 text-sm text-gray-600">
+                            Comprehensive curriculum covering all core topics.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Guides Form + Preview -->
+    <section class="mx-4 mt-4 rounded-3xl overflow-hidden">
+        <div class="grid lg:grid-cols-2">
+            <!-- Left: Guides Form -->
+            <div id="guides-form" class="bg-black text-white flex justify-end">
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
+                    <h2 class="text-2xl lg:text-3xl font-semibold font-display mb-4">
+                        Get facilitation guides
+                    </h2>
+                    <p class="text-white/70 mb-8">
+                        Session-by-session guides with discussion prompts, activities, and timelines for each chapter of the textbook.
+                    </p>
+
+                    <form action={siteConfig.guidesFormspree} method="POST" class="space-y-4">
+                        <div>
+                            <label for="guides-name" class="block text-sm font-medium text-white/80 mb-1">Name</label>
+                            <input
+                                type="text"
+                                id="guides-name"
+                                name="name"
+                                required
+                                class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                                placeholder="Your name"
+                            />
+                        </div>
+                        <div>
+                            <label for="guides-email" class="block text-sm font-medium text-white/80 mb-1">Email</label>
+                            <input
+                                type="email"
+                                id="guides-email"
+                                name="email"
+                                required
+                                class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                                placeholder="you@example.com"
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            class="w-full px-6 py-3 rounded-lg bg-white text-gray-900 font-semibold hover:bg-gray-100 transition-colors"
+                        >
+                            Get guides
+                        </button>
+                    </form>
+
+                    <p class="mt-4 text-sm text-white/50">
+                        Instant access. No approval needed.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right: Preview -->
+            <div class="bg-white">
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Preview</p>
+                    <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display mb-2">
+                        Week 1: Human-Level AI
+                    </h2>
+                    <p class="text-gray-600 mb-8">Chapter 1 · ~90 minutes</p>
+
+                    <div class="space-y-0 border-l-2 border-gray-200">
+                        {week1Timeline.map((item, i) => (
+                            <div class="flex items-start pl-4 py-2 relative">
+                                <div class="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 size-2 rounded-full bg-gray-300"></div>
+                                <span class="text-sm text-gray-500 w-12 shrink-0">{item.time}</span>
+                                <span class="text-sm text-gray-900">{item.activity}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <a href="#guides-form" class="mt-8 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium">
+                        Get all facilitation guides
+                        <Icon name="tabler:arrow-right" class="size-4" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Choose Your Path -->
+    <section class="mx-4 mt-4 rounded-3xl overflow-hidden">
+        <div class="grid lg:grid-cols-2">
+            <!-- Left: Get Guides -->
+            <div class="bg-gray-100 flex justify-end">
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
+                    <h3 class="text-2xl font-semibold text-gray-900 font-display mb-6">Get Guides</h3>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3">
+                            <Icon name="tabler:check" class="size-5 text-green-600 shrink-0 mt-0.5" />
+                            <span class="text-gray-700">Facilitation guides for all chapters</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <Icon name="tabler:check" class="size-5 text-green-600 shrink-0 mt-0.5" />
+                            <span class="text-gray-700">Full textbook access</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <Icon name="tabler:check" class="size-5 text-green-600 shrink-0 mt-0.5" />
+                            <span class="text-gray-700">Instant access, no approval</span>
+                        </li>
+                    </ul>
+                    <p class="text-sm text-gray-500 mb-6">
+                        For independent study groups or trying it out
+                    </p>
+                    <a href="#guides-form" class="inline-block px-6 py-2 rounded-2xl font-semibold bg-gray-200 text-gray-900 hover:bg-gray-300 transition-colors">Get guides</a>
+                </div>
+            </div>
+
+            <!-- Right: Become Affiliate -->
+            <div class="bg-black text-white">
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
+                    <h3 class="text-2xl font-semibold font-display mb-6">Become Affiliate</h3>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3">
+                            <Icon name="tabler:check" class="size-5 text-green-400 shrink-0 mt-0.5" />
+                            <span class="text-white/80">Everything in Guides</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <Icon name="tabler:plus" class="size-5 text-blue-400 shrink-0 mt-0.5" />
+                            <span class="text-white/80">Student matching through our network</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <Icon name="tabler:plus" class="size-5 text-blue-400 shrink-0 mt-0.5" />
+                            <span class="text-white/80">Listed on our website</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <Icon name="tabler:plus" class="size-5 text-blue-400 shrink-0 mt-0.5" />
+                            <span class="text-white/80">Co-branded certificates for students</span>
+                        </li>
+                    </ul>
+                    <p class="text-sm text-white/50 mb-6">
+                        For organizations running regular courses
+                    </p>
+                    <a href="#affiliate-form" class="inline-block px-6 py-2 rounded-2xl font-semibold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors">Apply to become affiliate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Affiliate Application Form -->
+    <section id="affiliate-form" class="mx-4 mt-4 rounded-3xl overflow-hidden bg-black text-white">
+        <div class="px-6 py-12 lg:px-8 lg:py-16">
+            <div class="max-w-2xl mx-auto">
+                <h2 class="text-3xl lg:text-4xl font-semibold font-display mb-4 text-center">
+                    Become an affiliate course
+                </h2>
+                <p class="text-white/70 text-center mb-12">
+                    Join our network and get students matched to your course.
+                </p>
+
+                <form action={siteConfig.affiliateFormspree} method="POST" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="affiliate-name" class="block text-sm font-medium text-white/80 mb-1">Name *</label>
+                            <input
+                                type="text"
+                                id="affiliate-name"
+                                name="name"
+                                required
+                                class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                                placeholder="Your name"
+                            />
+                        </div>
+                        <div>
+                            <label for="affiliate-email" class="block text-sm font-medium text-white/80 mb-1">Email *</label>
+                            <input
+                                type="email"
+                                id="affiliate-email"
+                                name="email"
+                                required
+                                class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                                placeholder="you@example.com"
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="affiliate-organization" class="block text-sm font-medium text-white/80 mb-1">Organization *</label>
+                        <input
+                            type="text"
+                            id="affiliate-organization"
+                            name="organization"
+                            required
+                            class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                            placeholder="Your organization or university"
+                        />
+                    </div>
+
+                    <div>
+                        <label for="affiliate-format" class="block text-sm font-medium text-white/80 mb-1">Format *</label>
+                        <select
+                            id="affiliate-format"
+                            name="format"
+                            required
+                            class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-white/50"
+                        >
+                            <option value="" class="bg-gray-900">Select format</option>
+                            <option value="in-person" class="bg-gray-900">In-person</option>
+                            <option value="hybrid" class="bg-gray-900">Hybrid</option>
+                            <option value="online" class="bg-gray-900">Online</option>
+                        </select>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="affiliate-cohort-size" class="block text-sm font-medium text-white/80 mb-1">Expected cohort size</label>
+                            <input
+                                type="number"
+                                id="affiliate-cohort-size"
+                                name="cohort_size"
+                                class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                                placeholder="e.g., 20"
+                            />
+                        </div>
+                        <div>
+                            <label for="affiliate-start-date" class="block text-sm font-medium text-white/80 mb-1">Expected start date</label>
+                            <input
+                                type="date"
+                                id="affiliate-start-date"
+                                name="start_date"
+                                class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="affiliate-location" class="block text-sm font-medium text-white/80 mb-1">Location (for in-person/hybrid)</label>
+                        <input
+                            type="text"
+                            id="affiliate-location"
+                            name="location"
+                            class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                            placeholder="City, Country"
+                        />
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="w-full px-6 py-3 rounded-lg bg-white text-gray-900 font-semibold hover:bg-gray-100 transition-colors"
+                    >
+                        Apply to become affiliate
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Courses Table -->
+    <section class="mx-4 mt-4 mb-4 rounded-3xl overflow-hidden">
+        <div class="grid lg:grid-cols-2">
+            <!-- Left: Heading -->
+            <div class="bg-white flex justify-end">
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
+                    <h2 class="text-3xl lg:text-4xl font-semibold text-gray-900 font-display leading-tight">
+                        Past courses
+                    </h2>
+                    <p class="mt-4 text-lg text-gray-600">
+                        {totalStudents}+ enrolled across {uniqueCountries.size}+ countries.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right: Courses list -->
+            <div class="bg-gray-100">
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
+                    <div id="courses-list" class="space-y-2">
+                        {coursesWithParticipants.map((course, i) => (
+                            <div class:list={["bg-white rounded-lg px-4 py-3 flex items-center justify-between", i >= 8 && "hidden courses-hidden"]}>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-sm font-medium text-gray-900 truncate">{course.orgName}</p>
+                                    <p class="text-xs text-gray-500">{course.location}</p>
+                                </div>
+                                <div class="text-right shrink-0 ml-4">
+                                    <p class="text-sm text-gray-900">{course.participants}</p>
+                                    <p class="text-xs text-gray-500">{formatDate(course.startDate)}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    {coursesWithParticipants.length > 8 && (
+                        <button
+                            id="show-more-courses"
+                            class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1"
+                        >
+                            Show all {coursesWithParticipants.length} courses
+                            <Icon name="tabler:chevron-down" class="size-4" />
+                        </button>
+                    )}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const btn = document.getElementById('show-more-courses');
+        if (btn) {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.courses-hidden').forEach(el => el.classList.remove('hidden'));
+                btn.remove();
+            });
+        }
+    </script>
+</Default>

@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+
+interface Props {
+  url: string;
+  variant?: string;
+  color?: "color" | "white";
+  class?: string;
+}
+
+const { url, variant, color = "color", class: className } = Astro.props;
+
+const orgs = await getCollection("organizations");
+const org = orgs.find((o) => o.data.url === url || o.data.url === url + "/");
+
+const variantKey = variant ?? org?.data.canonical;
+const logoVariant = variantKey ? org?.data.variants[variantKey] : undefined;
+const src = logoVariant?.[color];
+const dimensions = logoVariant?.dimensions;
+---
+
+{src && (
+  <img
+    src={src}
+    alt={org?.data.name}
+    class={className}
+    width={dimensions?.width}
+    height={dimensions?.height}
+  />
+)}
