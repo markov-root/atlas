@@ -1,7 +1,8 @@
 ---
+import { Icon } from "astro-icon/components";
 import Lockup from '@/components/brand/Lockup.astro';
 import VersionSelector from '@/components/VersionSelector.astro';
-import AlgoliaSearch from '@/components/AlgoliaSearch.astro';
+import SearchTrigger from '@/components/SearchTrigger.astro';
 
 interface Props {
   class?: string
@@ -20,8 +21,10 @@ const isDark = variant === 'dark'
       </a>
       <VersionSelector variant={variant} class="hidden lg:block" />
     </div>
-    <div class="flex lg:hidden items-center gap-1">
-      <AlgoliaSearch id="mobile-header-search" variant={variant} iconOnly />
+    <div class="flex lg:hidden items-center gap-3">
+      <SearchTrigger class:list={["-m-2.5 inline-flex items-center justify-center rounded-md p-2.5", isDark ? "text-white/80" : "text-gray-700"]}>
+        <Icon name="tabler:search" class="size-5" />
+      </SearchTrigger>
       <button type="button" popovertarget="mobile-menu" class:list={["-m-2.5 inline-flex items-center justify-center rounded-md p-2.5", isDark ? "text-white/80" : "text-gray-700"]}>
         <span class="sr-only">Open main menu</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
@@ -35,15 +38,31 @@ const isDark = variant === 'dark'
       <a href="/get-certified" class:list={["text-sm/6 px-4 py-1.5 rounded-full", isDark ? "text-white hover:bg-white/10" : "text-gray-900 hover:bg-gray-100"]}>Get certified</a>
     </div>
     <div class="hidden lg:flex lg:flex-1 lg:justify-end lg:pr-2">
-      <AlgoliaSearch id="header-search" class="w-full max-w-xs" variant={variant} />
+      <SearchTrigger class:list={[
+        "w-full max-w-xs flex items-center gap-2 px-3 h-9 rounded-full text-sm transition-colors",
+        isDark
+          ? "bg-white/10 text-white/70 hover:bg-white/20"
+          : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+      ]}>
+        <Icon name="tabler:search" class="size-4 shrink-0" />
+        <span class="flex-1 text-left">Search...</span>
+        <kbd class:list={[
+          "hidden sm:inline-flex items-center gap-0.5 px-1.5 h-5 rounded text-xs font-medium border",
+          isDark
+            ? "bg-white/10 text-white/50 border-white/10"
+            : "bg-white text-gray-500 border-gray-300"
+        ]}>
+          <span class="text-[10px]">⌘</span>K
+        </kbd>
+      </SearchTrigger>
     </div>
   </nav>
-  <div popover="auto" id="mobile-menu" class="lg:hidden fixed top-14 left-0 m-0 w-full bg-white shadow-lg border-t border-gray-200 p-2">
-    <div class="max-w-7xl mx-auto px-4">
-      <VersionSelector class="mb-2" />
+  <div popover="auto" id="mobile-menu" class="lg:hidden fixed inset-x-0 !top-14 w-full !m-0 bg-white shadow-2xl rounded-2xl p-2 pb-4">
+    <div class="px-2">
       <a href="/read" class="block rounded-lg px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Read</a>
       <a href="/teach" class="block rounded-lg px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Teach</a>
       <a href="/get-certified" class="block rounded-lg px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Get certified</a>
+      <VersionSelector class="mt-2" />
     </div>
   </div>
 </header>

@@ -1,0 +1,21 @@
+---
+/**
+ * A button that opens DocSearch when clicked.
+ * Use any content inside as the trigger UI.
+ * Requires DocSearchProvider to be included in the layout.
+ */
+interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+<button
+  type="button"
+  class={className}
+  data-docsearch-trigger
+  aria-label="Search"
+>
+  <slot />
+</button>

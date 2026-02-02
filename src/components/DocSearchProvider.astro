@@ -1,0 +1,72 @@
+---
+const appId = import.meta.env.PUBLIC_ALGOLIA_APP_ID
+const apiKey = import.meta.env.PUBLIC_ALGOLIA_SEARCH_KEY
+const indexName = import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME || 'atlas-foreview'
+---
+
+<!-- Hidden container for DocSearch -->
+<div id="docsearch-container" class="hidden" aria-hidden="true"></div>
+
+<script is:inline define:vars={{ appId, apiKey, indexName }}>
+(function() {
+  if (window.__docsearchInitialized) return;
+  window.__docsearchInitialized = true;
+
+  // Load CSS
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://cdn.jsdelivr.net/npm/@docsearch/css@3/dist/style.min.css';
+  document.head.appendChild(link);
+
+  // Load JS and initialize
+  const script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/@docsearch/js@3/dist/umd/index.min.js';
+  script.onload = function() {
+    window.docsearch({
+      appId: appId,
+      apiKey: apiKey,
+      indexName: indexName,
+      container: '#docsearch-container',
+      searchParameters: {
+        hitsPerPage: 10,
+      },
+    });
+
+    // Expose global open function
+    window.openDocSearch = function() {
+      const button = document.querySelector('#docsearch-container .DocSearch-Button');
+      if (button) button.click();
+    };
+
+    // Set up all trigger buttons
+    document.querySelectorAll('[data-docsearch-trigger]').forEach(function(trigger) {
+      trigger.addEventListener('click', function() {
+        window.openDocSearch();
+      });
+    });
+  };
+  document.head.appendChild(script);
+})();
+</script>
+
+<style is:global>
+  /* Modal styling */
+  .DocSearch-Modal {
+    --docsearch-primary-color: rgb(37 99 235);
+    --docsearch-highlight-color: rgb(37 99 235);
+    --docsearch-searchbox-shadow: inset 0 0 0 2px rgb(37 99 235);
+  }
+
+  .DocSearch-Hit-source {
+    font-weight: 600;
+    color: rgb(107 114 128);
+  }
+
+  .DocSearch-Hit a {
+    border-radius: 8px;
+  }
+
+  .DocSearch-Hit[aria-selected="true"] a {
+    background: rgb(37 99 235);
+  }
+</style>

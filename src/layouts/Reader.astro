@@ -3,7 +3,8 @@ import BaseHead from '@/components/BaseHead.astro'
 import Lockup from '@/components/brand/Lockup.astro';
 import { Icon } from 'astro-icon/components'
 import VersionSelector from '@/components/VersionSelector.astro';
-import AlgoliaSearch from '@/components/AlgoliaSearch.astro';
+import DocSearchProvider from '@/components/DocSearchProvider.astro';
+import SearchTrigger from '@/components/SearchTrigger.astro';
 import type { Section, Chapter, Textbook } from '@/textbook-loader';
 
 interface Breadcrumb {
@@ -50,6 +51,7 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
 		<slot name="head" />
 	</head>
 	<body class="noise-bg bg-gray-200 lg:h-screen lg:overflow-clip">
+<DocSearchProvider />
 <!-- Reading progress bar -->
 <div id="reading-progress" class="hidden lg:block fixed top-0 left-0 right-0 h-1 z-50">
     <div id="reading-progress-bar" class="h-full bg-brand-600 transition-[width] duration-100" style="width: 0%"></div>
@@ -126,8 +128,16 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
 
                 <div class="grow"></div>
 
-                <AlgoliaSearch id="reader-search-icon" iconOnly class="xl:hidden" />
-                <AlgoliaSearch id="reader-search" class="hidden xl:block w-full max-w-xs" />
+                <SearchTrigger class="xl:hidden p-2 -m-2 text-gray-500 hover:text-gray-700">
+                    <Icon name="tabler:search" class="size-5" />
+                </SearchTrigger>
+                <SearchTrigger class="hidden xl:flex items-center gap-2 w-full max-w-xs px-3 h-9 rounded-full text-sm bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors">
+                    <Icon name="tabler:search" class="size-4 shrink-0" />
+                    <span class="flex-1 text-left">Search...</span>
+                    <kbd class="hidden sm:inline-flex items-center gap-0.5 px-1.5 h-5 rounded text-xs font-medium bg-gray-200 text-gray-400">
+                        <span class="text-[10px]">⌘</span>K
+                    </kbd>
+                </SearchTrigger>
             </div>
         </nav>
 
@@ -274,8 +284,8 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
             <!-- Search button -->
             <button
                 type="button"
-                class="docsearch-icon-trigger flex flex-col items-center justify-center w-14 h-12 text-brand-700 active:text-brand-900 shrink-0"
-                data-docsearch-trigger="mobile-reader-search"
+                class="flex flex-col items-center justify-center w-14 h-12 text-brand-700 active:text-brand-900 shrink-0"
+                data-docsearch-trigger
                 aria-label="Search"
             >
                 <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -283,7 +293,6 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
                 </svg>
                 <span class="text-[10px] mt-0.5">Search</span>
             </button>
-            <div id="mobile-reader-search" class="hidden" data-docsearch></div>
         </div>
     </div>
 </div>
@@ -448,36 +457,6 @@ if (mobileChapterSelect) {
         }
     });
 }
-
-// Initialize mobile search DocSearch
-const mobileSearchContainer = document.getElementById('mobile-reader-search');
-if (mobileSearchContainer && !mobileSearchContainer.dataset.initialized) {
-    mobileSearchContainer.dataset.initialized = 'true';
-
-    function initMobileSearch() {
-        if ((window as any).docsearch) {
-            (window as any).docsearch({
-                appId: import.meta.env.PUBLIC_ALGOLIA_APP_ID,
-                apiKey: import.meta.env.PUBLIC_ALGOLIA_SEARCH_KEY,
-                indexName: import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME || 'atlas-foreview',
-                container: '#mobile-reader-search',
-                searchParameters: { hitsPerPage: 10 },
-            });
-
-            const trigger = document.querySelector('[data-docsearch-trigger="mobile-reader-search"]');
-            if (trigger) {
-                trigger.addEventListener('click', () => {
-                    const button = mobileSearchContainer.querySelector('.DocSearch-Button');
-                    if (button) (button as HTMLElement).click();
-                });
-            }
-        } else {
-            setTimeout(initMobileSearch, 100);
-        }
-    }
-    initMobileSearch();
-}
-
 
 </script>
 	</body>
