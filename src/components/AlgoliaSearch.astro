@@ -25,11 +25,11 @@ const indexName = import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME || 'atlas-foreview'
   <div class:list={[className]}>
     <button
       type="button"
-      class:list={["docsearch-icon-trigger rounded-md p-2.5", isDark ? "text-white/80 hover:bg-white/10" : "text-gray-700 hover:bg-gray-100"]}
+      class:list={["docsearch-icon-trigger", isDark ? "text-white/80 hover:bg-white/10" : "text-gray-500 hover:text-gray-700"]}
       data-docsearch-trigger={id}
       aria-label="Search"
     >
-      <Icon name="tabler:search" class="size-5" />
+      <Icon name="tabler:search" class="size-6" />
     </button>
     <div id={id} class="hidden" data-docsearch></div>
   </div>

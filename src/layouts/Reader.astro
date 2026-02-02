@@ -245,18 +245,18 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
         </div>
 
         <!-- Navigation row (bottom): Home | Chapter | Search -->
-        <div class="flex items-center h-14 px-2 bg-white border-t border-gray-200">
+        <div class="flex items-center gap-2 h-14 px-2 bg-white border-t border-gray-200">
             <!-- Home -->
-            <a href="/" class="flex items-center justify-center w-14 h-14 text-gray-400 active:text-gray-600 active:bg-gray-100 rounded-xl shrink-0">
-                <span class="sr-only">Home</span>
+            <a href="/" class="flex flex-col items-center justify-center w-14 h-12 text-gray-500 hover:text-gray-700 active:text-gray-700 shrink-0">
                 <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                 </svg>
+                <span class="text-[10px] mt-0.5">Home</span>
             </a>
 
             <!-- Chapter selector -->
-            <div class="flex items-center h-14 flex-1 justify-center min-w-0 active:bg-gray-100 rounded-xl mx-1">
-                <select id="mobile-chapter-select" class="bg-transparent border-none text-sm text-gray-500 py-4 pr-6 pl-4 focus:outline-none focus:ring-0 appearance-none cursor-pointer truncate w-full text-center">
+            <div class="flex-1 flex items-center justify-center min-w-0 h-10 bg-gray-100 rounded-xl px-3">
+                <select id="mobile-chapter-select" class="bg-transparent border-none text-sm font-medium text-gray-700 py-1 focus:outline-none focus:ring-0 appearance-none cursor-pointer text-center truncate w-full">
                     {textbook.chapters.map((chapter: Chapter) => (
                         <option
                             value={`/chapters/${textbook.version}/${chapter.slug}/${chapter.sections[0]?.slug}`}
@@ -266,13 +266,24 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
                         </option>
                     ))}
                 </select>
-                <svg class="size-4 text-gray-400 shrink-0 -ml-5 mr-1 pointer-events-none" viewBox="0 0 20 20" fill="currentColor">
+                <svg class="size-4 text-gray-400 shrink-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
                 </svg>
             </div>
 
             <!-- Search button -->
-            <AlgoliaSearch id="mobile-reader-search" iconOnly />
+            <button
+                type="button"
+                class="docsearch-icon-trigger flex flex-col items-center justify-center w-14 h-12 text-gray-500 hover:text-gray-700 active:text-gray-700 shrink-0"
+                data-docsearch-trigger="mobile-reader-search"
+                aria-label="Search"
+            >
+                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+                <span class="text-[10px] mt-0.5">Search</span>
+            </button>
+            <div id="mobile-reader-search" class="hidden" data-docsearch></div>
         </div>
     </div>
 </div>
@@ -436,6 +447,35 @@ if (mobileChapterSelect) {
             window.location.href = url;
         }
     });
+}
+
+// Initialize mobile search DocSearch
+const mobileSearchContainer = document.getElementById('mobile-reader-search');
+if (mobileSearchContainer && !mobileSearchContainer.dataset.initialized) {
+    mobileSearchContainer.dataset.initialized = 'true';
+
+    function initMobileSearch() {
+        if ((window as any).docsearch) {
+            (window as any).docsearch({
+                appId: import.meta.env.PUBLIC_ALGOLIA_APP_ID,
+                apiKey: import.meta.env.PUBLIC_ALGOLIA_SEARCH_KEY,
+                indexName: import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME || 'atlas-foreview',
+                container: '#mobile-reader-search',
+                searchParameters: { hitsPerPage: 10 },
+            });
+
+            const trigger = document.querySelector('[data-docsearch-trigger="mobile-reader-search"]');
+            if (trigger) {
+                trigger.addEventListener('click', () => {
+                    const button = mobileSearchContainer.querySelector('.DocSearch-Button');
+                    if (button) (button as HTMLElement).click();
+                });
+            }
+        } else {
+            setTimeout(initMobileSearch, 100);
+        }
+    }
+    initMobileSearch();
 }
 
 

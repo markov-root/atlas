@@ -1,6 +1,7 @@
 ---
 import NodeRenderer from '@/components/NodeRenderer.astro';
 import Reader from '@/layouts/Reader.astro';
+import SectionFeedback from '@/components/SectionFeedback.astro';
 import type { Chapter, Section, SectionRef } from '@/textbook-loader';
 import type { Textbook } from '@/textbook-loader/loader';
 import { formatReadingTime } from '@/textbook-loader/utils';
@@ -128,6 +129,14 @@ const isLastSection = section.nextSection === null;
             </p>
         </>
         )}
+
+        <SectionFeedback
+            version={version}
+            chapterNumber={chapter.number}
+            sectionNumber={section.number}
+            contentHash={chapter.contentHash}
+            isLastSection={isLastSection}
+        />
 
         <nav class="not-prose mt-16 border-t border-gray-200 pt-8">
             <div class="grid md:grid-cols-2 gap-4">
