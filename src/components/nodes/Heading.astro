@@ -11,7 +11,7 @@ const { level, slug } = Astro.props;
 const Tag = `h${Math.min(level + 1, 6)}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 ---
 
-<Tag id={slug} data-pagefind-index-attrs="id" class="group">
+<Tag id={slug} class="group">
   <slot />
   <a
     href={`#${slug}`}

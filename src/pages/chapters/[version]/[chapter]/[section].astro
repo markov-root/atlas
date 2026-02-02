@@ -104,7 +104,7 @@ const isLastSection = section.nextSection === null;
         </div>
     </div>
 
-    <article class="prose prose-a:text-brand-600 lg:prose-lg prose-figure:first:mt-0!" data-pagefind-body>
+    <article class="prose prose-a:text-brand-600 lg:prose-lg prose-figure:first:mt-0!">
         {section.nodes.map(node => <NodeRenderer node={node} />)}
 
         {section.footnotes && section.footnotes.length > 0 && (

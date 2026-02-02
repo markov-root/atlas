@@ -43,7 +43,7 @@ const { term, definition, sourceUrl, sourceLabel, matchedText } = Astro.props;
         interactive: true,
         appendTo: document.body,
         trigger: 'mouseenter focus click',
-        touch: ['hold', 300],
+        touch: true,
         theme: 'glossary',
       });
 
@@ -57,13 +57,14 @@ const { term, definition, sourceUrl, sourceLabel, matchedText } = Astro.props;
 
 <style is:global>
   .glossary-term {
-    background-color: var(--color-gray-100);
+    background-color: var(--color-gray-50);
     padding: 0 4px;
-    border-bottom: 2px solid rgba(25, 113, 194, 0.35);
+    border-bottom: 1px dotted rgba(25, 113, 194, 0.4);
     cursor: help;
   }
 
   .glossary-term:hover {
+    border-bottom-style: solid;
     border-bottom-color: rgba(25, 113, 194, 0.6);
   }
 
