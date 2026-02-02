@@ -15,7 +15,7 @@ const { term, source, chapterNumber, instanceCount } = Astro.props;
 const definitionNumber = `Definition ${chapterNumber}.${instanceCount.inChapter}`;
 ---
 
-<div class="definition-card my-6 rounded-lg border-l-4 border-brand-500 bg-brand-50 px-6 py-4" data-collapsed="true">
+<div class="definition-card my-6 rounded-lg bg-brand-50 px-6 py-4" data-collapsed="true">
   <dt
     class="definition-header flex cursor-pointer items-center justify-between font-semibold text-brand-900 not-prose md:cursor-default"
   >
@@ -30,7 +30,7 @@ const definitionNumber = `Definition ${chapterNumber}.${instanceCount.inChapter}
       <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
     </svg>
   </dt>
-  <dd class="definition-content mt-2 hidden md:block">
+  <dd class="definition-content mt-2 hidden md:block [&_a]:underline">
     <slot />
     {source && <cite class="mt-2 block text-sm text-brand-700 not-prose"><NodeRenderer node={source} /></cite>}
   </dd>

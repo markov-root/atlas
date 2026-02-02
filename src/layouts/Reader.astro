@@ -400,7 +400,7 @@ const noteboxDrilldown = {
             this.drilldownTitle.textContent = title;
             if (this.drilldownMeta) this.drilldownMeta.textContent = metaText;
             this.drilldownBody.innerHTML = contentHtml;
-            content.scrollTop = 0;
+            content.scrollTo({ top: 0, behavior: 'instant' });
         }
 
         // Mobile
@@ -422,7 +422,7 @@ const noteboxDrilldown = {
         if (this.mainView && this.drilldownView && content) {
             this.drilldownView.classList.add('hidden');
             this.mainView.classList.remove('hidden');
-            content.scrollTop = this.savedScrollPosition;
+            content.scrollTo({ top: this.savedScrollPosition, behavior: 'instant' });
         }
 
         // Mobile
