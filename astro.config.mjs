@@ -5,7 +5,7 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://atlas.foreview.org',
+  site: 'https://ai-safety-atlas.com',
   integrations: [icon()],
   env: {
     schema: {
