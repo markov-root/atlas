@@ -26,6 +26,11 @@
     scroll-margin-top: 7.25rem;
 }
 
+/* Reader layout has its own scroll container without fixed header overlap */
+#reader-content [id] {
+    scroll-margin-top: 0;
+}
+
 /* JS detection classes */
 .if-js {
     display: none;

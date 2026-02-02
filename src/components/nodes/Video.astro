@@ -23,7 +23,7 @@ const youtubeId = source ? getYouTubeId(source) : null;
 const videoNumber = `Video ${chapterNumber}.${instanceCount.inChapter}`;
 ---
 
-<figure>
+<figure class="border-l border-gray-300">
   {youtubeId ? (
     <iframe
     class="w-full aspect-video"
@@ -35,7 +35,7 @@ const videoNumber = `Video ${chapterNumber}.${instanceCount.inChapter}`;
   ) : source ? (
     <video src={source} controls />
   ) : null}
-  <figcaption>
+  <figcaption class="pl-4">
     <strong>{videoNumber}</strong>
     {caption && (
       <>

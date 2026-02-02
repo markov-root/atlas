@@ -109,11 +109,134 @@ Common icons:
 - `tabler:thumb-up` / `tabler:thumb-down` - Feedback
 - `cib:github`, `cib:youtube` - Social links
 
-### Component Variants
+## Components
 
-**Header:** Supports `variant="dark"` for dark backgrounds (white text/logo)
+### Layout Components
 
-**Lockup (logo):** Supports `variant="dark"` for dark backgrounds
+**Section** - Basic section wrapper with rounded corners and margins
+```astro
+<Section id="my-section" class="bg-white">
+  <!-- content -->
+</Section>
+```
+
+**SectionContent** - Content container with max-width and alignment
+```astro
+<SectionContent align="left|right|center" padding="normal|compact|hero">
+  <!-- content -->
+</SectionContent>
+```
+
+**SplitSection** - Two-column layout with heading and named slots
+```astro
+<SplitSection
+  heading="Section Title"
+  headingDescription="Optional description"
+  leftBg="white|black|blue|gray"
+  rightBg="white|black|blue|gray"
+>
+  <div slot="left">Left content</div>
+  <div slot="right">Right content</div>
+</SplitSection>
+```
+
+### Form Components
+
+All form components support `variant="light|dark"` for use on light or dark backgrounds.
+
+**Button** - Multi-variant button/link
+```astro
+<Button variant="primary|gray|white|outline|dark|ghost" link="/optional-href" large>
+  Label
+</Button>
+```
+
+**Input** - Text input with label
+```astro
+<Input type="text" name="field" id="field" label="Field" variant="dark" placeholder="..." required />
+```
+
+**Textarea** - Multiline text input
+```astro
+<Textarea name="message" id="message" rows="3" variant="dark" placeholder="..." />
+```
+
+**InputLabel** - Form field label
+```astro
+<InputLabel for="field-id" variant="dark" required>Label</InputLabel>
+```
+
+**RadioGroup** - Radio button options
+```astro
+<RadioGroup
+  name="choice"
+  options={[{ value: "a", label: "Option A" }, { value: "b", label: "Option B" }]}
+  variant="dark"
+  required
+/>
+```
+
+### Navigation Components
+
+**CardLink** - Full-width link card with arrow
+```astro
+<CardLink href="/path" variant="light|dark">Link text</CardLink>
+```
+
+**VersionSelector** - Native select for textbook version
+```astro
+<VersionSelector variant="light|dark" currentVersion="v1" />
+```
+
+**CTAArrow** - Circular arrow button for CTAs
+```astro
+<CTAArrow direction="up-right|down|right" />
+```
+
+### Brand Components
+
+**Lockup** - Logo with text
+```astro
+<Lockup variant="light|dark" mono />
+```
+
+**Logomark** - Logo icon only
+```astro
+<Logomark class="h-8 w-auto text-brand-600" />
+```
+
+### Page Components
+
+**Header** - Site navigation header
+```astro
+<Header variant="light|dark" />
+```
+
+**Footer** - Site footer with contact form (always dark)
+```astro
+<Footer />
+```
+
+**FeatureCard** - Feature display with icon
+```astro
+<FeatureCard icon="tabler:icon-name" title="Feature" description="Description text" />
+```
+
+**GrainOverlay** - Grain texture for dark/blue backgrounds
+```astro
+<GrainOverlay opacity={0.5} />
+```
+
+### Content Rendering (nodes/)
+
+Components for rendering textbook content from the AST:
+- `NodeRenderer` - Main recursive renderer
+- `Heading`, `Paragraph`, `List`, `ListItem`, `NumberedList`
+- `Link`, `Span`, `SpanGroup`
+- `Figure`, `Video`, `Iframe`
+- `Callout`, `Quote`, `NoteBox`, `Definition`, `GlossaryDefinition`
+- `InlineEquation`, `DisplayEquation`
+- `Footnote`
 
 ### Spacing Reference
 

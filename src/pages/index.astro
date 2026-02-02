@@ -8,7 +8,6 @@ import { getLatestTextbook } from "@/lib/textbooks";
 import OrgLogo from "@/components/OrgLogo.astro";
 import CardLink from "@/components/CardLink.astro";
 import GrainOverlay from "@/components/GrainOverlay.astro";
-import CTAArrow from "@/components/CTAArrow.astro";
 
 import markovImg from "@/assets/markov-photo.jpg";
 import charbelImg from "@/assets/charbel-photo.jpg";
@@ -47,15 +46,15 @@ function getChapterTitle(chapterNum: number) {
 ---
 <Default title="" description="" noHeader>
     <!-- Navbar -->
-    <div class="mx-4 mt-4">
+    <div class="sm:mx-4 mt-4">
         <Header class="bg-white rounded-3xl" />
     </div>
 
     <!-- Hero + CTA Section -->
-    <section class="mx-4 mt-4">
+    <section class="sm:mx-4 mt-4 rounded-3xl overflow-hidden">
         <div class="grid lg:grid-cols-2 lg:h-[88vh]">
             <!-- Left: Blue hero -->
-            <div class="bg-blue-600 text-white rounded-t-3xl lg:rounded-none lg:rounded-tl-3xl lg:rounded-bl-3xl flex justify-end relative overflow-hidden">
+            <div class="bg-blue-600 text-white lg:rounded-tl-3xl lg:rounded-bl-3xl flex justify-end relative overflow-hidden">
                 <GrainOverlay />
                 <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col justify-between h-full min-h-[500px] lg:min-h-0 relative z-10">
                     <div class="max-w-md">
@@ -87,14 +86,19 @@ function getChapterTitle(chapterNum: number) {
             </div>
 
             <!-- Right: CTA cards -->
-            <div class="rounded-b-3xl lg:rounded-none lg:rounded-tr-3xl lg:rounded-br-3xl flex flex-col bg-white overflow-hidden">
+            <div class="lg:rounded-tr-3xl lg:rounded-br-3xl flex flex-col bg-white overflow-hidden">
                 <!-- Learn Card -->
                 <a href="/read" class="relative flex-1 flex items-end bg-white hover:bg-gray-50 transition-colors group lg:rounded-tr-3xl">
-                    <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12">
+                    <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12 relative">
+                        <span class="absolute top-10 right-6 lg:hidden inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                            <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                        </span>
                         <p class="text-sm font-medium text-gray-500">I want to learn</p>
                         <div class="mt-2 flex items-center gap-3">
                             <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Read the textbook</h2>
-                            <CTAArrow />
+                            <span class="hidden lg:inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                                <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                            </span>
                         </div>
                         <p class="mt-4 text-base lg:text-lg text-gray-600">
                             Self-study or join a cohort. From capabilities to governance, from alignment to oversight.
@@ -103,15 +107,20 @@ function getChapterTitle(chapterNum: number) {
                 </a>
 
                 <!-- Divider -->
-                <div class="mr-6 lg:mr-8 border-t border-gray-200"></div>
+                <div class="border-t border-gray-200"></div>
 
                 <!-- Teach Card -->
                 <a href="/teach" class="relative flex-1 flex items-start bg-white hover:bg-gray-50 transition-colors group lg:rounded-br-3xl">
-                    <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12">
+                    <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12 relative">
+                        <span class="absolute top-10 right-6 lg:hidden inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                            <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                        </span>
                         <p class="text-sm font-medium text-gray-500">I want to teach</p>
                         <div class="mt-2 flex items-center gap-3">
                             <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Run a course</h2>
-                            <CTAArrow />
+                            <span class="hidden lg:inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                                <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                            </span>
                         </div>
                         <p class="mt-4 text-base lg:text-lg text-gray-600">
                             We provide students, materials, and facilitation guides. You focus on building your community.
@@ -123,10 +132,10 @@ function getChapterTitle(chapterNum: number) {
     </section>
 
     <!-- What the textbook covers -->
-    <section class="mx-4 mt-4">
+    <section class="sm:mx-4 mt-4 rounded-3xl overflow-hidden">
         <div class="grid lg:grid-cols-2">
             <div class="lg:sticky lg:top-4 lg:self-start lg:mb-4">
-                <div class="bg-white lg:h-[calc(100vh-2rem)] rounded-l-3xl lg:rounded-l-3xl rounded-t-3xl lg:rounded-tr-none flex justify-end">
+                <div class="bg-white lg:h-[calc(100vh-2rem)] lg:rounded-l-3xl flex justify-end">
                     <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col justify-between h-full">
                         <div class="max-w-md">
                             <h2 class="font-display text-3xl lg:text-4xl font-normal leading-tight mb-6 text-gray-900">
@@ -145,7 +154,7 @@ function getChapterTitle(chapterNum: number) {
                 </div>
             </div>
             <div class="lg:mb-4">
-            <div class="bg-black text-white rounded-r-3xl lg:rounded-r-3xl rounded-b-3xl lg:rounded-bl-none divide-y divide-white/10 relative overflow-hidden">
+            <div class="bg-black text-white lg:rounded-r-3xl divide-y divide-white/10 relative overflow-hidden">
                 <GrainOverlay />
                 <!-- Invisible spacer to align with left heading -->
                 <div class="hidden lg:block relative z-10 px-6 pt-12 lg:pt-16 lg:px-8" aria-hidden="true">
@@ -186,7 +195,7 @@ function getChapterTitle(chapterNum: number) {
     </section>
 
     <!-- Authors Section -->
-    <section class="mx-4 mt-4 rounded-3xl overflow-hidden bg-white">
+    <section class="sm:mx-4 mt-4 rounded-3xl overflow-hidden bg-white">
         <!-- Top row -->
         <div class="grid lg:grid-cols-2">
             <!-- Left: Heading -->
@@ -254,15 +263,18 @@ function getChapterTitle(chapterNum: number) {
     </section>
 
     <!-- Bottom CTA Section -->
-    <section class="mx-4 mt-4 mb-4 rounded-3xl overflow-hidden">
+    <section class="sm:mx-4 mt-4 mb-4 rounded-3xl overflow-hidden">
         <div class="grid lg:grid-cols-2">
             <!-- Learn - Blue background -->
             <a href="/read" class="bg-blue-600 flex justify-end group hover:bg-blue-700 transition-colors relative overflow-hidden">
                 <GrainOverlay />
                 <div class="w-full max-w-[40rem] px-6 py-16 lg:px-8 lg:py-24 relative z-10">
+                    <span class="absolute top-10 right-6 lg:hidden inline-flex items-center justify-center size-10 rounded-full bg-white/20 group-hover:bg-white transition-colors">
+                        <Icon name="tabler:arrow-up-right" class="size-5 text-white group-hover:text-blue-600" />
+                    </span>
                     <div class="flex items-center gap-3">
                         <h2 class="text-3xl lg:text-4xl font-semibold text-white font-display">Ready to learn?</h2>
-                        <span class="inline-flex items-center justify-center size-10 rounded-full bg-white/20 group-hover:bg-white transition-colors">
+                        <span class="hidden lg:inline-flex items-center justify-center size-10 rounded-full bg-white/20 group-hover:bg-white transition-colors">
                             <Icon name="tabler:arrow-up-right" class="size-5 text-white group-hover:text-blue-600" />
                         </span>
                     </div>
@@ -272,19 +284,23 @@ function getChapterTitle(chapterNum: number) {
                 </div>
             </a>
 
-            <!-- Teach - Black background -->
-            <a href="/teach" class="bg-white px-6 py-16 lg:px-8 lg:py-24 group hover:bg-gray-50 transition-colors">
+            <!-- Teach - White background -->
+            <a href="/teach" class="bg-white px-6 py-16 lg:px-8 lg:py-24 group hover:bg-gray-50 transition-colors relative">
+                <span class="absolute top-10 right-6 lg:hidden inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                    <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                </span>
                 <div class="w-full max-w-[40rem]">
                     <div class="flex items-center gap-3">
                         <h2 class="text-3xl lg:text-4xl font-semibold text-gray-900 font-display">Ready to teach?</h2>
-                        <CTAArrow />
+                        <span class="hidden lg:inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                            <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                        </span>
                     </div>
                     <p class="mt-6 text-lg text-gray-600 max-w-md">
                         Join 30+ organizations using Atlas materials to train the next generation.
                     </p>
                 </div>
             </a>
-            </div>
         </div>
     </section>
 </Default>

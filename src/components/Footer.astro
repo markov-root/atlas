@@ -11,7 +11,7 @@ import { Icon } from 'astro-icon/components'
 import { siteConfig } from '@/config/site'
 ---
 
-<footer class="mx-4 mt-4 mb-4 rounded-3xl overflow-hidden bg-black relative">
+<footer class="sm:mx-4 mt-4 mb-4 rounded-3xl overflow-hidden bg-black relative">
     <GrainOverlay />
     <!-- Main footer content -->
     <div class="grid lg:grid-cols-2 relative z-10">
@@ -50,16 +50,16 @@ import { siteConfig } from '@/config/site'
                     <div class="grid sm:grid-cols-2 gap-4">
                         <div>
                             <InputLabel for="contact-name" variant="dark" required>Name</InputLabel>
-                            <Input type="text" name="name" id="contact-name" required placeholder="Name" variant="dark" />
+                            <Input type="text" name="name" id="contact-name" required variant="dark" />
                         </div>
                         <div>
                             <InputLabel for="contact-email" variant="dark" required>Email</InputLabel>
-                            <Input type="email" name="email" id="contact-email" required placeholder="Email" variant="dark" />
+                            <Input type="email" name="email" id="contact-email" required variant="dark" />
                         </div>
                     </div>
                     <div>
                         <InputLabel for="contact-message" variant="dark" required>Message</InputLabel>
-                        <Textarea name="message" id="contact-message" rows="3" required placeholder="Message" variant="dark" />
+                        <Textarea name="message" id="contact-message" rows="3" required variant="dark" />
                     </div>
                     <Button type="submit" variant="dark">Send message</Button>
                 </form>
@@ -77,7 +77,7 @@ import { siteConfig } from '@/config/site'
                         <div class="flex flex-col gap-2">
                             <CardLink href="/read" variant="dark">Read</CardLink>
                             <CardLink href="/teach" variant="dark">Teach</CardLink>
-                            <CardLink href="/join-study-group" variant="dark">Get certified</CardLink>
+                            <CardLink href="/get-certified" variant="dark">Get certified</CardLink>
                         </div>
                     </div>
                     <div>

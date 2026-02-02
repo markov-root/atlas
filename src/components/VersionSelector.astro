@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components'
 import { getTextbooks } from '@/lib/textbooks'
 
 interface Props {
@@ -30,77 +29,27 @@ function formatVersion(v: string) {
 }
 ---
 
-<div class:list={["relative", className]} data-version-selector>
-  <button
-    type="button"
-    class:list={[
-      "inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors",
-      isDark
-        ? "text-white bg-white/10 hover:bg-white/20"
-        : "text-gray-700 bg-gray-100 hover:bg-gray-200"
-    ]}
-    aria-haspopup="true"
-    aria-expanded="false"
-    data-version-trigger
-  >
-    <span data-version-label>{formatVersion(activeVersion)}</span>
-    <Icon name="tabler:selector" class="size-4 text-gray-400" />
-  </button>
-
-  <div
-    class:list={[
-      "absolute left-0 top-full mt-1 w-40 rounded-xl shadow-lg ring-1 ring-black/5 z-50 hidden overflow-hidden",
-      isDark ? "bg-gray-800" : "bg-white"
-    ]}
-    data-version-dropdown
-  >
-    {versions.map((version) => (
-      <a
-        href={`/read/${version}`}
-        class:list={[
-          "block px-4 py-2.5 text-sm transition-colors",
-          activeVersion === version
-            ? isDark
-              ? "bg-white/10 text-white"
-              : "bg-brand-50 text-brand-700"
-            : isDark
-              ? "text-white/80 hover:bg-white/5"
-              : "text-gray-700 hover:bg-gray-50"
-        ]}
-        data-version-option={version}
-      >
-        {formatVersion(version)}
-      </a>
-    ))}
-  </div>
-</div>
+<select
+  class:list={[
+    "px-3 py-1.5 text-sm font-medium rounded-lg transition-colors cursor-pointer",
+    isDark
+      ? "text-white bg-white/10 hover:bg-white/20 border-0"
+      : "text-gray-700 bg-gray-100 hover:bg-gray-200 border-0",
+    className
+  ]}
+  data-version-selector
+>
+  {versions.map((version) => (
+    <option value={version} selected={activeVersion === version}>
+      {formatVersion(version)}
+    </option>
+  ))}
+</select>
 
 <script>
-  document.querySelectorAll('[data-version-selector]').forEach((selector) => {
-    const trigger = selector.querySelector('[data-version-trigger]') as HTMLButtonElement
-    const dropdown = selector.querySelector('[data-version-dropdown]') as HTMLElement
-
-    if (!trigger || !dropdown) return
-
-    trigger.addEventListener('click', (e) => {
-      e.stopPropagation()
-      const isOpen = !dropdown.classList.contains('hidden')
-      dropdown.classList.toggle('hidden', isOpen)
-      trigger.setAttribute('aria-expanded', String(!isOpen))
-    })
-
-    document.addEventListener('click', (e) => {
-      if (!selector.contains(e.target as Node)) {
-        dropdown.classList.add('hidden')
-        trigger.setAttribute('aria-expanded', 'false')
-      }
-    })
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        dropdown.classList.add('hidden')
-        trigger.setAttribute('aria-expanded', 'false')
-      }
+  document.querySelectorAll<HTMLSelectElement>('[data-version-selector]').forEach((select) => {
+    select.addEventListener('change', () => {
+      window.location.href = `/read/${select.value}`
     })
   })
 </script>

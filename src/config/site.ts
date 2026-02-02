@@ -53,27 +53,24 @@ export const siteConfig = {
       {
         name: "Markov Grey",
         role: "Researcher, French Center for AI Safety",
-        bio: "Primary author and project lead. Previously distillation fellow at AI Safety Info and scriptwriter at Rational Animations. Background in software development and cybersecurity.",
+        bio: "Researcher, French Center for AI Safety. Previously technical writer at aisafety.info and scriptwriter at Rational Animations.",
         image: "markov-photo.jpg",
       },
       {
         name: "Charbel-Raphael Segerie",
-        role: "Executive Director, French Center for AI Safety",
-        bio: "Executive Director of CeSIA. Organized the Turing Seminar (MVA Master's AI safety course) and initiated the ML4Good bootcamps. Teaching experience includes ARENA and MLAB.",
+        bio: "Executive Director, French Center for AI Safety. Co-founded ML4good. Teaching experience includes ARENA and MLAB.",
         image: "charbel-photo.jpg",
       },
     ],
     contributing: [
       {
-        name: "Jeanne Salle",
-        role: "AI Safety Teacher, ENS Ulm",
-        bio: "AI safety teacher at ENS Ulm.",
+        name: "Charles Martinet",
+        bio: "Head of Policy, French Center for AI Safety.",
       },
       {
-        name: "Charles Martinet",
-        role: "Head of Policy, French Center for AI Safety",
-        bio: "Head of policy at CeSIA. Research affiliate at Oxford AIGI, previously GovAI.",
-      },
+        name: "Jeanne Salle",
+        bio: "AI safety teacher at ENS Ulm.",
+      }
     ],
     advisors: [
       {

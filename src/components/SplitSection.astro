@@ -44,7 +44,7 @@ const needsGrain = (bg: string) => bg === 'black' || bg === 'blue'
 const grainOpacity = (bg: string) => bg === 'gray' ? 0.3 : 0.5
 ---
 
-<section id={id} class:list={["mx-4 mt-4 rounded-3xl overflow-hidden", className]}>
+<section id={id} class:list={["sm:mx-4 mt-4 rounded-3xl overflow-hidden", className]}>
   <div class="grid lg:grid-cols-2">
     <!-- Left column -->
     <div class:list={[bgClasses[leftBg], textClasses[leftBg], "flex flex-col relative overflow-hidden"]}>
@@ -76,18 +76,12 @@ const grainOpacity = (bg: string) => bg === 'gray' ? 0.3 : 0.5
     <div class:list={[bgClasses[rightBg], textClasses[rightBg], "flex flex-col relative overflow-hidden"]}>
       {needsGrain(rightBg) && <GrainOverlay opacity={grainOpacity(rightBg)} />}
 
-      <!-- Empty spacer for header alignment -->
-      <div class="hidden lg:block relative z-10">
+      <!-- Invisible spacer to align with left heading -->
+      <div class="hidden lg:block relative z-10" aria-hidden="true">
         <div class="w-full max-w-[40rem] px-6 pt-12 lg:pt-16 lg:px-8">
-          <!-- Invisible spacer matching header structure -->
-          <div class="text-3xl lg:text-4xl font-semibold font-display leading-tight max-w-md invisible" aria-hidden="true">
+          <h2 class="text-3xl lg:text-4xl font-semibold font-display leading-tight max-w-md invisible">
             {heading}
-          </div>
-          {headingDescription && (
-            <p class="mt-4 text-base lg:text-lg leading-relaxed max-w-md invisible" aria-hidden="true">
-              {headingDescription}
-            </p>
-          )}
+          </h2>
         </div>
       </div>
 

@@ -319,9 +319,11 @@ export class Transformer {
 
   private convertNoteBox(attrs: Record<string, Cell>): Node {
     let content = this.getDocFromSlice(attrs.content)
+    const title = this.getTrimmedString(attrs.title)
 
     return this.createNode("NoteBox", {
-      title: this.getTrimmedString(attrs.title),
+      title,
+      slug: `notebox-${slugify(title)}`,
       collapsed: this.getBool(attrs.collapsed, true),
       readingTimeInSeconds: content.readingTimeInSeconds
     }, content.nodes)

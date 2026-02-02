@@ -40,15 +40,15 @@ const firstChapterUrl = `/chapters/${textbook.version}/${textbook.chapters[0].sl
 ---
 <Default title="Chapters" description="We've gathered the most important knowledge on AI safety into a single, comprehensive resource." noHeader>
     <!-- Navbar -->
-    <div class="mx-4 mt-4">
+    <div class="sm:mx-4 mt-4">
         <Header class="bg-white rounded-3xl" />
     </div>
 
     <!-- Hero Section -->
-    <section class="mx-4 mt-4">
+    <section class="sm:mx-4 mt-4 rounded-3xl overflow-hidden">
         <div class="grid lg:grid-cols-2">
             <!-- Left: Hero content -->
-            <div class="bg-blue-600 text-white rounded-t-3xl lg:rounded-none lg:rounded-tl-3xl lg:rounded-bl-3xl flex justify-end relative overflow-hidden">
+            <div class="bg-blue-600 text-white lg:rounded-tl-3xl lg:rounded-bl-3xl flex justify-end relative overflow-hidden">
                 <GrainOverlay />
                 <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col justify-between h-full min-h-[400px] lg:min-h-[50vh] relative z-10">
                     <div class="max-w-md">
@@ -73,12 +73,15 @@ const firstChapterUrl = `/chapters/${textbook.version}/${textbook.chapters[0].sl
             </div>
 
             <!-- Right: Start reading CTA -->
-            <a href={firstChapterUrl} class="bg-white rounded-b-3xl lg:rounded-none lg:rounded-tr-3xl lg:rounded-br-3xl flex items-center group hover:bg-gray-50 transition-colors">
-                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
+            <a href={firstChapterUrl} class="bg-white lg:rounded-tr-3xl lg:rounded-br-3xl flex items-center group hover:bg-gray-50 transition-colors">
+                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 relative">
+                    <span class="absolute top-10 right-6 lg:hidden inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                        <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                    </span>
                     <p class="text-sm font-medium text-gray-500">Ready to begin?</p>
                     <div class="mt-2 flex items-center gap-3">
                         <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Start reading</h2>
-                        <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                        <span class="hidden lg:inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
                             <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
                         </span>
                     </div>
@@ -96,11 +99,11 @@ const firstChapterUrl = `/chapters/${textbook.version}/${textbook.chapters[0].sl
     </section>
 
     <!-- Chapters List -->
-    <section class="mx-4 mt-4">
+    <section class="sm:mx-4 mt-4 rounded-3xl overflow-hidden">
         <div class="grid lg:grid-cols-2">
             <!-- Left: Sticky panel -->
             <div class="lg:sticky lg:top-4 lg:self-start lg:mb-4">
-                <div class="bg-white lg:h-[calc(100vh-2rem)] rounded-t-3xl lg:rounded-none lg:rounded-tl-3xl lg:rounded-bl-3xl flex justify-end">
+                <div class="bg-white lg:h-[calc(100vh-2rem)] lg:rounded-l-3xl flex justify-end">
                     <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col justify-between h-full">
                         <div class="max-w-md">
                             <h2 class="text-3xl lg:text-4xl font-semibold text-gray-900 font-display leading-tight">
@@ -126,7 +129,7 @@ const firstChapterUrl = `/chapters/${textbook.version}/${textbook.chapters[0].sl
 
             <!-- Right: Scrolling chapters -->
             <div class="lg:mb-4">
-                <div class="bg-gray-100 rounded-b-3xl lg:rounded-none lg:rounded-tr-3xl lg:rounded-br-3xl relative overflow-hidden">
+                <div class="bg-gray-100 lg:rounded-r-3xl relative overflow-hidden">
                     <GrainOverlay opacity={0.3} />
                     <!-- Invisible spacer to align with left heading -->
                     <div class="hidden lg:block relative z-10 px-6 pt-12 lg:pt-16 lg:px-8" aria-hidden="true">
@@ -189,13 +192,16 @@ const firstChapterUrl = `/chapters/${textbook.version}/${textbook.chapters[0].sl
     </section>
 
     <!-- Bottom CTA -->
-    <section class="mx-4 mt-4 mb-4">
-        <a href={firstChapterUrl} class="block bg-white rounded-3xl px-6 py-16 lg:px-8 lg:py-20 group hover:bg-gray-50 transition-colors">
+    <section class="sm:mx-4 mt-4 mb-4">
+        <a href={firstChapterUrl} class="block bg-white rounded-3xl px-6 py-16 lg:px-8 lg:py-20 group hover:bg-gray-50 transition-colors relative">
+            <span class="absolute top-10 right-6 lg:hidden inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+            </span>
             <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                 <div>
                     <div class="flex items-center gap-3">
                         <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Ready to start?</h2>
-                        <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                        <span class="hidden lg:inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
                             <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
                         </span>
                     </div>

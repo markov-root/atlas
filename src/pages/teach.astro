@@ -125,15 +125,15 @@ const formatOptions = [
 ---
 <Default title="Teach AI Safety" description="Run your own AI Safety course with free materials, facilitation guides, and student matching." noHeader>
     <!-- Navbar -->
-    <div class="mx-4 mt-4">
+    <div class="sm:mx-4 mt-4">
         <Header class="bg-white rounded-3xl" />
     </div>
 
     <!-- Section 1: Hero -->
-    <section class="mx-4 mt-4">
+    <section class="sm:mx-4 mt-4 rounded-3xl overflow-hidden">
         <div class="grid lg:grid-cols-2 lg:h-[88vh]">
             <!-- Left: Blue hero -->
-            <div class="bg-blue-600 text-white rounded-t-3xl lg:rounded-none lg:rounded-tl-3xl lg:rounded-bl-3xl flex justify-end relative overflow-hidden">
+            <div class="bg-blue-600 text-white lg:rounded-tl-3xl lg:rounded-bl-3xl flex justify-end relative overflow-hidden">
                 <GrainOverlay />
                 <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col h-full min-h-[500px] lg:min-h-0 relative z-10">
                     <div class="max-w-md">
@@ -159,13 +159,16 @@ const formatOptions = [
             </div>
 
             <!-- Right: CTA cards -->
-            <div class="rounded-b-3xl lg:rounded-none lg:rounded-tr-3xl lg:rounded-br-3xl flex flex-col bg-white overflow-hidden">
+            <div class="lg:rounded-tr-3xl lg:rounded-br-3xl flex flex-col bg-white overflow-hidden">
                 <!-- Affiliate Card -->
                 <a href="#affiliate-form" class="relative flex-1 flex items-end bg-white hover:bg-gray-50 transition-colors group lg:rounded-tr-3xl">
-                    <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12">
+                    <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12 relative">
+                        <span class="absolute top-10 right-6 lg:hidden inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                            <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                        </span>
                         <div class="flex items-center gap-3">
                             <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Become an affiliate</h2>
-                            <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                            <span class="hidden lg:inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
                                 <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
                             </span>
                         </div>
@@ -176,14 +179,17 @@ const formatOptions = [
                 </a>
 
                 <!-- Divider -->
-                <div class="mr-6 lg:mr-8 border-t border-gray-200"></div>
+                <div class="border-t border-gray-200"></div>
 
                 <!-- Guides Card -->
                 <a href="#guides-form" class="relative flex-1 flex items-start bg-white hover:bg-gray-50 transition-colors group lg:rounded-br-3xl">
-                    <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12">
+                    <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12 relative">
+                        <span class="absolute top-10 right-6 lg:hidden inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                            <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                        </span>
                         <div class="flex items-center gap-3">
                             <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Get the guides</h2>
-                            <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                            <span class="hidden lg:inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
                                 <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
                             </span>
                         </div>
@@ -197,7 +203,7 @@ const formatOptions = [
     </section>
 
     <!-- Section 2: What You Get -->
-    <section class="mx-4 mt-4 rounded-3xl overflow-hidden bg-white">
+    <section class="sm:mx-4 mt-4 rounded-3xl overflow-hidden bg-white">
         <!-- Top row -->
         <div class="grid lg:grid-cols-2">
             <!-- Left: Heading -->
@@ -271,7 +277,6 @@ const formatOptions = [
                             id="guides-name"
                             name="name"
                             required
-                            placeholder="Your name"
                             variant="dark"
                         />
                     </div>
@@ -282,7 +287,6 @@ const formatOptions = [
                             id="guides-email"
                             name="email"
                             required
-                            placeholder="you@example.com"
                             variant="dark"
                         />
                     </div>
@@ -376,17 +380,17 @@ const formatOptions = [
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
                         <InputLabel for="affiliate-name" variant="dark" required>Name</InputLabel>
-                        <Input type="text" id="affiliate-name" name="name" required placeholder="Your name" variant="dark" />
+                        <Input type="text" id="affiliate-name" name="name" required variant="dark" />
                     </div>
                     <div>
                         <InputLabel for="affiliate-email" variant="dark" required>Email</InputLabel>
-                        <Input type="email" id="affiliate-email" name="email" required placeholder="you@example.com" variant="dark" />
+                        <Input type="email" id="affiliate-email" name="email" required variant="dark" />
                     </div>
                 </div>
 
                 <div>
                     <InputLabel for="affiliate-organization" variant="dark" required>Organization</InputLabel>
-                    <Input type="text" id="affiliate-organization" name="organization" required placeholder="Your organization or university" variant="dark" />
+                    <Input type="text" id="affiliate-organization" name="organization" required variant="dark" />
                 </div>
 
                 <div>
@@ -397,7 +401,7 @@ const formatOptions = [
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
                         <InputLabel for="affiliate-cohort-size" variant="dark">Expected cohort size</InputLabel>
-                        <Input type="number" id="affiliate-cohort-size" name="cohort_size" placeholder="e.g., 20" variant="dark" />
+                        <Input type="number" id="affiliate-cohort-size" name="cohort_size" variant="dark" />
                     </div>
                     <div>
                         <InputLabel for="affiliate-start-date" variant="dark">Expected start date</InputLabel>
@@ -405,9 +409,9 @@ const formatOptions = [
                     </div>
                 </div>
 
-                <div>
-                    <InputLabel for="affiliate-location" variant="dark">Location (for in-person/hybrid)</InputLabel>
-                    <Input type="text" id="affiliate-location" name="location" placeholder="City, Country" variant="dark" />
+                <div data-location-field>
+                    <InputLabel for="affiliate-location" variant="dark">Location</InputLabel>
+                    <Input type="text" id="affiliate-location" name="location" variant="dark" />
                 </div>
 
                 <Button type="submit" variant="dark">
@@ -464,4 +468,10 @@ const formatOptions = [
             });
         }
     </script>
+
+    <style>
+        form:has(input[name="format"][value="online"]:checked) [data-location-field] {
+            display: none;
+        }
+    </style>
 </Default>

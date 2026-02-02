@@ -8,6 +8,6 @@ interface Props {
 const { id, class: className, noPadding } = Astro.props
 ---
 
-<section id={id} class:list={["mx-4 mt-4 rounded-3xl overflow-hidden", className]}>
+<section id={id} class:list={["sm:mx-4 mt-4 rounded-3xl overflow-hidden", className]}>
   <slot />
 </section>

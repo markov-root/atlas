@@ -1,5 +1,4 @@
 ---
-import Logomark from '@/components/brand/Logomark.astro';
 import Lockup from '@/components/brand/Lockup.astro';
 import VersionSelector from '@/components/VersionSelector.astro';
 import AlgoliaSearch from '@/components/AlgoliaSearch.astro';
@@ -14,7 +13,7 @@ const isDark = variant === 'dark'
 ---
 
 <header class:list={["relative z-10", className]}>
-  <nav aria-label="Global" class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-8">
+  <nav aria-label="Global" class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
     <div class="flex lg:flex-1 items-center gap-4">
       <a href="/" class="-m-1.5 p-1.5">
         <Lockup variant={variant} />
@@ -23,7 +22,7 @@ const isDark = variant === 'dark'
     </div>
     <div class="flex lg:hidden items-center gap-1">
       <AlgoliaSearch id="mobile-header-search" variant={variant} iconOnly />
-      <button type="button" command="show-modal" commandfor="mobile-menu" class:list={["-m-2.5 inline-flex items-center justify-center rounded-md p-2.5", isDark ? "text-white/80" : "text-gray-700"]}>
+      <button type="button" popovertarget="mobile-menu" class:list={["-m-2.5 inline-flex items-center justify-center rounded-md p-2.5", isDark ? "text-white/80" : "text-gray-700"]}>
         <span class="sr-only">Open main menu</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
           <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -33,36 +32,18 @@ const isDark = variant === 'dark'
     <div class="hidden lg:flex lg:gap-x-12">
       <a href="/read" class:list={["text-sm/6 px-4 py-1.5 rounded-full", isDark ? "text-white hover:bg-white/10" : "text-gray-900 hover:bg-gray-100"]}>Read</a>
       <a href="/teach" class:list={["text-sm/6 px-4 py-1.5 rounded-full", isDark ? "text-white hover:bg-white/10" : "text-gray-900 hover:bg-gray-100"]}>Teach</a>
-      <a href="/join-study-group" class:list={["text-sm/6 px-4 py-1.5 rounded-full", isDark ? "text-white hover:bg-white/10" : "text-gray-900 hover:bg-gray-100"]}>Get certified</a>
+      <a href="/get-certified" class:list={["text-sm/6 px-4 py-1.5 rounded-full", isDark ? "text-white hover:bg-white/10" : "text-gray-900 hover:bg-gray-100"]}>Get certified</a>
     </div>
     <div class="hidden lg:flex lg:flex-1 lg:justify-end lg:pr-2">
       <AlgoliaSearch id="header-search" class="w-full max-w-xs" variant={variant} />
     </div>
   </nav>
-  <el-dialog>
-    <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
-      <div tabindex="0" class="fixed inset-0 focus:outline-none">
-        <el-dialog-panel class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-          <div class="flex items-center justify-between">
-            <a href="/" class="-m-1.5 p-1.5">
-              <span class="sr-only">AI Safety Atlas</span>
-              <Logomark class="h-8 w-auto text-brand-600" />
-            </a>
-            <button type="button" command="close" commandfor="mobile-menu" class="-m-2.5 rounded-md p-2.5 text-gray-700">
-              <span class="sr-only">Close menu</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
-                <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </button>
-          </div>
-          <div class="mt-6 space-y-2">
-            <VersionSelector class="mb-2" />
-            <a href="/read" class="-mx-3 block rounded-full px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Read</a>
-            <a href="/teach" class="-mx-3 block rounded-full px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Teach</a>
-            <a href="/join-study-group" class="-mx-3 block rounded-full px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Get certified</a>
-          </div>
-        </el-dialog-panel>
-      </div>
-    </dialog>
-  </el-dialog>
+  <div popover="auto" id="mobile-menu" class="lg:hidden fixed top-14 left-0 m-0 w-full bg-white shadow-lg border-t border-gray-200 p-2">
+    <div class="max-w-7xl mx-auto px-4">
+      <VersionSelector class="mb-2" />
+      <a href="/read" class="block rounded-lg px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Read</a>
+      <a href="/teach" class="block rounded-lg px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Teach</a>
+      <a href="/get-certified" class="block rounded-lg px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Get certified</a>
+    </div>
+  </div>
 </header>

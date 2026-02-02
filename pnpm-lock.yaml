@@ -41,9 +41,6 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.1.17
         version: 4.1.17(vite@6.4.1(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2))
-      '@tailwindplus/elements':
-        specifier: ^1.0.19
-        version: 1.0.19
       algoliasearch:
         specifier: ^5.20.0
         version: 5.47.0
@@ -1066,9 +1063,6 @@ packages:
     resolution: {integrity: sha512-4+9w8ZHOiGnpcGI6z1TVVfWaX/koK7fKeSYF3qlYg2xpBtbteP2ddBxiarL+HVgfSJGeK5RIxRQmKm4rTJJAwA==}
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7
-
-  '@tailwindplus/elements@1.0.19':
-    resolution: {integrity: sha512-JMtqgYmZYNXO3VWu+SFxt2DChD/FL2A42jEhkUC9maQpFjfi0rhLm8lBFFo39Xbe9dwH0rT3fOi6DhSNFFnuzA==}
 
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -3790,8 +3784,6 @@ snapshots:
       '@tailwindcss/oxide': 4.1.17
       tailwindcss: 4.1.17
       vite: 6.4.1(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2)
-
-  '@tailwindplus/elements@1.0.19': {}
 
   '@trysound/sax@0.2.0': {}
 

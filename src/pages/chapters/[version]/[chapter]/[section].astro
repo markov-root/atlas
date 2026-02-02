@@ -107,8 +107,8 @@ const isLastSection = section.nextSection === null;
         {section.nodes.map(node => <NodeRenderer node={node} />)}
 
         {section.footnotes && section.footnotes.length > 0 && (
-        <section class="mt-12 pt-8 border-t border-gray-200">
-            <h2 id="footnotes" class="text-xl font-semibold mb-4 text-gray-900 sr-only">Footnotes</h2>
+        <section id="footnotes" class="mt-12 pt-8 border-t border-gray-200">
+            <h2 class="text-xl font-semibold mb-4 text-gray-900 sr-only">Footnotes</h2>
             <ol class="list-decimal list-outside pl-6 text-sm text-gray-700 space-y-3">
                 {section.footnotes.map(({ number, children }) => (
                 <li id={`fn-${number}`} class="pl-2 target:bg-brand-50 target:border-l-2 target:border-brand-500 target:-ml-2 target:pl-1.5 target:pr-2">
@@ -155,7 +155,7 @@ const isLastSection = section.nextSection === null;
     </article>
 
     {section.toc.length > 0 && (
-    <aside slot="toc" class="hidden xl:block w-56 shrink-0 overflow-y-auto">
+    <aside slot="toc" class="hidden lg:block w-56 shrink-0 overflow-y-auto pt-6">
         <nav class="pl-4">
             <h2 class="text-sm font-semibold text-gray-500 mb-3">On this page</h2>
             <ul class="space-y-2">
@@ -184,5 +184,35 @@ const isLastSection = section.nextSection === null;
             </ul>
         </nav>
     </aside>
+    )}
+
+    {section.toc.length > 0 && (
+    <nav slot="mobile-toc" class="mt-4 px-6 py-4 rounded-2xl bg-white">
+        <h2 class="text-sm font-semibold text-gray-500 mb-3">On this page</h2>
+        <ul class="space-y-2">
+            {(() => {
+                let h2Count = 0;
+                return section.toc
+                    .filter(item => item.level === 2 || item.level === 3)
+                    .map(item => {
+                        if (item.level === 2) h2Count++;
+                        return (
+                            <li class={item.level === 3 ? "pl-3" : ""}>
+                                <a href={`#${item.slug}`} class="text-sm text-gray-600 hover:text-brand-600 transition-colors block">
+                                    {item.level === 2 ? `${h2Count}. ${item.title}` : item.title}
+                                </a>
+                            </li>
+                        );
+                    });
+            })()}
+            {section.footnotes && section.footnotes.length > 0 && (
+                <li class="mt-4">
+                    <a href="#footnotes" class="text-sm text-gray-600 hover:text-brand-600 transition-colors block">
+                        Footnotes
+                    </a>
+                </li>
+            )}
+        </ul>
+    </nav>
     )}
 </Reader>

@@ -41,7 +41,7 @@ const nextUrl = nextSection ? `/chapters/${textbook.version}/${nextSection.chapt
 
 const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activeSection.chapterNumber);
 ---
-<html lang="en" class="h-full">
+<html lang="en" class="h-full lg:overflow-clip">
 	<head>
 		<script is:inline>document.documentElement.classList.add('js')</script>
 		<meta charset="utf-8" />
@@ -49,14 +49,14 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
 		<BaseHead title={title} description={description} />
 		<slot name="head" />
 	</head>
-	<body class="noise-bg bg-gray-200 lg:h-screen lg:overflow-hidden">
+	<body class="noise-bg bg-gray-200 lg:h-screen lg:overflow-clip">
 <!-- Reading progress bar -->
 <div id="reading-progress" class="hidden lg:block fixed top-0 left-0 right-0 h-1 z-50">
     <div id="reading-progress-bar" class="h-full bg-brand-600 transition-[width] duration-100" style="width: 0%"></div>
 </div>
 
 <!-- Desktop layout -->
-<div class="hidden lg:flex lg:gap-4 lg:p-4 lg:h-screen max-w-7xl mx-auto">
+<div class="hidden lg:flex lg:gap-4 lg:p-4 lg:h-screen max-w-[100rem] mx-auto overflow-clip">
     <!-- Sidebar bubble -->
     <aside class="w-72 xl:w-80 shrink-0 flex flex-col gap-4">
         <!-- Logo bubble -->
@@ -106,7 +106,7 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
     </aside>
 
     <!-- Main content area -->
-    <div class="flex-1 flex flex-col gap-4 min-w-0">
+    <div class="flex-1 flex flex-col gap-4 min-w-0 overflow-clip">
         <!-- Navbar bubble -->
         <nav class="bg-white rounded-3xl px-6 flex items-center h-14 shrink-0">
             <div class="flex items-center gap-4 w-full">
@@ -132,12 +132,28 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
         </nav>
 
         <!-- Content area with ToC outside -->
-        <div class="flex-1 flex gap-4 min-h-0">
+        <div class="flex-1 flex gap-4 min-h-0 overflow-clip">
             <!-- Content bubble -->
-            <main id="reader-content" class="bg-white rounded-3xl overflow-y-auto min-w-0 max-w-4xl w-full scroll-pt-8">
-                <slot name="header" />
-                <div class="px-6 lg:px-16 py-10">
-                    <slot />
+            <main id="reader-content" class="bg-white rounded-3xl overflow-y-auto min-w-0 max-w-4xl w-full scroll-pt-8 scroll-smooth">
+                <!-- Normal content view -->
+                <div id="main-content-view">
+                    <slot name="header" />
+                    <div class="px-6 lg:px-16 py-10">
+                        <slot />
+                    </div>
+                </div>
+                <!-- NoteBox drill-down view (hidden by default) -->
+                <div id="notebox-drilldown" class="hidden">
+                    <div class="py-6 px-6 lg:px-16 border-b border-gray-200">
+                        <a href="#" id="notebox-back" class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors">
+                            <Icon name="tabler:arrow-left" class="size-5" />
+                            <span>Back</span>
+                        </a>
+                        <h1 id="notebox-title" class="mt-4 text-2xl lg:text-3xl font-semibold tracking-tight text-gray-900 font-display"></h1>
+                        <p id="notebox-meta" class="mt-2 text-gray-600 text-sm"></p>
+                    </div>
+                    <div id="notebox-body" class="px-6 lg:px-16 py-10 prose prose-a:text-brand-600 lg:prose-lg">
+                    </div>
                 </div>
             </main>
 
@@ -148,11 +164,30 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
 </div>
 
 <!-- Mobile layout -->
-<div class="lg:hidden pb-24">
+<div id="mobile-layout" class="lg:hidden pb-24">
     <main>
-        <slot name="header" />
-        <div class="mt-4 bg-white rounded-3xl px-6 py-10">
-            <slot />
+        <!-- Normal content view -->
+        <div id="mobile-main-content-view">
+            <slot name="header" />
+            <slot name="mobile-toc" />
+            <div class="mt-4 bg-white rounded-3xl px-6 py-10">
+                <slot />
+            </div>
+        </div>
+        <!-- NoteBox drill-down view (hidden by default) -->
+        <div id="mobile-notebox-drilldown" class="hidden">
+            <div class="bg-white rounded-3xl">
+                <div class="py-6 px-6 border-b border-gray-200">
+                    <a href="#" class="notebox-back-mobile inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors">
+                        <Icon name="tabler:arrow-left" class="size-5" />
+                        <span>Back</span>
+                    </a>
+                    <h1 id="mobile-notebox-title" class="mt-4 text-2xl font-semibold tracking-tight text-gray-900 font-display"></h1>
+                    <p id="mobile-notebox-meta" class="mt-2 text-gray-600 text-sm"></p>
+                </div>
+                <div id="mobile-notebox-body" class="px-6 py-10 prose prose-a:text-brand-600">
+                </div>
+            </div>
         </div>
     </main>
 </div>
@@ -257,31 +292,129 @@ if (progressBar && content) {
 
     content.addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();
+}
 
-    // Handle anchor links within the scrollable content
-    document.addEventListener('click', (e) => {
-        const link = (e.target as HTMLElement).closest('a[href^="#"]');
-        if (!link) return;
+// NoteBox drill-down functionality
+const noteboxDrilldown = {
+    // Desktop elements
+    mainView: document.getElementById('main-content-view'),
+    drilldownView: document.getElementById('notebox-drilldown'),
+    drilldownTitle: document.getElementById('notebox-title'),
+    drilldownMeta: document.getElementById('notebox-meta'),
+    drilldownBody: document.getElementById('notebox-body'),
+    backBtn: document.getElementById('notebox-back'),
+    // Mobile elements
+    mobileMainView: document.getElementById('mobile-main-content-view'),
+    mobileDrilldownView: document.getElementById('mobile-notebox-drilldown'),
+    mobileDrilldownTitle: document.getElementById('mobile-notebox-title'),
+    mobileDrilldownMeta: document.getElementById('mobile-notebox-meta'),
+    mobileDrilldownBody: document.getElementById('mobile-notebox-body'),
+    // State
+    savedScrollPosition: 0,
+    mobileSavedScrollPosition: 0,
+    isInDrilldown: false,
 
-        const hash = link.getAttribute('href');
-        if (!hash || hash === '#') return;
+    init() {
+        // Handle notebox trigger clicks
+        document.addEventListener('click', (e) => {
+            const trigger = (e.target as HTMLElement).closest('.notebox-trigger');
+            if (!trigger) return;
 
-        const target = document.querySelector(hash);
-        if (!target || !content.contains(target)) return;
+            e.preventDefault();
+            const wrapper = trigger.closest('.notebox-wrapper');
+            const noteboxId = wrapper?.getAttribute('data-notebox-id');
+            if (noteboxId) {
+                history.pushState({ notebox: noteboxId }, '', `#${noteboxId}`);
+                this.showNotebox(noteboxId);
+            }
+        });
 
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        history.pushState(null, '', hash);
-    });
+        // Handle back button clicks
+        this.backBtn?.addEventListener('click', (e) => {
+            e.preventDefault();
+            history.back();
+        });
+        document.querySelectorAll('.notebox-back-mobile').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                history.back();
+            });
+        });
 
-    // Handle initial hash on page load
-    if (window.location.hash) {
-        const target = document.querySelector(window.location.hash);
-        if (target && content.contains(target)) {
-            setTimeout(() => target.scrollIntoView({ block: 'start' }), 100);
+        // Handle browser back/forward
+        window.addEventListener('popstate', () => {
+            this.handleHashChange();
+        });
+
+        // Handle initial hash on page load
+        this.handleHashChange();
+    },
+
+    handleHashChange() {
+        const hash = window.location.hash.slice(1);
+        if (hash && hash.startsWith('notebox-')) {
+            this.showNotebox(hash);
+        } else if (this.isInDrilldown) {
+            // Only restore scroll if we were actually in a drilldown
+            this.hideNotebox();
+        }
+    },
+
+    showNotebox(noteboxId: string) {
+        const wrapper = document.querySelector(`[data-notebox-id="${noteboxId}"]`);
+        if (!wrapper) return;
+
+        const contentDiv = wrapper.querySelector('.notebox-content') as HTMLElement;
+        const title = contentDiv?.getAttribute('data-notebox-title') || '';
+        const readingTime = contentDiv?.getAttribute('data-notebox-time') || '';
+        const metaText = `Optional · ${readingTime} read`;
+        const contentHtml = contentDiv?.innerHTML || '';
+
+        this.isInDrilldown = true;
+
+        // Desktop
+        if (this.mainView && this.drilldownView && this.drilldownTitle && this.drilldownBody && content) {
+            this.savedScrollPosition = content.scrollTop;
+            this.mainView.classList.add('hidden');
+            this.drilldownView.classList.remove('hidden');
+            this.drilldownTitle.textContent = title;
+            if (this.drilldownMeta) this.drilldownMeta.textContent = metaText;
+            this.drilldownBody.innerHTML = contentHtml;
+            content.scrollTop = 0;
+        }
+
+        // Mobile
+        if (this.mobileMainView && this.mobileDrilldownView && this.mobileDrilldownTitle && this.mobileDrilldownBody) {
+            this.mobileSavedScrollPosition = window.scrollY;
+            this.mobileMainView.classList.add('hidden');
+            this.mobileDrilldownView.classList.remove('hidden');
+            this.mobileDrilldownTitle.textContent = title;
+            if (this.mobileDrilldownMeta) this.mobileDrilldownMeta.textContent = metaText;
+            this.mobileDrilldownBody.innerHTML = contentHtml;
+            window.scrollTo(0, 0);
+        }
+    },
+
+    hideNotebox() {
+        this.isInDrilldown = false;
+
+        // Desktop
+        if (this.mainView && this.drilldownView && content) {
+            this.drilldownView.classList.add('hidden');
+            this.mainView.classList.remove('hidden');
+            content.scrollTop = this.savedScrollPosition;
+        }
+
+        // Mobile
+        if (this.mobileMainView && this.mobileDrilldownView) {
+            this.mobileDrilldownView.classList.add('hidden');
+            this.mobileMainView.classList.remove('hidden');
+            window.scrollTo(0, this.mobileSavedScrollPosition);
         }
     }
-}
+};
+
+noteboxDrilldown.init();
 
 // Mobile section navigation
 const mobileSectionSelect = document.getElementById('mobile-section-select') as HTMLSelectElement | null;
