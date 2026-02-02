@@ -53,13 +53,13 @@ export const siteConfig = {
       {
         name: "Markov Grey",
         role: "Researcher, French Center for AI Safety",
-        bio: "Contributes across all aspects - research, writing, distillation, website development, video creation. Previously scriptwriter at Rational Animations, distillation fellow at AI Safety Info (Stampy). Also currently co-founder and CTO at Equilibria Network. In a previous life has also worked in software development and cybersecurity.",
+        bio: "Primary author and project lead. Previously distillation fellow at AI Safety Info and scriptwriter at Rational Animations. Background in software development and cybersecurity.",
         image: "markov-photo.jpg",
       },
       {
         name: "Charbel-Raphael Segerie",
         role: "Executive Director, French Center for AI Safety",
-        bio: "Leads organization, scientific direction and coordination. Significant pedagogical experience including ARENA projects, MLAB, and Europe's first general purpose AI safety course. Writing featured in BlueDot's interpretability curriculum.",
+        bio: "Executive Director of CeSIA. Organized the Turing Seminar (MVA Master's AI safety course) and initiated the ML4Good bootcamps. Teaching experience includes ARENA and MLAB.",
         image: "charbel-photo.jpg",
       },
     ],
@@ -67,12 +67,12 @@ export const siteConfig = {
       {
         name: "Jeanne Salle",
         role: "AI Safety Teacher, ENS Ulm",
-        bio: "",
+        bio: "AI safety teacher at ENS Ulm.",
       },
       {
         name: "Charles Martinet",
         role: "Head of Policy, French Center for AI Safety",
-        bio: "",
+        bio: "Head of policy at CeSIA. Research affiliate at Oxford AIGI, previously GovAI.",
       },
     ],
     advisors: [

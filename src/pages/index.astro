@@ -6,6 +6,7 @@ import { Icon } from "astro-icon/components";
 import { siteConfig } from "@/config/site";
 import { getLatestTextbook } from "@/lib/textbooks";
 import OrgLogo from "@/components/OrgLogo.astro";
+import CardLink from "@/components/CardLink.astro";
 
 import markovImg from "@/assets/markov-photo.jpg";
 import charbelImg from "@/assets/charbel-photo.jpg";
@@ -69,22 +70,22 @@ function getChapterTitle(chapterNum: number) {
                             The open textbook for AI Safety
                         </h1>
                         <p class="mt-4 text-sm lg:text-base text-white/80">
-                            Written by Markov Grey and Charbel-Raphael Segerie
+                            Written by Markov Grey and Charbel-Raphael Segerie from the <a class="underline" href="https://cesia.org">French Center for AI Safety</a>.
                         </p>
                     </div>
                     <div class="max-w-md">
                         <p class="text-sm font-medium text-white uppercase tracking-wide mb-4">Trusted by</p>
                         <div class="grid grid-cols-2 gap-3">
-                            <span class="bg-white/5 rounded-lg px-3 h-12 flex items-center justify-center">
+                            <span class="bg-white/5 rounded-2xl px-3 h-12 flex items-center justify-center">
                                 <OrgLogo url="https://ml4good.org" class="h-5 w-auto" color="white" />
                             </span>
-                            <span class="bg-white/5 rounded-lg px-3 h-12 flex items-center justify-center">
+                            <span class="bg-white/5 rounded-2xl px-3 h-12 flex items-center justify-center">
                                 <OrgLogo url="https://bluedot.org" class="h-5 w-auto" color="white" />
                             </span>
-                            <span class="bg-white/5 rounded-lg px-3 h-12 flex items-center justify-center">
+                            <span class="bg-white/5 rounded-2xl px-3 h-12 flex items-center justify-center">
                                 <OrgLogo url="https://www.enais.co" class="h-6 w-auto" color="white" />
                             </span>
-                            <span class="bg-white/5 rounded-lg px-3 h-12 flex items-center justify-center">
+                            <span class="bg-white/5 rounded-2xl px-3 h-12 flex items-center justify-center">
                                 <img src={ensParisSaclayLogo.src} alt="ENS Paris Saclay" class="h-7 w-auto brightness-0 invert" />
                             </span>
                         </div>
@@ -169,13 +170,9 @@ function getChapterTitle(chapterNum: number) {
                                 </p>
                                 <div class="flex flex-col gap-2">
                                     {q.chapters.map(chNum => (
-                                        <a
-                                            href={getChapterUrl(chNum)}
-                                            class="flex items-center justify-between px-3 py-2 text-sm text-white bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
-                                        >
-                                            <span>Ch {chNum}: {getChapterTitle(chNum)}</span>
-                                            <Icon name="tabler:arrow-right" class="size-4 text-white/50" />
-                                        </a>
+                                        <CardLink href={getChapterUrl(chNum)} variant="dark">
+                                            Ch {chNum}: {getChapterTitle(chNum)}
+                                        </CardLink>
                                     ))}
                                 </div>
                             </div>
@@ -188,63 +185,69 @@ function getChapterTitle(chapterNum: number) {
     </section>
 
     <!-- Authors Section -->
-    <section class="mx-4 mt-4 rounded-3xl overflow-hidden">
+    <section class="mx-4 mt-4 rounded-3xl overflow-hidden bg-white">
+        <!-- Top row -->
         <div class="grid lg:grid-cols-2">
-            <!-- Left: Primary Authors -->
-            <div class="bg-gray-100 flex justify-end">
-                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
-                    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 font-display mb-10">
-                        Written by
+            <!-- Left: Heading -->
+            <div class="flex justify-end border-b border-gray-200">
+                <div class="w-full max-w-[40rem] px-6 py-16 lg:px-8 lg:py-24">
+                    <h2 class="text-4xl lg:text-5xl font-semibold text-gray-900 font-display leading-tight max-w-sm">
+                        Written by researchers, for everyone
                     </h2>
-                    <div class="space-y-6">
-                        {siteConfig.authors.primary.map((author) => (
-                            <div class="flex gap-4 items-center">
+                </div>
+            </div>
+
+            <!-- Right: Primary authors grid -->
+            <div class="lg:border-l border-b border-gray-200 flex flex-col justify-end">
+                <div class="border-t border-gray-200">
+                    <div class="w-full max-w-[40rem] grid grid-cols-1 sm:grid-cols-2">
+                        {siteConfig.authors.primary.map((author, i) => (
+                            <div class:list={[
+                                "p-6 lg:p-8",
+                                i === 0 && "border-b sm:border-b-0 sm:border-r border-gray-200",
+                                i === 1 && "sm:border-r border-gray-200"
+                            ]}>
                                 <Image
                                     src={authorImages[author.image]}
                                     alt={author.name}
-                                    class="size-16 rounded-full object-cover shrink-0"
+                                    class="size-20 rounded-2xl object-cover mb-4"
                                     width={256}
                                     height={256}
                                 />
-                                <div>
-                                    <h3 class="text-base font-semibold text-gray-900">{author.name}</h3>
-                                    <p class="text-sm text-gray-600">{author.role}</p>
-                                </div>
+                                <h3 class="text-base font-semibold text-gray-900">{author.name}</h3>
+                                <p class="mt-1 text-sm text-gray-600">{author.bio}</p>
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Right: Contributing Authors & Advisors -->
-            <div class="bg-white">
-                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
-                    <div class="space-y-10">
-                        <div>
-                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Contributing Authors</h3>
-                            <div class="mt-4 flex flex-col gap-2">
-                                {siteConfig.authors.contributing.map((author) => (
-                                    <div class="bg-gray-100 rounded-lg px-3 py-2">
-                                        <p class="text-sm font-semibold text-gray-900">{author.name}</p>
-                                        <p class="text-sm text-gray-600">{author.bio}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div>
-                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Advisors</h3>
-                            <div class="mt-4 flex flex-col gap-2">
-                                {siteConfig.authors.advisors.map((advisor) => (
-                                    <div class="bg-gray-100 rounded-lg px-3 py-2">
-                                        <p class="text-sm font-semibold text-gray-900">{advisor.name}</p>
-                                        <p class="text-sm text-gray-600">{advisor.bio}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+        <!-- Bottom row: Contributing & Advisors -->
+        <div class="flex justify-center">
+            <div class="w-full max-w-[80rem] grid grid-cols-2 lg:grid-cols-4">
+                {siteConfig.authors.contributing.map((author, i) => (
+                    <div class:list={[
+                        "p-6 lg:p-8 flex flex-col border-b border-gray-200",
+                        i === 0 && "border-l border-r lg:border-r",
+                        i === 1 && "border-r lg:border-r"
+                    ]}>
+                        <h3 class="text-base font-semibold text-gray-900">{author.name}</h3>
+                        <p class="text-sm text-gray-500">Contributing Author</p>
+                        <p class="mt-auto pt-4 text-sm text-gray-600">{author.bio}</p>
                     </div>
-                </div>
+                ))}
+                {siteConfig.authors.advisors.map((advisor, i) => (
+                    <div class:list={[
+                        "p-6 lg:p-8 flex flex-col border-b border-gray-200",
+                        i === 0 && "border-l lg:border-l-0 border-r",
+                        i === 1 && "border-r"
+                    ]}>
+                        <h3 class="text-base font-semibold text-gray-900">{advisor.name}</h3>
+                        <p class="text-sm text-gray-500">Advisor</p>
+                        <p class="mt-auto pt-4 text-sm text-gray-600">{advisor.bio}</p>
+                    </div>
+                ))}
             </div>
         </div>
     </section>

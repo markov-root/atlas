@@ -9,7 +9,11 @@ export default defineConfig({
   integrations: [icon()],
   env: {
     schema: {
-      GOOGLE_CREDENTIALS_BASE64: envField.string({ context: "server", access: "secret"})
+      GOOGLE_CREDENTIALS_BASE64: envField.string({ context: "server", access: "secret"}),
+      PUBLIC_ALGOLIA_APP_ID: envField.string({ context: "client", access: "public" }),
+      PUBLIC_ALGOLIA_SEARCH_KEY: envField.string({ context: "client", access: "public" }),
+      ALGOLIA_WRITE_KEY: envField.string({ context: "server", access: "secret", optional: true }),
+      PUBLIC_ALGOLIA_INDEX_NAME: envField.string({ context: "client", access: "public", default: "atlas-foreview" }),
     }
   },
   vite: {

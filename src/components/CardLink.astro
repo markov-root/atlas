@@ -1,0 +1,33 @@
+---
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  href: string
+  variant?: 'light' | 'dark'
+  class?: string
+}
+
+const { href, variant = 'light', class: className } = Astro.props
+
+const variantClasses = {
+  light: "text-gray-700 bg-gray-100 hover:bg-gray-200 hover:text-gray-900",
+  dark: "text-white bg-white/10 hover:bg-white/20"
+}
+
+const iconClasses = {
+  light: "text-gray-400",
+  dark: "text-white/50"
+}
+---
+
+<a
+  href={href}
+  class:list={[
+    "flex items-center justify-between px-3 py-2 text-sm rounded-2xl transition-colors",
+    variantClasses[variant],
+    className
+  ]}
+>
+  <span><slot /></span>
+  <Icon name="tabler:arrow-right" class:list={["size-4", iconClasses[variant]]} />
+</a>

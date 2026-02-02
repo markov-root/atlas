@@ -67,117 +67,112 @@ const isLastSection = section.nextSection === null;
     { text: section.title, url: '#' }
 ]}>
 
-    <div class="bg-white py-12 sm:py-16 md:py-24 lg:py-32" slot="header">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <div class="max-w-2xl lg:mx-0">
-                <p class="text-base/7 font-semibold text-gray-600">Chapter {chapter.number}: {chapter.title}</p>
-                <h1 class="mt-2 text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl text-balance font-display">{section.title}</h1>
-                {pageDescription && <p class="mt-8 text-lg font-medium text-pretty text-gray-700 sm:text-xl/8">{pageDescription}</p>}
-                <ul class="md:flex gap-x-8">
-                    <li class="flex items-center space-x-1 text-gray-600 mt-12 text-lg">
-                        <Icon name="tabler:clock" class="h-6 w-auto" />
-                        <span class="ml-1">
-                            {formatReadingTime(section.readingTimeInSeconds)}
-                        </span>
-                    </li>
-                    <li class="flex items-center space-x-1 text-gray-600 mt-12 text-lg">
-                        <span>
-                            Written by {chapter.meta.authors.map(a => a.name).join(', ')}
-                        </span>
-                    </li>
-                </ul>
-                {section.number === 1 && chapter.pdfLink && (
-                <div class="mt-16">
-                    <Button link={chapter.pdfLink} variant="primary">Download</Button>
-                </div>
-                )}
-
+    <div class="py-12 lg:py-16 px-6 lg:px-16" slot="header">
+        <div>
+            <p class="text-base/7 font-semibold text-gray-600">Chapter {chapter.number}: {chapter.title}</p>
+            <h1 class="mt-2 text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 text-balance font-display">{section.title}</h1>
+            {pageDescription && <p class="mt-6 text-lg font-medium text-pretty text-gray-700">{pageDescription}</p>}
+            <ul class="flex flex-wrap gap-x-6 gap-y-2 mt-8">
+                <li class="flex items-center space-x-1 text-gray-600 text-sm">
+                    <Icon name="tabler:clock" class="size-5" />
+                    <span class="ml-1">
+                        {formatReadingTime(section.readingTimeInSeconds)}
+                    </span>
+                </li>
+                <li class="flex items-center space-x-1 text-gray-600 text-sm">
+                    <span>
+                        Written by {chapter.meta.authors.map(a => a.name).join(', ')}
+                    </span>
+                </li>
+            </ul>
+            {section.number === 1 && chapter.pdfLink && (
+            <div class="mt-8">
+                <Button link={chapter.pdfLink} variant="primary">Download</Button>
             </div>
+            )}
         </div>
     </div>
 
+    <article class="prose prose-a:text-brand-600 lg:prose-lg prose-figure:first:mt-0!" data-pagefind-body>
+        {section.nodes.map(node => <NodeRenderer node={node} />)}
 
-    <div class="flex items-start gap-8">
-        <article class="min-w-0 max-w-prose prose prose-a:text-brand-600 xl:prose-lg xl:shrink-0 prose-figure:first:mt-0!" data-pagefind-body>
-            {section.nodes.map(node => <NodeRenderer node={node} />)}
-
-            {section.footnotes && section.footnotes.length > 0 && (
-            <section class="mt-12 pt-8 border-t border-gray-200">
-                <h2 id="footnotes" class="text-xl font-semibold mb-4 text-gray-900 sr-only">Footnotes</h2>
-                <ol class="list-decimal list-outside pl-6 text-sm text-gray-700 space-y-3">
-                    {section.footnotes.map(({ number, children }) => (
-                    <li id={`fn-${number}`} class="pl-2 target:bg-brand-50 target:border-l-2 target:border-brand-500 target:-ml-2 target:pl-1.5 target:pr-2">
-                        {children.map(child => <NodeRenderer node={child} />)}
-                        <a href={`#fnref-${number}`} class="ml-2 text-brand-600 no-underline text-sm hover:underline" aria-label="Back to content">↩</a>
-                    </li>
-                    ))}
-                </ol>
-            </section>
-            )}
-
-            {section.number === 1 && chapter.meta.acknowledgements && chapter.meta.acknowledgements.length > 0 && (
-            <>
-                <h3 id="acknowledgements">Acknowledgements</h3>
-                <p>
-                    We thank {chapter.meta.acknowledgements.join(', ').replace(/, ([^,]*)$/, ' and $1')} for their valuable feedback and contributions.
-                </p>
-            </>
-            )}
-
-            <nav class="not-prose mt-16 border-t border-gray-200 pt-8">
-                <div class="grid md:grid-cols-2 gap-x-12">
-                    {prevInfo ? (
-                    <a href={`/chapters/${version}/${prevInfo.chapter.slug}/${prevInfo.section.slug}`} class="group bg-gray-100 px-6 py-4 w-full rounded-2xl flex gap-x-4 items-center">
-                            <span class="sr-only">Previous</span>
-                            <Icon name="tabler:chevron-left" class="w-7 text-gray-500" />
-                        <span class="text-base font-medium text-gray-900 group-hover:text-brand-600">
-                            {prevInfo.chapter.number}.{prevInfo.section.number}. {prevInfo.section.title}
-                        </span>
-                    </a>
-                    ) : <div />}
-                    {nextInfo ? (
-                    <a href={`/chapters/${version}/${nextInfo.chapter.slug}/${nextInfo.section.slug}`} class="group flex items-center justify-end text-right bg-brand-600 w-full px-6 py-4 rounded-2xl gap-x-4 hover:bg-brand-500">
-                        <span class="sr-only">Next</span>
-                        <span class="text-base font-medium group-hover:text-white/90 text-white">
-                            {nextInfo.chapter.number}.{nextInfo.section.number}.
-                            {nextInfo.section.title}
-                        </span>
-                        <Icon name="tabler:chevron-right" class="w-7 text-white" />
-                    </a>
-                    ) : <div />}
-                </div>
-            </nav>
-        </article>
-        {section.toc.length > 0 && (
-        <aside class="hidden xl:block sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto w-64 shrink-0">
-            <nav class="border-l border-gray-200 pl-4">
-                <h2 class="text-sm font-semibold text-gray-900 mb-3">On this page</h2>
-                <ul class="space-y-2">
-                    {(() => {
-                        let h2Count = 0;
-                        return section.toc
-                            .filter(item => item.level === 2 || item.level === 3)
-                            .map(item => {
-                                if (item.level === 2) h2Count++;
-                                return (
-                                    <li class={item.level === 3 ? "pl-4" : ""}>
-                                        <a href={`#${item.slug}`} class="text-sm text-gray-600 hover:text-brand-600 transition-colors block">
-                                            {item.level === 2 ? `${h2Count}. ${item.title}` : item.title}
-                                        </a>
-                                    </li>
-                                );
-                            });
-                    })()}
-                    {section.footnotes && section.footnotes.length > 0 && (
-                        <li class="mt-4">
-                            <a href="#footnotes" class="text-sm text-gray-600 hover:text-brand-600 transition-colors block">
-                                Footnotes
-                            </a>
-                        </li>
-                    )}
-                </ul>
-            </nav>
-        </aside>
+        {section.footnotes && section.footnotes.length > 0 && (
+        <section class="mt-12 pt-8 border-t border-gray-200">
+            <h2 id="footnotes" class="text-xl font-semibold mb-4 text-gray-900 sr-only">Footnotes</h2>
+            <ol class="list-decimal list-outside pl-6 text-sm text-gray-700 space-y-3">
+                {section.footnotes.map(({ number, children }) => (
+                <li id={`fn-${number}`} class="pl-2 target:bg-brand-50 target:border-l-2 target:border-brand-500 target:-ml-2 target:pl-1.5 target:pr-2">
+                    {children.map(child => <NodeRenderer node={child} />)}
+                    <a href={`#fnref-${number}`} class="ml-2 text-brand-600 no-underline text-sm hover:underline" aria-label="Back to content">↩</a>
+                </li>
+                ))}
+            </ol>
+        </section>
         )}
-    </div>
+
+        {section.number === 1 && chapter.meta.acknowledgements && chapter.meta.acknowledgements.length > 0 && (
+        <>
+            <h3 id="acknowledgements">Acknowledgements</h3>
+            <p>
+                We thank {chapter.meta.acknowledgements.join(', ').replace(/, ([^,]*)$/, ' and $1')} for their valuable feedback and contributions.
+            </p>
+        </>
+        )}
+
+        <nav class="not-prose mt-16 border-t border-gray-200 pt-8">
+            <div class="grid md:grid-cols-2 gap-4">
+                {prevInfo ? (
+                <a href={`/chapters/${version}/${prevInfo.chapter.slug}/${prevInfo.section.slug}`} class="group bg-gray-100 px-5 py-4 w-full rounded-2xl flex gap-x-3 items-center">
+                        <span class="sr-only">Previous</span>
+                        <Icon name="tabler:chevron-left" class="size-5 text-gray-500" />
+                    <span class="text-sm font-medium text-gray-900 group-hover:text-brand-600">
+                        {prevInfo.chapter.number}.{prevInfo.section.number}. {prevInfo.section.title}
+                    </span>
+                </a>
+                ) : <div />}
+                {nextInfo ? (
+                <a href={`/chapters/${version}/${nextInfo.chapter.slug}/${nextInfo.section.slug}`} class="group flex items-center justify-end text-right bg-brand-600 w-full px-5 py-4 rounded-2xl gap-x-3 hover:bg-brand-500">
+                    <span class="sr-only">Next</span>
+                    <span class="text-sm font-medium group-hover:text-white/90 text-white">
+                        {nextInfo.chapter.number}.{nextInfo.section.number}.
+                        {nextInfo.section.title}
+                    </span>
+                    <Icon name="tabler:chevron-right" class="size-5 text-white" />
+                </a>
+                ) : <div />}
+            </div>
+        </nav>
+    </article>
+
+    {section.toc.length > 0 && (
+    <aside slot="toc" class="hidden xl:block w-56 shrink-0 overflow-y-auto">
+        <nav class="pl-4">
+            <h2 class="text-sm font-semibold text-gray-500 mb-3">On this page</h2>
+            <ul class="space-y-2">
+                {(() => {
+                    let h2Count = 0;
+                    return section.toc
+                        .filter(item => item.level === 2 || item.level === 3)
+                        .map(item => {
+                            if (item.level === 2) h2Count++;
+                            return (
+                                <li class={item.level === 3 ? "pl-3" : ""}>
+                                    <a href={`#${item.slug}`} class="text-sm text-gray-600 hover:text-brand-600 transition-colors block">
+                                        {item.level === 2 ? `${h2Count}. ${item.title}` : item.title}
+                                    </a>
+                                </li>
+                            );
+                        });
+                })()}
+                {section.footnotes && section.footnotes.length > 0 && (
+                    <li class="mt-4">
+                        <a href="#footnotes" class="text-sm text-gray-600 hover:text-brand-600 transition-colors block">
+                            Footnotes
+                        </a>
+                    </li>
+                )}
+            </ul>
+        </nav>
+    </aside>
+    )}
 </Reader>

@@ -1,0 +1,149 @@
+---
+interface Props {
+  id?: string
+  class?: string
+  variant?: 'light' | 'dark'
+}
+
+const {
+  id = 'docsearch',
+  class: className = '',
+  variant = 'light'
+} = Astro.props
+const isDark = variant === 'dark'
+
+const appId = import.meta.env.PUBLIC_ALGOLIA_APP_ID
+const apiKey = import.meta.env.PUBLIC_ALGOLIA_SEARCH_KEY
+const indexName = import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME || 'atlas-foreview'
+---
+
+<div
+  id={id}
+  class:list={[className, isDark && 'docsearch-dark']}
+  data-docsearch
+></div>
+
+<script is:inline define:vars={{ id, appId, apiKey, indexName }}>
+  // Load DocSearch dynamically
+  (function() {
+    const container = document.getElementById(id);
+    if (!container || container.dataset.initialized) return;
+    container.dataset.initialized = 'true';
+
+    // Load CSS
+    if (!document.querySelector('link[href*="docsearch"]')) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://cdn.jsdelivr.net/npm/@docsearch/css@3/dist/style.min.css';
+      document.head.appendChild(link);
+    }
+
+    // Load JS and initialize
+    if (!window.docsearch) {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@docsearch/js@3/dist/umd/index.min.js';
+      script.onload = function() {
+        initDocSearch();
+      };
+      document.head.appendChild(script);
+    } else {
+      initDocSearch();
+    }
+
+    function initDocSearch() {
+      window.docsearch({
+        appId: appId,
+        apiKey: apiKey,
+        indexName: indexName,
+        container: '#' + id,
+        searchParameters: {
+          hitsPerPage: 10,
+        },
+      });
+    }
+  })();
+</script>
+
+<style is:global>
+  /* DocSearch button styling */
+  .DocSearch-Button {
+    --docsearch-searchbox-background: rgb(243 244 246);
+    --docsearch-searchbox-focus-background: rgb(229 231 235);
+    --docsearch-text-color: rgb(107 114 128);
+    --docsearch-muted-color: rgb(156 163 175);
+    --docsearch-key-gradient: linear-gradient(-225deg, rgb(229 231 235), rgb(243 244 246));
+    --docsearch-key-shadow: inset 0 -2px 0 0 rgb(209 213 219), inset 0 0 1px 1px #fff, 0 1px 2px 1px rgb(209 213 219 / 0.4);
+
+    width: 100%;
+    margin: 0;
+    border-radius: 9999px;
+    padding: 0 12px;
+    height: 36px;
+  }
+
+  .DocSearch-Button:hover {
+    --docsearch-searchbox-background: rgb(229 231 235);
+    box-shadow: none;
+  }
+
+  .DocSearch-Button-Placeholder {
+    font-size: 0.875rem;
+    padding: 0 8px;
+  }
+
+  .DocSearch-Search-Icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .DocSearch-Button-Keys {
+    min-width: auto;
+    padding: 0;
+  }
+
+  .DocSearch-Button-Key {
+    font-size: 0.75rem;
+    padding: 0 4px;
+    width: auto;
+    height: 20px;
+    border-radius: 4px;
+  }
+
+  /* Dark variant */
+  .docsearch-dark .DocSearch-Button {
+    --docsearch-searchbox-background: rgb(255 255 255 / 0.1);
+    --docsearch-searchbox-focus-background: rgb(255 255 255 / 0.2);
+    --docsearch-text-color: rgb(255 255 255 / 0.7);
+    --docsearch-muted-color: rgb(255 255 255 / 0.5);
+    --docsearch-key-gradient: linear-gradient(-225deg, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.05));
+    --docsearch-key-shadow: inset 0 -2px 0 0 rgb(255 255 255 / 0.1), inset 0 0 1px 1px rgb(255 255 255 / 0.05);
+  }
+
+  .docsearch-dark .DocSearch-Button:hover {
+    --docsearch-searchbox-background: rgb(255 255 255 / 0.2);
+  }
+
+  .docsearch-dark .DocSearch-Button-Key {
+    color: rgb(255 255 255 / 0.5);
+  }
+
+  /* Modal styling */
+  .DocSearch-Modal {
+    --docsearch-primary-color: rgb(37 99 235);
+    --docsearch-highlight-color: rgb(37 99 235);
+    --docsearch-searchbox-shadow: inset 0 0 0 2px rgb(37 99 235);
+  }
+
+  .DocSearch-Hit-source {
+    font-weight: 600;
+    color: rgb(107 114 128);
+  }
+
+  .DocSearch-Hit a {
+    border-radius: 8px;
+  }
+
+  .DocSearch-Hit[aria-selected="true"] a {
+    background: rgb(37 99 235);
+  }
+</style>

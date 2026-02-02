@@ -4,6 +4,8 @@ import Button from './Button.astro'
 import Input from './Input.astro'
 import InputLabel from './InputLabel.astro'
 import Textarea from './Textarea.astro'
+import OrgLogo from './OrgLogo.astro'
+import CardLink from './CardLink.astro'
 import { Icon } from 'astro-icon/components'
 import { siteConfig } from '@/config/site'
 ---
@@ -26,6 +28,13 @@ import { siteConfig } from '@/config/site'
                     <a href="https://www.youtube.com/@securite-ia" class="text-white/50 hover:text-white transition-colors">
                         <span class="sr-only">YouTube</span>
                         <Icon name="cib:youtube" class="size-6" />
+                    </a>
+                </div>
+
+                <div class="mt-12">
+                    <h3 class="font-semibold text-white mb-4">A project by the French Center for AI Safety</h3>
+                    <a href="https://cesia.org" class="inline-flex hover:opacity-80 transition-opacity">
+                        <OrgLogo url="https://cesia.org" color="white" class="h-12 w-auto" />
                     </a>
                 </div>
             </div>
@@ -64,35 +73,16 @@ import { siteConfig } from '@/config/site'
                     <div>
                         <h3 class="font-semibold text-white mb-4">Navigation</h3>
                         <div class="flex flex-col gap-2">
-                            <a href="/read" class="flex items-center justify-between px-3 py-2 text-sm text-white bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
-                                <span>Read</span>
-                                <Icon name="tabler:arrow-right" class="size-4 text-white/50" />
-                            </a>
-                            <a href="/teach" class="flex items-center justify-between px-3 py-2 text-sm text-white bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
-                                <span>Teach</span>
-                                <Icon name="tabler:arrow-right" class="size-4 text-white/50" />
-                            </a>
-                            <a href="/join-study-group" class="flex items-center justify-between px-3 py-2 text-sm text-white bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
-                                <span>Get certified</span>
-                                <Icon name="tabler:arrow-right" class="size-4 text-white/50" />
-                            </a>
+                            <CardLink href="/read" variant="dark">Read</CardLink>
+                            <CardLink href="/teach" variant="dark">Teach</CardLink>
+                            <CardLink href="/join-study-group" variant="dark">Get certified</CardLink>
                         </div>
                     </div>
                     <div>
                         <h3 class="font-semibold text-white mb-4">Funded by</h3>
                         <div class="flex flex-col gap-2">
-                            <a href="https://cesia.org" class="flex items-center justify-between px-3 py-2 text-sm text-white bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
-                                <span>French Center for AI Safety</span>
-                                <Icon name="tabler:arrow-right" class="size-4 text-white/50" />
-                            </a>
-                            <a href="https://coefficientgiving.org" class="flex items-center justify-between px-3 py-2 text-sm text-white bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
-                                <span>Coefficient Giving</span>
-                                <Icon name="tabler:arrow-right" class="size-4 text-white/50" />
-                            </a>
-                            <a href="https://manifund.org" class="flex items-center justify-between px-3 py-2 text-sm text-white bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
-                                <span>Manifund</span>
-                                <Icon name="tabler:arrow-right" class="size-4 text-white/50" />
-                            </a>
+                            <CardLink href="https://coefficientgiving.org" variant="dark">Coefficient Giving</CardLink>
+                            <CardLink href="https://manifund.org" variant="dark">Manifund</CardLink>
                         </div>
                     </div>
                 </div>
