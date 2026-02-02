@@ -1,6 +1,7 @@
 ---
 import Default from "@/layouts/Default.astro";
 import Button from "@/components/Button.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <Default title="Page not found" description="The page you are looking for does not exist.">
@@ -19,13 +20,13 @@ import Button from "@/components/Button.astro";
         </div>
         <div class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-semibold">
             <a href="/read" class="text-brand-600 hover:text-brand-500">
-                Read <span aria-hidden="true">&rarr;</span>
+                Read <Icon name="tabler:arrow-right" class="size-4 inline" />
             </a>
             <a href="/teach" class="text-brand-600 hover:text-brand-500">
-                Teach <span aria-hidden="true">&rarr;</span>
+                Teach <Icon name="tabler:arrow-right" class="size-4 inline" />
             </a>
             <a href="/join-study-group" class="text-brand-600 hover:text-brand-500">
-                Get certified <span aria-hidden="true">&rarr;</span>
+                Get certified <Icon name="tabler:arrow-right" class="size-4 inline" />
             </a>
         </div>
     </div>

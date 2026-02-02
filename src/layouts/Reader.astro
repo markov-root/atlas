@@ -107,7 +107,7 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
         <div class="bg-white rounded-3xl flex-1 overflow-hidden flex flex-col min-h-0">
             <nav class="flex-1 overflow-y-auto px-4 py-4 space-y-2">
                 {textbook.chapters.map((chapter: Chapter) => (
-                <details class="group" open={activeSection.chapterNumber === chapter.number}>
+                <details class="group" name="sidebar-chapters" open={activeSection.chapterNumber === chapter.number}>
                     <summary class="flex justify-between items-center px-2 py-2 rounded-lg hover:bg-gray-50 cursor-pointer">
                         <span class:list={[
                             "text-sm font-semibold",
@@ -187,95 +187,95 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
 <div class="lg:hidden pb-24">
     <main>
         <slot name="header" />
-        <div class="mx-4 mt-4 bg-white rounded-3xl px-6 py-10">
+        <div class="mt-4 bg-white rounded-3xl px-6 py-10">
             <slot />
         </div>
     </main>
 </div>
 
 <!-- Mobile bottom bar -->
-<div class="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-white border-t border-gray-200 safe-area-bottom">
+<div class="fixed bottom-0 inset-x-0 z-50 lg:hidden safe-area-bottom">
     <div class="flex flex-col">
-        <!-- Section picker row -->
-        <div class="flex items-center h-10 px-3 border-b border-gray-100">
-            <select id="mobile-section-select" class="flex-1 bg-transparent border-none text-sm text-gray-600 py-1 focus:outline-none focus:ring-0 appearance-none cursor-pointer">
-                {currentChapter?.sections.map((section: Section) => (
-                    <option
-                        value={`/chapters/${textbook.version}/${currentChapter.slug}/${section.slug}`}
-                        selected={activeSection.number === section.number}
-                    >
-                        {activeSection.chapterNumber}.{section.number} {section.title}
-                    </option>
-                ))}
-            </select>
-            <svg class="size-4 text-gray-400 shrink-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-            </svg>
+        <!-- Section row (top): [Prev] [Section select] [Next] as three distinct containers -->
+        <div class="flex items-center gap-2 px-2 py-2 bg-gray-100 rounded-t-2xl">
+            {prevUrl ? (
+                <a href={prevUrl} class="flex items-center justify-center w-12 h-10 bg-white rounded-xl text-gray-600 active:bg-gray-50 shrink-0 shadow-sm">
+                    <span class="sr-only">Previous section</span>
+                    <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    </svg>
+                </a>
+            ) : (
+                <span class="flex items-center justify-center w-12 h-10 bg-white/50 rounded-xl text-gray-300 shrink-0">
+                    <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    </svg>
+                </span>
+            )}
+
+            <div class="flex-1 flex items-center justify-center min-w-0 h-10 bg-white rounded-xl shadow-sm px-3">
+                <select id="mobile-section-select" class="bg-transparent border-none text-sm font-medium text-gray-700 py-1 focus:outline-none focus:ring-0 appearance-none cursor-pointer text-center truncate w-full">
+                    {currentChapter?.sections.map((section: Section) => (
+                        <option
+                            value={`/chapters/${textbook.version}/${currentChapter.slug}/${section.slug}`}
+                            selected={activeSection.number === section.number}
+                        >
+                            {activeSection.chapterNumber}.{section.number} {section.title}
+                        </option>
+                    ))}
+                </select>
+                <svg class="size-4 text-gray-400 shrink-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                </svg>
+            </div>
+
+            {nextUrl ? (
+                <a href={nextUrl} class="flex items-center justify-center w-12 h-10 bg-white rounded-xl text-gray-600 active:bg-gray-50 shrink-0 shadow-sm">
+                    <span class="sr-only">Next section</span>
+                    <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                </a>
+            ) : (
+                <span class="flex items-center justify-center w-12 h-10 bg-white/50 rounded-xl text-gray-300 shrink-0">
+                    <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                </span>
+            )}
         </div>
 
-        <!-- Navigation row -->
-        <div class="flex items-center justify-between h-11 px-2">
+        <!-- Navigation row (bottom): Home | Chapter | Search -->
+        <div class="flex items-center h-14 px-2 bg-white border-t border-gray-200">
             <!-- Home -->
-            <a href="/" class="p-2 text-gray-400 hover:text-gray-600">
+            <a href="/" class="flex items-center justify-center w-14 h-14 text-gray-400 active:text-gray-600 active:bg-gray-100 rounded-xl shrink-0">
                 <span class="sr-only">Home</span>
-                <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                 </svg>
             </a>
 
-            <!-- Prev/Next -->
-            <div class="flex items-center gap-1">
-                {prevUrl ? (
-                    <a href={prevUrl} class="p-2 text-gray-400 hover:text-gray-600">
-                        <span class="sr-only">Previous section</span>
-                        <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                        </svg>
-                    </a>
-                ) : (
-                    <span class="p-2 text-gray-200">
-                        <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                        </svg>
-                    </span>
-                )}
-                {nextUrl ? (
-                    <a href={nextUrl} class="p-2 text-gray-400 hover:text-gray-600">
-                        <span class="sr-only">Next section</span>
-                        <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                        </svg>
-                    </a>
-                ) : (
-                    <span class="p-2 text-gray-200">
-                        <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                        </svg>
-                    </span>
-                )}
-            </div>
-
             <!-- Chapter selector -->
-            <div class="flex items-center">
-                <select id="mobile-chapter-select" class="bg-transparent border-none text-sm text-gray-500 py-1 pr-5 focus:outline-none focus:ring-0 appearance-none cursor-pointer">
+            <div class="flex items-center h-14 flex-1 justify-center min-w-0 active:bg-gray-100 rounded-xl mx-1">
+                <select id="mobile-chapter-select" class="bg-transparent border-none text-sm text-gray-500 py-4 pr-6 pl-4 focus:outline-none focus:ring-0 appearance-none cursor-pointer truncate w-full text-center">
                     {textbook.chapters.map((chapter: Chapter) => (
                         <option
                             value={`/chapters/${textbook.version}/${chapter.slug}/${chapter.sections[0]?.slug}`}
                             selected={activeSection.chapterNumber === chapter.number}
                         >
-                            Ch. {chapter.number}
+                            {chapter.number}. {chapter.title}
                         </option>
                     ))}
                 </select>
-                <svg class="size-4 text-gray-400 shrink-0 -ml-4 pointer-events-none" viewBox="0 0 20 20" fill="currentColor">
+                <svg class="size-4 text-gray-400 shrink-0 -ml-5 mr-1 pointer-events-none" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
                 </svg>
             </div>
 
             <!-- Search button -->
-            <button type="button" command="show-modal" commandfor="mobile-search-dialog" class="p-2 text-gray-400 hover:text-gray-600">
+            <button type="button" command="show-modal" commandfor="mobile-search-dialog" class="flex items-center justify-center w-14 h-14 text-gray-400 active:text-gray-600 active:bg-gray-100 rounded-xl shrink-0">
                 <span class="sr-only">Search</span>
-                <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                 </svg>
             </button>
@@ -356,6 +356,7 @@ if (mobileChapterSelect) {
         }
     });
 }
+
 
 // Focus search input when mobile dialog opens
 const mobileSearchDialog = document.getElementById('mobile-search-dialog') as HTMLDialogElement | null;

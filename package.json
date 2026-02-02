@@ -12,7 +12,6 @@
     "@astrojs/check": "^0.9.6",
     "@docsearch/css": "^4.5.3",
     "@docsearch/js": "^4.5.3",
-    "@floating-ui/dom": "^1.7.4",
     "@fontsource-variable/jost": "^5.2.8",
     "@fontsource/righteous": "^5.2.7",
     "@foreview/ais-logos-astro": "^0.1.0",
@@ -29,6 +28,7 @@
     "p-limit": "^7.2.0",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.1.17",
+    "tippy.js": "^6.3.7",
     "typescript": "^5.9.3",
     "unstorage": "^1.17.3"
   },

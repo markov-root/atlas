@@ -21,7 +21,8 @@ const isDark = variant === 'dark'
       </a>
       <VersionSelector variant={variant} class="hidden lg:block" />
     </div>
-    <div class="flex lg:hidden">
+    <div class="flex lg:hidden items-center gap-1">
+      <AlgoliaSearch id="mobile-header-search" variant={variant} iconOnly />
       <button type="button" command="show-modal" commandfor="mobile-menu" class:list={["-m-2.5 inline-flex items-center justify-center rounded-md p-2.5", isDark ? "text-white/80" : "text-gray-700"]}>
         <span class="sr-only">Open main menu</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
@@ -54,18 +55,11 @@ const isDark = variant === 'dark'
               </svg>
             </button>
           </div>
-          <div class="mt-6 flow-root">
-            <div class="-my-6 divide-y divide-gray-500/10">
-              <div class="space-y-2 py-6">
-                <VersionSelector class="mb-2" />
-                <a href="/read" class="-mx-3 block rounded-full px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Read</a>
-                <a href="/teach" class="-mx-3 block rounded-full px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Teach</a>
-                <a href="/join-study-group" class="-mx-3 block rounded-full px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Get certified</a>
-              </div>
-              <div class="py-6">
-                <AlgoliaSearch id="mobile-header-search" />
-              </div>
-            </div>
+          <div class="mt-6 space-y-2">
+            <VersionSelector class="mb-2" />
+            <a href="/read" class="-mx-3 block rounded-full px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Read</a>
+            <a href="/teach" class="-mx-3 block rounded-full px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Teach</a>
+            <a href="/join-study-group" class="-mx-3 block rounded-full px-3 py-2 text-base/7 text-gray-900 hover:bg-gray-100">Get certified</a>
           </div>
         </el-dialog-panel>
       </div>

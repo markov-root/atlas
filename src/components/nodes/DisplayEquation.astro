@@ -23,7 +23,9 @@ if (content) {
 ---
 
 {svg && (
-  <div class="mx-auto w-fit" set:html={svg} />
+  <div class="overflow-x-auto">
+    <div class="mx-auto w-fit" set:html={svg} />
+  </div>
 )}
 
 <style>
