@@ -156,20 +156,41 @@ const sessions = [
                 </div>
             </div>
 
-            <!-- Right: CTA -->
-            <a href="#affiliate-form" class="rounded-b-3xl lg:rounded-none lg:rounded-tr-3xl lg:rounded-br-3xl bg-white hover:bg-gray-50 transition-colors group flex items-end">
-                <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16">
-                    <p class="text-lg lg:text-xl text-gray-600 leading-relaxed mb-8">
-                        We provide everything you need to teach AI Safety: curriculum, facilitation guides, and we'll help you find students.
-                    </p>
-                    <div class="flex items-center gap-3">
-                        <span class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Become an affiliate</span>
-                        <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
-                            <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
-                        </span>
+            <!-- Right: CTA cards -->
+            <div class="rounded-b-3xl lg:rounded-none lg:rounded-tr-3xl lg:rounded-br-3xl flex flex-col bg-white overflow-hidden">
+                <!-- Affiliate Card -->
+                <a href="#affiliate-form" class="relative flex-1 flex items-end bg-white hover:bg-gray-50 transition-colors group lg:rounded-tr-3xl">
+                    <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12">
+                        <div class="flex items-center gap-3">
+                            <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Become an affiliate</h2>
+                            <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                                <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                            </span>
+                        </div>
+                        <p class="mt-4 text-base lg:text-lg text-gray-600">
+                            Get student matching, certificates, and be listed on our website.
+                        </p>
                     </div>
-                </div>
-            </a>
+                </a>
+
+                <!-- Divider -->
+                <div class="mr-6 lg:mr-8 border-t border-gray-200"></div>
+
+                <!-- Guides Card -->
+                <a href="#guides-form" class="relative flex-1 flex items-start bg-white hover:bg-gray-50 transition-colors group lg:rounded-br-3xl">
+                    <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12">
+                        <div class="flex items-center gap-3">
+                            <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Get the guides</h2>
+                            <span class="inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
+                                <Icon name="tabler:arrow-up-right" class="size-5 text-gray-600 group-hover:text-white" />
+                            </span>
+                        </div>
+                        <p class="mt-4 text-base lg:text-lg text-gray-600">
+                            Download our facilitation guides and run your course independently.
+                        </p>
+                    </div>
+                </a>
+            </div>
         </div>
     </section>
 

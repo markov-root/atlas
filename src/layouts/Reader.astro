@@ -163,7 +163,8 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
 
                 <div class="grow"></div>
 
-                <AlgoliaSearch id="reader-search" class="w-full max-w-xs" />
+                <AlgoliaSearch id="reader-search-icon" iconOnly class="xl:hidden" />
+                <AlgoliaSearch id="reader-search" class="hidden xl:block w-full max-w-xs" />
             </div>
         </nav>
 
@@ -263,7 +264,7 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
                             value={`/chapters/${textbook.version}/${chapter.slug}/${chapter.sections[0]?.slug}`}
                             selected={activeSection.chapterNumber === chapter.number}
                         >
-                            {chapter.number}. {chapter.title}
+                            Ch. {chapter.number}: {chapter.title}
                         </option>
                     ))}
                 </select>
