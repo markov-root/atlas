@@ -7,6 +7,14 @@ import icon from "astro-icon";
 export default defineConfig({
   site: 'https://ai-safety-atlas.com',
   integrations: [icon()],
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+      config: {
+        limitInputPixels: false, // Allow large animated GIFs
+      }
+    }
+  },
   env: {
     schema: {
       GOOGLE_CREDENTIALS_BASE64: envField.string({ context: "server", access: "secret"}),
