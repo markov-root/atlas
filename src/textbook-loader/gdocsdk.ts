@@ -12,23 +12,29 @@ const docCache = createStorage<docs_v1.Schema$DocumentTab>({
 });
 
 export class DocsSDK {
-  client: docs_v1.Docs
+  client: docs_v1.Docs | null
   assetsPath: string;
   assetURLGenerator: (filename: string) => string;
+  cacheOnly: boolean;
 
-  constructor(credentials: string, assetsPath: string, assetURLGenerator: (filename: string) => string = (f) => f) {
-    this.client = google.docs({
-      version: "v1",
-      auth:  new google.auth.GoogleAuth({
-        credentials: JSON.parse(
-          Buffer.from(credentials, "base64").toString("utf-8")
-        ),
-        scopes: ["https://www.googleapis.com/auth/documents.readonly"],
-      })
-    })
+  constructor(credentials: string | null, assetsPath: string, assetURLGenerator: (filename: string) => string = (f) => f, cacheOnly: boolean = false) {
+    this.cacheOnly = cacheOnly;
     this.assetsPath = assetsPath
     this.assetURLGenerator = assetURLGenerator
 
+    if (credentials) {
+      this.client = google.docs({
+        version: "v1",
+        auth: new google.auth.GoogleAuth({
+          credentials: JSON.parse(
+            Buffer.from(credentials, "base64").toString("utf-8")
+          ),
+          scopes: ["https://www.googleapis.com/auth/documents.readonly"],
+        })
+      })
+    } else {
+      this.client = null;
+    }
   }
 
   async fetchDoc(docId: string, tabId: string): Promise<docs_v1.Schema$DocumentTab> {
@@ -37,6 +43,10 @@ export class DocsSDK {
     const cached = await docCache.getItem(cacheKey);
     if (cached) {
       return cached
+    }
+
+    if (this.cacheOnly || !this.client) {
+      throw new Error(`Document ${docId}:${tabId} not in cache and cacheOnly mode is enabled`);
     }
 
     const response = await this.client.documents.get({

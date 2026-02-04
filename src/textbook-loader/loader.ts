@@ -7,24 +7,36 @@ import { slugify, getNodeText, traverseNodes } from "./utils";
 import { DocsSDK } from "./gdocsdk";
 import { Renderer as ChapterPdfRenderer } from "./renderers/pdf/renderer";
 
+export interface TextbookLoaderOptions {
+  cacheOnly?: boolean;
+}
+
 export class TextbookLoader {
   edition: TextbookDefinition;
+  // Where images from the Google Docs are stored
   assetsDir: string;
   docsSdk: DocsSDK;
+  // Holds various counts such a number of figures in the textbook as a whole
+  // There are similar variable at the chapter and section level.
   textbookCounts: Map<string, number>;
-  glossary: GlossaryEntry[];
+  private _glossary: GlossaryEntry[] | null = null;
 
-  constructor(googleCreds: string, edition: TextbookDefinition) {
+  constructor(googleCreds: string | null, edition: TextbookDefinition, options: TextbookLoaderOptions = {}) {
     this.edition = edition;
     this.assetsDir = join(process.cwd(), "src", "assets", "uc")
-    this.docsSdk = new DocsSDK(googleCreds, this.assetsDir, (f: string) => `/assets/uc/${f}`)
+    this.docsSdk = new DocsSDK(googleCreds, this.assetsDir, (f: string) => `/assets/uc/${f}`, options.cacheOnly ?? false)
     this.textbookCounts = new Map<string, number>();
+  }
+
+  private async getGlossary(): Promise<GlossaryEntry[]> {
+    if (this._glossary === null) {
+      this._glossary = await this.loadGlossary();
+    }
+    return this._glossary;
   }
 
   async load(): Promise<Textbook> {
     const chapters: Chapter[] = [];
-
-    this.glossary = await this.loadGlossary()
 
     for (const def of this.edition.chapters) {
       const chapter = await this.loadChapter(def);
@@ -103,8 +115,9 @@ export class TextbookLoader {
   async loadChapter(meta: ChapterDefinition): Promise<Chapter> {
     const doc = await this.docsSdk.fetchDoc(meta.docId, meta.tabId);
     const body = doc.body?.content;
+    const glossary = await this.getGlossary();
 
-    const rawChapter = new Transformer(doc, this.textbookCounts, this.glossary).transformChapter(body ?? []);
+    const rawChapter = new Transformer(doc, this.textbookCounts, glossary).transformChapter(body ?? []);
 
     for (const section of rawChapter.sections) {
       traverseNodes(section.nodes, (node) => {

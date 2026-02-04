@@ -32,6 +32,7 @@
     "unstorage": "^1.17.3"
   },
   "devDependencies": {
+    "dotenv": "^17.2.3",
     "tsx": "^4.21.0",
     "vitest": "^4.0.15"
   }

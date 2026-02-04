@@ -33,15 +33,29 @@ export class Transformer {
   }
 
   transformSection(section, body: docs_v1.Schema$StructuralElement[]): Partial<Section> {
+    // Google Docs does not wrap list items into a list component.
+    // We accumulate list items and flush when the list ends.
+    let inList: Node | null = null
+
+    const flushList = () => {
+      if (inList !== null) {
+        section.nodes.push(inList)
+        inList = null
+      }
+    }
+
     while (body.length > 0) {
       let el = body.shift()
-      if (el === undefined) {
-        break
-      }
-      // Google Docs does not wrap list items into a list component
-      // We wrap them so HTML and Latex don't have to.
-      let inList: Node | null = null
+      if (el === undefined) break
 
+      // Check if this element continues the current list
+      const listId = el.paragraph?.bullet?.listId
+      const continuesList = listId && inList?.attributes.list === listId
+
+      // Flush pending list if this element doesn't continue it
+      if (!continuesList) {
+        flushList()
+      }
 
       // Handle tables
       if (el.table !== undefined) {
@@ -53,23 +67,19 @@ export class Transformer {
         }
 
         const node = this.processComponent(el.table);
-        if (!node) {
-          continue
-        }
+        if (!node) continue
 
-        if (node?.name === "SectionDescription") {
+        if (node.name === "SectionDescription") {
           section.description = node.attributes.value as string
           continue
         }
 
         section.nodes.push(node);
-
         continue
       }
 
       // Handle non-paragraphs => ignore
       if (el.paragraph === undefined) {
-        inList = null
         continue
       }
 
@@ -78,27 +88,22 @@ export class Transformer {
         continue
       }
 
-      // We've reached the end of a list
-      if (inList !== null && el.paragraph.bullet === undefined) {
-        section.nodes.push(inList)
-        inList = null
-      }
+      const styleType = el.paragraph.paragraphStyle?.namedStyleType
 
-      const styleType = el.paragraph!.paragraphStyle?.namedStyleType || undefined
-
-      // End of section - put the HEADING_1 back at the front for transformChapter to handle
+      // End of section - put the HEADING_1 back for transformChapter to handle
       if (styleType === 'HEADING_1') {
         body.unshift(el)
         return section
       }
 
+      // Handle headings
       if (styleType?.startsWith('HEADING_')) {
         let heading = this.createNode(
           "Heading", {
-            level: parseInt(el.paragraph!.paragraphStyle!.namedStyleType!.slice(8), 10),
+            level: parseInt(styleType.slice(8), 10),
             slug: slugify(this.getTrimmedString(el))
           },
-          this.getSpans(el.paragraph!)
+          this.getSpans(el.paragraph)
         )
 
         section.toc.push({
@@ -110,7 +115,7 @@ export class Transformer {
         continue
       }
 
-      const listId = el.paragraph.bullet?.listId
+      // Handle regular paragraphs (not list items)
       if (!listId) {
         let spans = this.getSpans(el.paragraph)
         section.readingTimeInSeconds += 60/200 * this.getSpansWordCount(spans)
@@ -118,16 +123,11 @@ export class Transformer {
         continue
       }
 
+      // Handle list items
       const glyphFormat = this.ctx.lists?.[listId]?.listProperties?.nestingLevels?.[0].glyphFormat || ''
-
-      // Two consequetive list => switch
-      if (inList !== null && inList.attributes.list !== listId) {
-        section.nodes.push(inList)
-        inList = null
-      }
-
       let spans = this.getSpans(el.paragraph)
       section.readingTimeInSeconds += 60/200 * this.getSpansWordCount(spans)
+
       if (inList === null) {
         inList = this.createNode(
           "List",
@@ -139,6 +139,7 @@ export class Transformer {
       }
     }
 
+    flushList()
     return section
   }
 

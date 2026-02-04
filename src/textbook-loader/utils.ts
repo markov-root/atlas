@@ -41,3 +41,52 @@ export function formatReadingTime(time_in_s: number): string {
 export function countWords(s: string): number {
   return s.split(/\s+/).filter(Boolean).length
 }
+
+/**
+ * Extracts all text content from an AST node tree.
+ * Handles all node types including Span, Link, GlossaryDefinition, equations,
+ * and text stored in attributes (captions, titles, etc.)
+ */
+export function extractAllText(nodes: Node[]): string {
+  const texts: string[] = [];
+
+  traverseNodes(nodes, (node) => {
+    if (node.name === "Span") {
+      const content = node.attributes.content as string;
+      if (content) texts.push(content);
+    }
+
+    if (node.name === "Link") {
+      const content = node.attributes.content as string;
+      if (content) texts.push(content);
+    }
+
+    if (node.name === "GlossaryDefinition") {
+      const matchedText = node.attributes.matchedText as string;
+      if (matchedText) texts.push(matchedText);
+      return false; // Don't recurse into children
+    }
+
+    if (node.name === "InlineEquation" || node.name === "DisplayEquation") {
+      const content = node.attributes.content as string;
+      if (content) texts.push(`$${content}$`);
+    }
+
+    // Extract text from SpanGroup attributes (caption, source, sourceUrl)
+    for (const key of ["caption", "source", "sourceUrl"]) {
+      const spanGroup = node.attributes[key] as Node | undefined;
+      if (spanGroup && typeof spanGroup === "object" && spanGroup.children) {
+        texts.push(getNodeText(spanGroup));
+      }
+    }
+
+    if (node.name === "NoteBox") {
+      const title = node.attributes.title as string;
+      if (title) texts.push(title);
+    }
+
+    return true;
+  });
+
+  return texts.join("");
+}
