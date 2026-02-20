@@ -37,6 +37,7 @@ export type Chapter = {
   readingTimeInSeconds: number
   contentHash: string
   pdfLink?: string
+  audioLink?: string
 }
 
 export type TocEntry = {
@@ -67,6 +68,7 @@ export type Section = {
   readingTimeInSeconds: number;
   prevSection: SectionRef | null;
   nextSection: SectionRef | null;
+  audioLink?: string;
 };
 
 export type Textbook = {

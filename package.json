@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
+    "@aws-sdk/client-s3": "^3.993.0",
     "@docsearch/css": "^4.5.3",
     "@docsearch/js": "^4.5.3",
     "@fontsource-variable/jost": "^5.2.8",
     "@fontsource/righteous": "^5.2.7",
     "@foreview/ais-logos-astro": "^0.1.0",
+    "@google/genai": "^1.42.0",
     "@iconify-json/cib": "^1.2.3",
     "@iconify-json/tabler": "^1.2.26",
     "@myriaddreamin/typst-ts-node-compiler": "0.7.0-rc1",

@@ -6,6 +6,7 @@ import { Transformer, type Node } from "./transformer";
 import { slugify, getNodeText, traverseNodes } from "./utils";
 import { DocsSDK } from "./gdocsdk";
 import { Renderer as ChapterPdfRenderer } from "./renderers/pdf/renderer";
+import { Renderer as AudioRenderer } from "./renderers/audio/renderer";
 
 export interface TextbookLoaderOptions {
   cacheOnly?: boolean;
@@ -55,7 +56,11 @@ export class TextbookLoader {
     };
 
     const outputDir = join(process.cwd(), 'public', 'uc');
-    let _ = await new ChapterPdfRenderer(textbook, this.assetsDir, outputDir).render()
+    await new ChapterPdfRenderer(textbook, this.assetsDir, outputDir).render();
+
+    if (process.env.GEMINI_API_KEY) {
+      await new AudioRenderer(textbook, this.assetsDir, outputDir).render();
+    }
 
     return textbook;
   }

@@ -180,14 +180,14 @@ function renderNode(node: Node, ctx: RenderContext): string | string[] {
 
   if (node.name === 'Heading') {
     const level = node.attributes.level as number;
-    const text = node.children.map(child => renderNode(child, ctx)).join('');
+    const text = node.children.map(child => renderNode(child, ctx)).flat().join('');
     const prefix = '='.repeat(Math.min(level, 4));
     return `${prefix} ${text}`;
   }
 
   if (node.name === 'List') {
     return node.children.map(child => {
-      const content = child.children.map(c => renderNode(c, ctx)).join('');
+      const content = child.children.map(c => renderNode(c, ctx)).flat().join('');
       return `${node.attributes.ordered ? '+' : '-'} ${content}\n`;
     });
   }
@@ -199,7 +199,7 @@ function renderNode(node: Node, ctx: RenderContext): string | string[] {
 
     return `#figure(
     image("${image}", width: 90%),
-    caption: [${caption ? renderNode(caption, ctx) : ''}]
+    caption: [${caption ? [renderNode(caption, ctx)].flat().join('') : ''}]
     )`;
   }
 
@@ -219,8 +219,8 @@ function renderNode(node: Node, ctx: RenderContext): string | string[] {
   if (node.name === 'Quote') {
     const { speaker, position, date, sourceUrl } = node.attributes
 
-    const content = node.children.map(child => renderNode(child, ctx)).join('');
-    const sourceUrlText = sourceUrl ? renderNode(sourceUrl, ctx) : 'none';
+    const content = node.children.map(child => renderNode(child, ctx)).flat().join('');
+    const sourceUrlText = sourceUrl ? [renderNode(sourceUrl, ctx)].flat().join('') : 'none';
 
     return `#quote-box(
     ${speaker ? `[${escapeTypst(speaker)}]` : 'none'},
@@ -232,7 +232,7 @@ function renderNode(node: Node, ctx: RenderContext): string | string[] {
   }
 
   if (node.name === 'NoteBox') {
-    const content = node.children.map(child => renderNode(child, ctx)).join('');
+    const content = node.children.map(child => renderNode(child, ctx)).flat().join('');
     return `#note-box(
     [${escapeTypst(node.attributes.title || 'Note')}],
     [${content}]
@@ -241,7 +241,7 @@ function renderNode(node: Node, ctx: RenderContext): string | string[] {
 
   if (node.name === 'Callout') {
     const { flavor } = node.attributes as { flavor?: string };
-    const content = node.children.map(child => renderNode(child, ctx)).join('');
+    const content = node.children.map(child => renderNode(child, ctx)).flat().join('');
     if (flavor === 'warning') {
       return `#warning-box([${content}])`;
     }
@@ -258,7 +258,7 @@ function renderNode(node: Node, ctx: RenderContext): string | string[] {
   }
 
   if (node.name === 'Footnote') {
-    const content = node.children.map(child => renderNode(child, ctx)).join('');
+    const content = node.children.map(child => renderNode(child, ctx)).flat().join('');
     return `#footnote[${content}]`;
   }
 
@@ -274,7 +274,7 @@ function renderNode(node: Node, ctx: RenderContext): string | string[] {
       console.warn(`Iframe has no still image`);
       return ''
     }
-    const captionText = caption ? renderNode(caption, ctx) : '';
+    const captionText = caption ? [renderNode(caption, ctx)].flat().join('') : '';
 
     return `#figure(
     image("${stillImage}", width: 90%),

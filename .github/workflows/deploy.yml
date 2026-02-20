@@ -25,6 +25,9 @@ jobs:
       - name: Install typst
         uses: typst-community/setup-typst@v4
 
+      - name: Install ffmpeg
+        run: sudo apt-get install -y ffmpeg
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -47,6 +50,11 @@ jobs:
           PUBLIC_ALGOLIA_SEARCH_KEY: ${{ secrets.PUBLIC_ALGOLIA_SEARCH_KEY }}
           PUBLIC_ALGOLIA_INDEX_NAME: ${{ secrets.PUBLIC_ALGOLIA_INDEX_NAME }}
           ALGOLIA_WRITE_KEY: ${{ secrets.ALGOLIA_WRITE_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
