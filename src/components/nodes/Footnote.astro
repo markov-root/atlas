@@ -7,10 +7,44 @@ const { number } = Astro.props;
 ---
 
 <sup class="footnote-ref -ml-1">
-  <a href={`#fn-${number}`} id={`fnref-${number}`}>{number}</a>
+  <a href={`#fn-${number}`} id={`fnref-${number}`} data-footnote-ref={number}>{number}</a>
 </sup>
 
-<style>
+<script>
+  import tippy from 'tippy.js';
+  import 'tippy.js/dist/tippy.css';
+
+  function initFootnotePopovers() {
+    const refs = document.querySelectorAll<HTMLAnchorElement>('a[data-footnote-ref]:not([data-tippy-initialized])');
+
+    refs.forEach((el) => {
+      const num = el.dataset.footnoteRef;
+      const footnote = document.getElementById(`fn-${num}`);
+      if (!footnote) return;
+
+      // Clone footnote content, excluding the back-link
+      const clone = footnote.cloneNode(true) as HTMLElement;
+      clone.querySelector('a[aria-label="Back to content"]')?.remove();
+
+      tippy(el, {
+        content: clone.innerHTML,
+        allowHTML: true,
+        interactive: true,
+        appendTo: document.body,
+        trigger: 'mouseenter focus',
+        theme: 'footnote',
+        maxWidth: 400,
+      });
+
+      el.setAttribute('data-tippy-initialized', 'true');
+    });
+  }
+
+  initFootnotePopovers();
+  document.addEventListener('astro:after-swap', initFootnotePopovers);
+</script>
+
+<style is:global>
   .footnote-ref a {
     color: var(--color-brand-600);
     text-decoration: none;
@@ -18,6 +52,36 @@ const { number } = Astro.props;
   }
 
   .footnote-ref a:hover {
+    text-decoration: underline;
+  }
+
+  .tippy-box[data-theme~='footnote'] {
+    background-color: white;
+    color: var(--color-gray-700);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    border-radius: 0.75rem;
+  }
+
+  .tippy-box[data-theme~='footnote'] .tippy-content {
+    padding: 0.75rem 1rem;
+  }
+
+  .tippy-box[data-theme~='footnote'] .tippy-arrow {
+    color: white;
+  }
+
+  .tippy-box[data-theme~='footnote'] p {
+    margin: 0;
+  }
+
+  .tippy-box[data-theme~='footnote'] p + p {
+    margin-top: 0.5rem;
+  }
+
+  .tippy-box[data-theme~='footnote'] a {
+    color: var(--color-brand-600);
     text-decoration: underline;
   }
 </style>

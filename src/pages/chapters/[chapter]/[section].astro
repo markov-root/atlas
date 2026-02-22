@@ -1,38 +1,39 @@
 ---
+import type { Section, Chapter } from '@/textbook-loader';
 import { getTextbooks } from "@/lib/textbooks";
 
 export async function getStaticPaths() {
   const textbooks = await getTextbooks();
+  const sorted = textbooks.sort((a, b) => b.data.version.localeCompare(a.data.version));
+  if (sorted.length === 0) return [];
+  const textbook = sorted[0];
 
   let paths = []
 
-  for (const textbook of textbooks) {
-    for (const chapter of textbook.data.chapters) {
-      for (const section of chapter.sections) {
-        // Generate paths for both padded (01) and unpadded (1) chapter/section numbers
-        const chapterVariants = [
-          String(chapter.number),
-          String(chapter.number).padStart(2, '0'),
-        ];
-        const sectionVariants = [
-          String(section.number),
-          String(section.number).padStart(2, '0'),
-        ];
+  for (const chapter of textbook.data.chapters) {
+    for (const section of chapter.sections) {
+      const chapterVariants = [
+        String(chapter.number),
+        String(chapter.number).padStart(2, '0'),
+      ];
+      const sectionVariants = [
+        String(section.number),
+        String(section.number).padStart(2, '0'),
+      ];
 
-        for (const chapterParam of chapterVariants) {
-          for (const sectionParam of sectionVariants) {
-            paths.push({
-              params: {
-                chapter: chapterParam,
-                section: sectionParam,
-              },
-              props: {
-                version: textbook.data.version,
-                chapterSlug: chapter.slug,
-                sectionSlug: section.slug,
-              },
-            })
-          }
+      for (const chapterParam of chapterVariants) {
+        for (const sectionParam of sectionVariants) {
+          paths.push({
+            params: {
+              chapter: chapterParam,
+              section: sectionParam,
+            },
+            props: {
+              version: textbook.data.version,
+              chapter,
+              section,
+            },
+          })
         }
       }
     }
@@ -41,7 +42,7 @@ export async function getStaticPaths() {
   return paths
 }
 
-const { version, chapterSlug, sectionSlug } = Astro.props;
+const { version, chapter, section } = Astro.props as { version: string; chapter: Chapter; section: Section };
 
-return Astro.redirect(`/chapters/${version}/${chapterSlug}/${sectionSlug}`, 301);
+return Astro.redirect(`/chapters/${version}/${chapter.slug}/${section.slug}`, 301);
 ---

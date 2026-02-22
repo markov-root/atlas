@@ -56,7 +56,7 @@ export class Renderer {
   }
 
   async renderChapter(chapter: Chapter): Promise<string> {
-    const pdfFilename = `atlas-chapter${chapter.number}-${chapter.contentHash.slice(0, 16)}.pdf`;
+    const pdfFilename = `atlas-chapter${chapter.number}-${chapter.contentHash}.pdf`;
     const pdfPath = join(this.outputDir, pdfFilename);
 
     if (existsSync(pdfPath)) {

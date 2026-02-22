@@ -2,6 +2,9 @@
 import Default from "@/layouts/Default.astro";
 import Button from "@/components/Button.astro";
 import { Icon } from "astro-icon/components";
+import { getFirstChapterUrl } from '@/lib/textbooks';
+
+const readUrl = await getFirstChapterUrl();
 ---
 
 <Default title="Page not found" description="The page you are looking for does not exist.">
@@ -19,7 +22,7 @@ import { Icon } from "astro-icon/components";
             </Button>
         </div>
         <div class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-semibold">
-            <a href="/read" class="text-brand-600 hover:text-brand-500">
+            <a href={readUrl} class="text-brand-600 hover:text-brand-500">
                 Read <Icon name="tabler:arrow-right" class="size-4 inline" />
             </a>
             <a href="/teach" class="text-brand-600 hover:text-brand-500">

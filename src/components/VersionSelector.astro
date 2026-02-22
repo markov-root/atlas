@@ -22,10 +22,10 @@ const urlVersion = pathname.match(/\/chapters\/([^/]+)\//)?.[1]
   || pathname.match(/\/read\/([^/]+)/)?.[1]
 const activeVersion = currentVersion || urlVersion || versions[0]
 
-// Format version for display (e.g., "v1" -> "Version 1")
+// Format version for display (e.g., "v1" -> "Edition 1")
 function formatVersion(v: string) {
   const num = v.replace(/^v/, '')
-  return `Version ${num}`
+  return `Edition ${num}`
 }
 ---
 

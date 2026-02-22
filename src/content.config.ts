@@ -1,5 +1,5 @@
 import { defineCollection, z } from 'astro:content';
-import { GOOGLE_CREDENTIALS_BASE64, ALGOLIA_WRITE_KEY } from "astro:env/server"
+import { GOOGLE_CREDENTIALS_BASE64, ALGOLIA_WRITE_KEY, ELEVENLABS_API_KEY, GEMINI_API_KEY, R2_ENDPOINT, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET, SKIP_AUDIO } from "astro:env/server"
 import { PUBLIC_ALGOLIA_APP_ID, PUBLIC_ALGOLIA_INDEX_NAME } from "astro:env/client"
 import { TEXTBOOK_EDITIONS } from './textbook-loader/data';
 import { TextbookLoader } from './textbook-loader/loader';
@@ -17,6 +17,15 @@ const organizations = defineCollection({
   }),
   schema: organizationSchema,
 });
+
+// Bridge Astro env vars to process.env for the audio renderer and R2 cache
+if (ELEVENLABS_API_KEY) process.env.ELEVENLABS_API_KEY = ELEVENLABS_API_KEY;
+if (GEMINI_API_KEY) process.env.GEMINI_API_KEY = GEMINI_API_KEY;
+if (SKIP_AUDIO) process.env.SKIP_AUDIO = SKIP_AUDIO;
+if (R2_ENDPOINT) process.env.R2_ENDPOINT = R2_ENDPOINT;
+if (R2_ACCESS_KEY_ID) process.env.R2_ACCESS_KEY_ID = R2_ACCESS_KEY_ID;
+if (R2_SECRET_ACCESS_KEY) process.env.R2_SECRET_ACCESS_KEY = R2_SECRET_ACCESS_KEY;
+if (R2_BUCKET) process.env.R2_BUCKET = R2_BUCKET;
 
 const textbooks = defineCollection({
   loader: async () => {

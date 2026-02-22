@@ -5,21 +5,23 @@ const indexName = import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME || 'atlas-foreview'
 ---
 
 <!-- Hidden container for DocSearch -->
-<div id="docsearch-container" class="hidden" aria-hidden="true"></div>
+<div id="docsearch-container" class="hidden" aria-hidden="true" transition:persist="docsearch"></div>
 
 <script is:inline define:vars={{ appId, apiKey, indexName }}>
 (function() {
+  // Re-add CSS if removed by ClientRouter head swap
+  if (!document.querySelector('link[href*="@docsearch/css"]')) {
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdn.jsdelivr.net/npm/@docsearch/css@3/dist/style.min.css';
+    document.head.appendChild(link);
+  }
+
   if (window.__docsearchInitialized) return;
   window.__docsearchInitialized = true;
 
-  // Load CSS
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = 'https://cdn.jsdelivr.net/npm/@docsearch/css@3/dist/style.min.css';
-  document.head.appendChild(link);
-
   // Load JS and initialize
-  const script = document.createElement('script');
+  var script = document.createElement('script');
   script.src = 'https://cdn.jsdelivr.net/npm/@docsearch/js@3/dist/umd/index.min.js';
   script.onload = function() {
     window.docsearch({
@@ -34,15 +36,15 @@ const indexName = import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME || 'atlas-foreview'
 
     // Expose global open function
     window.openDocSearch = function() {
-      const button = document.querySelector('#docsearch-container .DocSearch-Button');
+      var button = document.querySelector('#docsearch-container .DocSearch-Button');
       if (button) button.click();
     };
 
-    // Set up all trigger buttons
-    document.querySelectorAll('[data-docsearch-trigger]').forEach(function(trigger) {
-      trigger.addEventListener('click', function() {
+    // Set up trigger buttons via event delegation (works with DOM swaps from ClientRouter)
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('[data-docsearch-trigger]')) {
         window.openDocSearch();
-      });
+      }
     });
   };
   document.head.appendChild(script);

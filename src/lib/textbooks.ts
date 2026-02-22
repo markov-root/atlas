@@ -32,6 +32,18 @@ export async function getLatestTextbook(): Promise<Textbook> {
 }
 
 /**
+ * Get the URL to the first section of the first chapter of the latest textbook.
+ */
+export async function getFirstChapterUrl(): Promise<string> {
+  const textbook = await getLatestTextbook();
+  const firstChapter = textbook.chapters[0];
+  if (firstChapter?.sections[0]) {
+    return `/chapters/${textbook.version}/${firstChapter.slug}/${firstChapter.sections[0].slug}`;
+  }
+  return '/read';
+}
+
+/**
  * Get all English textbooks.
  */
 export async function getTextbooks() {

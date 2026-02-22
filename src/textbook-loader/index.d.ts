@@ -17,15 +17,22 @@ export type Author = {
   affiliation: string
 }
 
+export type ResourceStatus = 'current' | 'outdated'
+
+export type Resource = {
+  url: string
+  status?: ResourceStatus
+}
+
 export type ChapterDefinition = {
   docId: string
   tabId: string
   description?: string
   authors: Author[]
   acknowledgements: string[]
-  lecture?: string,
-  paper?: string,
-  facilitationGuide?: string
+  lecture?: string | Resource
+  paper?: string | Resource
+  facilitationGuide?: string | Resource
 }
 
 export type Chapter = {

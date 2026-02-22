@@ -4,7 +4,7 @@ import Reader from '@/layouts/Reader.astro';
 import SectionFeedback from '@/components/SectionFeedback.astro';
 import type { Chapter, Section, SectionRef } from '@/textbook-loader';
 import type { Textbook } from '@/textbook-loader/loader';
-import { formatReadingTime } from '@/textbook-loader/utils';
+import { formatReadingTime, resolveResource } from '@/textbook-loader/utils';
 import { Icon } from 'astro-icon/components'
 import { getTextbooks } from "@/lib/textbooks";
 
@@ -61,8 +61,13 @@ const nextInfo = getSectionInfo(section.nextSection);
 // Check if this is the last section in the textbook
 const isLastSection = section.nextSection === null;
 
+const sectionMarkdownUrl = `/chapters/${version}/${chapter.slug}/${section.slug}.md`;
+const chapterMarkdownUrl = `/chapters/${version}/${chapter.slug}.md`;
+
+const lecture = resolveResource(chapter.meta.lecture);
+const paper = resolveResource(chapter.meta.paper);
 ---
-<Reader title={`${section.title} - Chapter ${chapter.number}`} description="" activeSection={section} textbook={textbook} breadcrumbs={[
+<Reader title={`${section.title} - Chapter ${chapter.number}`} description="" activeSection={section} textbook={textbook} markdownUrl={sectionMarkdownUrl} breadcrumbs={[
     { text: `Chapter ${chapter.number}`, url: `/chapters/${version}/${chapter.slug}/${chapter.sections[0].slug}` },
     { text: section.title, url: '#' }
 ]}>
@@ -85,22 +90,162 @@ const isLastSection = section.nextSection === null;
                     </span>
                 </li>
             </ul>
-            {section.number === 1 && (chapter.pdfLink || chapter.meta.lecture) && (
-            <div class="flex gap-4 mt-8">
-                {chapter.pdfLink && (
-                <a href={chapter.pdfLink} class="text-gray-500 hover:text-gray-900 transition-colors" title="Download PDF">
-                    <span class="sr-only">Download PDF</span>
-                    <Icon name="tabler:file-type-pdf" class="size-6" />
-                </a>
-                )}
-                {chapter.meta.lecture && (
-                <a href={chapter.meta.lecture} class="text-gray-500 hover:text-gray-900 transition-colors" title="Watch lecture">
-                    <span class="sr-only">Watch lecture</span>
-                    <Icon name="cib:youtube" class="size-6" />
-                </a>
-                )}
-            </div>
-            )}
+            {(() => {
+                const hasAudio = !!section.audioLink;
+                const isFirstSection = section.number === 1;
+
+                const hasVideo = isFirstSection && lecture;
+                return (
+                    <div class="media-tabs" data-media-tabs>
+                        {/* Tab bar */}
+                        <div class="media-tab-bar" role="tablist">
+                            <button role="tab" type="button" id="tab-audio" aria-selected="true" aria-controls="panel-audio" tabindex={0} class="media-tab" data-tab="audio">
+                                <Icon name="tabler:headphones" class="size-4" />
+                                Listen
+                            </button>
+                            <button role="tab" type="button" id="tab-resources" aria-selected="false" aria-controls="panel-resources" tabindex={-1} class="media-tab" data-tab="resources">
+                                <Icon name="tabler:download" class="size-4" />
+                                Download
+                            </button>
+                            {hasVideo && (
+                            <button role="tab" type="button" id="tab-video" aria-selected="false" aria-controls="panel-video" tabindex={-1} class="media-tab" data-tab="video">
+                                <Icon name="tabler:player-play" class="size-4" />
+                                Watch
+                            </button>
+                            )}
+                            <button role="tab" type="button" id="tab-report" aria-selected="false" aria-controls="panel-report" tabindex={-1} class="media-tab" data-tab="report">
+                                <Icon name="tabler:message-report" class="size-4" />
+                                Report problem
+                            </button>
+                        </div>
+
+                        {/* Audio panel */}
+                        <div role="tabpanel" id="panel-audio" aria-labelledby="tab-audio" class="media-panel" data-panel="audio">
+                            {hasAudio ? (
+                            <div id="inline-audio-player" class="space-y-3">
+                                <p id="inline-track-title" class="text-sm font-medium text-gray-900 truncate">{chapter.number}.{section.number} {section.title}</p>
+                                <div class="flex items-center gap-3">
+                                <button type="button" data-audio-listen class="shrink-0 p-2.5 bg-brand-600 text-white rounded-full hover:bg-brand-700 transition-colors shadow-sm cursor-pointer" title="Play/Pause">
+                                    <svg class="size-5 audio-icon-play" viewBox="0 0 24 24"><path fill="currentColor" d="M6 4v16a1 1 0 0 0 1.524.852l13-8a1 1 0 0 0 0-1.704l-13-8A1 1 0 0 0 6 4"/></svg>
+                                    <svg class="size-5 audio-icon-pause hidden" viewBox="0 0 24 24"><path fill="currentColor" d="M9 4H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2m8 0h-2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg>
+                                </button>
+                                <div class="flex-1 min-w-0 space-y-1">
+                                    <div class="relative h-1.5 bg-gray-200 rounded-full cursor-pointer group" data-audio-seek="inline">
+                                        <div id="inline-progress-bar" class="absolute inset-y-0 left-0 bg-brand-600 rounded-full pointer-events-none" style="width: 0%"></div>
+                                        <div id="inline-progress-handle" class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3 h-3 bg-brand-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" style="left: 0%"></div>
+                                    </div>
+                                    <div class="flex justify-between text-xs text-gray-500 tabular-nums">
+                                        <span id="inline-time-current">0:00</span>
+                                        <span id="inline-time-duration">0:00</span>
+                                    </div>
+                                </div>
+                                <select data-audio-speed class="audio-speed shrink-0">
+                                    <option value="0.5">0.5x</option>
+                                    <option value="0.75">0.75x</option>
+                                    <option value="1" selected>1x</option>
+                                    <option value="1.25">1.25x</option>
+                                    <option value="1.5">1.5x</option>
+                                    <option value="1.75">1.75x</option>
+                                    <option value="2">2x</option>
+                                </select>
+                                </div>
+                            </div>
+                            ) : (
+                            <p class="text-sm text-gray-500">Audio is not available for this section right now.</p>
+                            )}
+                        </div>
+
+                        {/* Resources panel */}
+                        <div role="tabpanel" id="panel-resources" aria-labelledby="tab-resources" class="media-panel hidden" data-panel="resources">
+                            <ul class="space-y-2.5">
+                                {chapter.pdfLink && (
+                                <li class="flex items-center gap-2.5">
+                                    <span class="text-gray-400 text-xl leading-none">&bull;</span>
+                                    <Icon name="tabler:file-type-pdf" class="size-4.5 text-red-500 shrink-0" />
+                                    <a href={`/chapters/${version}/${chapter.slug}.pdf`} class="text-[15px] text-gray-700 underline decoration-gray-300 underline-offset-2 hover:text-gray-900 hover:decoration-gray-500 transition-colors">Download chapter PDF</a>
+                                </li>
+                                )}
+                                {chapter.audioLink && (
+                                <li class="flex items-center gap-2.5">
+                                    <span class="text-gray-400 text-xl leading-none">&bull;</span>
+                                    <Icon name="tabler:headphones" class="size-4.5 text-brand-600 shrink-0" />
+                                    <a href={`/chapters/${version}/${chapter.slug}.mp3`} class="text-[15px] text-gray-700 underline decoration-gray-300 underline-offset-2 hover:text-gray-900 hover:decoration-gray-500 transition-colors">Download chapter audio</a>
+                                </li>
+                                )}
+                                <li class="flex items-center gap-2.5">
+                                    <span class="text-gray-400 text-xl leading-none">&bull;</span>
+                                    <Icon name="tabler:markdown" class="size-4.5 text-gray-500 shrink-0" />
+                                    <a href={chapterMarkdownUrl} download class="text-[15px] text-gray-700 underline decoration-gray-300 underline-offset-2 hover:text-gray-900 hover:decoration-gray-500 transition-colors">Download chapter as markdown</a>
+                                </li>
+                                {paper && (
+                                <li class="flex items-center gap-2.5">
+                                    <span class="text-gray-400 text-xl leading-none">&bull;</span>
+                                    <Icon name="tabler:article" class="size-4.5 text-violet-600 shrink-0" />
+                                    <a href={paper.url} target="_blank" rel="noopener noreferrer" class="text-[15px] text-gray-700 underline decoration-gray-300 underline-offset-2 hover:text-gray-900 hover:decoration-gray-500 transition-colors">Download research paper</a>
+                                    {paper.status === 'outdated' && <span class="text-xs text-amber-600">(outdated)</span>}
+                                </li>
+                                )}
+                            </ul>
+                        </div>
+
+                        {/* Video panel */}
+                        {hasVideo && (
+                        <div role="tabpanel" id="panel-video" aria-labelledby="tab-video" class="media-panel hidden" data-panel="video">
+                            <ul class="space-y-2.5">
+                                <li class="flex items-center gap-2.5">
+                                    <span class="text-gray-400 text-xl leading-none">&bull;</span>
+                                    <Icon name="cib:youtube" class="size-4.5 text-red-500 shrink-0" />
+                                    <a href={lecture!.url} target="_blank" rel="noopener noreferrer" class="text-[15px] text-gray-700 underline decoration-gray-300 underline-offset-2 hover:text-gray-900 hover:decoration-gray-500 transition-colors">Watch lecture on YouTube</a>
+                                    {lecture!.status === 'outdated' && <span class="text-xs text-amber-600">(outdated)</span>}
+                                </li>
+                            </ul>
+                        </div>
+                        )}
+
+                        {/* Report panel */}
+                        <div role="tabpanel" id="panel-report" aria-labelledby="tab-report" class="media-panel hidden" data-panel="report">
+                            <form id="report-form" action="https://formspree.io/f/xeelnqbz" method="POST" class="space-y-3">
+                                <input type="hidden" name="page" value={`Chapter ${chapter.number}, Section ${section.number}: ${section.title}`} />
+                                <input type="hidden" name="url" value={`/chapters/${version}/${chapter.slug}/${section.slug}`} />
+                                <input type="hidden" name="version" value={version} />
+                                <input type="hidden" name="chapter" value={String(chapter.number)} />
+                                <input type="hidden" name="section" value={String(section.number)} />
+                                <input type="hidden" name="contentHash" value={chapter.contentHash} />
+                                <input type="hidden" name="userAgent" id="report-useragent" value="" />
+                                <input type="hidden" name="viewport" id="report-viewport" value="" />
+                                <input type="hidden" name="timestamp" id="report-timestamp" value="" />
+                                <input type="hidden" name="fullUrl" id="report-fullurl" value="" />
+                                <div>
+                                    <label for="report-email" class="block text-sm font-medium text-gray-700 mb-1">Your email <span class="text-red-500">*</span></label>
+                                    <input type="email" name="email" id="report-email" required placeholder="you@example.com" class="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-1 focus:ring-brand-600 focus:border-brand-600" />
+                                </div>
+                                <div>
+                                    <label for="report-message" class="block text-sm font-medium text-gray-700 mb-1">What's wrong? <span class="text-red-500">*</span></label>
+                                    <textarea name="message" id="report-message" required rows={3} placeholder="Describe the issue..." class="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-1 focus:ring-brand-600 focus:border-brand-600 resize-y"></textarea>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <p class="text-xs text-gray-500">We may contact you for follow-up. See our <a href="/privacy-policy" class="underline hover:text-gray-700">privacy policy</a>.</p>
+                                    <button type="submit" class="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-white bg-brand-600 rounded-lg hover:bg-brand-700 transition-colors cursor-pointer">
+                                        <Icon name="tabler:send" class="size-4" />
+                                        Send
+                                    </button>
+                                </div>
+                            </form>
+                            <script>
+                                const form = document.getElementById('report-form');
+                                form?.addEventListener('submit', () => {
+                                    document.getElementById('report-useragent')!.setAttribute('value', navigator.userAgent);
+                                    document.getElementById('report-viewport')!.setAttribute('value', `${window.innerWidth}x${window.innerHeight}`);
+                                    document.getElementById('report-timestamp')!.setAttribute('value', new Date().toISOString());
+                                    document.getElementById('report-fullurl')!.setAttribute('value', window.location.href);
+                                });
+                            </script>
+                        </div>
+
+                    </div>
+                );
+            })()}
+
         </div>
     </div>
 
@@ -108,13 +253,13 @@ const isLastSection = section.nextSection === null;
         {section.nodes.map(node => <NodeRenderer node={node} />)}
 
         {section.footnotes && section.footnotes.length > 0 && (
-        <section id="footnotes" class="mt-12 pt-8 border-t border-gray-200">
+        <section id="footnotes" class="mt-12 pt-8 border-t border-gray-300">
             <h2 class="text-xl font-semibold mb-4 text-gray-900 sr-only">Footnotes</h2>
             <ol class="list-decimal list-outside pl-6 text-sm text-gray-700 space-y-3">
                 {section.footnotes.map(({ number, children }) => (
                 <li id={`fn-${number}`} class="pl-2 target:bg-brand-50 target:border-l-2 target:border-brand-500 target:-ml-2 target:pl-1.5 target:pr-2">
                     {children.map(child => <NodeRenderer node={child} />)}
-                    <a href={`#fnref-${number}`} class="ml-2 text-brand-600 no-underline text-sm hover:underline" aria-label="Back to content">↩</a>
+                    <a href={`#fnref-${number}`} class="ml-2 text-brand-600 no-underline text-sm hover:underline inline-flex items-center" aria-label="Back to content"><Icon name="tabler:arrow-back-up" class="size-4" /></a>
                 </li>
                 ))}
             </ol>
@@ -138,66 +283,50 @@ const isLastSection = section.nextSection === null;
             isLastSection={isLastSection}
         />
 
-        <nav class="not-prose mt-16 border-t border-gray-200 pt-8">
-            <div class="grid md:grid-cols-2 gap-4">
-                {prevInfo ? (
-                <a href={`/chapters/${version}/${prevInfo.chapter.slug}/${prevInfo.section.slug}`} class="group bg-gray-100 px-5 py-4 w-full rounded-2xl flex gap-x-3 items-center">
-                        <span class="sr-only">Previous</span>
-                        <Icon name="tabler:chevron-left" class="size-5 text-gray-500" />
-                    <span class="text-sm font-medium text-gray-900 group-hover:text-brand-600">
-                        {prevInfo.chapter.number}.{prevInfo.section.number}. {prevInfo.section.title}
+        <nav class="not-prose mt-16 flex items-stretch rounded-2xl border border-gray-200 bg-white">
+            {prevInfo && (
+            <a href={`/chapters/${version}/${prevInfo.chapter.slug}/${prevInfo.section.slug}`} class="flex items-center gap-1 px-5 text-sm text-gray-600 hover:text-gray-900 transition-colors shrink-0">
+                <Icon name="tabler:chevron-left" class="size-3.5" />
+                <span>Previous</span>
+            </a>
+            )}
+
+            {nextInfo && (
+            <a href={`/chapters/${version}/${nextInfo.chapter.slug}/${nextInfo.section.slug}`} class="group flex-1 flex items-stretch rounded-xl bg-brand-600 hover:bg-brand-500 transition-colors min-w-0 m-1.5">
+                <div class="flex-1 flex items-center justify-end text-right px-5 py-3 min-w-0">
+                    <div class="min-w-0">
+                        <div class="text-sm font-medium text-white/80">{nextInfo.section.title}</div>
+                        {nextInfo.section.description && (
+                        <div class="text-xs text-white/60 line-clamp-1">{nextInfo.section.description}</div>
+                        )}
+                    </div>
+                </div>
+                <div class="flex items-center px-4 border-l border-white/20 my-2.5">
+                    <span class="flex items-center gap-1 text-sm font-medium text-white">
+                        Next
+                        <Icon name="tabler:chevron-right" class="size-3.5" />
                     </span>
-                </a>
-                ) : <div />}
-                {nextInfo ? (
-                <a href={`/chapters/${version}/${nextInfo.chapter.slug}/${nextInfo.section.slug}`} class="group flex items-center justify-end text-right bg-brand-600 w-full px-5 py-4 rounded-2xl gap-x-3 hover:bg-brand-500">
-                    <span class="sr-only">Next</span>
-                    <span class="text-sm font-medium group-hover:text-white/90 text-white">
-                        {nextInfo.chapter.number}.{nextInfo.section.number}.
-                        {nextInfo.section.title}
-                    </span>
-                    <Icon name="tabler:chevron-right" class="size-5 text-white" />
-                </a>
-                ) : <div />}
-            </div>
+                </div>
+            </a>
+            )}
         </nav>
     </article>
 
-    {section.toc.length > 0 && (
-    <aside slot="toc" class="hidden lg:block w-56 shrink-0 overflow-y-auto pt-6">
-        <nav class="pl-4">
-            <h2 class="text-sm font-semibold text-gray-500 mb-3">On this page</h2>
-            <ul class="space-y-2">
-                {(() => {
-                    let h2Count = 0;
-                    return section.toc
-                        .filter(item => item.level === 2 || item.level === 3)
-                        .map(item => {
-                            if (item.level === 2) h2Count++;
-                            return (
-                                <li class={item.level === 3 ? "pl-3" : ""}>
-                                    <a href={`#${item.slug}`} class="text-sm text-gray-600 hover:text-brand-600 transition-colors block">
-                                        {item.level === 2 ? `${h2Count}. ${item.title}` : item.title}
-                                    </a>
-                                </li>
-                            );
-                        });
-                })()}
-                {section.footnotes && section.footnotes.length > 0 && (
-                    <li class="mt-4">
-                        <a href="#footnotes" class="text-sm text-gray-600 hover:text-brand-600 transition-colors block">
-                            Footnotes
-                        </a>
-                    </li>
-                )}
-            </ul>
-        </nav>
-    </aside>
+    {section.audioLink && (
+    <div id="audio-page-data" class="hidden"
+        data-audio-url={section.audioLink}
+        data-section-title={`${chapter.number}.${section.number} ${section.title}`}
+        data-chapter-title={chapter.title}
+        data-chapter-number={String(chapter.number)}
+        data-section-number={String(section.number)}
+        data-next-url={nextInfo ? `/chapters/${version}/${nextInfo.chapter.slug}/${nextInfo.section.slug}` : ''}
+        data-next-audio-url={nextInfo?.section.audioLink || ''}
+    ></div>
     )}
 
-    {section.toc.length > 0 && (
-    <nav slot="mobile-toc" class="mt-4 px-6 py-4 rounded-2xl bg-white">
-        <h2 class="text-sm font-semibold text-gray-500 mb-3">On this page</h2>
+    <nav slot="toc" class="overflow-y-auto pt-6 pl-4 h-full">
+        <h2 class="text-sm font-semibold text-gray-700 mb-3">On this page</h2>
+        {section.toc.length > 0 ? (
         <ul class="space-y-2">
             {(() => {
                 let h2Count = 0;
@@ -222,6 +351,40 @@ const isLastSection = section.nextSection === null;
                 </li>
             )}
         </ul>
+        ) : (
+        <p class="text-sm text-gray-500">This section has no headings.</p>
+        )}
     </nav>
-    )}
+
+    <nav slot="mobile-toc" class="mt-4 px-6 py-4 rounded-2xl bg-white">
+        <h2 class="text-sm font-semibold text-gray-700 mb-3">On this page</h2>
+        {section.toc.length > 0 ? (
+        <ul class="space-y-2">
+            {(() => {
+                let h2Count = 0;
+                return section.toc
+                    .filter(item => item.level === 2 || item.level === 3)
+                    .map(item => {
+                        if (item.level === 2) h2Count++;
+                        return (
+                            <li class={item.level === 3 ? "pl-3" : ""}>
+                                <a href={`#${item.slug}`} class="text-sm text-gray-600 hover:text-brand-600 transition-colors block">
+                                    {item.level === 2 ? `${h2Count}. ${item.title}` : item.title}
+                                </a>
+                            </li>
+                        );
+                    });
+            })()}
+            {section.footnotes && section.footnotes.length > 0 && (
+                <li class="mt-4">
+                    <a href="#footnotes" class="text-sm text-gray-600 hover:text-brand-600 transition-colors block">
+                        Footnotes
+                    </a>
+                </li>
+            )}
+        </ul>
+        ) : (
+        <p class="text-sm text-gray-500">This section has no headings.</p>
+        )}
+    </nav>
 </Reader>

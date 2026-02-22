@@ -17,6 +17,11 @@ export type RawChapter = {
 
 type Cell = docs_v1.Schema$StructuralElement | docs_v1.Schema$StructuralElement[] | undefined
 
+/** Strip control characters (vertical tab, form feed, etc.) that leak from Google Docs. */
+function stripControlChars(text: string): string {
+  return text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
+}
+
 export class Transformer {
   private sectionCounts: Map<string, number> = new Map();
   private chapterCounts: Map<string, number> = new Map();
@@ -74,6 +79,7 @@ export class Transformer {
           continue
         }
 
+        section.readingTimeInSeconds += this.getComponentReadingTime(node);
         section.nodes.push(node);
         continue
       }
@@ -118,7 +124,7 @@ export class Transformer {
       // Handle regular paragraphs (not list items)
       if (!listId) {
         let spans = this.getSpans(el.paragraph)
-        section.readingTimeInSeconds += 60/200 * this.getSpansWordCount(spans)
+        section.readingTimeInSeconds += this.wordsToSeconds(this.getSpansWordCount(spans))
         section.nodes.push(this.createNode("Paragraph", {}, spans))
         continue
       }
@@ -126,7 +132,7 @@ export class Transformer {
       // Handle list items
       const glyphFormat = this.ctx.lists?.[listId]?.listProperties?.nestingLevels?.[0].glyphFormat || ''
       let spans = this.getSpans(el.paragraph)
-      section.readingTimeInSeconds += 60/200 * this.getSpansWordCount(spans)
+      section.readingTimeInSeconds += this.wordsToSeconds(this.getSpansWordCount(spans))
 
       if (inList === null) {
         inList = this.createNode(
@@ -377,7 +383,7 @@ export class Transformer {
       }
     }
 
-    return content.trim();
+    return stripControlChars(content).trim();
   }
 
   private getBool(cell: Cell, default_: boolean = false): boolean {
@@ -515,7 +521,7 @@ export class Transformer {
         continue
       }
 
-      let content = el.textRun.content || ''
+      let content = stripControlChars(el.textRun.content || '')
 
       if (content === '' || content === '\n') {
         continue
@@ -691,11 +697,52 @@ export class Transformer {
     let count = 0
 
     for (const span of spans) {
-      if (span.name === "Span") {
-        count += countWords(span.attributes.content)
+      if (span.name === "Span" || span.name === "Link") {
+        count += countWords(span.attributes.content as string)
+      } else if (span.name === "GlossaryDefinition") {
+        count += countWords(span.attributes.matchedText as string)
       }
     }
 
     return count
+  }
+
+  private getNodeTreeWordCount(nodes: Node[]): number {
+    let count = 0
+    for (const node of nodes) {
+      if (node.name === "Span" || node.name === "Link") {
+        count += countWords(node.attributes.content as string)
+      } else if (node.name === "GlossaryDefinition") {
+        count += countWords(node.attributes.matchedText as string)
+      }
+      count += this.getNodeTreeWordCount(node.children)
+    }
+    return count
+  }
+
+  private wordsToSeconds(wordCount: number): number {
+    return 60 / 200 * wordCount
+  }
+
+  private getComponentReadingTime(node: Node): number {
+    let seconds = 0
+
+    // Count words in all text children (quote content, callout content, definition content, etc.)
+    seconds += this.wordsToSeconds(this.getNodeTreeWordCount(node.children))
+
+    // Count words in SpanGroup attributes (captions, sources, etc.)
+    for (const key of ["caption", "source", "sourceUrl"]) {
+      const spanGroup = node.attributes[key]
+      if (spanGroup && typeof spanGroup === "object" && (spanGroup as Node).children) {
+        seconds += this.wordsToSeconds(this.getNodeTreeWordCount((spanGroup as Node).children))
+      }
+    }
+
+    // NoteBox already tracks its own reading time via getDocFromSlice
+    if (node.name === "NoteBox") {
+      seconds = node.attributes.readingTimeInSeconds as number || 0
+    }
+
+    return seconds
   }
 }

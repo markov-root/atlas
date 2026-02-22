@@ -5,6 +5,8 @@ import { Icon } from 'astro-icon/components'
 import VersionSelector from '@/components/VersionSelector.astro';
 import DocSearchProvider from '@/components/DocSearchProvider.astro';
 import SearchTrigger from '@/components/SearchTrigger.astro';
+import { ClientRouter } from 'astro:transitions';
+import LoadingIndicator from 'astro-loading-indicator/component';
 import type { Section, Chapter, Textbook } from '@/textbook-loader';
 
 interface Breadcrumb {
@@ -18,9 +20,10 @@ interface Props {
   activeSection: Section
   textbook: Textbook
   breadcrumbs: Breadcrumb[]
+  markdownUrl?: string
 }
 
-const { title, description, activeSection, textbook, breadcrumbs } = Astro.props
+const { title, description, activeSection, textbook, breadcrumbs, markdownUrl } = Astro.props
 
 // Compute prev/next section URLs
 const allSections: { chapter: Chapter; section: Section }[] = [];
@@ -42,12 +45,14 @@ const nextUrl = nextSection ? `/chapters/${textbook.version}/${nextSection.chapt
 
 const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activeSection.chapterNumber);
 ---
-<html lang="en" class="h-full lg:overflow-clip">
+<html lang="en" class="h-full">
 	<head>
 		<script is:inline>document.documentElement.classList.add('js')</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<BaseHead title={title} description={description} />
+		<ClientRouter />
+		<LoadingIndicator color="var(--color-brand-600)" height="3px" />
 		<slot name="head" />
 		<!-- Privacy-friendly analytics by Plausible -->
 		<script async src="https://plausible.io/js/pa-iaFa7u9ahmpcy2YPhenNE.js"></script>
@@ -56,7 +61,7 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
 			plausible.init()
 		</script>
 	</head>
-	<body class="noise-bg bg-gray-200 lg:h-screen lg:overflow-clip">
+	<body class="noise-bg bg-gray-200">
 <DocSearchProvider />
 <!-- Reading progress bar -->
 <div id="reading-progress" class="hidden lg:block fixed top-0 left-0 right-0 h-1 z-50">
@@ -64,58 +69,61 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
 </div>
 
 <!-- Desktop layout -->
-<div class="hidden lg:flex lg:gap-4 lg:p-4 lg:h-screen max-w-[100rem] mx-auto overflow-clip">
+<div class="hidden lg:flex lg:gap-4 lg:p-4 max-w-[100rem] mx-auto">
     <!-- Sidebar bubble -->
-    <aside class="w-72 xl:w-80 shrink-0 flex flex-col gap-4">
-        <!-- Logo bubble -->
-        <div class="bg-white rounded-3xl px-6 flex items-center h-14">
-            <a href="/" class="block">
-                <Lockup />
-            </a>
-        </div>
+    <aside class="w-72 xl:w-80 shrink-0">
+        <div class="sticky top-4 flex flex-col gap-4 max-h-[calc(100vh-2rem)]">
+            <!-- Logo bubble -->
+            <div class="bg-white rounded-3xl px-6 flex items-center h-14 shrink-0">
+                <a href="/" class="block">
+                    <Lockup />
+                </a>
+            </div>
 
-        <!-- Sidebar nav bubble -->
-        <div class="bg-white rounded-3xl flex-1 overflow-hidden flex flex-col min-h-0">
-            <nav class="flex-1 overflow-y-auto px-4 py-4 space-y-2">
-                {textbook.chapters.map((chapter: Chapter) => (
-                <details class="group" name="sidebar-chapters" open={activeSection.chapterNumber === chapter.number}>
-                    <summary class="flex justify-between items-center px-2 py-2 rounded-lg hover:bg-gray-50 cursor-pointer">
-                        <span class:list={[
-                            "text-sm font-semibold",
-                            activeSection.chapterNumber === chapter.number ? "text-brand-700" : "text-gray-700"
-                        ]}>
-                            {chapter.number}. {chapter.title}
-                        </span>
-                        <Icon name="tabler:chevron-right" class="group-open:hidden block size-4 text-gray-400" />
-                        <Icon name="tabler:chevron-down" class="group-open:block hidden size-4 text-gray-400" />
-                    </summary>
+            <!-- Sidebar nav bubble -->
+            <div class="bg-white rounded-3xl flex-1 overflow-hidden flex flex-col min-h-0">
+                <nav class="flex-1 overflow-y-auto px-4 py-4 space-y-2">
+                    {textbook.chapters.map((chapter: Chapter) => (
+                    <details class="group" name="sidebar-chapters" open={activeSection.chapterNumber === chapter.number}>
+                        <summary class="flex justify-between items-center px-2 py-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+                            <span class:list={[
+                                "text-sm font-semibold",
+                                activeSection.chapterNumber === chapter.number ? "text-brand-700" : "text-gray-700"
+                            ]}>
+                                {chapter.number}. {chapter.title}
+                            </span>
+                            <Icon name="tabler:chevron-right" class="group-open:hidden block size-4 text-gray-400" />
+                            <Icon name="tabler:chevron-down" class="group-open:block hidden size-4 text-gray-400" />
+                        </summary>
 
-                    <ul class="mt-1 ml-3 border-l border-gray-200 pl-3 space-y-0.5">
-                        {chapter.sections.map((section: Section) => (
-                        <li>
-                            <a
-                                href={`/chapters/${textbook.version}/${chapter.slug}/${section.slug}`}
-                                class:list={[
-                                    "block px-2 py-1.5 text-sm rounded-lg transition-colors",
-                                    activeSection.chapterNumber === chapter.number && activeSection.number === section.number
-                                        ? "text-brand-700 bg-brand-50"
-                                        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                                ]}
-                            >
-                                {section.number}. {section.title}
-                            </a>
-                        </li>
-                        ))}
-                    </ul>
-                </details>
-                ))}
-            </nav>
+                        <ul class="mt-1 ml-3 border-l border-gray-200 pl-3 space-y-0.5">
+                            {chapter.sections.map((section: Section) => (
+                            <li>
+                                <a
+                                    href={`/chapters/${textbook.version}/${chapter.slug}/${section.slug}`}
+                                    class:list={[
+                                        "block px-2 py-1.5 text-sm rounded-lg transition-colors",
+                                        activeSection.chapterNumber === chapter.number && activeSection.number === section.number
+                                            ? "text-brand-700 bg-brand-50"
+                                            : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                                    ]}
+                                >
+                                    {section.number}. {section.title}
+                                </a>
+                            </li>
+                            ))}
+                        </ul>
+                    </details>
+                    ))}
+                </nav>
+            </div>
         </div>
     </aside>
 
     <!-- Main content area -->
-    <div class="flex-1 flex flex-col gap-4 min-w-0 overflow-clip">
-        <!-- Navbar bubble -->
+    <div class="flex-1 flex flex-col gap-4 min-w-0">
+        <!-- Navbar bubble (wrapper masks scrolling content behind it) -->
+        <div class="sticky top-0 z-30 bg-gray-200 pt-4 pb-4 -mt-4 -mb-4">
         <nav class="bg-white rounded-3xl px-6 flex items-center h-14 shrink-0">
             <div class="flex items-center gap-4 w-full">
                 <ol role="list" class="flex items-center space-x-4">
@@ -146,11 +154,12 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
                 </SearchTrigger>
             </div>
         </nav>
+        </div>
 
         <!-- Content area with ToC outside -->
-        <div class="flex-1 flex gap-4 min-h-0 overflow-clip">
+        <div class="flex gap-4 overflow-clip">
             <!-- Content bubble -->
-            <main id="reader-content" class="bg-white rounded-3xl overflow-y-auto min-w-0 max-w-4xl w-full scroll-pt-8 scroll-smooth">
+            <main id="reader-content" class="bg-white rounded-3xl min-w-0 max-w-4xl w-full shadow-sm">
                 <!-- Normal content view -->
                 <div id="main-content-view">
                     <slot name="header" />
@@ -173,19 +182,79 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
                 </div>
             </main>
 
-            <!-- ToC in the gray area (outside bubble) -->
-            <slot name="toc" />
+            <!-- ToC + audio player in the gray area (outside bubble) -->
+            <div class="hidden lg:block flex-1">
+                <div class="sticky top-[5.5rem] max-h-[calc(100vh-5.5rem-1rem)] flex flex-col gap-4">
+                <!-- Desktop audio player (persists across navigations) -->
+                <div id="desktop-audio-player" class="hidden shrink-0 bg-white rounded-2xl p-4" transition:persist="audio-player">
+                    <div class="space-y-3">
+                        <!-- Title + close -->
+                        <div class="flex items-center justify-between">
+                            <p id="desktop-track-title" class="text-sm font-medium text-gray-900 truncate flex-1 min-w-0 mr-2"></p>
+                            <button type="button" data-audio-close class="shrink-0 p-1 text-gray-400 hover:text-gray-700 transition-colors" title="Close player">
+                                <svg class="size-4" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"/></svg>
+                            </button>
+                        </div>
+                        <!-- Play + progress bar -->
+                        <div class="flex items-center gap-3">
+                            <button type="button" data-audio-playpause class="shrink-0 p-2.5 bg-brand-600 text-white rounded-full hover:bg-brand-700 transition-colors shadow-sm" title="Play/Pause">
+                                <svg class="size-4 audio-icon-play" viewBox="0 0 24 24"><path fill="currentColor" d="M6 4v16a1 1 0 0 0 1.524.852l13-8a1 1 0 0 0 0-1.704l-13-8A1 1 0 0 0 6 4"/></svg>
+                                <svg class="size-4 audio-icon-pause hidden" viewBox="0 0 24 24"><path fill="currentColor" d="M9 4H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2m8 0h-2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg>
+                            </button>
+                            <div class="flex-1 min-w-0 space-y-1">
+                                <div class="relative h-1.5 bg-gray-200 rounded-full cursor-pointer group" data-audio-seek="desktop">
+                                    <div id="desktop-progress-bar" class="absolute inset-y-0 left-0 bg-brand-600 rounded-full pointer-events-none" style="width: 0%"></div>
+                                    <div id="desktop-progress-handle" class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3 h-3 bg-brand-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" style="left: 0%"></div>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-500 tabular-nums">
+                                    <span id="desktop-time-current">0:00</span>
+                                    <span id="desktop-time-duration">0:00</span>
+                                </div>
+                            </div>
+                            <select data-audio-speed class="audio-speed shrink-0">
+                                <option value="0.5">0.5x</option>
+                                <option value="0.75">0.75x</option>
+                                <option value="1" selected>1x</option>
+                                <option value="1.25">1.25x</option>
+                                <option value="1.5">1.5x</option>
+                                <option value="1.75">1.75x</option>
+                                <option value="2">2x</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 overflow-y-auto min-h-0">
+                    <slot name="toc" />
+                </div>
+                {markdownUrl && (
+                <div class="shrink-0 pl-4 py-3 border-t border-gray-300">
+                    <button type="button" data-copy-markdown data-markdown-url={markdownUrl} class="flex items-center gap-1.5 text-sm text-gray-600 hover:text-gray-900 transition-colors cursor-pointer">
+                        <Icon name="tabler:clipboard" class="size-4" />
+                        <span data-copy-label>Copy markdown</span>
+                    </button>
+                </div>
+                )}
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <!-- Mobile layout -->
-<div id="mobile-layout" class="lg:hidden pb-24">
+<div id="mobile-layout" class="lg:hidden pb-[5.75rem]">
     <main>
         <!-- Normal content view -->
         <div id="mobile-main-content-view">
             <slot name="header" />
             <slot name="mobile-toc" />
+            {markdownUrl && (
+            <div class="mt-2 mx-4 px-4 py-3 bg-white rounded-2xl">
+                <button type="button" data-copy-markdown data-markdown-url={markdownUrl} class="flex items-center gap-1.5 text-sm text-gray-600 hover:text-gray-900 transition-colors cursor-pointer">
+                    <Icon name="tabler:clipboard" class="size-4" />
+                    <span data-copy-label>Copy markdown</span>
+                </button>
+            </div>
+            )}
             <div class="mt-4 bg-white rounded-3xl px-6 py-10">
                 <slot />
             </div>
@@ -210,26 +279,26 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
 
 <!-- Mobile bottom bar -->
 <div class="fixed bottom-0 inset-x-0 z-50 lg:hidden safe-area-bottom">
-    <div class="flex flex-col">
-        <!-- Section row (top): [Prev] [Section select] [Next] as three distinct containers -->
-        <div class="flex items-center gap-2 px-2 py-2 bg-brand-100 rounded-t-2xl">
+    <div class="bg-white/80 backdrop-blur-xl border-t border-gray-200/60">
+        <!-- Section navigation row -->
+        <div class="flex items-center h-11 px-1">
             {prevUrl ? (
-                <a href={prevUrl} class="flex items-center justify-center w-12 h-10 text-brand-700 active:text-brand-900 shrink-0">
+                <a href={prevUrl} class="flex items-center justify-center w-10 h-10 text-gray-500 active:text-gray-900 shrink-0">
                     <span class="sr-only">Previous section</span>
-                    <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                     </svg>
                 </a>
             ) : (
-                <span class="flex items-center justify-center w-12 h-10 text-brand-400 shrink-0">
-                    <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <span class="flex items-center justify-center w-10 h-10 text-gray-300 shrink-0">
+                    <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                     </svg>
                 </span>
             )}
 
-            <div class="flex-1 flex items-center justify-center min-w-0 h-10 bg-white/30 rounded-xl px-3">
-                <select id="mobile-section-select" class="bg-transparent border-none text-sm font-medium text-brand-800 py-1 focus:outline-none focus:ring-0 appearance-none cursor-pointer text-center truncate w-full">
+            <div class="flex-1 flex items-center justify-center min-w-0 px-1">
+                <select id="mobile-section-select" class="bg-transparent border-none text-[13px] font-medium text-gray-900 py-1 focus:outline-none focus:ring-0 appearance-none cursor-pointer text-center truncate w-full">
                     {currentChapter?.sections.map((section: Section) => (
                         <option
                             value={`/chapters/${textbook.version}/${currentChapter.slug}/${section.slug}`}
@@ -239,40 +308,39 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
                         </option>
                     ))}
                 </select>
-                <svg class="size-4 text-brand-500 shrink-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-                </svg>
             </div>
 
             {nextUrl ? (
-                <a href={nextUrl} class="flex items-center justify-center w-12 h-10 text-brand-700 active:text-brand-900 shrink-0">
+                <a href={nextUrl} class="flex items-center justify-center w-10 h-10 text-gray-500 active:text-gray-900 shrink-0">
                     <span class="sr-only">Next section</span>
-                    <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                     </svg>
                 </a>
             ) : (
-                <span class="flex items-center justify-center w-12 h-10 text-brand-400 shrink-0">
-                    <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <span class="flex items-center justify-center w-10 h-10 text-gray-300 shrink-0">
+                    <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                     </svg>
                 </span>
             )}
         </div>
 
-        <!-- Navigation row (bottom): Home | Chapter | Search -->
-        <div class="flex items-center gap-2 h-14 px-2 bg-brand-200">
+        <!-- Divider -->
+        <div class="mx-3 border-t border-gray-100"></div>
+
+        <!-- Main navigation row -->
+        <div class="flex items-center h-11 px-2">
             <!-- Home -->
-            <a href="/" class="flex flex-col items-center justify-center w-14 h-12 text-brand-700 active:text-brand-900 shrink-0">
-                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <a href="/" class="flex items-center justify-center w-10 h-10 text-gray-500 active:text-gray-900 shrink-0" aria-label="Home">
+                <svg class="size-[18px]" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                 </svg>
-                <span class="text-[10px] mt-0.5">Home</span>
             </a>
 
             <!-- Chapter selector -->
-            <div class="flex-1 flex items-center justify-center min-w-0 h-10 bg-brand-100 rounded-xl px-3">
-                <select id="mobile-chapter-select" class="bg-transparent border-none text-sm font-medium text-brand-800 py-1 focus:outline-none focus:ring-0 appearance-none cursor-pointer text-center truncate w-full">
+            <div class="flex-1 flex items-center justify-center min-w-0 h-8 bg-gray-100 rounded-lg px-3 mx-1">
+                <select id="mobile-chapter-select" class="bg-transparent border-none text-[13px] font-medium text-gray-700 py-0 focus:outline-none focus:ring-0 appearance-none cursor-pointer text-center truncate w-full">
                     {textbook.chapters.map((chapter: Chapter) => (
                         <option
                             value={`/chapters/${textbook.version}/${chapter.slug}/${chapter.sections[0]?.slug}`}
@@ -282,7 +350,7 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
                         </option>
                     ))}
                 </select>
-                <svg class="size-4 text-brand-500 shrink-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor">
+                <svg class="size-3.5 text-gray-400 shrink-0 pointer-events-none -ml-1" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
                 </svg>
             </div>
@@ -290,180 +358,24 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
             <!-- Search button -->
             <button
                 type="button"
-                class="flex flex-col items-center justify-center w-14 h-12 text-brand-700 active:text-brand-900 shrink-0"
+                class="flex items-center justify-center w-10 h-10 text-gray-500 active:text-gray-900 shrink-0"
                 data-docsearch-trigger
                 aria-label="Search"
             >
-                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <svg class="size-[18px]" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                 </svg>
-                <span class="text-[10px] mt-0.5">Search</span>
             </button>
         </div>
     </div>
 </div>
 
+<!-- Audio element at body level — always accessible regardless of viewport -->
+<audio id="audio-element" preload="none" transition:persist="audio-element"></audio>
+
+
 <script>
-const progressBar = document.getElementById('reading-progress-bar');
-const content = document.getElementById('reader-content');
-
-if (progressBar && content) {
-    function updateProgress() {
-        const scrollTop = content.scrollTop;
-        const scrollHeight = content.scrollHeight - content.clientHeight;
-        const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-        const clampedProgress = Math.min(100, Math.max(0, progress));
-        progressBar.style.width = `${clampedProgress}%`;
-    }
-
-    content.addEventListener('scroll', updateProgress, { passive: true });
-    updateProgress();
-}
-
-// NoteBox drill-down functionality
-const noteboxDrilldown = {
-    // Desktop elements
-    mainView: document.getElementById('main-content-view'),
-    drilldownView: document.getElementById('notebox-drilldown'),
-    drilldownTitle: document.getElementById('notebox-title'),
-    drilldownMeta: document.getElementById('notebox-meta'),
-    drilldownBody: document.getElementById('notebox-body'),
-    backBtn: document.getElementById('notebox-back'),
-    // Mobile elements
-    mobileMainView: document.getElementById('mobile-main-content-view'),
-    mobileDrilldownView: document.getElementById('mobile-notebox-drilldown'),
-    mobileDrilldownTitle: document.getElementById('mobile-notebox-title'),
-    mobileDrilldownMeta: document.getElementById('mobile-notebox-meta'),
-    mobileDrilldownBody: document.getElementById('mobile-notebox-body'),
-    // State
-    savedScrollPosition: 0,
-    mobileSavedScrollPosition: 0,
-    isInDrilldown: false,
-
-    init() {
-        // Handle notebox trigger clicks
-        document.addEventListener('click', (e) => {
-            const trigger = (e.target as HTMLElement).closest('.notebox-trigger');
-            if (!trigger) return;
-
-            e.preventDefault();
-            const wrapper = trigger.closest('.notebox-wrapper');
-            const noteboxId = wrapper?.getAttribute('data-notebox-id');
-            if (noteboxId) {
-                history.pushState({ notebox: noteboxId }, '', `#${noteboxId}`);
-                this.showNotebox(noteboxId);
-            }
-        });
-
-        // Handle back button clicks
-        this.backBtn?.addEventListener('click', (e) => {
-            e.preventDefault();
-            history.back();
-        });
-        document.querySelectorAll('.notebox-back-mobile').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                history.back();
-            });
-        });
-
-        // Handle browser back/forward
-        window.addEventListener('popstate', () => {
-            this.handleHashChange();
-        });
-
-        // Handle initial hash on page load
-        this.handleHashChange();
-    },
-
-    handleHashChange() {
-        const hash = window.location.hash.slice(1);
-        if (hash && hash.startsWith('notebox-')) {
-            this.showNotebox(hash);
-        } else if (this.isInDrilldown) {
-            // Only restore scroll if we were actually in a drilldown
-            this.hideNotebox();
-        }
-    },
-
-    showNotebox(noteboxId: string) {
-        const wrapper = document.querySelector(`[data-notebox-id="${noteboxId}"]`);
-        if (!wrapper) return;
-
-        const contentDiv = wrapper.querySelector('.notebox-content') as HTMLElement;
-        const title = contentDiv?.getAttribute('data-notebox-title') || '';
-        const readingTime = contentDiv?.getAttribute('data-notebox-time') || '';
-        const metaText = `Optional · ${readingTime} read`;
-        const contentHtml = contentDiv?.innerHTML || '';
-
-        this.isInDrilldown = true;
-
-        // Desktop
-        if (this.mainView && this.drilldownView && this.drilldownTitle && this.drilldownBody && content) {
-            this.savedScrollPosition = content.scrollTop;
-            this.mainView.classList.add('hidden');
-            this.drilldownView.classList.remove('hidden');
-            this.drilldownTitle.textContent = title;
-            if (this.drilldownMeta) this.drilldownMeta.textContent = metaText;
-            this.drilldownBody.innerHTML = contentHtml;
-            content.scrollTo({ top: 0, behavior: 'instant' });
-        }
-
-        // Mobile
-        if (this.mobileMainView && this.mobileDrilldownView && this.mobileDrilldownTitle && this.mobileDrilldownBody) {
-            this.mobileSavedScrollPosition = window.scrollY;
-            this.mobileMainView.classList.add('hidden');
-            this.mobileDrilldownView.classList.remove('hidden');
-            this.mobileDrilldownTitle.textContent = title;
-            if (this.mobileDrilldownMeta) this.mobileDrilldownMeta.textContent = metaText;
-            this.mobileDrilldownBody.innerHTML = contentHtml;
-            window.scrollTo(0, 0);
-        }
-    },
-
-    hideNotebox() {
-        this.isInDrilldown = false;
-
-        // Desktop
-        if (this.mainView && this.drilldownView && content) {
-            this.drilldownView.classList.add('hidden');
-            this.mainView.classList.remove('hidden');
-            content.scrollTo({ top: this.savedScrollPosition, behavior: 'instant' });
-        }
-
-        // Mobile
-        if (this.mobileMainView && this.mobileDrilldownView) {
-            this.mobileDrilldownView.classList.add('hidden');
-            this.mobileMainView.classList.remove('hidden');
-            window.scrollTo(0, this.mobileSavedScrollPosition);
-        }
-    }
-};
-
-noteboxDrilldown.init();
-
-// Mobile section navigation
-const mobileSectionSelect = document.getElementById('mobile-section-select') as HTMLSelectElement | null;
-if (mobileSectionSelect) {
-    mobileSectionSelect.addEventListener('change', () => {
-        const url = mobileSectionSelect.value;
-        if (url && url.startsWith('/')) {
-            window.location.href = url;
-        }
-    });
-}
-
-// Mobile chapter navigation
-const mobileChapterSelect = document.getElementById('mobile-chapter-select') as HTMLSelectElement | null;
-if (mobileChapterSelect) {
-    mobileChapterSelect.addEventListener('change', () => {
-        const url = mobileChapterSelect.value;
-        if (url && url.startsWith('/')) {
-            window.location.href = url;
-        }
-    });
-}
-
+import '../lib/reader';
 </script>
 	</body>
 </html>

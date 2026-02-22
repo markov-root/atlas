@@ -58,9 +58,9 @@ export class TextbookLoader {
     const outputDir = join(process.cwd(), 'public', 'uc');
     await new ChapterPdfRenderer(textbook, this.assetsDir, outputDir).render();
 
-    if (process.env.GEMINI_API_KEY) {
-      await new AudioRenderer(textbook, this.assetsDir, outputDir).render();
-    }
+    await new AudioRenderer(textbook, this.assetsDir, outputDir, {
+      skipGeneration: !!process.env.SKIP_AUDIO,
+    }).render();
 
     return textbook;
   }

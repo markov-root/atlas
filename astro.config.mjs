@@ -25,6 +25,13 @@ export default defineConfig({
       PUBLIC_ALGOLIA_SEARCH_KEY: envField.string({ context: "client", access: "public" }),
       ALGOLIA_WRITE_KEY: envField.string({ context: "server", access: "secret", optional: true }),
       PUBLIC_ALGOLIA_INDEX_NAME: envField.string({ context: "client", access: "public", default: "atlas-foreview" }),
+      ELEVENLABS_API_KEY: envField.string({ context: "server", access: "secret", optional: true }),
+      GEMINI_API_KEY: envField.string({ context: "server", access: "secret", optional: true }),
+      SKIP_AUDIO: envField.string({ context: "server", access: "public", optional: true }),
+      R2_ENDPOINT: envField.string({ context: "server", access: "secret", optional: true }),
+      R2_ACCESS_KEY_ID: envField.string({ context: "server", access: "secret", optional: true }),
+      R2_SECRET_ACCESS_KEY: envField.string({ context: "server", access: "secret", optional: true }),
+      R2_BUCKET: envField.string({ context: "server", access: "secret", optional: true }),
     }
   },
   vite: {

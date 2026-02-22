@@ -9,6 +9,9 @@ import CardLink from './CardLink.astro'
 import GrainOverlay from './GrainOverlay.astro'
 import { Icon } from 'astro-icon/components'
 import { siteConfig } from '@/config/site'
+import { getFirstChapterUrl } from '@/lib/textbooks'
+
+const readUrl = await getFirstChapterUrl();
 ---
 
 <footer class="sm:mx-4 mt-4 mb-4 rounded-3xl overflow-hidden bg-black relative">
@@ -75,7 +78,7 @@ import { siteConfig } from '@/config/site'
                     <div>
                         <h3 class="font-semibold text-white mb-4">Navigation</h3>
                         <div class="flex flex-col gap-2">
-                            <CardLink href="/read" variant="dark">Read</CardLink>
+                            <CardLink href={readUrl} variant="dark">Read</CardLink>
                             <CardLink href="/teach" variant="dark">Teach</CardLink>
                             <CardLink href="/get-certified" variant="dark">Get certified</CardLink>
                         </div>

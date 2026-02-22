@@ -26,11 +26,6 @@
     scroll-margin-top: 7.25rem;
 }
 
-/* Reader layout has its own scroll container without fixed header overlap */
-#reader-content [id] {
-    scroll-margin-top: 0;
-}
-
 /* JS detection classes */
 .if-js {
     display: none;
@@ -45,6 +40,43 @@
 }
 
 @plugin "@tailwindcss/typography";
+
+/* Media tabs (listen/download/watch/report) */
+.media-tabs {
+    @apply mt-8 rounded-xl bg-white border border-gray-200 overflow-hidden;
+}
+
+.media-tab-bar {
+    @apply flex bg-gray-50 border-b border-gray-200 overflow-x-auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.media-tab {
+    @apply inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium transition-colors cursor-pointer whitespace-nowrap;
+    @apply text-gray-500 hover:text-gray-700;
+    @apply border-b-2 border-transparent -mb-px;
+
+    &[aria-selected="true"] {
+        @apply text-brand-700 bg-white border-brand-600;
+    }
+}
+
+.media-panel {
+    @apply p-4;
+}
+
+/* Audio speed selector */
+.audio-speed {
+    @apply text-xs font-medium tabular-nums text-gray-900 bg-gray-50 rounded-md;
+    @apply px-2 py-1 cursor-pointer border border-gray-200 appearance-none;
+    @apply hover:bg-gray-100 hover:text-gray-700 transition-colors;
+    @apply focus:outline-none focus:ring-2 focus:ring-brand-600;
+}
 
 /* Base form control styles */
 @utility form-control {

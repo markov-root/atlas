@@ -17,7 +17,7 @@ export const TEXTBOOK_EDITIONS: TextbookDefinition[] = [
         tabId: 't.0',
         authors: [AUTHORS.markovg, AUTHORS.crsegerie],
         acknowledgements: "Jeanne Salle, Charles Martinet, Vincent Corruble, Diego Dorn, Josh Thorsteinson, Jonathan Claybrough, Alejandro Acelas, Jamie Raldua Veuthey, Alexandre Variengien, Léo Dana, Angélina Gentaz, Nicolas Guillard, Leo Karoubi".split(", "),
-        lecture: "https://www.youtube.com/watch?v=J_iMeH1hb9M",
+        lecture: { url: "https://www.youtube.com/watch?v=J_iMeH1hb9M", status: "outdated" },
         facilitationGuide: "https://docs.google.com/document/d/1L32xCVUCWEsm-x8UZ3GSTgKnmBcC7rJQLLIh9wGLj40/edit?usp=sharing"
       },
       {
@@ -25,8 +25,8 @@ export const TEXTBOOK_EDITIONS: TextbookDefinition[] = [
         tabId: 't.0',
         authors: [AUTHORS.markovg, AUTHORS.crsegerie],
         acknowledgements: 'Jeanne Salle, Charles Martinet, Vincent Corruble, Sebastian Gil, Alejandro Acelas, Evander Hammer, Mo Munem, Mateo Rendon, Kieron Kretschmar, Camille Berger'.split(', '),
-        paper: "https://arxiv.org/abs/2508.13700",
-        lecture: "https://www.youtube.com/watch?v=dhr4u-w75aQ",
+        paper: { url: "https://arxiv.org/abs/2508.13700", status: "outdated" },
+        lecture: { url: "https://www.youtube.com/watch?v=dhr4u-w75aQ", status: "outdated" },
         facilitationGuide: "https://docs.google.com/document/d/1im_i6e9xEAe-koYlurYdn26n9h7pFX2HksnRfQmWxTQ/edit?usp=sharing"
       },
       {
@@ -34,23 +34,23 @@ export const TEXTBOOK_EDITIONS: TextbookDefinition[] = [
         tabId: 't.2iafmf6rj9gc',
         authors: [AUTHORS.markovg, AUTHORS.crsegerie],
         acknowledgements: 'Alexandre Variengien, Jeanne Salle, Charles Martinet, Amaury Lorin, Alejandro Acelas, Evander Hammer, Jessica Wen, Angélina Gentaz, Jonathan Claybrough, Camille Berger, Josh Thorsteinson, Pauliina Laine'.split(', '),
-        lecture: 'https://www.youtube.com/watch?v=iO7Jl4xders',
+        lecture: { url: 'https://www.youtube.com/watch?v=iO7Jl4xders', status: 'outdated' },
         facilitationGuide: 'https://docs.google.com/document/d/1cv0gzwSouDjckYHzV7gYbHPKhJZR6bwbJWgHzEJ604Q/edit?usp=sharing'
       },
       {
         docId: '16Dk4IRy1NoMSB5K_dKqR8XnwJ2PjX1LofoPGX_35o0k',
         tabId: 't.0',
-        authors: [AUTHORS.martinet, AUTHORS.crsegerie, AUTHORS.su],
-        acknowledgements: "Charbel-Raphael Segerie, Léo Karoubi, Ines Belhadj".split(', '),
+        authors: [AUTHORS.martinet, AUTHORS.markovg, AUTHORS.su, AUTHORS.crsegerie],
+        acknowledgements: "Léo Karoubi, Ines Belhadj".split(', '),
         facilitationGuide: "https://docs.google.com/document/d/1tp5rpzw_gekjju-UBp8tkbbnQOuA2QzsPF_um8Z4IOU/edit?tab=t.0#heading=h.fo57hwsn3del",
-        lecture: "https://www.youtube.com/watch?v=FSKuDqze9es"
+        lecture: { url: "https://www.youtube.com/watch?v=FSKuDqze9es", status: "outdated" }
       },
       {
         docId: '165SypJtK-9S3Plot19EViZhjeRptivJELuWvUglQXa0',
         tabId: 't.0',
         authors: [AUTHORS.markovg, AUTHORS.crsegerie],
         acknowledgements: 'Maxime Riché, Martin, Fabien Roger, Jeanne Salle, Camille Berger, Leo Karoubi'.split(', '),
-        paper: "https://arxiv.org/abs/2505.05541",
+        paper: { url: "https://arxiv.org/abs/2505.05541", status: "outdated" },
         facilitationGuide: "https://docs.google.com/document/d/1T-UU0FBeElX6cvbWYKpVAl3U4ivrQLHA3IdIWqWKuBA/edit?tab=t.0#heading=h.fo57hwsn3del"
       },
       {

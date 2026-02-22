@@ -4,7 +4,7 @@ import Header from "@/components/Header.astro"
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import { siteConfig } from "@/config/site";
-import { getLatestTextbook } from "@/lib/textbooks";
+import { getLatestTextbook, getFirstChapterUrl } from "@/lib/textbooks";
 import OrgLogo from "@/components/OrgLogo.astro";
 import CardLink from "@/components/CardLink.astro";
 import GrainOverlay from "@/components/GrainOverlay.astro";
@@ -12,6 +12,7 @@ import GrainOverlay from "@/components/GrainOverlay.astro";
 import markovImg from "@/assets/markov-photo.jpg";
 import charbelImg from "@/assets/charbel-photo.jpg";
 import ensParisSaclayLogo from "@/assets/ens-paris-saclay.png";
+import readerScreenshot from "@/assets/reader-screenshot.png";
 import Button from "@/components/Button.astro";
 
 const authorImages: Record<string, ImageMetadata> = {
@@ -20,6 +21,7 @@ const authorImages: Record<string, ImageMetadata> = {
 };
 
 const textbook = await getLatestTextbook();
+const readUrl = await getFirstChapterUrl();
 
 // Build chapter lookup: number -> { title, slug, firstSectionSlug }
 const chapterLookup = new Map(
@@ -52,9 +54,9 @@ function getChapterTitle(chapterNum: number) {
 
     <!-- Hero + CTA Section -->
     <section class="sm:mx-4 mt-4 rounded-3xl overflow-hidden">
-        <div class="grid lg:grid-cols-2 lg:h-[88vh]">
+        <div class="grid lg:grid-cols-2 lg:h-[70vh]">
             <!-- Left: Blue hero -->
-            <div class="bg-blue-600 text-white lg:rounded-tl-3xl lg:rounded-bl-3xl flex justify-end relative overflow-hidden">
+            <div class="bg-blue-600 text-white flex justify-end relative overflow-hidden">
                 <GrainOverlay />
                 <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 flex flex-col justify-between h-full min-h-[500px] lg:min-h-0 relative z-10">
                     <div class="max-w-md">
@@ -62,10 +64,14 @@ function getChapterTitle(chapterNum: number) {
                             The open textbook for AI Safety
                         </h1>
                         <p class="mt-4 text-sm lg:text-base text-white/80">
-                            Written by Markov Grey and Charbel-Raphael Segerie from the <a class="underline" href="https://cesia.org">French Center for AI Safety</a>.
+                            Written by Markov Grey and Charbel-Raphael Segerie from the <a href="https://cesia.org">French Center for AI Safety</a>.
                         </p>
+                        <div class="mt-6 lg:mt-8 flex flex-wrap gap-3">
+                            <Button link={readUrl} variant="white" class="lg:px-8 lg:py-2 lg:text-xl">Read the textbook</Button>
+                            <Button link="/teach" variant="dark" class="lg:px-8 lg:py-2 lg:text-xl">Run a course</Button>
+                        </div>
                     </div>
-                    <div class="max-w-md">
+                    <div class="max-w-md mt-8 lg:mt-0">
                         <p class="text-sm font-medium text-white uppercase tracking-wide mb-4">Trusted by</p>
                         <div class="grid grid-cols-2 gap-3">
                             <span class="bg-white/5 rounded-2xl px-3 h-12 flex items-center justify-center">
@@ -85,48 +91,15 @@ function getChapterTitle(chapterNum: number) {
                 </div>
             </div>
 
-            <!-- Right: CTA cards -->
-            <div class="lg:rounded-tr-3xl lg:rounded-br-3xl flex flex-col bg-white overflow-hidden">
-                <!-- Learn Card -->
-                <a href="/read" class="relative flex-1 flex items-end bg-white hover:bg-gray-50 transition-colors group lg:rounded-tr-3xl">
-                    <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12 relative">
-                        <span class="absolute top-10 right-6 lg:hidden inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
-                            <Icon name="tabler:arrow-right" class="size-5 text-gray-600 group-hover:text-white" />
-                        </span>
-                        <p class="text-sm font-medium text-gray-500">I want to learn</p>
-                        <div class="mt-2 flex items-center gap-3">
-                            <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display underline decoration-2 underline-offset-4 decoration-gray-300 group-hover:decoration-blue-600 transition-colors">Read the textbook</h2>
-                            <span class="hidden lg:inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
-                                <Icon name="tabler:arrow-right" class="size-5 text-gray-600 group-hover:text-white" />
-                            </span>
-                        </div>
-                        <p class="mt-4 text-base lg:text-lg text-gray-600">
-                            Self-study or join a cohort. From capabilities to governance, from alignment to oversight.
-                        </p>
-                    </div>
-                </a>
-
-                <!-- Divider -->
-                <div class="border-t border-gray-200"></div>
-
-                <!-- Teach Card -->
-                <a href="/teach" class="relative flex-1 flex items-start bg-white hover:bg-gray-50 transition-colors group lg:rounded-br-3xl">
-                    <div class="w-full max-w-[40rem] px-6 py-10 lg:px-8 lg:py-12 relative">
-                        <span class="absolute top-10 right-6 lg:hidden inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
-                            <Icon name="tabler:arrow-right" class="size-5 text-gray-600 group-hover:text-white" />
-                        </span>
-                        <p class="text-sm font-medium text-gray-500">I want to teach</p>
-                        <div class="mt-2 flex items-center gap-3">
-                            <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display underline decoration-2 underline-offset-4 decoration-gray-300 group-hover:decoration-blue-600 transition-colors">Run a course</h2>
-                            <span class="hidden lg:inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
-                                <Icon name="tabler:arrow-right" class="size-5 text-gray-600 group-hover:text-white" />
-                            </span>
-                        </div>
-                        <p class="mt-4 text-base lg:text-lg text-gray-600">
-                            We provide students, materials, and facilitation guides. You focus on building your community.
-                        </p>
-                    </div>
-                </a>
+            <!-- Right: Screenshot -->
+            <div class="hidden lg:flex items-center justify-center bg-blue-600 relative overflow-hidden p-8 lg:p-12">
+                <GrainOverlay />
+                <Image
+                    src={readerScreenshot}
+                    alt="Atlas textbook reader showing a chapter on Socio-Technical Strategies"
+                    class="relative z-10 w-full h-auto rounded-xl shadow-2xl"
+                    width={1200}
+                />
             </div>
         </div>
     </section>
@@ -173,7 +146,7 @@ function getChapterTitle(chapterNum: number) {
                             <span class="font-display text-2xl lg:text-4xl text-white/30">{index + 1}</span>
                             <div>
                                 <h3 class="font-display text-xl lg:text-2xl font-normal mb-4 leading-snug">
-                                    {q.question}
+                                    <a href={getChapterUrl(q.chapters[0])} class="hover:underline">{q.question}</a>
                                 </h3>
                                 <p class="text-sm text-white/70 leading-relaxed mb-6">
                                     {q.description}
@@ -263,44 +236,19 @@ function getChapterTitle(chapterNum: number) {
     </section>
 
     <!-- Bottom CTA Section -->
-    <section class="sm:mx-4 mt-4 mb-4 rounded-3xl overflow-hidden">
-        <div class="grid lg:grid-cols-2">
-            <!-- Learn - Blue background -->
-            <a href="/read" class="bg-blue-600 flex justify-end group hover:bg-blue-700 transition-colors relative overflow-hidden">
-                <GrainOverlay />
-                <div class="w-full max-w-[40rem] px-6 py-16 lg:px-8 lg:py-24 relative z-10">
-                    <span class="absolute top-10 right-6 lg:hidden inline-flex items-center justify-center size-10 rounded-full bg-white/20 group-hover:bg-white transition-colors">
-                        <Icon name="tabler:arrow-right" class="size-5 text-white group-hover:text-blue-600" />
-                    </span>
-                    <div class="flex items-center gap-3">
-                        <h2 class="text-3xl lg:text-4xl font-semibold text-white font-display underline decoration-2 underline-offset-4 decoration-white/30 group-hover:decoration-white transition-colors">Start reading</h2>
-                        <span class="hidden lg:inline-flex items-center justify-center size-10 rounded-full bg-white/20 group-hover:bg-white transition-colors">
-                            <Icon name="tabler:arrow-right" class="size-5 text-white group-hover:text-blue-600" />
-                        </span>
-                    </div>
-                    <p class="mt-6 text-lg text-white/80 max-w-md">
-                        Start with Chapter 1 or jump to any topic. Self-paced, always free.
-                    </p>
+    <section class="sm:mx-4 mt-4 mb-4 rounded-3xl overflow-hidden bg-blue-600 relative">
+        <GrainOverlay />
+        <div class="relative z-10 flex justify-center">
+            <div class="w-full max-w-5xl px-6 py-16 lg:px-8 lg:py-24 text-center">
+                <h2 class="text-3xl lg:text-4xl font-semibold text-white font-display">Ready to get started?</h2>
+                <p class="mt-4 text-lg text-white/80 max-w-lg mx-auto">
+                    Start with Chapter 1 or jump to any topic. Self-paced, always free.
+                </p>
+                <div class="mt-8 flex flex-wrap justify-center gap-3">
+                    <Button link="/read" variant="white" large>Read the textbook</Button>
+                    <Button link="/teach" variant="dark" large>Run a course</Button>
                 </div>
-            </a>
-
-            <!-- Teach - White background -->
-            <a href="/teach" class="bg-white px-6 py-16 lg:px-8 lg:py-24 group hover:bg-gray-50 transition-colors relative">
-                <span class="absolute top-10 right-6 lg:hidden inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
-                    <Icon name="tabler:arrow-right" class="size-5 text-gray-600 group-hover:text-white" />
-                </span>
-                <div class="w-full max-w-[40rem]">
-                    <div class="flex items-center gap-3">
-                        <h2 class="text-3xl lg:text-4xl font-semibold text-gray-900 font-display underline decoration-2 underline-offset-4 decoration-gray-300 group-hover:decoration-blue-600 transition-colors">Start a course</h2>
-                        <span class="hidden lg:inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
-                            <Icon name="tabler:arrow-right" class="size-5 text-gray-600 group-hover:text-white" />
-                        </span>
-                    </div>
-                    <p class="mt-6 text-lg text-gray-600 max-w-md">
-                        Join 30+ course organizers using Atlas materials.
-                    </p>
-                </div>
-            </a>
+            </div>
         </div>
     </section>
 </Default>

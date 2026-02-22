@@ -1,4 +1,16 @@
+import type { Resource, ResourceStatus } from ".";
 import type { Node } from "./transformer";
+
+/**
+ * Resolves a resource field that can be a plain URL string or a Resource object.
+ * Returns null if the value is falsy, otherwise returns a normalized Resource.
+ * Plain strings default to status "current".
+ */
+export function resolveResource(value: string | Resource | undefined): { url: string; status: ResourceStatus } | null {
+  if (!value) return null;
+  if (typeof value === 'string') return { url: value, status: 'current' };
+  return { url: value.url, status: value.status ?? 'current' };
+}
 
 export function traverseNodes(nodes: Node[], visitor: (node: Node) => boolean | void): void {
   for (const node of nodes) {

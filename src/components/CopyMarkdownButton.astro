@@ -1,0 +1,54 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+    markdownUrl: string;
+    id?: string;
+}
+
+const { markdownUrl, id = 'copy-markdown' } = Astro.props;
+---
+
+<li class="flex items-center space-x-1 text-gray-600 text-sm">
+    <button
+        type="button"
+        id={`${id}-btn`}
+        class="flex items-center gap-1 hover:text-gray-900 transition-colors cursor-pointer"
+        data-markdown-url={markdownUrl}
+    >
+        <Icon name="tabler:clipboard" class="size-5" />
+        <span id={`${id}-label`}>Copy markdown</span>
+    </button>
+</li>
+
+<script define:vars={{ id }}>
+    function init() {
+        const btn = document.getElementById(`${id}-btn`);
+        const label = document.getElementById(`${id}-label`);
+
+        if (btn && label) {
+            btn.addEventListener('click', async () => {
+                const url = btn.getAttribute('data-markdown-url');
+                if (!url) return;
+
+                try {
+                    label.textContent = 'Loading...';
+                    const res = await fetch(url);
+                    const markdown = await res.text();
+                    await navigator.clipboard.writeText(markdown);
+                    label.textContent = 'Copied!';
+                    setTimeout(() => {
+                        label.textContent = 'Copy markdown';
+                    }, 2000);
+                } catch {
+                    label.textContent = 'Failed to copy';
+                    setTimeout(() => {
+                        label.textContent = 'Copy markdown';
+                    }, 2000);
+                }
+            });
+        }
+    }
+
+    document.addEventListener('astro:page-load', init);
+</script>

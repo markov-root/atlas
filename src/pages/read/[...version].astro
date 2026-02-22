@@ -4,6 +4,7 @@ import Default from "@/layouts/Default.astro"
 import Header from "@/components/Header.astro"
 import GrainOverlay from "@/components/GrainOverlay.astro"
 import { Icon } from 'astro-icon/components'
+import Button from "@/components/Button.astro"
 import { formatReadingTime } from "@/textbook-loader/utils"
 import { getTextbooks, getLatestTextbook } from "@/lib/textbooks";
 
@@ -73,7 +74,7 @@ const firstChapterUrl = `/chapters/${textbook.version}/${textbook.chapters[0].sl
             </div>
 
             <!-- Right: Start reading CTA -->
-            <a href={firstChapterUrl} class="bg-white lg:rounded-tr-3xl lg:rounded-br-3xl flex items-center group hover:bg-gray-50 transition-colors">
+            <a href={firstChapterUrl} data-start-reading class="bg-white lg:rounded-tr-3xl lg:rounded-br-3xl flex items-center group hover:bg-gray-50 transition-colors">
                 <div class="w-full max-w-[40rem] px-6 py-12 lg:px-8 lg:py-16 relative">
                     <span class="absolute top-10 right-6 lg:hidden inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
                         <Icon name="tabler:arrow-right" class="size-5 text-gray-600 group-hover:text-white" />
@@ -160,6 +161,12 @@ const firstChapterUrl = `/chapters/${textbook.version}/${textbook.chapters[0].sl
                                                 {chapter.meta.description}
                                             </p>
                                         )}
+                                        {chapter.audioLink && (
+                                            <a href={chapter.audioLink} download class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors mt-3">
+                                                <Icon name="tabler:headphones" class="size-4" />
+                                                <span>Download chapter audio</span>
+                                            </a>
+                                        )}
                                     </div>
                                     <!-- Sections -->
                                     <div class="flex flex-col gap-2">
@@ -192,24 +199,34 @@ const firstChapterUrl = `/chapters/${textbook.version}/${textbook.chapters[0].sl
     </section>
 
     <!-- Bottom CTA -->
-    <section class="sm:mx-4 mt-4 mb-4">
-        <a href={firstChapterUrl} class="block bg-white rounded-3xl px-6 py-16 lg:px-8 lg:py-20 group hover:bg-gray-50 transition-colors relative">
-            <span class="absolute top-10 right-6 lg:hidden inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
-                <Icon name="tabler:arrow-right" class="size-5 text-gray-600 group-hover:text-white" />
-            </span>
-            <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-                <div>
-                    <div class="flex items-center gap-3">
-                        <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 font-display underline decoration-2 underline-offset-4 decoration-gray-300 group-hover:decoration-blue-600 transition-colors">Ready to start?</h2>
-                        <span class="hidden lg:inline-flex items-center justify-center size-10 rounded-full bg-gray-300 group-hover:bg-blue-600 transition-colors">
-                            <Icon name="tabler:arrow-right" class="size-5 text-gray-600 group-hover:text-white" />
-                        </span>
-                    </div>
-                    <p class="mt-3 text-base lg:text-lg text-gray-600">
-                        Begin with Chapter 1: {textbook.chapters[0].title}
-                    </p>
+    <section class="sm:mx-4 mt-4 mb-4 rounded-3xl overflow-hidden bg-blue-600 relative">
+        <GrainOverlay />
+        <div class="relative z-10 flex justify-center">
+            <div class="w-full max-w-5xl px-6 py-16 lg:px-8 lg:py-24 text-center">
+                <h2 class="text-3xl lg:text-4xl font-semibold text-white font-display">Ready to get started?</h2>
+                <p class="mt-4 text-lg text-white/80 max-w-lg mx-auto">
+                    Begin with Chapter 1: {textbook.chapters[0].title}. Self-paced, always free.
+                </p>
+                <div class="mt-8 flex flex-wrap justify-center gap-3">
+                    <Button link={firstChapterUrl} variant="white" large data-start-reading>Start reading</Button>
                 </div>
             </div>
-        </a>
+        </div>
     </section>
+    <script>
+        // Resume reading: update "Start reading" links to last visited section
+        function updateStartReadingLinks() {
+            try {
+                const raw = localStorage.getItem('atlas-reading-position');
+                if (!raw) return;
+                const pos = JSON.parse(raw);
+                if (!pos.url) return;
+                document.querySelectorAll('[data-start-reading]').forEach(el => {
+                    (el as HTMLAnchorElement).href = pos.url;
+                });
+            } catch {}
+        }
+        updateStartReadingLinks();
+        document.addEventListener('astro:page-load', updateStartReadingLinks);
+    </script>
 </Default>
