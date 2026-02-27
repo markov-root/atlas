@@ -1,0 +1,30 @@
+---
+import type { Chapter } from '@/textbook-loader';
+import { getTextbooks } from "@/lib/textbooks";
+
+export async function getStaticPaths() {
+  const textbooks = await getTextbooks();
+  let paths = []
+
+  for (const textbook of textbooks) {
+    for (const chapter of textbook.data.chapters) {
+      paths.push({
+        params: {
+          version: textbook.data.version,
+          chapter: chapter.slug,
+        },
+        props: {
+          version: textbook.data.version,
+          chapter,
+        },
+      })
+    }
+  }
+
+  return paths
+}
+
+const { version, chapter } = Astro.props as { version: string; chapter: Chapter };
+
+return Astro.redirect(`/chapters/${version}/${chapter.slug}/${chapter.sections[0].slug}`, 301);
+---

@@ -1,0 +1,37 @@
+---
+import type { Chapter } from '@/textbook-loader';
+import { getTextbooks } from "@/lib/textbooks";
+
+export async function getStaticPaths() {
+  const textbooks = await getTextbooks();
+  const sorted = textbooks.sort((a, b) => b.data.version.localeCompare(a.data.version));
+  if (sorted.length === 0) return [];
+  const textbook = sorted[0];
+
+  let paths = []
+
+  for (const chapter of textbook.data.chapters) {
+    const chapterVariants = [
+      String(chapter.number),
+      String(chapter.number).padStart(2, '0'),
+      chapter.slug,
+    ];
+
+    for (const chapterParam of chapterVariants) {
+      paths.push({
+        params: { chapter: chapterParam },
+        props: {
+          version: textbook.data.version,
+          chapter,
+        },
+      })
+    }
+  }
+
+  return paths
+}
+
+const { version, chapter } = Astro.props as { version: string; chapter: Chapter };
+
+return Astro.redirect(`/chapters/${version}/${chapter.slug}/${chapter.sections[0].slug}`, 301);
+---
