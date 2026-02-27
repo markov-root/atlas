@@ -5,7 +5,7 @@ import type { Chapter, Section, Textbook } from "../..";
 import { EquationDescriber } from './equation-describer';
 import { ElevenLabsTTS } from './elevenlabs-tts';
 import { TextRenderer } from './text-renderer';
-import { pullFromR2, pushToR2 } from './r2-cache';
+import { pullFromR2, pushToR2, pullFinalAudioFile, pushFinalAudioFiles } from './r2-cache';
 
 export interface AudioRendererOptions {
   /** Skip TTS generation; only link existing audio files. */
@@ -17,15 +17,18 @@ export class Renderer {
   private assetsDir: string;
   private outputDir: string;
   private apiKey: string | undefined;
+  private skipGeneration: boolean;
   private tts: ElevenLabsTTS;
   private describer: EquationDescriber;
   private textRenderer: TextRenderer;
+  private finalAudioToUpload = new Map<string, string>();
 
   constructor(textbook: Textbook, assetsDir: string, outputDir: string, options: AudioRendererOptions = {}) {
     this.textbook = textbook;
     this.assetsDir = assetsDir;
     this.outputDir = outputDir;
-    const skipGeneration = options.skipGeneration ?? false;
+    this.skipGeneration = options.skipGeneration ?? false;
+    const skipGeneration = this.skipGeneration;
     this.apiKey = skipGeneration ? undefined : process.env.ELEVENLABS_API_KEY;
     this.tts = new ElevenLabsTTS(this.apiKey);
     this.describer = new EquationDescriber(skipGeneration ? undefined : process.env.GEMINI_API_KEY);
@@ -72,6 +75,9 @@ export class Renderer {
 
     // Push any newly generated cache files to R2
     await pushToR2();
+
+    // Push final assembled MP3s to R2 for CI fallback
+    await pushFinalAudioFiles(this.finalAudioToUpload);
   }
 
   async renderChapter(chapter: Chapter): Promise<string> {
@@ -93,10 +99,23 @@ export class Renderer {
     const chapterFilename = `atlas-chapter${chapter.number}-audio-${chapterHash}.mp3`;
     const chapterMp3Path = join(this.outputDir, chapterFilename);
 
+    const chapterStableKey = `chapter${chapter.number}`;
+
     if (!existsSync(chapterMp3Path)) {
-      console.log(`[audio] Concatenating chapter ${chapter.number} audio...`);
-      this.tts.concatenateMp3s(sectionMp3s, chapterMp3Path);
+      if (this.skipGeneration) {
+        const pulled = await pullFinalAudioFile(chapterStableKey, chapterMp3Path);
+        if (pulled) {
+          console.log(`[audio] Chapter ${chapter.number} downloaded from R2 final-audio cache.`);
+        }
+      }
+
+      if (!existsSync(chapterMp3Path)) {
+        console.log(`[audio] Concatenating chapter ${chapter.number} audio...`);
+        this.tts.concatenateMp3s(sectionMp3s, chapterMp3Path);
+      }
     }
+
+    this.finalAudioToUpload.set(chapterStableKey, chapterMp3Path);
 
     const link = `/uc/${chapterFilename}`;
     chapter.audioLink = link;
@@ -129,9 +148,21 @@ export class Renderer {
 
     section.audioLink = link;
 
+    const sectionStableKey = `ch${chapter.number}-s${section.number}`;
+
     if (existsSync(mp3Path)) {
       console.log(`[audio] Section ${chapter.number}.${section.number} cached, skipping.`);
+      this.finalAudioToUpload.set(sectionStableKey, mp3Path);
       return mp3Path;
+    }
+
+    if (this.skipGeneration) {
+      const pulled = await pullFinalAudioFile(sectionStableKey, mp3Path);
+      if (pulled) {
+        console.log(`[audio] Section ${chapter.number}.${section.number} downloaded from R2 final-audio cache.`);
+        this.finalAudioToUpload.set(sectionStableKey, mp3Path);
+        return mp3Path;
+      }
     }
 
     const cachedCount = paragraphs.filter(p => this.tts.isCached(p)).length;
@@ -150,6 +181,7 @@ export class Renderer {
     }
 
     this.tts.mp3ToNormalizedMp3(mp3, mp3Path);
+    this.finalAudioToUpload.set(sectionStableKey, mp3Path);
     return mp3Path;
   }
 }

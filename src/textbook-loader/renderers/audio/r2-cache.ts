@@ -143,3 +143,61 @@ export async function pushToR2(): Promise<void> {
     })));
   }
 }
+
+/**
+ * Download a final assembled MP3 from R2 to a local path.
+ * Returns true if the file was downloaded, false if not found or R2 not configured.
+ */
+export async function pullFinalAudioFile(stableKey: string, destPath: string): Promise<boolean> {
+  const config = getR2Config();
+  if (!config) return false;
+
+  const client = makeS3Client(config);
+  const key = `final-audio/${stableKey}.mp3`;
+
+  try {
+    const response = await client.send(new GetObjectCommand({
+      Bucket: config.bucket,
+      Key: key,
+    }));
+
+    if (!response.Body) return false;
+    const chunks: Uint8Array[] = [];
+    for await (const chunk of response.Body as AsyncIterable<Uint8Array>) {
+      chunks.push(chunk);
+    }
+    mkdirSync(dirname(destPath), { recursive: true });
+    writeFileSync(destPath, Buffer.concat(chunks));
+    return true;
+  } catch (err: any) {
+    if (err?.name === 'NoSuchKey') return false;
+    console.warn(`[r2-cache] Failed to download final audio ${key}:`, err);
+    return false;
+  }
+}
+
+/**
+ * Upload final assembled MP3s to R2 under the `final-audio/` prefix.
+ * Always overwrites — these are "latest" snapshots.
+ */
+export async function pushFinalAudioFiles(files: Map<string, string>): Promise<void> {
+  const config = getR2Config();
+  if (!config || files.size === 0) return;
+
+  const client = makeS3Client(config);
+  console.log(`[r2-cache] Uploading ${files.size} final audio files to R2...`);
+
+  const limit = pLimit(50);
+  await Promise.all([...files.entries()].map(([stableKey, localPath]) => limit(async () => {
+    const key = `final-audio/${stableKey}.mp3`;
+    try {
+      await client.send(new PutObjectCommand({
+        Bucket: config.bucket,
+        Key: key,
+        Body: readFileSync(localPath),
+      }));
+    } catch (err) {
+      console.warn(`[r2-cache] Failed to upload final audio ${key}:`, err);
+    }
+  })));
+}
