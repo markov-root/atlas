@@ -145,35 +145,38 @@ export async function pushToR2(): Promise<void> {
 }
 
 /**
- * Download a final assembled MP3 from R2 to a local path.
- * Returns true if the file was downloaded, false if not found or R2 not configured.
+ * Batch-download final audio files from R2.
+ * Each entry maps an R2 key (under `final-audio/`) to a local destination path.
+ * Silently skips files that don't exist in R2.
  */
-export async function pullFinalAudioFile(stableKey: string, destPath: string): Promise<boolean> {
+export async function pullFinalAudioBatch(
+  files: { key: string; destPath: string }[],
+): Promise<void> {
   const config = getR2Config();
-  if (!config) return false;
+  if (!config || files.length === 0) return;
 
   const client = makeS3Client(config);
-  const key = `final-audio/${stableKey}.mp3`;
+  const limit = pLimit(50);
 
-  try {
-    const response = await client.send(new GetObjectCommand({
-      Bucket: config.bucket,
-      Key: key,
-    }));
+  await Promise.all(files.map(({ key, destPath }) => limit(async () => {
+    try {
+      const response = await client.send(new GetObjectCommand({
+        Bucket: config.bucket,
+        Key: key,
+      }));
 
-    if (!response.Body) return false;
-    const chunks: Uint8Array[] = [];
-    for await (const chunk of response.Body as AsyncIterable<Uint8Array>) {
-      chunks.push(chunk);
+      if (!response.Body) return;
+      const chunks: Uint8Array[] = [];
+      for await (const chunk of response.Body as AsyncIterable<Uint8Array>) {
+        chunks.push(chunk);
+      }
+      mkdirSync(dirname(destPath), { recursive: true });
+      writeFileSync(destPath, Buffer.concat(chunks));
+    } catch (err: any) {
+      if (err?.name === 'NoSuchKey') return;
+      console.warn(`[r2-cache] Failed to download ${key}:`, err);
     }
-    mkdirSync(dirname(destPath), { recursive: true });
-    writeFileSync(destPath, Buffer.concat(chunks));
-    return true;
-  } catch (err: any) {
-    if (err?.name === 'NoSuchKey') return false;
-    console.warn(`[r2-cache] Failed to download final audio ${key}:`, err);
-    return false;
-  }
+  })));
 }
 
 /**

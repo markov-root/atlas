@@ -5,11 +5,21 @@ import type { Chapter, Section, Textbook } from "../..";
 import { EquationDescriber } from './equation-describer';
 import { ElevenLabsTTS } from './elevenlabs-tts';
 import { TextRenderer } from './text-renderer';
-import { pullFromR2, pushToR2, pullFinalAudioFile, pushFinalAudioFiles } from './r2-cache';
+import { pullFromR2, pushToR2, pullFinalAudioBatch, pushFinalAudioFiles } from './r2-cache';
 
 export interface AudioRendererOptions {
   /** Skip TTS generation; only link existing audio files. */
   skipGeneration?: boolean;
+}
+
+interface SectionWork {
+  section: Section;
+  chapter: Chapter;
+  paragraphs: string[];
+  mp3Path: string;
+  stableKey: string;
+  contentKey: string;
+  label: string;
 }
 
 export class Renderer {
@@ -21,7 +31,6 @@ export class Renderer {
   private tts: ElevenLabsTTS;
   private describer: EquationDescriber;
   private textRenderer: TextRenderer;
-  private finalAudioToUpload = new Map<string, string>();
 
   constructor(textbook: Textbook, assetsDir: string, outputDir: string, options: AudioRendererOptions = {}) {
     this.textbook = textbook;
@@ -38,150 +47,192 @@ export class Renderer {
   async render(): Promise<void> {
     mkdirSync(this.outputDir, { recursive: true });
 
-    // Pre-compute all needed R2 keys before pulling from cache
-    const neededKeys = new Set<string>();
+    // Phase 1: Fetch equation descriptions so content hashes are stable.
+    // Without descriptions, renderNodes produces different text, giving different hashes.
+    if (!this.skipGeneration) {
+      const eqKeys = new Set<string>();
+      for (const chapter of this.textbook.chapters) {
+        for (const section of chapter.sections) {
+          const equations = this.textRenderer.collectEquations(section.nodes);
+          const context = `${chapter.title} — ${section.title}`;
+          for (const eq of equations) {
+            const hash = this.describer.hashLatex(eq.latex);
+            eqKeys.add(`equation-descriptions/${hash}.txt`);
+            this.describer.queue(eq.latex, eq.type, context);
+          }
+        }
+      }
+      await pullFromR2(eqKeys);
+      await this.describer.batchFetch();
+    }
 
+    // Phase 2: Compute section metadata and check local cache
+    const sections: SectionWork[] = [];
     for (const chapter of this.textbook.chapters) {
-      for (const section of chapter.sections) {
-        // Collect equation description keys
-        const equations = this.textRenderer.collectEquations(section.nodes);
-        const context = `${chapter.title} — ${section.title}`;
-        for (const eq of equations) {
-          const hash = this.describer.hashLatex(eq.latex);
-          neededKeys.add(`equation-descriptions/${hash}.txt`);
-          this.describer.queue(eq.latex, eq.type, context);
+      for (let i = 0; i < chapter.sections.length; i++) {
+        const section = chapter.sections[i];
+        const preamble: string[] = [];
+        if (i === 0) preamble.push(`Chapter ${chapter.number}: ${chapter.title}.`);
+        preamble.push(`Section ${chapter.number}.${section.number}: ${section.title}.`);
+
+        const paragraphs = [...preamble, ...this.textRenderer.renderNodes(section.nodes)];
+        if (paragraphs.length === 0) {
+          section.audioLink = undefined;
+          continue;
         }
 
-        // Collect audio chunk keys from rendered paragraphs
-        const paragraphs = this.textRenderer.renderNodes(section.nodes);
-        for (const text of paragraphs) {
-          const hash = this.tts.hashText(text);
-          neededKeys.add(`audio-chunks/${hash}.mp3`);
-          neededKeys.add(`audio-chunks/${hash}.pcm`); // legacy Gemini format
+        const hash = createHash('sha256').update(paragraphs.join('\n')).digest('hex');
+        const filename = `atlas-ch${chapter.number}-s${section.number}-${hash}.mp3`;
+        const mp3Path = join(this.outputDir, filename);
+        section.audioLink = `/uc/${filename}`;
+
+        sections.push({
+          section, chapter, paragraphs, mp3Path,
+          stableKey: `ch${chapter.number}-s${section.number}`,
+          contentKey: `ch${chapter.number}-s${section.number}-${hash}`,
+          label: `${chapter.number}.${section.number} "${section.title}"`,
+        });
+      }
+    }
+
+    // Phase 3: Pull content-hashed final audio from R2
+    const localCached = sections.filter(s => existsSync(s.mp3Path));
+    const needFromR2 = sections.filter(s => !existsSync(s.mp3Path));
+    for (const s of localCached) {
+      console.log(`[audio] ${s.label}: cached locally`);
+    }
+    if (needFromR2.length > 0) {
+      await pullFinalAudioBatch(needFromR2.map(s => ({
+        key: `final-audio/${s.contentKey}.mp3`,
+        destPath: s.mp3Path,
+      })));
+      for (const s of needFromR2) {
+        if (existsSync(s.mp3Path)) console.log(`[audio] ${s.label}: downloaded from R2 (content-matched)`);
+      }
+    }
+
+    // Phase 4: Stable key fallback (SKIP_AUDIO only — serves stale audio)
+    if (this.skipGeneration) {
+      const stillNeeded = sections.filter(s => !existsSync(s.mp3Path));
+      if (stillNeeded.length > 0) {
+        await pullFinalAudioBatch(stillNeeded.map(s => ({
+          key: `final-audio/${s.stableKey}.mp3`,
+          destPath: s.mp3Path,
+        })));
+        for (const s of stillNeeded) {
+          if (existsSync(s.mp3Path)) console.log(`[audio] ${s.label}: downloaded from R2 (stale fallback)`);
         }
       }
     }
 
-    // Pull only the needed files from R2
-    await pullFromR2(neededKeys);
+    // Phase 5: Synthesize sections that still need it
+    const toSynthesize = sections.filter(s => !existsSync(s.mp3Path));
+    const synthesizedSections: SectionWork[] = [];
 
-    // Batch-fetch equation descriptions from Gemini for any not in cache
-    await this.describer.batchFetch();
+    if (toSynthesize.length > 0 && !this.skipGeneration) {
+      // Pull paragraph-level audio chunks only for sections that need synthesis
+      const chunkKeys = new Set<string>();
+      for (const s of toSynthesize) {
+        for (const text of s.paragraphs) {
+          const h = this.tts.hashText(text);
+          chunkKeys.add(`audio-chunks/${h}.mp3`);
+          chunkKeys.add(`audio-chunks/${h}.pcm`);
+        }
+      }
+      await pullFromR2(chunkKeys);
 
-    // Render chapters
-    for (const chapter of this.textbook.chapters) {
-      await this.renderChapter(chapter);
+      for (const s of toSynthesize) {
+        const cachedCount = s.paragraphs.filter(p => this.tts.isCached(p)).length;
+        const uncachedCount = s.paragraphs.length - cachedCount;
+        const cacheNote = uncachedCount === 0
+          ? ` (all ${s.paragraphs.length} paragraphs cached)`
+          : cachedCount > 0
+            ? ` (${uncachedCount}/${s.paragraphs.length} to synthesize, ${cachedCount} cached)`
+            : ` (${s.paragraphs.length} paragraphs to synthesize)`;
+        console.log(`[audio] ${s.label}: synthesizing${cacheNote}`);
+
+        const mp3 = await this.tts.synthesizeParagraphs(s.paragraphs);
+        if (mp3.length === 0) {
+          s.section.audioLink = undefined;
+          continue;
+        }
+        this.tts.mp3ToNormalizedMp3(mp3, s.mp3Path);
+        synthesizedSections.push(s);
+      }
     }
 
-    // Push any newly generated cache files to R2
+    // Clear audioLink for sections that still have no audio
+    for (const s of sections) {
+      if (!existsSync(s.mp3Path)) {
+        console.log(`[audio] ${s.label}: no audio available`);
+        s.section.audioLink = undefined;
+      }
+    }
+
+    // Phase 6: Chapters
+    const synthesizedChapters: { stableKey: string; contentKey: string; mp3Path: string }[] = [];
+
+    for (const chapter of this.textbook.chapters) {
+      const chapterSectionPaths = sections
+        .filter(s => s.chapter === chapter && existsSync(s.mp3Path))
+        .map(s => s.mp3Path);
+
+      if (chapterSectionPaths.length === 0) continue;
+
+      const chapterHash = createHash('sha256')
+        .update(chapterSectionPaths.join('\n'))
+        .digest('hex');
+      const chapterFilename = `atlas-chapter${chapter.number}-audio-${chapterHash}.mp3`;
+      const chapterMp3Path = join(this.outputDir, chapterFilename);
+      const stableKey = `chapter${chapter.number}`;
+      const contentKey = `chapter${chapter.number}-${chapterHash}`;
+
+      const chapterLabel = `Chapter ${chapter.number}`;
+      if (existsSync(chapterMp3Path)) {
+        console.log(`[audio] ${chapterLabel}: cached locally`);
+      } else {
+        // Try content-hashed key from R2
+        await pullFinalAudioBatch([{ key: `final-audio/${contentKey}.mp3`, destPath: chapterMp3Path }]);
+
+        if (existsSync(chapterMp3Path)) {
+          console.log(`[audio] ${chapterLabel}: downloaded from R2 (content-matched)`);
+        } else if (this.skipGeneration) {
+          // Stable key fallback (SKIP_AUDIO only)
+          await pullFinalAudioBatch([{ key: `final-audio/${stableKey}.mp3`, destPath: chapterMp3Path }]);
+          if (existsSync(chapterMp3Path)) {
+            console.log(`[audio] ${chapterLabel}: downloaded from R2 (stale fallback)`);
+          }
+        }
+
+        if (!existsSync(chapterMp3Path)) {
+          console.log(`[audio] ${chapterLabel}: concatenating from ${chapterSectionPaths.length} sections`);
+          this.tts.concatenateMp3s(chapterSectionPaths, chapterMp3Path);
+          synthesizedChapters.push({ stableKey, contentKey, mp3Path: chapterMp3Path });
+        }
+      }
+
+      chapter.audioLink = `/uc/${chapterFilename}`;
+    }
+
+    // Phase 7: Upload
     await pushToR2();
 
-    // Push final assembled MP3s to R2 for CI fallback
-    await pushFinalAudioFiles(this.finalAudioToUpload);
-  }
-
-  async renderChapter(chapter: Chapter): Promise<string> {
-    const sectionMp3s: string[] = [];
-
-    for (let i = 0; i < chapter.sections.length; i++) {
-      const section = chapter.sections[i];
-      const isFirstSection = i === 0;
-      const mp3Path = await this.renderSection(section, chapter, isFirstSection);
-      if (mp3Path) sectionMp3s.push(mp3Path);
+    // Only upload files that were actually synthesized/concatenated locally
+    const finalToUpload = new Map<string, string>();
+    for (const s of synthesizedSections) {
+      finalToUpload.set(s.contentKey, s.mp3Path);
+      finalToUpload.set(s.stableKey, s.mp3Path);
     }
-
-    if (sectionMp3s.length === 0) return '';
-
-    // Hash based on section filenames so chapter cache is stable when sections don't change
-    const chapterHash = createHash('sha256')
-      .update(sectionMp3s.join('\n'))
-      .digest('hex');
-    const chapterFilename = `atlas-chapter${chapter.number}-audio-${chapterHash}.mp3`;
-    const chapterMp3Path = join(this.outputDir, chapterFilename);
-
-    const chapterStableKey = `chapter${chapter.number}`;
-
-    if (!existsSync(chapterMp3Path)) {
-      if (this.skipGeneration) {
-        const pulled = await pullFinalAudioFile(chapterStableKey, chapterMp3Path);
-        if (pulled) {
-          console.log(`[audio] Chapter ${chapter.number} downloaded from R2 final-audio cache.`);
-        }
-      }
-
-      if (!existsSync(chapterMp3Path)) {
-        console.log(`[audio] Concatenating chapter ${chapter.number} audio...`);
-        this.tts.concatenateMp3s(sectionMp3s, chapterMp3Path);
+    for (const c of synthesizedChapters) {
+      finalToUpload.set(c.contentKey, c.mp3Path);
+      finalToUpload.set(c.stableKey, c.mp3Path);
+    }
+    if (finalToUpload.size > 0) {
+      console.log(`[audio] Uploading ${finalToUpload.size} final audio keys to R2:`);
+      for (const key of finalToUpload.keys()) {
+        console.log(`[audio]   final-audio/${key}.mp3`);
       }
     }
-
-    this.finalAudioToUpload.set(chapterStableKey, chapterMp3Path);
-
-    const link = `/uc/${chapterFilename}`;
-    chapter.audioLink = link;
-    return link;
-  }
-
-  async renderSection(section: Section, chapter: Chapter, isFirstSection: boolean): Promise<string> {
-    // Prepend chapter and section titles
-    const preamble: string[] = [];
-    if (isFirstSection) {
-      preamble.push(`Chapter ${chapter.number}: ${chapter.title}.`);
-    }
-    preamble.push(`Section ${chapter.number}.${section.number}: ${section.title}.`);
-
-    const paragraphs = [...preamble, ...this.textRenderer.renderNodes(section.nodes)];
-    if (paragraphs.length === 0) {
-      section.audioLink = undefined;
-      return '';
-    }
-
-    // Hash based on the actual rendered paragraph text, not the AST nodes.
-    // This way non-audio changes (e.g. metadata, links) don't invalidate the cache.
-    const sectionHash = createHash('sha256')
-      .update(paragraphs.join('\n'))
-      .digest('hex');
-
-    const filename = `atlas-ch${chapter.number}-s${section.number}-${sectionHash}.mp3`;
-    const mp3Path = join(this.outputDir, filename);
-    const link = `/uc/${filename}`;
-
-    section.audioLink = link;
-
-    const sectionStableKey = `ch${chapter.number}-s${section.number}`;
-
-    if (existsSync(mp3Path)) {
-      console.log(`[audio] Section ${chapter.number}.${section.number} cached, skipping.`);
-      this.finalAudioToUpload.set(sectionStableKey, mp3Path);
-      return mp3Path;
-    }
-
-    if (this.skipGeneration) {
-      const pulled = await pullFinalAudioFile(sectionStableKey, mp3Path);
-      if (pulled) {
-        console.log(`[audio] Section ${chapter.number}.${section.number} downloaded from R2 final-audio cache.`);
-        this.finalAudioToUpload.set(sectionStableKey, mp3Path);
-        return mp3Path;
-      }
-    }
-
-    const cachedCount = paragraphs.filter(p => this.tts.isCached(p)).length;
-    const uncachedCount = paragraphs.length - cachedCount;
-    const cacheNote = uncachedCount === 0
-      ? ` (all ${paragraphs.length} paragraphs cached)`
-      : cachedCount > 0
-        ? ` (${uncachedCount}/${paragraphs.length} paragraphs to synthesize, ${cachedCount} cached)`
-        : ` (${paragraphs.length} paragraphs to synthesize)`;
-    console.log(`[audio] Synthesizing section ${chapter.number}.${section.number}: "${section.title}"${cacheNote}`);
-
-    const mp3 = await this.tts.synthesizeParagraphs(paragraphs);
-    if (mp3.length === 0) {
-      section.audioLink = undefined;
-      return '';
-    }
-
-    this.tts.mp3ToNormalizedMp3(mp3, mp3Path);
-    this.finalAudioToUpload.set(sectionStableKey, mp3Path);
-    return mp3Path;
+    await pushFinalAudioFiles(finalToUpload);
   }
 }
