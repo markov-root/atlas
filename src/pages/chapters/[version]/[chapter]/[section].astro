@@ -7,6 +7,7 @@ import type { Textbook } from '@/textbook-loader/loader';
 import { formatReadingTime, resolveResource } from '@/textbook-loader/utils';
 import { Icon } from 'astro-icon/components'
 import { getTextbooks } from "@/lib/textbooks";
+import { siteConfig } from "@/config/site";
 
 interface Props {
     version: string
@@ -67,6 +68,22 @@ const chapterMarkdownUrl = `/chapters/${version}/${chapter.slug}.md`;
 const lecture = resolveResource(chapter.meta.lecture);
 const paper = resolveResource(chapter.meta.paper);
 ---
+<!--
+    AI Safety Atlas — the open textbook for AI Safety
+    Published by the French Center for AI Safety (CeSIA)
+    https://ai-safety-atlas.com
+
+    This page: Chapter {chapter.number}, Section {section.number} — {section.title}
+    Authors: {chapter.meta.authors.map(a => a.name).join(', ')}
+    Version: {version}
+
+    Machine-readable formats:
+      Markdown (this section): {sectionMarkdownUrl}
+      Markdown (full chapter): {chapterMarkdownUrl}
+
+    Append .md to any section or chapter URL to get clean markdown.
+    Citation: {siteConfig.citation}
+-->
 <Reader title={`${section.title} - Chapter ${chapter.number}`} description="" activeSection={section} textbook={textbook} markdownUrl={sectionMarkdownUrl} breadcrumbs={[
     { text: `Chapter ${chapter.number}`, url: `/chapters/${version}/${chapter.slug}/${chapter.sections[0].slug}` },
     { text: section.title, url: '#' }
