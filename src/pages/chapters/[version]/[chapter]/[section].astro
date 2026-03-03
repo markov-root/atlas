@@ -179,14 +179,14 @@ const paper = resolveResource(chapter.meta.paper);
                                 <li class="flex items-center gap-2.5">
                                     <span class="text-gray-400 text-xl leading-none">&bull;</span>
                                     <Icon name="tabler:file-type-pdf" class="size-4.5 text-red-500 shrink-0" />
-                                    <a href={`/chapters/${version}/${chapter.slug}.pdf`} class="text-[15px] text-gray-700 underline decoration-gray-300 underline-offset-2 hover:text-gray-900 hover:decoration-gray-500 transition-colors">Download chapter PDF</a>
+                                    <a href={`/chapters/${version}/${chapter.slug}.pdf?v=${chapter.contentHash.slice(0, 8)}`} class="text-[15px] text-gray-700 underline decoration-gray-300 underline-offset-2 hover:text-gray-900 hover:decoration-gray-500 transition-colors">Download chapter PDF</a>
                                 </li>
                                 )}
                                 {chapter.audioLink && (
                                 <li class="flex items-center gap-2.5">
                                     <span class="text-gray-400 text-xl leading-none">&bull;</span>
                                     <Icon name="tabler:headphones" class="size-4.5 text-brand-600 shrink-0" />
-                                    <a href={`/chapters/${version}/${chapter.slug}.mp3`} class="text-[15px] text-gray-700 underline decoration-gray-300 underline-offset-2 hover:text-gray-900 hover:decoration-gray-500 transition-colors">Download chapter audio</a>
+                                    <a href={`/chapters/${version}/${chapter.slug}.mp3?v=${chapter.contentHash.slice(0, 8)}`} class="text-[15px] text-gray-700 underline decoration-gray-300 underline-offset-2 hover:text-gray-900 hover:decoration-gray-500 transition-colors">Download chapter audio</a>
                                 </li>
                                 )}
                                 <li class="flex items-center gap-2.5">

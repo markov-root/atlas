@@ -1,4 +1,6 @@
 import type { APIRoute, GetStaticPaths } from "astro";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { getTextbooks } from "@/lib/textbooks";
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -25,10 +27,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const GET: APIRoute = ({ props }) => {
     const { pdfLink } = props as any;
-    return new Response(null, {
-        status: 302,
+    const pdfBytes = readFileSync(join(process.cwd(), "public", pdfLink));
+    return new Response(pdfBytes, {
         headers: {
-            Location: pdfLink,
+            "Content-Type": "application/pdf",
         },
     });
 };
