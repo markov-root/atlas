@@ -55,7 +55,7 @@ export class TextbookLoader {
       readingTimeInSeconds,
     };
 
-    const outputDir = join(process.cwd(), 'public', 'uc');
+    const outputDir = join(process.cwd(), '.cache', 'uc');
     await new ChapterPdfRenderer(textbook, this.assetsDir, outputDir).render();
 
     await new AudioRenderer(textbook, this.assetsDir, outputDir, {

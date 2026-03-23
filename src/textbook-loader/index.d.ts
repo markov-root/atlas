@@ -83,7 +83,6 @@ export type Textbook = {
   language: string;
   chapters: Chapter[]
   readingTimeInSeconds: number
-  pdfLink?: string
 }
 
 export type GlossaryEntry = {

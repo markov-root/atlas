@@ -204,3 +204,60 @@ export async function pushFinalAudioFiles(files: Map<string, string>): Promise<v
     }
   })));
 }
+
+/**
+ * Upload files to the public-facing R2 prefix for CDN serving.
+ * Uses the same atlas-cache bucket but with a prefix (audio/ or pdf/).
+ * Sets appropriate Content-Type for browser streaming/download.
+ */
+export async function pushPublicFiles(
+  files: Map<string, string>,
+  prefix: string,
+  contentType: string,
+): Promise<void> {
+  const config = getR2Config();
+  if (!config || files.size === 0) return;
+
+  const client = makeS3Client(config);
+
+  // Check which files already exist in R2
+  const existingKeys = new Set<string>();
+  try {
+    let continuationToken: string | undefined;
+    do {
+      const list = await client.send(new ListObjectsV2Command({
+        Bucket: config.bucket,
+        Prefix: `${prefix}/`,
+        ContinuationToken: continuationToken,
+      }));
+      for (const obj of list.Contents ?? []) {
+        if (obj.Key) existingKeys.add(obj.Key);
+      }
+      continuationToken = list.IsTruncated ? list.NextContinuationToken : undefined;
+    } while (continuationToken);
+  } catch (err) {
+    console.warn(`[r2-cache] Failed to list R2 for public push:`, err);
+  }
+
+  const toUpload = [...files.entries()].filter(([filename]) => !existingKeys.has(`${prefix}/${filename}`));
+  if (toUpload.length === 0) {
+    console.log(`[r2-cache] All ${files.size} ${prefix} files already in R2.`);
+    return;
+  }
+
+  console.log(`[r2-cache] Uploading ${toUpload.length} of ${files.size} ${prefix} files to R2 for CDN...`);
+  const limit = pLimit(50);
+  await Promise.all(toUpload.map(([filename, localPath]) => limit(async () => {
+    const key = `${prefix}/${filename}`;
+    try {
+      await client.send(new PutObjectCommand({
+        Bucket: config.bucket,
+        Key: key,
+        Body: readFileSync(localPath),
+        ContentType: contentType,
+      }));
+    } catch (err) {
+      console.warn(`[r2-cache] Failed to upload ${key}:`, err);
+    }
+  })));
+}

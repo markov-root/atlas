@@ -5,7 +5,9 @@ import type { Chapter, Section, Textbook } from "../..";
 import { EquationDescriber } from './equation-describer';
 import { ElevenLabsTTS } from './elevenlabs-tts';
 import { TextRenderer } from './text-renderer';
-import { pullFromR2, pushToR2, pullFinalAudioBatch, pushFinalAudioFiles } from './r2-cache';
+import { pullFromR2, pushToR2, pullFinalAudioBatch, pushFinalAudioFiles, pushPublicFiles } from './r2-cache';
+
+const CDN_BASE = 'https://atlas.foreviewusercontent.com';
 
 export interface AudioRendererOptions {
   /** Skip TTS generation; only link existing audio files. */
@@ -84,7 +86,7 @@ export class Renderer {
         const hash = createHash('sha256').update(paragraphs.join('\n')).digest('hex');
         const filename = `atlas-ch${chapter.number}-s${section.number}-${hash}.mp3`;
         const mp3Path = join(this.outputDir, filename);
-        section.audioLink = `/uc/${filename}`;
+        section.audioLink = `${CDN_BASE}/audio/${filename}`;
 
         sections.push({
           section, chapter, paragraphs, mp3Path,
@@ -211,7 +213,7 @@ export class Renderer {
         }
       }
 
-      chapter.audioLink = `/uc/${chapterFilename}`;
+      chapter.audioLink = `${CDN_BASE}/audio/${chapterFilename}`;
     }
 
     // Phase 7: Upload
@@ -234,5 +236,23 @@ export class Renderer {
       }
     }
     await pushFinalAudioFiles(finalToUpload);
+
+    // Phase 8: Upload all audio to public CDN prefix
+    const publicAudio = new Map<string, string>();
+    for (const s of sections) {
+      if (existsSync(s.mp3Path)) {
+        publicAudio.set(s.mp3Path.split('/').pop()!, s.mp3Path);
+      }
+    }
+    for (const chapter of this.textbook.chapters) {
+      if (chapter.audioLink) {
+        const filename = chapter.audioLink.split('/').pop()!;
+        const mp3Path = join(this.outputDir, filename);
+        if (existsSync(mp3Path)) {
+          publicAudio.set(filename, mp3Path);
+        }
+      }
+    }
+    await pushPublicFiles(publicAudio, 'audio', 'audio/mpeg');
   }
 }

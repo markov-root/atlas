@@ -90,11 +90,6 @@ const firstChapterUrl = `/chapters/${textbook.version}/${textbook.chapters[0].sl
                     <p class="mt-4 text-base lg:text-lg text-gray-600">
                         Begin with {textbook.chapters[0].title} and work through at your own pace.
                     </p>
-                    {textbook.pdfLink && (
-                        <p class="mt-6 text-sm text-gray-500">
-                            Or <a href={textbook.pdfLink} class="underline hover:text-gray-900 transition-colors">download the PDF</a>
-                        </p>
-                    )}
                 </div>
             </a>
         </div>
@@ -163,7 +158,7 @@ const firstChapterUrl = `/chapters/${textbook.version}/${textbook.chapters[0].sl
                                             </p>
                                         )}
                                         {chapter.audioLink && (
-                                            <a href={chapter.audioLink} download class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors mt-3">
+                                            <a href={chapter.audioLink} class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors mt-3">
                                                 <Icon name="tabler:headphones" class="size-4" />
                                                 <span>Download chapter audio</span>
                                             </a>

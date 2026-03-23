@@ -2,11 +2,14 @@ import { execSync } from 'child_process';
 import { existsSync, readFileSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { pushPublicFiles } from '../audio/r2-cache';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PREAMBLE = readFileSync(join(__dirname, 'preamble.typ'), 'utf-8');
 import type { Author, Chapter, Section, Textbook } from "../..";
 import type { Node } from "../../transformer";
+
+const CDN_BASE = 'https://atlas.foreviewusercontent.com';
 
 const BLOCK_NODES = [
   'Paragraph',
@@ -44,13 +47,24 @@ export class Renderer {
     mkdirSync(this.outputDir, { recursive: true });
 
     let renders: Record<string, string> = {}
+    const publicPdfs = new Map<string, string>();
 
     for (const chapter of this.textbook.chapters) {
       let rendered = await this.renderChapter(chapter)
 
       chapter.pdfLink = rendered
       renders[chapter.contentHash] = rendered
+
+      // Track for CDN upload
+      const filename = rendered.split('/').pop()!;
+      const localPath = join(this.outputDir, filename);
+      if (existsSync(localPath)) {
+        publicPdfs.set(filename, localPath);
+      }
     }
+
+    // Upload PDFs to public CDN
+    await pushPublicFiles(publicPdfs, 'pdf', 'application/pdf');
 
     return renders
   }
@@ -60,7 +74,7 @@ export class Renderer {
     const pdfPath = join(this.outputDir, pdfFilename);
 
     if (existsSync(pdfPath)) {
-      return `/uc/${pdfFilename}`;
+      return `${CDN_BASE}/pdf/${pdfFilename}`;
     }
 
     const typstContent = this.generateChapter(chapter);
@@ -80,7 +94,7 @@ export class Renderer {
       throw error;
     }
 
-    return `/uc/${pdfFilename}`;
+    return `${CDN_BASE}/pdf/${pdfFilename}`;
   }
 
   generateChapter(chapter: Chapter): string {
