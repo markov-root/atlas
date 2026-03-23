@@ -1,0 +1,311 @@
+---
+import Default from "@/layouts/Default.astro";
+import Section from "@/components/Section.astro";
+import SplitSection from "@/components/SplitSection.astro";
+import GrainOverlay from "@/components/GrainOverlay.astro";
+import { Icon } from "astro-icon/components";
+---
+<Default title="Brand" description="AI Safety Atlas brand guidelines, logos, colors, and fonts.">
+    <!-- Hero -->
+    <Section class="bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+            <h1 class="font-display text-gray-900 text-4xl font-bold tracking-tight sm:text-5xl">Brand</h1>
+            <p class="mt-4 text-lg text-gray-600 max-w-2xl">Guidelines for using the AI Safety Atlas name, logo, colors, and visual elements.</p>
+        </div>
+    </Section>
+
+    <!-- Lockup -->
+    <SplitSection
+        heading="Lockup"
+        headingDescription="The full logo combines the mark with the wordmark. Use it wherever space allows."
+        leftBg="white"
+        rightBg="gray"
+    >
+        <div slot="left" class="mt-8">
+            <div class="flex items-center justify-center rounded-2xl border border-gray-200 p-8 bg-white mb-4">
+                <img src="/brand/lockup_color_20260131.svg" alt="Atlas lockup, color" class="h-12 w-auto" />
+            </div>
+            <div class="flex items-center justify-center rounded-2xl bg-gray-900 p-8 mb-4">
+                <img src="/brand/lockup_white_20260131.svg" alt="Atlas lockup, white" class="h-12 w-auto" />
+            </div>
+        </div>
+        <div slot="right" class="mt-8">
+            <div class="space-y-2">
+                <a href="/brand/lockup_color_20260131.svg" download class="flex items-center justify-between px-3 py-2 text-sm text-gray-700 bg-white rounded-lg hover:bg-gray-50 transition-colors">
+                    <span>Lockup color SVG</span>
+                    <Icon name="tabler:download" class="size-4 text-gray-400" />
+                </a>
+                <a href="/brand/lockup_color_20260131.png" download class="flex items-center justify-between px-3 py-2 text-sm text-gray-700 bg-white rounded-lg hover:bg-gray-50 transition-colors">
+                    <span>Lockup color PNG</span>
+                    <Icon name="tabler:download" class="size-4 text-gray-400" />
+                </a>
+                <a href="/brand/lockup_white_20260131.svg" download class="flex items-center justify-between px-3 py-2 text-sm text-gray-700 bg-white rounded-lg hover:bg-gray-50 transition-colors">
+                    <span>Lockup white SVG</span>
+                    <Icon name="tabler:download" class="size-4 text-gray-400" />
+                </a>
+                <a href="/brand/lockup_white_20260131.png" download class="flex items-center justify-between px-3 py-2 text-sm text-gray-700 bg-white rounded-lg hover:bg-gray-50 transition-colors">
+                    <span>Lockup white PNG</span>
+                    <Icon name="tabler:download" class="size-4 text-gray-400" />
+                </a>
+            </div>
+        </div>
+    </SplitSection>
+
+    <!-- Mark -->
+    <SplitSection
+        heading="Mark"
+        headingDescription="The logomark can be used standalone as an icon or avatar."
+        leftBg="white"
+        rightBg="gray"
+    >
+        <div slot="left" class="mt-8">
+            <div class="grid grid-cols-2 gap-4">
+                <div class="flex items-center justify-center rounded-2xl border border-gray-200 p-8 bg-white">
+                    <img src="/brand/mark_color_20260323.svg" alt="Atlas mark, color" class="h-16 w-auto" />
+                </div>
+                <div class="flex items-center justify-center rounded-2xl bg-gray-900 p-8">
+                    <img src="/brand/mark_white_20260323.svg" alt="Atlas mark, white" class="h-16 w-auto" />
+                </div>
+            </div>
+            <p class="text-sm text-gray-500 mt-4">Do not alter, rotate, or recolor the logo beyond the provided variants.</p>
+        </div>
+        <div slot="right" class="mt-8">
+            <div class="space-y-2">
+                <a href="/brand/mark_color_20260323.svg" download class="flex items-center justify-between px-3 py-2 text-sm text-gray-700 bg-white rounded-lg hover:bg-gray-50 transition-colors">
+                    <span>Mark color SVG</span>
+                    <Icon name="tabler:download" class="size-4 text-gray-400" />
+                </a>
+                <a href="/brand/mark_color_20260323.png" download class="flex items-center justify-between px-3 py-2 text-sm text-gray-700 bg-white rounded-lg hover:bg-gray-50 transition-colors">
+                    <span>Mark color PNG</span>
+                    <Icon name="tabler:download" class="size-4 text-gray-400" />
+                </a>
+                <a href="/brand/mark_white_20260323.svg" download class="flex items-center justify-between px-3 py-2 text-sm text-gray-700 bg-white rounded-lg hover:bg-gray-50 transition-colors">
+                    <span>Mark white SVG</span>
+                    <Icon name="tabler:download" class="size-4 text-gray-400" />
+                </a>
+                <a href="/brand/mark_white_20260323.png" download class="flex items-center justify-between px-3 py-2 text-sm text-gray-700 bg-white rounded-lg hover:bg-gray-50 transition-colors">
+                    <span>Mark white PNG</span>
+                    <Icon name="tabler:download" class="size-4 text-gray-400" />
+                </a>
+            </div>
+        </div>
+    </SplitSection>
+
+    <!-- Colors -->
+    <SplitSection
+        heading="Colors"
+        headingDescription="The brand palette is built around a blue primary and a warm dark background."
+        leftBg="white"
+        rightBg="gray"
+    >
+        <div slot="left" class="mt-8">
+            <h3 class="font-semibold text-gray-900 mb-3">Brand blue</h3>
+            <div class="grid grid-cols-5 gap-2 mb-8">
+                <div>
+                    <div class="aspect-square rounded-lg bg-brand-100"></div>
+                    <p class="text-xs text-gray-500 mt-1">100</p>
+                </div>
+                <div>
+                    <div class="aspect-square rounded-lg bg-brand-300"></div>
+                    <p class="text-xs text-gray-500 mt-1">300</p>
+                </div>
+                <div>
+                    <div class="aspect-square rounded-lg bg-brand-500"></div>
+                    <p class="text-xs text-gray-500 mt-1">500</p>
+                </div>
+                <div>
+                    <div class="aspect-square rounded-lg bg-brand-600"></div>
+                    <p class="text-xs text-gray-500 mt-1">600</p>
+                </div>
+                <div>
+                    <div class="aspect-square rounded-lg bg-brand-900"></div>
+                    <p class="text-xs text-gray-500 mt-1">900</p>
+                </div>
+            </div>
+
+            <h3 class="font-semibold text-gray-900 mb-3">Neutrals</h3>
+            <div class="grid grid-cols-5 gap-2">
+                <div>
+                    <div class="aspect-square rounded-lg bg-gray-100 border border-gray-200"></div>
+                    <p class="text-xs text-gray-500 mt-1">100</p>
+                </div>
+                <div>
+                    <div class="aspect-square rounded-lg bg-gray-300"></div>
+                    <p class="text-xs text-gray-500 mt-1">300</p>
+                </div>
+                <div>
+                    <div class="aspect-square rounded-lg bg-gray-500"></div>
+                    <p class="text-xs text-gray-500 mt-1">500</p>
+                </div>
+                <div>
+                    <div class="aspect-square rounded-lg bg-gray-700"></div>
+                    <p class="text-xs text-gray-500 mt-1">700</p>
+                </div>
+                <div>
+                    <div class="aspect-square rounded-lg bg-gray-900"></div>
+                    <p class="text-xs text-gray-500 mt-1">900</p>
+                </div>
+            </div>
+        </div>
+        <div slot="right" class="mt-8">
+            <div class="space-y-2">
+                <button data-copy="oklch(0.588 0.158 241.966)" class="color-copy w-full flex items-center gap-4 px-4 py-3 bg-white rounded-lg hover:bg-gray-50 transition-colors text-left cursor-pointer">
+                    <div class="size-10 rounded-lg bg-brand-600 shrink-0"></div>
+                    <div class="min-w-0 flex-1">
+                        <p class="text-sm font-medium text-gray-900">Brand 600 (primary)</p>
+                        <p class="text-xs text-gray-500 font-mono">oklch(0.588 0.158 241.966)</p>
+                    </div>
+                    <Icon name="tabler:copy" class="size-4 text-gray-400 shrink-0 copy-icon" />
+                    <Icon name="tabler:check" class="size-4 text-green-500 shrink-0 check-icon hidden" />
+                </button>
+                <button data-copy="oklch(0.5 0.134 242.749)" class="color-copy w-full flex items-center gap-4 px-4 py-3 bg-white rounded-lg hover:bg-gray-50 transition-colors text-left cursor-pointer">
+                    <div class="size-10 rounded-lg bg-brand-700 shrink-0"></div>
+                    <div class="min-w-0 flex-1">
+                        <p class="text-sm font-medium text-gray-900">Brand 700</p>
+                        <p class="text-xs text-gray-500 font-mono">oklch(0.5 0.134 242.749)</p>
+                    </div>
+                    <Icon name="tabler:copy" class="size-4 text-gray-400 shrink-0 copy-icon" />
+                    <Icon name="tabler:check" class="size-4 text-green-500 shrink-0 check-icon hidden" />
+                </button>
+                <button data-copy="oklch(18% 0.14 105)" class="color-copy w-full flex items-center gap-4 px-4 py-3 bg-white rounded-lg hover:bg-gray-50 transition-colors text-left cursor-pointer">
+                    <div class="size-10 rounded-lg bg-black shrink-0"></div>
+                    <div class="min-w-0 flex-1">
+                        <p class="text-sm font-medium text-gray-900">Black (background)</p>
+                        <p class="text-xs text-gray-500 font-mono">oklch(18% 0.14 105)</p>
+                    </div>
+                    <Icon name="tabler:copy" class="size-4 text-gray-400 shrink-0 copy-icon" />
+                    <Icon name="tabler:check" class="size-4 text-green-500 shrink-0 check-icon hidden" />
+                </button>
+                <button data-copy="#e9ecef" class="color-copy w-full flex items-center gap-4 px-4 py-3 bg-white rounded-lg hover:bg-gray-50 transition-colors text-left cursor-pointer">
+                    <div class="size-10 rounded-lg bg-gray-200 border border-gray-300 shrink-0"></div>
+                    <div class="min-w-0 flex-1">
+                        <p class="text-sm font-medium text-gray-900">Page background</p>
+                        <p class="text-xs text-gray-500 font-mono">#e9ecef</p>
+                    </div>
+                    <Icon name="tabler:copy" class="size-4 text-gray-400 shrink-0 copy-icon" />
+                    <Icon name="tabler:check" class="size-4 text-green-500 shrink-0 check-icon hidden" />
+                </button>
+            </div>
+        </div>
+    </SplitSection>
+
+    <!-- Typography -->
+    <SplitSection
+        heading="Typography"
+        headingDescription="Two typefaces create hierarchy across the site."
+        leftBg="white"
+        rightBg="black"
+    >
+        <div slot="left" class="mt-8">
+            <div class="mb-8">
+                <h3 class="font-semibold text-gray-900 mb-3">Display — Righteous</h3>
+                <p class="font-display text-4xl text-gray-900">Aa Bb Cc 123</p>
+                <p class="text-sm text-gray-500 mt-2">Used for headings and the wordmark. Available on <a href="https://fonts.google.com/specimen/Righteous" class="underline hover:text-gray-700 transition-colors">Google Fonts</a>.</p>
+            </div>
+
+            <div>
+                <h3 class="font-semibold text-gray-900 mb-3">Body — Jost</h3>
+                <p class="font-sans text-4xl text-gray-900">Aa Bb Cc 123</p>
+                <p class="text-sm text-gray-500 mt-2">Variable weight, used for body text and UI. Available on <a href="https://fonts.google.com/specimen/Jost" class="underline hover:text-gray-700 transition-colors">Google Fonts</a>.</p>
+            </div>
+        </div>
+        <div slot="right" class="mt-8">
+            <div class="space-y-6">
+                <div>
+                    <p class="text-xs text-white/50 uppercase tracking-wider mb-1">Display / 3xl</p>
+                    <p class="font-display text-3xl text-white">AI Safety Atlas</p>
+                </div>
+                <div>
+                    <p class="text-xs text-white/50 uppercase tracking-wider mb-1">Display / xl</p>
+                    <p class="font-display text-xl text-white">Chapter heading</p>
+                </div>
+                <div>
+                    <p class="text-xs text-white/50 uppercase tracking-wider mb-1">Body / base</p>
+                    <p class="text-base text-white/80">Body text uses Jost at regular weight with relaxed leading for comfortable reading.</p>
+                </div>
+                <div>
+                    <p class="text-xs text-white/50 uppercase tracking-wider mb-1">Body / sm</p>
+                    <p class="text-sm text-white/70">Small text for captions, labels, and metadata.</p>
+                </div>
+            </div>
+        </div>
+    </SplitSection>
+
+    <!-- Noise texture -->
+    <SplitSection
+        heading="Noise texture"
+        headingDescription="A subtle grain overlay adds warmth and depth to dark and colored backgrounds. Blended with mix-blend-overlay at ~50% opacity."
+        leftBg="white"
+        rightBg="gray"
+    >
+        <div slot="left" class="mt-8">
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="relative rounded-2xl bg-brand-600 p-6 h-32 overflow-hidden">
+                    <GrainOverlay />
+                    <p class="relative z-10 text-sm font-medium text-white">Brand + grain</p>
+                </div>
+                <div class="relative rounded-2xl bg-black p-6 h-32 overflow-hidden">
+                    <GrainOverlay />
+                    <p class="relative z-10 text-sm font-medium text-white">Black + grain</p>
+                </div>
+            </div>
+        </div>
+        <div slot="right" class="mt-8">
+            <div class="space-y-2 mb-6">
+                <a href="/noise.webp" download class="flex items-center justify-between px-3 py-2 text-sm text-gray-700 bg-white rounded-lg hover:bg-gray-50 transition-colors">
+                    <span>noise.webp</span>
+                    <Icon name="tabler:download" class="size-4 text-gray-400" />
+                </a>
+            </div>
+            <ul class="space-y-2 text-sm text-gray-500">
+                <li><code class="text-xs bg-white px-1.5 py-0.5 rounded">mix-blend-mode: overlay</code></li>
+                <li><code class="text-xs bg-white px-1.5 py-0.5 rounded">opacity: 0.5</code></li>
+                <li><code class="text-xs bg-white px-1.5 py-0.5 rounded">background-repeat: repeat</code></li>
+            </ul>
+        </div>
+    </SplitSection>
+
+    <!-- Visual style -->
+    <Section class="bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+            <h2 class="font-display text-gray-900 text-2xl font-bold mb-4">Visual style</h2>
+            <p class="text-gray-600 mb-8 max-w-2xl">The site is structured like pages of a book — contained sections with rounded corners over a visible page background, split into two columns.</p>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-sm text-gray-600">
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-1">Rounded sections</h3>
+                    <p>Sections have <code class="bg-gray-100 px-1 py-0.5 rounded text-xs">rounded-3xl</code> corners with <code class="bg-gray-100 px-1 py-0.5 rounded text-xs">mx-4</code> margin so the page background shows through.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-1">Split layout</h3>
+                    <p>Most sections use a 50/50 two-column grid. Each half constrains content to <code class="bg-gray-100 px-1 py-0.5 rounded text-xs">max-w-[40rem]</code>.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-1">Left / right</h3>
+                    <p>Left side carries the heading and context. Right side carries the content. Light/dark contrast between halves.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-1">Spacing</h3>
+                    <p>Gap between sections: <code class="bg-gray-100 px-1 py-0.5 rounded text-xs">mt-4</code>. The visible gap acts like a book spine.</p>
+                </div>
+            </div>
+        </div>
+    </Section>
+</Default>
+
+<script>
+    document.querySelectorAll('.color-copy').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+            const value = btn.getAttribute('data-copy')!
+            await navigator.clipboard.writeText(value)
+            const copyIcon = btn.querySelector('.copy-icon')! as HTMLElement
+            const checkIcon = btn.querySelector('.check-icon')! as HTMLElement
+            copyIcon.classList.add('hidden')
+            checkIcon.classList.remove('hidden')
+            setTimeout(() => {
+                copyIcon.classList.remove('hidden')
+                checkIcon.classList.add('hidden')
+            }, 1500)
+        })
+    })
+</script>
