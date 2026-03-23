@@ -21,9 +21,10 @@ interface Props {
   textbook: Textbook
   breadcrumbs: Breadcrumb[]
   markdownUrl?: string
+  image?: string
 }
 
-const { title, description, activeSection, textbook, breadcrumbs, markdownUrl } = Astro.props
+const { title, description, activeSection, textbook, breadcrumbs, markdownUrl, image } = Astro.props
 
 // Compute prev/next section URLs
 const allSections: { chapter: Chapter; section: Section }[] = [];
@@ -50,7 +51,7 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
 		<script is:inline>document.documentElement.classList.add('js')</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} image={image} />
 		<ClientRouter />
 		<LoadingIndicator color="var(--color-brand-600)" height="3px" />
 		<slot name="head" />

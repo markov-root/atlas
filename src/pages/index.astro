@@ -14,6 +14,7 @@ import charbelImg from "@/assets/charbel-photo.jpg";
 import ensParisSaclayLogo from "@/assets/ens-paris-saclay.png";
 import readerScreenshot from "@/assets/reader-screenshot.png";
 import Button from "@/components/Button.astro";
+import { ogImageUrl } from "@/lib/og";
 
 const authorImages: Record<string, ImageMetadata> = {
   "markov-photo.jpg": markovImg,
@@ -46,7 +47,7 @@ function getChapterTitle(chapterNum: number) {
 }
 
 ---
-<Default title="The Open Textbook for AI Safety" description="A comprehensive, free resource covering AI capabilities, risks, alignment, and governance. Written by researchers from the French Center for AI Safety." noHeader>
+<Default title="The Open Textbook for AI Safety" description="A comprehensive, free resource covering AI capabilities, risks, alignment, and governance. Written by researchers from the French Center for AI Safety." noHeader image={ogImageUrl({ title: "The Open Textbook for AI Safety", description: "A comprehensive, free resource covering AI capabilities, risks, alignment, and governance." })}>
     <!-- Navbar -->
     <div class="sm:mx-4 mt-4">
         <Header class="bg-white rounded-3xl" />

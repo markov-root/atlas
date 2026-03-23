@@ -8,16 +8,17 @@ interface Props {
   title: string;
   description: string;
   noHeader?: boolean;
+  image?: string;
 }
 
-const { title, description, noHeader = false } = Astro.props
+const { title, description, noHeader = false, image } = Astro.props
 ---
 <html lang="en">
 	<head>
 		<script is:inline>document.documentElement.classList.add('js')</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} image={image} />
 		<slot name="head" />
 		<!-- Privacy-friendly analytics by Plausible -->
 		<script async src="https://plausible.io/js/pa-iaFa7u9ahmpcy2YPhenNE.js"></script>

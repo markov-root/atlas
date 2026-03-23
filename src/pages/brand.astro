@@ -4,8 +4,9 @@ import Section from "@/components/Section.astro";
 import SplitSection from "@/components/SplitSection.astro";
 import GrainOverlay from "@/components/GrainOverlay.astro";
 import { Icon } from "astro-icon/components";
+import { ogImageUrl } from "@/lib/og";
 ---
-<Default title="Brand" description="AI Safety Atlas brand guidelines, logos, colors, and fonts.">
+<Default title="Brand" description="AI Safety Atlas brand guidelines, logos, colors, and fonts." image={ogImageUrl({ title: "Brand", description: "AI Safety Atlas brand guidelines, logos, colors, and fonts." })}>
     <!-- Hero -->
     <Section class="bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">

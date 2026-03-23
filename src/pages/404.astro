@@ -3,11 +3,12 @@ import Default from "@/layouts/Default.astro";
 import Button from "@/components/Button.astro";
 import { Icon } from "astro-icon/components";
 import { getFirstChapterUrl } from '@/lib/textbooks';
+import { ogImageUrl } from "@/lib/og";
 
 const readUrl = await getFirstChapterUrl();
 ---
 
-<Default title="Page not found" description="The page you are looking for does not exist.">
+<Default title="Page not found" description="The page you are looking for does not exist." image={ogImageUrl({ title: "Page Not Found" })}>
     <div class="min-h-[60vh] flex flex-col items-center justify-center px-6 py-24 lg:py-32">
         <p class="text-base font-semibold text-brand-600">404</p>
         <h1 class="mt-4 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl font-display">

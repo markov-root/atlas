@@ -8,6 +8,7 @@ import { formatReadingTime, resolveResource } from '@/textbook-loader/utils';
 import { Icon } from 'astro-icon/components'
 import { getTextbooks } from "@/lib/textbooks";
 import { siteConfig } from "@/config/site";
+import { sectionOgImageUrl } from "@/lib/og";
 
 interface Props {
     version: string
@@ -47,6 +48,14 @@ const { version, section, chapter, textbook } = Astro.props;
 
 let pageDescription = section.number === 1 ? chapter.description : section.description
 
+const ogImage = sectionOgImageUrl({
+    eyebrow: `Chapter ${chapter.number}: ${chapter.title}`,
+    title: section.title,
+    description: pageDescription,
+    audio: !!section.audioLink,
+    edition: `Edition ${version.replace('v', '')}`,
+});
+
 function getSectionInfo(ref: SectionRef | null) {
     if (!ref) return null;
     const ch = textbook.chapters.find(c => c.number === ref.chapter);
@@ -84,7 +93,7 @@ const paper = resolveResource(chapter.meta.paper);
     Append .md to any section or chapter URL to get clean markdown.
     Citation: ${siteConfig.citation}
 -->`} />
-<Reader title={`${section.title} - Chapter ${chapter.number}`} description="" activeSection={section} textbook={textbook} markdownUrl={sectionMarkdownUrl} breadcrumbs={[
+<Reader title={`${section.title} - Chapter ${chapter.number}`} description="" activeSection={section} textbook={textbook} markdownUrl={sectionMarkdownUrl} image={ogImage} breadcrumbs={[
     { text: `Chapter ${chapter.number}`, url: `/chapters/${version}/${chapter.slug}/${chapter.sections[0].slug}` },
     { text: section.title, url: '#' }
 ]}>

@@ -7,6 +7,7 @@ import { Icon } from 'astro-icon/components'
 import Button from "@/components/Button.astro"
 import { formatReadingTime } from "@/textbook-loader/utils"
 import { getTextbooks, getLatestTextbook } from "@/lib/textbooks";
+import { ogImageUrl } from "@/lib/og";
 
 interface Props {
   textbook: Textbook
@@ -39,7 +40,7 @@ const { textbook } = Astro.props;
 
 const firstChapterUrl = `/chapters/${textbook.version}/${textbook.chapters[0].slug}/${textbook.chapters[0].sections[0].slug}`;
 ---
-<Default title="Read the Textbook" description="Explore all chapters of the Atlas AI Safety textbook. From capabilities and risks to alignment and governance—self-study at your own pace." noHeader>
+<Default title="Read the Textbook" description="Explore all chapters of the Atlas AI Safety textbook. From capabilities and risks to alignment and governance—self-study at your own pace." noHeader image={ogImageUrl({ title: "Read the Textbook", description: "Explore all chapters of the Atlas AI Safety textbook." })}>
     <!-- Navbar -->
     <div class="sm:mx-4 mt-4">
         <Header class="bg-white rounded-3xl" />

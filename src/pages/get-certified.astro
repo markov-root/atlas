@@ -1,9 +1,10 @@
 ---
 import Default from "@/layouts/Default.astro";
 import Button from "@/components/Button.astro";
+import { ogImageUrl } from "@/lib/og";
 ---
 
-<Default title="Get certified" description="AI safety certification coming soon.">
+<Default title="Get certified" description="AI safety certification coming soon." image={ogImageUrl({ title: "Get Certified", description: "AI safety certification coming soon." })}>
     <div class="min-h-[60vh] flex flex-col items-center justify-center px-6 py-24 lg:py-32">
         <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl font-display">
             Coming soon...
