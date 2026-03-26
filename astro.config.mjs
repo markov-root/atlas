@@ -28,6 +28,7 @@ export default defineConfig({
       ELEVENLABS_API_KEY: envField.string({ context: "server", access: "secret", optional: true }),
       GEMINI_API_KEY: envField.string({ context: "server", access: "secret", optional: true }),
       SKIP_AUDIO: envField.string({ context: "server", access: "public", optional: true }),
+      SKIP_PDF: envField.string({ context: "server", access: "public", optional: true }),
       R2_ENDPOINT: envField.string({ context: "server", access: "secret", optional: true }),
       R2_ACCESS_KEY_ID: envField.string({ context: "server", access: "secret", optional: true }),
       R2_SECRET_ACCESS_KEY: envField.string({ context: "server", access: "secret", optional: true }),

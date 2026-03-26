@@ -56,7 +56,11 @@ export class TextbookLoader {
     };
 
     const outputDir = join(process.cwd(), '.cache', 'uc');
-    await new ChapterPdfRenderer(textbook, this.assetsDir, outputDir).render();
+    if (!process.env.SKIP_PDF) {
+      await new ChapterPdfRenderer(textbook, this.assetsDir, outputDir).render();
+    }
+
+
 
     await new AudioRenderer(textbook, this.assetsDir, outputDir, {
       skipGeneration: !!process.env.SKIP_AUDIO,

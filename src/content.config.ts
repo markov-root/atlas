@@ -1,5 +1,5 @@
 import { defineCollection, z } from 'astro:content';
-import { GOOGLE_CREDENTIALS_BASE64, ALGOLIA_WRITE_KEY, ELEVENLABS_API_KEY, GEMINI_API_KEY, R2_ENDPOINT, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET, SKIP_AUDIO } from "astro:env/server"
+import { GOOGLE_CREDENTIALS_BASE64, ALGOLIA_WRITE_KEY, ELEVENLABS_API_KEY, GEMINI_API_KEY, R2_ENDPOINT, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET, SKIP_AUDIO, SKIP_PDF } from "astro:env/server"
 import { PUBLIC_ALGOLIA_APP_ID, PUBLIC_ALGOLIA_INDEX_NAME } from "astro:env/client"
 import { TEXTBOOK_EDITIONS } from './textbook-loader/data';
 import { TextbookLoader } from './textbook-loader/loader';
@@ -22,6 +22,7 @@ const organizations = defineCollection({
 if (ELEVENLABS_API_KEY) process.env.ELEVENLABS_API_KEY = ELEVENLABS_API_KEY;
 if (GEMINI_API_KEY) process.env.GEMINI_API_KEY = GEMINI_API_KEY;
 if (SKIP_AUDIO) process.env.SKIP_AUDIO = SKIP_AUDIO;
+if (SKIP_PDF) process.env.SKIP_PDF = SKIP_PDF;
 if (R2_ENDPOINT) process.env.R2_ENDPOINT = R2_ENDPOINT;
 if (R2_ACCESS_KEY_ID) process.env.R2_ACCESS_KEY_ID = R2_ACCESS_KEY_ID;
 if (R2_SECRET_ACCESS_KEY) process.env.R2_SECRET_ACCESS_KEY = R2_SECRET_ACCESS_KEY;
