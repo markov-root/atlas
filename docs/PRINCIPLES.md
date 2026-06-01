@@ -92,7 +92,101 @@ When we change behaviour, we change it atomically. No `if (process.env.NEW_BEHAV
 
 **Reference:** check `git log` — the Track A commits delete or rewrite, they don't accumulate.
 
-## 9. Cache content is a public artifact (privacy)
+## 9. High cohesion within modules, loose coupling between
+
+Each module has one job, and only the smallest possible surface crosses module boundaries.
+
+- `src/lib/build-mode.ts` is a pure-function module — zero imports from anywhere else in the codebase, no I/O, no side effects. It's testable in isolation because it doesn't *do* anything except return a typed decision object.
+- `src/textbook-loader/` is its own module. Only `content.config.ts` imports from it (consuming `TextbookLoader`), and `loader.ts` itself only crosses to `src/lib/build-mode.ts` for the `BuildMode` type. The renderers (`pdf/`, `audio/`) are submodules within textbook-loader and don't reach outside it.
+- `src/components/nodes/` is one component per AST node type, dispatched by `NodeRenderer.astro`. Each component handles its node and recurses through `NodeRenderer` for children. No node component knows about any other node component.
+
+**Why:** this is what makes the test suite tractable. The layered tests (unit / storage / integration / snapshot) only work because the module boundaries are actually clean — you can test the loader against committed cache fixtures without standing up the Astro layer, because the loader doesn't depend on Astro. If `loader.ts` started importing components, that property breaks.
+
+**Failure mode to watch for:** "I just need one thing from `src/components/` in the loader." Don't. Either lift the type into `src/textbook-loader/index.d.ts` or rethink the design.
+
+**Reference:** `src/lib/build-mode.ts` (zero internal imports), `src/textbook-loader/index.d.ts` (the module's public types), `src/components/nodes/` directory structure.
+
+## 10. YAGNI — don't speculate
+
+We build what's needed for the current task. Not what might be needed someday.
+
+Concrete examples from Track A where YAGNI saved us complexity:
+
+- The original plan proposed conditional rendering for the search box "in case Algolia isn't configured." We dropped it — Algolia's public keys are committed as defaults, so the case being designed-around doesn't exist.
+- Image hosting for contributors was discussed and deferred. Captions-only is acceptable today; building R2-served image distribution before anyone has asked for it would have added a service surface for hypothetical demand.
+- The `BuildMode` interface has exactly the flags the current code needs. No `enableExperimentalFoo` placeholders.
+
+**Why:** every speculative abstraction has a non-zero maintenance cost and a non-zero chance of being wrong about future requirements. Three duplicated lines are cheaper than the wrong abstraction. When demand actually shows up, the refactor is informed by real constraints.
+
+**Failure mode to watch for:** "while I'm in here let me add an extension point." The extension point is YAGNI debt unless the next concrete user is already named.
+
+**Reference:** the Track A trade-offs documented in `docs/ARCHITECTURE.md` (image hosting deferred; conditional Algolia rendering deleted).
+
+## 11. Type safety where it actually catches bugs
+
+TypeScript strict mode is on. Most of the codebase uses precise types — `BuildMode`, `Textbook`, `Chapter`, `Section`, `ChapterDefinition`, etc. are all named structural types.
+
+The exception is the AST `Node`:
+
+```ts
+export type Node = {
+  name: string;
+  attributes: Record<string, unknown>;
+  children: Node[];
+};
+```
+
+`name` is `string` (not a union of the actual node names) and `attributes` is `Record<string, unknown>`. This is acknowledged debt — see `docs/ROADMAP.md` "Next" for the discriminated-union refactor that would let `NodeRenderer.astro` type-narrow on `node.name` and access strongly-typed attributes.
+
+**Why honest about debt rather than pretending it's intentional:** TypeScript's value is catching the class of bug where you read a field that doesn't exist or pass the wrong shape. We currently lose that protection at the AST boundary. The cost of the looseness shows up as runtime checks and TODO/FIXME-style comments in node components. It's the right cost to defer (the Transformer produces dozens of node kinds; a discriminated union is a meaningful refactor) but it's a real cost.
+
+**Reference:** `src/textbook-loader/transformer.ts:5-9` (loose Node type), `src/components/NodeRenderer.astro` (where the looseness shows up).
+
+## 12. Accessibility is non-optional for a public textbook
+
+The target audience is educators and students — many of whom rely on assistive technology. Semantic HTML, keyboard navigation, alt text on figures, sufficient color contrast, and screen-reader-friendly equation rendering all matter.
+
+We haven't done a formal accessibility audit yet. Known gaps:
+
+- `Figure.astro` currently passes `alt=""` to `<Image>` — the actual alt text from the Google Doc isn't threaded through.
+- The dev-mode "image not available" hint is rendered as a styled `<div>`, not announced to screen readers.
+- No automated accessibility tests (e.g. axe-core in CI).
+
+This principle is stated *aspirationally* — we want the codebase to follow it, and we know it doesn't fully yet. The audit and remediation are tracked in `docs/ROADMAP.md` "Next". The point of putting the principle here despite the gaps is to prevent future PRs from making the situation worse without a deliberate decision.
+
+**Reference:** `src/components/nodes/Figure.astro` (the `alt=""` gap).
+
+## 13. The public API is the URL space
+
+This project has no exported JS/TS API. The "public contract" with users and the wider web is the URL structure:
+
+- `/chapters/v{version}/{chapter-slug}/{section-slug}` — canonical chapter URL
+- `/read` — top-level table of contents
+- `/chapters/{chapter-slug}/` and `/chapters/{N}/` — redirect aliases (set up in `astro.config.mjs`)
+- Asset URLs under `/_astro/` — Astro-managed, not stable
+
+Breaking any of these breaks every external link to the textbook (course syllabi, social-media shares, the deployed search index pointing at old slugs). Treat changes to these the way a library would treat changes to its exported types.
+
+**Practical implication:** if you rename a chapter slug or restructure the URL space, add a redirect. Don't just change the route handler.
+
+**Reference:** `src/pages/chapters/` route handlers, `astro.config.mjs` `redirects` block, `src/textbook-loader/utils.ts:25` `slugify`.
+
+## 14. Explicit non-goals
+
+Some choices are easier to defend if you say them out loud. The current explicit non-goals:
+
+- **No MDX/markdown migration of the textbook source.** Google Docs is the editorial surface — see `docs/ARCHITECTURE.md` "Editorial surface — why Google Docs."
+- **No image hosting for contributor builds in v1.** Captions-only is the accepted contributor experience. Track D could revisit if image rendering becomes a common contributor need.
+- **No microservices split.** The site is a static build; the maintainer-side pipeline is a single Node process. It stays a monolith.
+- **No public JS/TS API.** The site is the deliverable; library extraction is not in scope.
+- **No authentication / user accounts.** Readers are anonymous; comments and editing happen in the Google Docs source.
+- **No second-language edition until one is actually being written.** The data model supports it (`language: 'en'`) but we don't pre-build i18n infrastructure for hypothetical demand.
+
+**Why:** non-goals get re-litigated otherwise. Without this list, every refactor proposal that touches one of these areas spawns a "should we also...?" debate. Writing the list down means re-opening one of these is a deliberate act with a documented previous decision to argue against.
+
+**Reference:** `docs/ROADMAP.md` "Not planned" section restates the same non-goals with longer-form rationale.
+
+## 15. Cache content is a public artifact (privacy)
 
 `.cache/docs/` is committed to the repo as the contributor-build unlock (see [`ARCHITECTURE.md`](./ARCHITECTURE.md) "Why a committed cache"). Authors sometimes paste API keys, internal URLs, or draft notes into Google Docs while editing — the cache is about to become a public artifact, so every cache-content commit MUST be preceded by a secret-scan.
 
@@ -104,10 +198,29 @@ The scan procedure lives in `.cache/docs/README.md`. It runs a small list of hig
 
 ---
 
+## What we deliberately don't worry about (and why)
+
+The classical SE curriculum covers many things that genuinely don't apply to this codebase. Listing them here so the omissions look deliberate rather than accidental:
+
+| Concern | Why we skip |
+|---|---|
+| **Liskov substitution / deep inheritance hierarchies** | We have almost no inheritance. The two renderers (`pdf/`, `audio/`) are sibling classes with no shared base. Adding LSP discipline to a codebase without subclasses is theatre. |
+| **Concurrency, locking, race conditions** | The build is a single-threaded Node process; the deployed site is static HTML behind a CDN. No shared mutable state across requests. |
+| **CAP / distributed-system trade-offs** | Cloudflare R2 is the only external service. Writes happen from one machine (the maintainer's local build or one CI worker). Not a distributed system. |
+| **SemVer / API versioning** | No public JS/TS API. URL versioning uses `/v1/` path segments (principle 13). |
+| **Microservices / SOA boundaries** | Static site monolith. Stays one. |
+| **Database transactions, migrations, indexing strategies** | No database. |
+| **Performance budgets, scalability** | Static site behind a CDN handles essentially any read traffic. Build time matters (~30s contributor / minutes maintainer with PDFs+audio) but isn't a daily concern; if it becomes one, we'll add a principle. |
+| **Internationalization framework** | `language: 'en'` is in the data model; v1 is English-only. When a second language is actually being written, we'll add policy then. (Principle 10 — YAGNI.) |
+
+If one of these stops being skippable, add it as a principle here with a code reference.
+
+---
+
 ## What this document is not
 
 - Not a SOLID/GRASP primer. Read a textbook.
 - Not a list of every coding convention. The codebase isn't large enough to need one.
-- Not a place to copy generic principles you might want someday. Each entry above earned its place by removing real complexity from the actual code.
+- Not a place to copy generic principles you might want someday. Each entry above earned its place by removing real complexity from the actual code OR being load-bearing for the project's audience (e.g. accessibility for a public textbook).
 
-If you want to add a principle here, the test is: can you point at the *specific* code that exemplifies it, and the *specific* problem it solves in *this* project?
+If you want to add a principle here, the test is: can you point at the *specific* code that exemplifies it, and the *specific* problem it solves in *this* project? An aspirational principle (like §12 accessibility) is fine, but it has to name the gap honestly.
