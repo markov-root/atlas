@@ -20,9 +20,13 @@ export default defineConfig({
   },
   env: {
     schema: {
-      GOOGLE_CREDENTIALS_BASE64: envField.string({ context: "server", access: "secret"}),
-      PUBLIC_ALGOLIA_APP_ID: envField.string({ context: "client", access: "public" }),
-      PUBLIC_ALGOLIA_SEARCH_KEY: envField.string({ context: "client", access: "public" }),
+      // Maintainer-only: needed to fetch fresh content from Google Docs.
+      // Contributors build from the committed .cache/docs/ snapshot — see docs/CONTRIBUTING.md.
+      GOOGLE_CREDENTIALS_BASE64: envField.string({ context: "server", access: "secret", optional: true }),
+      // Public Algolia keys — safe to commit. The search-only key cannot
+      // modify the index; only ALGOLIA_WRITE_KEY (secret) can.
+      PUBLIC_ALGOLIA_APP_ID: envField.string({ context: "client", access: "public", default: "W6WTQ7JBP1" }),
+      PUBLIC_ALGOLIA_SEARCH_KEY: envField.string({ context: "client", access: "public", default: "636da71890a5466401dc666df2be6fb3" }),
       ALGOLIA_WRITE_KEY: envField.string({ context: "server", access: "secret", optional: true }),
       PUBLIC_ALGOLIA_INDEX_NAME: envField.string({ context: "client", access: "public", default: "atlas-foreview" }),
       ELEVENLABS_API_KEY: envField.string({ context: "server", access: "secret", optional: true }),
