@@ -102,4 +102,49 @@ describe("detectBuildMode", () => {
     const m = detectBuildMode({});
     expect(m.summary.startsWith("[atlas] BuildMode:")).toBe(true);
   });
+
+  it("treats empty-string creds as no creds (Astro envField returns '' for unset)", () => {
+    const m = detectBuildMode({ GOOGLE_CREDENTIALS_BASE64: "" });
+    expect(m.hasGoogleCreds).toBe(false);
+    expect(m.fetchFromGoogleDocs).toBe(false);
+  });
+
+  it("SKIP_AUDIO without creds is a no-op (audio already off)", () => {
+    const m = detectBuildMode({ SKIP_AUDIO: "1" });
+    expect(m.generateAudio).toBe(false);
+    expect(m.hasGoogleCreds).toBe(false);
+  });
+
+  it("SKIP_PDF without creds is a no-op (PDF already off)", () => {
+    const m = detectBuildMode({ SKIP_PDF: "1" });
+    expect(m.generatePdf).toBe(false);
+  });
+
+  it("R2 creds without Google creds → still no audio upload (gated on generateAudio)", () => {
+    const m = detectBuildMode({ ...R2 });
+    expect(m.hasR2Creds).toBe(true);
+    expect(m.generateAudio).toBe(false);
+    expect(m.uploadAudio).toBe(false);
+  });
+
+  it("contributor summary names every disabled feature", () => {
+    const m = detectBuildMode({});
+    expect(m.summary).toContain("no PDF");
+    expect(m.summary).toContain("no audio");
+    expect(m.summary).toContain("no Algolia indexing");
+    expect(m.summary).toContain("search enabled");
+  });
+
+  it("maintainer-with-everything summary stays compact", () => {
+    const m = detectBuildMode({
+      GOOGLE_CREDENTIALS_BASE64: "abc",
+      ALGOLIA_WRITE_KEY: "xyz",
+      ...R2,
+    });
+    // Sanity-check we don't accidentally emit "no PDF" when PDF is on.
+    expect(m.summary).not.toContain("no PDF");
+    expect(m.summary).not.toContain("no audio");
+    expect(m.summary).not.toContain("no Algolia");
+    expect(m.summary).toContain("maintainer");
+  });
 });
