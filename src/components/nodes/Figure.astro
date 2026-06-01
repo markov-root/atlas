@@ -23,10 +23,16 @@ if (images[globKey]) {
 }
 
 const figureNumber = `Figure ${chapterNumber}.${instanceCount.inChapter}`;
+const isDev = import.meta.env.DEV;
 ---
 
 <figure class="border-l border-gray-300">
   {imageModule && <Image src={imageModule} alt="" />}
+  {!imageModule && isDev && (
+    <div class="pl-4 py-2 text-xs italic text-gray-500">
+      [image not available locally — maintainer build with Google credentials populates src/assets/uc/]
+    </div>
+  )}
   <figcaption class="pl-4">
     <strong>{figureNumber}</strong>
     {caption && (
