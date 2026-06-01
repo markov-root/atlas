@@ -47,6 +47,18 @@ export class Renderer {
   }
 
   async render(): Promise<void> {
+    // Local-dev escape hatch: skip all audio work including R2 download.
+    // Useful when disk space is tight and audio playback is not needed.
+    // Does not affect CI (which does not set this var) or production builds.
+    if (this.skipGeneration && process.env.SKIP_AUDIO_DOWNLOAD) {
+      for (const chapter of this.textbook.chapters) {
+        for (const section of chapter.sections) section.audioLink = undefined;
+        chapter.audioLink = undefined;
+      }
+      console.log("[audio] SKIP_AUDIO_DOWNLOAD=1 → all audio disabled, no R2 traffic");
+      return;
+    }
+
     mkdirSync(this.outputDir, { recursive: true });
 
     // Phase 1: Fetch equation descriptions so content hashes are stable.
