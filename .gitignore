@@ -38,8 +38,13 @@ src/assets/uc/
 previous-version-w-docusaurus
 public/logos/
 
-# Planning doc stays local — task tracker for the maintainer, not the public docs site
+# Local-only docs:
+#   - TODO.md is the maintainer's tactical task tracker
+#   - lessons/ is the per-session process journal (agent working memory).
+#     Decision rationale that's publicly valuable lives in PRINCIPLES /
+#     ARCHITECTURE / ROADMAP instead.
 /docs/TODO.md
+/docs/lessons/
 
 # CocoIndex Code (ccc)
 /.cocoindex_code/
