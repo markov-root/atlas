@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { PUBLIC_ALGOLIA_APP_ID, PUBLIC_ALGOLIA_SEARCH_KEY, PUBLIC_ALGOLIA_INDEX_NAME } from "astro:env/client";
 
 interface Props {
   id?: string
@@ -16,9 +17,9 @@ const {
 } = Astro.props
 const isDark = variant === 'dark'
 
-const appId = import.meta.env.PUBLIC_ALGOLIA_APP_ID
-const apiKey = import.meta.env.PUBLIC_ALGOLIA_SEARCH_KEY
-const indexName = import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME || 'atlas-foreview'
+const appId = PUBLIC_ALGOLIA_APP_ID
+const apiKey = PUBLIC_ALGOLIA_SEARCH_KEY
+const indexName = PUBLIC_ALGOLIA_INDEX_NAME || 'atlas-foreview'
 ---
 
 {iconOnly ? (
