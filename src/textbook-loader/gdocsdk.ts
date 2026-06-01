@@ -46,7 +46,16 @@ export class DocsSDK {
     }
 
     if (this.cacheOnly || !this.client) {
-      throw new Error(`Document ${docId}:${tabId} not in cache and cacheOnly mode is enabled`);
+      const reason = this.cacheOnly
+        ? "cacheOnly mode is enabled"
+        : "no Google credentials configured";
+      throw new Error(
+        `[atlas] Cache miss for document ${docId}:${tabId} (${reason}).\n` +
+        `  Either:\n` +
+        `    (a) Add GOOGLE_CREDENTIALS_BASE64 to .env (maintainer only), or\n` +
+        `    (b) Refresh .cache/docs/ with the latest seed.\n` +
+        `  See docs/CONTRIBUTING.md for details.`,
+      );
     }
 
     const response = await this.client.documents.get({
