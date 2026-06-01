@@ -26,10 +26,20 @@ pnpm-debug.log*
 service-account.json
 
 convert.js
-.cache/
+# Carve-out: textbook content cache (.cache/docs/) is committed so
+# contributors can build without Google credentials. Everything else
+# under .cache/ stays ignored. See .cache/docs/README.md.
+.cache/*
+!.cache/docs/
 .claude
 
 public/uc/
 src/assets/uc/
 previous-version-w-docusaurus
 public/logos/
+
+# Local agent docs — not for repo
+/docs/
+
+# CocoIndex Code (ccc)
+/.cocoindex_code/
