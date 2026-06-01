@@ -20,7 +20,13 @@ Modules that legitimately consume the bridged values:
 
 These reads don't *decide* anything — they apply a decision already made upstream. If a new module needs to gate on creds, it must consume `BuildMode`, not probe env.
 
-**Why:** before this principle was applied, the same env probe (`if (!process.env.SKIP_PDF)`) appeared in five files, each drifting independently. Extracting `BuildMode` collapsed five decisions into one. The bridge is a pragmatic compromise; the alternative (passing `BuildMode` through `TextbookLoader.load()` to the renderers) is on the table if the renderers grow more mode-dependent behaviour.
+**Why:** before this principle was applied, the same env probe (`if (!process.env.SKIP_PDF)`) appeared in five files, each drifting independently. Extracting `BuildMode` collapsed five decisions into one. Three concrete benefits this purchases:
+
+- One place to test. `build-mode.test.ts` covers every env permutation in 16 unit tests; adding a new flag means adding one test, not five.
+- One place to read. A new contributor wanting to understand what gates the PDF render finds the answer in `build-mode.ts`, not by grepping `process.env.SKIP_PDF` across the codebase.
+- One place to change. Adding a new mode (e.g. "contributor-with-image-hosting") is a switch case in `detectBuildMode`, not a parallel edit across 5+ files.
+
+The bridge is a pragmatic compromise; the alternative (passing `BuildMode` through `TextbookLoader.load()` to the renderers) is on the table if the renderers grow more mode-dependent behaviour.
 
 **Reference:** `src/lib/build-mode.ts`, `src/content.config.ts` lines 22–46, `src/textbook-loader/loader.ts:59-66`.
 
@@ -88,9 +94,13 @@ When we change behaviour, we change it atomically. No `if (process.env.NEW_BEHAV
 
 ## 9. Cache content is a public artifact (privacy)
 
-`.cache/docs/` is committed to the repo. Authors sometimes paste API keys, internal URLs, or draft notes into Google Docs while editing. Every cache-content commit MUST be preceded by a secret-scan (procedure in `.cache/docs/README.md`). The scheduled content-refresh workflow (Track B.6, pending) will automate this.
+`.cache/docs/` is committed to the repo as the contributor-build unlock (see [`ARCHITECTURE.md`](./ARCHITECTURE.md) "Why a committed cache"). Authors sometimes paste API keys, internal URLs, or draft notes into Google Docs while editing — the cache is about to become a public artifact, so every cache-content commit MUST be preceded by a secret-scan.
 
-**Reference:** `.cache/docs/README.md`, [lesson 2026-06-01-plan-critique](./lessons/2026-06-01-plan-critique.md) §W6.
+The scan procedure lives in `.cache/docs/README.md`. It runs a small list of high-signal credential patterns (AWS keys, OpenAI/Anthropic/GitHub tokens, PEM private keys, JWT shapes) rather than fuzzy keyword matching — the latter produces too many false positives on a textbook about AI safety, where the words "secret", "token", and "API key" appear as concepts dozens of times. The scheduled content-refresh workflow (Track B.6, pending) will automate this scan.
+
+**Why this principle exists:** it's the only privacy-bearing rule in the project right now. The service account scope is already `documents.readonly` (minimum necessary). The R2 keys never touch the public repo. The Algolia search-only key is public-by-design. The single risk surface is "what shows up in a Google Doc and gets committed via the cache" — so we make that scan procedure mandatory and explicit, and bake it into the automation that will run on every refresh.
+
+**Reference:** `.cache/docs/README.md`.
 
 ---
 

@@ -73,6 +73,24 @@ Why this matters: if you want to change build behaviour based on credentials, yo
 
 The transition between modes is automatic. There is no `--contributor` flag.
 
+## Editorial surface — why Google Docs
+
+The textbook prose lives in 8 private Google Docs. The build authenticates with a service-account key (`GOOGLE_CREDENTIALS_BASE64`), fetches each tab as a structured document, and transforms it into our AST.
+
+**Why Google Docs specifically:**
+
+- The authors (researchers across CeSIA, partners, occasional external contributors) are comfortable in Google Docs. Inline comments, real-time co-editing, suggested-edits review, and the comment-thread workflow are all already familiar.
+- The structured-document API gives us paragraph spans, headings, tables, footnotes, equations, and inline images without us having to define an editor.
+- Versioning and access control come for free (revision history, share-link permissions, view-only mode for reviewers).
+
+**Alternatives considered and rejected:**
+
+- **MDX / markdown files in the repo.** Cheapest infrastructure but requires every contributing author to learn Git + markdown + a markup dialect for callouts/footnotes/equations. We'd lose comment threads. Hard rejection — would slow the editorial loop.
+- **A headless CMS (Sanity, Notion).** Worth re-evaluating in 12+ months, but for 8 chapters and ~4 authors the additional service is unjustified.
+- **Self-hosted CMS.** Adds an ops surface we don't want.
+
+This decision is load-bearing on the contributor-mode work — because the editorial source isn't in the repo, contributors need *some* representation of the textbook (the committed cache) to build the site. See "The committed cache" below.
+
 ## Content pipeline
 
 ### `src/textbook-loader/data.ts`
@@ -178,6 +196,24 @@ git diff --stat .cache/docs/
 ```
 
 Before committing the diff, run the secret-scan (`.cache/docs/README.md` has the command). Authors sometimes paste API keys or internal URLs into Google Docs; we do not want them in the public repo.
+
+### Why a committed cache (and what would replace it)
+
+This is a deliberately short-term solution. The current arrangement was chosen because it's the simplest thing that unblocks contributor builds — `git clone` already has the cache, no extra install step, no infrastructure to maintain.
+
+**Alternatives considered:**
+
+- **R2-published content artifact** (`atlas-content-vN.tar.gz` downloaded by a postinstall script). Versioned, signed by SHA256, no git involvement. This is the planned exit — see `docs/ROADMAP.md` "Next". Architecturally consistent with how PDFs and audio already live on R2 (commit `695ec5b`).
+- **Content branch** (cache lives on an orphan `content` branch, fetched via `git archive` postinstall). Avoids `main` bloat but adds a fragile install step. Inferior to R2.
+- **Submodule pointing at a private content repo.** Wrong direction — defeats the "public OSS repo" framing and adds setup friction.
+
+**The cost we're paying with the current approach:**
+
+- Git history bloat: ~8.7MB now, growing with every textbook edit. Manageable today (8 chapters, infrequent edits) but unbounded.
+- Coupling: a content edit becomes a code PR.
+- No signal that the cache lags the live Google Docs.
+
+We accept these costs because the alternative requires standing up a content-publishing pipeline before we've shipped the contributor unblock. R2 migration happens after Tracks B + C land.
 
 ## R2 layout (maintainer-only)
 
