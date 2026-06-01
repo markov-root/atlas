@@ -35,7 +35,7 @@ A startup banner declares the resolved mode:
 [atlas] BuildMode: contributor, cache-only, no PDF, no audio, no R2 audio pull, no Algolia indexing, search enabled
 ```
 
-See [`ARCHITECTURE.md`](./ARCHITECTURE.md) for how the mode detection works.
+See [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) for how the mode detection works.
 
 ## Commands
 
@@ -94,17 +94,24 @@ atlas/
 └── pnpm-workspace.yaml    # pnpm build-script allow-list
 ```
 
-For deeper detail (build pipeline, AST shape, test layers, R2 layout) see [`ARCHITECTURE.md`](./ARCHITECTURE.md).
+For deeper detail (build pipeline, AST shape, test layers, R2 layout) see [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md).
+
+## Documentation
+
+| Doc | What |
+|---|---|
+| [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) | Build pipeline, content loader, Astro layer |
+| [`docs/CONTRIBUTING.md`](./docs/CONTRIBUTING.md) | Setup, workflow, commit conventions |
+| [`docs/PRINCIPLES.md`](./docs/PRINCIPLES.md) | The engineering principles this project applies, with code references |
+| [`docs/lessons/`](./docs/lessons/) | Per-event journal of decisions, surprises, and fixes |
 
 ## Contributing
 
-External contributions are welcome. The contributor build path was designed to remove the credential barrier — if you hit one, that's a bug, please file an issue.
-
-A more complete contribution guide will land as part of Track C of the OSS-readiness work (see `docs/TODO.md` if you have access).
+External contributions are welcome. The contributor build path was designed to remove the credential barrier — if you hit one, that's a bug, please file an issue. See [`docs/CONTRIBUTING.md`](./docs/CONTRIBUTING.md) for setup and workflow.
 
 ## License
 
-To be added (planned: MIT for code, CC BY-SA 4.0 for textbook prose — see `docs/TODO.md` Track C.1).
+To be added (planned: MIT for code, CC BY-SA 4.0 for textbook prose).
 
 ---
 

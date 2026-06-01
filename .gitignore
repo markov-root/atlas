@@ -38,8 +38,8 @@ src/assets/uc/
 previous-version-w-docusaurus
 public/logos/
 
-# Local agent docs — not for repo
-/docs/
+# Planning doc stays local — task tracker for the maintainer, not the public docs site
+/docs/TODO.md
 
 # CocoIndex Code (ccc)
 /.cocoindex_code/
