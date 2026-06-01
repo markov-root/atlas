@@ -2,7 +2,8 @@ import { docs_v1 } from "googleapis";
 import { google, Auth } from "googleapis";
 import { createHash } from "crypto";
 import { writeFile, mkdir } from "fs/promises";
-import { join } from "path";
+import { existsSync } from "fs";
+import { basename, join } from "path";
 import pLimit from "p-limit";
 import { createStorage } from "unstorage";
 import fsDriver from "unstorage/drivers/fs";
@@ -42,7 +43,16 @@ export class DocsSDK {
 
     const cached = await docCache.getItem(cacheKey);
     if (cached) {
-      return cached
+      // Safety: if the cached doc references images that no longer exist
+      // on disk AND we have creds, ignore the cache and re-fetch. This
+      // protects against the "stale CI cache hides missing images" footgun.
+      // Contributors (cacheOnly / no client) keep the cache hit even with
+      // missing images — they get caption-only figures by design.
+      if (this.client && !this.cacheOnly && !this.imagesExist(cached)) {
+        console.warn(`[atlas] Cached doc ${cacheKey} references missing image assets — re-fetching.`);
+      } else {
+        return cached;
+      }
     }
 
     if (this.cacheOnly || !this.client) {
@@ -86,6 +96,26 @@ export class DocsSDK {
     await docCache.setItem(cacheKey, tab);
 
     return tab
+  }
+
+  /**
+   * Returns true if every image referenced by the cached doc still exists on
+   * disk. A cached doc's inlineObjects have their `contentUri` rewritten by
+   * downloadImages to the assetURLGenerator output (e.g., "/assets/uc/<hash>.png").
+   */
+  imagesExist(tab: docs_v1.Schema$DocumentTab): boolean {
+    const objects = tab.inlineObjects;
+    if (!objects) return true;
+    for (const obj of Object.values(objects)) {
+      const uri = obj.inlineObjectProperties?.embeddedObject?.imageProperties?.contentUri;
+      if (!uri) continue;
+      // Only check local asset paths; remote URIs (http/https) live in cached
+      // docs that were never image-rewritten and are out of scope.
+      if (/^https?:\/\//i.test(uri)) continue;
+      const filename = basename(uri);
+      if (!existsSync(join(this.assetsPath, filename))) return false;
+    }
+    return true;
   }
 
   private async downloadImages(objects: Record<string, docs_v1.Schema$InlineObject>): Promise<void> {
