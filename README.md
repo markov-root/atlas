@@ -113,10 +113,7 @@ External contributions are welcome. The contributor build path was designed to r
 
 ## License
 
-Two-license split:
-
-- **Code** (everything under `src/`, `tests/`, configuration, build scripts, code-describing documentation) — MIT, see [`LICENSE`](./LICENSE).
-- **Textbook content** (chapter prose, parsed cache under `.cache/docs/`, glossary entries, rendered PDFs/audio) — CC BY-SA 4.0, see [`LICENSE-CONTENT`](./LICENSE-CONTENT).
+Code is MIT, textbook content is CC BY-SA 4.0 — both covered in [`LICENSE`](./LICENSE).
 
 ---
 

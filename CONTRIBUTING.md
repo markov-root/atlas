@@ -126,6 +126,4 @@ We follow a small set of project-specific engineering principles documented in [
 
 ## License
 
-Two-license split:
-- **Code** (everything under `src/`, `tests/`, configuration, build scripts, code-describing documentation) — MIT, see [`LICENSE`](./LICENSE).
-- **Textbook content** (chapter prose, parsed cache under `.cache/docs/`, glossary entries, rendered PDFs/audio) — CC BY-SA 4.0, see [`LICENSE-CONTENT`](./LICENSE-CONTENT).
+Code is MIT, textbook content is CC BY-SA 4.0 — both covered in [`LICENSE`](./LICENSE). The same file names what counts as code vs. content.

@@ -1,4 +1,18 @@
-MIT License
+This repository ships two kinds of work under two different licenses:
+
+  - The CODE is MIT-licensed (see "Code license" below).
+  - The TEXTBOOK CONTENT is CC BY-SA 4.0 (see "Content license" below).
+
+When in doubt about which a file is:
+    Under src/, tests/, configuration, build scripts, or documentation
+    describing the codebase → code (MIT).
+
+    Under .cache/docs/, src/data/*/glossary/, or any rendered textbook
+    output (PDFs, audio) → content (CC BY-SA 4.0).
+
+================================================================================
+Code license — MIT
+================================================================================
 
 Copyright (c) 2026 Markov Grey and the French Center for AI Safety (CeSIA)
 
@@ -20,13 +34,41 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
----
+================================================================================
+Content license — Creative Commons Attribution-ShareAlike 4.0 International
+================================================================================
 
-NOTE: This MIT license applies to the **code** in this repository (everything
-under `src/`, `tests/`, configuration files, build scripts, and documentation
-that describes the codebase).
+Copyright (c) 2026 Markov Grey, Charbel-Raphaël Segerie, Su Cizem,
+                   Charles Martinet, and the French Center for AI Safety (CeSIA)
 
-The **textbook content** in this repository (chapter prose accessible via the
-deployed site, the parsed cache under `.cache/docs/`, and any glossary content
-under `src/data/`) is licensed separately under Creative Commons Attribution-
-ShareAlike 4.0 International (CC BY-SA 4.0). See LICENSE-CONTENT for details.
+The textbook prose served at https://ai-safety-atlas.com and the content
+artifacts derived from it — the parsed Google Docs JSON committed under
+.cache/docs/, glossary entries under src/data/*/glossary/, rendered PDFs and
+audio served from the project CDN, and any future translation editions — are
+licensed under the Creative Commons Attribution-ShareAlike 4.0 International
+License (CC BY-SA 4.0).
+
+To view a copy of this license, visit:
+    https://creativecommons.org/licenses/by-sa/4.0/
+
+You are free to:
+
+    Share    — copy and redistribute the material in any medium or format.
+    Adapt    — remix, transform, and build upon the material for any purpose,
+               even commercially.
+
+Under the following terms:
+
+    Attribution    — You must give appropriate credit, provide a link to the
+                     license, and indicate if changes were made. You may do
+                     so in any reasonable manner, but not in any way that
+                     suggests the licensor endorses you or your use.
+
+    ShareAlike     — If you remix, transform, or build upon the material,
+                     you must distribute your contributions under the same
+                     license as the original.
+
+    No additional restrictions — You may not apply legal terms or
+                                 technological measures that legally restrict
+                                 others from doing anything the license
+                                 permits.

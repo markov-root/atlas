@@ -38,8 +38,7 @@ GitHub auto-detects certain filenames at the repo root and surfaces them in its 
 |---|---|
 | [`../README.md`](../README.md) | Project entry point |
 | [`../CONTRIBUTING.md`](../CONTRIBUTING.md) | Setup, workflow, where to make changes, what tests to run, commit conventions |
-| [`../LICENSE`](../LICENSE) | MIT — covers code |
-| [`../LICENSE-CONTENT`](../LICENSE-CONTENT) | CC BY-SA 4.0 — covers textbook prose |
+| [`../LICENSE`](../LICENSE) | MIT for code + CC BY-SA 4.0 for textbook content (one file, two sections) |
 | [`../SECURITY.md`](../SECURITY.md) | Vulnerability reporting policy |
 | [`../CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md) | Contributor Covenant 2.1 by reference |
 | [`../CLAUDE.md`](../CLAUDE.md) | Agent operating context (`AGENTS.md` symlinks here) |
