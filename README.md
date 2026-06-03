@@ -29,13 +29,14 @@ See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the full command list, env-var re
 
 ## Documentation
 
-| Doc | What |
-|---|---|
-| [`CONTRIBUTING.md`](./CONTRIBUTING.md) | Setup, workflow, env vars, commit conventions |
-| [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) | Build pipeline, BuildMode, repo layout, "why we chose this" |
-| [`docs/PRINCIPLES.md`](./docs/PRINCIPLES.md) | Engineering principles with code references |
-| [`docs/ROADMAP.md`](./docs/ROADMAP.md) | Where the codebase is going (Now / Next / Later / Not planned) |
-| [`docs/design-system.md`](./docs/design-system.md) | Visual patterns, component catalog, spacing tokens |
+| Doc                                                | What                                                           |
+| -------------------------------------------------- | -------------------------------------------------------------- |
+| [`CONTRIBUTING.md`](./CONTRIBUTING.md)             | Setup, workflow, env vars, commit conventions                  |
+| [`TRANSLATING.md`](./TRANSLATING.md)               | How to contribute a translation into another language          |
+| [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md)   | Build pipeline, BuildMode, repo layout, "why we chose this"    |
+| [`docs/PRINCIPLES.md`](./docs/PRINCIPLES.md)       | Engineering principles with code references                    |
+| [`docs/ROADMAP.md`](./docs/ROADMAP.md)             | Where the codebase is going (Now / Next / Later / Not planned) |
+| [`docs/design-system.md`](./docs/design-system.md) | Visual patterns, component catalog, spacing tokens             |
 
 ## Contributing
 
@@ -47,4 +48,4 @@ Code is MIT, textbook content is CC BY-SA 4.0 — both covered in [`LICENSE`](./
 
 ---
 
-*AI Safety Atlas is maintained by Markov Grey and the French Center for AI Safety.*
+_AI Safety Atlas is maintained by Markov Grey and the French Center for AI Safety._

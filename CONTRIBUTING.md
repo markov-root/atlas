@@ -21,13 +21,13 @@ pnpm dev --host 0.0.0.0
 
 ## What works without credentials
 
-| Feature | Contributor build | Notes |
-|---|---|---|
-| Chapter text | ✓ | From committed cache |
-| Search | ✓ | Public Algolia keys baked into the build |
-| Inline equations, footnotes, callouts | ✓ | All rendered from the cache |
-| Figures | Caption only | Image assets are not committed |
-| PDF / audio | Skipped | Maintainer-only, gated by `BuildMode` |
+| Feature                               | Contributor build | Notes                                    |
+| ------------------------------------- | ----------------- | ---------------------------------------- |
+| Chapter text                          | ✓                 | From committed cache                     |
+| Search                                | ✓                 | Public Algolia keys baked into the build |
+| Inline equations, footnotes, callouts | ✓                 | All rendered from the cache              |
+| Figures                               | Caption only      | Image assets are not committed           |
+| PDF / audio                           | Skipped           | Maintainer-only, gated by `BuildMode`    |
 
 The build prints which mode it resolved at startup:
 
@@ -39,15 +39,15 @@ The build prints which mode it resolved at startup:
 
 All env vars are optional. Copy `.env.example` to `.env` and fill in only the ones you need.
 
-| Variable | Required for | Notes |
-|---|---|---|
-| `GOOGLE_CREDENTIALS_BASE64` | Refreshing textbook content | Maintainer only |
-| `ALGOLIA_WRITE_KEY` | Re-indexing search | Maintainer only |
-| `ELEVENLABS_API_KEY` | TTS audio rendering | Maintainer only |
-| `GEMINI_API_KEY` | Equation descriptions for audio | Maintainer only |
-| `R2_ENDPOINT`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_BUCKET` | Uploading PDFs/audio | Maintainer only |
-| `PUBLIC_ALGOLIA_APP_ID`, `PUBLIC_ALGOLIA_SEARCH_KEY` | — | Defaults committed in `astro.config.mjs`; leave blank to use them |
-| `SKIP_PDF`, `SKIP_AUDIO`, `SKIP_AUDIO_DOWNLOAD` | Speeding up local iteration | Bypass expensive stages even when creds are present |
+| Variable                                                               | Required for                    | Notes                                                             |
+| ---------------------------------------------------------------------- | ------------------------------- | ----------------------------------------------------------------- |
+| `GOOGLE_CREDENTIALS_BASE64`                                            | Refreshing textbook content     | Maintainer only                                                   |
+| `ALGOLIA_WRITE_KEY`                                                    | Re-indexing search              | Maintainer only                                                   |
+| `ELEVENLABS_API_KEY`                                                   | TTS audio rendering             | Maintainer only                                                   |
+| `GEMINI_API_KEY`                                                       | Equation descriptions for audio | Maintainer only                                                   |
+| `R2_ENDPOINT`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_BUCKET` | Uploading PDFs/audio            | Maintainer only                                                   |
+| `PUBLIC_ALGOLIA_APP_ID`, `PUBLIC_ALGOLIA_SEARCH_KEY`                   | —                               | Defaults committed in `astro.config.mjs`; leave blank to use them |
+| `SKIP_PDF`, `SKIP_AUDIO`, `SKIP_AUDIO_DOWNLOAD`                        | Speeding up local iteration     | Bypass expensive stages even when creds are present               |
 
 ## Project map
 
@@ -62,15 +62,19 @@ For a tour of the code, see [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md). In
 
 Most likely contribution areas:
 
-| Area | What lives here | Files |
-|---|---|---|
-| Page layouts / styles | Astro pages and components | `src/pages/`, `src/layouts/`, `src/components/` |
-| Textbook rendering | Per-node-type components | `src/components/nodes/` |
-| Reader UX | Section navigation, audio player, etc. | `src/lib/reader.ts`, `src/lib/audio-player.ts`, `src/components/` |
-| Build pipeline | Loader, transformer, renderers | `src/textbook-loader/` |
-| Tests | All test layers | `src/**/*.test.ts`, `tests/smoke/` |
+| Area                  | What lives here                        | Files                                                             |
+| --------------------- | -------------------------------------- | ----------------------------------------------------------------- |
+| Page layouts / styles | Astro pages and components             | `src/pages/`, `src/layouts/`, `src/components/`                   |
+| Textbook rendering    | Per-node-type components               | `src/components/nodes/`                                           |
+| Reader UX             | Section navigation, audio player, etc. | `src/lib/reader.ts`, `src/lib/audio-player.ts`, `src/components/` |
+| Build pipeline        | Loader, transformer, renderers         | `src/textbook-loader/`                                            |
+| Tests                 | All test layers                        | `src/**/*.test.ts`, `tests/smoke/`                                |
 
 Editorial changes (chapter prose) happen in the Google Docs themselves, not in this repo. Contributors don't have access to the source docs by design; the workflow is "build a feature that improves how the textbook is rendered, not what it says."
+
+## Translations
+
+If you want to translate the Atlas into another language, see [`TRANSLATING.md`](./TRANSLATING.md). The workflow is Docs-first — translators don't need to touch Git or the Astro code. Open a `[Translation] {Language}` issue to get started.
 
 ## Workflow
 
@@ -96,7 +100,7 @@ Editorial changes (chapter prose) happen in the Google Docs themselves, not in t
 
    If the hook blocks your push, fix the failure instead of bypassing with `--no-verify`. The hook runs the same chain CI runs on the PR — passing locally means passing in CI.
 
-6. **Open a PR** with a description that says *what* changed and *why*. The diff says *how*. CI will run `pnpm verify` again automatically.
+6. **Open a PR** with a description that says _what_ changed and _why_. The diff says _how_. CI will run `pnpm verify` again automatically.
 
 ## Commit conventions
 
