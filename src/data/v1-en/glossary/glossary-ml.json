@@ -113,19 +113,6 @@
       "holdout set"
     ]
   },
-  "epoch": {
-    "definition": "One complete pass through the entire training dataset during the training process.",
-    "aliases": [
-      "Epoch"
-    ]
-  },
-  "batch": {
-    "definition": "A subset of training examples processed together in one forward and backward pass during training.",
-    "aliases": [
-      "Batch",
-      "mini-batch"
-    ]
-  },
   "learning rate": {
     "definition": "A hyperparameter that controls how much the model parameters are updated during each step of gradient descent.",
     "aliases": [
@@ -160,38 +147,10 @@
       "Transformer"
     ]
   },
-  "attention": {
-    "definition": "A mechanism that allows models to focus on relevant parts of the input when making predictions, computing weighted combinations of input elements.",
-    "sourceUrl": "https://arxiv.org/abs/1409.0473",
-    "sourceLabel": "Bahdanau et al., 2015",
-    "aliases": [
-      "Attention",
-      "attention mechanism",
-      "self-attention"
-    ]
-  },
-  "embedding": {
-    "definition": "A dense vector representation of discrete objects (like words or tokens) in a continuous vector space that captures semantic relationships.",
-    "aliases": [
-      "Embedding",
-      "word embedding",
-      "embeddings",
-      "vector representation",
-      "vector embeddings"
-    ]
-  },
   "softmax": {
     "definition": "An activation function that converts a vector of real numbers into a probability distribution, commonly used in classification tasks.",
     "aliases": [
       "Softmax"
-    ]
-  },
-  "dropout": {
-    "definition": "A regularization technique that randomly sets some neurons to zero during training to prevent overfitting.",
-    "sourceUrl": "https://jmlr.org/papers/v15/srivastava14a.html",
-    "sourceLabel": "Srivastava et al., 2014",
-    "aliases": [
-      "Dropout"
     ]
   },
   "batch normalization": {
