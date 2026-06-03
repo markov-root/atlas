@@ -127,8 +127,26 @@ _Code area:_ new postinstall script in `package.json`, `.gitignore` revert, `.ca
 
 Run axe-core / Lighthouse against the deployed site. Thread real `alt` text from Google Docs image properties through to `Figure.astro`. Audit keyboard navigation in `Header`, `Reader`, search modal. Add automated a11y check to CI — either via `@axe-core/cli` against the built `dist/`, or via a minimal Playwright setup (Playwright earns its keep here as the host for axe; otherwise a sprawling E2E suite is marginal value for a static site of this size).
 
+Known issues already surfaced by a 2026-06-03 PageSpeed run: version selector lacks an associated `<label>`; no `<main>` landmark on the homepage; two "Read the textbook" links with identical text point to different hrefs (`/chapters/v1/capabilities/introduction` vs `/read`); ENS Paris Saclay logo missing explicit `width`/`height` (CLS risk).
+
 _Motivated by:_ principle #12 (accessibility) — explicitly aspirational in PRINCIPLES with named gaps; this closes the loop.
 _Code area:_ `src/components/nodes/Figure.astro`, `src/components/Header.astro`, `src/lib/reader.ts`, possibly new `tests/a11y/`, new CI workflow step.
+
+### Page-load performance pass
+
+Page speed was a primary motivation for choosing Astro; we should hold ourselves to it. A 2026-06-03 PageSpeed run on the deployed homepage scored 92 Performance (LCP 0.6s desktop, FCP 0.4s) — solid but with named regressions:
+
+- **LCP image lazy-loaded** — `reader-screenshot.webp` (the hero) has `loading="lazy"`; should be eager with `fetchpriority="high"` since it's the LCP element
+- **Oversized images** — `reader-screenshot.webp` ships at 1200×754 but displays at 556×349; `www-enais-co-white.png` ships at 1029×217 but displays at 114×24 (~35 KiB saving); `ens-paris-saclay.BCyJ3KCb.png` 1334×305 vs 122×28. Use Astro's `<Image>` component with explicit sizing, or pre-shrink the source assets
+- **Render-blocking CSS** — `brand.3V93pehS.css` (13 KiB) blocks first paint
+- **Unused JS from jsdelivr** — `umd/index.min.js` ships 36 KiB with ~30 KiB unused; identify the package and trim or self-host
+- **Long main-thread tasks** — same jsdelivr UMD bundle drives a 260ms task during load
+- **Best-practices headers** — no CSP, no HSTS `includeSubDomains`/`preload`, no COOP, no XFO/frame-ancestors directive, no Trusted Types CSP. These are deploy-side headers (Cloudflare Pages / wherever the site is hosted), not code
+
+Bundle this with the axe-core a11y audit work; same shape (audit deployed site → fix issues → add CI gate).
+
+_Motivated by:_ a textbook is its reading experience; load time is part of that. Astro was chosen specifically for static-site speed and we should measure it.
+_Code area:_ `src/components/` (hero image priority hints, image dimensions), `src/layouts/` (CSS loading strategy), `astro.config.mjs` (image optimization config), deploy config (headers). Run pagespeed.web.dev manually after each pass; add a Lighthouse CI workflow step if regressions stabilize.
 
 ### Discriminated-union AST node types
 
