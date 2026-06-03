@@ -8,14 +8,7 @@ Items are bucketed by horizon, not by priority within a bucket. Each item names 
 
 ## Now (current 1-month focus)
 
-The credential-free contributor build is shipped (see [`ARCHITECTURE.md`](./ARCHITECTURE.md) "BuildMode"), the bulletproof-repo pass is shipped (ESLint, `pnpm verify`, pre-push hook, CI test workflow, Node 24 action bumps). The remaining "now" item is content-refresh automation.
-
-### Scheduled content-refresh workflow
-
-`.github/workflows/content-refresh.yml`: nightly cron, builds with maintainer secrets, runs the secret-scan from `.cache/docs/README.md`, opens a PR if `.cache/docs/` changed. No direct push to main.
-
-*Motivated by:* principle 9 (cache as public artifact) — the secret-scan needs to be automated, not relied on as a manual step the maintainer remembers to run. Also addresses the "committed cache goes stale" failure mode named in [`ARCHITECTURE.md`](./ARCHITECTURE.md) "Why a committed cache."
-*Code area:* new file under `.github/workflows/`.
+The credential-free contributor build is shipped (see [`ARCHITECTURE.md`](./ARCHITECTURE.md) "BuildMode") and the bulletproof-repo pass is shipped (ESLint, `pnpm verify`, pre-push hook, CI test workflow, Node 24 action bumps, branch renamed to `main`). The remaining "now" item is the format-the-codebase pass.
 
 ### Format-the-codebase pass (then re-enable format:check in verify)
 
@@ -64,7 +57,7 @@ Run axe-core / Lighthouse against the deployed site. Thread real `alt` text from
 
 When the R2 content artifact lands (Next), extend it to include image assets so contributors get real figures, not just captions. The current "captions only" experience is acceptable but is a friction point for visual/layout contributors. Should follow the same pattern: published versioned artifact, postinstall fetches, no LFS.
 
-*Motivated by:* contributor experience for visual work. Currently a Track A trade-off accepted explicitly in [`docs/CONTRIBUTING.md`](./CONTRIBUTING.md).
+*Motivated by:* contributor experience for visual work. Currently a Track A trade-off accepted explicitly in [`CONTRIBUTING.md`](../CONTRIBUTING.md).
 *Code area:* postinstall script extension, possibly new `src/assets/uc/` carve-out treatment.
 
 ### Second-language edition (only when actually being written)
@@ -103,6 +96,10 @@ The site is continuously deployed from `main`. There's no versioned release to c
 ### No CODEOWNERS file
 
 One maintainer with optional contributors. CODEOWNERS becomes useful when there's review routing to do across multiple owners; we're not there.
+
+### No scheduled content-refresh workflow
+
+A nightly cron that pulls fresh chapter prose from Google Docs and opens a PR would close a real ergonomic gap (the cache goes stale unless the maintainer remembers to refresh it). But chapters in Google Docs are continuously edited in suggestion-mode; not every save is publishable. Pulling on a schedule would mean either (a) requiring author discipline that contradicts the editorial workflow, or (b) gating with a manual approval step that's effectively what we have today via `pnpm build` locally. Decision: keep content refresh manual. The maintainer runs `pnpm build` when chapters are ready to ship and commits the resulting `.cache/docs/` diff.
 
 ---
 

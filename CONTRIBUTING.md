@@ -11,7 +11,7 @@ pnpm install
 pnpm dev
 ```
 
-That's it. No `.env` file is needed for a contributor build. You should get a working dev server with the full textbook prose served from the committed `.cache/docs/` snapshot. Figures show captions but not images (intentional — see [ARCHITECTURE.md](./ARCHITECTURE.md)).
+That's it. No `.env` file is needed for a contributor build. You should get a working dev server with the full textbook prose served from the committed `.cache/docs/` snapshot. Figures show captions but not images (intentional — see [ARCHITECTURE.md](./docs/ARCHITECTURE.md)).
 
 If `pnpm dev` doesn't bind to an address you can reach (it defaults to `127.0.0.1`), pass `--host` explicitly:
 
@@ -37,7 +37,7 @@ The build prints which mode it resolved at startup:
 
 ## Project map
 
-For a tour of the code, see [`ARCHITECTURE.md`](./ARCHITECTURE.md). In particular:
+For a tour of the code, see [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md). In particular:
 
 - `src/lib/build-mode.ts` — single source of truth for env-mode decisions
 - `src/content.config.ts` — Astro content collection entry point
@@ -68,15 +68,21 @@ Editorial changes (chapter prose) happen in the Google Docs themselves, not in t
    ```
 
 3. **Make the change.** Single-purpose commits, please. If you find yourself wanting to title a commit "feat: X and Y and Z", make three commits.
-4. **Re-run tests:**
+4. **Use `pnpm check` for fast feedback during iteration:**
 
    ```bash
-   pnpm test            # 45 unit + integration tests, ~7s
-   pnpm typecheck       # astro check
-   pnpm test:smoke      # opt-in, runs full build (~33s) — recommended before opening a PR
+   pnpm check           # typecheck + 45 unit/integration tests, ~10s
    ```
 
-5. **Open a PR** with a description that says *what* changed and *why*. The diff says *how*.
+5. **`pnpm verify` is the full pre-push gate** (runs automatically via the `pre-push` git hook on every `git push`):
+
+   ```bash
+   pnpm verify          # lint + lint:actions + typecheck + test + build + test:smoke, ~80s
+   ```
+
+   If the hook blocks your push, fix the failure instead of bypassing with `--no-verify`. The hook runs the same chain CI runs on the PR — passing locally means passing in CI.
+
+6. **Open a PR** with a description that says *what* changed and *why*. The diff says *how*. CI will run `pnpm verify` again automatically.
 
 ## Commit conventions
 
@@ -107,7 +113,7 @@ If you change the contributor build path (anything in `BuildMode` ↔ `gdocsdk` 
 
 ## Principles
 
-We follow a small set of project-specific engineering principles documented in [`PRINCIPLES.md`](./PRINCIPLES.md). The two that matter most for day-to-day contribution:
+We follow a small set of project-specific engineering principles documented in [`docs/PRINCIPLES.md`](./docs/PRINCIPLES.md). The two that matter most for day-to-day contribution:
 
 - **Single source of truth for build behaviour** — env-mode decisions only happen in `src/lib/build-mode.ts`. If you find yourself writing `if (process.env.SKIP_X)` in some other file, you're probably about to make the code harder to maintain.
 - **Fail loud, not silent** — when something can't work, throw an error that names the input and points at a fix.
@@ -120,4 +126,6 @@ We follow a small set of project-specific engineering principles documented in [
 
 ## License
 
-Code is intended to be MIT-licensed; textbook prose is CC BY-SA 4.0. These licenses haven't been added to the repo yet (planned). Don't submit a PR depending on a permissive interpretation of "no license = public domain" — it doesn't, and the eventual licenses will be applied retroactively.
+Two-license split:
+- **Code** (everything under `src/`, `tests/`, configuration, build scripts, code-describing documentation) — MIT, see [`LICENSE`](./LICENSE).
+- **Textbook content** (chapter prose, parsed cache under `.cache/docs/`, glossary entries, rendered PDFs/audio) — CC BY-SA 4.0, see [`LICENSE-CONTENT`](./LICENSE-CONTENT).

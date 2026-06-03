@@ -48,9 +48,9 @@ GitHub auto-detects certain filenames at the repo root and surfaces them in its 
 
 ## What's still missing
 
-- No CI workflow for `pnpm test` yet (ROADMAP Now).
-- No nightly content-refresh automation yet (ROADMAP Now).
+- No automated content-refresh — pulling fresh chapter prose from Google Docs is intentionally manual so the maintainer can gate which edits ship (ROADMAP "Not planned").
 - No accessibility audit yet (ROADMAP Next; PRINCIPLES §12 names the known gap).
 - No discriminated-union AST types yet (ROADMAP Next; PRINCIPLES §11 names the debt).
+- No `format:check` enforcement in `pnpm verify` (ROADMAP Now: one-shot reformat then enable).
 
 See [ROADMAP.md](./ROADMAP.md) for full direction; the local TODO.md is the active task tracker.

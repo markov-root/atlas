@@ -1,5 +1,5 @@
 import { docs_v1 } from "googleapis";
-import { google, Auth } from "googleapis";
+import { google } from "googleapis";
 import { createHash } from "crypto";
 import { writeFile, mkdir } from "fs/promises";
 import { existsSync } from "fs";
@@ -64,7 +64,7 @@ export class DocsSDK {
         `  Either:\n` +
         `    (a) Add GOOGLE_CREDENTIALS_BASE64 to .env (maintainer only), or\n` +
         `    (b) Refresh .cache/docs/ with the latest seed.\n` +
-        `  See docs/CONTRIBUTING.md for details.`,
+        `  See CONTRIBUTING.md for details.`,
       );
     }
 

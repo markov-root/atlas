@@ -10,6 +10,12 @@ This file is the agent-facing entry point. Project-facing docs live under `docs/
 - `pnpm test` — Unit + integration tests (~7s)
 - `pnpm test:smoke` — End-to-end build smoke test (~33s)
 - `pnpm typecheck` — `astro check`
+- `pnpm lint` — ESLint (warnings tolerated; errors fail)
+- `pnpm lint:actions` — Validate `.github/workflows/*.yml`
+- `pnpm check` — Fast pre-commit gate: typecheck + test (~10s)
+- `pnpm verify` — Full pre-push gate: lint + lint:actions + typecheck + test + build + test:smoke (~80s)
+
+The `pnpm verify` chain is enforced automatically as a `pre-push` git hook (`.githooks/pre-push`, activated by `pnpm install`'s `prepare` script). Use `git push --no-verify` only when fixing a genuine emergency.
 
 ## Where to look
 
