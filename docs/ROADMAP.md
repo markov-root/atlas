@@ -112,6 +112,13 @@ Configure built-in Formspree autoresponders for the facilitation-guides form and
 
 _Motivated by:_ maintainer reports every-other-day facilitation-guide emails requiring manual reply.
 
+### Make Formspree cohort-submission fields mandatory
+
+The cohort-submission form (Formspree, served from `/teach` "Become an affiliate") currently treats `cohort_size`, `start_date`, and `location` as optional. Processing the 2026-06 backlog forced rejection of otherwise-real submissions purely because of missing required signal (Marco Guzman / AI Safety CUGDL — no start_date; others had empty `cohort_size`). Mark these three fields as `required` on the form input. Won't fix existing backlog but prevents the same review-friction next round.
+
+_Motivated by:_ ~4 of 24 submissions in the 2026-06 backlog were rejected solely for missing required-feeling info, when the underlying person was real and contactable.
+_Code area:_ `src/pages/teach.astro` (form input attrs), plus matching Formspree field config.
+
 ---
 
 ## Next (1–3 months)
