@@ -7,7 +7,6 @@ Each file in this directory has a single purpose. The doc set is intentionally s
 | File | Audience | Purpose |
 |---|---|---|
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | Anyone working on the code | How the build pipeline, content loader, and Astro layer fit together. Includes "Why we chose this" subsections for the major architectural decisions. |
-| [CONTRIBUTING.md](./CONTRIBUTING.md) | External contributors | Setup, workflow, where to make changes, what tests to run, commit conventions |
 | [PRINCIPLES.md](./PRINCIPLES.md) | Anyone making design decisions | The 15 engineering principles this project applies, each with a code reference and rationale. Includes a closing list of classical SE concerns we deliberately don't worry about (and why). |
 | [design-system.md](./design-system.md) | Anyone building UI | Visual patterns, component catalog, color tokens, icons, spacing reference |
 
@@ -31,15 +30,18 @@ Each file in this directory has a single purpose. The doc set is intentionally s
 - **Decision rationale lives next to the thing it explains.** No separate `decisions/` or ADR directory — reasoning for principle-level choices goes in PRINCIPLES.md "Why" sections; reasoning for architectural choices goes in ARCHITECTURE.md "Why we chose this" subsections; reasoning for rejected directions goes in ROADMAP.md "Not planned."
 - **Update the doc in the same change as the code.** A diff that says "behavior changed but no docs touched" is incomplete.
 
-## OSS-hygiene files (at repo root, not under docs/)
+## Root-level files (GitHub-recognized)
+
+GitHub auto-detects certain filenames at the repo root and surfaces them in its UI: `README.md` renders on the homepage; `LICENSE` is parsed for the licensing badge; `SECURITY.md` links from the security tab; `CODE_OF_CONDUCT.md` and `CONTRIBUTING.md` are surfaced from the PR-creation and community-standards flows. Keeping these at root (not under `docs/`) is what unlocks that behavior. Anything else — pipeline architecture, principles, design system, roadmap — is project-specific and lives in `docs/`.
 
 | File | Purpose |
 |---|---|
+| [`../README.md`](../README.md) | Project entry point |
+| [`../CONTRIBUTING.md`](../CONTRIBUTING.md) | Setup, workflow, where to make changes, what tests to run, commit conventions |
 | [`../LICENSE`](../LICENSE) | MIT — covers code |
 | [`../LICENSE-CONTENT`](../LICENSE-CONTENT) | CC BY-SA 4.0 — covers textbook prose |
 | [`../SECURITY.md`](../SECURITY.md) | Vulnerability reporting policy |
 | [`../CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md) | Contributor Covenant 2.1 by reference |
-| [`../README.md`](../README.md) | Project entry point |
 | [`../CLAUDE.md`](../CLAUDE.md) | Agent operating context (`AGENTS.md` symlinks here) |
 | [`../.github/ISSUE_TEMPLATE/`](../.github/ISSUE_TEMPLATE) | Bug + feature templates |
 | [`../.github/PULL_REQUEST_TEMPLATE.md`](../.github/PULL_REQUEST_TEMPLATE.md) | PR template with test-plan checklist |

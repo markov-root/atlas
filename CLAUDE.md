@@ -17,7 +17,7 @@ This file is the agent-facing entry point. Project-facing docs live under `docs/
 |---|---|
 | How the build pipeline, BuildMode, and Astro layer fit together | [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) |
 | The engineering principles this project applies (with code references) | [`docs/PRINCIPLES.md`](./docs/PRINCIPLES.md) |
-| How a contributor sets up and runs the project | [`docs/CONTRIBUTING.md`](./docs/CONTRIBUTING.md) |
+| How a contributor sets up and runs the project | [`CONTRIBUTING.md`](./CONTRIBUTING.md) |
 | Visual patterns, components, spacing tokens, icons | [`docs/design-system.md`](./docs/design-system.md) |
 | Where the codebase is going (Now / Next / Later / Not planned) | [`docs/ROADMAP.md`](./docs/ROADMAP.md) |
 | Active task list (local-only) | `docs/TODO.md` |

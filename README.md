@@ -101,7 +101,7 @@ For deeper detail (build pipeline, AST shape, test layers, R2 layout) see [`docs
 | Doc | What |
 |---|---|
 | [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) | Build pipeline, content loader, Astro layer, "why we chose this" rationale |
-| [`docs/CONTRIBUTING.md`](./docs/CONTRIBUTING.md) | Setup, workflow, commit conventions |
+| [`CONTRIBUTING.md`](./CONTRIBUTING.md) | Setup, workflow, commit conventions |
 | [`docs/PRINCIPLES.md`](./docs/PRINCIPLES.md) | The engineering principles this project applies, with code references |
 | [`docs/ROADMAP.md`](./docs/ROADMAP.md) | Where the codebase is going (Now / Next / Later / Not planned) |
 | [`docs/design-system.md`](./docs/design-system.md) | Visual patterns, component catalog, spacing tokens, icons |
@@ -109,7 +109,7 @@ For deeper detail (build pipeline, AST shape, test layers, R2 layout) see [`docs
 
 ## Contributing
 
-External contributions are welcome. The contributor build path was designed to remove the credential barrier — if you hit one, that's a bug, please file an issue. See [`docs/CONTRIBUTING.md`](./docs/CONTRIBUTING.md) for setup and workflow, [`SECURITY.md`](./SECURITY.md) for reporting vulnerabilities privately, and [`CODE_OF_CONDUCT.md`](./CODE_OF_CONDUCT.md) for behavior expectations.
+External contributions are welcome. The contributor build path was designed to remove the credential barrier — if you hit one, that's a bug, please file an issue. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for setup and workflow, [`SECURITY.md`](./SECURITY.md) for reporting vulnerabilities privately, and [`CODE_OF_CONDUCT.md`](./CODE_OF_CONDUCT.md) for behavior expectations.
 
 ## License
 
