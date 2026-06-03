@@ -8,21 +8,7 @@ Items are bucketed by horizon, not by priority within a bucket. Each item names 
 
 ## Now (current 1-month focus)
 
-The credential-free contributor build is shipped (see [`ARCHITECTURE.md`](./ARCHITECTURE.md) "BuildMode"). The remaining "now" work is OSS-readiness hygiene that makes the repo defensible as a public project.
-
-### Lint and format tooling
-
-Currently we have `pnpm test` and `pnpm typecheck` but no `pnpm lint` or `pnpm format`. Prettier + ESLint is the conventional, low-effort choice. Adding both keeps PRs from arguing about style.
-
-*Motivated by:* contributor experience. Without a formatter, every PR ends up with an unprompted "should I reformat?" question.
-*Code area:* `package.json` scripts, root `.prettierrc`, `.eslintrc.cjs`.
-
-### CI test workflow
-
-`.github/workflows/test.yml` running `pnpm install && pnpm typecheck && pnpm test` on every push/PR. Matrix: ubuntu, macos, windows. The smoke test runs on ubuntu only (it's slow).
-
-*Motivated by:* principle 7 (layered testing). Local tests are only protective if CI enforces them.
-*Code area:* new file under `.github/workflows/`.
+The credential-free contributor build is shipped (see [`ARCHITECTURE.md`](./ARCHITECTURE.md) "BuildMode"), the bulletproof-repo pass is shipped (ESLint, `pnpm verify`, pre-push hook, CI test workflow, Node 24 action bumps). The remaining "now" item is content-refresh automation.
 
 ### Scheduled content-refresh workflow
 
@@ -30,6 +16,13 @@ Currently we have `pnpm test` and `pnpm typecheck` but no `pnpm lint` or `pnpm f
 
 *Motivated by:* principle 9 (cache as public artifact) — the secret-scan needs to be automated, not relied on as a manual step the maintainer remembers to run. Also addresses the "committed cache goes stale" failure mode named in [`ARCHITECTURE.md`](./ARCHITECTURE.md) "Why a committed cache."
 *Code area:* new file under `.github/workflows/`.
+
+### Format-the-codebase pass (then re-enable format:check in verify)
+
+`prettier --write .` against the existing codebase as a single formatting-only commit, then add `pnpm format:check` to `pnpm verify`. Currently `pnpm format` exists as a manual tool but format enforcement is deferred because (a) the bulk reformat hasn't happened and (b) `prettier-plugin-astro` can't parse one `.astro` file (HTML comment inside what it parses as JSX).
+
+*Motivated by:* finishing the bulletproof pass cleanly — verify currently covers lint + typecheck + tests + build + smoke, but not formatting. Bug-class issues are covered; style isn't.
+*Code area:* big format-only commit across `src/`, then a one-line addition to `pnpm verify` in `package.json`.
 
 ---
 

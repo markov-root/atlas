@@ -12,7 +12,7 @@
     "test:smoke": "vitest run --dir tests/smoke",
     "typecheck": "astro check",
     "lint": "eslint .",
-    "lint:actions": "action-validator .github/workflows/*.yml",
+    "lint:actions": "for f in .github/workflows/*.yml; do action-validator \"$f\" || exit 1; done",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "pnpm typecheck && pnpm test",
