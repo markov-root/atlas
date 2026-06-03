@@ -2,9 +2,9 @@
 
 ## Reporting a vulnerability
 
-If you've found a security issue in AI Safety Atlas, please report it privately rather than opening a public GitHub issue.
+**Report via GitHub Private Vulnerability Reporting.** Use the "Report a vulnerability" button on the [Security tab](https://github.com/markov-root/atlas/security/advisories/new), or visit that URL directly. Only maintainers see your report; the discussion stays private until a fix ships.
 
-**Email:** open a GitHub issue marked `[SECURITY — private]` and a maintainer will reach out for a private channel, or contact the maintainer directly through their GitHub profile.
+If you cannot use GitHub's flow, please use the contact form on the [deployed site's privacy policy page](https://ai-safety-atlas.com/privacy-policy/). The maintainer monitors both channels.
 
 Please include:
 
@@ -37,3 +37,9 @@ We prefer coordinated disclosure: please give us a chance to ship a fix before p
 ## What this policy does not promise
 
 This is a small open-source project with one primary maintainer. We don't have a paid bug-bounty program. We can't guarantee response times shorter than what's stated above. We'll treat your report with care; we just want to set expectations honestly.
+
+## Privacy concerns about your data
+
+If your concern is about how visitor data is processed (IP, user agent, analytics) rather than a software vulnerability, see the [Privacy Policy](https://ai-safety-atlas.com/privacy-policy/) on the deployed site. That page is the canonical source for data-handling questions and GDPR rights requests.
+
+The codebase itself does not collect data. Privacy obligations come from the deployed site, not from running the code locally.

@@ -97,6 +97,10 @@ The site is continuously deployed from `main`. There's no versioned release to c
 
 One maintainer with optional contributors. CODEOWNERS becomes useful when there's review routing to do across multiple owners; we're not there.
 
+### No `PRIVACY.md` in the repo
+
+The deployed site DOES collect visitor data (IP + user agent via Plausible analytics) and DOES have GDPR obligations. The canonical privacy policy lives at https://ai-safety-atlas.com/privacy-policy/ on the deployed site, written by the legal data controller. Mirroring that policy into a `PRIVACY.md` in the repo would either (a) duplicate it (drift risk: the website is the source of truth) or (b) be a stripped-down stub that confuses readers. The codebase itself does not collect data — running the code locally does not implicate any privacy obligations. `SECURITY.md` links to the canonical policy for visitors who land here looking for it.
+
 ### No scheduled content-refresh workflow
 
 A nightly cron that pulls fresh chapter prose from Google Docs and opens a PR would close a real ergonomic gap (the cache goes stale unless the maintainer remembers to refresh it). But chapters in Google Docs are continuously edited in suggestion-mode; not every save is publishable. Pulling on a schedule would mean either (a) requiring author discipline that contradicts the editorial workflow, or (b) gating with a manual approval step that's effectively what we have today via `pnpm build` locally. Decision: keep content refresh manual. The maintainer runs `pnpm build` when chapters are ready to ship and commits the resulting `.cache/docs/` diff.
