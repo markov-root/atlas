@@ -2,7 +2,7 @@
 
 ## Reporting a vulnerability
 
-If you've found a security issue in Atlas Foreview, please report it privately rather than opening a public GitHub issue.
+If you've found a security issue in AI Safety Atlas, please report it privately rather than opening a public GitHub issue.
 
 **Email:** open a GitHub issue marked `[SECURITY — private]` and a maintainer will reach out for a private channel, or contact the maintainer directly through their GitHub profile.
 

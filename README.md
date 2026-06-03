@@ -1,4 +1,4 @@
-# Atlas Foreview
+# AI Safety Atlas
 
 An interactive, open-source textbook on **AI safety**, published at [ai-safety-atlas.com](https://ai-safety-atlas.com).
 
@@ -120,4 +120,4 @@ Two-license split:
 
 ---
 
-*Atlas Foreview is maintained by Markov Grey and the French Center for AI Safety.*
+*AI Safety Atlas is maintained by Markov Grey and the French Center for AI Safety.*

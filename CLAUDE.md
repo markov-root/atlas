@@ -1,4 +1,4 @@
-# Atlas Foreview — agent operating context
+# AI Safety Atlas — agent operating context
 
 This file is the agent-facing entry point. Project-facing docs live under `docs/`.
 

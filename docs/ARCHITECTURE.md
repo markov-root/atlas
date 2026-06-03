@@ -1,6 +1,6 @@
 # Architecture
 
-Atlas Foreview is an Astro static site whose content is generated from Google Docs at build time. This document explains the pipeline.
+AI Safety Atlas is an Astro static site whose content is generated from Google Docs at build time. This document explains the pipeline.
 
 ## High-level flow
 
