@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.cache/
+src/assets/uc/
+public/uc/
+pnpm-lock.yaml
+*.snap
