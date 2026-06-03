@@ -34,13 +34,6 @@ This should land before any big refactor (discriminated AST, courses migration) 
 _Motivated by:_ finishing the bulletproof pass cleanly — verify currently covers lint + typecheck + tests + build + smoke, but not formatting.
 _Code area:_ big format-only commit across `src/`, then a one-line addition to `pnpm verify` in `package.json`.
 
-### Translation contributor onboarding
-
-`docs/TRANSLATING.md` documenting how to contribute a language edition. Single-edition model — translators target "Edition 1" (the current English textbook) as a stable concept; no x.y.z minor-version ceremony for users. Per-language glossary discipline. Mandatory sanity-check by a second person fluent in the target language with ML/AI safety background. Translators own their own copies of the Google Docs.
-
-_Motivated by:_ real, recurring translator demand. Principle #10 (YAGNI) calibrated: build when demand is real and recurring, even before the implementation moment — but no earlier.
-_Code area:_ `docs/TRANSLATING.md` (new), `CONTRIBUTING.md` (add Translations section).
-
 ### Locale-aware routing scaffold (English-only)
 
 Build the `[lang]` URL segment, dynamic `<html lang>`, hreflang alternates, and multi-language helpers in `src/lib/textbooks.ts` **now**, with English as the only available language. English stays at `/chapters/v1/...` (no locale prefix — principle #13: don't break URLs already published); new languages get `/es/chapters/v1/...`, `/fr/chapters/v1/...`, etc. Adding a new language becomes a one-line `TEXTBOOK_EDITIONS` entry in `data.ts`.
@@ -63,16 +56,11 @@ Before a non-English edition ships, the following must have documented answers (
 
 _Motivated by:_ the maintainer's stated requirement that quality should not be significantly degraded across languages.
 
-### Courses pipeline rebuild
+### Cohort verification follow-through (ongoing, low-touch)
 
-Migrate `src/data/courses-old.json` to Astro content collections (`src/content/organizations/*.yaml`, `src/content/cohorts/*.yaml`) with Zod schemas. Add `status` (`upcoming`/`active`/`completed`/`cancelled`), `verified` (`false` blocks the entry from the hero stats), `plannedParticipants` + `actualParticipants` (replaces the field-name mismatch with the Formspree intake form), `source` (provenance string), `parentProgram` on organizations (handles the AI Safety Collab umbrella).
+A standing maintainer practice rather than a one-off task. As the 14 Formspree-derived cohorts marked `verified: true` on 2026-06-03 actually conclude, circle back to record `actualParticipants` (and any meaningful `endDate` if useful in future). Same for new submissions as they come in. The site auto-recomputes the hero metric on every push, so each verification edit is a tiny commit with immediate visible impact.
 
-Then `scripts/intake-cohorts.ts` — **never auto-writes** to the data layer; produces a review queue in `intake/pending/*.yaml` with concern annotations (third submission from same email, start_date suspiciously far future, duplicate of existing cohort, etc.) for maintainer/agent review. Approved → committed as a cohort YAML. Rejected → logged to `intake/rejected.jsonl` so the same submission doesn't resurface next run.
-
-The honest hero metric on `/teach` becomes one stat: **"X+ students reached"**, computed as the sum of `actualParticipants ?? plannedParticipants` over `verified && status !== 'cancelled'` cohorts. Today's number undercounts by ~390.
-
-_Motivated by:_ the backlog (24 submissions over 4 months) and the schema/process drift between the form and the data file. Principle #1 (single source of truth — Zod schema as the canonical shape), principle #11 (type safety where it catches bugs).
-_Code area:_ `src/content/organizations/`, `src/content/cohorts/`, `src/content.config.ts`, `scripts/intake-cohorts.ts`, `src/pages/teach.astro`. Old `src/data/courses-old.json` deleted after migration.
+Three cohorts from the 2026-06 backlog are still pending verification: `national-bank-ethiopia-1` (organizational venue concern), `finevals-1` (commercial entity), `independent-1` (Candace Black). Revisit when there's signal about whether these cohorts actually ran.
 
 ### In-page errata widget per section
 
