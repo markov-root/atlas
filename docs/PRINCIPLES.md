@@ -8,9 +8,9 @@ Generic principles (SOLID, GRASP, coupling/cohesion vocabulary, etc.) are not re
 
 ## 1. Single source of truth for build behaviour
 
-Every env-mode *decision* is made in `src/lib/build-mode.ts`. No other module is allowed to interpret raw env vars to decide what to fetch, skip, or render.
+Every env-mode _decision_ is made in `src/lib/build-mode.ts`. No other module is allowed to interpret raw env vars to decide what to fetch, skip, or render.
 
-There's one carefully-scoped exception: `content.config.ts` is the only file that may *bridge* `BuildMode` flags onto `process.env.SKIP_PDF` / `SKIP_AUDIO`. This bridge exists because the PDF and audio renderers are constructed several layers deep (inside `TextbookLoader.load()`), where threading a `BuildMode` argument through would be invasive. The bridge keeps the decision-making in one place even though the *consumption* happens further down the call tree.
+There's one carefully-scoped exception: `content.config.ts` is the only file that may _bridge_ `BuildMode` flags onto `process.env.SKIP_PDF` / `SKIP_AUDIO`. This bridge exists because the PDF and audio renderers are constructed several layers deep (inside `TextbookLoader.load()`), where threading a `BuildMode` argument through would be invasive. The bridge keeps the decision-making in one place even though the _consumption_ happens further down the call tree.
 
 Modules that legitimately consume the bridged values:
 
@@ -18,7 +18,7 @@ Modules that legitimately consume the bridged values:
 - `src/textbook-loader/loader.ts:66` reads `process.env.SKIP_AUDIO` for the audio renderer's `skipGeneration` flag
 - `src/textbook-loader/renderers/audio/renderer.ts:53` reads `process.env.SKIP_AUDIO_DOWNLOAD` as a local-dev escape hatch
 
-These reads don't *decide* anything — they apply a decision already made upstream. If a new module needs to gate on creds, it must consume `BuildMode`, not probe env.
+These reads don't _decide_ anything — they apply a decision already made upstream. If a new module needs to gate on creds, it must consume `BuildMode`, not probe env.
 
 **Why:** before this principle was applied, the same env probe (`if (!process.env.SKIP_PDF)`) appeared in five files, each drifting independently. Extracting `BuildMode` collapsed five decisions into one. Three concrete benefits this purchases:
 
@@ -50,7 +50,7 @@ Same source + fresh tooling should always produce the same artifacts. This is as
 
 **Reference:** `src/textbook-loader/loader.test.ts` — "contentHash is deterministic across fresh loader instances".
 
-**Where it does NOT hold (and why):** `loadChapter(X)` called twice on the *same* loader produces different hashes because the `Transformer` accumulates per-textbook counters (figure numbers etc.) as instance state. This is intentional — "Figure 3.2" requires global context — and documented in [`ARCHITECTURE.md`](./ARCHITECTURE.md) under "Content pipeline / Transformer".
+**Where it does NOT hold (and why):** `loadChapter(X)` called twice on the _same_ loader produces different hashes because the `Transformer` accumulates per-textbook counters (figure numbers etc.) as instance state. This is intentional — "Figure 3.2" requires global context — and documented in [`ARCHITECTURE.md`](./ARCHITECTURE.md) under "Content pipeline / Transformer".
 
 ## 5. Observability — one banner, no spelunking
 
@@ -76,13 +76,13 @@ When infra has a public-by-design surface (Algolia search-only key, public CDN U
 
 Each test layer catches a specific class of regression. The default `pnpm test` runs four pure layers in ~7s; a separate `pnpm test:smoke` runs the heavy end-to-end build.
 
-| Layer | What it protects |
-|---|---|
-| Pure unit | Env decision logic — every permutation has an expected mode |
-| Storage | Cache-hit/miss decision tree and error contents |
-| Integration | Loader correctness against real cache fixtures |
-| Snapshot | Transformer AST structural drift |
-| Smoke (opt-in) | The whole pipeline produces real chapter HTML |
+| Layer          | What it protects                                            |
+| -------------- | ----------------------------------------------------------- |
+| Pure unit      | Env decision logic — every permutation has an expected mode |
+| Storage        | Cache-hit/miss decision tree and error contents             |
+| Integration    | Loader correctness against real cache fixtures              |
+| Snapshot       | Transformer AST structural drift                            |
+| Smoke (opt-in) | The whole pipeline produces real chapter HTML               |
 
 **Reference:** `docs/ARCHITECTURE.md` "Test layers", and the `test` files under `src/` and `tests/`.
 
@@ -96,7 +96,7 @@ When we change behaviour, we change it atomically. No `if (process.env.NEW_BEHAV
 
 Each module has one job, and only the smallest possible surface crosses module boundaries.
 
-- `src/lib/build-mode.ts` is a pure-function module — zero imports from anywhere else in the codebase, no I/O, no side effects. It's testable in isolation because it doesn't *do* anything except return a typed decision object.
+- `src/lib/build-mode.ts` is a pure-function module — zero imports from anywhere else in the codebase, no I/O, no side effects. It's testable in isolation because it doesn't _do_ anything except return a typed decision object.
 - `src/textbook-loader/` is its own module. Only `content.config.ts` imports from it (consuming `TextbookLoader`), and `loader.ts` itself only crosses to `src/lib/build-mode.ts` for the `BuildMode` type. The renderers (`pdf/`, `audio/`) are submodules within textbook-loader and don't reach outside it.
 - `src/components/nodes/` is one component per AST node type, dispatched by `NodeRenderer.astro`. Each component handles its node and recurses through `NodeRenderer` for children. No node component knows about any other node component.
 
@@ -106,21 +106,28 @@ Each module has one job, and only the smallest possible surface crosses module b
 
 **Reference:** `src/lib/build-mode.ts` (zero internal imports), `src/textbook-loader/index.d.ts` (the module's public types), `src/components/nodes/` directory structure.
 
-## 10. YAGNI — don't speculate
+## 10. YAGNI — don't speculate, but build when demand is real
 
-We build what's needed for the current task. Not what might be needed someday.
+We build what's needed for the current task. Not what might be needed someday. **But also:** when demand is real and recurring, build the layer before the next demand event so the project doesn't have to be retrofitted under pressure.
 
-Concrete examples from Track A where YAGNI saved us complexity:
+Concrete examples from Track A where the YAGNI side saved us complexity:
 
 - The original plan proposed conditional rendering for the search box "in case Algolia isn't configured." We dropped it — Algolia's public keys are committed as defaults, so the case being designed-around doesn't exist.
 - Image hosting for contributors was discussed and deferred. Captions-only is acceptable today; building R2-served image distribution before anyone has asked for it would have added a service surface for hypothetical demand.
 - The `BuildMode` interface has exactly the flags the current code needs. No `enableExperimentalFoo` placeholders.
+- A certification program (auth, quizzes, anti-gaming, credentials) has been requested by ~6 readers. We didn't even create an interest-list page: that commits the project to a follow-up obligation we can't fulfill. The demand-vs-scope ratio is wrong.
 
-**Why:** every speculative abstraction has a non-zero maintenance cost and a non-zero chance of being wrong about future requirements. Three duplicated lines are cheaper than the wrong abstraction. When demand actually shows up, the refactor is informed by real constraints.
+Concrete examples where the "build when demand is real" side won:
 
-**Failure mode to watch for:** "while I'm in here let me add an extension point." The extension point is YAGNI debt unless the next concrete user is already named.
+- Locale-aware URL routing was originally deferred under YAGNI ("wait until the first non-English textbook is ready"). When real, recurring translator demand surfaced (Spanish via RiesgosIA + maintainer confirmed many more), we recalibrated. Building the routing scaffold with English-only is cheaper than refactoring routing every time a language lands. The trigger isn't "could someone want this someday" — it's "have multiple people asked, are they actively waiting, will the next ask come within months."
 
-**Reference:** the Track A trade-offs documented in `docs/ARCHITECTURE.md` (image hosting deferred; conditional Algolia rendering deleted).
+**Why:** every speculative abstraction has a non-zero maintenance cost and a non-zero chance of being wrong about future requirements. Three duplicated lines are cheaper than the wrong abstraction. When demand actually shows up, the refactor is informed by real constraints. The calibration is: **named users with concrete needs flip YAGNI from "defer" to "build now"**.
+
+**Failure mode to watch for (over-build):** "while I'm in here let me add an extension point." The extension point is YAGNI debt unless the next concrete user is already named.
+
+**Failure mode to watch for (under-build):** ignoring a clear pattern of demand because no single requester is "blocking." If 5+ people have asked the same question over 6 months, the next person isn't hypothetical — they're already in the queue.
+
+**Reference:** the Track A trade-offs documented in `docs/ARCHITECTURE.md` (image hosting deferred; conditional Algolia rendering deleted). The locale-routing scaffold call documented in `docs/ROADMAP.md` "Now — Locale-aware routing scaffold."
 
 ## 11. Type safety where it actually catches bugs
 
@@ -152,7 +159,7 @@ We haven't done a formal accessibility audit yet. Known gaps:
 - The dev-mode "image not available" hint is rendered as a styled `<div>`, not announced to screen readers.
 - No automated accessibility tests (e.g. axe-core in CI).
 
-This principle is stated *aspirationally* — we want the codebase to follow it, and we know it doesn't fully yet. The audit and remediation are tracked in `docs/ROADMAP.md` "Next". The point of putting the principle here despite the gaps is to prevent future PRs from making the situation worse without a deliberate decision.
+This principle is stated _aspirationally_ — we want the codebase to follow it, and we know it doesn't fully yet. The audit and remediation are tracked in `docs/ROADMAP.md` "Next". The point of putting the principle here despite the gaps is to prevent future PRs from making the situation worse without a deliberate decision.
 
 **Reference:** `src/components/nodes/Figure.astro` (the `alt=""` gap).
 
@@ -180,7 +187,10 @@ Some choices are easier to defend if you say them out loud. The current explicit
 - **No microservices split.** The site is a static build; the maintainer-side pipeline is a single Node process. It stays a monolith.
 - **No public JS/TS API.** The site is the deliverable; library extraction is not in scope.
 - **No authentication / user accounts.** Readers are anonymous; comments and editing happen in the Google Docs source.
-- **No second-language edition until one is actually being written.** The data model supports it (`language: 'en'`) but we don't pre-build i18n infrastructure for hypothetical demand.
+- **No certification program.** Multiple requests (~6 over months) for a certification with quizzes, accounts, anti-gaming, and credential issuance. Demand-vs-scope ratio doesn't justify the engineering. Track the interest count in ROADMAP; don't even create an interest-list page (that creates a follow-up obligation we can't yet fulfill).
+- **No automated Formspree-to-data-layer pipeline.** Submissions are reviewed in a queue before any data lands. Some are spam, dupes, or not serious; auto-write would either corrupt the data layer or require unmaintainable heuristics.
+- **No EPUB/MOBI/LaTeX exports for now.** Single asks. The per-chapter PDFs + the planned whole-book PDF cover most e-reader use cases. LaTeX specifically conflicts with the Google Docs source-of-truth.
+- **No hosting of external curricula on the Atlas platform.** Inquiries exist (CAIF); architectural change is much bigger than the request implies. Defer until a concrete partnership decision.
 
 **Why:** non-goals get re-litigated otherwise. Without this list, every refactor proposal that touches one of these areas spawns a "should we also...?" debate. Writing the list down means re-opening one of these is a deliberate act with a documented previous decision to argue against.
 
@@ -202,16 +212,16 @@ The scan procedure lives in `.cache/docs/README.md`. It runs a small list of hig
 
 The classical SE curriculum covers many things that genuinely don't apply to this codebase. Listing them here so the omissions look deliberate rather than accidental:
 
-| Concern | Why we skip |
-|---|---|
-| **Liskov substitution / deep inheritance hierarchies** | We have almost no inheritance. The two renderers (`pdf/`, `audio/`) are sibling classes with no shared base. Adding LSP discipline to a codebase without subclasses is theatre. |
-| **Concurrency, locking, race conditions** | The build is a single-threaded Node process; the deployed site is static HTML behind a CDN. No shared mutable state across requests. |
-| **CAP / distributed-system trade-offs** | Cloudflare R2 is the only external service. Writes happen from one machine (the maintainer's local build or one CI worker). Not a distributed system. |
-| **SemVer / API versioning** | No public JS/TS API. URL versioning uses `/v1/` path segments (principle 13). |
-| **Microservices / SOA boundaries** | Static site monolith. Stays one. |
-| **Database transactions, migrations, indexing strategies** | No database. |
-| **Performance budgets, scalability** | Static site behind a CDN handles essentially any read traffic. Build time matters (~30s contributor / minutes maintainer with PDFs+audio) but isn't a daily concern; if it becomes one, we'll add a principle. |
-| **Internationalization framework** | `language: 'en'` is in the data model; v1 is English-only. When a second language is actually being written, we'll add policy then. (Principle 10 — YAGNI.) |
+| Concern                                                    | Why we skip                                                                                                                                                                                                    |
+| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Liskov substitution / deep inheritance hierarchies**     | We have almost no inheritance. The two renderers (`pdf/`, `audio/`) are sibling classes with no shared base. Adding LSP discipline to a codebase without subclasses is theatre.                                |
+| **Concurrency, locking, race conditions**                  | The build is a single-threaded Node process; the deployed site is static HTML behind a CDN. No shared mutable state across requests.                                                                           |
+| **CAP / distributed-system trade-offs**                    | Cloudflare R2 is the only external service. Writes happen from one machine (the maintainer's local build or one CI worker). Not a distributed system.                                                          |
+| **SemVer / API versioning**                                | No public JS/TS API. URL versioning uses `/v1/` path segments (principle 13).                                                                                                                                  |
+| **Microservices / SOA boundaries**                         | Static site monolith. Stays one.                                                                                                                                                                               |
+| **Database transactions, migrations, indexing strategies** | No database.                                                                                                                                                                                                   |
+| **Performance budgets, scalability**                       | Static site behind a CDN handles essentially any read traffic. Build time matters (~30s contributor / minutes maintainer with PDFs+audio) but isn't a daily concern; if it becomes one, we'll add a principle. |
+| **Internationalization framework**                         | `language: 'en'` is in the data model; v1 is English-only. When a second language is actually being written, we'll add policy then. (Principle 10 — YAGNI.)                                                    |
 
 If one of these stops being skippable, add it as a principle here with a code reference.
 
@@ -223,4 +233,4 @@ If one of these stops being skippable, add it as a principle here with a code re
 - Not a list of every coding convention. The codebase isn't large enough to need one.
 - Not a place to copy generic principles you might want someday. Each entry above earned its place by removing real complexity from the actual code OR being load-bearing for the project's audience (e.g. accessibility for a public textbook).
 
-If you want to add a principle here, the test is: can you point at the *specific* code that exemplifies it, and the *specific* problem it solves in *this* project? An aspirational principle (like §12 accessibility) is fine, but it has to name the gap honestly.
+If you want to add a principle here, the test is: can you point at the _specific_ code that exemplifies it, and the _specific_ problem it solves in _this_ project? An aspirational principle (like §12 accessibility) is fine, but it has to name the gap honestly.
