@@ -1,0 +1,9 @@
+{
+  "term": "validation set",
+  "definition": "A subset of data used to evaluate model performance during training and tune hyperparameters, separate from the test set.",
+  "aliases": [
+    "Validation Set",
+    "validation data",
+    "dev set"
+  ]
+}

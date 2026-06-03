@@ -1,0 +1,8 @@
+{
+  "term": "stochastic gradient descent",
+  "definition": "A variant of gradient descent that updates parameters using gradients computed on small random batches of data rather than the entire dataset.",
+  "aliases": [
+    "Stochastic Gradient Descent",
+    "SGD"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "term": "learning rate",
+  "definition": "A hyperparameter that controls how much the model parameters are updated during each step of gradient descent.",
+  "aliases": [
+    "Learning Rate"
+  ]
+}

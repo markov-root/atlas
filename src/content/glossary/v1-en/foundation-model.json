@@ -1,0 +1,11 @@
+{
+  "term": "foundation model",
+  "definition": "A large-scale model trained on diverse data that serves as a base for adaptation to various downstream tasks, typically through fine-tuning or prompting.",
+  "sourceUrl": "https://arxiv.org/abs/2108.07258",
+  "sourceLabel": "Bommasani et al., 2021",
+  "aliases": [
+    "Foundation Model",
+    "foundation models",
+    "base model"
+  ]
+}

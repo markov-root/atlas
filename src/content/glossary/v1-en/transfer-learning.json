@@ -1,0 +1,7 @@
+{
+  "term": "transfer learning",
+  "definition": "A machine learning technique where knowledge gained from training on one task is applied to improve performance on a different but related task.",
+  "aliases": [
+    "Transfer Learning"
+  ]
+}

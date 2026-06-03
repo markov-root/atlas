@@ -29,7 +29,7 @@ The items below reflect that direction. Items dated earlier than this sweep are 
 
 `prettier --write .` against the existing codebase as a single formatting-only commit, then add `pnpm format:check` to `pnpm verify`. Currently `pnpm format` exists as a manual tool but format enforcement is deferred because (a) the bulk reformat hasn't happened and (b) `prettier-plugin-astro` can't parse one `.astro` file (HTML comment inside what it parses as JSX).
 
-This should land before any big refactor (discriminated AST, glossary refactor, courses migration) so we don't fight prettier mid-PR.
+This should land before any big refactor (discriminated AST, courses migration) so we don't fight prettier mid-PR.
 
 _Motivated by:_ finishing the bulletproof pass cleanly — verify currently covers lint + typecheck + tests + build + smoke, but not formatting.
 _Code area:_ big format-only commit across `src/`, then a one-line addition to `pnpm verify` in `package.json`.
@@ -73,13 +73,6 @@ The honest hero metric on `/teach` becomes one stat: **"X+ students reached"**, 
 
 _Motivated by:_ the backlog (24 submissions over 4 months) and the schema/process drift between the form and the data file. Principle #1 (single source of truth — Zod schema as the canonical shape), principle #11 (type safety where it catches bugs).
 _Code area:_ `src/content/organizations/`, `src/content/cohorts/`, `src/content.config.ts`, `scripts/intake-cohorts.ts`, `src/pages/teach.astro`. Old `src/data/courses-old.json` deleted after migration.
-
-### Glossary refactor
-
-Extract glossary terms from chapter prose into an Astro content collection (`src/content/glossary/*.yaml`, one term per file with Zod schema). Adding a new term becomes a self-contained YAML, not an edit inside a chapter. Fix the over-aggressive auto-matcher: scope matches to first-occurrence-per-section (rather than every text occurrence), or move from text-scan to markup-driven matching so only deliberately-tagged terms are linked.
-
-_Motivated by:_ maintainer-stated long-standing want to add many more terms; Rieke's reported false-positive ("attention" matched as ML term in a non-ML context).
-_Code area:_ `src/content/glossary/` (new collection), `src/content.config.ts`, the transformer or a post-render pass that does the auto-linking. Best done **before** the discriminated AST union (Next) so the renderer surface settles once.
 
 ### In-page errata widget per section
 
@@ -140,8 +133,6 @@ _Code area:_ `src/components/nodes/Figure.astro`, `src/components/Header.astro`,
 ### Discriminated-union AST node types
 
 Currently `Node = { name: string, attributes: Record<string, unknown>, children: Node[] }`. The looseness costs us TypeScript safety at the boundary between `Transformer` output and `NodeRenderer` dispatch. Refactor to a discriminated union: `Node = ParagraphNode | HeadingNode | FigureNode | ...` so consumers can type-narrow on `node.name`.
-
-Sequence after the glossary refactor (Now) so the renderer surface is touched once.
 
 _Motivated by:_ principle 11 (type safety where it catches bugs) — currently honest debt; this is the fix.
 _Code area:_ `src/textbook-loader/transformer.ts` (Node type definition), `src/components/NodeRenderer.astro` (the dispatcher that would benefit most), every file under `src/components/nodes/` (typed props).

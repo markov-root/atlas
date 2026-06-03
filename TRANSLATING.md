@@ -111,9 +111,7 @@ Each figure has an alt-text field for accessibility (screen readers). Please tra
 
 ## How the glossary lands in the site
 
-Today the per-language glossary lives in the repo as JSON files (`src/data/{version}-{language}/glossary/*.json`). When you register your translation, the maintainer converts your glossary doc into JSON and commits it. You don't write JSON — that's our side of the boundary.
-
-A planned refactor (tracked in `docs/ROADMAP.md`) moves the glossary into an Astro content collection with one YAML file per term. When that lands, the same workflow applies — translator works in a Google Doc; maintainer converts to YAML.
+The per-language glossary lives in the repo as an Astro content collection: one JSON file per term at `src/content/glossary/{version}-{language}/{term-slug}.json`. When you register your translation, the maintainer converts your glossary doc into per-term JSON files and commits them. You don't write JSON — that's our side of the boundary.
 
 ## Credit
 

@@ -1,0 +1,8 @@
+{
+  "term": "training set",
+  "definition": "The portion of data used to train a machine learning model by adjusting its parameters.",
+  "aliases": [
+    "Training Set",
+    "training data"
+  ]
+}

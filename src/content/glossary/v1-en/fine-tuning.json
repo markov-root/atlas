@@ -1,0 +1,10 @@
+{
+  "term": "fine-tuning",
+  "definition": "The process of taking a pre-trained model and further training it on a specific task or dataset.",
+  "aliases": [
+    "Fine-tuning",
+    "fine-tune",
+    "finetuning",
+    "finetune"
+  ]
+}

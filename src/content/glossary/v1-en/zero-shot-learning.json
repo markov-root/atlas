@@ -1,0 +1,9 @@
+{
+  "term": "zero-shot learning",
+  "definition": "The ability of a model to perform a task or classify examples it has never seen during training, typically by leveraging learned representations or instructions.",
+  "aliases": [
+    "Zero-shot Learning",
+    "zero shot",
+    "0-shot"
+  ]
+}

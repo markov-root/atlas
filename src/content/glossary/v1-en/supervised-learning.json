@@ -1,0 +1,7 @@
+{
+  "term": "supervised learning",
+  "definition": "A machine learning approach where the model learns from labeled training data to make predictions on new, unseen data.",
+  "aliases": [
+    "Supervised Learning"
+  ]
+}

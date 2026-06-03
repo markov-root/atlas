@@ -1,0 +1,10 @@
+{
+  "term": "backpropagation",
+  "definition": "The algorithm used to calculate gradients in neural networks by propagating errors backward through the network layers.",
+  "sourceUrl": "https://www.nature.com/articles/323533a0",
+  "sourceLabel": "Rumelhart et al., 1986",
+  "aliases": [
+    "Backpropagation",
+    "backprop"
+  ]
+}

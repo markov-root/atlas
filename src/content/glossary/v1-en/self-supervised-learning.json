@@ -1,0 +1,8 @@
+{
+  "term": "self-supervised learning",
+  "definition": "A machine learning approach where the model learns by predicting parts of the input from other parts, creating supervision signals from the data itself without external labels.",
+  "aliases": [
+    "Self-supervised Learning",
+    "self-supervision"
+  ]
+}

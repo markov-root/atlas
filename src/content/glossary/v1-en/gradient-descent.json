@@ -1,0 +1,7 @@
+{
+  "term": "gradient descent",
+  "definition": "An optimization algorithm that iteratively adjusts model parameters in the direction that minimizes the loss function.",
+  "aliases": [
+    "Gradient Descent"
+  ]
+}

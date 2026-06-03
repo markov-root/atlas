@@ -1,0 +1,8 @@
+{
+  "term": "pre-training",
+  "definition": "The initial training phase where a model learns general representations from a large dataset before being adapted to specific tasks.",
+  "aliases": [
+    "Pre-training",
+    "pretraining"
+  ]
+}

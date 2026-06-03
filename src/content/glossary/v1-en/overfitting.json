@@ -1,0 +1,7 @@
+{
+  "term": "overfitting",
+  "definition": "When a model learns the training data too well, including noise and specific details, leading to poor performance on new data.",
+  "aliases": [
+    "Overfitting"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "term": "batch normalization",
+  "definition": "A technique that normalizes inputs to each layer, accelerating training and improving model stability.",
+  "sourceUrl": "https://arxiv.org/abs/1502.03167",
+  "sourceLabel": "Ioffe & Szegedy, 2015",
+  "aliases": [
+    "Batch Normalization",
+    "BatchNorm"
+  ]
+}

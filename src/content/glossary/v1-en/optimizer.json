@@ -1,0 +1,8 @@
+{
+  "term": "optimizer",
+  "definition": "An algorithm that updates model parameters based on computed gradients, such as SGD, Adam, or RMSprop.",
+  "aliases": [
+    "Optimizer",
+    "optimization algorithm"
+  ]
+}

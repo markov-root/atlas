@@ -1,0 +1,8 @@
+{
+  "term": "hyperparameter",
+  "definition": "A configuration setting that controls the learning process but is not learned from data, such as learning rate or number of layers.",
+  "aliases": [
+    "Hyperparameter",
+    "hyperparameters"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "term": "loss function",
+  "definition": "A function that measures how well a model's predictions match the actual target values, used to guide training.",
+  "aliases": [
+    "Loss Function",
+    "cost function",
+    "objective function"
+  ]
+}

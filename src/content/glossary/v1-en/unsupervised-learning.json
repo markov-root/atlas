@@ -1,0 +1,7 @@
+{
+  "term": "unsupervised learning",
+  "definition": "A machine learning approach where the model finds patterns in data without labeled examples or target outputs.",
+  "aliases": [
+    "Unsupervised Learning"
+  ]
+}

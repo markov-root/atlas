@@ -1,0 +1,10 @@
+{
+  "term": "few-shot learning",
+  "definition": "The ability of a model to quickly adapt to new tasks with only a few examples, often demonstrated by providing examples in the input prompt.",
+  "aliases": [
+    "Few-shot Learning",
+    "few shot",
+    "k-shot learning",
+    "in-context learning"
+  ]
+}

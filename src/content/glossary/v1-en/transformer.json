@@ -1,0 +1,9 @@
+{
+  "term": "transformer",
+  "definition": "A neural network architecture that uses attention mechanisms to process sequential data, particularly effective for language tasks.",
+  "sourceUrl": "https://arxiv.org/abs/1706.03762",
+  "sourceLabel": "Vaswani et al., 2017",
+  "aliases": [
+    "Transformer"
+  ]
+}

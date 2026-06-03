@@ -1,0 +1,7 @@
+{
+  "term": "underfitting",
+  "definition": "When a model is too simple to capture the underlying patterns in the data, leading to poor performance on both training and test data.",
+  "aliases": [
+    "Underfitting"
+  ]
+}

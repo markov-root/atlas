@@ -1,0 +1,9 @@
+{
+  "term": "test set",
+  "definition": "A subset of data held out from training and validation, used only for final evaluation of model performance.",
+  "aliases": [
+    "Test Set",
+    "test data",
+    "holdout set"
+  ]
+}

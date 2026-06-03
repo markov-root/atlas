@@ -1,12 +1,21 @@
-import { join } from "path";
-import { createHash } from "crypto";
-import { readdir, readFile } from "fs/promises";
-import type { Chapter, ChapterDefinition, FootnoteData, GlossaryEntry, Section, SectionRef, Textbook, TextbookDefinition } from ".";
-import { Transformer, type Node } from "./transformer";
-import { slugify, getNodeText, traverseNodes } from "./utils";
-import { DocsSDK } from "./gdocsdk";
-import { Renderer as ChapterPdfRenderer } from "./renderers/pdf/renderer";
-import { Renderer as AudioRenderer } from "./renderers/audio/renderer";
+import { join } from 'path';
+import { createHash } from 'crypto';
+import { readdir, readFile } from 'fs/promises';
+import type {
+  Chapter,
+  ChapterDefinition,
+  FootnoteData,
+  GlossaryEntry,
+  Section,
+  SectionRef,
+  Textbook,
+  TextbookDefinition,
+} from '.';
+import { Transformer, type Node } from './transformer';
+import { slugify, getNodeText, traverseNodes } from './utils';
+import { DocsSDK } from './gdocsdk';
+import { Renderer as ChapterPdfRenderer } from './renderers/pdf/renderer';
+import { Renderer as AudioRenderer } from './renderers/audio/renderer';
 
 export interface TextbookLoaderOptions {
   cacheOnly?: boolean;
@@ -22,10 +31,19 @@ export class TextbookLoader {
   textbookCounts: Map<string, number>;
   private _glossary: GlossaryEntry[] | null = null;
 
-  constructor(googleCreds: string | null, edition: TextbookDefinition, options: TextbookLoaderOptions = {}) {
+  constructor(
+    googleCreds: string | null,
+    edition: TextbookDefinition,
+    options: TextbookLoaderOptions = {},
+  ) {
     this.edition = edition;
-    this.assetsDir = join(process.cwd(), "src", "assets", "uc")
-    this.docsSdk = new DocsSDK(googleCreds, this.assetsDir, (f: string) => `/assets/uc/${f}`, options.cacheOnly ?? false)
+    this.assetsDir = join(process.cwd(), 'src', 'assets', 'uc');
+    this.docsSdk = new DocsSDK(
+      googleCreds,
+      this.assetsDir,
+      (f: string) => `/assets/uc/${f}`,
+      options.cacheOnly ?? false,
+    );
     this.textbookCounts = new Map<string, number>();
   }
 
@@ -60,8 +78,6 @@ export class TextbookLoader {
       await new ChapterPdfRenderer(textbook, this.assetsDir, outputDir).render();
     }
 
-
-
     await new AudioRenderer(textbook, this.assetsDir, outputDir, {
       skipGeneration: !!process.env.SKIP_AUDIO,
     }).render();
@@ -72,52 +88,49 @@ export class TextbookLoader {
   async loadGlossary(): Promise<GlossaryEntry[]> {
     const glossaryDir = join(
       process.cwd(),
-      "src",
-      "data",
+      'src',
+      'content',
+      'glossary',
       `${this.edition.version}-${this.edition.language}`,
-      "glossary"
     );
 
     const files = await readdir(glossaryDir);
-    const jsonFiles = files.filter((f) => f.endsWith(".json"));
+    const jsonFiles = files.filter((f) => f.endsWith('.json'));
 
     const entries = await Promise.all(
       jsonFiles.map(async (file) => {
-        const content = await readFile(join(glossaryDir, file), "utf-8");
-        const data = JSON.parse(content) as Record<
-          string,
-          { definition: string; sourceUrl?: string; sourceLabel?: string; aliases: string[] }
-        >;
+        const content = await readFile(join(glossaryDir, file), 'utf-8');
+        const data = JSON.parse(content) as {
+          term: string;
+          definition: string;
+          sourceUrl?: string;
+          sourceLabel?: string;
+          aliases?: string[];
+        };
 
-        return Object.entries(data).map(
-          ([term, { definition, sourceUrl, sourceLabel, aliases }]) => ({
-            term,
-            definition,
-            sourceUrl,
-            sourceLabel,
-            aliases,
-          })
-        );
-      })
+        return {
+          term: data.term,
+          definition: data.definition,
+          sourceUrl: data.sourceUrl,
+          sourceLabel: data.sourceLabel,
+          aliases: data.aliases ?? [],
+        };
+      }),
     );
 
-    return entries.flat();
+    return entries;
   }
 
   private linkSections(chapters: Chapter[]): void {
-    const allSections: Section[] = chapters.flatMap(c => c.sections);
+    const allSections: Section[] = chapters.flatMap((c) => c.sections);
 
     for (let i = 0; i < allSections.length; i++) {
       const section = allSections[i];
       const prev = allSections[i - 1];
       const next = allSections[i + 1];
 
-      section.prevSection = prev
-        ? { chapter: prev.chapterNumber, section: prev.number }
-        : null;
-      section.nextSection = next
-        ? { chapter: next.chapterNumber, section: next.number }
-        : null;
+      section.prevSection = prev ? { chapter: prev.chapterNumber, section: prev.number } : null;
+      section.nextSection = next ? { chapter: next.chapterNumber, section: next.number } : null;
     }
   }
 
@@ -126,11 +139,13 @@ export class TextbookLoader {
     const body = doc.body?.content;
     const glossary = await this.getGlossary();
 
-    const rawChapter = new Transformer(doc, this.textbookCounts, glossary).transformChapter(body ?? []);
+    const rawChapter = new Transformer(doc, this.textbookCounts, glossary).transformChapter(
+      body ?? [],
+    );
 
     for (const section of rawChapter.sections) {
       traverseNodes(section.nodes, (node) => {
-        if (node.name === "Footnote") {
+        if (node.name === 'Footnote') {
           section.footnotes.push({
             number: node.attributes.number as string,
             children: node.children,
@@ -143,7 +158,7 @@ export class TextbookLoader {
       meta,
       sections: rawChapter.sections,
       title: rawChapter.title,
-      slug: slugify(rawChapter.title as string || ''),
+      slug: slugify((rawChapter.title as string) || ''),
       number: rawChapter.number,
       readingTimeInSeconds: rawChapter.sections.reduce((sum, s) => sum + s.readingTimeInSeconds, 0),
       contentHash: createHash('sha256').update(JSON.stringify(rawChapter)).digest('hex'),

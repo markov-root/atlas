@@ -1,0 +1,7 @@
+{
+  "term": "softmax",
+  "definition": "An activation function that converts a vector of real numbers into a probability distribution, commonly used in classification tasks.",
+  "aliases": [
+    "Softmax"
+  ]
+}
