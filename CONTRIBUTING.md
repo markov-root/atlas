@@ -35,6 +35,20 @@ The build prints which mode it resolved at startup:
 [atlas] BuildMode: contributor, cache-only, no PDF, no audio, no R2 audio pull, no Algolia indexing, search enabled
 ```
 
+## Environment variables
+
+All env vars are optional. Copy `.env.example` to `.env` and fill in only the ones you need.
+
+| Variable | Required for | Notes |
+|---|---|---|
+| `GOOGLE_CREDENTIALS_BASE64` | Refreshing textbook content | Maintainer only |
+| `ALGOLIA_WRITE_KEY` | Re-indexing search | Maintainer only |
+| `ELEVENLABS_API_KEY` | TTS audio rendering | Maintainer only |
+| `GEMINI_API_KEY` | Equation descriptions for audio | Maintainer only |
+| `R2_ENDPOINT`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_BUCKET` | Uploading PDFs/audio | Maintainer only |
+| `PUBLIC_ALGOLIA_APP_ID`, `PUBLIC_ALGOLIA_SEARCH_KEY` | — | Defaults committed in `astro.config.mjs`; leave blank to use them |
+| `SKIP_PDF`, `SKIP_AUDIO`, `SKIP_AUDIO_DOWNLOAD` | Speeding up local iteration | Bypass expensive stages even when creds are present |
+
 ## Project map
 
 For a tour of the code, see [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md). In particular:

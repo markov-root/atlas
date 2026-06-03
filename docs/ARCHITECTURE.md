@@ -43,6 +43,36 @@ AI Safety Atlas is an Astro static site whose content is generated from Google D
                                                   dist/
 ```
 
+## Repo layout
+
+```
+atlas/
+├── src/
+│   ├── pages/             # Astro routes (.astro files become pages)
+│   ├── components/        # Astro components (nodes/, navigation/, etc.)
+│   ├── layouts/           # Page layouts
+│   ├── content.config.ts  # Astro content collection: textbooks + organizations
+│   ├── lib/
+│   │   ├── build-mode.ts  # Env-mode detection (single source of truth)
+│   │   ├── reader.ts      # Reader-page helpers
+│   │   └── ...
+│   ├── textbook-loader/   # Content pipeline (Google Docs → AST → web/PDF/audio)
+│   │   ├── data.ts        # Edition + chapter definitions (docIds, authors)
+│   │   ├── loader.ts      # TextbookLoader.load()
+│   │   ├── gdocsdk.ts     # Google Docs API + caching layer
+│   │   ├── transformer.ts # Doc JSON → custom AST
+│   │   └── renderers/     # pdf/ (Typst) and audio/ (ElevenLabs + R2)
+│   ├── styles/            # Global Tailwind setup
+│   └── assets/uc/         # Downloaded chapter images (gitignored, regenerated)
+├── .cache/
+│   └── docs/              # COMMITTED snapshot of parsed Google Docs (~8.7MB)
+├── tests/
+│   └── smoke/             # End-to-end build smoke tests (opt-in)
+├── astro.config.mjs       # Astro config + env schema
+├── vitest.config.ts       # Test runner config
+└── pnpm-workspace.yaml    # pnpm build-script allow-list
+```
+
 ## BuildMode — the single source of truth
 
 `src/lib/build-mode.ts` exports a pure function `detectBuildMode(env)` that returns a typed object:
@@ -72,6 +102,22 @@ Why this matters: if you want to change build behaviour based on credentials, yo
 - **Maintainer** — credentials present. Loader fetches fresh content from Google Docs, downloads images, regenerates PDFs and audio, uploads to R2, re-indexes Algolia.
 
 The transition between modes is automatic. There is no `--contributor` flag.
+
+|  | Contributor mode | Maintainer mode |
+|---|---|---|
+| `.env` required | No | Yes (`GOOGLE_CREDENTIALS_BASE64`) |
+| Chapter text | ✓ from committed cache | ✓ fresh from Google Docs |
+| Figure images | Captions only | ✓ downloaded fresh |
+| Algolia search | ✓ works (public keys baked in) | ✓ works + indexes fresh content |
+| PDF generation | Skipped | ✓ via Typst |
+| Audio generation | Skipped | ✓ via ElevenLabs + Gemini |
+| R2 upload | Skipped | ✓ for PDFs and audio |
+
+A startup banner declares the resolved mode:
+
+```
+[atlas] BuildMode: contributor, cache-only, no PDF, no audio, no R2 audio pull, no Algolia indexing, search enabled
+```
 
 ## Editorial surface — why Google Docs
 
