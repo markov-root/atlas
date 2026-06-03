@@ -118,23 +118,45 @@ export class DocsSDK {
     return true;
   }
 
+  // Google's signed image URLs (lh*.googleusercontent.com) intermittently
+  // return HTTP 500. Retry transient failures with exponential backoff before
+  // giving up. 4xx responses are permanent and not retried.
+  private async fetchWithRetry(url: string, attempts = 3): Promise<Response> {
+    let lastError: unknown;
+    for (let i = 0; i < attempts; i++) {
+      try {
+        const response = await fetch(url);
+        if (response.ok) return response;
+        if (response.status < 500) return response;
+        lastError = new Error(`HTTP ${response.status}`);
+      } catch (e) {
+        lastError = e;
+      }
+      if (i < attempts - 1) {
+        await new Promise(r => setTimeout(r, 1000 * Math.pow(2, i)));
+      }
+    }
+    throw lastError instanceof Error ? lastError : new Error(String(lastError));
+  }
+
   private async downloadImages(objects: Record<string, docs_v1.Schema$InlineObject>): Promise<void> {
-    // Ensure assets directory exists
     await mkdir(this.assetsPath, { recursive: true });
 
     const limit = pLimit(5)
+    const failed: string[] = [];
 
     const downloadTasks = Object.values(objects).map(obj => limit(async() => {
       if (!obj.inlineObjectProperties?.embeddedObject?.imageProperties?.contentUri) {
         return
       }
 
-      let url = obj.inlineObjectProperties?.embeddedObject?.imageProperties?.contentUri
+      const url = obj.inlineObjectProperties.embeddedObject.imageProperties.contentUri
 
       try {
-        const response = await fetch(url)
+        const response = await this.fetchWithRetry(url)
         if (!response.ok) {
           console.error(`Failed to download image HTTP ${response.status} for ${url}`)
+          failed.push(url)
           return
         }
 
@@ -150,11 +172,23 @@ export class DocsSDK {
 
         obj.inlineObjectProperties.embeddedObject.imageProperties.contentUri = this["assetURLGenerator"](filename)
       } catch (e) {
-        console.error(`Failed to download image: ${e}`)
-        return
+        console.error(`Failed to download image after retries for ${url}: ${e}`)
+        failed.push(url)
       }
     }))
     await Promise.all(downloadTasks)
+
+    // Fail loud BEFORE the partial result is cached. Previously, partial
+    // failures left a mix of local paths and original Google URLs in the
+    // tab, which silently poisoned the cache and surfaced as confusing
+    // Typst "file not found" errors during PDF rendering.
+    if (failed.length > 0) {
+      throw new Error(
+        `[atlas] ${failed.length} image download(s) failed after retries. ` +
+        `Refusing to cache the partial result.\n` +
+        failed.map(u => `  - ${u}`).join('\n'),
+      );
+    }
   }
 
   getExtensionFromContentType(contentType: string): string {
