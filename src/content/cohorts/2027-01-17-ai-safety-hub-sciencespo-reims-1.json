@@ -5,6 +5,6 @@
   "format": "in-person",
   "plannedParticipants": 15,
   "actualParticipants": null,
-  "verified": false,
+  "verified": true,
   "source": "formspree:2026-05-31"
 }

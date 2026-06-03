@@ -5,6 +5,6 @@
   "format": "online",
   "plannedParticipants": null,
   "actualParticipants": null,
-  "verified": false,
+  "verified": true,
   "source": "formspree:2026-04-05"
 }

@@ -5,6 +5,6 @@
   "format": "hybrid",
   "plannedParticipants": 280,
   "actualParticipants": null,
-  "verified": false,
+  "verified": true,
   "source": "formspree:2026-02-04"
 }
