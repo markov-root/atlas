@@ -105,7 +105,7 @@ Readers are anonymous. Comments and editorial input happen in the Google Docs so
 
 ### No CHANGELOG.md or SemVer until we tag versions
 
-The site is continuously deployed from `astro-rewrite`. There's no versioned release to changelog against. When we cut a first real release (e.g. when content publishing moves to R2 with versioned artifacts), CHANGELOG and SemVer-style versioning become useful. Until then they'd be ceremonial.
+The site is continuously deployed from `main`. There's no versioned release to changelog against. When we cut a first real release (e.g. when content publishing moves to R2 with versioned artifacts), CHANGELOG and SemVer-style versioning become useful. Until then they'd be ceremonial.
 
 ### No CODEOWNERS file
 

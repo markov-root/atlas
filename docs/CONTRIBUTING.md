@@ -60,7 +60,7 @@ Editorial changes (chapter prose) happen in the Google Docs themselves, not in t
 
 ## Workflow
 
-1. **Branch off `astro-rewrite`** (currently the default branch — this will change once the rewrite is merged).
+1. **Branch off `main`** (the default branch).
 2. **Run tests before you start** so you have a clean baseline:
 
    ```bash
