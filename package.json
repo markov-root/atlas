@@ -12,10 +12,12 @@
     "test:smoke": "vitest run --dir tests/smoke",
     "typecheck": "astro check",
     "lint": "eslint .",
+    "lint:actions": "action-validator .github/workflows/*.yml",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "pnpm typecheck && pnpm test",
-    "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm test:smoke"
+    "verify": "pnpm lint && pnpm lint:actions && pnpm typecheck && pnpm test && pnpm build && pnpm test:smoke",
+    "prepare": "git config --local core.hooksPath .githooks || true"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
@@ -46,6 +48,7 @@
     "unstorage": "^1.17.3"
   },
   "devDependencies": {
+    "@action-validator/cli": "^0.6.0",
     "@eslint/js": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^8.60.1",
     "@typescript-eslint/parser": "^8.60.1",

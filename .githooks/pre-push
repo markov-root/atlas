@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+# Pre-push hook: gate on `pnpm verify` before letting any push through.
+# Bypass with `git push --no-verify` for emergencies. Agents should treat
+# this as authoritative (i.e., fix the failure instead of bypassing).
+#
+# Activated via `git config core.hooksPath .githooks`, set automatically
+# by the `prepare` script in package.json on every `pnpm install`.
+set -e
+echo "[pre-push] running pnpm verify..."
+exec pnpm verify
