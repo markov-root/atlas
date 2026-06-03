@@ -1,0 +1,24 @@
+{
+  "orgId": "ai-safety-hungary",
+  "iteration": 1,
+  "name": "AI Safety Hungary Spring 2025",
+  "description": "8-week program with optional 4-week project phase. Part of AI Safety Collab.",
+  "startDate": "2025-03-31",
+  "endDate": "2025-06-23",
+  "applicationDeadline": null,
+  "location": "Hungary",
+  "format": "hybrid",
+  "status": "completed",
+  "plannedParticipants": null,
+  "actualParticipants": 10,
+  "weeklyCommitment": null,
+  "tracks": [
+    "AI Alignment (Atlas)",
+    "AI Governance (BlueDot)"
+  ],
+  "links": {
+    "studentApplication": "https://airtable.com/appZR9Ries3akemlk/pagVA2W08JQ6W77bi/form"
+  },
+  "source": "manual-import",
+  "verified": true
+}

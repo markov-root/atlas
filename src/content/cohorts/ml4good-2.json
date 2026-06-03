@@ -1,0 +1,19 @@
+{
+  "orgId": "ml4good",
+  "iteration": 2,
+  "name": "Swiss AI Safety Summer Camp",
+  "description": "Swiss AI Safety Summer Camp using Atlas materials",
+  "startDate": "2023-09-04",
+  "endDate": "2023-09-16",
+  "applicationDeadline": null,
+  "location": "Switzerland",
+  "format": "in-person",
+  "status": "completed",
+  "plannedParticipants": null,
+  "actualParticipants": 25,
+  "weeklyCommitment": null,
+  "tracks": [],
+  "links": {},
+  "source": "manual-import",
+  "verified": true
+}

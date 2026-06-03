@@ -1,0 +1,19 @@
+{
+  "orgId": "ml4good",
+  "iteration": 9,
+  "name": "ML4Good Germany",
+  "description": "German bootcamp with Atlas materials",
+  "startDate": "2024-09-23",
+  "endDate": "2024-10-03",
+  "applicationDeadline": null,
+  "location": "Germany",
+  "format": "in-person",
+  "status": "completed",
+  "plannedParticipants": null,
+  "actualParticipants": 20,
+  "weeklyCommitment": null,
+  "tracks": [],
+  "links": {},
+  "source": "manual-import",
+  "verified": true
+}

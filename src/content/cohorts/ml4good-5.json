@@ -1,0 +1,19 @@
+{
+  "orgId": "ml4good",
+  "iteration": 5,
+  "name": "ML4Good UK",
+  "description": "First ML4Good bootcamp in the UK",
+  "startDate": "2024-03-28",
+  "endDate": "2024-04-07",
+  "applicationDeadline": null,
+  "location": "United Kingdom",
+  "format": "in-person",
+  "status": "completed",
+  "plannedParticipants": null,
+  "actualParticipants": 19,
+  "weeklyCommitment": null,
+  "tracks": [],
+  "links": {},
+  "source": "manual-import",
+  "verified": true
+}

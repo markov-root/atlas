@@ -46,5 +46,10 @@ public/logos/
 /docs/TODO.md
 /docs/lessons/
 
+# Raw data dumps fed in during planning (Formspree exports, ancient
+# pre-Astro courses JSON, etc.). Useful as working input for intake
+# scripts; not for the public repo.
+/dumps/
+
 # CocoIndex Code (ccc)
 /.cocoindex_code/

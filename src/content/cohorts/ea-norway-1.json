@@ -1,0 +1,22 @@
+{
+  "orgId": "ea-norway",
+  "iteration": 1,
+  "name": "",
+  "description": "8-week program with optional 4-week project phase. Part of AIS Collab.",
+  "startDate": "2025-03-31",
+  "endDate": "2025-06-23",
+  "applicationDeadline": null,
+  "location": "Norway + Online",
+  "format": "hybrid",
+  "status": "completed",
+  "plannedParticipants": null,
+  "actualParticipants": null,
+  "weeklyCommitment": "5 hours",
+  "tracks": [
+    "AI Alignment (Atlas)",
+    "AI Governance (BlueDot)"
+  ],
+  "links": {},
+  "source": "manual-import",
+  "verified": true
+}

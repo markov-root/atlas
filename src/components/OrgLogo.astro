@@ -10,7 +10,7 @@ interface Props {
 
 const { url, variant, color = "color", class: className } = Astro.props;
 
-const orgs = await getCollection("organizations");
+const orgs = await getCollection("orgLogos");
 const org = orgs.find((o) => o.data.url === url || o.data.url === url + "/");
 
 const variantKey = variant ?? org?.data.canonical;

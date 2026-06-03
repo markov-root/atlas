@@ -1,0 +1,21 @@
+{
+  "orgId": "ubc-ai-safety",
+  "iteration": 2,
+  "name": "Intro to AI Alignment Winter 2025",
+  "description": "7-week reading group using AI Safety Atlas materials",
+  "startDate": "2025-01-27",
+  "endDate": "2025-04-10",
+  "applicationDeadline": null,
+  "location": "Vancouver, BC, Canada",
+  "format": "in-person",
+  "status": "completed",
+  "plannedParticipants": null,
+  "actualParticipants": 8,
+  "weeklyCommitment": "2 hours",
+  "tracks": [],
+  "links": {
+    "studentApplication": "https://ubcaisafety.com/get-involved"
+  },
+  "source": "manual-import",
+  "verified": true
+}

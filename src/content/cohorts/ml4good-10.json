@@ -1,0 +1,19 @@
+{
+  "orgId": "ml4good",
+  "iteration": 10,
+  "name": "ML4Good Europe",
+  "description": "European bootcamp using Atlas materials",
+  "startDate": "2025-03-07",
+  "endDate": "2025-03-17",
+  "applicationDeadline": null,
+  "location": "Europe",
+  "format": "in-person",
+  "status": "completed",
+  "plannedParticipants": null,
+  "actualParticipants": 22,
+  "weeklyCommitment": null,
+  "tracks": [],
+  "links": {},
+  "source": "manual-import",
+  "verified": true
+}

@@ -19,7 +19,7 @@ import { indexTextbook } from './textbook-loader/algolia';
 import { logosLoader, organizationSchema } from '@foreview/ais-logos-astro';
 import { detectBuildMode } from './lib/build-mode';
 
-const organizations = defineCollection({
+const orgLogos = defineCollection({
   loader: logosLoader({
     urls: [
       'https://cesia.org',
@@ -39,6 +39,49 @@ const glossary = defineCollection({
     sourceUrl: z.string().url().optional(),
     sourceLabel: z.string().optional(),
     aliases: z.array(z.string()).default([]),
+  }),
+});
+
+const organizations = defineCollection({
+  loader: glob({ pattern: '*.json', base: './src/content/organizations' }),
+  schema: z.object({
+    name: z.string(),
+    description: z.string(),
+    website: z.string().url().nullable().optional(),
+    primaryContact: z.string().nullable().optional(),
+    secondaryContact: z.string().nullable().optional(),
+    logo: z.string().nullable().optional(),
+    regionalContacts: z.record(z.string(), z.string()).optional(),
+    parentProgram: z.string().nullable().optional(),
+  }),
+});
+
+const cohorts = defineCollection({
+  loader: glob({ pattern: '*.json', base: './src/content/cohorts' }),
+  schema: z.object({
+    orgId: z.string(),
+    iteration: z.number().int().positive().nullable().optional(),
+    name: z.string(),
+    description: z.string().optional(),
+    startDate: z.string(),
+    endDate: z.string().nullable().optional(),
+    applicationDeadline: z.string().nullable().optional(),
+    location: z.string(),
+    format: z.enum(['in-person', 'online', 'hybrid']),
+    status: z.enum(['upcoming', 'active', 'completed', 'cancelled']),
+    plannedParticipants: z.number().int().positive().nullable().optional(),
+    actualParticipants: z.number().int().nonnegative().nullable().optional(),
+    weeklyCommitment: z.string().nullable().optional(),
+    tracks: z.array(z.string()).default([]),
+    links: z
+      .object({
+        studentApplication: z.string().url().optional(),
+        facilitatorApplication: z.string().url().optional(),
+        localOrganizer: z.string().url().optional(),
+      })
+      .default({}),
+    source: z.string(),
+    verified: z.boolean().default(false),
   }),
 });
 
@@ -90,4 +133,4 @@ const textbooks = defineCollection({
   },
 });
 
-export const collections = { textbooks, organizations, glossary };
+export const collections = { textbooks, orgLogos, glossary, organizations, cohorts };

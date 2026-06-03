@@ -1,0 +1,22 @@
+{
+  "orgId": "ai-safety-global-society",
+  "iteration": 1,
+  "name": "AI Safety Global Society Spring 2025",
+  "description": "8-week program with optional 4-week project phase. A global AIS community. Course run as part of AI Safety Collab.",
+  "startDate": "2025-03-31",
+  "endDate": "2025-06-23",
+  "applicationDeadline": null,
+  "location": "Global",
+  "format": "online",
+  "status": "completed",
+  "plannedParticipants": null,
+  "actualParticipants": null,
+  "weeklyCommitment": null,
+  "tracks": [
+    "AI Alignment (Atlas)",
+    "AI Governance (BlueDot)"
+  ],
+  "links": {},
+  "source": "manual-import",
+  "verified": true
+}

@@ -11,31 +11,39 @@ import RadioGroup from "@/components/RadioGroup.astro";
 import FeatureCard from "@/components/FeatureCard.astro";
 import SplitSection from "@/components/SplitSection.astro";
 import { ogImageUrl } from "@/lib/og";
+import { getCollection } from "astro:content";
 
-// Import courses data
-import coursesData from "@/data/courses-old.json";
+// Pull cohort + organization data from the content collections.
+const cohorts = await getCollection("cohorts");
+const orgs = await getCollection("organizations");
+const orgNameById = new Map(orgs.map((o) => [o.id, o.data.name]));
 
-// Calculate stats from courses data
-const allCourses = coursesData.organizations.flatMap(org =>
-  org.courses.map(c => ({ ...c, orgName: org.name }))
-);
+const allCourses = cohorts.map((c) => ({
+  ...c.data,
+  id: c.id,
+  orgName: orgNameById.get(c.data.orgId) ?? c.data.orgId,
+}));
+
 const totalCourses = allCourses.length;
-const totalStudents = allCourses.reduce((sum, c) => sum + (typeof c.participants === 'number' ? c.participants : 0), 0);
+const totalStudents = allCourses.reduce(
+  (sum, c) => sum + (typeof c.actualParticipants === "number" ? c.actualParticipants : 0),
+  0,
+);
 const uniqueCountries = new Set(
   allCourses
-    .map(c => {
+    .map((c) => {
       const loc = c.location;
       if (!loc) return null;
       // Extract country from location (usually last part after comma, or the whole string)
-      const parts = loc.split(',');
+      const parts = loc.split(",");
       return parts[parts.length - 1]?.trim();
     })
-    .filter(Boolean)
+    .filter(Boolean),
 );
 
 // Filter courses with participant data for the table
 const coursesWithParticipants = allCourses
-  .filter(c => typeof c.participants === 'number' && c.participants > 0)
+  .filter((c) => typeof c.actualParticipants === "number" && c.actualParticipants > 0)
   .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
 
 // Format date as "Mon YYYY"
@@ -442,7 +450,7 @@ const formatOptions = [
                             <p class="text-xs text-gray-500">{course.location}</p>
                         </div>
                         <div class="text-right shrink-0 ml-4">
-                            <p class="text-sm text-gray-900">{course.participants} enrolled</p>
+                            <p class="text-sm text-gray-900">{course.actualParticipants} enrolled</p>
                             <p class="text-xs text-gray-500">{formatDate(course.startDate)}</p>
                         </div>
                     </div>

@@ -1,0 +1,21 @@
+{
+  "orgId": "ai-safety-gothenburg",
+  "iteration": 1,
+  "name": "AI Safety Fundamentals Fall 2023",
+  "description": "12-week program using early Atlas materials.",
+  "startDate": "2023-09-18",
+  "endDate": "2023-12-11",
+  "applicationDeadline": null,
+  "location": "Gothenburg, Sweden",
+  "format": "in-person",
+  "status": "completed",
+  "plannedParticipants": null,
+  "actualParticipants": 15,
+  "weeklyCommitment": null,
+  "tracks": [],
+  "links": {
+    "studentApplication": "https://www.aisafetygothenburg.org/"
+  },
+  "source": "manual-import",
+  "verified": true
+}

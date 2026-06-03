@@ -1,0 +1,21 @@
+{
+  "orgId": "ml4good",
+  "iteration": 13,
+  "name": "ML4Good Governance",
+  "description": "First governance-focused ML4Good bootcamp using Atlas materials",
+  "startDate": "2025-09-01",
+  "endDate": "2025-09-10",
+  "applicationDeadline": null,
+  "location": "TBD",
+  "format": "in-person",
+  "status": "completed",
+  "plannedParticipants": 20,
+  "actualParticipants": null,
+  "weeklyCommitment": null,
+  "tracks": [],
+  "links": {
+    "studentApplication": "https://www.ml4good.org/courses/governance-sept25"
+  },
+  "source": "manual-import",
+  "verified": true
+}
