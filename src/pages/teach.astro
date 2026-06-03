@@ -48,9 +48,12 @@ const uniqueCountries = new Set(
     .filter(Boolean),
 );
 
-// Filter courses with participant data for the table
+// Verified cohorts with any participant count (actual or planned), sorted
+// newest-first by startDate. Same actual-or-planned fallback as the hero,
+// so flipping verified:true on a new submission immediately surfaces it
+// in the list even before someone confirms actualParticipants.
 const coursesWithParticipants = allCourses
-  .filter((c) => typeof c.actualParticipants === "number" && c.actualParticipants > 0)
+  .filter((c) => c.verified && ((c.actualParticipants ?? c.plannedParticipants) ?? 0) > 0)
   .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
 
 // Format date as "Mon YYYY"
@@ -437,10 +440,10 @@ const formatOptions = [
         </Fragment>
     </SplitSection>
 
-    <!-- Section 5: Past Courses -->
+    <!-- Section 5: Courses -->
     <SplitSection
-        heading="Past courses"
-        headingDescription={`${totalStudents}+ enrolled across ${uniqueCountries.size}+ countries.`}
+        heading="Courses"
+        headingDescription={`${totalStudents}+ students across ${uniqueCountries.size}+ countries.`}
         leftBg="white"
         rightBg="gray"
         class="mb-4"
@@ -457,7 +460,11 @@ const formatOptions = [
                             <p class="text-xs text-gray-500">{course.location}</p>
                         </div>
                         <div class="text-right shrink-0 ml-4">
-                            <p class="text-sm text-gray-900">{course.actualParticipants} enrolled</p>
+                            <p class="text-sm text-gray-900">
+                                {course.actualParticipants != null
+                                    ? `${course.actualParticipants} enrolled`
+                                    : `${course.plannedParticipants} expected`}
+                            </p>
                             <p class="text-xs text-gray-500">{formatDate(course.startDate)}</p>
                         </div>
                     </div>
