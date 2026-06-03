@@ -5,7 +5,7 @@ interface Props {
 
 const { flavor = 'info' } = Astro.props;
 
-const flavorStyles: Record<string, { bg: string; border: string; icon: string }> = {
+const flavorStyles: Record<string, { box: string; icon?: string }> = {
   warning: {
     box: 'bg-amber-50 border border-amber-200 text-amber-800',
   },

@@ -152,7 +152,7 @@ export async function indexTextbook(
   // Save new records
   await client.saveObjects({
     indexName,
-    objects: records,
+    objects: records as unknown as Record<string, unknown>[],
   });
 
   console.log(`[Algolia] Done indexing ${textbook.version}`);

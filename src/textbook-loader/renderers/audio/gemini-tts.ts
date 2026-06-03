@@ -94,11 +94,15 @@ export class GeminiTTS {
   }
 
   private async synthesizeSingle(text: string): Promise<Buffer> {
+    // Caller is expected to gate on this.throttledCall being non-null
+    // (see line ~65). Narrow the type for the rest of the function.
+    if (!this.throttledCall) throw new Error('[gemini-tts] synthesizeSingle called without API key configured');
+    const throttledCall = this.throttledCall;
     for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
       if (this.dailyQuotaExhausted) return Buffer.alloc(0);
       try {
         // Each call (including retries) goes through the throttle
-        return await this.throttledCall(text);
+        return await throttledCall(text);
       } catch (err: any) {
         if (err?.status === 429 && attempt < MAX_RETRIES) {
           // Check if it's a daily quota (no point retrying)

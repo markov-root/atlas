@@ -2,8 +2,7 @@
 import NodeRenderer from '@/components/NodeRenderer.astro';
 import Reader from '@/layouts/Reader.astro';
 import SectionFeedback from '@/components/SectionFeedback.astro';
-import type { Chapter, Section, SectionRef } from '@/textbook-loader';
-import type { Textbook } from '@/textbook-loader/loader';
+import type { Chapter, Section, SectionRef, Textbook } from '@/textbook-loader';
 import { formatReadingTime, resolveResource } from '@/textbook-loader/utils';
 import { Icon } from 'astro-icon/components'
 import { getTextbooks } from "@/lib/textbooks";
@@ -46,7 +45,7 @@ export async function getStaticPaths() {
 
 const { version, section, chapter, textbook } = Astro.props;
 
-let pageDescription = section.number === 1 ? chapter.description : section.description
+let pageDescription = section.number === 1 ? chapter.meta.description : section.description
 
 const ogImage = sectionOgImageUrl({
     eyebrow: `Chapter ${chapter.number}: ${chapter.title}`,
@@ -58,9 +57,9 @@ const ogImage = sectionOgImageUrl({
 
 function getSectionInfo(ref: SectionRef | null) {
     if (!ref) return null;
-    const ch = textbook.chapters.find(c => c.number === ref.chapter);
+    const ch = textbook.chapters.find((c: Chapter) => c.number === ref.chapter);
     if (!ch) return null;
-    const sec = ch.sections.find(s => s.number === ref.section);
+    const sec = ch.sections.find((s: Section) => s.number === ref.section);
     if (!sec) return null;
     return { chapter: ch, section: sec };
 }

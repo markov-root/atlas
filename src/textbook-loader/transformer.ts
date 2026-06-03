@@ -31,13 +31,13 @@ export class Transformer {
   private chapterNumber = 0
   private glossary: GlossaryEntry[];
 
-  constructor(ctx: docs_v1.Schema$DocumentTab, textbookCounts?: Map<string, number>, glossary: GlossaryEntry[]) {
+  constructor(ctx: docs_v1.Schema$DocumentTab, textbookCounts?: Map<string, number>, glossary: GlossaryEntry[] = []) {
     this.ctx = ctx
     this.textbookCounts = textbookCounts ?? new Map();
     this.glossary = glossary
   }
 
-  transformSection(section, body: docs_v1.Schema$StructuralElement[]): Partial<Section> {
+  transformSection(section: Section, body: docs_v1.Schema$StructuralElement[]): Partial<Section> {
     // Google Docs does not wrap list items into a list component.
     // We accumulate list items and flush when the list ends.
     let inList: Node | null = null
@@ -113,8 +113,8 @@ export class Transformer {
         )
 
         section.toc.push({
-          level: heading.attributes.level,
-          slug: heading.attributes.slug,
+          level: heading.attributes.level as number,
+          slug: heading.attributes.slug as string,
           title: this.getTrimmedString(el)
         })
         section.nodes.push(heading)
@@ -394,7 +394,9 @@ export class Transformer {
   }
 
   private getDocFromSlice(cell: Cell): Partial<Section> {
-    return this.transformSection({ nodes: [], readingTimeInSeconds: 0, footnotes: [], toc: [] }, this.normalizeCell(cell));
+    // Caption rendering builds a stripped-down Section just to capture nodes.
+    // The other Section fields aren't read by transformSection — safe cast.
+    return this.transformSection({ nodes: [], readingTimeInSeconds: 0, footnotes: [], toc: [] } as unknown as Section, this.normalizeCell(cell));
   }
 
   private getImage(cell: Cell): string | null {

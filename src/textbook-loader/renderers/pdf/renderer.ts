@@ -213,7 +213,7 @@ function renderNode(node: Node, ctx: RenderContext): string | string[] {
 
     return `#figure(
     image("${image}", width: 90%),
-    caption: [${caption ? [renderNode(caption, ctx)].flat().join('') : ''}]
+    caption: [${caption ? [renderNode(caption as Node, ctx)].flat().join('') : ''}]
     )`;
   }
 
@@ -234,12 +234,12 @@ function renderNode(node: Node, ctx: RenderContext): string | string[] {
     const { speaker, position, date, sourceUrl } = node.attributes
 
     const content = node.children.map(child => renderNode(child, ctx)).flat().join('');
-    const sourceUrlText = sourceUrl ? [renderNode(sourceUrl, ctx)].flat().join('') : 'none';
+    const sourceUrlText = sourceUrl ? [renderNode(sourceUrl as Node, ctx)].flat().join('') : 'none';
 
     return `#quote-box(
-    ${speaker ? `[${escapeTypst(speaker)}]` : 'none'},
-    ${position ? `[${escapeTypst(position)}]` : 'none'},
-    ${date ? `[${escapeTypst(date)}]` : 'none'},
+    ${speaker ? `[${escapeTypst(speaker as string)}]` : 'none'},
+    ${position ? `[${escapeTypst(position as string)}]` : 'none'},
+    ${date ? `[${escapeTypst(date as string)}]` : 'none'},
     ${sourceUrl ? `[${sourceUrlText}]` : 'none'},
     [${content}]
     )`;
@@ -248,7 +248,7 @@ function renderNode(node: Node, ctx: RenderContext): string | string[] {
   if (node.name === 'NoteBox') {
     const content = node.children.map(child => renderNode(child, ctx)).flat().join('');
     return `#note-box(
-    [${escapeTypst(node.attributes.title || 'Note')}],
+    [${escapeTypst((node.attributes.title as string) || 'Note')}],
     [${content}]
     )`;
   }
@@ -288,7 +288,7 @@ function renderNode(node: Node, ctx: RenderContext): string | string[] {
       console.warn(`Iframe has no still image`);
       return ''
     }
-    const captionText = caption ? [renderNode(caption, ctx)].flat().join('') : '';
+    const captionText = caption ? [renderNode(caption as Node, ctx)].flat().join('') : '';
 
     return `#figure(
     image("${stillImage}", width: 90%),
