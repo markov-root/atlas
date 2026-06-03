@@ -25,8 +25,14 @@ const allCourses = cohorts.map((c) => ({
 }));
 
 const totalCourses = allCourses.length;
-const totalStudents = allCourses.reduce(
-  (sum, c) => sum + (typeof c.actualParticipants === "number" ? c.actualParticipants : 0),
+
+// Hero metric counts verified, non-cancelled cohorts, using actual
+// participant counts when available and falling back to planned.
+// Unverified Formspree submissions don't inflate the headline number
+// until someone confirms them.
+const heroCohorts = allCourses.filter((c) => c.verified && c.status !== "cancelled");
+const totalStudents = heroCohorts.reduce(
+  (sum, c) => sum + (c.actualParticipants ?? c.plannedParticipants ?? 0),
   0,
 );
 const uniqueCountries = new Set(
