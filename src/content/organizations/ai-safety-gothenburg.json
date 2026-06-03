@@ -1,7 +1,4 @@
 {
   "name": "AI Safety Gothenburg",
-  "website": "https://www.aisafetygothenburg.org/",
-  "primaryContact": "contact@aisafetygothenburg.org",
-  "logo": "/img/courses/ais_gothenburg/ais_gothenburg_logo.svg",
-  "description": "Local AI safety group promoting awareness and education in Gothenburg community"
+  "website": "https://www.aisafetygothenburg.org/"
 }

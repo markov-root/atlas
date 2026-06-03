@@ -1,7 +1,4 @@
 {
   "name": "ENS Ulm & ENS Paris-Saclay",
-  "website": "https://www.master-mva.com/cours/seminaire-turing/",
-  "primaryContact": "charbel@securite-ia.fr",
-  "logo": "/img/courses/ens_paris/ens_paris_logo.svg",
-  "description": "Graduate-level AI safety education at top French universities"
+  "website": "https://www.master-mva.com/cours/seminaire-turing/"
 }

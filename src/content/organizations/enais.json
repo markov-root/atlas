@@ -1,10 +1,4 @@
 {
   "name": "ENAIS / AI Safety Collab",
-  "website": "https://www.enais.co/collab",
-  "primaryContact": "contact@enais.co",
-  "regionalContacts": {
-    "germany": "aisafetycollabgermany@gmail.com"
-  },
-  "logo": "/img/courses/enais/enais.svg",
-  "description": "International initiative promoting AI safety field building efforts."
+  "website": "https://www.enais.co/collab"
 }

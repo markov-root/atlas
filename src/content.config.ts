@@ -46,13 +46,7 @@ const organizations = defineCollection({
   loader: glob({ pattern: '*.json', base: './src/content/organizations' }),
   schema: z.object({
     name: z.string(),
-    description: z.string(),
-    website: z.string().url().nullable().optional(),
-    primaryContact: z.string().nullable().optional(),
-    secondaryContact: z.string().nullable().optional(),
-    logo: z.string().nullable().optional(),
-    regionalContacts: z.record(z.string(), z.string()).optional(),
-    parentProgram: z.string().nullable().optional(),
+    website: z.string().url().nullable(),
   }),
 });
 
@@ -60,28 +54,13 @@ const cohorts = defineCollection({
   loader: glob({ pattern: '*.json', base: './src/content/cohorts' }),
   schema: z.object({
     orgId: z.string(),
-    iteration: z.number().int().positive().nullable().optional(),
-    name: z.string(),
-    description: z.string().optional(),
     startDate: z.string(),
-    endDate: z.string().nullable().optional(),
-    applicationDeadline: z.string().nullable().optional(),
     location: z.string(),
     format: z.enum(['in-person', 'online', 'hybrid']),
-    status: z.enum(['upcoming', 'active', 'completed', 'cancelled']),
-    plannedParticipants: z.number().int().positive().nullable().optional(),
-    actualParticipants: z.number().int().nonnegative().nullable().optional(),
-    weeklyCommitment: z.string().nullable().optional(),
-    tracks: z.array(z.string()).default([]),
-    links: z
-      .object({
-        studentApplication: z.string().url().optional(),
-        facilitatorApplication: z.string().url().optional(),
-        localOrganizer: z.string().url().optional(),
-      })
-      .default({}),
+    plannedParticipants: z.number().int().positive().nullable(),
+    actualParticipants: z.number().int().nonnegative().nullable(),
+    verified: z.boolean(),
     source: z.string(),
-    verified: z.boolean().default(false),
   }),
 });
 

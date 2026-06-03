@@ -26,11 +26,12 @@ const allCourses = cohorts.map((c) => ({
 
 const totalCourses = allCourses.length;
 
-// Hero metric counts verified, non-cancelled cohorts, using actual
-// participant counts when available and falling back to planned.
-// Unverified Formspree submissions don't inflate the headline number
-// until someone confirms them.
-const heroCohorts = allCourses.filter((c) => c.verified && c.status !== "cancelled");
+// Hero metric counts verified cohorts, using actual participant counts
+// when available and falling back to planned. Unverified Formspree
+// submissions don't inflate the headline number until someone confirms
+// them. (Cancelled cohorts are handled by just deleting the file, so
+// there's no separate status field to filter on.)
+const heroCohorts = allCourses.filter((c) => c.verified);
 const totalStudents = heroCohorts.reduce(
   (sum, c) => sum + (c.actualParticipants ?? c.plannedParticipants ?? 0),
   0,
