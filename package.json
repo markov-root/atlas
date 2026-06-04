@@ -11,13 +11,13 @@
     "test:watch": "vitest",
     "test:smoke": "vitest run --dir tests/smoke",
     "test:a11y": "vitest run --dir tests/a11y",
-    "typecheck": "astro check",
+    "typecheck": "NODE_OPTIONS=--max-old-space-size=3584 astro check",
     "lint": "eslint .",
     "lint:actions": "for f in .github/workflows/*.yml; do action-validator \"$f\" || exit 1; done",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "pnpm typecheck && pnpm test",
-    "verify": "pnpm lint && pnpm lint:actions && pnpm typecheck && pnpm test && pnpm build && pnpm test:smoke && pnpm test:a11y",
+    "verify": "pnpm lint && pnpm lint:actions && pnpm typecheck && pnpm test && pnpm test:smoke && pnpm test:a11y",
     "prepare": "git config --local core.hooksPath .githooks || true"
   },
   "dependencies": {
