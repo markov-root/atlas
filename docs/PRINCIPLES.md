@@ -208,6 +208,45 @@ The scan procedure lives in `.cache/docs/README.md`. It runs a small list of hig
 
 ---
 
+## 16. Tests reflect user outcomes, not implementation
+
+Tests exist so a contributor running `pnpm test` before opening a PR can tell whether their change broke a user-observable behavior — and, when something does break, the failure message tells them what reader, contributor, translator, or maintainer is affected. Tests are not for sanity-checking code we already wrote against itself; that is true by construction (the code does what the code does) and the resulting tests rot the moment the implementation is refactored.
+
+Two practical consequences flow from this stance, and both are enforced in the test files themselves rather than living only in this document:
+
+1. **Every `describe`/`it` block in this repo has a 1–2 sentence comment above it that names the user-observable consequence of failure.** If you can't write such a comment in two sentences, the test is too broad, too coupled to implementation, or genuinely not earning its place — delete it instead of annotating it. Read any test file under `src/textbook-loader/` or `tests/` for examples.
+2. **Prefer snapshot tests for stable output formats** (HTML, markdown, Typst, JSON shapes consumed by external systems). One snapshot per format gives the same regression signal as dozens of literal-string unit tests, and refactors regenerate it in one place. See `src/textbook-loader/renderers/output-snapshots.test.ts` and `tests/smoke/url-stability.smoke.test.ts`.
+
+### The 7 ISTQB testing principles, applied to this project
+
+The ISTQB Foundation Level identifies seven principles that hold across most software testing. They're useful here because they make the contextual choices above defensible rather than arbitrary. Each is restated in one sentence, then applied to this project's specific context.
+
+1. **Testing shows the presence of defects, not their absence.** A green suite tells us we didn't find regressions with the tests we have, not that the site is correct. So we design tests to _find_ defects — boundary cases, silent-failure modes, contracts with external systems — rather than to mirror code we already wrote. The clearest example is `src/textbook-loader/transformer.edge-cases.test.ts`, which deliberately exercises malformed Google Docs inputs (wrong title separators, missing SUBTITLE, appendix-style titles) to pin down silent fallbacks that would otherwise ship as broken metadata.
+
+2. **Exhaustive testing is impossible — prioritize.** We can't test every input combination, so we explicitly weight the test budget toward (a) external-system contracts that drift without notice (Google Docs, Algolia, ElevenLabs/Gemini, R2, axe-core), and (b) failure modes that are silent in the rendered output. We don't write a test per AST node type or per Typst function name; we write one snapshot per output format that catches the whole class of changes in one diff.
+
+3. **Early testing.** Most code in this repo predates its tests, so "shift left" is not the operative framing. Instead, the equivalent here is: when _adding_ new features, the test that justifies the feature should be written together with it, framed in terms of the user-observable behavior it enables — not "the code does what the code does."
+
+4. **Defect clustering.** Defects concentrate in a few modules. In this project the cluster is the Google Docs → AST transformation: parser brittleness, format-contract violations, slug derivation. That's why `transformer.edge-cases.test.ts` is the highest-effort test file in the repo and `markdown-renderer.test.ts` no longer exists — pure functions over a stable AST have low defect density and earn one snapshot, not 38 unit tests.
+
+5. **Pesticide paradox.** Tests that pin literal output strings (specific markdown wrappers, Typst function names, intro phrases) lose value fast: any deliberate refactor breaks them all simultaneously, training a "rubber-stamp the diff" reflex that defeats the suite. We avoid this by preferring snapshot tests for output formats (one intentional regeneration covers the whole change) and by _not_ asserting on copy text, intro phrases, or arbitrary thresholds.
+
+6. **Testing is context-dependent.** This is the load-bearing principle for the shape of our test suite. The project is a static-content site with no concurrent state, no auth, no live mutations. Failure modes that matter are: build crashes, pages render incorrectly, URLs change silently, search/audio/PDF break, accessibility regresses. Almost all of these are observable in built output, so the test budget weights toward snapshot tests of rendered output (`output-snapshots.test.ts`), URL stability (`tests/smoke/url-stability.smoke.test.ts`), and axe-core a11y (`tests/a11y/`) — not unit tests of internal helpers. An enterprise SaaS would invert this; we are not that.
+
+7. **Absence-of-errors fallacy.** A 100% green suite doesn't mean the textbook is good. It means we haven't broken the things we know how to test. Reader experience — does the prose actually read coherently, is the audio listenable, does the search return useful results — is not, and should not be, expressed as a unit test. That layer lives in maintainer review, beta-reader feedback, and axe-core + manual a11y checks. The test suite's job is to catch _regressions in things we already decided about_; deciding whether the things themselves are good is a different activity.
+
+### What makes a test belong in this repo
+
+- It has a 1–2 sentence justification comment above it that names the user-observable consequence of failure. Without this, the test is either too broad or doesn't earn its place. New PRs adding tests must include this comment.
+- Prefer snapshot tests for stable output formats; one signal, one acknowledgment when the change is intentional.
+- Prefer behavioral/contract tests for boundaries with external systems (Google Docs format, ElevenLabs/Gemini, R2, Algolia, axe-core rule IDs).
+- Don't assert on literal copy text, intro phrases, arbitrary thresholds, or the invocation shape of mocked external calls. These encode preferences or test the mocks rather than the system.
+- Don't write tests whose justification comment is "this verifies that `foo` returns what `foo` currently returns." That's the implementation-coupling smell — delete the test.
+
+**Reference:** [`docs/ARCHITECTURE.md`](./ARCHITECTURE.md) "Test layers" describes _where_ tests live; principle 7 above describes the layer structure; this principle describes _what makes a test belong at any layer_. The behavioral-justification rule is also restated in [`CONTRIBUTING.md`](../CONTRIBUTING.md) so first-time PR authors see it in context.
+
+---
+
 ## What we deliberately don't worry about (and why)
 
 The classical SE curriculum covers many things that genuinely don't apply to this codebase. Listing them here so the omissions look deliberate rather than accidental:

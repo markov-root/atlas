@@ -117,17 +117,21 @@ No strict body format. One-paragraph "why" beats a templated body.
 
 ## Tests we expect for new code
 
-If you add a new branch in `BuildMode`, add a permutation to `src/lib/build-mode.test.ts`.
+**The behavioral-justification rule.** Every `describe`/`it` block in this repo has a 1–2 sentence comment above it that names the user-observable consequence of failure ("if this fails, readers see X / the build does Y"). New tests you add must include this. If you can't write the comment in two sentences — or the comment would describe implementation rather than a user — the test probably doesn't earn its place; either rewrite it at a higher level or skip it. Read any test file under `src/textbook-loader/` for examples, and see [`docs/PRINCIPLES.md`](./docs/PRINCIPLES.md) §16 for the full rationale (including how the 7 ISTQB testing principles apply here).
 
-If you change the Transformer or add a new node type, update the snapshot:
+**Common cases:**
 
-```bash
-pnpm test -u
-```
+- If you add a new branch in `BuildMode`, add a permutation to `src/lib/build-mode.test.ts`.
+- If you change the Transformer or add a new node type, update the snapshots:
 
-…and review the snapshot diff carefully — it's the only thing that catches "Transformer drops `Footnote` nodes" class of regression.
+  ```bash
+  pnpm test -u
+  ```
 
-If you change the contributor build path (anything in `BuildMode` ↔ `gdocsdk` ↔ `content.config.ts`), run `pnpm test:smoke` locally and include the test output in the PR if there's any uncertainty.
+  …and review the snapshot diff carefully — it's the only thing that catches "Transformer drops `Footnote` nodes" class of regression. Snapshot files live next to their test in `__snapshots__/`.
+
+- If you change the contributor build path (anything in `BuildMode` ↔ `gdocsdk` ↔ `content.config.ts`), run `pnpm test:smoke` locally and include the test output in the PR if there's any uncertainty.
+- If you change URL routing or chapter/section slugs, the URL-stability snapshot in `tests/smoke/url-stability.smoke.test.ts` will diff. Update it deliberately and mention the redirect plan in the PR.
 
 ## Principles
 
