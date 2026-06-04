@@ -17,7 +17,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "pnpm typecheck && pnpm test",
-    "verify": "pnpm lint && pnpm lint:actions && pnpm typecheck && pnpm test && pnpm test:smoke && pnpm test:a11y",
+    "verify": "pnpm lint && pnpm lint:actions && pnpm typecheck && pnpm test && pnpm build && pnpm test:smoke && pnpm test:a11y",
     "prepare": "git config --local core.hooksPath .githooks || true"
   },
   "dependencies": {
