@@ -1,0 +1,12 @@
+{
+  "_comment": "Existing axe-core violations to ignore. Baseline captured 2026-06-04 against the current production build. New rule IDs not in `global` (applies everywhere) or `violations.<label>` (specific page) cause test failure. Rule IDs documented at https://dequeuniversity.com/rules/axe/4.10/<rule-id>",
+  "global": ["landmark-one-main", "region", "select-name"],
+  "violations": {
+    "home": [],
+    "teach": [],
+    "read": [],
+    "get-certified": ["heading-order"],
+    "privacy-policy": [],
+    "chapter-section": ["aria-allowed-attr", "heading-order", "landmark-unique", "link-name"]
+  }
+}

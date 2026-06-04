@@ -18,7 +18,10 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install chromium --with-deps
+        # Needed by pnpm test:a11y (axe-core via Playwright). Installs
+        # chromium plus the OS libraries the headless build needs.
       - run: pnpm verify
         # Contributor mode: no secrets needed. Public Algolia keys come
-        # from astro.config.mjs defaults. pnpm verify includes the
-        # smoke test which runs a full contributor-mode build.
+        # from astro.config.mjs defaults. pnpm verify chain:
+        # lint → lint:actions → typecheck → test → build → test:smoke → test:a11y
