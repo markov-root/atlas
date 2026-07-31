@@ -338,7 +338,7 @@ export class Transformer {
 
   private convertIframe(attrs: Record<string, Cell>): Node {
     return this.createNode("Iframe", {
-      src: this.getTrimmedString(attrs.src),
+      src: this.getTrimmedString(attrs.src ?? attrs.source),
       stillImage: this.getImage(attrs["still_image"]),
       caption: this.getSpanGroup(attrs["caption"])
     })
