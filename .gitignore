@@ -53,3 +53,6 @@ public/logos/
 
 # CocoIndex Code (ccc)
 /.cocoindex_code/
+
+# software-engineering document-index cache (derived)
+.engineering/
