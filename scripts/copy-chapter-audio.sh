@@ -12,8 +12,12 @@
 #   1. Copy them out of the podcast pipeline's output directory, if it is
 #      there. Byte-identical to what the timings were measured against.
 #   2. Download the published audio and re-encode it here, which needs only
-#      curl and ffmpeg. Same recording and same encoder settings as the
-#      pipeline, so the decoded audio comes out bit-identical to it.
+#      curl and ffmpeg. Same recording, re-encoded at the bitrate the renderer
+#      publishes at, so these files can also be uploaded as-is.
+#
+# Route 1 gives whatever bitrate the pipeline produced, which is lower; that is
+# fine locally, where only the seek precision matters, but prefer --fetch for
+# anything destined for R2.
 #
 # It deliberately does NOT touch the committed .words.json files. A pipeline
 # output directory can hold timings from a different transcription run: those
@@ -131,9 +135,11 @@ for i in "${wanted[@]}"; do
     exit 1
   fi
   curl -fsSL "$url" -o "$tmp/s${i}.mp3"
-  # Matches the pipeline: 64kbps mono, and no XING header, whose table of
-  # contents is what makes a seek in the published file imprecise.
-  ffmpeg -v error -y -i "$tmp/s${i}.mp3" -ac 1 -b:a 64k -write_xing 0 "$DEST/ch${chapter}-s${i}.mp3"
+  # 96kbps mono, no XING header -- whose table of contents is what makes a
+  # seek in the published file imprecise. The bitrate matches what the
+  # renderer now publishes, so a file staged here can be uploaded as-is
+  # (see scripts/swap-cbr-audio.ts) without changing the audio's quality.
+  ffmpeg -v error -y -i "$tmp/s${i}.mp3" -ac 1 -b:a 96k -write_xing 0 "$DEST/ch${chapter}-s${i}.mp3"
   echo "  s${i}: $(basename "$url" | cut -c1-24)… -> ch${chapter}-s${i}.mp3"
 done
 
