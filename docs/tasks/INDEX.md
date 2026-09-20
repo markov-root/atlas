@@ -37,3 +37,5 @@ index as numbered files (e.g. `0001-title.md`).
   Decide independence posture for the @foreview logos package (todo, low priority).
 - [task:0007](./0007-publication-security-and-privacy-remediation-git-author-email-exif-stale-untrack.md) —
   Publication security & privacy remediation: git author email, EXIF, stale untracked files, dependency CVEs (todo).
+- [task:0008](./0008-harden-the-read-along-against-silent-timing-drift-and-stale-encoder-paths.md) —
+  Harden the read-along against silent timing drift and stale encoder paths (todo).
