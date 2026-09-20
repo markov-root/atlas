@@ -67,21 +67,25 @@ export class GeminiTTS {
         console.log(`[gemini-tts] No API key, skipping ${needed.length} uncached paragraphs.`);
       }
     } else {
-    // Synthesize uncached paragraphs concurrently, throttled to MAX_RPM
-    let completed = 0;
-    await Promise.all(needed.map(async ({ idx, text, hash }) => {
-      if (this.dailyQuotaExhausted) return;
-      const preview = text.length > 60 ? text.slice(0, 60) + '...' : text;
-      console.log(`[gemini-tts] Synthesizing paragraph ${completed + 1}/${needed.length}: "${preview}"`);
-      const pcm = await this.synthesizeSingle(text);
-      if (this.dailyQuotaExhausted) return;
-      completed++;
-      console.log(`[gemini-tts] Completed ${completed}/${needed.length}`);
-      if (pcm.length > 0) {
-        results[idx] = pcm;
-        writeFileSync(this.chunkPath(hash), pcm);
-      }
-    }));
+      // Synthesize uncached paragraphs concurrently, throttled to MAX_RPM
+      let completed = 0;
+      await Promise.all(
+        needed.map(async ({ idx, text, hash }) => {
+          if (this.dailyQuotaExhausted) return;
+          const preview = text.length > 60 ? text.slice(0, 60) + '...' : text;
+          console.log(
+            `[gemini-tts] Synthesizing paragraph ${completed + 1}/${needed.length}: "${preview}"`,
+          );
+          const pcm = await this.synthesizeSingle(text);
+          if (this.dailyQuotaExhausted) return;
+          completed++;
+          console.log(`[gemini-tts] Completed ${completed}/${needed.length}`);
+          if (pcm.length > 0) {
+            results[idx] = pcm;
+            writeFileSync(this.chunkPath(hash), pcm);
+          }
+        }),
+      );
     } // end if (this.throttledCall)
 
     // Assemble in order, skipping failures
@@ -96,7 +100,8 @@ export class GeminiTTS {
   private async synthesizeSingle(text: string): Promise<Buffer> {
     // Caller is expected to gate on this.throttledCall being non-null
     // (see line ~65). Narrow the type for the rest of the function.
-    if (!this.throttledCall) throw new Error('[gemini-tts] synthesizeSingle called without API key configured');
+    if (!this.throttledCall)
+      throw new Error('[gemini-tts] synthesizeSingle called without API key configured');
     const throttledCall = this.throttledCall;
     for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
       if (this.dailyQuotaExhausted) return Buffer.alloc(0);
@@ -113,14 +118,15 @@ export class GeminiTTS {
             return Buffer.alloc(0);
           }
           // Rate limit — wait for the retry delay
-          const retryMatch = msg.match(/retryDelay.*?(\d+)s/i)
-            ?? msg.match(/retry in ([\d.]+)s/i);
+          const retryMatch = msg.match(/retryDelay.*?(\d+)s/i) ?? msg.match(/retry in ([\d.]+)s/i);
           const delaySec = retryMatch ? Math.ceil(parseFloat(retryMatch[1])) + 1 : 30;
-          console.warn(`[gemini-tts] Rate limited, waiting ${delaySec}s (attempt ${attempt + 1}/${MAX_RETRIES})...`);
-          await new Promise(r => setTimeout(r, delaySec * 1000));
+          console.warn(
+            `[gemini-tts] Rate limited, waiting ${delaySec}s (attempt ${attempt + 1}/${MAX_RETRIES})...`,
+          );
+          await new Promise((r) => setTimeout(r, delaySec * 1000));
           continue;
         }
-        console.warn('[gemini-tts] TTS API call failed:', (err?.message ?? err));
+        console.warn('[gemini-tts] TTS API call failed:', err?.message ?? err);
         return Buffer.alloc(0);
       }
     }
@@ -145,7 +151,7 @@ export class GeminiTTS {
     });
 
     const parts = response.candidates?.[0]?.content?.parts ?? [];
-    const audioPart = parts.find(p => p.inlineData?.mimeType?.startsWith('audio/'));
+    const audioPart = parts.find((p) => p.inlineData?.mimeType?.startsWith('audio/'));
 
     if (!audioPart?.inlineData?.data) {
       throw new Error('TTS response contained no audio data');
@@ -158,21 +164,32 @@ export class GeminiTTS {
    * Convert raw PCM (16-bit, 24kHz, mono) to MP3 using ffmpeg.
    */
   pcmToMp3(pcmBuffer: Buffer, outputPath: string): void {
+    // Encoded at a constant bitrate for the same reason ElevenLabsTTS is: a
+    // variable-bitrate MP3 gives a browser only a XING table of contents to
+    // seek by, which lands a median ~1.5s (worst case 6.8s) from the
+    // requested point -- unusable for the word-level read-along, which seeks
+    // to a timestamp. See the longer note in elevenlabs-tts.ts.
+    //
+    // This class is currently imported nowhere: it predates the ElevenLabs
+    // switch and is kept, not deleted, because whether Atlas wants a second
+    // TTS provider is a product call rather than a defect fix (task:0008).
+    // Keeping the encoder settings identical means reviving it cannot
+    // silently reintroduce the imprecise seeking.
     const pcmArgs = '-f s16le -ar 24000 -ac 1';
 
     // Two-pass loudness normalization (EBU R128)
     // Pass 1: measure loudness
     const measureResult = execSync(
       `ffmpeg -y ${pcmArgs} -i pipe:0 -af loudnorm=I=-14:TP=-1:LRA=11:print_format=json -f null /dev/null 2>&1`,
-      { input: pcmBuffer }
+      { input: pcmBuffer },
     );
     const stderr = measureResult.toString();
     const jsonMatch = stderr.match(/\{[\s\S]*"input_i"[\s\S]*?\}/);
     if (!jsonMatch) {
       // Fallback: single-pass if measurement parsing fails
       execSync(
-        `ffmpeg -y ${pcmArgs} -i pipe:0 -af loudnorm=I=-14:TP=-1:LRA=11 -codec:a libmp3lame -q:a 4 "${outputPath}"`,
-        { input: pcmBuffer, stdio: ['pipe', 'pipe', 'pipe'] }
+        `ffmpeg -y ${pcmArgs} -i pipe:0 -af loudnorm=I=-14:TP=-1:LRA=11 -codec:a libmp3lame -b:a 96k -write_xing 0 "${outputPath}"`,
+        { input: pcmBuffer, stdio: ['pipe', 'pipe', 'pipe'] },
       );
       return;
     }
@@ -190,8 +207,8 @@ export class GeminiTTS {
     ].join(':');
 
     execSync(
-      `ffmpeg -y ${pcmArgs} -i pipe:0 -af ${af} -codec:a libmp3lame -q:a 4 "${outputPath}"`,
-      { input: pcmBuffer, stdio: ['pipe', 'pipe', 'pipe'] }
+      `ffmpeg -y ${pcmArgs} -i pipe:0 -af ${af} -codec:a libmp3lame -b:a 96k -write_xing 0 "${outputPath}"`,
+      { input: pcmBuffer, stdio: ['pipe', 'pipe', 'pipe'] },
     );
   }
 
@@ -205,11 +222,11 @@ export class GeminiTTS {
       return;
     }
 
-    const inputs = inputPaths.map(p => `-i "${p}"`).join(' ');
+    const inputs = inputPaths.map((p) => `-i "${p}"`).join(' ');
     const filterComplex = `concat=n=${inputPaths.length}:v=0:a=1[out]`;
     execSync(
       `ffmpeg -y ${inputs} -filter_complex "${filterComplex}" -map "[out]" "${outputPath}"`,
-      { stdio: ['pipe', 'pipe', 'pipe'] }
+      { stdio: ['pipe', 'pipe', 'pipe'] },
     );
   }
 }
