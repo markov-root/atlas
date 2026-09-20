@@ -4,7 +4,7 @@ id: '0008'
 uid: 'task-20260920T201208154634Z-bd0f64f7'
 title: 'Harden the read-along against silent timing drift and stale encoder paths'
 role: task
-status: todo
+status: in_progress
 summary: 'Task record: Harden the read-along against silent timing drift and stale encoder paths.'
 created: '2026-09-20'
 updated: '2026-09-20'
@@ -18,15 +18,21 @@ engineering_document:
   id: '0008'
   uid: task-20260920T201208154634Z-bd0f64f7
   title: 'Harden the read-along against silent timing drift and stale encoder paths'
-  state: todo
+  state: in_progress
   authority:
     kind: work-state
     owner: Markov Grey
     scope: BOUNDED ACCEPTANCE AND COMPLETION AUTHORITY
   created: '2026-09-20'
   updated: '2026-09-20'
-  transition_history: unverified
-  transitions: []
+  transition_history: complete
+  transitions:
+    - from: todo
+      to: in_progress
+      at: '2026-09-20'
+      reason: 'Implemented AC-1 through AC-6 on integration/read-along; evidence recorded. Held at
+        in_progress rather than done because acceptance authority rests with the owner and the
+        criteria were authored by the implementer.'
   # No formal graph edge: this task neither depends on nor refines task:0002 /
   # task:0005. AC-5 amends 0002's inventory and the audio overlap with 0005 is
   # noted in prose; inventing a typed edge would overstate the coupling.
@@ -134,5 +140,47 @@ than a false sense of coverage from this test file.
 
 ## Completion evidence
 
-Keep empty until evidence exists. Before changing state to `done`, link the implementation, checks,
-records, and limitations that satisfy each criterion.
+Implemented on `integration/read-along` (branched from `main` after the governance merge, carrying
+PRs #11, #13, #12).
+
+**State is `in_progress`, not `done`, deliberately.** All six criteria below are met and evidenced,
+but this record's authority block places acceptance with the owner, and the criteria were drafted by
+the same agent that implemented them — self-certifying that pairing would be exactly the failure the
+authority model exists to prevent. The branch is also unmerged. The owner flips this to `done` on
+accepting the evidence.
+
+| Criterion | Evidence                                                                                                                                                                                                                                            |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AC-1      | `src/data/chapter-timing.test.ts` — "has a committed .words.json for every entry" and "has a table entry for every committed .words.json" (commit `2f5bff7`).                                                                                       |
+| AC-2      | Same file — "parses every file as a non-empty array", "gives every word a string and a finite, non-negative span", "orders every file by non-decreasing start time".                                                                                |
+| AC-3      | Same file — "points each entry at URLs bearing its own chapter and section", plus an https assertion.                                                                                                                                               |
+| AC-4      | `901b05c`. `rg -n 'q:a 4' src/textbook-loader/renderers/audio/` now matches only `elevenlabs-tts.ts:150` (the exempt intermediate chunk encoder) and a comment at `:221`. Both final-output paths in `gemini-tts.ts` pass `-b:a 96k -write_xing 0`. |
+| AC-5      | `7c23e39` — `task:0002` Scope now names `src/data/chapter-timing.ts` with its 71 occurrences and why they are pinned rather than derived.                                                                                                           |
+| AC-6      | `pnpm verify` on `7c23e39`: lint 0 errors / 11 pre-existing warnings, `astro check` 0 errors, **18 test files / 181 unit tests** (was 17 / 173), build complete, smoke 3/3, a11y 6/6.                                                               |
+
+**Mutation evidence for AC-1 to AC-3.** A passing guard proves nothing unless it fails on the defect
+it targets, so each was checked against an injected fault, then reverted:
+
+| Injected fault                               | Result                                                              |
+| -------------------------------------------- | ------------------------------------------------------------------- |
+| removed `public/audio/ch3/ch3-s5.words.json` | AC-1 forward fails, reporting `3.5 -> /audio/ch3/ch3-s5.words.json` |
+| added orphan `ch3-s99.words.json`            | AC-1 reverse fails; 7 others still pass                             |
+| repointed a `publishedUrl` from `s2` to `s7` | AC-3 fails; 7 others still pass                                     |
+| swapped two word entries out of time order   | AC-2 ordering fails; 7 others still pass                            |
+| set one entry's `e` below its `s`            | AC-2 span fails; 7 others still pass                                |
+| replaced a file's contents with `not json`   | AC-2 array check fails; collection does not abort                   |
+
+The first run of the missing-file case exposed a defect in the guard itself: the eager
+`readFileSync` at `describe` scope threw during collection, so the suite reported "no tests" instead
+of naming the section — failing AC-1's own wording. Fixed before commit by folding absent and
+unparseable files into the result set.
+
+**AC-4 decision.** The Gemini path was **aligned, not deleted.** It is imported nowhere, undocumented
+and untested, so removal is defensible; but whether Atlas wants a second TTS provider is a product
+decision rather than a defect fix, and outside this task's authority. Matching the encoder settings
+makes the invariant hold under either later choice. Deletion remains open for the owner.
+
+**Residual risk.** Everything in the Limitations section still stands: these guards are structural,
+and a content refresh that moves the published audio hash will still desync the read-along without
+failing any check here. `task:0005` (audio regeneration) and the next content refresh are the
+moments to run `pipeline.py --check-remote`.
