@@ -113,8 +113,12 @@ PR #12 is unlikely to be available.
 - **AC-3:** A test fails if any `publishedUrl` is not a parseable absolute URL whose filename
   encodes the same chapter and section number as its position in the table (i.e. entry `[4][2]`
   must point at a filename matching `atlas-ch4-s2-`).
-- **AC-4:** `rg -n 'q:a 4' src/textbook-loader/renderers/audio/` returns no match, and the reason the
-  Gemini path was aligned rather than deleted (or vice versa) is recorded in this task's evidence.
+- **AC-4:** No encoder call that writes a **final, published** MP3 passes `-q:a 4`; every such call
+  passes `-b:a 96k -write_xing 0`. The intermediate per-paragraph chunk encoder
+  (`elevenlabs-tts.ts:150`, piping to `pipe:1`) is explicitly exempt — PR #13 left it variable on
+  purpose because the normalization pass re-encodes it, and forcing CBR there would cost size for
+  no seek benefit. The reason the Gemini path was aligned rather than deleted (or vice versa) is
+  recorded in this task's evidence.
 - **AC-5:** `docs/tasks/0002-migrate-r2-assets-to-our-own-cloudflare-account-and-repoint-config.md`
   names `src/data/chapter-timing.ts` and the number of hostname occurrences in it, in its Scope.
 - **AC-6:** `pnpm verify` passes on the branch carrying this work, with no new baseline failures.

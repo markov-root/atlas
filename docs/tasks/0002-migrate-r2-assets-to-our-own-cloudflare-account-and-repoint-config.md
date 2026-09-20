@@ -45,8 +45,15 @@ freelancer's infrastructure. See `audit:0001` finding #2.
 
 - Create an R2 bucket in Markov's own Cloudflare account.
 - Push the backed-up objects (extend `dumps/r2-backup.mjs` with an upload/`PutObject` mode).
-- Keep the `atlas.foreviewusercontent.com` hostname if it can be moved, otherwise change `CDN_BASE`
-  in `src/textbook-loader/renderers/pdf/renderer.ts` and `renderers/audio/renderer.ts`.
+- Keep the `atlas.foreviewusercontent.com` hostname if it can be moved, otherwise change it in all
+  three places it is hardcoded:
+  - `src/textbook-loader/renderers/pdf/renderer.ts` — `CDN_BASE` (1 occurrence).
+  - `src/textbook-loader/renderers/audio/renderer.ts` — `CDN_BASE` (1 occurrence).
+  - `src/data/chapter-timing.ts` — **71 occurrences**, one `publishedUrl` per narrated section.
+    Added by the read-along work (PR #12). These are pinned full URLs rather than a derived
+    constant, deliberately: they let a clone with no credentials play the exact recording the
+    committed word timings were measured against. A migration that only repoints `CDN_BASE` will
+    leave every read-along page pointing at the old host. See `task:0008`.
 - Repoint the four `R2_*` values in `.env` and in the GitHub Actions secrets.
 
 ## Out of scope
