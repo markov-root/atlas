@@ -1,81 +1,80 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Safe area for mobile bottom bar (iPhone home indicator, etc.) */
 .safe-area-bottom {
-    padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* Noise background utility */
 @utility noise-bg {
-    position: relative;
-    isolation: isolate;
+  position: relative;
+  isolation: isolate;
 
-    &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        z-index: -1;
-        opacity: 0.08;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    }
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.08;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
 }
 
-
 [id] {
-    scroll-margin-top: 7.25rem;
+  scroll-margin-top: 7.25rem;
 }
 
 /* JS detection classes */
 .if-js {
-    display: none;
+  display: none;
 }
 
 .js .if-js {
-    display: revert;
+  display: revert;
 }
 
 .js .unless-js {
-    display: none;
+  display: none;
 }
 
 @plugin "@tailwindcss/typography";
 
 /* Media tabs (listen/download/watch/report) */
 .media-tabs {
-    @apply mt-8 rounded-xl bg-white border border-gray-200 overflow-hidden;
+  @apply mt-8 rounded-xl bg-white border border-gray-200 overflow-hidden;
 }
 
 .media-tab-bar {
-    @apply flex bg-gray-50 border-b border-gray-200 overflow-x-auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+  @apply flex bg-gray-50 border-b border-gray-200 overflow-x-auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
-    &::-webkit-scrollbar {
-        display: none;
-    }
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .media-tab {
-    @apply inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium transition-colors cursor-pointer whitespace-nowrap;
-    @apply text-gray-500 hover:text-gray-700;
-    @apply border-b-2 border-transparent -mb-px;
+  @apply inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium transition-colors cursor-pointer whitespace-nowrap;
+  @apply text-gray-500 hover:text-gray-700;
+  @apply border-b-2 border-transparent -mb-px;
 
-    &[aria-selected="true"] {
-        @apply text-brand-700 bg-white border-brand-600;
-    }
+  &[aria-selected='true'] {
+    @apply text-brand-700 bg-white border-brand-600;
+  }
 }
 
 .media-panel {
-    @apply p-4;
+  @apply p-4;
 }
 
 /* Audio speed selector */
 .audio-speed {
-    @apply text-xs font-medium tabular-nums text-gray-900 bg-gray-50 rounded-md;
-    @apply px-2 py-1 cursor-pointer border border-gray-200 appearance-none;
-    @apply hover:bg-gray-100 hover:text-gray-700 transition-colors;
-    @apply focus:outline-none focus:ring-2 focus:ring-brand-600;
+  @apply text-xs font-medium tabular-nums text-gray-900 bg-gray-50 rounded-md;
+  @apply px-2 py-1 cursor-pointer border border-gray-200 appearance-none;
+  @apply hover:bg-gray-100 hover:text-gray-700 transition-colors;
+  @apply focus:outline-none focus:ring-2 focus:ring-brand-600;
 }
 
 /* Base form control styles */
@@ -106,38 +105,37 @@
 }
 
 @theme {
-    --font-display: 'Righteous', serif;
-    --font-sans: 'Jost Variable', monospace;
+  --font-display: 'Righteous', serif;
+  --font-sans: 'Jost Variable', monospace;
 
-    --color-white: #fff;
-    --color-black: oklch(18% 0.14 105);
-    --color-cream: #f9f7f4;
+  --color-white: #fff;
+  --color-black: oklch(18% 0.14 105);
+  --color-cream: #f9f7f4;
 
-    /* Brand colors */
-    --color-brand-50: oklch(0.977 0.013 236.62);
-    --color-brand-100: oklch(0.951 0.026 236.824);
-    --color-brand-200: oklch(0.901 0.058 230.902);
-    --color-brand-300: oklch(0.828 0.111 230.318);
-    --color-brand-400: oklch(0.746 0.16 232.661);
-    --color-brand-500: oklch(0.685 0.169 237.323);
-    --color-brand-600: oklch(0.588 0.158 241.966);
-    --color-brand-700: oklch(0.5 0.134 242.749);
-    --color-brand-800: oklch(0.443 0.11 240.79);
-    --color-brand-900: oklch(0.391 0.09 240.876);
-    --color-brand-950: oklch(0.293 0.066 243.157);
+  /* Brand colors */
+  --color-brand-50: oklch(0.977 0.013 236.62);
+  --color-brand-100: oklch(0.951 0.026 236.824);
+  --color-brand-200: oklch(0.901 0.058 230.902);
+  --color-brand-300: oklch(0.828 0.111 230.318);
+  --color-brand-400: oklch(0.746 0.16 232.661);
+  --color-brand-500: oklch(0.685 0.169 237.323);
+  --color-brand-600: oklch(0.588 0.158 241.966);
+  --color-brand-700: oklch(0.5 0.134 242.749);
+  --color-brand-800: oklch(0.443 0.11 240.79);
+  --color-brand-900: oklch(0.391 0.09 240.876);
+  --color-brand-950: oklch(0.293 0.066 243.157);
 
-
-    /* Grayscale */
-    --color-gray-50: #fafafa;
-    --color-gray-100: #f5f5f5;
-    --color-gray-200: #e9ecef;
-    --color-gray-300: #dee2e6;
-    --color-gray-400: #ced4da;
-    --color-gray-500: #adb5bd;
-    --color-gray-600: #6c757d;
-    --color-gray-700: #495057;
-    --color-gray-800: #343a40;
-    --color-gray-900: #212529;
+  /* Grayscale */
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #e9ecef;
+  --color-gray-300: #dee2e6;
+  --color-gray-400: #ced4da;
+  --color-gray-500: #adb5bd;
+  --color-gray-600: #6c757d;
+  --color-gray-700: #495057;
+  --color-gray-800: #343a40;
+  --color-gray-900: #212529;
 }
 
 /* Word-by-word audio highlighting.
@@ -150,8 +148,10 @@
    ring rather than padding, which would reflow the line.
 
    `contain: paint` on the narrated blocks keeps each paragraph's repaint
-   inside its own box instead of the whole article. */
-[data-chapter-article] :is(p, figcaption) {
+   inside its own box instead of the whole article. `li` is listed for the
+   same reason: list items are narrated and wrapped too, and on list-heavy
+   sections they carry a quarter of the section's spans. */
+[data-chapter-article] :is(p, figcaption, li) {
   contain: paint;
 }
 

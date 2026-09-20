@@ -8,8 +8,8 @@
  * keeping the active word comfortably in view.
  */
 
-import { alignWords, parkAnnouncements } from "./word-align"
-import { groupSentences } from "./sentences"
+import { alignWords, parkAnnouncements } from './word-align';
+import { groupSentences } from './sentences';
 import {
   FOLLOW_BLOCK_TOP,
   FOLLOW_SCROLL_MS,
@@ -20,19 +20,33 @@ import {
   offscreenDirection,
   scrollTargetFor,
   shouldFollowNewBlock,
-} from "./follow-scroll"
+} from './follow-scroll';
 
-type WordEntry = { w: string; s: number; e: number }
+type WordEntry = { w: string; s: number; e: number };
 
 /**
- * Blocks whose text is narrated: prose, section headings, and figure captions
- * (which are read out as part of the figure description).
+ * Blocks whose text is narrated: prose, section headings, figure captions
+ * (which are read out as part of the figure description), and list items.
  *
  * Headings matter more than they look. The narration reads each one, so
  * leaving them unwrapped meant the highlight had nothing to move to and sat
  * parked on the previous paragraph through every subsection change.
+ *
+ * List items matter for the same reason, and cost more. `text-renderer.ts`
+ * renders a List node into the narration script ("- item" / "1. item"), so
+ * the voice reads every bullet, but a prose `ListItem` renders as a bare
+ * `<li><slot/></li>` with no inner `<p>` -- so without `li` here none of that
+ * text was wrapped. Measured across eight sections that is 4117 narrated
+ * words with no counterpart on the page: unhighlightable, unclickable, and
+ * absent from the aligner's written stream while present in its spoken one.
+ * On 6.5 the highlight sat frozen on "Figure 6.14" for ~50s while the
+ * narration read a 30-item list.
+ *
+ * Footnote `<li>`s already contained a `<p>` and so were wrapped via that;
+ * they now match here directly. `wrapNarratedWords` skips the nested case so
+ * neither is counted twice.
  */
-const WRAPPABLE_SELECTOR = "p, figcaption, h2, h3, h4"
+const WRAPPABLE_SELECTOR = 'p, figcaption, h2, h3, h4, li';
 
 /**
  * Text that is on the page but never spoken. Footnote markers are bare
@@ -40,42 +54,33 @@ const WRAPPABLE_SELECTOR = "p, figcaption, h2, h3, h4"
  * announced and then skipped, and `.if-js` marks interactive page chrome
  * (the feedback form) rather than prose.
  */
-const UNSPOKEN_SELECTOR =
-  ".footnote-ref, .inline-equation, .notebox-content, .if-js"
+const UNSPOKEN_SELECTOR = '.footnote-ref, .inline-equation, .notebox-content, .if-js';
 
-const SCROLL_KEYS = new Set([
-  "PageUp",
-  "PageDown",
-  "ArrowUp",
-  "ArrowDown",
-  "Home",
-  "End",
-  " ",
-])
+const SCROLL_KEYS = new Set(['PageUp', 'PageDown', 'ArrowUp', 'ArrowDown', 'Home', 'End', ' ']);
 
-let spokenWords: WordEntry[] = []
-let spans: HTMLSpanElement[] = []
-let spanIndex = new WeakMap<Element, number>()
-let spokenToWritten: Int32Array | null = null
-let writtenToSpoken: Int32Array | null = null
-let activeIdx = -1
-let activeEnd = -1
-let parkEnd: Int32Array | null = null
-let sentenceOf: Int32Array | null = null
-let activeSentence = -1
-let sentenceRules: HTMLElement[] = []
-let followMode = true
-let followedBlock: Element | null = null
-let seekArmed = false
-let pageAudioUrl = ""
-let article: Element | null = null
-let roots: Element[] = []
-let pill: HTMLButtonElement | null = null
-let cancelGlide: (() => void) | null = null
-let teardown: Array<() => void> = []
+let spokenWords: WordEntry[] = [];
+let spans: HTMLSpanElement[] = [];
+let spanIndex = new WeakMap<Element, number>();
+let spokenToWritten: Int32Array | null = null;
+let writtenToSpoken: Int32Array | null = null;
+let activeIdx = -1;
+let activeEnd = -1;
+let parkEnd: Int32Array | null = null;
+let sentenceOf: Int32Array | null = null;
+let activeSentence = -1;
+let sentenceRules: HTMLElement[] = [];
+let followMode = true;
+let followedBlock: Element | null = null;
+let seekArmed = false;
+let pageAudioUrl = '';
+let article: Element | null = null;
+let roots: Element[] = [];
+let pill: HTMLButtonElement | null = null;
+let cancelGlide: (() => void) | null = null;
+let teardown: Array<() => void> = [];
 
 function getAudio(): HTMLAudioElement | null {
-  return document.getElementById("audio-element") as HTMLAudioElement | null
+  return document.getElementById('audio-element') as HTMLAudioElement | null;
 }
 
 /**
@@ -86,30 +91,27 @@ function getAudio(): HTMLAudioElement | null {
  * chapter's playback time would drive another chapter's word spans.
  */
 function audioMatchesPage(audio: HTMLAudioElement): boolean {
-  if (!pageAudioUrl) return false
-  const src = audio.currentSrc || audio.src
-  if (!src) return false
+  if (!pageAudioUrl) return false;
+  const src = audio.currentSrc || audio.src;
+  if (!src) return false;
   try {
-    return (
-      new URL(src, location.href).pathname ===
-      new URL(pageAudioUrl, location.href).pathname
-    )
+    return new URL(src, location.href).pathname === new URL(pageAudioUrl, location.href).pathname;
   } catch {
-    return false
+    return false;
   }
 }
 
 /** Binary search for the word being spoken at time t. */
 function findWordIndex(words: WordEntry[], t: number): number {
-  let lo = 0
-  let hi = words.length - 1
+  let lo = 0;
+  let hi = words.length - 1;
   while (lo <= hi) {
-    const mid = (lo + hi) >> 1
-    if (words[mid].e < t) lo = mid + 1
-    else if (words[mid].s > t) hi = mid - 1
-    else return mid
+    const mid = (lo + hi) >> 1;
+    if (words[mid].e < t) lo = mid + 1;
+    else if (words[mid].s > t) hi = mid - 1;
+    else return mid;
   }
-  return lo > 0 ? lo - 1 : -1
+  return lo > 0 ? lo - 1 : -1;
 }
 
 /**
@@ -119,12 +121,9 @@ function findWordIndex(words: WordEntry[], t: number): number {
  * Wrapping a hidden copy would highlight words the reader cannot see.
  */
 function pickArticle(): Element | null {
-  const candidates = Array.from(document.querySelectorAll("[data-chapter-article]"))
-  if (candidates.length <= 1) return candidates[0] ?? null
-  return (
-    candidates.find((el) => (el as HTMLElement).offsetParent !== null) ??
-    candidates[0]
-  )
+  const candidates = Array.from(document.querySelectorAll('[data-chapter-article]'));
+  if (candidates.length <= 1) return candidates[0] ?? null;
+  return candidates.find((el) => (el as HTMLElement).offsetParent !== null) ?? candidates[0];
 }
 
 /**
@@ -140,9 +139,9 @@ function pickArticle(): Element | null {
  * copy actually on screen is wrapped.
  */
 function pickHeadings(): Element[] {
-  const all = Array.from(document.querySelectorAll("[data-narration-heading]"))
-  const visible = all.filter((el) => (el as HTMLElement).offsetParent !== null)
-  return visible.length ? visible : all
+  const all = Array.from(document.querySelectorAll('[data-narration-heading]'));
+  const visible = all.filter((el) => (el as HTMLElement).offsetParent !== null);
+  return visible.length ? visible : all;
 }
 
 /**
@@ -155,34 +154,34 @@ function pickHeadings(): Element[] {
 function wrapWordsIn(root: Element, out: HTMLSpanElement[]): void {
   for (const node of Array.from(root.childNodes)) {
     if (node.nodeType === Node.TEXT_NODE) {
-      const text = node.textContent ?? ""
-      if (!text.trim()) continue
-      const frag = document.createDocumentFragment()
+      const text = node.textContent ?? '';
+      if (!text.trim()) continue;
+      const frag = document.createDocumentFragment();
       for (const part of text.split(/(\s+)/)) {
-        if (!part) continue
+        if (!part) continue;
         if (part.trim()) {
-          const span = document.createElement("span")
-          span.className = "word-span"
-          span.textContent = part
-          spanIndex.set(span, out.length)
-          out.push(span)
-          frag.appendChild(span)
+          const span = document.createElement('span');
+          span.className = 'word-span';
+          span.textContent = part;
+          spanIndex.set(span, out.length);
+          out.push(span);
+          frag.appendChild(span);
         } else {
-          frag.appendChild(document.createTextNode(part))
+          frag.appendChild(document.createTextNode(part));
         }
       }
-      root.replaceChild(frag, node)
+      root.replaceChild(frag, node);
     } else if (node.nodeType === Node.ELEMENT_NODE) {
-      const el = node as Element
-      if (el.classList.contains("word-span")) {
+      const el = node as Element;
+      if (el.classList.contains('word-span')) {
         // Already wrapped by an earlier pass over this same copy: collect it
         // rather than skipping, so re-wrapping still yields the full list.
-        spanIndex.set(el, out.length)
-        out.push(el as HTMLSpanElement)
-        continue
+        spanIndex.set(el, out.length);
+        out.push(el as HTMLSpanElement);
+        continue;
       }
-      if (el.matches(UNSPOKEN_SELECTOR)) continue
-      wrapWordsIn(el, out)
+      if (el.matches(UNSPOKEN_SELECTOR)) continue;
+      wrapWordsIn(el, out);
     }
   }
 }
@@ -198,23 +197,29 @@ function wrapNarratedWords(
   headings: Element[],
   article: Element,
 ): { spans: HTMLSpanElement[]; blockIds: Int32Array } {
-  const out: HTMLSpanElement[] = []
-  const blocks: number[] = []
-  let block = 0
+  const out: HTMLSpanElement[] = [];
+  const blocks: number[] = [];
+  let block = 0;
 
   const wrapBlock = (element: Element) => {
-    const before = out.length
-    wrapWordsIn(element, out)
-    for (let i = before; i < out.length; i++) blocks.push(block)
-    block++
-  }
+    const before = out.length;
+    wrapWordsIn(element, out);
+    for (let i = before; i < out.length; i++) blocks.push(block);
+    block++;
+  };
 
-  for (const heading of headings) wrapBlock(heading)
+  for (const heading of headings) wrapBlock(heading);
   for (const element of Array.from(article.querySelectorAll(WRAPPABLE_SELECTOR))) {
-    if (element.closest(UNSPOKEN_SELECTOR)) continue
-    wrapBlock(element)
+    if (element.closest(UNSPOKEN_SELECTOR)) continue;
+    // Outermost match only. A footnote is `<li><p>…</p></li>`, which matches
+    // twice; wrapping the `li` and then visiting the `p` would collect the
+    // spans a second time (wrapWordsIn re-collects rather than re-wraps), so
+    // every word inside would appear in the list twice and the written stream
+    // would disagree with the page.
+    if (element.parentElement?.closest(WRAPPABLE_SELECTOR)) continue;
+    wrapBlock(element);
   }
-  return { spans: out, blockIds: Int32Array.from(blocks) }
+  return { spans: out, blockIds: Int32Array.from(blocks) };
 }
 
 /**
@@ -227,22 +232,22 @@ function wrapNarratedWords(
  * Drawing it also puts the rule below the word highlight rather than inside
  * its background box, where the highlight would cut through it.
  */
-const SENTENCE_RULE_GAP = 2
+const SENTENCE_RULE_GAP = 2;
 
 function sentenceRange(index: number): Range | null {
-  if (index < 0 || !sentenceOf) return null
-  let first = -1
-  let last = -1
+  if (index < 0 || !sentenceOf) return null;
+  let first = -1;
+  let last = -1;
   for (let i = 0; i < sentenceOf.length; i++) {
-    if (sentenceOf[i] !== index) continue
-    if (first < 0) first = i
-    last = i
+    if (sentenceOf[i] !== index) continue;
+    if (first < 0) first = i;
+    last = i;
   }
-  if (first < 0 || !spans[first] || !spans[last]) return null
-  const range = document.createRange()
-  range.setStartBefore(spans[first])
-  range.setEndAfter(spans[last])
-  return range
+  if (first < 0 || !spans[first] || !spans[last]) return null;
+  const range = document.createRange();
+  range.setStartBefore(spans[first]);
+  range.setEndAfter(spans[last]);
+  return range;
 }
 
 /**
@@ -253,21 +258,21 @@ function sentenceRange(index: number): Range | null {
  * with a gap at every space.
  */
 function lineRects(range: Range): DOMRect[] {
-  const lines: DOMRect[] = []
+  const lines: DOMRect[] = [];
   for (const rect of Array.from(range.getClientRects())) {
-    if (rect.width <= 0 || rect.height <= 0) continue
-    const line = lines.find((l) => Math.abs(l.bottom - rect.bottom) < rect.height / 2)
+    if (rect.width <= 0 || rect.height <= 0) continue;
+    const line = lines.find((l) => Math.abs(l.bottom - rect.bottom) < rect.height / 2);
     if (!line) {
-      lines.push(new DOMRect(rect.x, rect.y, rect.width, rect.height))
-      continue
+      lines.push(new DOMRect(rect.x, rect.y, rect.width, rect.height));
+      continue;
     }
-    const left = Math.min(line.left, rect.left)
-    const right = Math.max(line.right, rect.right)
-    const top = Math.min(line.top, rect.top)
-    const bottom = Math.max(line.bottom, rect.bottom)
-    lines[lines.indexOf(line)] = new DOMRect(left, top, right - left, bottom - top)
+    const left = Math.min(line.left, rect.left);
+    const right = Math.max(line.right, rect.right);
+    const top = Math.min(line.top, rect.top);
+    const bottom = Math.max(line.bottom, rect.bottom);
+    lines[lines.indexOf(line)] = new DOMRect(left, top, right - left, bottom - top);
   }
-  return lines
+  return lines;
 }
 
 /**
@@ -275,34 +280,34 @@ function lineRects(range: Range): DOMRect[] {
  * only a reflow -- a resize, a font arriving -- needs them recomputed.
  */
 function drawSentenceRule(): void {
-  const range = sentenceRange(activeSentence)
-  const rects = range ? lineRects(range) : []
+  const range = sentenceRange(activeSentence);
+  const rects = range ? lineRects(range) : [];
 
   while (sentenceRules.length < rects.length) {
-    const rule = document.createElement("div")
-    rule.className = "sentence-rule"
-    rule.hidden = true
-    document.body.appendChild(rule)
-    sentenceRules.push(rule)
+    const rule = document.createElement('div');
+    rule.className = 'sentence-rule';
+    rule.hidden = true;
+    document.body.appendChild(rule);
+    sentenceRules.push(rule);
   }
   for (let i = 0; i < sentenceRules.length; i++) {
-    const rule = sentenceRules[i]
-    const rect = rects[i]
+    const rule = sentenceRules[i];
+    const rect = rects[i];
     if (!rect) {
-      rule.hidden = true
-      continue
+      rule.hidden = true;
+      continue;
     }
-    rule.style.left = `${rect.left + window.scrollX}px`
-    rule.style.top = `${rect.bottom + window.scrollY + SENTENCE_RULE_GAP}px`
-    rule.style.width = `${rect.width}px`
-    rule.hidden = false
+    rule.style.left = `${rect.left + window.scrollX}px`;
+    rule.style.top = `${rect.bottom + window.scrollY + SENTENCE_RULE_GAP}px`;
+    rule.style.width = `${rect.width}px`;
+    rule.hidden = false;
   }
 }
 
 function markSentence(index: number): void {
-  if (index === activeSentence) return
-  activeSentence = index
-  drawSentenceRule()
+  if (index === activeSentence) return;
+  activeSentence = index;
+  drawSentenceRule();
 }
 
 /**
@@ -313,18 +318,18 @@ function markSentence(index: number): void {
  * top on every highlight step.
  */
 function activeWordRect(): DOMRect | null {
-  if (activeIdx < 0) return null
-  const el = spans[activeIdx]
-  if (!el) return null
-  const rect = el.getBoundingClientRect()
-  if (rect.width === 0 && rect.height === 0) return null
-  return rect
+  if (activeIdx < 0) return null;
+  const el = spans[activeIdx];
+  if (!el) return null;
+  const rect = el.getBoundingClientRect();
+  if (rect.width === 0 && rect.height === 0) return null;
+  return rect;
 }
 
 /** The paragraph, heading or caption the active word belongs to. */
 function activeBlock(): Element | null {
-  if (activeIdx < 0) return null
-  return spans[activeIdx]?.closest(WRAPPABLE_SELECTOR) ?? null
+  if (activeIdx < 0) return null;
+  return spans[activeIdx]?.closest(WRAPPABLE_SELECTOR) ?? null;
 }
 
 /**
@@ -337,37 +342,37 @@ function activeBlock(): Element | null {
  * this cannot cancel its own follow.
  */
 function glideTo(offset: number, fraction: number): void {
-  const start = window.scrollY
-  const target = scrollTargetFor(offset, window.innerHeight, start, fraction)
-  const delta = target - start
-  if (Math.abs(delta) < 1) return
+  const start = window.scrollY;
+  const target = scrollTargetFor(offset, window.innerHeight, start, fraction);
+  const delta = target - start;
+  if (Math.abs(delta) < 1) return;
 
-  cancelGlide?.()
-  let frame = 0
-  let cancelled = false
-  const began = performance.now()
+  cancelGlide?.();
+  let frame = 0;
+  let cancelled = false;
+  const began = performance.now();
 
   const step = (now: number) => {
-    if (cancelled) return
-    const progress = Math.min(1, (now - began) / FOLLOW_SCROLL_MS)
-    window.scrollTo(0, start + delta * easeInOutQuad(progress))
-    if (progress < 1) frame = requestAnimationFrame(step)
-    else cancelGlide = null
-  }
-  frame = requestAnimationFrame(step)
+    if (cancelled) return;
+    const progress = Math.min(1, (now - began) / FOLLOW_SCROLL_MS);
+    window.scrollTo(0, start + delta * easeInOutQuad(progress));
+    if (progress < 1) frame = requestAnimationFrame(step);
+    else cancelGlide = null;
+  };
+  frame = requestAnimationFrame(step);
 
   cancelGlide = () => {
-    cancelled = true
-    cancelAnimationFrame(frame)
-    cancelGlide = null
-  }
+    cancelled = true;
+    cancelAnimationFrame(frame);
+    cancelGlide = null;
+  };
 }
 
 /** Bring the active word to the reading line, wherever it currently is. */
 function glideActiveWordIntoPlace(): void {
-  const rect = activeWordRect()
-  if (!rect) return
-  glideTo(centreOf(rect.top, rect.height), FOLLOW_TARGET)
+  const rect = activeWordRect();
+  if (!rect) return;
+  glideTo(centreOf(rect.top, rect.height), FOLLOW_TARGET);
 }
 
 /**
@@ -383,38 +388,38 @@ function glideActiveWordIntoPlace(): void {
  * than the viewport where waiting for the next one would lose the reader.
  */
 function followActiveWord(): void {
-  const rect = activeWordRect()
-  if (!rect) return
-  const block = activeBlock()
+  const rect = activeWordRect();
+  if (!rect) return;
+  const block = activeBlock();
 
   if (block && block !== followedBlock) {
-    followedBlock = block
-    const blockTop = block.getBoundingClientRect().top
+    followedBlock = block;
+    const blockTop = block.getBoundingClientRect().top;
     if (shouldFollowNewBlock(blockTop, window.innerHeight)) {
-      glideTo(blockTop, FOLLOW_BLOCK_TOP)
-      return
+      glideTo(blockTop, FOLLOW_BLOCK_TOP);
+      return;
     }
   }
 
   if (isOutsideFollowBand(centreOf(rect.top, rect.height), window.innerHeight)) {
-    glideActiveWordIntoPlace()
+    glideActiveWordIntoPlace();
   }
 }
 
 function ensurePill(): HTMLButtonElement {
-  if (pill && pill.isConnected) return pill
-  pill = document.createElement("button")
-  pill.id = "jump-to-current"
-  pill.className = "jump-to-current"
-  pill.type = "button"
-  pill.hidden = true
-  pill.addEventListener("click", () => {
-    followMode = true
-    glideActiveWordIntoPlace()
-    updatePill()
-  })
-  document.body.appendChild(pill)
-  return pill
+  if (pill && pill.isConnected) return pill;
+  pill = document.createElement('button');
+  pill.id = 'jump-to-current';
+  pill.className = 'jump-to-current';
+  pill.type = 'button';
+  pill.hidden = true;
+  pill.addEventListener('click', () => {
+    followMode = true;
+    glideActiveWordIntoPlace();
+    updatePill();
+  });
+  document.body.appendChild(pill);
+  return pill;
 }
 
 /**
@@ -424,19 +429,19 @@ function ensurePill(): HTMLButtonElement {
  * viewport, so a word just past the fold does not nag.
  */
 function updatePill(): void {
-  const button = ensurePill()
-  const rect = activeWordRect()
+  const button = ensurePill();
+  const rect = activeWordRect();
   if (followMode || !seekArmed || !rect) {
-    button.hidden = true
-    return
+    button.hidden = true;
+    return;
   }
-  const direction = offscreenDirection(rect.top, rect.bottom, window.innerHeight)
+  const direction = offscreenDirection(rect.top, rect.bottom, window.innerHeight);
   if (!direction) {
-    button.hidden = true
-    return
+    button.hidden = true;
+    return;
   }
-  button.textContent = (direction === "above" ? "↑" : "↓") + " Move & Follow"
-  button.hidden = false
+  button.textContent = (direction === 'above' ? '↑' : '↓') + ' Move & Follow';
+  button.hidden = false;
 }
 
 /**
@@ -444,19 +449,19 @@ function updatePill(): void {
  * caption), so the parking algorithm can stay free of the DOM.
  */
 function captionIds(wordSpans: HTMLSpanElement[]): Int32Array {
-  const ids = new Int32Array(wordSpans.length).fill(-1)
-  const seen = new Map<Element, number>()
+  const ids = new Int32Array(wordSpans.length).fill(-1);
+  const seen = new Map<Element, number>();
   for (let i = 0; i < wordSpans.length; i++) {
-    const caption = wordSpans[i].closest("figcaption")
-    if (!caption) continue
-    let id = seen.get(caption)
+    const caption = wordSpans[i].closest('figcaption');
+    if (!caption) continue;
+    let id = seen.get(caption);
     if (id === undefined) {
-      id = seen.size
-      seen.set(caption, id)
+      id = seen.size;
+      seen.set(caption, id);
     }
-    ids[i] = id
+    ids[i] = id;
   }
-  return ids
+  return ids;
 }
 
 /**
@@ -467,31 +472,31 @@ function captionIds(wordSpans: HTMLSpanElement[]): Int32Array {
  * matches what is marked on the page.
  */
 function setActive(start: number, end: number = start): void {
-  markSentence(start >= 0 && sentenceOf ? (sentenceOf[start] ?? -1) : -1)
-  if (start === activeIdx && end === activeEnd) return
+  markSentence(start >= 0 && sentenceOf ? (sentenceOf[start] ?? -1) : -1);
+  if (start === activeIdx && end === activeEnd) return;
   for (let i = activeIdx; activeIdx >= 0 && i <= activeEnd; i++) {
-    spans[i]?.classList.remove("word-active")
+    spans[i]?.classList.remove('word-active');
   }
-  activeIdx = start
-  activeEnd = end
+  activeIdx = start;
+  activeEnd = end;
   if (start >= 0 && start < spans.length) {
     for (let i = start; i <= end && i < spans.length; i++) {
-      spans[i]?.classList.add("word-active")
+      spans[i]?.classList.add('word-active');
     }
-    if (followMode) followActiveWord()
+    if (followMode) followActiveWord();
   }
-  updatePill()
+  updatePill();
 }
 
 function syncHighlight(time: number): void {
-  if (!spokenWords.length || !spans.length || !spokenToWritten) return
-  const spokenIdx = findWordIndex(spokenWords, time)
+  if (!spokenWords.length || !spans.length || !spokenToWritten) return;
+  const spokenIdx = findWordIndex(spokenWords, time);
   if (spokenIdx < 0) {
-    setActive(-1, -1)
-    return
+    setActive(-1, -1);
+    return;
   }
-  const start = spokenToWritten[spokenIdx] ?? -1
-  setActive(start, parkEnd ? parkEnd[spokenIdx] : start)
+  const start = spokenToWritten[spokenIdx] ?? -1;
+  setActive(start, parkEnd ? parkEnd[spokenIdx] : start);
 }
 
 /**
@@ -502,10 +507,10 @@ function syncHighlight(time: number): void {
  * moment it engaged.
  */
 function onManualScroll(): void {
-  cancelGlide?.()
+  cancelGlide?.();
   if (followMode) {
-    followMode = false
-    updatePill()
+    followMode = false;
+    updatePill();
   }
 }
 
@@ -516,64 +521,64 @@ function onManualScroll(): void {
  * time the words behave as ordinary text -- selectable, with working links.
  */
 function onArticleClick(event: MouseEvent): void {
-  if (!seekArmed || !writtenToSpoken) return
-  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+  if (!seekArmed || !writtenToSpoken) return;
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 
-  const target = event.target
-  if (!(target instanceof Element)) return
-  const span = target.closest(".word-span")
-  if (!span) return
+  const target = event.target;
+  if (!(target instanceof Element)) return;
+  const span = target.closest('.word-span');
+  if (!span) return;
   // Let glossary terms and citations navigate as usual.
-  if (span.closest("a")) return
+  if (span.closest('a')) return;
   // Ignore the click that completes a text selection.
-  const selection = window.getSelection()
-  if (selection && !selection.isCollapsed) return
+  const selection = window.getSelection();
+  if (selection && !selection.isCollapsed) return;
 
-  const idx = spanIndex.get(span)
-  if (idx === undefined) return
-  const spokenIdx = writtenToSpoken[idx]
-  if (spokenIdx < 0) return
-  const audio = getAudio()
-  if (!audio) return
+  const idx = spanIndex.get(span);
+  if (idx === undefined) return;
+  const spokenIdx = writtenToSpoken[idx];
+  if (spokenIdx < 0) return;
+  const audio = getAudio();
+  if (!audio) return;
 
-  audio.currentTime = spokenWords[spokenIdx].s
+  audio.currentTime = spokenWords[spokenIdx].s;
   // Clicking a word means "read along from here".
-  followMode = true
-  updatePill()
+  followMode = true;
+  updatePill();
 }
 
 function setArmed(armed: boolean): void {
-  seekArmed = armed
-  for (const root of roots) root.classList.toggle("read-along-active", armed)
-  updatePill()
+  seekArmed = armed;
+  for (const root of roots) root.classList.toggle('read-along-active', armed);
+  updatePill();
 }
 
 function cleanup(): void {
-  for (const off of teardown) off()
-  teardown = []
-  cancelGlide?.()
-  spokenWords = []
+  for (const off of teardown) off();
+  teardown = [];
+  cancelGlide?.();
+  spokenWords = [];
   // Drop the highlight before the spans are forgotten. Re-wrapping after a
   // breakpoint change builds a fresh list, and a leftover .word-active on the
   // copy that is now hidden reappears the moment the reader resizes back.
-  for (const span of spans) span.classList.remove("word-active")
-  spans = []
-  spanIndex = new WeakMap()
-  spokenToWritten = null
-  writtenToSpoken = null
-  activeIdx = -1
-  activeEnd = -1
-  parkEnd = null
-  sentenceOf = null
-  activeSentence = -1
-  for (const rule of sentenceRules) rule.hidden = true
-  followMode = true
-  followedBlock = null
-  seekArmed = false
-  pageAudioUrl = ""
-  article = null
-  roots = []
-  if (pill) pill.hidden = true
+  for (const span of spans) span.classList.remove('word-active');
+  spans = [];
+  spanIndex = new WeakMap();
+  spokenToWritten = null;
+  writtenToSpoken = null;
+  activeIdx = -1;
+  activeEnd = -1;
+  parkEnd = null;
+  sentenceOf = null;
+  activeSentence = -1;
+  for (const rule of sentenceRules) rule.hidden = true;
+  followMode = true;
+  followedBlock = null;
+  seekArmed = false;
+  pageAudioUrl = '';
+  article = null;
+  roots = [];
+  if (pill) pill.hidden = true;
 }
 
 function on(
@@ -582,46 +587,42 @@ function on(
   handler: EventListenerOrEventListenerObject,
   options?: AddEventListenerOptions,
 ): void {
-  target.addEventListener(type, handler, options)
-  teardown.push(() => target.removeEventListener(type, handler, options))
+  target.addEventListener(type, handler, options);
+  teardown.push(() => target.removeEventListener(type, handler, options));
 }
 
 function initWordHighlight(): void {
-  cleanup()
+  cleanup();
 
-  const pageData = document.getElementById("audio-page-data")
-  const wordsUrl = pageData?.dataset.wordsUrl ?? ""
-  if (!wordsUrl) return
+  const pageData = document.getElementById('audio-page-data');
+  const wordsUrl = pageData?.dataset.wordsUrl ?? '';
+  if (!wordsUrl) return;
 
-  pageAudioUrl = pageData?.dataset.audioUrl ?? ""
-  article = pickArticle()
-  const audio = getAudio()
-  if (!article || !audio) return
-  roots = [...pickHeadings(), article]
+  pageAudioUrl = pageData?.dataset.audioUrl ?? '';
+  article = pickArticle();
+  const audio = getAudio();
+  if (!article || !audio) return;
+  roots = [...pickHeadings(), article];
 
   fetch(wordsUrl)
     .then((response) => response.json())
     .then((data: WordEntry[]) => {
-      const target = article
-      if (!Array.isArray(data) || !data.length || !target) return
-      spokenWords = data
-      const wrapped = wrapNarratedWords(pickHeadings(), target)
-      spans = wrapped.spans
+      const target = article;
+      if (!Array.isArray(data) || !data.length || !target) return;
+      spokenWords = data;
+      const wrapped = wrapNarratedWords(pickHeadings(), target);
+      spans = wrapped.spans;
 
-      const writtenWords = spans.map((span) => span.textContent ?? "")
-      sentenceOf = groupSentences(writtenWords, wrapped.blockIds)
+      const writtenWords = spans.map((span) => span.textContent ?? '');
+      sentenceOf = groupSentences(writtenWords, wrapped.blockIds);
       const alignment = alignWords(
         spokenWords.map((word) => word.w),
         writtenWords,
-      )
-      const parked = parkAnnouncements(
-        alignment.spokenToWritten,
-        writtenWords,
-        captionIds(spans),
-      )
-      spokenToWritten = parked.spokenToWritten
-      writtenToSpoken = alignment.writtenToSpoken
-      parkEnd = parked.parkEnd
+      );
+      const parked = parkAnnouncements(alignment.spokenToWritten, writtenWords, captionIds(spans));
+      spokenToWritten = parked.spokenToWritten;
+      writtenToSpoken = alignment.writtenToSpoken;
+      parkEnd = parked.parkEnd;
 
       // Transcript timestamps are used as-is, with no correction factor.
       //
@@ -643,81 +644,81 @@ function initWordHighlight(): void {
       // full reload. Please don't reintroduce it without a measurement
       // showing genuine drift.
       const sync = () => {
-        if (!audioMatchesPage(audio)) return
-        syncHighlight(audio.currentTime)
-      }
+        if (!audioMatchesPage(audio)) return;
+        syncHighlight(audio.currentTime);
+      };
 
-      on(audio, "timeupdate", sync)
-      on(audio, "seeked", sync)
+      on(audio, 'timeupdate', sync);
+      on(audio, 'seeked', sync);
 
       // Clicking a word is only offered while this page's narration is
       // actually playing. Derive that from the element's own state rather
       // than tracking it per event: on the first play the source is still
       // being selected, so `play` can arrive before the element knows what
       // it is loading, and `loadstart` can arrive after playback began.
-      const refreshArmed = () => setArmed(!audio.paused && audioMatchesPage(audio))
-      for (const event of ["play", "playing", "pause", "ended", "emptied", "loadeddata"]) {
-        on(audio, event, refreshArmed)
+      const refreshArmed = () => setArmed(!audio.paused && audioMatchesPage(audio));
+      for (const event of ['play', 'playing', 'pause', 'ended', 'emptied', 'loadeddata']) {
+        on(audio, event, refreshArmed);
       }
       // A new source means any highlight on screen belongs to the old one.
-      on(audio, "loadstart", () => {
-        setActive(-1, -1)
-        refreshArmed()
-      })
+      on(audio, 'loadstart', () => {
+        setActive(-1, -1);
+        refreshArmed();
+      });
 
-      for (const root of roots) on(root, "click", onArticleClick as EventListener)
-      on(window, "wheel", onManualScroll, { passive: true })
-      on(window, "touchmove", onManualScroll, { passive: true })
-      on(window, "keydown", ((event: KeyboardEvent) => {
+      for (const root of roots) on(root, 'click', onArticleClick as EventListener);
+      on(window, 'wheel', onManualScroll, { passive: true });
+      on(window, 'touchmove', onManualScroll, { passive: true });
+      on(window, 'keydown', ((event: KeyboardEvent) => {
         // Escape leaves read-along by pausing, so resuming re-arms it.
-        if (event.key === "Escape" && seekArmed) {
-          audio.pause()
-          return
+        if (event.key === 'Escape' && seekArmed) {
+          audio.pause();
+          return;
         }
-        if (SCROLL_KEYS.has(event.key)) onManualScroll()
-      }) as EventListener)
+        if (SCROLL_KEYS.has(event.key)) onManualScroll();
+      }) as EventListener);
 
       // The layout renders the chapter once per breakpoint and shows one
       // copy. Resizing across that breakpoint hides the copy whose words are
       // wrapped, leaving the reader with text that neither highlights nor
       // responds to clicks, so re-wrap the copy that is now on screen.
-      let resizeTimer: ReturnType<typeof setTimeout> | undefined
-      on(window, "resize", () => {
-        clearTimeout(resizeTimer)
+      let resizeTimer: ReturnType<typeof setTimeout> | undefined;
+      on(window, 'resize', () => {
+        clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
-          const visible = pickArticle()
-          if (visible && visible !== article) initWordHighlight()
+          const visible = pickArticle();
+          if (visible && visible !== article) initWordHighlight();
           // The rules are positioned from measured text, so a reflow leaves
           // them behind even when the same copy stays on screen.
-          else drawSentenceRule()
-        }, 200)
-      })
-      teardown.push(() => clearTimeout(resizeTimer))
+          else drawSentenceRule();
+        }, 200);
+      });
+      teardown.push(() => clearTimeout(resizeTimer));
 
-      let pending = false
+      let pending = false;
       on(
         window,
-        "scroll",
+        'scroll',
         () => {
-          if (pending) return
-          pending = true
+          if (pending) return;
+          pending = true;
           requestAnimationFrame(() => {
-            pending = false
-            updatePill()
-          })
+            pending = false;
+            updatePill();
+          });
         },
         { passive: true },
-      )
+      );
 
       // Arriving mid-playback (a client-side navigation while listening)
       // should pick the highlight up where the narration already is.
-      refreshArmed()
-      if (audio.currentTime > 0) sync()
+      refreshArmed();
+      if (audio.currentTime > 0) sync();
     })
     .catch(() => {
       // No timings for this section: leave the text exactly as rendered.
-    })
+    });
 }
 
-document.addEventListener("astro:page-load", initWordHighlight)
-document.addEventListener("astro:before-swap", cleanup)
+document.addEventListener('astro:page-load', initWordHighlight);
+document.addEventListener('astro:before-swap', cleanup);

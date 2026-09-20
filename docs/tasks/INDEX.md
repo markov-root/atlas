@@ -39,3 +39,5 @@ index as numbered files (e.g. `0001-title.md`).
   Publication security & privacy remediation: git author email, EXIF, stale untracked files, dependency CVEs (todo).
 - [task:0008](./0008-harden-the-read-along-against-silent-timing-drift-and-stale-encoder-paths.md) —
   Harden the read-along against silent timing drift and stale encoder paths (in_progress — all criteria met, awaiting owner acceptance).
+- [task:0009](./0009-wrap-narrated-list-items-so-the-read-along-covers-them.md) —
+  Wrap narrated list items so the read-along covers them (in_progress — all criteria met, awaiting owner acceptance).
