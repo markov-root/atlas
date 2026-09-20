@@ -33,7 +33,7 @@ engineering_document:
       reason: 'Fixed and evidenced by browser measurement; held short of done because acceptance authority rests with the owner.'
   relationships: []
   details:
-    criteria: [criterion:AC-1, criterion:AC-2, criterion:AC-3, criterion:AC-4, criterion:AC-5]
+    criteria: [criterion:AC-1, criterion:AC-2, criterion:AC-3, criterion:AC-4, criterion:AC-5, criterion:AC-6]
     size: s
     priority: p1
     # Optional scheduling hints:
@@ -83,8 +83,8 @@ excluded.
 
 - Add `li` to `WRAPPABLE_SELECTOR` in `src/lib/word-highlight.ts`.
 - Skip nested wrappable elements so `<li><p>` is wrapped once, not twice.
-- Add `li` to the `contain: paint` rule in `src/styles/global.css`, for the repaint-cost reason the
-  existing rule documents.
+- Keep the `contain: paint` rule in `src/styles/global.css` matching `p, figcaption` only, and
+  record why `li` must stay out of it (see AC-6).
 
 ## Out of scope
 
@@ -110,6 +110,9 @@ excluded.
 - **AC-4:** Clicking a word inside a list item seeks the audio to that word.
 - **AC-5:** `pnpm verify` passes, including the axe-core a11y suite — the fix adds thousands of
   inline spans, so accessibility is a real regression surface.
+- **AC-6:** Prose lists still render their markers. No `li` inside `[data-chapter-article]` computes
+  a `contain` value including `paint`, and both an `ol` (decimal) and a `ul` (disc) render visible
+  markers.
 
 ## Limitations
 
@@ -126,6 +129,24 @@ DOM test environment — recorded here as a known, deliberate gap rather than an
 | AC-3 | Probes at 185s / 194s / 218s during the 30-item list. Before: `"Figure 6.14"` at all three. After: `learn` -> `learn`, `reward` -> `reward`, `not` -> `not`, each inside a list item. |
 | AC-4 | Clicked the wrapped word `"always"` inside a list item with narration playing; `audio.currentTime` moved 243s -> 997s. |
 | AC-5 | `pnpm verify`: lint 0 errors / 11 pre-existing warnings, `astro check` 0 errors, 18 files / 181 tests, build complete, smoke 3/3, **a11y 6/6 with no new baseline violations**. |
+| AC-6 | `getComputedStyle(li).contain === "none"` for every `li` in the article; `5.8 control-evaluations` renders `1.` / `2.` and `1.7 takeoff` renders disc bullets, both confirmed by screenshot. |
+
+### Regression introduced and fixed within this task
+
+The first version of this fix also added `li` to the `contain: paint` rule, reasoning that list
+items carry a large share of a section's spans and should get the same repaint containment as
+paragraphs. That was wrong, and it shipped a visible defect: a list marker is painted **outside** the
+item's principal box (`list-style-position: outside`), which is precisely what paint containment
+clips. Every bullet and number silently disappeared and lists rendered as indented paragraphs.
+
+Caught by the maintainer on `5.8 control-evaluations`, not by any check — `pnpm verify` passed with
+the markers missing, because nothing asserts on rendered list markers and axe does not treat a
+missing marker as a violation. Reverted; the rule is back to `p, figcaption` and the CSS now carries
+a comment naming the mechanism so it is not re-added.
+
+The lesson worth keeping: the containment was an unmeasured performance addition bolted onto a
+correctness fix. The original `contain: paint` rule was justified by a measurement (7-25ms/frame);
+the extension to `li` was justified only by analogy.
 
 **Held at `in_progress`, not `done`**, for the same reason as `task:0008`: acceptance authority rests
 with the owner, and the criteria were authored by the implementer.

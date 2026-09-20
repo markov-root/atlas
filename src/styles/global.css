@@ -148,10 +148,15 @@
    ring rather than padding, which would reflow the line.
 
    `contain: paint` on the narrated blocks keeps each paragraph's repaint
-   inside its own box instead of the whole article. `li` is listed for the
-   same reason: list items are narrated and wrapped too, and on list-heavy
-   sections they carry a quarter of the section's spans. */
-[data-chapter-article] :is(p, figcaption, li) {
+   inside its own box instead of the whole article.
+
+   `li` is deliberately NOT in this list, even though list items are narrated
+   and wrapped like the rest. A list marker is painted outside the item's
+   principal box (`list-style-position: outside`), which is exactly what paint
+   containment clips -- so containing an `li` silently deletes its bullet or
+   number and the list renders as indented paragraphs. Correct markers beat
+   the repaint saving. */
+[data-chapter-article] :is(p, figcaption) {
   contain: paint;
 }
 
