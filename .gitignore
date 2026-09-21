@@ -53,3 +53,5 @@ public/logos/
 
 # CocoIndex Code (ccc)
 /.cocoindex_code/
+
+public/audio/ch*/*.mp3

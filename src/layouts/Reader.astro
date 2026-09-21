@@ -377,7 +377,15 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
 
 
 <script>
+// Before the player and the read-along, so a forced audio source is already
+// applied when they read the page data. Compiles away outside dev.
+import '../lib/audio-source-switch';
+</script>
+<script>
 import '../lib/reader';
+</script>
+<script>
+import '../lib/word-highlight';
 </script>
 	</body>
 </html>

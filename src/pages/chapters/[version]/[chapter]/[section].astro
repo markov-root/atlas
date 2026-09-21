@@ -8,6 +8,7 @@ import { Icon } from 'astro-icon/components'
 import { getTextbooks } from "@/lib/textbooks";
 import { siteConfig } from "@/config/site";
 import { sectionOgImageUrl } from "@/lib/og";
+import { availableAudioSources, resolveSectionAudio } from '@/lib/section-audio';
 
 interface Props {
     version: string
@@ -44,6 +45,23 @@ export async function getStaticPaths() {
 }
 
 const { version, section, chapter, textbook } = Astro.props;
+const sectionAudio = resolveSectionAudio(chapter.number, section.number, section.audioLink);
+
+// Dev only: a switch that forces one audio source, so all three states can be
+// looked at on one machine. Prerendered routes see neither query string nor
+// request headers, so the page hands the client every candidate URL and
+// src/lib/audio-source-switch.ts applies the choice on load.
+const audioSources = import.meta.env.DEV
+    ? availableAudioSources(chapter.number, section.number, section.audioLink)
+    : null;
+const audioSourceOptions = audioSources ? [
+    { value: 'auto', available: true, hint: 'Whatever this build can serve, preferring the staged constant-bitrate file.' },
+    { value: 'cbr', available: audioSources.cbr, hint: 'The locally staged constant-bitrate file. Seeking lands exactly on the word, so this is the source to prefer. Stage it with scripts/copy-chapter-audio.sh.' },
+    { value: 'cdn', available: audioSources.cdn, hint: 'The published file. Same narration, so the read-along still tracks, but it is variable bitrate and a seek only lands nearby.' },
+    { value: 'none', available: true, hint: 'Pretend the section has no audio, to check the page degrades to the no-player state.' },
+] : [];
+const cbrUrl = audioSources?.cbr ? resolveSectionAudio(chapter.number, section.number, section.audioLink, { override: 'cbr' })?.audioUrl : undefined;
+const cdnUrl = audioSources?.cdn ? resolveSectionAudio(chapter.number, section.number, section.audioLink, { override: 'cdn' })?.audioUrl : undefined;
 
 let pageDescription = section.number === 1 ? chapter.meta.description : section.description
 
@@ -51,7 +69,7 @@ const ogImage = sectionOgImageUrl({
     eyebrow: `Chapter ${chapter.number}: ${chapter.title}`,
     title: section.title,
     description: pageDescription,
-    audio: !!section.audioLink,
+    audio: !!sectionAudio,
     edition: `Edition ${version.replace('v', '')}`,
 });
 
@@ -66,6 +84,7 @@ function getSectionInfo(ref: SectionRef | null) {
 
 const prevInfo = getSectionInfo(section.prevSection);
 const nextInfo = getSectionInfo(section.nextSection);
+const nextSectionAudio = nextInfo ? resolveSectionAudio(nextInfo.chapter.number, nextInfo.section.number, nextInfo.section.audioLink) : null;
 
 // Check if this is the last section in the textbook
 const isLastSection = section.nextSection === null;
@@ -99,8 +118,8 @@ const paper = resolveResource(chapter.meta.paper);
 
     <div class="py-12 lg:py-16 px-6 lg:px-16" slot="header">
         <div>
-            <p class="text-base/7 font-semibold text-gray-600">Chapter {chapter.number}: {chapter.title}</p>
-            <h1 class="mt-2 text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 text-balance font-display">{section.title}</h1>
+            <p data-narration-heading class="text-base/7 font-semibold text-gray-600">Chapter {chapter.number}: {chapter.title}</p>
+            <h1 data-narration-heading class="mt-2 text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 text-balance font-display">{section.title}</h1>
             {pageDescription && <p class="mt-6 text-lg font-medium text-pretty text-gray-700">{pageDescription}</p>}
             <ul class="flex flex-wrap gap-x-6 gap-y-2 mt-8">
                 <li class="flex items-center space-x-1 text-gray-600 text-sm">
@@ -116,7 +135,7 @@ const paper = resolveResource(chapter.meta.paper);
                 </li>
             </ul>
             {(() => {
-                const hasAudio = !!section.audioLink;
+                const hasAudio = !!sectionAudio;
                 const isFirstSection = section.number === 1;
 
                 const hasVideo = isFirstSection && lecture;
@@ -146,6 +165,23 @@ const paper = resolveResource(chapter.meta.paper);
 
                         {/* Audio panel */}
                         <div role="tabpanel" id="panel-audio" aria-labelledby="tab-audio" class="media-panel" data-panel="audio">
+                            {audioSourceOptions.length > 0 && (
+                            <div class="mb-3 flex items-center gap-1 text-[11px] text-gray-400" role="group" aria-label="Audio source (development only)" data-audio-source-switch>
+                                <span class="mr-1">source: <span data-audio-source-label>{sectionAudio ? sectionAudio.source : 'none'}</span></span>
+                                {audioSourceOptions.map(option => (
+                                    <button
+                                        type="button"
+                                        data-audio-source-option={option.value}
+                                        title={`${option.hint}${option.available ? '' : ' Not available in this build.'} Development-only switch; reloads the page.`}
+                                        class:list={[
+                                            'cursor-pointer rounded border border-transparent px-1.5 py-0.5 transition-colors hover:border-gray-200 hover:text-gray-500',
+                                            'aria-[current=true]:border-gray-300 aria-[current=true]:bg-gray-50 aria-[current=true]:text-gray-600',
+                                            !option.available && 'line-through',
+                                        ]}
+                                    >{option.value}</button>
+                                ))}
+                            </div>
+                            )}
                             {hasAudio ? (
                             <div id="inline-audio-player" class="space-y-3">
                                 <p id="inline-track-title" class="text-sm font-medium text-gray-900 truncate">{chapter.number}.{section.number} {section.title}</p>
@@ -274,7 +310,7 @@ const paper = resolveResource(chapter.meta.paper);
         </div>
     </div>
 
-    <article class="prose prose-a:text-brand-600 lg:prose-lg prose-figure:first:mt-0!">
+    <article class="prose prose-a:text-brand-600 lg:prose-lg prose-figure:first:mt-0!" data-chapter-article>
         {section.nodes.map(node => <NodeRenderer node={node} />)}
 
         {section.footnotes && section.footnotes.length > 0 && (
@@ -337,15 +373,19 @@ const paper = resolveResource(chapter.meta.paper);
         </nav>
     </article>
 
-    {section.audioLink && (
+    {sectionAudio && (
     <div id="audio-page-data" class="hidden"
-        data-audio-url={section.audioLink}
+        data-audio-url={sectionAudio.audioUrl}
+        data-words-url={sectionAudio.wordsUrl ?? ''}
+        data-audio-source={sectionAudio.source}
+        data-audio-url-cbr={cbrUrl}
+        data-audio-url-cdn={cdnUrl}
         data-section-title={`${chapter.number}.${section.number} ${section.title}`}
         data-chapter-title={chapter.title}
         data-chapter-number={String(chapter.number)}
         data-section-number={String(section.number)}
         data-next-url={nextInfo ? `/chapters/${version}/${nextInfo.chapter.slug}/${nextInfo.section.slug}` : ''}
-        data-next-audio-url={nextInfo?.section.audioLink || ''}
+        data-next-audio-url={nextSectionAudio?.audioUrl ?? ''}
     ></div>
     )}
 

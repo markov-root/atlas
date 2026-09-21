@@ -52,6 +52,8 @@ Same source + fresh tooling should always produce the same artifacts. This is as
 
 **Where it does NOT hold (and why):** `loadChapter(X)` called twice on the _same_ loader produces different hashes because the `Transformer` accumulates per-textbook counters (figure numbers etc.) as instance state. This is intentional — "Figure 3.2" requires global context — and documented in [`ARCHITECTURE.md`](./ARCHITECTURE.md) under "Content pipeline / Transformer".
 
+Rendered pages also depend on what audio the building machine can reach: the audio renderer only keeps a section's `audioLink` if the MP3 was pulled from R2, and `resolveSectionAudio` prefers locally staged files (for chapters with committed timings) over the published ones. Two builds of the same commit can therefore emit different `data-audio-url` values. That is deliberate — the alternative is a page pointing at a file the build cannot serve — and it doesn't reach the content hash, which is computed from the source document alone (`loader.ts:164`).
+
 ## 5. Observability — one banner, no spelunking
 
 The build prints exactly one structured line at startup declaring the resolved mode:
@@ -70,7 +72,9 @@ When infra has a public-by-design surface (Algolia search-only key, public CDN U
 
 **Why:** an early plan proposed `if (hasAlgoliaConfig) <SearchBox />` to hide search for contributors without `.env`. But the Algolia keys needed are public-by-design — they're already shipped in the deployed HTML. Hiding the box was solving a problem that didn't exist. Instead, the public keys are committed as `default:` values in `astro.config.mjs`.
 
-**Reference:** `astro.config.mjs:24-27`, `src/components/DocSearchProvider.astro` (no conditional rendering).
+The boundary is whether something public exists to point at. A section with no audio anywhere renders no player at all — `resolveSectionAudio` returns null, and the audio renderer clears `audioLink` when nothing was resolved. That is not conditional UI for missing infrastructure; it is a control with nothing to play. Where published audio does exist, a contributor gets the same player and the same read-along as everyone else, without credentials.
+
+**Reference:** `astro.config.mjs:24-27`, `src/components/DocSearchProvider.astro` (no conditional rendering), `src/lib/section-audio.ts`.
 
 ## 7. Layered testing
 

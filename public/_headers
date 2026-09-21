@@ -1,0 +1,6 @@
+/audio/*.mp3
+  Accept-Ranges: bytes
+  Cache-Control: public, max-age=31536000, immutable
+
+/audio/*.json
+  Cache-Control: public, max-age=86400

@@ -139,3 +139,99 @@
     --color-gray-800: #343a40;
     --color-gray-900: #212529;
 }
+
+/* Word-by-word audio highlighting.
+
+   A narrated section wraps roughly five thousand words in their own spans.
+   Any idle styling on those spans inflates the article's paint display list,
+   which the browser then re-chunks on every highlight change -- measured at
+   7-25ms of main thread per frame during playback, against 0.2ms when idle.
+   So: no idle styling at all, and the active word draws with a box-shadow
+   ring rather than padding, which would reflow the line.
+
+   `contain: paint` on the narrated blocks keeps each paragraph's repaint
+   inside its own box instead of the whole article. */
+[data-chapter-article] :is(p, figcaption) {
+  contain: paint;
+}
+
+/* The ring widens the highlight sideways without the reflow that padding
+   would cause. It deliberately does not extend downwards: the chip already
+   covers the descenders, and anything below the baseline would sit on top of
+   the sentence underline and break it. */
+.word-active {
+  @apply bg-brand-100 text-brand-900;
+  border-radius: 0.125rem;
+  box-shadow:
+    2px 0 0 0 var(--color-brand-100),
+    -2px 0 0 0 var(--color-brand-100);
+}
+
+/* A figure announcement marks the whole label ("Figure 1.2"), which is two
+   words. Each word's ring reaches exactly halfway across the space between
+   them, so they meet -- but the rounded corners pinch in at the join and
+   leave a visible notch. Square off the inner corners and let the first word
+   bridge the gap. The bridge extends rightwards from the earlier word, which
+   paints first, so it can never cover the following word's letters. */
+.word-active:has(+ .word-active) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow:
+    -2px 0 0 0 var(--color-brand-100),
+    4px 0 0 0 var(--color-brand-100);
+}
+
+.word-active + .word-active {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* The sentence being narrated: the brand accent at 35%, drawn as a thin rule
+   under each line the sentence covers. It is an element rather than a text
+   decoration because every decoration route comes out dashed -- a class on
+   the words leaves the spaces bare, and a highlight range is painted per
+   element, so a sentence split into word spans breaks at every span. */
+.sentence-rule {
+  position: absolute;
+  height: 2px;
+  border-radius: 1px;
+  background: color-mix(in oklab, var(--color-brand-600) 35%, transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Words are only clickable while this page's narration is playing, so the
+   pointer affordance is scoped to that state rather than always present. */
+.read-along-active .word-span {
+  cursor: pointer;
+}
+
+.read-along-active .word-span:hover {
+  @apply bg-brand-50;
+}
+
+/* Offered when the reader has scrolled away from the narration. Sits above
+   the fixed mobile player bar; on large screens the player is in the
+   sidebar, so it can sit lower. */
+.jump-to-current {
+  @apply bg-brand-600 text-white shadow-lg;
+  position: fixed;
+  right: 1.25rem;
+  bottom: 7rem;
+  z-index: 40;
+  padding: 0.5rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  opacity: 0.85;
+  transition: opacity 150ms ease;
+}
+
+.jump-to-current:hover {
+  opacity: 1;
+}
+
+@media (min-width: 1024px) {
+  .jump-to-current {
+    bottom: 2rem;
+  }
+}
