@@ -67,9 +67,12 @@ It must classify, because not every link is a citation: the corpus contains cont
 (`available here`, `Biological Weapons Convention`) and at least one image URL
 (`upload.wikimedia.org/…MNIST_dataset_example.png`) alongside the 1,735 author-year citations.
 
-It must also cover **footnotes**, which the inline path does not reach: 36 footnotes, 16 with links,
-and **9 plain-text author-year citations with no URL at all**. The last group cannot be keyed by URL
-and must surface as an explicit unresolved state, never be silently dropped.
+It must also cover **footnotes**, which the inline path does not reach: 36 footnotes, 16 with links.
+
+A citation appearing in footnote prose with no hyperlink cannot be keyed by URL and must surface as
+an explicit unresolved state rather than being dropped. **The current corpus contains none** — see
+the correction in `task:0021`, which this task established — so this is a guard against future prose,
+not a backlog to clear.
 
 **Reuse, do not duplicate, the existing author-year pattern.**
 `src/textbook-loader/renderers/audio/text-renderer.ts:6` already encodes one for `stripCitations`.
@@ -117,24 +120,34 @@ existing behaviour.
   `arxiv.org/abs/Xv2` provably resolve to one key. The deduplication effect is reported as a number.
 - **AC-4:** The store round-trips: an entry written as CSL-YAML and read back is unchanged, and the
   file is legible and hand-editable in a diff.
-- **AC-5:** The 9 unlinked footnote citations produce an explicit unresolved state that a later
-  report can surface. A test asserts they are not dropped.
+- **AC-5:** A footnote citation with no hyperlink produces an explicit unresolved state a report can
+  surface. A test asserts it is not dropped, and the real-corpus count is measured rather than
+  assumed.
 - **AC-6:** Exactly one author-year pattern exists in the codebase, or the reason two must differ is
   recorded at both sites.
 
 ## Completion evidence
 
-_To be filled on completion. Each row must cite a criterion and durable evidence — a commit, a file
-path, or a test name — not a narrative claim._
+**State remains `todo`: the code is complete and self-verified, but acceptance is the owner's, and
+the record's transition history is unverified so it stays in its initial state rather than claiming a
+transition nobody recorded.**
 
-| Criterion | Evidence | Verified |
-| --------- | -------- | -------- |
-| AC-1      | —        | —        |
-| AC-2      | —        | —        |
-| AC-3      | —        | —        |
-| AC-4      | —        | —        |
-| AC-5      | —        | —        |
-| AC-6      | —        | —        |
+All six criteria met. 57 new tests; the full suite went from 195 to 252 passing. `pnpm typecheck`
+reports 0 errors over 128 files (was 119), and `pnpm typecheck:cli` is clean.
+
+**Two real defects were found by this work and are recorded in `audit:0011`:** F5, that 20% of
+citations were invisible to a `children`-only AST walk because five component types hold content in
+attributes; and F7, that a joining space in text reconstruction silently broke pattern matching while
+every unit test passed.
+
+| Criterion | Evidence                                                                                                                                                                                                                    | Verified   |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| AC-1      | `citations/extract.ts` — pure, no I/O. `extract.test.ts`, 13 tests covering author-year, content link, image asset, footnote with link, footnote without, deep nesting, missing href.                                        | 2026-09-21 |
+| AC-2      | `citations/corpus.test.ts` over all 8 cached chapters: 1,770 of 1,778 substantive links seen (99.6%). Divergence explained in the file — 14 whitespace-only runs dropped by the transformer, residual 8 per `audit:0011` F6. | 2026-09-21 |
+| AC-3      | `canonical-url.test.ts`, 15 tests; `/abs`, `/pdf`, `/pdf.pdf`, `/html` and `vN` proven to collapse. Real-corpus effect measured: **959 raw URLs → 948 canonical, 11 merged**.                                                | 2026-09-21 |
+| AC-4      | `citations/store.ts` CSL-YAML. `store.test.ts` asserts serialize→parse identity, byte-stable repeat serialization, and key sorting so diffs stay reviewable.                                                                 | 2026-09-21 |
+| AC-5      | State implemented and tested (`extract.test.ts`, incl. the multi-span regression). **Real-corpus count measured as zero**, correcting `task:0021`'s claim of 9 — all 9 are hyperlinked, verified anchor-by-anchor.           | 2026-09-21 |
+| AC-6      | One pattern in `citations/author-year.ts`, consumed by `renderers/audio/text-renderer.ts:8`. The differing contexts are documented at the definition. All 123 pre-existing loader/audio/snapshot tests unchanged.            | 2026-09-21 |
 
 ## Authority and inputs
 

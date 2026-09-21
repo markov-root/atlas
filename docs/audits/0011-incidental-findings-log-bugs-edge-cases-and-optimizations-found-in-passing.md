@@ -137,6 +137,56 @@ fleet running, approaches the failure boundary.
 
 **Disposition:** `task:0024`.
 
+### F5 — AST node content lives in `children` *and* in attributes, with no type-level distinction
+
+**Severity:** medium · **Evidence:** reproduced and measured · **Found:** 2026-09-21, while building `task:0025`
+
+`createNode(name, attributes, children)` suggests children are the only place content lives. They are
+not. Five component types put a `SpanGroup` **node inside an attribute**: `Figure.caption`,
+`Iframe.caption`, `Video.caption` (`transformer.ts:288,314,340`), `Quote.sourceUrl` (`:294`) and
+`Definition.source` (`:321`).
+
+Nothing in the `Node` type — `{name, attributes: Record<string, unknown>, children: Node[]}` — signals
+this, so the obvious traversal is wrong. **Measured cost: a `children`-only walk found 1,414 of 1,778
+links. 364 citations, 20% of the corpus, were invisible**, overwhelmingly in figure captions, which is
+exactly where a textbook cites its sources.
+
+Any code that walks this AST and does not know about attribute-held nodes is silently incomplete. That
+includes the existing `traverseNodes` helper in `utils.ts:15`.
+
+**Disposition:** `task:0025` added `allChildNodes()` in `citations/extract.ts` as a local remedy. The
+real fix is `task:0015` (discriminated-union AST), and this is concrete evidence for it — a measured
+20% miss rate, not a stylistic preference. Worth auditing every other `traverseNodes` caller for the
+same defect before then.
+
+### F6 — hyperlinks inside flattened component fields are discarded entirely
+
+**Severity:** low · **Evidence:** hypothesis with a measured residual · **Found:** 2026-09-21
+
+After F5 was fixed, extraction saw 1,770 of 1,778 substantive links. The residual 8 are unexplained by
+any traversal bug. The probable cause is `getTrimmedString`, which flattens a table cell to plain text
+for `SectionDescription.content`, `Quote.speaker/position/date`, `Video.source` and `Iframe.src` — a
+hyperlink in such a field loses its URL before any node is built, so it is unrecoverable downstream.
+
+Stated as a hypothesis: the residual is consistent with it, but the specific 8 have not been located.
+
+**Disposition:** unowned. At 0.45% it does not justify work on its own, and the remedy overlaps
+`task:0015`. Recorded so the number is explained rather than mysterious.
+
+### F7 — a joining separator in text reconstruction silently broke pattern matching
+
+**Severity:** low · **Evidence:** reproduced · **Found:** 2026-09-21
+
+While building `task:0025`, a helper concatenating span text inserted a space between spans. Because
+Google Docs routinely splits one sentence across several spans, `(Rodriguez, 2020)` became
+`( Rodriguez, 2020 )` and matched no citation pattern. **Every unit test passed**, because constructed
+fixtures put the citation in a single span; only the real-corpus check exposed it.
+
+**Disposition:** fixed in `citations/extract.ts`, with a regression test using multi-span input. The
+transferable lesson is the one worth keeping: a fixture that is tidier than the real data tests the
+fixture. The real-corpus reconciliation test is what caught this, and is worth the cost for that
+reason alone.
+
 ## Recommendations
 
 1. **Close F1 before `task:0021` adds `cli/` code.** Declaring `@types/node` and getting `cli/` into
@@ -146,7 +196,12 @@ fleet running, approaches the failure boundary.
    cache directory, state whether its contents are regenerable. `.cache/docs/` is committed precisely
    because it is not cheaply regenerable; `.cache/uc/` has the same property and the opposite
    treatment.
-3. **Keep F3's general case unowned until someone hits it again.** One instance is not yet evidence
+3. **F5 is the strongest available argument for `task:0015`.** It converts "a discriminated union
+   would be tidier" into "the current shape caused a measured 20% data loss in the first consumer that
+   walked it". Any prioritisation of `task:0015` should cite this number.
+4. **Audit the other `traverseNodes` callers for the F5 defect** before `task:0015` lands. The helper
+   at `utils.ts:15` recurses through `children` only, so every caller inherits the blind spot.
+5. **Keep F3's general case unowned until someone hits it again.** One instance is not yet evidence
    that `.env` validation earns its complexity, and `PRINCIPLES.md` §10 (YAGNI) applies. Recorded so
    that a second instance is recognised as a pattern rather than another one-off.
 

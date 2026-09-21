@@ -69,9 +69,17 @@ Every one is already parsed into a `Link` node carrying `{href, content}`
 (`src/textbook-loader/transformer.ts:554`). Extraction needs **no change to the Google Docs fetch
 path** and no new credentials.
 
-Footnotes carry citations too, and behave differently: **36 footnotes, 16 containing links, and 9
-plain-text author-year citations with no link at all.** That last group has no URL to key on and is
-the one category the inline path does not have.
+Footnotes carry citations too: **36 footnotes, 16 containing links.**
+
+**Correction, 2026-09-21.** An earlier version of this record claimed 9 of those were "plain-text
+author-year citations with no link at all". That was a measurement error — the original scan counted
+parenthesised author-year patterns in footnote text without checking whether a hyperlink covered the
+same span. Verified anchor-by-anchor during `task:0025`: **all 9 are hyperlinked**
+(`(METR, 2024)`, `(Ewing, 2017)`, `(Critch, 2023)`, `(Piper, 2023)`, `(Prime Intellect, 2025)`,
+`(Wang and Gleave et al., 2022)`, `(Anthropic, 2024)`, `(Anthropic, 2025)`, `(Rodriguez, 2020)`).
+There is no unlinked-citation population in the current corpus. The handling is still built, because
+it is cheap and the alternative is silently dropping the first one an author writes — but it is a
+guard, not a backlog.
 
 Resolvability of the 1,001 unique URLs:
 
@@ -211,9 +219,13 @@ Recorded so they are not mistaken for defects later.
    another citing the journal DOI for the same work — different URLs, one paper. Accept as duplicates
    in phase 1 and add a manual alias file; automatic detection would be wrong often enough to be
    worse than the duplicate.
-3. **The 9 unlinked footnote citations have no URL to key on.** They need either a match against an
-   existing entry by author-year, or an explicit "unresolved, no link" state. They must not be
-   silently dropped.
+3. **A footnote citation with no hyperlink would have no URL to key on.** The corpus currently has
+   zero of these (see the correction above), but the state exists so that the first one is reported
+   rather than dropped.
+4. **Node content lives in two places in this AST.** `children` holds the obvious case, but
+   `Figure.caption`, `Iframe.caption`, `Video.caption`, `Quote.sourceUrl` and `Definition.source` put
+   a `SpanGroup` **node inside an attribute** (`transformer.ts:288-345`). A `children`-only traversal
+   silently misses 20% of all citations. Found the hard way in `task:0025`; see `audit:0011` F5.
 
 ## Done when
 

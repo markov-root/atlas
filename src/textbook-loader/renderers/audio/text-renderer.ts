@@ -1,10 +1,16 @@
-import type { Node } from "../../transformer";
-import { traverseNodes } from "../../utils";
-import type { EquationDescriber } from "./equation-describer";
+import type { Node } from '../../transformer';
+import { traverseNodes } from '../../utils';
+import type { EquationDescriber } from './equation-describer';
+import { parentheticalCitations } from '../../citations/author-year';
 
-// Strips citation references like "(Author, 2023)" or "(Smith et al., 2020)"
+// Strips citation references like "(Author, 2023)" or "(Smith et al., 2020)".
+// The pattern is shared with citation extraction rather than restated here, so
+// the two cannot drift apart — see citations/author-year.ts (task:0025 AC-6).
 function stripCitations(text: string): string {
-  return text.replace(/\([A-Z][^)]*,\s*\d{4}[a-z]?\)/g, '').replace(/\s{2,}/g, ' ').trim();
+  return text
+    .replace(parentheticalCitations(), '')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
 }
 
 const QUOTE_INTROS = [
@@ -35,7 +41,8 @@ const VIDEO_INTROS = [
 
 const IFRAME_INTROS = [
   (num: string) => `The textbook has ${num} here, which you can explore in the online version.`,
-  (num: string) => `At this point there is ${num} in the textbook, available in the online version.`,
+  (num: string) =>
+    `At this point there is ${num} in the textbook, available in the online version.`,
 ];
 
 function deterministicChoice<T>(arr: ((s: string) => T)[], key: string, arg: string): T {
@@ -59,7 +66,7 @@ function getSpanText(node: Node): string {
 }
 
 function getChildrenText(nodes: Node[], describer: EquationDescriber): string {
-  return nodes.map(n => getNodeInlineText(n, describer)).join('');
+  return nodes.map((n) => getNodeInlineText(n, describer)).join('');
 }
 
 function getNodeInlineText(node: Node, describer: EquationDescriber): string {
@@ -94,7 +101,8 @@ export class TextRenderer {
     traverseNodes(nodes, (node) => {
       if (node.name === 'InlineEquation' || node.name === 'DisplayEquation') {
         const latex = node.attributes.content as string;
-        if (latex) equations.push({ latex, type: node.name === 'InlineEquation' ? 'inline' : 'display' });
+        if (latex)
+          equations.push({ latex, type: node.name === 'InlineEquation' ? 'inline' : 'display' });
       }
     });
     return equations;
@@ -186,7 +194,9 @@ export class TextRenderer {
     if (node.name === 'Figure') {
       const label = getMediaLabel('Figure', node);
       const caption = node.attributes.caption as Node | undefined;
-      const captionText = caption ? stripCitations(getChildrenText(caption.children ?? [], this.describer)).trim() : '';
+      const captionText = caption
+        ? stripCitations(getChildrenText(caption.children ?? [], this.describer)).trim()
+        : '';
       const intro = deterministicChoice(FIGURE_INTROS, label, label);
       if (captionText) return `${intro} It depicts ${captionText}`;
       return intro;
@@ -195,7 +205,9 @@ export class TextRenderer {
     if (node.name === 'Video') {
       const label = getMediaLabel('Video', node);
       const caption = node.attributes.caption as Node | undefined;
-      const captionText = caption ? stripCitations(getChildrenText(caption.children ?? [], this.describer)).trim() : '';
+      const captionText = caption
+        ? stripCitations(getChildrenText(caption.children ?? [], this.describer)).trim()
+        : '';
       const intro = deterministicChoice(VIDEO_INTROS, label, label);
       if (captionText) return `${intro} It covers ${captionText}`;
       return intro;
@@ -204,7 +216,9 @@ export class TextRenderer {
     if (node.name === 'Iframe') {
       const label = getMediaLabel('Interactive figure', node);
       const caption = node.attributes.caption as Node | undefined;
-      const captionText = caption ? stripCitations(getChildrenText(caption.children ?? [], this.describer)).trim() : '';
+      const captionText = caption
+        ? stripCitations(getChildrenText(caption.children ?? [], this.describer)).trim()
+        : '';
       const intro = deterministicChoice(IFRAME_INTROS, label, label);
       if (captionText) return `${intro} It shows ${captionText}`;
       return intro;
