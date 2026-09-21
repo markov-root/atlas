@@ -95,10 +95,17 @@ follow-on. Specifically:
    lifecycle (`dev`, `build`, `check`, `verify`) stays in `package.json`; maintainer operations live
    in `atlas`.
 
-5. **Migration of rationale.** The two `scripts/` headers contain substantial documented reasoning
-   (why `copy-chapter-audio.sh` must not touch committed `.words.json`; why `swap-cbr-audio.ts` works
-   at all, given filenames are hashed on section text). That prose must land in the new commands'
-   documentation before the scripts are removed.
+5. **Retirement of `scripts/`.** **Owner decision, 2026-09-21: `scripts/*` is to be retired in
+   favour of this utility CLI.** This supersedes `audit:0006`'s "Not recommended: retiring
+   `scripts/`… at least initially", which was written before that decision and was arguing from
+   caution rather than from a stated preference.
+
+   The caution it raised still applies as a _sequencing_ constraint, not as a veto: the two script
+   headers contain substantial documented reasoning (why `copy-chapter-audio.sh` must not touch
+   committed `.words.json`; why `swap-cbr-audio.ts` works at all, given filenames are hashed on
+   section text). That prose must land in the new commands' own documentation **before** the files
+   are deleted, or the reasoning is lost. Retirement is therefore the last step of this work, not
+   the first.
 
 ## Out of scope
 
@@ -110,7 +117,8 @@ follow-on. Specifically:
 - **Changing `package.json` scripts.** `pnpm verify` is referenced by `.githooks/pre-push`,
   `.github/workflows/test.yml`, `CONTRIBUTING.md`, and `AGENTS.md`. Moving it breaks all four for no
   gain (`audit:0006` recommendation 3).
-- **Deleting `scripts/`** in the same change that adds the CLI (`audit:0006`, "Not recommended").
+- **Deleting `scripts/` in the same change that adds the CLI.** Retirement is decided (Scope 5) but
+  is the last step, after the rationale in the script headers has been migrated.
 - **Implementation.** This task is design agreement only. Per `handoff:0002` §Constraints, `src/`
   changes need a separate owner decision.
 - **Env-var consolidation** (`audit:0006` F3, recommendation 5) — sequenced after this, because a
