@@ -208,6 +208,21 @@ export class ElevenLabsTTS {
    * Normalize MP3 audio loudness and write to output path using ffmpeg.
    */
   mp3ToNormalizedMp3(mp3Buffer: Buffer, outputPath: string): void {
+    // Encoded at a constant bitrate, deliberately. A variable-bitrate MP3
+    // carries a XING table of contents with one entry per percent of
+    // duration, and that is all a browser has to seek by: it interpolates
+    // between two entries and starts decoding there. Measured against the
+    // published sections, that lands a median of ~1.5s from the requested
+    // point and up to 6.8s out on the longest one -- fine for a scrub bar,
+    // not fine for anything seeking to a word. At a constant bitrate the byte
+    // offset is linear in time, so the seek is exact, and -write_xing 0
+    // leaves no table for a player to interpolate from at all.
+    //
+    // 96k is the nearest constant equivalent to the -q:a 4 this used to pass,
+    // which measured ~85 kbps across the published sections. The paragraph
+    // chunks above stay variable: they are intermediate, and this pass
+    // re-encodes them.
+
     // Two-pass loudness normalization (EBU R128)
     // Pass 1: measure loudness
     const measureResult = execSync(
@@ -220,7 +235,7 @@ export class ElevenLabsTTS {
     if (jsonStart === -1 || jsonEnd <= jsonStart) {
       // Fallback: single-pass
       execSync(
-        `ffmpeg -y -i pipe:0 -af loudnorm=I=-14:TP=-1:LRA=11 -codec:a libmp3lame -q:a 4 "${outputPath}"`,
+        `ffmpeg -y -i pipe:0 -af loudnorm=I=-14:TP=-1:LRA=11 -codec:a libmp3lame -b:a 96k -write_xing 0 "${outputPath}"`,
         { input: mp3Buffer, stdio: ['pipe', 'pipe', 'pipe'] }
       );
       return;
@@ -239,7 +254,7 @@ export class ElevenLabsTTS {
     ].join(':');
 
     execSync(
-      `ffmpeg -y -i pipe:0 -af ${af} -codec:a libmp3lame -q:a 4 "${outputPath}"`,
+      `ffmpeg -y -i pipe:0 -af ${af} -codec:a libmp3lame -b:a 96k -write_xing 0 "${outputPath}"`,
       { input: mp3Buffer, stdio: ['pipe', 'pipe', 'pipe'] }
     );
   }
