@@ -11,15 +11,17 @@
  * CONTRIBUTING.md, and moving them would break all three for no gain.
  */
 import { docsCheck } from './commands/docs-check.js';
+import { citationsUrls } from './commands/citations/index.js';
 
 const USAGE = `atlas — AI Safety Atlas maintainer commands
 
-  atlas docs check     verify governed documents against docs/standards/documentation.md
+  atlas docs check       verify governed documents against docs/standards/documentation.md
+  atlas citations urls   write every cited source, per chapter and section, as Markdown
 
 Run from anywhere in the checkout: ./bin/atlas <command>
 `;
 
-export function main(argv: string[]): number {
+export async function main(argv: string[]): Promise<number> {
   const [group, sub] = argv;
 
   if (!group || group === '--help' || group === '-h' || group === 'help') {
@@ -31,9 +33,19 @@ export function main(argv: string[]): number {
     return docsCheck(process.cwd());
   }
 
+  if (group === 'citations' && sub === 'urls') {
+    return citationsUrls(process.cwd(), argv[2]);
+  }
+
   console.error(`atlas: unknown command \`${[group, sub].filter(Boolean).join(' ')}\`\n`);
   console.error(USAGE);
   return 2;
 }
 
-process.exit(main(process.argv.slice(2)));
+main(process.argv.slice(2)).then(
+  (code) => process.exit(code),
+  (err) => {
+    console.error(`atlas: ${err instanceof Error ? err.message : String(err)}`);
+    process.exit(1);
+  },
+);
