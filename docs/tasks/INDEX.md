@@ -41,3 +41,5 @@ index as numbered files (e.g. `0001-title.md`).
   Harden the read-along against silent timing drift and stale encoder paths (in_progress — all criteria met, awaiting owner acceptance).
 - [task:0009](./0009-wrap-narrated-list-items-so-the-read-along-covers-them.md) —
   Wrap narrated list items so the read-along covers them (in_progress — all criteria met, awaiting owner acceptance).
+- [task:0010](./0010-design-the-atlas-control-surface-for-maintainer-operations.md) —
+  Design the `atlas` control surface for maintainer operations (todo — design agreement only, no implementation authorised).
