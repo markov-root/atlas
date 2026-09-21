@@ -31,7 +31,7 @@ Five audits scoped to one dimension each, allocated together so their findings c
 sweep. IDs are reserved and committed; a record that is still a template has not been run yet.
 
 - [audit:0002](./0002-structure-modularity-and-file-tree-coherence.md) —
-  Structure, modularity, and file-tree coherence (template, not yet run).
+  Structure, modularity, and file-tree coherence (draft, 2026-09-21; 7 findings).
 - [audit:0003](./0003-test-suite-depth-gaps-and-architectural-fitness.md) —
   Test-suite depth, gaps, and architectural fitness (template, not yet run).
 - [audit:0004](./0004-cruft-dead-code-and-dependency-hygiene.md) —
@@ -39,4 +39,4 @@ sweep. IDs are reserved and committed; a record that is still a template has not
 - [audit:0005](./0005-code-quality-patterns-and-typescript-idiom.md) —
   Code quality, patterns, and TypeScript idiom (template, not yet run).
 - [audit:0006](./0006-developer-ergonomics-and-the-case-for-an-atlas-control-surface.md) —
-  Developer ergonomics and the case for an `atlas` control surface (template, not yet run).
+  Developer ergonomics and the case for an `atlas` control surface (draft, 2026-09-21; 7 findings).
