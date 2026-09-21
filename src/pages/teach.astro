@@ -36,17 +36,11 @@ const totalStudents = heroCohorts.reduce(
   (sum, c) => sum + (c.actualParticipants ?? c.plannedParticipants ?? 0),
   0,
 );
-const uniqueCountries = new Set(
-  allCourses
-    .map((c) => {
-      const loc = c.location;
-      if (!loc) return null;
-      // Extract country from location (usually last part after comma, or the whole string)
-      const parts = loc.split(",");
-      return parts[parts.length - 1]?.trim();
-    })
-    .filter(Boolean),
-);
+// Sourced from Plausible export 2025-06-05 → 2026-06-03, countries with
+// ≥50 visitor-days. Refresh when next export is taken. Snapshot-based
+// because the cohort-location derivation was inflated by non-country
+// strings ("Global", "Online", "Europe") and undercounts true reach.
+const countriesReached = 45;
 
 // Verified cohorts with any participant count (actual or planned), sorted
 // newest-first by startDate. Same actual-or-planned fallback as the hero,
@@ -170,7 +164,7 @@ const formatOptions = [
                             <p class="text-lg text-white">students</p>
                         </div>
                         <div>
-                            <p class="text-3xl lg:text-4xl font-semibold">{Math.round(uniqueCountries.size / 5) * 5}</p>
+                            <p class="text-3xl lg:text-4xl font-semibold">{countriesReached}+</p>
                             <p class="text-lg text-white">countries</p>
                         </div>
                     </div>
@@ -443,7 +437,7 @@ const formatOptions = [
     <!-- Section 5: Courses -->
     <SplitSection
         heading="Courses"
-        headingDescription={`${totalStudents}+ students across ${uniqueCountries.size}+ countries.`}
+        headingDescription={`${totalStudents}+ students across ${countriesReached}+ countries.`}
         leftBg="white"
         rightBg="gray"
         class="mb-4"
