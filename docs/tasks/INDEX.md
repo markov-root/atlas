@@ -47,3 +47,5 @@ index as numbered files (e.g. `0001-title.md`).
   Adopt the documentation content standards in substance, not just frontmatter (todo — the goodharting fix).
 - [task:0012](./0012-position-atlas-docs-check-as-a-portable-floor-under-the-software-engineering-ski.md) —
   Position `atlas docs check` as a portable floor under the software-engineering skill (todo).
+- [task:0013](./0013-migrate-the-google-docs-sources-the-textbook-is-served-from.md) —
+  Migrate the Google Docs sources the textbook is served from (todo — blocks nothing, but orphans the committed cache if done naively).
