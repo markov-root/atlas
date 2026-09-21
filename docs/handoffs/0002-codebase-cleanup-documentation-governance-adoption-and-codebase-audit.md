@@ -31,7 +31,7 @@ engineering_document:
   details:
     captured_at: '2026-09-21T14:50:00Z'
     repository: 'AI Safety Atlas (markov-root/atlas)'
-    revision: 'branch codebase-cleanup at d397b6f; clean except a pre-existing uncommitted src/pages/teach.astro edit owned by Markov'
+    revision: 'branch codebase-cleanup at 7a66041; clean except a pre-existing uncommitted src/pages/teach.astro edit owned by Markov (a 2026-09-03 /teach hero-metric fix, never committed)'
     objective: 'Adopt the software-engineering documentation discipline in full, then audit the codebase across quality dimensions and agree a refactor plan before changing any code.'
     completed:
       [
@@ -86,6 +86,11 @@ question for the owner, not a defect.
 | `7e4dc36` | `audit:0006` ergonomics and the control-surface case                           |
 | `0bd0cbb` | `audit:0003` testing, `audit:0004` cruft, `audit:0005` code quality            |
 | `d397b6f` | `task:0010` control-surface design record                                      |
+| `7332d95` | `audit:0007`-`0010` deep scaling sweep — 36 findings across four causal chains |
+| `091282e` | `task:0011` — living documents restructured to their role content standards    |
+| `301634e` | `atlas docs check` — skill-free conformance floor, wired into `pnpm verify`    |
+| `a7ffb68` | `audit:0005` typecheck run (0 errors, 119 files) + F7 on its non-hermeticity   |
+| `e87f1f5` | `task:0012` — position the floor under the skill                               |
 
 **The blocker recorded in the previous version of this handoff is resolved, and its stated hypothesis
 was wrong.** The cause was not missing INDEX files. `docs.currency.roles` requires a 4-digit filename
@@ -101,7 +106,7 @@ commit above.
 
 ## Current state
 
-Branch `codebase-cleanup` at `d397b6f`, working tree clean apart from Markov's own uncommitted
+Branch `codebase-cleanup` at `7a66041`, working tree clean apart from Markov's own uncommitted
 `src/pages/teach.astro` edit, which has been left untouched throughout.
 
 A memory-commit monitor is running at `~/.local/var/atlas-monitor/memwatch.sh`, logging to
@@ -144,9 +149,13 @@ engineering document validate          # expect exactly 1 finding: current-multi
 engineering document query --role task --compact
 ```
 
-One thing this session could not do and the next should: **run `pnpm typecheck`**. It was skipped on
-memory grounds, and `audit:0005` names that as its own largest gap — the "0 lint errors" result says
-nothing about type safety. Run it with headroom and nothing else running.
+`pnpm typecheck` has since been run (119 files, 0 errors) — but **only in contributor mode**. With
+credentials present it reaches live Google Docs and can fail on a network timeout rather than a type
+error (`audit:0005` F7). Use `GOOGLE_CREDENTIALS_BASE64= pnpm typecheck` for a hermetic run.
+
+**The next thread is the codebase refactor**, which has not started. `src/` is still untouched. The
+46 audit findings collapse into six root decisions — see `docs/audits/INDEX.md` and the
+cross-cutting note there.
 
 ## Constraints — do not violate
 
