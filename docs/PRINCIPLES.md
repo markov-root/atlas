@@ -1,12 +1,133 @@
+---
+standard:
+  version: 1
+  id: principles
+  summary: The engineering principles this project applies, each tied to a code reference.
+  status: current
+  owner: Markov Grey
+  updated: '2026-09-21'
+---
+
 # Principles
 
 The engineering principles this project actually applies, with the code that demonstrates each one. If something here doesn't match the codebase, the code or the doc is wrong — fix one or the other in the same change.
 
 Generic principles (SOLID, GRASP, coupling/cohesion vocabulary, etc.) are not repeated here. Read a textbook for those.
 
+## How this standard works
+
+These principles are a standard, not a style guide: some of them settle disputed cases outright.
+This section is the governance frame — who issued this document, whom it binds, how conformance is
+decided, how an exception is authorized, and how the standard itself changes. The principles follow.
+
+### Issuer and adoption
+
+The issuer and maintaining authority is the project owner (Markov Grey). The document dates from
+the 2026-06-01 restructure ("docs: restructure to single-purpose files + audit-aligned principles")
+and has been amended by commit since; the principles and their Why sections record decisions made
+while actually building the site. Adoption basis: `AGENTS.md` makes this the project's entry point
+for the principles and directs every agent working here to keep its references current, and
+`CONTRIBUTING.md` restates §16's behavioral-justification rule for first-time PR authors. Since
+2026-09-21, `adr:0002` (`docs/adr/`) governs this document as a living file carrying `standard`
+role frontmatter at its stable path — deliberately outside `engineering document validate`, which
+is why substantive accuracy, not a validator, is the control that matters here.
+
+Only the project owner grants exceptions and adopts amendments. This is not a community-consensus
+document, and nothing here should be read as one.
+
+### Who and what this binds
+
+**Population:** the maintainer and every contributor — human or agent — who changes code, tests, or
+build configuration in this repository. Agents are bound explicitly: `AGENTS.md` instructs them to
+keep the principle references below current when the code changes, and there is no lighter
+obligation for automated contributors.
+
+**Scope:** `src/`, `tests/`, and build configuration (`astro.config.mjs`, `src/content.config.ts`);
+plus every claim this document makes about how the system behaves — such claims must be verifiable
+at the cited anchor (see [Citations](#citations)).
+
+**Not governed here:** visual practice (`DESIGN.md`), priorities and commitments (`ROADMAP.md`),
+contributor workflow mechanics (`CONTRIBUTING.md`), and generic SE vocabulary (intro above).
+
+### Binding vs advisory
+
+A **binding** principle settles a contested case: a reviewer can determine conformance from this
+text plus the cited code. An **advisory** principle informs judgment but cannot by itself settle a
+dispute — it needs the stated calibration and the actual facts of the case. Marking them honestly
+matters: pretending §10 or §16 were enforceable would only move the argument somewhere less visible.
+
+| #  | Principle | Class | What settles a contested case |
+| -- | --------- | ----- | ----------------------------- |
+| 1  | Single source of truth for build behaviour | Binding | Any env-decision outside `build-mode.ts`, except the §1 bridge and its enumerated consumers |
+| 2  | Fail loud, not silent | Binding | The error names the specific input and a remediation path |
+| 3  | Defence in depth | Binding | Both guards set when credentials are absent — checkable in `content.config.ts` |
+| 4  | Reproducibility | Binding (two documented carve-outs) | The tested content-hash invariant; the carve-outs are in the principle text |
+| 5  | Observability — one banner | Binding | Exactly one startup line, produced by `formatSummary` |
+| 6  | No conditional UI for missing infrastructure | Binding | The boundary test: does a public surface exist to point at? |
+| 7  | Layered testing | Binding | New tests join the named layers; heavy e2e stays opt-in smoke |
+| 8  | No backwards-compatibility cruft | Binding | No toggles, wrappers, or commented-out dead code |
+| 9  | High cohesion, loose coupling | Binding | The named module import boundaries |
+| 10 | YAGNI | Advisory | The stated calibration (named users with concrete needs) plus the facts of the case |
+| 11 | Type safety where it catches bugs | Binding | Precise types for new code; the loose AST `Node` is the documented exception |
+| 12 | Accessibility | Advisory | Explicitly aspirational; gaps are named and tracked in ROADMAP "Next" — but a PR must not make them worse |
+| 13 | The public API is the URL space | Binding | Slug/route changes ship a redirect in the same change |
+| 14 | Explicit non-goals | Binding | Re-opening one is a deliberate act through [Changing this document](#changing-this-document) |
+| 15 | Cache content is a public artifact | Binding | The secret-scan ran before every cache-content commit — no exceptions |
+| 16 | Tests reflect user outcomes | Advisory (one binding convention) | Judgment; the behavioral-justification comment requirement is binding (restated in `CONTRIBUTING.md`) |
+
+### Exceptions
+
+There are two kinds of authorized deviation, and one unauthorized kind.
+
+- **Inline documented exceptions.** Small, structural exceptions live in this document next to the
+  principle they modify, in the shape §1 uses: what is exempted, why, and the alternative that
+  would remove it. Today's register: the `content.config.ts` env bridge (§1); the Transformer's
+  per-loader counters and the machine-dependence of audio availability (§4); the loose AST `Node`
+  type (§11, an acknowledged debt with a planned fix in ROADMAP "Next").
+- **Waivers for a specific change.** A change that violates a binding principle is authorized only
+  in advance: propose it in the PR that needs it, and the project owner grants or refuses.
+- **Record placement.** Consequential or standalone exceptions get a governed `adr` record in
+  `docs/adr/` (per `AGENTS.md` "Decision records"); small ones get an inline entry here. An
+  exception that is consequential and recorded nowhere is simply a violation.
+
+The authorization rule for a **new** exception, then: proposed by the change that needs it, granted
+only by the project owner, and recorded in that same change — inline here or as an ADR. An
+undocumented exception is not authorized; treat it as a violation of the underlying principle, not
+as precedent. One grant never extends to an analogous case without its own record.
+
+### Changing this document
+
+Adding, amending, or retiring a principle happens through a normal PR, decided by the project owner.
+A new principle is legitimate when it passes the test in
+["What this document is not"](#what-this-document-is-not): it can point at specific code that
+exemplifies it and at a specific problem it solves in _this_ project — "principle 17" earns its
+place the way 1–16 did, or it doesn't exist. A principle is retired in the same change that removes
+the condition it governs; and a reference that no longer matches the code is a defect to fix
+immediately (the `AGENTS.md` norm), not a reason to weaken the norm.
+
+### Contested-case procedure
+
+1. Confirm applicability — is the change inside the scope above?
+2. Identify the principle and its class — a binding principle settles the case; an advisory one
+   informs.
+3. Check the exception register — the inline entries here, plus `docs/adr/` for the consequential
+   ones. Nothing on file → not authorized → fix the code or grant the exception explicitly.
+4. Verify evidence at the cited anchors — argue from the code, not from memory.
+5. If this text is ambiguous for a recurring class of case, that ambiguity is a defect in the
+   standard: fix the text through the change process. Deciding by hidden intent is the failure
+   mode this section exists to prevent.
+
+### Citations
+
+References use **symbol anchors** (`fetchDoc`, `formatSummary`, `slugify`) wherever possible.
+`file:line` citations rot on the next edit above them — half the line citations in an earlier
+version of this document had drifted off their code by the time `audit:0002` F7 checked them,
+while every symbol anchor in the same document survived. A line number appears below only as a
+secondary hint next to the symbol it points at, verified against the tree as of 2026-09-21.
+
 ---
 
-## 1. Single source of truth for build behaviour
+## 1. Single source of truth for build behaviour (binding)
 
 Every env-mode _decision_ is made in `src/lib/build-mode.ts`. No other module is allowed to interpret raw env vars to decide what to fetch, skip, or render.
 
@@ -14,9 +135,9 @@ There's one carefully-scoped exception: `content.config.ts` is the only file tha
 
 Modules that legitimately consume the bridged values:
 
-- `src/textbook-loader/loader.ts:59` reads `process.env.SKIP_PDF` to gate `ChapterPdfRenderer`
-- `src/textbook-loader/loader.ts:66` reads `process.env.SKIP_AUDIO` for the audio renderer's `skipGeneration` flag
-- `src/textbook-loader/renderers/audio/renderer.ts:53` reads `process.env.SKIP_AUDIO_DOWNLOAD` as a local-dev escape hatch
+- `src/textbook-loader/loader.ts` `load()` reads `process.env.SKIP_PDF` (line 77) to gate `ChapterPdfRenderer`
+- `src/textbook-loader/loader.ts` `load()` reads `process.env.SKIP_AUDIO` (line 82) for the audio renderer's `skipGeneration` flag
+- `src/textbook-loader/renderers/audio/renderer.ts` `render()` reads `process.env.SKIP_AUDIO_DOWNLOAD` as a local-dev escape hatch
 
 These reads don't _decide_ anything — they apply a decision already made upstream. If a new module needs to gate on creds, it must consume `BuildMode`, not probe env.
 
@@ -28,23 +149,23 @@ These reads don't _decide_ anything — they apply a decision already made upstr
 
 The bridge is a pragmatic compromise; the alternative (passing `BuildMode` through `TextbookLoader.load()` to the renderers) is on the table if the renderers grow more mode-dependent behaviour.
 
-**Reference:** `src/lib/build-mode.ts`, `src/content.config.ts` lines 22–46, `src/textbook-loader/loader.ts:59-66`.
+**Reference:** `src/lib/build-mode.ts` (`detectBuildMode`), `src/content.config.ts` env bridge (`:83-90`, with the `SKIP_PDF`/`SKIP_AUDIO` set at `:89-90`), `src/textbook-loader/loader.ts` `load()` (`:77`, `:82`).
 
-## 2. Fail loud, not silent
+## 2. Fail loud, not silent (binding)
 
 When the build can't do the thing it's being asked to do, it throws an error that names the specific input and tells the user how to fix it. Generic "something went wrong" messages are a bug.
 
 **Why:** the original cache-miss error was `"cacheOnly mode is enabled"` — true but useless. The new one names the docId, distinguishes "cacheOnly" vs "no creds", and points at `CONTRIBUTING.md`. Contributors who hit it can self-serve.
 
-**Reference:** `src/textbook-loader/gdocsdk.ts:48-58` (`fetchDoc` cache-miss error).
+**Reference:** `src/textbook-loader/gdocsdk.ts` `fetchDoc` (`:41`), the cache-miss `throw` at `:62`.
 
-## 3. Defence in depth
+## 3. Defence in depth (binding)
 
 A skip behaviour reachable through multiple paths is harder to break by accident. Both `BuildMode.fetchFromGoogleDocs` (passed as `cacheOnly` to the loader) AND `process.env.SKIP_PDF` / `SKIP_AUDIO` (read by the renderers) are set when credentials are absent. Either one alone would suffice; together, no renderer can silently start hitting Google or R2 just because someone removed a single guard.
 
-**Reference:** `src/content.config.ts:44-46` (sets `process.env.SKIP_PDF`/`SKIP_AUDIO` from `BuildMode`).
+**Reference:** `src/content.config.ts:89-90` (sets `process.env.SKIP_PDF`/`SKIP_AUDIO` from `BuildMode`).
 
-## 4. Reproducibility
+## 4. Reproducibility (binding, two documented carve-outs)
 
 Same source + fresh tooling should always produce the same artifacts. This is asserted as a test invariant.
 
@@ -52,9 +173,9 @@ Same source + fresh tooling should always produce the same artifacts. This is as
 
 **Where it does NOT hold (and why):** `loadChapter(X)` called twice on the _same_ loader produces different hashes because the `Transformer` accumulates per-textbook counters (figure numbers etc.) as instance state. This is intentional — "Figure 3.2" requires global context — and documented in [`ARCHITECTURE.md`](./ARCHITECTURE.md) under "Content pipeline / Transformer".
 
-Rendered pages also depend on what audio the building machine can reach: the audio renderer only keeps a section's `audioLink` if the MP3 was pulled from R2, and `resolveSectionAudio` prefers locally staged files (for chapters with committed timings) over the published ones. Two builds of the same commit can therefore emit different `data-audio-url` values. That is deliberate — the alternative is a page pointing at a file the build cannot serve — and it doesn't reach the content hash, which is computed from the source document alone (`loader.ts:164`).
+Rendered pages also depend on what audio the building machine can reach: the audio renderer only keeps a section's `audioLink` if the MP3 was pulled from R2, and `resolveSectionAudio` prefers locally staged files (for chapters with committed timings) over the published ones. Two builds of the same commit can therefore emit different `data-audio-url` values. That is deliberate — the alternative is a page pointing at a file the build cannot serve — and it doesn't reach the content hash, which is computed from the source document alone (`loader.ts` `loadChapter`, `contentHash` at `:164`).
 
-## 5. Observability — one banner, no spelunking
+## 5. Observability — one banner, no spelunking (binding)
 
 The build prints exactly one structured line at startup declaring the resolved mode:
 
@@ -64,9 +185,9 @@ The build prints exactly one structured line at startup declaring the resolved m
 
 If you want to know what the build is doing, the first line of output tells you. No need to grep env vars or check 3 different files.
 
-**Reference:** `src/lib/build-mode.ts` `formatSummary`, `src/content.config.ts:34`.
+**Reference:** `src/lib/build-mode.ts` `formatSummary` (`:67`), `src/content.config.ts` (`console.log(mode.summary)` at `:78`).
 
-## 6. No conditional UI for missing infrastructure
+## 6. No conditional UI for missing infrastructure (binding)
 
 When infra has a public-by-design surface (Algolia search-only key, public CDN URLs), the UI renders the same for everyone. Conditionally hiding features for contributors creates rendering complexity and a worse contributor experience without solving any real problem.
 
@@ -74,9 +195,9 @@ When infra has a public-by-design surface (Algolia search-only key, public CDN U
 
 The boundary is whether something public exists to point at. A section with no audio anywhere renders no player at all — `resolveSectionAudio` returns null, and the audio renderer clears `audioLink` when nothing was resolved. That is not conditional UI for missing infrastructure; it is a control with nothing to play. Where published audio does exist, a contributor gets the same player and the same read-along as everyone else, without credentials.
 
-**Reference:** `astro.config.mjs:24-27`, `src/components/DocSearchProvider.astro` (no conditional rendering), `src/lib/section-audio.ts`.
+**Reference:** `astro.config.mjs` env schema, `PUBLIC_ALGOLIA_*` defaults (`:28-31`), `src/components/DocSearchProvider.astro` (no conditional rendering), `src/lib/section-audio.ts` `resolveSectionAudio`.
 
-## 7. Layered testing
+## 7. Layered testing (binding)
 
 Each test layer catches a specific class of regression. The default `pnpm test` runs four pure layers in ~7s; a separate `pnpm test:smoke` runs the heavy end-to-end build.
 
@@ -90,13 +211,13 @@ Each test layer catches a specific class of regression. The default `pnpm test` 
 
 **Reference:** `docs/ARCHITECTURE.md` "Test layers", and the `test` files under `src/` and `tests/`.
 
-## 8. No backwards-compatibility cruft
+## 8. No backwards-compatibility cruft (binding)
 
 When we change behaviour, we change it atomically. No `if (process.env.NEW_BEHAVIOR)` toggles, no compatibility wrappers for "the old way", no commented-out dead code. The repository is small enough and the contributors few enough that the cost of a cleanup commit is lower than the cost of carrying scar tissue.
 
 **Reference:** check `git log` — the Track A commits delete or rewrite, they don't accumulate.
 
-## 9. High cohesion within modules, loose coupling between
+## 9. High cohesion within modules, loose coupling between (binding)
 
 Each module has one job, and only the smallest possible surface crosses module boundaries.
 
@@ -110,7 +231,7 @@ Each module has one job, and only the smallest possible surface crosses module b
 
 **Reference:** `src/lib/build-mode.ts` (zero internal imports), `src/textbook-loader/index.d.ts` (the module's public types), `src/components/nodes/` directory structure.
 
-## 10. YAGNI — don't speculate, but build when demand is real
+## 10. YAGNI — don't speculate, but build when demand is real (advisory)
 
 We build what's needed for the current task. Not what might be needed someday. **But also:** when demand is real and recurring, build the layer before the next demand event so the project doesn't have to be retrofitted under pressure.
 
@@ -133,7 +254,7 @@ Concrete examples where the "build when demand is real" side won:
 
 **Reference:** the Track A trade-offs documented in `docs/ARCHITECTURE.md` (image hosting deferred; conditional Algolia rendering deleted). The locale-routing scaffold call documented in `docs/ROADMAP.md` "Now — Locale-aware routing scaffold."
 
-## 11. Type safety where it actually catches bugs
+## 11. Type safety where it actually catches bugs (binding; one documented exception)
 
 TypeScript strict mode is on. Most of the codebase uses precise types — `BuildMode`, `Textbook`, `Chapter`, `Section`, `ChapterDefinition`, etc. are all named structural types.
 
@@ -151,9 +272,9 @@ export type Node = {
 
 **Why honest about debt rather than pretending it's intentional:** TypeScript's value is catching the class of bug where you read a field that doesn't exist or pass the wrong shape. We currently lose that protection at the AST boundary. The cost of the looseness shows up as runtime checks and TODO/FIXME-style comments in node components. It's the right cost to defer (the Transformer produces dozens of node kinds; a discriminated union is a meaningful refactor) but it's a real cost.
 
-**Reference:** `src/textbook-loader/transformer.ts:5-9` (loose Node type), `src/components/NodeRenderer.astro` (where the looseness shows up).
+**Reference:** `src/textbook-loader/transformer.ts` `export type Node` (`:5-9`), `src/components/NodeRenderer.astro` (where the looseness shows up).
 
-## 12. Accessibility is non-optional for a public textbook
+## 12. Accessibility is non-optional for a public textbook (advisory — explicitly aspirational)
 
 The target audience is educators and students — many of whom rely on assistive technology. Semantic HTML, keyboard navigation, alt text on figures, sufficient color contrast, and screen-reader-friendly equation rendering all matter.
 
@@ -167,22 +288,22 @@ This principle is stated _aspirationally_ — we want the codebase to follow it,
 
 **Reference:** `src/components/nodes/Figure.astro` (the `alt=""` gap).
 
-## 13. The public API is the URL space
+## 13. The public API is the URL space (binding)
 
 This project has no exported JS/TS API. The "public contract" with users and the wider web is the URL structure:
 
 - `/chapters/v{version}/{chapter-slug}/{section-slug}` — canonical chapter URL
 - `/read` — top-level table of contents
-- `/chapters/{chapter-slug}/` and `/chapters/{N}/` — redirect aliases (set up in `astro.config.mjs`)
+- `/chapters/{chapter-slug}/` and `/chapters/{N}/` — redirect aliases (301s emitted by the `src/pages/chapters/[chapter]/` route handlers; the top-level `/chapters` → `/read` redirect lives in `astro.config.mjs` `redirects`)
 - Asset URLs under `/_astro/` — Astro-managed, not stable
 
 Breaking any of these breaks every external link to the textbook (course syllabi, social-media shares, the deployed search index pointing at old slugs). Treat changes to these the way a library would treat changes to its exported types.
 
 **Practical implication:** if you rename a chapter slug or restructure the URL space, add a redirect. Don't just change the route handler.
 
-**Reference:** `src/pages/chapters/` route handlers, `astro.config.mjs` `redirects` block, `src/textbook-loader/utils.ts:25` `slugify`.
+**Reference:** `src/pages/chapters/[chapter]/` route handlers (the 301 aliases), `astro.config.mjs` `redirects` block, `src/textbook-loader/utils.ts` `slugify` (`:25`).
 
-## 14. Explicit non-goals
+## 14. Explicit non-goals (binding until reopened through the change process)
 
 Some choices are easier to defend if you say them out loud. The current explicit non-goals:
 
@@ -191,7 +312,7 @@ Some choices are easier to defend if you say them out loud. The current explicit
 - **No microservices split.** The site is a static build; the maintainer-side pipeline is a single Node process. It stays a monolith.
 - **No public JS/TS API.** The site is the deliverable; library extraction is not in scope.
 - **No authentication / user accounts.** Readers are anonymous; comments and editing happen in the Google Docs source.
-- **No certification program.** Multiple requests (~6 over months) for a certification with quizzes, accounts, anti-gaming, and credential issuance. Demand-vs-scope ratio doesn't justify the engineering. Track the interest count in ROADMAP; don't even create an interest-list page (that creates a follow-up obligation we can't yet fulfill).
+- **No certification program.** Multiple requests (~6 over months) for a certification with quizzes, accounts, anti-gaming, and credential issuance. Demand-vs-scope ratio doesn't justify the engineering. Track the interest count in ROADMAP; don't even create an interest-list page (that creates a follow-up obligation we can't yet fulfill). Scope note: quizzes/flashcards as standalone content types are **not** rejected here — that scope was never what the six asks requested — they are tracked in ROADMAP "Next" per `audit:0008`; only the credential infrastructure (accounts, scoring, anti-gaming, issuance) remains a non-goal.
 - **No automated Formspree-to-data-layer pipeline.** Submissions are reviewed in a queue before any data lands. Some are spam, dupes, or not serious; auto-write would either corrupt the data layer or require unmaintainable heuristics.
 - **No EPUB/MOBI/LaTeX exports for now.** Single asks. The per-chapter PDFs + the planned whole-book PDF cover most e-reader use cases. LaTeX specifically conflicts with the Google Docs source-of-truth.
 - **No hosting of external curricula on the Atlas platform.** Inquiries exist (CAIF); architectural change is much bigger than the request implies. Defer until a concrete partnership decision.
@@ -200,7 +321,7 @@ Some choices are easier to defend if you say them out loud. The current explicit
 
 **Reference:** `docs/ROADMAP.md` "Not planned" section restates the same non-goals with longer-form rationale.
 
-## 15. Cache content is a public artifact (privacy)
+## 15. Cache content is a public artifact (privacy) (binding — no exceptions)
 
 `.cache/docs/` is committed to the repo as the contributor-build unlock (see [`ARCHITECTURE.md`](./ARCHITECTURE.md) "Why a committed cache"). Authors sometimes paste API keys, internal URLs, or draft notes into Google Docs while editing — the cache is about to become a public artifact, so every cache-content commit MUST be preceded by a secret-scan.
 
@@ -212,7 +333,7 @@ The scan procedure lives in `.cache/docs/README.md`. It runs a small list of hig
 
 ---
 
-## 16. Tests reflect user outcomes, not implementation
+## 16. Tests reflect user outcomes, not implementation (advisory, with one binding convention)
 
 Tests exist so a contributor running `pnpm test` before opening a PR can tell whether their change broke a user-observable behavior — and, when something does break, the failure message tells them what reader, contributor, translator, or maintainer is affected. Tests are not for sanity-checking code we already wrote against itself; that is true by construction (the code does what the code does) and the resulting tests rot the moment the implementation is refactored.
 
@@ -276,4 +397,4 @@ If one of these stops being skippable, add it as a principle here with a code re
 - Not a list of every coding convention. The codebase isn't large enough to need one.
 - Not a place to copy generic principles you might want someday. Each entry above earned its place by removing real complexity from the actual code OR being load-bearing for the project's audience (e.g. accessibility for a public textbook).
 
-If you want to add a principle here, the test is: can you point at the _specific_ code that exemplifies it, and the _specific_ problem it solves in _this_ project? An aspirational principle (like §12 accessibility) is fine, but it has to name the gap honestly.
+If you want to add a principle here, the test is: can you point at the _specific_ code that exemplifies it, and the _specific_ problem it solves in _this_ project? An aspirational principle (like §12 accessibility) is fine, but it has to name the gap honestly. That test is now load-bearing, not advice: per [Changing this document](#changing-this-document), it is the legitimacy condition for any new principle, and any exception to a principle must land in the [Exceptions](#exceptions) register rather than in a code comment or a conversation.

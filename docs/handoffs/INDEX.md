@@ -26,3 +26,4 @@ open work, blockers, and a safe resume command. Allocated with
 | Record                                                                  | State   | Summary                                        |
 | ----------------------------------------------------------------------- | ------- | ---------------------------------------------- |
 | [handoff:0001](./0001-freelancer-handoff-make-atlas-self-sustaining.md) | current | Freelancer handoff: make Atlas self-sustaining |
+| [handoff:0002](./0002-codebase-cleanup-documentation-governance-adoption-and-codebase-audit.md) | current | Codebase cleanup: governance adopted, five-audit sweep complete |

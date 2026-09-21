@@ -50,6 +50,9 @@ checks:
   test-a11y:
     command: [pnpm, run, 'test:a11y']
     applies_to: ['**/*']
+  docs-check:
+    command: [pnpm, run, 'docs:check']
+    applies_to: ['docs/**/*.md', 'cli/**']
   build:
     command: [pnpm, run, build]
     applies_to: ['**/*']
@@ -62,7 +65,7 @@ profiles:
     checks: [typecheck, test]
   # Full pre-push gate (pnpm verify).
   verify:
-    checks: [lint, lint-actions, typecheck, test, build, test-smoke, test-a11y]
+    checks: [lint, lint-actions, typecheck, test, docs-check, build, test-smoke, test-a11y]
 
 docs:
   include:
@@ -92,8 +95,25 @@ docs:
         index: docs/adr/INDEX.md
         id_prefix_digits: 4
         contract: { version: 1, role: adr }
+      # Process journal. Deliberately gitignored (see .gitignore and AGENTS.md):
+      # these are candid working notes, governed for structure and queryability
+      # but not shipped to the public repo.
+      - name: lesson
+        include: ['docs/lessons/*.md']
+        index: docs/lessons/INDEX.md
+        id_prefix_digits: 4
+        contract: { version: 1, role: lesson }
 
-# Additional record roles (research, lesson, …) ship with the skill and can be
+# Deliberately NOT declared here: the four living documents (ARCHITECTURE.md,
+# PRINCIPLES.md, DESIGN.md, ROADMAP.md). `docs.currency.roles` governs
+# append-only numbered record *series* — it requires a 4-digit filename prefix
+# on every matched file (`id_prefix_digits` has schema minimum 1, so there is
+# no opt-out), which would force renames like `docs/0001-architecture.md` and
+# break every inbound link for no reader benefit. The living documents instead
+# carry role frontmatter at their stable paths, which is how the skill treats
+# its own living documents. See docs/adr/0002 for the full reasoning.
+
+# Additional record roles (research, plan, …) ship with the skill and can be
 # adopted the same way when the first such record is created — an adopted role
 # must contain at least one record, so they are declared on first use.
 
