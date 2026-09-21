@@ -22,7 +22,7 @@ engineering_document:
   authority:
     kind: point-in-time-evidence
     owner: Markov Grey
-    scope: 'TypeScript and Astro sources at commit 7e4dc36; pnpm lint executed, pnpm typecheck was not'
+    scope: 'TypeScript and Astro sources at commit 7e4dc36; pnpm lint executed, pnpm typecheck executed 2026-09-21 in contributor mode'
   created: '2026-09-21'
   updated: '2026-09-21'
   transition_history: unverified
@@ -33,7 +33,7 @@ engineering_document:
     subjects: ['AI Safety Atlas TypeScript and Astro sources at 7e4dc36']
     method: 'Ran pnpm lint; grepped for any/non-null assertions/eslint-disable; read tsconfig.json and eslint.config.js'
     limitations:
-      - 'pnpm typecheck was NOT run (memory-constrained VM); type-level defects are unestablished'
+      - 'pnpm typecheck run 2026-09-21 in contributor mode: 0 errors, 119 files; its 49 hints were not individually reviewed'
       - 'Astro template code was only grepped, not analysed'
       - 'No complexity, duplication, or cyclomatic metrics were computed'
 ---
@@ -48,8 +48,9 @@ TypeScript and Astro sources of AI Safety Atlas at commit `7e4dc36` (branch `cod
 **Examined:** lint results, compiler strictness configuration, type-escape hatches (`any`, non-null
 assertions, `eslint-disable`), and the stated intent of the lint configuration.
 
-**Not examined:** `pnpm typecheck` results (not run — see Limitations), code duplication, cyclomatic
-complexity, Astro template logic, CSS, and runtime error handling behaviour.
+**Not examined:** code duplication, cyclomatic complexity, Astro template logic, CSS, and runtime
+error handling behaviour. (`pnpm typecheck` was originally out of scope on VM-memory grounds; it was
+run on 2026-09-21 once headroom allowed — see F7 and Limitations.)
 
 ## Method
 
@@ -154,12 +155,27 @@ is intentionally NOT adopted — the project defers a bulk reformat (see docs/RO
 _Inference._ No finding. A decision, its reason, and its exit condition are all recorded in two
 places. Re-raising it would be re-litigating a documented choice.
 
+### F7 — `pnpm typecheck` is not hermetic: it needs network and, with credentials present, live Google Docs
+
+_Observation._ Added 2026-09-21 after this audit's recommendation 1 was executed. `pnpm typecheck`
+(`astro check`) loads `src/content.config.ts`, which constructs `TextbookLoader`. With
+`GOOGLE_CREDENTIALS_BASE64` set in `.env`, the first run failed with a TLS `ETIMEDOUT` — a network
+error, not a type error, and with no message indicating that typechecking had attempted a remote
+fetch. Re-running with `GOOGLE_CREDENTIALS_BASE64=` (contributor mode, committed cache) completed:
+**119 files, 0 errors, 0 warnings, 49 hints.**
+
+_Inference._ A maintainer's typecheck depends on live Google Docs availability; a contributor's does
+not, because `BuildMode` routes them to the committed cache. This is the same coupling
+`docs/ARCHITECTURE.md` now records for the build, but it is surprising in a *typechecker*, where the
+reasonable expectation is a pure static analysis. It also means a maintainer offline or behind a slow
+link cannot run the repo's own `verify` gate. The failure is loud (non-zero exit, stack trace) but
+not diagnostic — nothing in the output says "this was a content fetch".
+
 ## Limitations
 
-- **`pnpm typecheck` was not run.** This is the most significant gap in this audit: `astro check` is
-  the authoritative checker for Astro template type safety per `eslint.config.js`'s own comment, and
-  nothing here establishes that the tree typechecks clean. The claim "0 lint errors" is not a claim
-  about types.
+- ~~**`pnpm typecheck` was not run.**~~ **Resolved 2026-09-21** — run in contributor mode: 119 files,
+  0 errors, 0 warnings, 49 hints. The attempt also produced F7. The 49 hints were not individually
+  reviewed, so "0 errors" is not a claim that every hint is benign.
 - **Astro templates were grepped, not analysed.** 57 `.astro` files contributed only their `any` and
   non-null-assertion counts; their logic was not reviewed.
 - **No duplication or complexity metrics.** Statements about quality rest on escape-hatch counts and
@@ -169,10 +185,11 @@ places. Re-raising it would be re-litigating a documented choice.
 
 ## Recommendations
 
-1. **Run `pnpm typecheck` and record the result before acting on anything here (F1, Limitations).
-   Size S.** This audit's largest gap is self-inflicted by the VM constraint. Run it on a machine
-   with headroom, or accept its ~3.5 GB ceiling deliberately with nothing else running. Until then
-   the type-safety picture is incomplete. **This is the first thing to do.**
+1. ~~**Run `pnpm typecheck` and record the result.**~~ **Done 2026-09-21** (see Limitations and F7):
+   0 errors across 119 files. The type-safety picture is no longer incomplete. Follow-on from F7:
+   consider making `typecheck` hermetic by forcing contributor mode, so the repo's own gate does not
+   depend on a third party's uptime. Size S; risk: it would stop typechecking whatever differs in
+   maintainer mode, which may be nothing — verify before adopting.
 
 2. **Replace the two `props as any` casts with typed route props (F3, kind 2). Size S.** These are at
    a route boundary where a wrong shape breaks a page. Risk: low; two single-line changes, and
