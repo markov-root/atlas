@@ -92,8 +92,36 @@ docs:
         index: docs/adr/INDEX.md
         id_prefix_digits: 4
         contract: { version: 1, role: adr }
+      # Process journal. Deliberately gitignored (see .gitignore and CLAUDE.md):
+      # these are candid working notes, governed for structure and queryability
+      # but not shipped to the public repo.
+      - name: lesson
+        include: ['docs/lessons/*.md']
+        index: docs/lessons/INDEX.md
+        id_prefix_digits: 4
+        contract: { version: 1, role: lesson }
+      # Living documents. Unlike the record roles above these are single,
+      # continuously-revised files rather than an append-only numbered series,
+      # so `index` and `id_prefix_digits` are nominal — nothing allocates
+      # against them. They are declared so the documents are covered by
+      # `document validate` and carry currentness/supersession metadata.
+      - name: specification
+        include: ['docs/ARCHITECTURE.md']
+        index: docs/INDEX.md
+        id_prefix_digits: 4
+        contract: { version: 1, role: specification }
+      - name: standard
+        include: ['docs/PRINCIPLES.md', 'docs/DESIGN.md']
+        index: docs/INDEX.md
+        id_prefix_digits: 4
+        contract: { version: 1, role: standard }
+      - name: roadmap
+        include: ['docs/ROADMAP.md']
+        index: docs/INDEX.md
+        id_prefix_digits: 4
+        contract: { version: 1, role: roadmap }
 
-# Additional record roles (research, lesson, …) ship with the skill and can be
+# Additional record roles (research, plan, …) ship with the skill and can be
 # adopted the same way when the first such record is created — an adopted role
 # must contain at least one record, so they are declared on first use.
 
