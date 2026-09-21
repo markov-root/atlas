@@ -61,3 +61,9 @@ public/logos/
 # scripts/copy-chapter-audio.sh; the .words.json timings beside them ARE
 # committed.
 public/audio/ch*/*.mp3
+
+# Playwright MCP scratch. The browser tools resolve their output directory
+# against the working directory, so driving a browser from this checkout
+# drops screenshots, page-*.yml snapshots and console logs in here. Nothing
+# in it is worth keeping; prefer an absolute path outside the repo.
+.playwright-mcp/
