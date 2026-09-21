@@ -1,0 +1,14 @@
+{
+  // `astro check` does not surface errors in cli/, so this code had no type
+  // coverage at all despite `pnpm verify` depending on it (audit:0011 F1).
+  // This config exists so `pnpm typecheck:cli` can check cli/ directly.
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["node"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "target": "es2022"
+  },
+  "include": ["**/*.ts"]
+}

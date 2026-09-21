@@ -91,8 +91,11 @@ point — the cost of an entry has to stay near zero or it will not get written.
 The consequence is that `cli/`, which `pnpm verify` now depends on, has no type coverage. This will
 widen as `atlas` grows; `task:0021` alone would add substantially more code there.
 
-**Disposition:** safe standalone fix, and a natural addition to `task:0020`. Should land before
-significant new `cli/` code.
+**Disposition: RESOLVED 2026-09-21.** `@types/node` declared as a dev dependency, and
+`cli/tsconfig.json` plus a `typecheck:cli` script chained into `pnpm typecheck`. All 7 errors were
+knock-on effects of the missing types — once declared, the two implicit-`any` parameters resolved on
+their own, because `readdirSync` became typed. The gate was verified by introducing a deliberate type
+error and confirming it fails; a check that cannot fail is not a check.
 
 ### F2 — `.cache/uc/` holds 1.9 GB of irreplaceable audio, gitignored and unbacked
 
