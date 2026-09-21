@@ -50,6 +50,9 @@ checks:
   test-a11y:
     command: [pnpm, run, 'test:a11y']
     applies_to: ['**/*']
+  docs-check:
+    command: [pnpm, run, 'docs:check']
+    applies_to: ['docs/**/*.md', 'cli/**']
   build:
     command: [pnpm, run, build]
     applies_to: ['**/*']
@@ -62,7 +65,7 @@ profiles:
     checks: [typecheck, test]
   # Full pre-push gate (pnpm verify).
   verify:
-    checks: [lint, lint-actions, typecheck, test, build, test-smoke, test-a11y]
+    checks: [lint, lint-actions, typecheck, test, docs-check, build, test-smoke, test-a11y]
 
 docs:
   include:

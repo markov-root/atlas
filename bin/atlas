@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Thin checkout-local adapter so humans and agents can run `./bin/atlas <cmd> …`
+# without installing anything. Logic-free by design (see docs/tasks/0010): every
+# command is an importable function under cli/, so it can be unit-tested without
+# going through argv. Keep this file free of behaviour — if you are tempted to
+# add a flag here, it belongs in cli/index.ts.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+exec pnpm exec tsx cli/index.ts "$@"
