@@ -49,3 +49,40 @@ index as numbered files (e.g. `0001-title.md`).
   Position `atlas docs check` as a portable floor under the software-engineering skill (todo).
 - [task:0013](./0013-migrate-the-google-docs-sources-the-textbook-is-served-from.md) —
   Migrate the Google Docs sources the textbook is served from (todo — blocks nothing, but orphans the committed cache if done naively).
+- [task:0014](./0014-model-language-and-edition-through-the-whole-stack.md) —
+  Model language and edition through the whole stack (todo — plumbing, not a model change; six decisions gate execution; translators are blocked today).
+- [task:0017](./0017-normalize-integration-failure-posture-on-the-google-docs-pattern.md) —
+  Normalize integration failure posture on the Google Docs pattern (todo — R2/Algolia/logos failure semantics; five decisions gate execution; coordinates with 0013's destructive reindex).
+- [task:0015](./0015-discriminated-union-ast-and-per-renderer-applicability-for-new-content-types.md) —
+  Discriminated union AST and per-renderer applicability for new content types (todo — eight decisions total across 0015/0019 recorded by their author).
+- [task:0016](./0016-audio-cache-key-provenance-voice-unification-and-a-per-section-timings-path.md) —
+  Audio cache key, provenance, voice unification and a per-section timings path (todo — paragraph regen near-free; chunk cache key and welded word timings are the blockers; voice decision gates all spend).
+- [task:0018](./0018-separate-browser-modules-from-build-time-code-and-test-the-dom-layer.md) —
+  Separate browser modules from build-time code and test the DOM layer (todo — test-first, jsdom+Playwright hybrid; completes the extraction pattern follow-scroll.ts:4 began).
+- [task:0019](./0019-reduce-repository-and-page-weight.md) —
+  Reduce repository and page weight (todo — 1.59 GiB clone, oversized images, eager .words.json, per-push rebuilds; history-rewrite decision surfaced first).
+- [task:0020](./0020-standalone-code-quality-and-hygiene-fixes-from-the-audit-sweep.md) —
+  Standalone code quality and hygiene fixes from the audit sweep (todo — seven size-S fixes bundled; two gitignore guards kept; typecheck hermeticity gated on a maintainer-mode diff check).
+
+
+### Refactor programme (2026-09, from the audit sweep)
+
+Seven records covering the six root decisions the 46 audit findings collapse into, plus the
+standalone fixes. Each carries a **Decisions required before execution** section — 29 decisions
+in total, each with options, a recommendation, and what is irreversible if decided wrongly.
+**None of these is authorised to execute; the decisions come first.**
+
+- [task:0014](./0014-model-language-and-edition-through-the-whole-stack.md) —
+  Model language and edition through the whole stack (todo — 6 decisions — translators blocked today).
+- [task:0015](./0015-discriminated-union-ast-and-per-renderer-applicability-for-new-content-types.md) —
+  Discriminated-union AST and per-renderer applicability (todo — 4 decisions — unblocks quizzes, flashcards, self-hosted OWID).
+- [task:0016](./0016-audio-cache-key-provenance-voice-unification-and-a-per-section-timings-path.md) —
+  Audio cache-key provenance, voice unification, per-section timings (todo — 5 decisions — voice choice gates the rest).
+- [task:0017](./0017-normalize-integration-failure-posture-on-the-google-docs-pattern.md) —
+  Normalize integration failure posture on the Google Docs pattern (todo — 5 decisions).
+- [task:0018](./0018-separate-browser-modules-from-build-time-code-and-test-the-dom-layer.md) —
+  Separate browser modules from build-time code and test the DOM layer (todo — 3 decisions).
+- [task:0019](./0019-reduce-repository-and-page-weight.md) —
+  Reduce repository and page weight (todo — 4 decisions — includes an irreversible history rewrite).
+- [task:0020](./0020-standalone-code-quality-and-hygiene-fixes-from-the-audit-sweep.md) —
+  Standalone code-quality and hygiene fixes from the audit sweep (todo — 2 decisions — all size S).
