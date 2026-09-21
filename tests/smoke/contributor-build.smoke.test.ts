@@ -1,7 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import { execFileSync } from 'child_process';
 import { readFileSync, readdirSync, statSync } from 'fs';
-import { join } from 'path';
+import { join, sep } from 'path';
+
+// On Windows pnpm is a .cmd shim: execFileSync will not resolve it through
+// PATHEXT, and recent Node refuses to launch .cmd files without a shell.
+// The arguments here are literals, so enabling the shell is safe.
+const PNPM = process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm';
+const PNPM_SHELL = process.platform === 'win32';
 
 /**
  * End-to-end smoke test for the contributor build path.
@@ -24,7 +30,9 @@ describe('contributor build smoke test', () => {
   it('a built chapter section page contains an <h1>, prose, and navigation links', () => {
     const dist = join(process.cwd(), 'dist');
     const candidates = walkChapterIndexPages(join(dist, 'chapters'));
-    const versioned = candidates.filter((p) => /\/chapters\/v\d+\//.test(p));
+    const versioned = candidates.filter((p) =>
+      /\/chapters\/v\d+\//.test(p.split(sep).join('/')),
+    );
     expect(versioned.length).toBeGreaterThan(0);
 
     // Pick the largest versioned section page — that's the one most
@@ -45,7 +53,8 @@ describe('contributor build smoke test', () => {
   }, 60_000);
 
   it('pnpm build succeeds without .env and produces chapter HTML', () => {
-    execFileSync('pnpm', ['build'], {
+    execFileSync(PNPM, ['build'], {
+      shell: PNPM_SHELL,
       cwd: process.cwd(),
       env: {
         ...process.env,

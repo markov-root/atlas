@@ -1,9 +1,16 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { spawn, type ChildProcess } from 'child_process';
+
 import { existsSync, readFileSync, readdirSync, statSync } from 'fs';
 import { join } from 'path';
 import { chromium, type Browser, type Page } from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
+
+// On Windows pnpm is a .cmd shim: spawn will not resolve it through
+// PATHEXT, and recent Node refuses to launch .cmd files without a shell.
+// The arguments here are literals, so enabling the shell is safe.
+const PNPM = process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm';
+const PNPM_SHELL = process.platform === 'win32';
 
 // Boots `astro preview` against the existing dist/ and runs axe-core against
 // a fixed set of representative pages. Baseline-aware: existing violations
@@ -106,9 +113,9 @@ describe('axe-core accessibility scan', () => {
     }
 
     server = spawn(
-      'pnpm',
+      PNPM,
       ['exec', 'astro', 'preview', '--port', String(PREVIEW_PORT), '--host', PREVIEW_HOST],
-      { stdio: ['ignore', 'pipe', 'pipe'], env: process.env },
+      { stdio: ['ignore', 'pipe', 'pipe'], env: process.env, shell: PNPM_SHELL },
     );
 
     await waitForServer(BASE_URL + '/', 30_000);
