@@ -71,3 +71,7 @@ in total, each with options, a recommendation, and what is irreversible if decid
   Reduce repository and page weight (todo — 1.59 GiB clone, oversized images, eager .words.json, per-push rebuilds; history-rewrite decision surfaced first).
 - [task:0020](./0020-standalone-code-quality-and-hygiene-fixes-from-the-audit-sweep.md) —
   Standalone code quality and hygiene fixes from the audit sweep (todo — seven size-S fixes bundled; two gitignore guards kept; typecheck hermeticity gated on a maintainer-mode diff check).
+- [task:0021](./0021-derive-a-bibliography-from-google-docs-citation-links.md) —
+  Derive a bibliography from Google Docs citation links (todo — 1,792 citations already hyperlinked and cached; CSL model, three-layer extract/enrich/render; five decisions surfaced).
+- [task:0022](./0022-stop-typecheck-and-build-from-uploading-audio-to-production-r2.md) —
+  Stop typecheck and build from uploading audio to production R2 (todo — p1; a typecheck attempted a 96 MB PutObject against production, stopped only by stale credentials).
