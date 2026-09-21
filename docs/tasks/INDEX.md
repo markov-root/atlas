@@ -43,3 +43,5 @@ index as numbered files (e.g. `0001-title.md`).
   Wrap narrated list items so the read-along covers them (in_progress — all criteria met, awaiting owner acceptance).
 - [task:0010](./0010-design-the-atlas-control-surface-for-maintainer-operations.md) —
   Design the `atlas` control surface for maintainer operations (todo — design agreement only, no implementation authorised).
+- [task:0011](./0011-adopt-the-documentation-content-standards-in-substance-not-just-frontmatter.md) —
+  Adopt the documentation content standards in substance, not just frontmatter (todo — the goodharting fix).
