@@ -4,46 +4,46 @@ Each file in this directory has a single purpose. The doc set is intentionally s
 
 ## Reference (current state + rationale)
 
-| File | Audience | Purpose |
-|---|---|---|
-| [ARCHITECTURE.md](./ARCHITECTURE.md) | Anyone working on the code | How the build pipeline, content loader, and Astro layer fit together. Includes "Why we chose this" subsections for the major architectural decisions. |
-| [PRINCIPLES.md](./PRINCIPLES.md) | Anyone making design decisions | The 15 engineering principles this project applies, each with a code reference and rationale. Includes a closing list of classical SE concerns we deliberately don't worry about (and why). |
-| [design-system.md](./design-system.md) | Anyone building UI | Visual patterns, component catalog, color tokens, icons, spacing reference |
+| File                                 | Audience                       | Purpose                                                                                                                                                                                     |
+| ------------------------------------ | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [ARCHITECTURE.md](./ARCHITECTURE.md) | Anyone working on the code     | How the build pipeline, content loader, and Astro layer fit together. Includes "Why we chose this" subsections for the major architectural decisions.                                       |
+| [PRINCIPLES.md](./PRINCIPLES.md)     | Anyone making design decisions | The 15 engineering principles this project applies, each with a code reference and rationale. Includes a closing list of classical SE concerns we deliberately don't worry about (and why). |
+| [DESIGN.md](./DESIGN.md)             | Anyone building UI             | Visual patterns, component catalog, color tokens, icons, spacing reference                                                                                                                  |
 
 ## Strategy (direction of travel)
 
-| File | Audience | Purpose |
-|---|---|---|
+| File                       | Audience                       | Purpose                                                                                                                                                                        |
+| -------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | [ROADMAP.md](./ROADMAP.md) | Maintainer + interested public | Where the codebase is going: Now (1 month) / Next (1–3 months) / Later (3–12 months) / Not planned. Each item names the principle, code area, or constraint that motivates it. |
 
 ## Process journal (local-only)
 
-| File | Audience | Purpose |
-|---|---|---|
-| `lessons/` *(gitignored)* | Maintainer + their agents | Per-session journal of what was tried, learned, where things got stuck, how they were fixed. Verbose by design — agent working memory, not public reference. Decision rationale lives in ARCHITECTURE/PRINCIPLES/ROADMAP, not here. |
-| `TODO.md` *(gitignored)* | The maintainer | Active task tracker. Checkbox-driven, tactical, changes daily. ROADMAP is the strategic complement. |
+| File                      | Audience                  | Purpose                                                                                                                                                                                                                             |
+| ------------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `lessons/` _(gitignored)_ | Maintainer + their agents | Per-session journal of what was tried, learned, where things got stuck, how they were fixed. Verbose by design — agent working memory, not public reference. Decision rationale lives in ARCHITECTURE/PRINCIPLES/ROADMAP, not here. |
+| `TODO.md` _(gitignored)_  | The maintainer            | Active task tracker. Checkbox-driven, tactical, changes daily. ROADMAP is the strategic complement.                                                                                                                                 |
 
 ## Conventions for all docs
 
 - **Single purpose per file.** If a document is starting to serve two purposes, split it.
 - **Code references where possible.** A principle without a pointer to the line that demonstrates it is just a slogan.
-- **Decision rationale lives next to the thing it explains.** No separate `decisions/` or ADR directory — reasoning for principle-level choices goes in PRINCIPLES.md "Why" sections; reasoning for architectural choices goes in ARCHITECTURE.md "Why we chose this" subsections; reasoning for rejected directions goes in ROADMAP.md "Not planned."
+- **Decision rationale lives next to the thing it explains, or as a governed ADR.** Consequential standalone decisions are recorded as `adr` records under `docs/adr/` (see `engineering.yaml`). Smaller principle-level rationale still goes in PRINCIPLES.md "Why" sections; architectural rationale in ARCHITECTURE.md "Why we chose this" subsections; rejected directions in ROADMAP.md "Not planned."
 - **Update the doc in the same change as the code.** A diff that says "behavior changed but no docs touched" is incomplete.
 
 ## Root-level files (GitHub-recognized)
 
 GitHub auto-detects certain filenames at the repo root and surfaces them in its UI: `README.md` renders on the homepage; `LICENSE` is parsed for the licensing badge; `SECURITY.md` links from the security tab; `CODE_OF_CONDUCT.md` and `CONTRIBUTING.md` are surfaced from the PR-creation and community-standards flows. Keeping these at root (not under `docs/`) is what unlocks that behavior. Anything else — pipeline architecture, principles, design system, roadmap — is project-specific and lives in `docs/`.
 
-| File | Purpose |
-|---|---|
-| [`../README.md`](../README.md) | Project entry point |
-| [`../CONTRIBUTING.md`](../CONTRIBUTING.md) | Setup, workflow, where to make changes, what tests to run, commit conventions |
-| [`../LICENSE`](../LICENSE) | MIT for code + CC BY-SA 4.0 for textbook content (one file, two sections) |
-| [`../SECURITY.md`](../SECURITY.md) | Vulnerability reporting policy |
-| [`../CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md) | Contributor Covenant 2.1 by reference |
-| [`../CLAUDE.md`](../CLAUDE.md) | Agent operating context (`AGENTS.md` symlinks here) |
-| [`../.github/ISSUE_TEMPLATE/`](../.github/ISSUE_TEMPLATE) | Bug + feature templates |
-| [`../.github/PULL_REQUEST_TEMPLATE.md`](../.github/PULL_REQUEST_TEMPLATE.md) | PR template with test-plan checklist |
+| File                                                                         | Purpose                                                                       |
+| ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| [`../README.md`](../README.md)                                               | Project entry point                                                           |
+| [`../CONTRIBUTING.md`](../CONTRIBUTING.md)                                   | Setup, workflow, where to make changes, what tests to run, commit conventions |
+| [`../LICENSE`](../LICENSE)                                                   | MIT for code + CC BY-SA 4.0 for textbook content (one file, two sections)     |
+| [`../SECURITY.md`](../SECURITY.md)                                           | Vulnerability reporting policy                                                |
+| [`../CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md)                             | Contributor Covenant 2.1 by reference                                         |
+| [`../AGENTS.md`](../AGENTS.md)                                               | Agent operating context (canonical; `CLAUDE.md` symlinks here)                |
+| [`../.github/ISSUE_TEMPLATE/`](../.github/ISSUE_TEMPLATE)                    | Bug + feature templates                                                       |
+| [`../.github/PULL_REQUEST_TEMPLATE.md`](../.github/PULL_REQUEST_TEMPLATE.md) | PR template with test-plan checklist                                          |
 
 ## What's still missing
 

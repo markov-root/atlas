@@ -54,4 +54,10 @@ public/logos/
 # CocoIndex Code (ccc)
 /.cocoindex_code/
 
+# software-engineering document-index cache (derived)
+.engineering/
+
+# Locally staged read-along audio. Large and reproducible via
+# scripts/copy-chapter-audio.sh; the .words.json timings beside them ARE
+# committed.
 public/audio/ch*/*.mp3

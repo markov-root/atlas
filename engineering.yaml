@@ -1,0 +1,103 @@
+# Engineering policy for AI Safety Atlas.
+# Adopted 2026-08-17 (full adoption of the software-engineering skill's
+# governed workflow). Checks mirror the pre-push `pnpm verify` chain;
+# governed task/handoff records live under docs/tasks and docs/handoffs.
+version: 1
+
+project:
+  risk: moderate
+  core_outcome: >-
+    A static build of ai-safety-atlas.com renders every textbook chapter
+    (prose, figures, footnotes, equations) with working search. The
+    credential-free contributor build reproduces the same site from the
+    committed .cache/docs snapshot; maintainer builds additionally fetch
+    fresh Google Docs content and regenerate PDFs, audio, and the search index.
+
+paths:
+  generated:
+    - dist/**
+  sensitive:
+    - .env
+    - .env.*
+
+classifiers:
+  deployment:
+    - .github/workflows/**
+    - Dockerfile
+  content-cache:
+    - .cache/docs/**
+
+# Changing the deploy pipeline requires explicit approval.
+approval_required:
+  - deployment
+
+checks:
+  lint:
+    command: [pnpm, run, lint]
+    applies_to: ['**/*']
+  lint-actions:
+    command: [pnpm, run, 'lint:actions']
+    applies_to: ['.github/workflows/**']
+  typecheck:
+    command: [pnpm, run, typecheck]
+    applies_to: ['**/*.ts', '**/*.tsx', '**/*.astro']
+  test:
+    command: [pnpm, run, test]
+    applies_to: ['**/*']
+  test-smoke:
+    command: [pnpm, run, 'test:smoke']
+    applies_to: ['**/*']
+  test-a11y:
+    command: [pnpm, run, 'test:a11y']
+    applies_to: ['**/*']
+  build:
+    command: [pnpm, run, build]
+    applies_to: ['**/*']
+  # Note: `format:check` (prettier) is intentionally NOT adopted — the project
+  # defers a bulk reformat (see docs/ROADMAP.md) and omits it from `pnpm verify`.
+
+profiles:
+  # Fast pre-commit gate (pnpm check).
+  fast:
+    checks: [typecheck, test]
+  # Full pre-push gate (pnpm verify).
+  verify:
+    checks: [lint, lint-actions, typecheck, test, build, test-smoke, test-a11y]
+
+docs:
+  include:
+    - docs/**/*.md
+    - '*.md'
+  currency:
+    roles:
+      - name: task
+        include: ['docs/tasks/*.md']
+        index: docs/tasks/INDEX.md
+        id_prefix_digits: 4
+        contract: { version: 1, role: task }
+      - name: handoff
+        include: ['docs/handoffs/*.md']
+        index: docs/handoffs/INDEX.md
+        id_prefix_digits: 4
+        contract: { version: 1, role: handoff }
+        states: [current, superseded]
+        current_state: current
+      - name: audit
+        include: ['docs/audits/*.md']
+        index: docs/audits/INDEX.md
+        id_prefix_digits: 4
+        contract: { version: 1, role: audit }
+      - name: adr
+        include: ['docs/adr/*.md']
+        index: docs/adr/INDEX.md
+        id_prefix_digits: 4
+        contract: { version: 1, role: adr }
+
+# Additional record roles (research, lesson, …) ship with the skill and can be
+# adopted the same way when the first such record is created — an adopted role
+# must contain at least one record, so they are declared on first use.
+
+task_inventory:
+  include: ['docs/tasks/*.md']
+  handoffs: ['docs/handoffs/*.md']
+  decisions: ['docs/adr/*.md']
