@@ -62,3 +62,5 @@ regeneration-cost problem. Scoped by causal chain rather than by file, one audit
   Audio pipeline economics, incremental regeneration, and voice unification (draft, 2026-09-21; 8 findings).
 - [audit:0010](./0010-external-integration-boundaries-failure-modes-and-site-performance.md) —
   External integration boundaries, failure modes, and site performance (draft, 2026-09-21; 10 findings).
+- [audit:0011](./0011-incidental-findings-log-bugs-edge-cases-and-optimizations-found-in-passing.md) —
+  Incidental findings log (current, append-only — bugs, edge cases and optimizations found while doing other work; promotion to a task is what authorizes a fix).

@@ -75,3 +75,7 @@ in total, each with options, a recommendation, and what is irreversible if decid
   Derive a bibliography from Google Docs citation links (todo — 1,792 citations already hyperlinked and cached; CSL model, three-layer extract/enrich/render; five decisions surfaced).
 - [task:0022](./0022-stop-typecheck-and-build-from-uploading-audio-to-production-r2.md) —
   Stop typecheck and build from uploading audio to production R2 (todo — p1; a typecheck attempted a 96 MB PutObject against production, stopped only by stale credentials).
+- [task:0023](./0023-take-custody-of-the-r2-assets-before-access-is-lost.md) —
+  Take custody of the R2 assets before access is lost (todo — p1; bucket is freelancer-owned, S3 credentials revoked, 1.9 GB of irreplaceable audio sits gitignored and unbacked on one VM).
+- [task:0024](./0024-reduce-build-memory-and-download-volume-that-crash-the-vm.md) —
+  Reduce build memory and download volume that crash the VM (todo — p3; verify peaks at 94% commit on an idle 4 GB VM).
