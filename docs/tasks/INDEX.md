@@ -79,3 +79,9 @@ in total, each with options, a recommendation, and what is irreversible if decid
   Take custody of the R2 assets before access is lost (todo — p1; bucket is freelancer-owned, S3 credentials revoked, 1.9 GB of irreplaceable audio sits gitignored and unbacked on one VM).
 - [task:0024](./0024-reduce-build-memory-and-download-volume-that-crash-the-vm.md) —
   Reduce build memory and download volume that crash the VM (todo — p3; verify peaks at 94% commit on an idle 4 GB VM).
+- [task:0025](./0025-citation-extraction-canonical-url-identity-and-the-csl-store.md) —
+  Citation extraction, canonical URL identity and the CSL store (todo — child of 0021; banks B2-B4, the pure core; B4 fixes the irreversible entry identity and is not parallelizable).
+- [task:0026](./0026-the-atlas-citations-cli-extract-report-and-export.md) —
+  The atlas citations CLI: extract, report and export (todo — child of 0021; banks B5-B7; depends on 0025; delivers the edition-2 authors' report and the whole-book export file).
+- [task:0027](./0027-metadata-resolvers-and-incremental-citation-resolution.md) —
+  Metadata resolvers and incremental citation resolution (todo — child of 0021; banks B8-B9; depends on 0025; four independent resolvers, the most parallelizable unit).

@@ -5,7 +5,7 @@ uid: 'task-20260921T210518128882Z-6703b7f9'
 title: 'Derive a bibliography from Google Docs citation links'
 role: task
 status: todo
-summary: 'Turn the 1792 hyperlinked citations already in the Google Docs into a maintained bibliography with no hand-authored list.'
+summary: 'Parent record: turn the 1792 hyperlinked citations already in the Google Docs into a derived bibliography, decomposed into banked changes.'
 created: '2026-09-21'
 updated: '2026-09-21'
 owner: Markov Grey
@@ -22,36 +22,37 @@ engineering_document:
   authority:
     kind: work-state
     owner: Markov Grey
-    scope: Citation extraction, metadata enrichment, and bibliography rendering
+    scope: Parent design record; implementation is delegated to child tasks 0025-0027
   created: '2026-09-21'
   updated: '2026-09-21'
   transition_history: unverified
   transitions: []
   relationships: []
   details:
-    criteria:
-      [
-        criterion:AC-1,
-        criterion:AC-2,
-        criterion:AC-3,
-        criterion:AC-4,
-        criterion:AC-5,
-        criterion:AC-6,
-      ]
-    size: m
+    criteria: [criterion:AC-1, criterion:AC-2, criterion:AC-3, criterion:AC-4]
+    size: l
     priority: p2
+    atomic_large:
+      rationale: 'Parent epic. Implementation is split into child tasks 0025-0027; this record holds the design, the decisions, and the dependency graph that binds them.'
+      rollback: 'Each child bank lands independently and is revertible on its own; nothing in phase 1 changes rendered output.'
+      checkpoints:
+        [
+          '0025 pure core lands',
+          '0026 CLI and report land',
+          '0027 resolvers land',
+          'phase 2 decomposed separately',
+        ]
 ---
 
 # Task 0021: Derive a bibliography from Google Docs citation links
 
 ## Problem
 
-The textbook cites heavily and has no bibliography. A reader cannot see what a chapter draws on, and
-there is no way to answer "what does the Atlas cite?" — which for a textbook is a basic expectation,
-not a nicety.
+The textbook cites heavily and has no bibliography. **The people writing edition 2 want one** — that
+is the reason this work exists, and it makes the authors, not readers, the first customer.
 
-The obvious fix — hand-maintaining a reference list — is the wrong one. It would immediately drift
-from the prose, and it would multiply by edition and by language.
+Hand-maintaining a reference list is the wrong fix: it drifts from the prose immediately, and it
+multiplies by edition and by language.
 
 **The data needed to avoid that is already present and already cached.** Measured across the eight
 chapters in `.cache/docs/` on 2026-09-21:
@@ -64,9 +65,13 @@ chapters in `.cache/docs/` on 2026-09-21:
 | URLs cited in more than one chapter | 98                |
 | Anchor texts in author-year form    | **1,735** (96.8%) |
 
-Every one of these is already parsed into a `Link` node carrying `{href, content}`
-(`src/textbook-loader/transformer.ts:554`). Extraction therefore needs **no change to the Google Docs
-fetch path** and no new credentials.
+Every one is already parsed into a `Link` node carrying `{href, content}`
+(`src/textbook-loader/transformer.ts:554`). Extraction needs **no change to the Google Docs fetch
+path** and no new credentials.
+
+Footnotes carry citations too, and behave differently: **36 footnotes, 16 containing links, and 9
+plain-text author-year citations with no link at all.** That last group has no URL to key on and is
+the one category the inline path does not have.
 
 Resolvability of the 1,001 unique URLs:
 
@@ -80,130 +85,149 @@ Resolvability of the 1,001 unique URLs:
 Because 96.8% of anchor texts already carry author and year, a useful bibliography is achievable with
 **zero network calls**. Enrichment upgrades quality; it is not a precondition.
 
-No chapter currently contains a `Bibliography` or `References` heading, so nothing conflicts and
-nothing needs migrating.
+No chapter contains a `Bibliography` or `References` heading today, so nothing conflicts.
+
+## Decisions — recorded 2026-09-21
+
+All six are settled by the owner. They are recorded here rather than left open, and child tasks
+inherit them.
+
+| #   | Question               | Decision                                                                                                              |
+| --- | ---------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| D1  | Entry identity         | **Global entry per source**, with per-`(edition, language, chapter, section)` instances. A URL does not translate.    |
+| D2  | Data format            | **CSL** — CSL-YAML for storage, CSL-JSON compiled. No bespoke schema.                                                 |
+| D3  | Archival               | **Separate concern**, exposed as `atlas citations archive`. Not in phase 1.                                           |
+| D4  | Unresolvable citations | **Warn, never block a deploy.**                                                                                       |
+| D5  | Placement              | Section-level after `#footnotes`; chapter-level on the introduction page's download panel; site-wide `/bibliography`. |
+| D6  | Command naming         | **Plural** — `atlas citations <verb>`.                                                                                |
+
+### D4 carries an implementation obligation
+
+`audit:0010` F2 established that this repository's existing warn-and-continue posture **already ships
+404s to production**, because warnings scroll past in a build log and nobody reads them. "Warn" is
+therefore only a real decision if the warning survives the build: a committed report artifact, a
+one-line count in build output, and a command that prints it. Warning into a log stream is
+indistinguishable from silence, and choosing D4 is not choosing that.
+
+### D5 — why not the auto-injected table-of-contents entry
+
+The alternative considered was injecting a bibliography as a pseudo-section at the end of the ToC,
+skipped by previous/next navigation. **Rejected.** Previous/next is derived from `allSections`
+(`src/layouts/Reader.astro:41-42`), so a virtual section must be special-cased there _and_ in every
+other system keyed by section: audio filenames, committed `.words.json` timings, the Algolia index,
+reading time, OG image generation, markdown export, and the URL space. It also collides directly with
+the content identity key in `task:0014`. That is a large blast radius to solve a placement question
+that the existing download panel on the introduction page
+(`src/pages/chapters/[version]/[chapter]/[section].astro:222-260`) already answers.
 
 ## Scope
 
-Three layers, deliberately mirroring the `.cache/docs/` pattern this repo already proves —
-credentialed maintainer refresh, committed cache, credential-free contributor build.
+### Phase 1 — a bibliography that exists as a file
 
-1. **Extract** — build time, pure, no network. Walk `Link` nodes, classify citation versus content
-   link, normalize the URL to a canonical form, and emit citation instances keyed by
-   `(edition, language, chapter, section)`. A pure function over the AST, unit-testable with no I/O.
+**Owner's direction: "before getting it to appear on site, the first set is to actually just have the
+full bibliography across the book exportable into a sensible file. All the UI/UX stuff is later."**
 
-2. **Enrich** — out of band, via `atlas bib sync`. Resolve unseen URLs against arXiv, Crossref and
-   oEmbed; write the result to a committed store. Never runs in CI or a contributor build, exactly
-   as audio and Docs fetching do not.
+Phase 1 changes **no rendered output**. That is its safety property: nothing a reader sees can break,
+so it can land while `src/` questions remain open.
 
-3. **Render** — build time. Join extraction against the store to produce per-section references, a
-   per-chapter bibliography, and a site-wide index.
+### Phase 2 — rendering
 
-### Format
+Deferred, and deliberately not decomposed yet. Covers the three D5 surfaces. Decompose it only once
+phase 1 has produced real data, because the shape of that data should inform the rendering, not the
+reverse.
 
-Use **CSL-JSON** as the data model, stored as **CSL-YAML** for hand-editing.
+## Decomposition into banked changes
 
-CSL (Citation Style Language) is the interchange format Zotero, Pandoc and Crossref already speak.
-Adopting it rather than inventing a schema buys, at no cost: any citation style rendered from the
-same data via `citeproc`; BibTeX export so readers can cite our sources in their own work; Zotero
-round-trip so a contributor can repair entries in a GUI; and zero mapping code for the 382 entries
-whose upstreams already emit CSL. A bespoke `{author, title, year, url}` schema looks simpler for
-about a week, then needs `editor`, `container-title`, `accessed` and `version`, at which point it is
-a worse CSL. YAML for the files (comments, readable diffs); CSL-JSON as the compiled artifact.
+Each bank is independently landable, independently revertible, and independently verifiable. Banks
+are grouped into three child tasks.
+
+| Bank   | Change                                                             | Depends on | Child task  |
+| ------ | ------------------------------------------------------------------ | ---------- | ----------- |
+| **B1** | Declare `@types/node`; bring `cli/` into a typechecked path        | —          | `task:0020` |
+| **B2** | Citation extraction: pure function over AST nodes                  | —          | `task:0025` |
+| **B3** | URL canonicalization: pure                                         | —          | `task:0025` |
+| **B4** | CSL-YAML store, entry identity, read/write                         | B3         | `task:0025` |
+| **B5** | `atlas citations extract` — job 1, offline, writes URL-keyed stubs | B2, B4     | `task:0026` |
+| **B6** | `atlas citations report` — unresolved, malformed, unclassifiable   | B5         | `task:0026` |
+| **B7** | `atlas citations export` — BibTeX and CSL-JSON                     | B4         | `task:0026` |
+| **B8** | Resolvers: arXiv, Crossref, oEmbed, Open Graph — one interface     | B4         | `task:0027` |
+| **B9** | `atlas citations resolve` — job 2, incremental, idempotent         | B4, B8     | `task:0027` |
+
+### Causal dependency graph
+
+```
+B1 (precondition — cli/ typecheck)
+      │
+      ├── B2 ─────────────┐
+      │                   ├──> B5 ──> B6
+      └── B3 ──> B4 ──────┤
+                          ├──> B7
+                          └──> B8 ──> B9
+```
+
+**Critical path:** B1 → B3 → B4 → B5 → B6. Everything else hangs off B4.
+
+**What can genuinely run in parallel:** B2 alongside B3 once B1 lands; B7 alongside B5/B6 once B4
+lands; and the four resolvers inside B8 are independent of one another, which is the single most
+parallelizable unit in the whole task.
+
+**What must not be parallelized:** B4. It fixes entry identity, which D1 flags as the one
+irreversible choice — every citation instance points at it, and changing it later rewrites every
+reference in every chapter and language. One author, reviewed, before anything depends on it.
+
+## Interaction with other work
+
+- **`task:0013` (Google Docs migration) — no conflict, and this is a genuine benefit of deriving
+  rather than authoring.** New documents mean extraction re-runs and the bibliography is correct.
+  There is no list to migrate.
+- **`task:0023` (R2 custody) — no interaction.** Phase 1 touches no audio, no R2, no CDN. This is one
+  of the few pieces of work not blocked by the custody problem, which is an argument for doing it now.
+- **`task:0014` (language and edition)** — D1 must stay consistent with the content identity key. The
+  split is clean: entries are global, instances carry the key.
+- **`task:0015` (discriminated-union AST)** — B2 is a good first consumer: read-only, small, and a
+  low-risk proof of that design before larger content types depend on it.
+- **`task:0018` (lib boundary)** — B2 and B3 are build-time, not browser, code. They should land on
+  the correct side of that boundary from the start rather than being moved later.
+- **`task:0024` (build resources)** — phase 1 adds no build-time network calls and no per-page weight.
 
 ## Out of scope
 
-- **Changing how authors write citations in Google Docs.** The feature must work against the docs as
-  they are. The scan did surface source inconsistencies (`Burns et. al. 2023`, `Chen et al., 2024)`
-  with a stray paren, missing-comma variants); the build should **report** these, not require them
-  fixed first.
-- **Rendering the textbook's own citation in other formats.** Different feature.
-- **Replacing OWID iframes with self-hosted datasets.** Related in spirit — both are about owning
-  our data — but a separate concern with its own decisions.
-- **Automatic archival of cited URLs**, unless D3 is answered yes.
+- **Changing how authors write citations in Google Docs.** This must work against the docs as they
+  are. The scan found real inconsistencies (`Burns et. al. 2023`, `Chen et al., 2024)` with a stray
+  paren, missing-comma variants); the report **surfaces** these, it does not require them fixed first.
+- **Archival** — D3, later, as `atlas citations archive`.
+- **All rendering** — phase 2.
+- **Replacing OWID iframes with self-hosted datasets.** Related in spirit, separate work.
 
-## Preconditions
+## Known edge cases
 
-- **`cli/` is not typechecked.** `@types/node` is not a declared dependency and `astro check` does
-  not surface errors in `cli/`, so `pnpm exec tsc` on `cli/index.ts` reports 7 errors while
-  `pnpm typecheck` passes. Since this task adds substantially more `cli/` code, that gap should close
-  first or it will silently widen. Small, standalone, and a natural addition to `task:0020`.
+Recorded so they are not mistaken for defects later.
 
-## Decisions required before execution
-
-### D1 — Is a bibliography entry global, or scoped to edition and language?
-
-| Option                                                                       | Consequence                                                                                               |
-| ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| **A.** Global entries, per-`(edition, language, chapter, section)` instances | A source is a source; the URL does not translate. One store, reused across all editions and translations. |
-| **B.** Entries scoped per edition/language                                   | Allows a translated title per entry. Duplicates 1,001 entries per language and guarantees drift.          |
-
-**Recommendation: A.** URLs do not translate; anchor text does. This splits cleanly along the same
-seam as `task:0014`'s content identity key and reinforces it rather than competing with it. If a
-translated title is wanted later, it is a per-locale overlay on a global entry, not a second store.
-
-**Irreversible if wrong:** entry identity is what every citation instance points at. Changing the
-key later rewrites every reference across every chapter and language.
-
-### D2 — CSL, or a project-specific schema?
-
-| Option               | Consequence                                                                                     |
-| -------------------- | ----------------------------------------------------------------------------------------------- |
-| **A.** CSL-JSON/YAML | Free style switching, BibTeX export, Zotero round-trip, no mapping for arXiv/Crossref. One dep. |
-| **B.** Custom schema | Smaller today. Re-derives CSL badly over time; no export or interchange.                        |
-
-**Recommendation: A**, per the reasoning in Scope.
-
-### D3 — Archive cited URLs against link rot?
-
-| Option                                     | Consequence                                                                               |
-| ------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| **A.** No archival                         | Simplest. 1,001 open-web URLs decay; a textbook's citations rot fastest where it matters. |
-| **B.** Record an existing Wayback snapshot | Cheap, read-only, no submission. Coverage is partial.                                     |
-| **C.** Submit to Wayback on sync           | Best durability. Outward-facing writes to a third party on our behalf.                    |
-
-**Recommendation: B**, with C as an explicit later opt-in. B costs almost nothing and materially
-helps readers; C publishes on our behalf and should be a deliberate decision, not a side effect.
-
-### D4 — What happens when a citation cannot be resolved?
-
-| Option                                                      | Consequence                                                                     |
-| ----------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| **A.** Fail the build                                       | Guarantees quality; blocks a prose deploy on a third-party API being reachable. |
-| **B.** Warn and degrade to anchor text                      | Always ships. Risks silently shipping thin entries.                             |
-| **C.** Fail only if a _previously resolved_ entry regresses | Ratchet: new gaps degrade, known-good never silently worsens.                   |
-
-**Recommendation: C.** This is the same question as `task:0017` D2 and should get a consistent
-answer; note that `audit:0010` F2 found the existing R2 warn-and-continue posture already ships 404s,
-which is the failure mode B invites.
-
-### D5 — Where does it render?
-
-| Option                          | Consequence                                                         |
-| ------------------------------- | ------------------------------------------------------------------- |
-| **A.** Per-section references   | Closest to the prose; most useful while reading.                    |
-| **B.** Per-chapter bibliography | Matches textbook convention; one place per chapter.                 |
-| **C.** Site-wide index          | Answers "what does the Atlas cite?"; a genuine research artifact.   |
-| **D.** All three                | Most value; largest surface, and page weight matters (`task:0019`). |
-
-**Recommendation: B then C**, with A deferred. B is the conventional expectation and the cheapest
-win; C is the distinctive one. A adds per-page weight to the reader view, which `task:0019` is
-actively trying to reduce.
+1. **Messy anchor text stops mattering.** Entries are keyed by canonical URL and displayed from
+   resolved metadata, so `Chollet, 2019`, `Chollet 2019` and `Burns et. al. 2023` collapse to one
+   consistently-rendered entry. Inconsistent input, consistent output.
+2. **Preprint versus published version is a real duplicate.** Canonicalization handles
+   `arxiv.org/abs/X` versus `/pdf/X`. It does **not** handle one chapter citing an arXiv preprint and
+   another citing the journal DOI for the same work — different URLs, one paper. Accept as duplicates
+   in phase 1 and add a manual alias file; automatic detection would be wrong often enough to be
+   worse than the duplicate.
+3. **The 9 unlinked footnote citations have no URL to key on.** They need either a match against an
+   existing entry by author-year, or an explicit "unresolved, no link" state. They must not be
+   silently dropped.
 
 ## Done when
 
-- **AC-1:** Extraction is a pure function over the AST with no I/O, unit-tested against fixtures
-  covering author-year anchors, non-citation content links, and the malformed variants observed in
-  the corpus.
-- **AC-2:** A build with no credentials and no network produces a bibliography for all cached
-  chapters, from the committed store alone.
-- **AC-3:** URL canonicalization is tested, with `arxiv.org/abs/X` and `arxiv.org/pdf/X` proven to
-  resolve to one entry. Deduplication counts are reported.
-- **AC-4:** `atlas bib sync` resolves arXiv, DOI and oEmbed sources, writes CSL-YAML, and is the
-  only path that touches the network. Running it is never required to build.
-- **AC-5:** The build emits a report of citations it could not classify or resolve, usable as a
-  to-fix list against the Google Docs.
-- **AC-6:** D1–D5 are recorded with the owner's choice before implementation begins.
+This parent record is complete when its children are, and when phase 2 has been decomposed on the
+evidence phase 1 produces.
+
+- **AC-1:** `task:0025`, `task:0026` and `task:0027` are complete, each against its own criteria.
+- **AC-2:** A single command produces the whole book's bibliography as a file, from the committed
+  store, with no credentials and no network — the owner's stated phase-1 goal.
+- **AC-3:** The edition-2 authors have used the report at least once, and their feedback is recorded
+  here. They are the stated customer; shipping without checking with them would make this record's
+  own premise unverified.
+- **AC-4:** Phase 2 is decomposed into banks against the three D5 surfaces, informed by phase 1's
+  actual data rather than by this record's assumptions.
 
 ## Completion evidence
 
@@ -216,22 +240,20 @@ path, or a recorded owner decision — not a narrative claim._
 | AC-2      | —        | —        |
 | AC-3      | —        | —        |
 | AC-4      | —        | —        |
-| AC-5      | —        | —        |
-| AC-6      | —        | —        |
 
 ## Authority and inputs
 
-- Corpus measurement, 2026-09-21, over the eight tabs in `.cache/docs/`. Counts in Problem are
-  reproducible from those files; the anchor-shape classification used
-  `(?:^|\s)[A-Z][^,]{0,60}(?:et al\.)?,?\s?\d{4}[a-z]?$` and is approximate at the margin.
-- `src/textbook-loader/transformer.ts:554` — `Link` nodes already carry `{href, content}`.
+- Corpus measurement, 2026-09-21, over the eight tabs in `.cache/docs/`. Counts are reproducible from
+  those files; the anchor-shape classification is approximate at the margin.
+- Footnote measurement, same date: 36 footnotes, 16 with links, 9 unlinked author-year citations.
+- `src/textbook-loader/transformer.ts:554` — `Link` nodes carry `{href, content}`.
 - `src/textbook-loader/renderers/audio/text-renderer.ts:6` — `stripCitations` already encodes an
-  author-year regex for the audio path; extraction should not invent a second, divergent one.
+  author-year regex for the audio path. Extraction must not invent a second, divergent one.
 - `src/textbook-loader/gdocsdk.ts:41` — the cache pattern this design mirrors.
-- `task:0014` — content identity key; D1 must stay consistent with it.
-- `task:0015` — discriminated-union AST. Extraction is a good first consumer: small, read-only, and
-  a low-risk proof of that design before larger content types depend on it.
-- `task:0010` — the `atlas` control surface; `atlas bib sync` is its natural second command and fits
-  the "expensive out-of-band maintainer operation" shape that task already defines.
-- `task:0017`, `audit:0010` F2 — failure posture; D4 should match.
-- `task:0019` — page weight; bounds D5.
+- `src/layouts/Reader.astro:41-42` — previous/next derivation; the reason D5 rejects a virtual section.
+- `src/pages/chapters/[version]/[chapter]/[section].astro:222-260,316` — the download panel and the
+  `#footnotes` block; the two surfaces D5 selects.
+- `src/pages/chapters/[chapter]/index.astro:36` — chapter index is a 301 redirect, so no chapter
+  landing page exists to hold a chapter bibliography.
+- `audit:0010` F2 — why D4 carries an implementation obligation.
+- `audit:0011` F1 — the `cli/` typecheck gap that B1 closes.
