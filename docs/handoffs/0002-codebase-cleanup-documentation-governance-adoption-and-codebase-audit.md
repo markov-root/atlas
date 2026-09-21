@@ -1,40 +1,40 @@
 ---
 schema_version: 2
-id: "0002"
-uid: "handoff-20260921T141252887674Z-af2be434"
-title: "Codebase cleanup: documentation governance adoption and codebase audit"
+id: '0002'
+uid: 'handoff-20260921T141252887674Z-af2be434'
+title: 'Codebase cleanup: documentation governance adoption and codebase audit'
 role: handoff
 status: current
-summary: "Handoff record: Codebase cleanup: documentation governance adoption and codebase audit."
-created: "2026-09-21"
-updated: "2026-09-21"
+summary: 'Documentation governance is fully adopted and the five-audit sweep is complete; everything now waits on owner decisions.'
+created: '2026-09-21'
+updated: '2026-09-21'
 owner: Markov Grey
-supersedes: ""
-superseded_by: ""
+supersedes: ''
+superseded_by: ''
 engineering_document:
   version: 1
   contract_tier: full
   role: handoff
-  id: "0002"
+  id: '0002'
   uid: handoff-20260921T141252887674Z-af2be434
-  title: "Codebase cleanup: documentation governance adoption and codebase audit"
+  title: 'Codebase cleanup: documentation governance adoption and codebase audit'
   state: current
   authority:
     kind: continuation-state
     owner: Markov Grey
     scope: Continuation of the codebase-cleanup branch only
-  created: "2026-09-21"
-  updated: "2026-09-21"
+  created: '2026-09-21'
+  updated: '2026-09-21'
   transition_history: unverified
   transitions: []
   relationships: []
   details:
-    captured_at: "2026-09-21T14:12:52Z"
+    captured_at: '2026-09-21T14:50:00Z'
     repository: 'AI Safety Atlas (markov-root/atlas)'
-    revision: 'branch codebase-cleanup at 8f89a78; dirty: engineering.yaml modified, 5 untracked audit templates, plus a pre-existing uncommitted src/pages/teach.astro edit owned by Markov'
-    objective: 'Adopt the software-engineering documentation discipline in full (manifest + migration of every legacy doc into the typed schema), then audit the codebase across quality dimensions and agree a refactor plan before changing any code.'
-    completed: []
-    open_work: [audit:0002, audit:0003, audit:0004, audit:0005, audit:0006]
+    revision: 'branch codebase-cleanup at d397b6f; clean except a pre-existing uncommitted src/pages/teach.astro edit owned by Markov'
+    objective: 'Adopt the software-engineering documentation discipline in full, then audit the codebase across quality dimensions and agree a refactor plan before changing any code.'
+    completed: [adr:0002, audit:0002, audit:0003, audit:0004, audit:0005, audit:0006, task:0010]
+    open_work: [task:0008, task:0009, task:0010]
     blockers: []
     authority_refs: [AGENTS.md, engineering.yaml, docs/PRINCIPLES.md, docs/ROADMAP.md]
     resume: 'engineering document validate'
@@ -44,129 +44,126 @@ engineering_document:
 
 ## Outcome
 
-Partial. The branch `codebase-cleanup` exists off `main` with one committed change (`8f89a78`,
-gitignoring Playwright MCP scratch). Documentation-governance adoption is **half-applied and
-currently uncommitted**: `engineering.yaml` has been extended with four new document roles but no
-document has been migrated yet, and the extension is unverified beyond `engineering inspect`
-reporting the manifest valid. A five-agent audit fleet was dispatched and produced **nothing** — it
-crashed the VM before writing a single finding.
+**Complete for everything that did not require an owner decision.** Documentation governance is fully
+adopted, all six legacy lesson notes are migrated, the four living documents carry role frontmatter,
+the five-audit sweep is written, and the `atlas` control-surface design record exists.
 
-Nothing in `src/` has been touched. That is deliberate and must stay true: the owner has explicitly
-reserved all code changes until a design is agreed (see Constraints).
+`engineering document validate` went from **32 findings to 1**, and the remaining one is a modelling
+question for the owner, not a defect.
+
+**Nothing in `src/` has been touched.** That was the standing constraint and it held.
 
 ## Completed work
 
-- `8f89a78` — `.gitignore` now covers `.playwright-mcp/`, verified against a real file before commit.
-- Branch hygiene: `main` realigned to `origin/main`; `chore/engineering-governance-and-independence`
-  merged and deleted; `pr-11/12/13`, `integration/read-along`, `release/read-along-set` deleted after
-  `git cherry` confirmed no unique patches; both scratch worktrees removed.
-- Five audit records allocated with valid frontmatter and registered nowhere yet:
-  `audit:0002` structure/modularity, `audit:0003` testing, `audit:0004` cruft, `audit:0005` code
-  quality, `audit:0006` ergonomics + `bin/atlas` control surface. **All five are empty templates.**
+| Commit    | What                                                                           |
+| --------- | ------------------------------------------------------------------------------ |
+| `8f89a78` | `.gitignore` covers `.playwright-mcp/`                                         |
+| `3b8ef1d` | Initial role declarations + this handoff                                       |
+| `22c56a1` | Documentation governance completed — lessons migrated, living docs, `adr:0002` |
+| `68912e8` | `audit:0002` structure and file-tree coherence                                 |
+| `05cca32` | `audit:0002` F7 — stale `file:line` citations in `PRINCIPLES.md`               |
+| `7e4dc36` | `audit:0006` ergonomics and the control-surface case                           |
+| `0bd0cbb` | `audit:0003` testing, `audit:0004` cruft, `audit:0005` code quality            |
+| `d397b6f` | `task:0010` control-surface design record                                      |
+
+**The blocker recorded in the previous version of this handoff is resolved, and its stated hypothesis
+was wrong.** The cause was not missing INDEX files. `docs.currency.roles` requires a 4-digit filename
+prefix on every file its globs match (`id_prefix_digits` has schema minimum 1; the `id_pattern`
+repair the CLI suggests does not exist in the schema). It can therefore only govern append-only
+numbered record series. `adr:0002` records the decision and the rejected alternatives; the reasoning
+is summarised in a comment in `engineering.yaml` at the point of temptation.
+
+`docs/lessons/` is a genuine record series, so it was renamed to `NNNN-topic.md` and now carries the
+full lesson contract — sections, boundary, and all. The original journal prose is preserved verbatim
+under "Original session notes" in each record. **These files stay gitignored** and so appear in no
+commit above.
 
 ## Current state
 
-**Uncommitted in `engineering.yaml`** — four role declarations added to `docs.currency.roles`:
+Branch `codebase-cleanup` at `d397b6f`, working tree clean apart from Markov's own uncommitted
+`src/pages/teach.astro` edit, which has been left untouched throughout.
 
-- `lesson` → `docs/lessons/*.md`, index `docs/lessons/INDEX.md`
-- `specification` → `docs/ARCHITECTURE.md`, index `docs/INDEX.md`
-- `standard` → `docs/PRINCIPLES.md`, `docs/DESIGN.md`, index `docs/INDEX.md`
-- `roadmap` → `docs/ROADMAP.md`, index `docs/INDEX.md`
-
-`engineering inspect` reports `manifest: valid (4 declared path(s) missing)` — the two INDEX files do
-not exist yet. **`engineering document backfill` still fails with `document: invalid` for every
-target**, and the cause is not yet isolated. Established so far by reading
-`assets/schemas/engineering-v2.schema.json`:
-
-- `document_contract.role` **does** accept all ten living roles, and `document_role.name` is a
-  free-form lowercase string — so declaring living roles is schema-legal, not a hack.
-- `document_role` requires `index` and `id_prefix_digits` even for living documents, where nothing
-  allocates against them. They are declared as nominal values with a comment saying so.
-- `engineering document new index --title …` also returns `document: invalid`, so the INDEX files
-  likely have to be hand-authored on the pattern of the existing `docs/tasks/INDEX.md` (whose UID
-  `index-20260817T000000000000Z-atlastsk` has a zeroed timestamp and was itself clearly hand-made).
-
-The next person should resolve whether the missing INDEX files are the whole cause before assuming
-the living-role approach is wrong.
+A memory-commit monitor is running at `~/.local/var/atlas-monitor/memwatch.sh`, logging to
+`memwatch.log` every 15s. It samples `Committed_AS / (MemTotal + SwapTotal)`, which matches `sar`'s
+`%commit` — the metric that tracked both VM crashes. It held at 69–70% throughout this session.
+**Kill it when the branch is done:** `pkill -f memwatch.sh`.
 
 ## Open work
 
-1. Create `docs/INDEX.md` and `docs/lessons/INDEX.md` (model on `docs/tasks/INDEX.md`), then retry
-   `engineering document backfill docs/DESIGN.md --role standard --title … --summary …`. If it still
-   fails, get a real error — the CLI's `document: invalid` is uninformative; try `--json`.
-2. Backfill the four living documents: `ARCHITECTURE.md` → specification, `PRINCIPLES.md` and
-   `DESIGN.md` → standard, `ROADMAP.md` → roadmap. Backfill preserves body bytes; only frontmatter is
-   added.
-3. Migrate `docs/lessons/` (6 dated notes + a README) and `docs/TODO.md` into `lesson` records.
-   **They stay gitignored** — the owner chose "govern but keep gitignored"; do not commit them.
-4. Re-run the audit — see Constraints for how, and read [[atlas-dont-crash-this-vm]] first.
-5. Write the `bin/atlas` control-surface design as a task record. The owner leans toward the
-   CoP Dataset pattern (`~/Git/CoP Dataset/bin/cop` — a logic-free bash adapter into a namespaced
-   `utility/` CLI, governed by ADR-0119) but wants the audit's evidence first. Envisaged surface:
-   `atlas generate audio --chapter *`, `atlas pull --chapter *`, `atlas lint` for prose/voice checks
-   against the writing skill and dead-link checking.
-6. Two task records from the previous session sit at `in_progress` awaiting the owner's acceptance:
-   `task:0008` and `task:0009`. Their evidence tables cite pre-cherry-pick SHAs that no longer exist
-   on `main` (`2f5bff7`, `901b05c`, `7c23e39`); a `(cherry picked from …)` trail exists in each
-   commit message. Correcting those citations is a small docs-only fix.
+All remaining items are owner decisions. None is blocked on engineering.
+
+1. **Decide the `current-multiple` validation finding.** Two handoffs are `current`: `handoff:0001`
+   (freelancer independence, `task:0001`–`0007` all still `todo`) and this one. Both are genuinely
+   live. Either scope handoffs per-area in the manifest, or accept the finding permanently.
+   **Do not resolve it by superseding a live handoff** — that would put a false statement in the
+   record.
+2. **Accept or reject `adr:0002`.** It is `proposed`. It governs how documentation roles are declared
+   and is the reason four documents keep their filenames.
+3. **Decide the audit recommendations.** 30 findings across five records, every recommendation
+   pending. Each audit's Disposition states which items are safe standalone and which must be decided
+   together. The three highest-value, by the audits' own reckoning:
+   - `audit:0003` rec 2 — a jsdom test for the two read-along regressions that shipped on
+     2026-09-20. Small, additive, targets demonstrated failures rather than a hypothesis.
+   - `audit:0004` rec 1 — the 1.59 GiB git pack. Framed as an owner call because history rewriting
+     affects a public repo with outside contributors; a `--depth 1` documentation change is the
+     no-risk partial.
+   - `audit:0002` rec 2 — repair four stale `file:line` citations in `PRINCIPLES.md`.
+     Documentation-only, and it restores a norm `AGENTS.md` sets for itself.
+4. **Accept or reject `task:0010`** (the `atlas` control surface). AC-6 makes rejection a legitimate
+   completion, since `audit:0006` F7 records a real counter-case.
+5. **`task:0008` and `task:0009`** remain `in_progress` awaiting acceptance. Their evidence tables
+   cite pre-cherry-pick SHAs (`2f5bff7`, `901b05c`, `7c23e39`) that no longer exist on `main`; each
+   commit message carries a `(cherry picked from …)` trail. Correcting those citations is a small
+   docs-only fix — and note `audit:0002` F7 found the same class of decay in `PRINCIPLES.md`.
 
 ## Resume
 
-First safe command — it is read-only and reports the exact state described above:
-
 ```bash
-engineering document validate
+engineering document validate          # expect exactly 1 finding: current-multiple
+engineering document query --role task --compact
 ```
 
-Expect ~11 `frontmatter-missing` findings. Five are the untouched audit templates
-(`docs/audits/0002`–`0006`); the rest are the living documents and `docs/lessons/*` that the new
-manifest roles now cover but which have not been backfilled yet. That output IS the to-do list for
-Open work items 1-3; when it is empty, documentation adoption is done.
-
-Do **not** start by running `pnpm verify`, `pnpm build`, or spawning agents — read Constraints first.
+One thing this session could not do and the next should: **run `pnpm typecheck`**. It was skipped on
+memory grounds, and `audit:0005` names that as its own largest gap — the "0 lint errors" result says
+nothing about type safety. Run it with headroom and nothing else running.
 
 ## Constraints — do not violate
 
-- **No code changes.** The owner's exact position: documentation may be executed because it does not
-  change the codebase; the `bin/atlas` design doc may be written; but for `src/` "we will need to do
-  a lot of back and forth before we agree on the final design and tree and relationships". Audits
-  produce findings and recommendations only.
-- **The VM has crashed twice in two days**, both times from load this agent added — a triple
-  `pnpm verify` on 2026-09-20 and a five-agent fleet on 2026-09-21. Before any fleet or build loop:
-  read [[atlas-dont-crash-this-vm]], watch `%commit` from `sar -r` (not `free -h` available, which
-  overstates headroom), keep the `homelab-management` skill's monitor running, and admit agents one
-  at a time with a measurement between each. The owner asked for the monitor explicitly.
-- If the audit is re-run with agents, brief them to **write a skeleton to their record first and fill
-  it incrementally**. All five previous agents died holding their findings in context, so a 16-minute
-  run salvaged nothing.
+- **No code changes.** The owner's position: documentation may be executed; the `bin/atlas` design
+  doc may be written; but `src/` needs "a lot of back and forth before we agree on the final design
+  and tree and relationships". Audits produce findings and recommendations only. This held for the
+  whole session and should keep holding until the owner lifts it explicitly.
+- **The VM has crashed twice in two days**, both times from load this agent added. Before any fleet
+  or build loop: read `[[atlas-dont-crash-this-vm]]`, watch `%commit` (not `free -h` available), and
+  keep the monitor running. Admit agents one at a time with a measurement between each.
+- If the audits are ever re-run with agents, brief them to **write a skeleton to their record first
+  and fill it incrementally**. The five agents that died on 2026-09-21 were all holding their
+  findings in context, so a 16-minute run salvaged nothing.
 - `docs/lessons/` and `docs/TODO.md` are gitignored by deliberate policy stated in `AGENTS.md`.
+
+## Method notes worth carrying forward
+
+Three measurement errors were made and caught during this session. They are recorded because each
+would otherwise have produced a confident, wrong finding:
+
+- **`rg -r` is replace, not recursive.** It silently rewrote every match to `n`, which briefly looked
+  like a real finding about undeclared env vars. `rg` is recursive by default.
+- **Import fan-in by `from '…'` misses side-effect imports.** `word-highlight.ts` measured as
+  zero-fan-in; it is imported at `src/layouts/Reader.astro:388`.
+- **Dependency usage by package-name grep misses string-referenced packages.** `@iconify-json/cib`
+  looked unused; icons are referenced as `cib:github`, not by package name.
+
+Each is stated in the Limitations section of the audit it affected.
 
 ## Blockers
 
-- `engineering document backfill` returns `document: invalid` for every attempted target. Unblocking
-  this gates next actions 1-3. Not yet isolated; the missing INDEX files are the leading hypothesis.
-
-## Known validation findings (deliberate, not defects to "fix" blindly)
-
-`engineering document validate` currently reports ~32 findings. They are expected and each has a
-cause recorded here; do not silence any of them by weakening a record.
-
-- **`current-multiple` on `docs/handoffs/INDEX.md`.** The validator permits one `current` handoff per
-  *role*; this repo has two genuinely live continuation threads — `handoff:0001` (freelancer
-  independence, whose `task:0001`-`0007` are all still `todo`) and this one. Marking either
-  `superseded` would be false. This needs an owner decision: either scope handoffs per-area in the
-  manifest, or accept the finding. **Do not resolve it by superseding a live handoff.**
-- **`frontmatter-missing` ×11** on the living documents and `docs/lessons/*` — these are exactly the
-  files Open work items 1-3 will backfill. The count going to zero is the completion signal.
-- **Five audit records are valid-but-empty templates.** Their IDs are committed so they are not
-  re-allocated; the fleet that was to fill them crashed the VM first.
+None.
 
 ## Evidence and authority
 
 - `AGENTS.md` (`CLAUDE.md` is a symlink to it) — agent norms and the governed-record policy.
 - `engineering.yaml` — adopted checks, classifiers, profiles, document roles.
-- `docs/PRINCIPLES.md` — the project's chosen principles, each with a code reference. An audit
-  recommendation that contradicts one of these must engage with it rather than ignore it.
-- `docs/ROADMAP.md` "Not planned" — explicitly rejected directions, including a certification
-  program with quizzes.
+- `docs/PRINCIPLES.md` — the project's chosen principles. An audit recommendation that contradicts
+  one must engage with it; each audit does so explicitly where relevant.
+- `docs/ROADMAP.md` "Not planned" — explicitly rejected directions.
 - Crash forensics: `journalctl -b -1 | tail` and `sar -r -f /var/log/sysstat/sa21`.
