@@ -63,6 +63,11 @@ rg -l "from ['\"].*<module>['\"]" src | wc -l                          # import 
 rg -n '<module-name>' src --glob '!*.test.ts'                          # reference tracing
 ```
 
+Every `file:line` citation in `docs/PRINCIPLES.md` and `docs/ARCHITECTURE.md` was extracted with a
+regex and resolved against the current tree, printing the line each citation actually lands on (F7).
+The check is positional only: it establishes what text sits at the cited line, not whether that text
+still supports the claim.
+
 Fan-in counts were cross-checked by grepping each module's bare name, which is how the
 `word-highlight` result below was corrected. `docs/ARCHITECTURE.md` (§Repo layout, lines 56–85),
 `docs/PRINCIPLES.md` (§9 High cohesion, §14 Explicit non-goals), and `docs/ROADMAP.md` (§Later,
@@ -158,6 +163,33 @@ _Inference._ At 23 files this is navigable but at the point where a flat list st
 advantage. The grouping that exists (`nodes/`, `brand/`) shows the project already reaches for
 subdirectories when a set coheres; three further coherent sets are visible in the flat list.
 
+### F7 — Half the `file:line` citations in `PRINCIPLES.md` have drifted off their code
+
+_Observation._ `AGENTS.md` states the standing norm: "Every principle in `docs/PRINCIPLES.md` has a
+code reference. When you change the code, check whether the matching principle needs updating in the
+same commit." Every `file:line` citation in the document was resolved against the current tree:
+
+| Cited in `PRINCIPLES.md`                           | Cited line now contains               | Actual location of the referenced code        |
+| -------------------------------------------------- | ------------------------------------- | --------------------------------------------- |
+| `loader.ts:59`                                     | blank line                            | `loader.ts:77` (`if (!process.env.SKIP_PDF)`) |
+| `loader.ts:66`                                     | blank line                            | `loader.ts:82` (`skipGeneration:` read)       |
+| `content.config.ts` "lines 22–46" (the env bridge) | schema/collection defs                | `content.config.ts:83-90`                     |
+| `gdocsdk.ts:48-58` (cache-miss error)              | a comment                             | `fetchDoc` at `:41`, the `throw` at `:60-62`  |
+| `renderer.ts:53`                                   | exactly the cited read                | correct                                       |
+| `transformer.ts:5`                                 | `export type Node = {`                | correct                                       |
+| `utils.ts:25`                                      | `export function slugify`             | correct                                       |
+| `content.config.ts:34`                             | `const glossary = defineCollection({` | correct                                       |
+
+Four of eight resolve correctly; three have drifted substantially (16–50 lines) and one mildly.
+`docs/ARCHITECTURE.md` cites files without line numbers, so it has no equivalent exposure.
+
+_Inference._ The content of the principles is not wrong — §1's prose still describes the system
+accurately, including its enumerated exceptions. What has decayed is the navigational claim. Because
+the project deliberately made the citation a load-bearing norm, a stale citation costs more here than
+it would in a repo that never promised them. Line-anchored references to a moving file are the
+fragile form; symbol-anchored ones (`fetchDoc`, `slugify`) survived unchanged, which is visible in
+the table above — the three correct non-trivial citations are all to stable top-of-file symbols.
+
 ## Limitations
 
 - **Import fan-in is undercounted.** The `from '...'` grep reported `word-highlight` as imported by
@@ -181,22 +213,30 @@ what to act on; nothing here should be executed without that decision.
    `src/content/`, `src/data/`, `src/config/`, `src/fonts/`. Risk: none — documentation-only, and it
    restores the accuracy of the file `AGENTS.md` points readers to first.
 
-2. **Separate browser modules from build-time modules in `src/lib/` (F2). Size S–M.** The cheapest
+2. **Repair the four stale citations in `docs/PRINCIPLES.md`, and prefer symbol anchors (F7).
+   Size S.** The three substantially-drifted ones are `loader.ts:59`→`:77`, `loader.ts:66`→`:82`,
+   and the `content.config.ts` bridge range →`:83-90`. Risk: none — documentation-only. Worth pairing
+   with a shift to symbol-anchored references (`fetchDoc`, `slugify`), which is the form that
+   survived in this sample; a line number re-breaks on the next edit above it. A `just`/`atlas`
+   subcommand that resolves citations (see audit:0006) would make this checkable rather than
+   periodic.
+
+3. **Separate browser modules from build-time modules in `src/lib/` (F2). Size S–M.** The cheapest
    version is a `src/lib/client/` subdirectory for the seven browser modules, leaving the four
    build-time ones in place. Risk: touches import paths in `Reader.astro` and the section page;
    mechanical, caught by `pnpm typecheck`. This is the recommendation with the best
    effort-to-clarity ratio in this audit.
 
-3. **Give the read-along a single home (F3, F4). Size M.** Colocating `word-highlight.ts`,
+4. **Give the read-along a single home (F3, F4). Size M.** Colocating `word-highlight.ts`,
    `word-align.ts`, `follow-scroll.ts`, and `chapter-timing.ts` under one directory would make the
    newest subsystem legible as a unit and would empty `src/data/` of its misnamed contents. Risk:
    moderate — it is the least settled code, so churn here competes with stability; it also touches
    `task:0002`'s migration surface, so sequencing matters. **Recommend deferring until the R2
    migration in `task:0002` has landed**, to avoid moving the same file twice.
 
-4. **Group the flat `src/components/` set (F6). Size S.** Three coherent groups are already visible:
+5. **Group the flat `src/components/` set (F6). Size S.** Three coherent groups are already visible:
    form primitives, page furniture, search. Risk: low but purely cosmetic churn across many import
-   sites; lowest value of the four and easy to justify declining.
+   sites; lowest value of the structural changes and easy to justify declining.
 
 **Explicitly not recommended:** any change to `transformer.ts` (F5) as part of this cleanup. The
 project has already scoped it, placed it in "Later", and recorded why. Re-raising it here would add
@@ -209,10 +249,13 @@ nothing.
 The owner has reserved all `src/` changes until a tree and sequencing are agreed
 (`handoff:0002` §Constraints). This record exists to inform that decision, not to pre-empt it.
 
-Only recommendation 1 (documentation-only) is safe to action without further design discussion.
-Recommendations 2–4 change import paths across the tree and should be decided together, since doing
-2 and 3 separately would move `src/lib/` files twice. Recommendation 3 additionally has a stated
-sequencing dependency on `task:0002`.
+Recommendations 1 and 2 are documentation-only and safe to action without further design
+discussion; 2 also repairs a norm the project set for itself in `AGENTS.md`.
 
-No finding in this audit is a correctness defect; all are legibility and organisation observations.
-Declining all four in full is a defensible outcome.
+Recommendations 3–5 change import paths across the tree and should be decided together, since doing
+3 and 4 separately would move the same `src/lib/` files twice. Recommendation 4 additionally has a
+stated sequencing dependency on `task:0002`.
+
+No finding in this audit is a correctness defect; all are legibility, navigation, and organisation
+observations. Declining every structural recommendation (3–5) while taking the two documentation
+fixes is a coherent outcome, and is the option this audit would defend if forced to choose.
