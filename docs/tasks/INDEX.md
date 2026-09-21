@@ -45,3 +45,5 @@ index as numbered files (e.g. `0001-title.md`).
   Design the `atlas` control surface for maintainer operations (todo — design agreement only, no implementation authorised).
 - [task:0011](./0011-adopt-the-documentation-content-standards-in-substance-not-just-frontmatter.md) —
   Adopt the documentation content standards in substance, not just frontmatter (todo — the goodharting fix).
+- [task:0012](./0012-position-atlas-docs-check-as-a-portable-floor-under-the-software-engineering-ski.md) —
+  Position `atlas docs check` as a portable floor under the software-engineering skill (todo).
