@@ -1,3 +1,13 @@
+---
+standard:
+  version: 1
+  id: design-system
+  summary: Visual patterns, components, spacing tokens, and icons used across the site.
+  status: current
+  owner: Markov Grey
+  updated: '2026-09-21'
+---
+
 # Design system
 
 Visual patterns and reusable components used across the site. If you're building a new page or section, prefer composing the existing components below over inventing layout.

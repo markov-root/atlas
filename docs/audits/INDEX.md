@@ -24,3 +24,19 @@ Governed `audit` records — dated observations, methods, and evidence limits. A
 
 - [audit:0001](./0001-external-service-dependency-audit-for-independence.md) —
   External-service dependency audit for independence (draft, 2026-08-17).
+
+### Codebase cleanup sweep (2026-09)
+
+Five audits scoped to one dimension each, allocated together so their findings can be read as one
+sweep. IDs are reserved and committed; a record that is still a template has not been run yet.
+
+- [audit:0002](./0002-structure-modularity-and-file-tree-coherence.md) —
+  Structure, modularity, and file-tree coherence (template, not yet run).
+- [audit:0003](./0003-test-suite-depth-gaps-and-architectural-fitness.md) —
+  Test-suite depth, gaps, and architectural fitness (template, not yet run).
+- [audit:0004](./0004-cruft-dead-code-and-dependency-hygiene.md) —
+  Cruft, dead code, and dependency hygiene (template, not yet run).
+- [audit:0005](./0005-code-quality-patterns-and-typescript-idiom.md) —
+  Code quality, patterns, and TypeScript idiom (template, not yet run).
+- [audit:0006](./0006-developer-ergonomics-and-the-case-for-an-atlas-control-surface.md) —
+  Developer ergonomics and the case for an `atlas` control surface (template, not yet run).

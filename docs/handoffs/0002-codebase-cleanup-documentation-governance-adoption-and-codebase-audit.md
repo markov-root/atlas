@@ -8,7 +8,7 @@ status: current
 summary: "Handoff record: Codebase cleanup: documentation governance adoption and codebase audit."
 created: "2026-09-21"
 updated: "2026-09-21"
-owner: HANDOFF OWNER
+owner: Markov Grey
 supersedes: ""
 superseded_by: ""
 engineering_document:
@@ -21,8 +21,8 @@ engineering_document:
   state: current
   authority:
     kind: continuation-state
-    owner: HANDOFF OWNER
-    scope: NEXT-SESSION CONTINUATION ONLY
+    owner: Markov Grey
+    scope: Continuation of the codebase-cleanup branch only
   created: "2026-09-21"
   updated: "2026-09-21"
   transition_history: unverified

@@ -1,3 +1,13 @@
+---
+roadmap:
+  version: 1
+  id: roadmap
+  summary: Where the codebase is going: Now, Next, Later, and explicitly Not planned.
+  status: current
+  owner: Markov Grey
+  updated: '2026-09-21'
+---
+
 # Roadmap
 
 Where this codebase wants to be, and why. This complements [`TODO.md`](./TODO.md) (tactical, local, checkbox-driven) with strategic direction.

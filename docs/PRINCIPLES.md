@@ -1,3 +1,13 @@
+---
+standard:
+  version: 1
+  id: principles
+  summary: The engineering principles this project applies, each tied to a code reference.
+  status: current
+  owner: Markov Grey
+  updated: '2026-09-21'
+---
+
 # Principles
 
 The engineering principles this project actually applies, with the code that demonstrates each one. If something here doesn't match the codebase, the code or the doc is wrong — fix one or the other in the same change.

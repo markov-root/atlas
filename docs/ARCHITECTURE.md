@@ -1,3 +1,13 @@
+---
+specification:
+  version: 1
+  id: architecture
+  summary: How the build pipeline, BuildMode, and the Astro layer fit together.
+  status: current
+  owner: Markov Grey
+  updated: '2026-09-21'
+---
+
 # Architecture
 
 AI Safety Atlas is an Astro static site whose content is generated from Google Docs at build time. This document explains the pipeline.
