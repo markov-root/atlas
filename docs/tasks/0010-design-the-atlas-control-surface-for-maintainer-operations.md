@@ -81,6 +81,15 @@ follow-on. Specifically:
    | `atlas generate audio [--chapter N]` | the audio renderer path         | no invocation          |
    | `atlas audio stage [--fetch] N [S]`  | `scripts/copy-chapter-audio.sh` | exists, undiscoverable |
    | `atlas audio publish-cbr [--yes] N`  | `scripts/swap-cbr-audio.ts`     | exists, undiscoverable |
+   | `atlas docs check`                   | nothing — net-new               | **shipped** (`301634e`) |
+
+   **Owner decision 2026-09-21:** implementation began with `atlas docs check`, chosen because it is
+   low-risk, proves the CLI shape before the audio and pull commands touch anything expensive, and
+   closes a real gap — a cloner had no way to check documentation conformance without a
+   locally-installed skill. `bin/atlas` and `cli/` now exist and are wired into `pnpm verify`; the
+   four commands above remain to be built. This is the one command that is net-new capability rather
+   than an addressing layer, so it is the stated exception to the YAGNI argument above, justified by
+   the gap it closes.
 
 2. **Shape.** `bin/atlas` as a logic-free adapter, following the _separation_ in
    `~/Git/CoP Dataset/bin/cop` (6 lines: `cd` to root, `exec` the real entry point) but not its
@@ -119,8 +128,9 @@ follow-on. Specifically:
   gain (`audit:0006` recommendation 3).
 - **Deleting `scripts/` in the same change that adds the CLI.** Retirement is decided (Scope 5) but
   is the last step, after the rationale in the script headers has been migrated.
-- **Implementation.** This task is design agreement only. Per `handoff:0002` §Constraints, `src/`
-  changes need a separate owner decision.
+- **Implementation of the four wrapping commands.** `atlas docs check` shipped under a specific
+  owner decision; `atlas pull`, `atlas generate audio`, and the two audio commands still need design
+  agreement before they are built, because they touch content fetching and paid synthesis.
 - **Env-var consolidation** (`audit:0006` F3, recommendation 5) — sequenced after this, because a
   partial migration leaves two places to look, which is worse than one.
 
