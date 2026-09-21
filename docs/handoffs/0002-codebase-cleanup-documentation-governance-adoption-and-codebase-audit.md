@@ -33,8 +33,21 @@ engineering_document:
     repository: 'AI Safety Atlas (markov-root/atlas)'
     revision: 'branch codebase-cleanup at d397b6f; clean except a pre-existing uncommitted src/pages/teach.astro edit owned by Markov'
     objective: 'Adopt the software-engineering documentation discipline in full, then audit the codebase across quality dimensions and agree a refactor plan before changing any code.'
-    completed: [adr:0002, audit:0002, audit:0003, audit:0004, audit:0005, audit:0006, task:0010]
-    open_work: [task:0008, task:0009, task:0010]
+    completed:
+      [
+        adr:0002,
+        audit:0002,
+        audit:0003,
+        audit:0004,
+        audit:0005,
+        audit:0006,
+        audit:0007,
+        audit:0008,
+        audit:0009,
+        audit:0010,
+        task:0011,
+      ]
+    open_work: [task:0008, task:0009, task:0010, task:0012]
     blockers: []
     authority_refs: [AGENTS.md, engineering.yaml, docs/PRINCIPLES.md, docs/ROADMAP.md]
     resume: 'engineering document validate'
@@ -43,6 +56,14 @@ engineering_document:
 # Handoff 0002: Codebase cleanup: documentation governance adoption and codebase audit
 
 ## Outcome
+
+**Documentation and audit phases are complete; the codebase refactor has not started.**
+
+Since this record was first written: a second, deeper audit sweep (`audit:0007`-`0010`, 36 findings,
+scoped by causal chain) established the scaling picture; `task:0011` corrected the documentation
+goodharting by restructuring the four living documents to their role content standards in substance;
+`atlas docs check` shipped (`301634e`) as the first `atlas` command, giving a skill-free conformance
+floor wired into `pnpm verify`; and `pnpm typecheck` finally ran clean (119 files, 0 errors).
 
 **Complete for everything that did not require an owner decision.** Documentation governance is fully
 adopted, all six legacy lesson notes are migrated, the four living documents carry role frontmatter,
