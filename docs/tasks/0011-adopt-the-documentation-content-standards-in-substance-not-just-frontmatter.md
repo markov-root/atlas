@@ -4,7 +4,7 @@ id: "0011"
 uid: "task-20260921T153341176939Z-834bf15c"
 title: "Adopt the documentation content standards in substance not just frontmatter"
 role: task
-status: todo
+status: in_progress
 summary: 'Make the four living documents satisfy their role content standards in body, not only carry role frontmatter.'
 created: "2026-09-21"
 updated: "2026-09-21"
@@ -18,15 +18,19 @@ engineering_document:
   id: "0011"
   uid: task-20260921T153341176939Z-834bf15c
   title: "Adopt the documentation content standards in substance not just frontmatter"
-  state: todo
+  state: in_progress
   authority:
     kind: work-state
     owner: Markov Grey
     scope: Documentation only; no src/ changes
   created: "2026-09-21"
   updated: "2026-09-21"
-  transition_history: unverified
-  transitions: []
+  transition_history: complete
+  transitions:
+    - from: todo
+      to: in_progress
+      at: '2026-09-21'
+      reason: Four parallel agents restructured the living documents to their role content standards.
   relationships: []
   details:
     criteria: [criterion:AC-1, criterion:AC-2, criterion:AC-3, criterion:AC-4, criterion:AC-5, criterion:AC-6]
@@ -114,12 +118,19 @@ Fix the three factual defects above as part of the same work.
 
 | Criterion | Evidence | Verified |
 | --------- | -------- | -------- |
-| AC-1      | —        | —        |
-| AC-2      | —        | —        |
-| AC-3      | —        | —        |
-| AC-4      | —        | —        |
-| AC-5      | —        | —        |
-| AC-6      | —        | —        |
+| AC-1      | `docs/ARCHITECTURE.md` — new `## Failure semantics by stage` (per-stage table: on-failure, exit code, live-site effect), `## Mode boundaries`, `## Configuration precedence`, `## Edition and language scope`. Repo-layout block corrected: `components/navigation/` removed, `src/content/`, `src/data/`, `src/config/`, `src/fonts/` added. | yes — sections present and evidence-anchored; `navigation/` absent from file |
+| AC-2      | `docs/PRINCIPLES.md` — new `## How this standard works` (issuer, adoption, governed population, exception authorization, change governance). Every principle now tagged `(binding)` or `(advisory)`, with carve-outs named. Stale citations `loader.ts:59`, `loader.ts:66`, and the `content.config.ts` bridge range repaired. | yes — 37 binding/advisory markers, 18 waiver/exception references, zero stale citations remain |
+| AC-3      | `docs/DESIGN.md` — new `## Scope`, `## Rules`, `## Conformance and exceptions`, `## Reference`; binding vs advisory distinguished. | yes — sections present |
+| AC-4      | `docs/ROADMAP.md` — `## How to read this roadmap`, dated commitment band (`Now — committed focus (calibrated 2026-09-21)`), 17 break triggers, 61 links to `task:`/`adr:`/`audit:` records, `## Reconciliation with task, ADR, and audit state`. False "language switcher already implemented dormant" claim removed; quizzes/flashcards separated from the certification-program rejection. | yes — counts verified by grep; false claim absent |
+| AC-5      | `docs/runbooks/regenerate-chapter-audio.md` (270 lines) — `When to use`, `Why this is risky — the two couplings`, `Mutations and reversibility` (per-step reversibility table), `Procedure`, `Outcome evidence`, `Not known — read before you improvise`. | yes — branch at risky step present; unknowns stated rather than papered over |
+| AC-6      | Spot-review of the failure-semantics table, reversibility table, and unknowns section found claims anchored to symbols (`fetchDoc`, `downloadImages`, `synthesizeParagraphs`) or to audit findings, with cost figures explicitly marked factor-of-2 estimates. | partial — reviewed by sampling, not line by line; see Limitations |
+
+### Limitations of this verification
+
+The review was structural plus sampled-substance: every required section was confirmed present and four
+of them read in full, but not every paragraph of 681 added lines was checked against code. `AC-6` is
+therefore evidenced by sampling. A reviewer wanting full assurance should re-verify the citations in
+`ARCHITECTURE.md`'s failure table independently.
 
 ## Authority and inputs
 
