@@ -160,14 +160,19 @@ https://ai-2027.com:
     type: webpage
     URL: https://ai-2027.com
     author:
-      - literal: Kokotajlo et al.
+      - literal: Daniel Kokotajlo
+      - literal: Scott Alexander
+      - literal: Thomas Larsen
+      - literal: Eli Lifland
+      - literal: Romeo Dean
     issued:
       date-parts:
         - - 2025
     title: AI 2027
     abstract: |
       A research-backed AI scenario forecast.
-  resolvedBy: opengraph
+    note: Research-database record found, but no publication date.
+  resolvedBy: research-db
   anchors:
     - Kokotajlo et al., 2025
     - Kokotajlo, 2025
@@ -177,7 +182,11 @@ https://ai-2027.com/research/security-forecast:
     type: webpage
     URL: https://ai-2027.com/research/security-forecast
     author:
-      - literal: Dean
+      - literal: Daniel Kokotajlo
+      - literal: Scott Alexander
+      - literal: Thomas Larsen
+      - literal: Eli Lifland
+      - literal: Romeo Dean
     issued:
       date-parts:
         - - 2025
@@ -185,7 +194,8 @@ https://ai-2027.com/research/security-forecast:
     abstract: AI 2027 predicts AI models will be stolen due to poor security and highly valuable
       algorithmic secrets will leak through espionage. This supplement justifies why we think this
       is plausible.
-  resolvedBy: opengraph
+    note: Research-database record found, but no publication date.
+  resolvedBy: research-db
   anchors:
     - " Dean, 2025"
     - Dean, 2025
@@ -957,9 +967,44 @@ https://alignmentforum.org/posts/Hna4aoMwr6Qx9rHBs/linkpost-introducing-superali
     issued:
       date-parts:
         - - 2023
-    title: Christiano, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "[Linkpost] Introducing Superalignment — AI Alignment Forum"
+    abstract: >-
+      Comment by paulfchristiano - I don't think I disagree with many of the claims in Jan's post,
+      generally I think his high level points are correct.
+
+
+      He lists a lot of things as "reasons for optimism" that I wouldn't consider positive updates
+      (e.g. stuff working that I would strongly expect to work) and doesn't list the analogous
+      reasons for pessimism (e.g. stuff that hasn't worked well yet).  Similarly I'm not sure
+      conviction in language models is a good thing but it may depend on your priors.
+
+
+      One potential substantive disagreement with Jan's position is that I'm somewhat more scared of
+      AI systems evaluating the consequences of each other's actions and therefore more interested
+      in trying to evaluate proposed actions on paper (rather than needing to run them to see what
+      happens). That is, I'm more interested in "process-based" supervision and decoupled
+      evaluation, whereas my understanding is that Jan sees a larger role for systems doing things
+      like carrying out experiments with evaluation of results in the same way that we'd evaluate
+      employee's output.
+
+
+      (This is related to the difference between IDA and RRM that I mentioned above. I'm actually
+      not sure about Jan's all-things-considered position, and I think this piece is a bit agnostic
+      on this question. I'll return to this question below.)
+
+
+      The basic tension here is that if you evaluate proposed actions you easily lose
+      competitiveness (since AI systems will learn things overseers don't know about the
+      consequences of different possible actions) whereas if you evaluate outcomes then you are more
+      likely to have an abrupt takeover where AI systems grab control of sensors / the reward
+      channel / their own computers (since that will lead to the highest reward). A subtle related
+      point is that if you have a big competitiveness gap from process-based feedback, then you may
+      also be running an elevated risk from deceptive alignment (since it indicates that your model
+      understands things about the world that you don't).
+
+
+      In practice I don't think either of tho
+  resolvedBy: opengraph
   anchors:
     - Christiano, 2023
 https://alignmentforum.org/posts/J8ifgynkfhpmrGrL8/why-almost-every-rl-agent-does-learned-optimization:
@@ -1055,9 +1100,10 @@ https://alignmentforum.org/posts/MDeGts4Aw9DktCkXw/toy-models-of-ai-control-for-
     issued:
       date-parts:
         - - 2024
-    title: Roger & Shlegeris, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Toy models of AI control for concentrated catastrophe prevention — AI Alignment Forum
+    abstract: In this post, we analyze some simple games that model the problem of ensuring AIs never
+      succeed at taking a single catastrophic action (which we'll r…
+  resolvedBy: opengraph
   anchors:
     - Roger & Shlegeris, 2024
 https://alignmentforum.org/posts/MR5wJpE27ymE7M7iv/formalizing-the-qaci-alignment-formal-goal:
@@ -1070,9 +1116,11 @@ https://alignmentforum.org/posts/MR5wJpE27ymE7M7iv/formalizing-the-qaci-alignmen
     issued:
       date-parts:
         - - 2023
-    title: Leake, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: formalizing the QACI alignment formal-goal — AI Alignment Forum
+    abstract: |-
+      this work was done by Tamsin Leake and Julia Persson at Orthogonal.
+      thanks to mesaoptimizer for his help putting together this post. …
+  resolvedBy: opengraph
   anchors:
     - Leake, 2023
 https://alignmentforum.org/posts/Nsmabb9fhpLuLdtLE/takeoff-speeds-presentation-at-anthropic:

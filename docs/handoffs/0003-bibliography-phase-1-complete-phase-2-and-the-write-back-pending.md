@@ -31,10 +31,10 @@ engineering_document:
   details:
     captured_at: '2026-09-22T11:15:00Z'
     repository: 'AI Safety Atlas (markov-root/atlas, GitHub)'
-    revision: 'branch bibliography at 43767a6, 10 commits ahead of main, working tree clean'
+    revision: 'branch bibliography, 21 commits ahead of main; one uncommitted sources.yaml change from a killed resolve run'
     objective: 'Derive a bibliography from the citation links already in the Google Docs, delivering a file-based artifact before any rendering.'
     completed: [task:0025, task:0026, task:0027]
-    open_work: [task:0021, task:0028, task:0022, task:0023, task:0013]
+    open_work: [task:0029, task:0021, task:0028, task:0022, task:0023, task:0013]
     blockers: []
     authority_refs:
       [
@@ -100,6 +100,15 @@ start of this work).
 
 ## Open work
 
+0. **`task:0029` — port the resolution half to Python. Do this first.** The citation pipeline was
+   written in TypeScript by inheritance, never by decision. 3,243 of its 3,810 lines are
+   language-agnostic scraping and bibliography work; only the 567-line extraction step is genuinely
+   tied to the AST. The cost is already visible: a hand-rolled BibTeX serializer shipped a
+   structural bug affecting all 303 arXiv entries (`6c4263e`), and HTML metadata is parsed with
+   regular expressions in two files. `bibtexparser`, `beautifulsoup4`, `habanero` and `arxiv` exist.
+   **Everything below is downstream of this** — phase 2 rendering and the write-back both build on
+   code this task moves.
+
 1. **`task:0028`** — the write-back. Owner asked for it explicitly, but it is now **blocked on an
    upstream capability**: the research corpus has no queryable coverage, so we cannot tell which of
    948 URLs are worth offering without fetching each one. Four feedback notes filed; the coverage
@@ -125,6 +134,20 @@ git log --oneline main..HEAD           # 10 unpushed commits
 
 `pnpm test` and `pnpm typecheck:cli` are cheap and safe. `pnpm verify` is not — see below.
 
+## A standing instruction from the owner
+
+Recorded verbatim because it governs how work in this repository is judged, and because the agent
+that wrote this handoff got it wrong once:
+
+> "I never ever want to hear the words sunk cost again when working in this repo. We only do it
+> right. I will not live with something that I know is wrong or things that can be improved just
+> because of sunk cost."
+
+Applied: code written five minutes ago has no more claim to survival than code written five years
+ago. "It already works", "the tests pass" and "it would be a rewrite" are not arguments for keeping
+a design that is wrong. `task:0029` exists because that rule was applied to work finished the same
+afternoon.
+
 ## Things that will bite the next person
 
 - **Always `export SKIP_AUDIO_DOWNLOAD=1`.** Without it, anything that loads a chapter runs the audio
@@ -138,8 +161,15 @@ git log --oneline main..HEAD           # 10 unpushed commits
   **attribute**, not in `children`. A `children`-only walk misses 20% of citations. `utils.ts:15`
   `traverseNodes` has this blind spot; `citations/extract.ts` has `allChildNodes()` as the local
   remedy. `audit:0011` F5.
-- **`data/citations/sources.yaml` is committed; the three derived outputs are gitignored.** The store
-  accumulates resolver metadata that costs real time and other people's rate limits to rebuild.
+- **`data/citations/sources.yaml` is committed; every derived output is gitignored.** The store
+  accumulates resolver metadata that costs real time and other people's rate limits to rebuild. It
+  holds **786 of 948 resolved**; `task:0029` AC-4 requires the port to carry those over untouched.
+- **Resolution is sticky, and that cuts both ways.** A resolved entry is never re-fetched, which is
+  what makes the long tail tractable — but a *bad* resolution is equally permanent. Use
+  `atlas citations resolve --redo=<resolver>` to give an improved resolver another turn.
+- **A resolve run takes ~75 minutes** at the polite 3s interval. Run it in tmux, and commit the
+  store as it goes: the command saves to disk every 20 entries but git does not follow on its own,
+  and 193 entries of work were once left uncommitted on a machine that has crashed twice.
 
 ## Method notes worth carrying forward
 

@@ -87,3 +87,5 @@ in total, each with options, a recommendation, and what is irreversible if decid
   Metadata resolvers and incremental citation resolution (todo — child of 0021; banks B8-B9; depends on 0025; four independent resolvers, the most parallelizable unit).
 - [task:0028](./0028-write-resolved-citations-back-into-the-research-database.md) —
   Write resolved citations back into the research database (todo — child of 0021; turns the corpus from a lookup table into a write-back cache; 548 of 948 sources immediately acquirable, D1 decides scope).
+- [task:0029](./0029-port-the-citation-resolution-half-to-python-behind-a-json-boundary.md) —
+  Port the citation resolution half to Python behind a JSON boundary (todo — p1; 3,243 of 3,810 lines are language-agnostic; hand-rolled BibTeX already shipped a structural bug).
