@@ -35242,9 +35242,12 @@ https://resources.nvidia.com/en-us-blackwell-architecture:
     issued:
       date-parts:
         - - 2025
-    title: NVIDIA, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: NVIDIA Blackwell Architecture Technical Overview
+    container-title: NVIDIA
+    abstract: NVIDIA's Blackwell GPU architecture revolutionizes AI with unparalleled performance,
+      scalability and efficiency. Anchored by the Grace Blackwell GB200 superchip and GB200 NVL72,
+      it boasts 30X more performance and 25X more energy efficiency over its predecessor.
+  resolvedBy: opengraph
   anchors:
     - NVIDIA, 2025
 https://reuters.com/technology/what-happens-when-your-ai-chatbot-stops-loving-you-back-2023-03-18:
@@ -35287,9 +35290,12 @@ https://safe.ai/blog/cybersecurity-and-ai-the-evolving-security-landscape:
     issued:
       date-parts:
         - - 2024
-    title: Newman, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Cybersecurity and AI: The Evolving Security Landscape | CAIS"
+    container-title: Center for AI Safety
+    abstract: Advances in AI could increase the risk of cyberattacks, yet AI also promises to improve
+      cyber defenses. A coordinated effort between technology and regulatory sectors is crucial for
+      leveraging AI's potential to strengthen cyber defenses and address security shortcomings.
+  resolvedBy: opengraph
   anchors:
     - Newman, 2024
 https://safe.ai/blog/humanitys-last-exam:
@@ -35302,9 +35308,14 @@ https://safe.ai/blog/humanitys-last-exam:
     issued:
       date-parts:
         - - 2024
-    title: Hendrycks & Wang, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Submit Your Toughest Questions for Humanity's Last Exam | CAIS
+    container-title: Center for AI Safety
+    abstract: CAIS and Scale AI are excited to announce the launch of Humanity's Last Exam, a project
+      aimed at measuring how close we are to achieving expert-level AI systems. The exam is aimed at
+      building the world's most difficult public AI benchmark gathering experts across all fields.
+      People who submit successful questions will be invited as coauthors on the paper for the
+      dataset and have a chance to win money from a $500,000 prize pool.
+  resolvedBy: opengraph
   anchors:
     - Hendrycks & Wang, 2024
 https://safe.ai/work/statement-on-ai-risk:
@@ -35317,9 +35328,12 @@ https://safe.ai/work/statement-on-ai-risk:
     issued:
       date-parts:
         - - 2023
-    title: CAIS, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Statement on AI Extinction Risk | CAIS
+    container-title: Center for AI Safety
+    abstract: "A statement jointly signed by a historic coalition of experts: “Mitigating the risk of
+      extinction from AI should be a global priority alongside other societal-scale risks such as
+      pandemics and nuclear war.”"
+  resolvedBy: opengraph
   anchors:
     - CAIS, 2023
 https://scholarship.law.columbia.edu/books/232:
@@ -35332,9 +35346,28 @@ https://scholarship.law.columbia.edu/books/232:
     issued:
       date-parts:
         - - 2020
-    title: Bradford, 2020
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "The Brussels Effect: How the European Union Rules the World"
+    container-title: Scholarship Archive
+    abstract: >-
+      For many observers, the European Union is mired in a deep crisis. Between sluggish growth;
+      political turmoil following a decade of austerity politics; Brexit; and the rise of Asian
+      influence, the EU is seen as a declining power on the world stage.
+
+      Columbia Law professor Anu Bradford argues the opposite in her important new book The Brussels
+      Effect: the EU remains an influential superpower that shapes the world in its image. By
+      promulgating regulations that shape the international business environment, elevating
+      standards worldwide, and leading to a notable Europeanization of many important aspects of
+      global commerce, the EU has managed to shape policy in areas such as data privacy, consumer
+      health and safety, environmental protection, antitrust, and online hate speech. And in
+      contrast to how superpowers wield their global influence, the Brussels Effect - a phrase first
+      coined by Bradford in 2012- absolves the EU from playing a direct role in imposing standards,
+      as market forces alone are often sufficient as multinational companies voluntarily extend the
+      EU rule to govern their global operations.
+
+      The Brussels Effect shows how the EU has acquired such power, why multinational companies use
+      EU standards as global standards, and why the EU's role as the world's regulator is likely to
+      outlive its gradual economic decline, extending the EU's influence long into the future.
+  resolvedBy: opengraph
   anchors:
     - Bradford, 2020
 https://scholarship.law.georgetown.edu/facpub/2647:
@@ -35347,9 +35380,10 @@ https://scholarship.law.georgetown.edu/facpub/2647:
     issued:
       date-parts:
         - - 2024
-    title: Lancieri et al., 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: '"AI Regulation: Competition, Arbitrage & Regulatory Capture" by Filippo Lancieri, Laura
+      Edelson et al.'
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Lancieri et al., 2024
 https://science.org/doi/10.1126/science.ade9097:
@@ -35407,9 +35441,10 @@ https://sciendo.com/issue/JAGI/11/2:
     issued:
       date-parts:
         - - 2020
-    title: Wang, 2020
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Journal of Artificial General Intelligence
+    container-title: Paradigm
+    abstract: "Volume 11 (2020): Issue 2 (February 2020)"
+  resolvedBy: opengraph
   anchors:
     - Rapaport, 2020
     - Wang, 2020
@@ -35423,9 +35458,15 @@ https://sean.heelan.io/2025/05/22/how-i-used-o3-to-find-cve-2025-37899-a-remote-
     issued:
       date-parts:
         - - 2025
-    title: Heelan, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 5
+          - 22
+    title: How I used o3 to find CVE-2025-37899, a remote zeroday vulnerability in the Linux kernel’s
+      SMB implementation
+    container-title: Sean Heelan's Blog
+    abstract: In this post I’ll show you how I found a zeroday vulnerability in the Linux kernel using
+      OpenAI’s o3 model. I found the vulnerability with nothing more complicated than the o3 API
+      &#821…
+  resolvedBy: opengraph
   anchors:
     - Heelan, 2025
 https://shortform.com/summary/life-3-0-summary-max-tegmark:
@@ -35438,9 +35479,10 @@ https://shortform.com/summary/life-3-0-summary-max-tegmark:
     issued:
       date-parts:
         - - 2017
-    title: Tegmark, 2017
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Life 3.0 Book Summary by Max Tegmark
+    abstract: The most detailed book summary of "Life 3.0" by Max Tegmark. Get the main points of "Life
+      3.0" with Shortform book summaries.
+  resolvedBy: opengraph
   anchors:
     - Tegmark, 2017
 https://sideways-view.com/2018/02/24/takeoff-speeds:
@@ -35453,9 +35495,14 @@ https://sideways-view.com/2018/02/24/takeoff-speeds:
     issued:
       date-parts:
         - - 2018
-    title: Christiano, 2018
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 2
+          - 24
+    title: Takeoff speeds
+    container-title: The sideways view
+    abstract: Futurists have argued for years about whether the development of AGI will look more like a
+      breakthrough within a small group (“fast takeoff”), or a continuous acceleration distributed
+      a…
+  resolvedBy: opengraph
   anchors:
     - Christiano, 2018
 https://situational-awareness.ai:
@@ -35468,9 +35515,13 @@ https://situational-awareness.ai:
     issued:
       date-parts:
         - - 2024
-    title: Aschenbrenner, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Introduction - SITUATIONAL AWARENESS: The Decade Ahead"
+    container-title: SITUATIONAL AWARENESS - The Decade Ahead
+    abstract: Leopold Aschenbrenner, June 2024 You can see the future first in San Francisco. Over the
+      past year, the talk of the town has shifted from $10 billion compute clusters to $100 billion
+      clusters to trillion-dollar clusters. Every six months another zero is added to the boardroom
+      plans. Behind the scenes, there’s a fierce scramble to
+  resolvedBy: opengraph
   anchors:
     - Aschenbrenner, 2024
 https://situational-awareness.ai/from-gpt-4-to-agi:
@@ -35483,9 +35534,16 @@ https://situational-awareness.ai/from-gpt-4-to-agi:
     issued:
       date-parts:
         - - 2024
-    title: Aschenbrenner 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 5
+          - 29
+    title: "I. From GPT-4 to AGI: Counting the OOMs - SITUATIONAL AWARENESS"
+    container-title: SITUATIONAL AWARENESS - The Decade Ahead
+    abstract: AGI by 2027 is strikingly plausible. GPT-2 to GPT-4 took us from ~preschooler to ~smart
+      high-schooler abilities in 4 years. Tracing trendlines in compute (~0.5 orders of magnitude or
+      OOMs/year), algorithmic efficiencies (~0.5 OOMs/year), and “unhobbling” gains (from chatbot to
+      agent), we should expect another preschooler-to-high-schooler-sized qualitative jump by 2027.
+      Look. The models, they just
+  resolvedBy: opengraph
   anchors:
     - Aschenbrenner 2024
     - Aschenbrenner, 2024
@@ -35528,10 +35586,14 @@ https://stateof.ai:
       - literal: State of AI Report
     issued:
       date-parts:
-        - - 2023
-    title: State of AI Report, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+        - - 2025
+          - 10
+          - 9
+    title: State of AI Report 2025
+    container-title: State of AI Report
+    abstract: The independent annual report on AI research, industry, geopolitics and safety. Read and
+      download the 2025 edition.
+  resolvedBy: opengraph
   anchors:
     - State of AI Report, 2023
 https://static1.squarespace.com/static/6593e7097565990e65c886fd/t/65a6f1389754fc06cb9a7a14/1705439547455/auditing_framework_web.pdf:
@@ -35561,9 +35623,9 @@ https://substack.com/home/post/p-139945470:
     issued:
       date-parts:
         - - 2023
-    title: Leike, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Combining weak-to-strong generalization with scalable oversight
+    abstract: A high-level view on how this new approach fits into our alignment plans
+  resolvedBy: opengraph
   anchors:
     - Leike, 2023
 https://swebench.com:
@@ -35576,9 +35638,9 @@ https://swebench.com:
     issued:
       date-parts:
         - - 2025
-    title: SWE bench, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: SWE-bench Leaderboards
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - SWE bench, 2025
 https://tandfonline.com/doi/abs/10.1080/13523260.2019.1576464:
@@ -35636,9 +35698,12 @@ https://techgov.intelligence.org/research/ai-governance-to-avoid-extinction:
     issued:
       date-parts:
         - - 2025
-    title: " Barnett, 2025"
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "AI Governance to Avoid Extinction: The Strategic Landscape and Actionable Research Questions
+      — MIRI Technical Governance Team"
+    abstract: This AI governance research agenda lays out our view of the strategic landscape and
+      actionable research questions that, if answered, would provide important insight on how to
+      reduce catastrophic and extinction risks from AI.
+  resolvedBy: opengraph
   anchors:
     - " Barnett, 2025"
 https://technologyreview.com/2023/05/02/1072528/geoffrey-hinton-google-why-scared-ai:
@@ -35651,9 +35716,11 @@ https://technologyreview.com/2023/05/02/1072528/geoffrey-hinton-google-why-scare
     issued:
       date-parts:
         - - 2023
-    title: Heaven, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Geoffrey Hinton tells us why he’s now scared of the tech he helped build
+    container-title: MIT Technology Review
+    abstract: “I have suddenly switched my views on whether these things are going to be more
+      intelligent than us.”
+  resolvedBy: opengraph
   anchors:
     - Heaven, 2023
 https://techpolicy.press/from-competition-to-cooperation-can-uschina-engagement-overcome-geopolitical-barriers-in-ai-governance:
@@ -35666,9 +35733,14 @@ https://techpolicy.press/from-competition-to-cooperation-can-uschina-engagement-
     issued:
       date-parts:
         - - 2024
-    title: Mishra, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 9
+          - 23
+    title: "From Competition to Cooperation: Can US-China Engagement Overcome Geopolitical Barriers in
+      AI Governance?"
+    container-title: Tech Policy Press
+    abstract: Nayan Chandra Mishra examines US-China cooperation on AI governance, exploring challenges
+      and opportunities amid geopolitical tensions.
+  resolvedBy: opengraph
   anchors:
     - Mishra, 2024
 https://telegraph.co.uk/news/2024/01/07/artificial-intelligence-train-problems:
@@ -35711,9 +35783,10 @@ https://theaidigest.org/progress-and-dangers:
     issued:
       date-parts:
         - - 2023
-    title: AI Digest, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: How fast is AI improving? - AI Digest
+    container-title: AI Digest
+    abstract: A visual explainer on the rate and risks of AI progress
+  resolvedBy: opengraph
   anchors:
     - AI Digest, 2023
 https://theaidigest.org/self-awareness:
@@ -35726,9 +35799,11 @@ https://theaidigest.org/self-awareness:
     issued:
       date-parts:
         - - 2024
-    title: AI Digest, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AIs are becoming more self-aware. Here's why that matters - AI Digest
+    container-title: AI Digest
+    abstract: What will the world look like with more self-aware AIs? Explore the potential benefits and
+      risks
+  resolvedBy: opengraph
   anchors:
     - AI Digest, 2024
 https://thebulletin.org/2024/06/mit-researchers-ordered-and-combined-parts-of-the-1918-pandemic-influenza-virus-did-they-expose-a-security-flaw:
@@ -35741,9 +35816,15 @@ https://thebulletin.org/2024/06/mit-researchers-ordered-and-combined-parts-of-th
     issued:
       date-parts:
         - - 2024
-    title: The Bulletin, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 6
+          - 3
+    title: MIT researchers ordered and combined parts of the 1918 pandemic influenza virus. Did they
+      expose a security flaw?
+    container-title: Bulletin of the Atomic Scientists
+    abstract: The authors of a new study were able to order all the synthetic genes necessary to
+      reconstruct the 1918 pandemic influenza virus. Do their findings represent a security flaw in
+      a critical area of biotechnology?
+  resolvedBy: opengraph
   anchors:
     - The Bulletin, 2024
 https://thecompendium.ai:
@@ -35756,9 +35837,10 @@ https://thecompendium.ai:
     issued:
       date-parts:
         - - 2024
-    title: Leahy et al., 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Understanding AI Extinction Risks
+    abstract: The Compendium explains extinction risks from AI, where they come from, and how we can fix
+      them.
+  resolvedBy: opengraph
   anchors:
     - Leahy et al., 2024
 https://theinsideview.ai/owain:
@@ -35767,13 +35849,14 @@ https://theinsideview.ai/owain:
     type: webpage
     URL: https://theinsideview.ai/owain
     author:
-      - literal: Evans
+      - literal: Michaël Trazzi
     issued:
       date-parts:
         - - 2024
-    title: Evans, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 8
+          - 23
+    title: Owain Evans on Situational Awareness
+  resolvedBy: research-db
   anchors:
     - Evans, 2024
 https://theprecipice.com:
@@ -35786,9 +35869,10 @@ https://theprecipice.com:
     issued:
       date-parts:
         - - 2020
-    title: Ord, 2020
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The Precipice
+    container-title: The Precipice
+    abstract: "The Precipice: a book about existential risks, longtermism, and the future of humanity."
+  resolvedBy: opengraph
   anchors:
     - Ord, 2020
 https://thezvi.substack.com/i/145384938/the-art-of-the-jailbreak:
@@ -35801,9 +35885,9 @@ https://thezvi.substack.com/i/145384938/the-art-of-the-jailbreak:
     issued:
       date-parts:
         - - 2025
-    title: Mowshowitz, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "AI #68: Remarkably Reasonable Reactions"
+    abstract: The big news this week was Apple Intelligence being integrated deeply into all their products.
+  resolvedBy: opengraph
   anchors:
     - Mowshowitz, 2025
 https://thezvi.substack.com/p/the-crux-list:
@@ -35816,9 +35900,9 @@ https://thezvi.substack.com/p/the-crux-list:
     issued:
       date-parts:
         - - 2023
-    title: Mowshowitz, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The Crux List
+    abstract: Introduction
+  resolvedBy: opengraph
   anchors:
     - Mowshowitz, 2023
 https://tigera.io/learn/guides/llm-security/ai-safety:
@@ -35831,9 +35915,11 @@ https://tigera.io/learn/guides/llm-security/ai-safety:
     issued:
       date-parts:
         - - 2023
-    title: Douillard et al, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AI Safety
+    container-title: Tigera – Creator of Calico
+    abstract: AI safety involves designing and operating AI systems to ensure they perform intended
+      functions without causing harm to humans or the environment.
+  resolvedBy: opengraph
   anchors:
     - Douillard et al, 2023
 https://time.com/6273743/thinking-that-could-doom-us-with-ai:
@@ -35846,9 +35932,13 @@ https://time.com/6273743/thinking-that-could-doom-us-with-ai:
     issued:
       date-parts:
         - - 2023
-    title: Tegmark, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 4
+          - 25
+    title: The 'Don't Look Up' Thinking That Could Doom Us With AI
+    container-title: TIME
+    abstract: If superintelligence drives humanity extinct, it probably won’t be because it turned evil
+      or conscious, but because it turned competent
+  resolvedBy: opengraph
   anchors:
     - Tegmark, 2023
 https://time.com/6983420/anthropic-structure-openai-incentives:
@@ -35861,9 +35951,13 @@ https://time.com/6983420/anthropic-structure-openai-incentives:
     issued:
       date-parts:
         - - 2024
-    title: TIME, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 5
+          - 30
+    title: How Anthropic Designed Itself to Avoid OpenAI’s Mistakes
+    container-title: TIME
+    abstract: The AI company Anthropic also has an unorthodox corporate structure. But that's where the
+      similarities to OpenAI end.
+  resolvedBy: opengraph
   anchors:
     - TIME, 2024
 https://tom7.org/mario/mario.pdf:
@@ -35890,10 +35984,13 @@ https://towardsdatascience.com/neural-networks-are-fundamentally-bayesian-bee9a1
       - literal: Mingard et al.
     issued:
       date-parts:
-        - - 2019
-    title: Mingard et al., 2019
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+        - - 2020
+          - 12
+          - 19
+    title: Neural networks are fundamentally Bayesian
+    container-title: Towards Data Science
+    abstract: Stochastic Gradient Descent approximates Bayesian sampling
+  resolvedBy: opengraph
   anchors:
     - Mingard et al., 2019
 https://transformer-circuits.pub/2023/interpretability-dreams/index.html:
@@ -35906,9 +36003,9 @@ https://transformer-circuits.pub/2023/interpretability-dreams/index.html:
     issued:
       date-parts:
         - - 2023
-    title: Olah, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Interpretability Dreams
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Olah, 2023
 https://transformer-circuits.pub/2023/toy-double-descent/index.html:
@@ -35921,9 +36018,9 @@ https://transformer-circuits.pub/2023/toy-double-descent/index.html:
     issued:
       date-parts:
         - - 2023
-    title: Anthropic, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Superposition, Memorization, and Double Descent
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Anthropic, 2023
 https://transformer-circuits.pub/2024/scaling-monosemanticity:
@@ -35936,9 +36033,9 @@ https://transformer-circuits.pub/2024/scaling-monosemanticity:
     issued:
       date-parts:
         - - 2024
-    title: Anthropic, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet"
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Anthropic, 2024
 https://truthinitiative.org/research-resources/tobacco-prevention-efforts/5-ways-tobacco-companies-lied-about-dangers-smoking:
@@ -35951,9 +36048,9 @@ https://truthinitiative.org/research-resources/tobacco-prevention-efforts/5-ways
     issued:
       date-parts:
         - - 2017
-    title: Truth Initiative, 2017
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: the 5 ways tobacco companies lied about the dangers of smoking cigarettes
+    container-title: Truth Initiative
+  resolvedBy: opengraph
   anchors:
     - Truth Initiative, 2017
 https://verfassungsblog.de/compute-and-antitrust:
@@ -35966,9 +36063,12 @@ https://verfassungsblog.de/compute-and-antitrust:
     issued:
       date-parts:
         - - 2022
-    title: Belfield & Hua 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 8
+          - 19
+    title: Compute and Antitrust
+    container-title: Verfassungsblog
+    abstract:  
+  resolvedBy: opengraph
   anchors:
     - Belfield & Hua 2022
 https://vice.com/en/article/pkadgm/man-dies-by-suicide-after-talking-with-ai-chatbot-widow-says:
@@ -35981,9 +36081,13 @@ https://vice.com/en/article/pkadgm/man-dies-by-suicide-after-talking-with-ai-cha
     issued:
       date-parts:
         - - 2023
-    title: Xiang, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 3
+          - 30
+    title: "'He Would Still Be Here': Man Dies by Suicide After Talking with AI Chatbot, Widow Says"
+    container-title: VICE
+    abstract: The incident raises concerns about guardrails around quickly-proliferating conversational
+      AI models.
+  resolvedBy: opengraph
   anchors:
     - Xiang, 2023
 https://vitalik.eth.limo/general/2023/11/27/techno_optimism.html:
@@ -35996,9 +36100,9 @@ https://vitalik.eth.limo/general/2023/11/27/techno_optimism.html:
     issued:
       date-parts:
         - - 2023
-    title: Buterin, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: My techno-optimism
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - " Buterin, 2023"
     - Buterin, 2023
@@ -36012,9 +36116,9 @@ https://vitalik.eth.limo/general/2025/01/05/dacc2.html:
     issued:
       date-parts:
         - - 2025
-    title: " Buterin, 2025"
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "d/acc: one year later"
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - " Buterin, 2025"
     - Buterin, 2023
@@ -36028,9 +36132,9 @@ https://vivaria.metr.org:
     issued:
       date-parts:
         - - 2024
-    title: METR, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Vivaria
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - METR, 2024
 https://vox.com/future-perfect/2024/2/2/24058484/open-source-artificial-intelligence-ai-risk-meta-llama-2-chatgpt-openai-deepfake:
@@ -36043,9 +36147,12 @@ https://vox.com/future-perfect/2024/2/2/24058484/open-source-artificial-intellig
     issued:
       date-parts:
         - - 2024
-    title: Piper, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 2
+          - 2
+    title: Should we make our most powerful AI models open source to all?
+    container-title: Vox
+    abstract: The debate over the safety of democratizing AI is missing the point.
+  resolvedBy: opengraph
   anchors:
     - Piper, 2024
 https://web.stanford.edu/class/archive/cs/cs234/cs234.1224:
@@ -36058,9 +36165,9 @@ https://web.stanford.edu/class/archive/cs/cs234/cs234.1224:
     issued:
       date-parts:
         - - 2022
-    title: Brunskill, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "CS234: Reinforcement Learning Winter 2022"
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Brunskill, 2022
 https://whitehouse.gov/fact-sheets/2025/01/fact-sheet-president-donald-j-trump-takes-action-to-enhance-americas-ai-leadership:
@@ -36073,9 +36180,13 @@ https://whitehouse.gov/fact-sheets/2025/01/fact-sheet-president-donald-j-trump-t
     issued:
       date-parts:
         - - 2025
-    title: Whitehouse, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 1
+          - 23
+    title: "Fact Sheet: President Donald J. Trump Takes Action to Enhance America’s AI Leadership"
+    container-title: The White House
+    abstract: "REMOVING BARRIERS TO AMERICAN AI INNOVATION: Today, President Donald J. Trump signed an
+      Executive Order eliminating harmful Biden Administration AI"
+  resolvedBy: opengraph
   anchors:
     - Whitehouse, 2025
 https://whitehouse.gov/presidential-actions/2025/07/preventing-woke-ai-in-the-federal-government:
@@ -36088,9 +36199,13 @@ https://whitehouse.gov/presidential-actions/2025/07/preventing-woke-ai-in-the-fe
     issued:
       date-parts:
         - - 2025
-    title: Whitehouse, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 7
+          - 23
+    title: Preventing Woke AI in the Federal Government
+    container-title: The White House
+    abstract: "By the authority vested in me as President by the Constitution and the laws of the United
+      States of America, it is hereby ordered: Section 1. "
+  resolvedBy: opengraph
   anchors:
     - Whitehouse, 2025
 https://world.org/blog/world/proof-of-personhood-what-it-is-why-its-needed:
