@@ -17,11 +17,18 @@ export const PYTHON_VERBS = ['extract', 'report', 'export', 'resolve', 'urls'] a
 /**
  * Run `atlas_citations.cli` with the given arguments, inheriting stdio.
  *
- * stdio is inherited rather than captured so progress from a 75-minute resolve
- * run appears as it happens. Capturing it would make the command look hung.
+ * stdio is inherited rather than captured so progress from a long resolve run
+ * appears as it happens. Capturing it would make the command look hung.
+ *
+ * `-u` is not optional. Python block-buffers stdout whenever it is not a TTY,
+ * so the moment anyone runs this under `tee`, into a log, or inside tmux — which
+ * is exactly what a run over hundreds of URLs should be run under — inheriting
+ * stdio is not enough on its own and the output arrives in one lump at the end.
+ * Unbuffering costs nothing here: this process prints a line every fifty
+ * entries, not a stream.
  */
 export function runPython(root: string, args: string[]): number {
-  const result = spawnSync('uv', ['run', 'python', '-m', 'atlas_citations.cli', ...args], {
+  const result = spawnSync('uv', ['run', 'python', '-u', '-m', 'atlas_citations.cli', ...args], {
     cwd: root,
     stdio: 'inherit',
     env: { ...process.env },
