@@ -158,7 +158,28 @@ path, a test name, or a measured rate — not a narrative claim._
 - Three feedback notes filed upstream 2026-09-22 (`skill-feedback`): scraper coverage with volume
   data, a batch/idempotent fetch request, and the absence of a "would you claim this URL?" probe —
   which is why the coverage data above cost 10 real acquisitions to obtain.
-- **Anomaly worth resolving before building:** `epoch.ai` is an existing swept source with 385
-  records, yet `research fetch https://epoch.ai/benchmarks/eci` returns exit 5. The sweep and the
-  ad-hoc fetcher disagree about whether the domain is claimed. D1 option C depends on exit 5 being a
-  reliable scope signal, so this should be understood first.
+- **Full probe, 2026-09-22:** one real `research fetch` per domain across all 77 domains cited twice
+  or more. 19 domains / 537 sources claimed; 57 domains / 233 sources exit 5; `openai.com` exit 1.
+  The 156 domains cited once each were not probed.
+
+- **Anomaly resolved, and the answer changes the picture.** The fetcher's claims are **path-scoped,
+  not domain-scoped**, and the largest gaps are on publishers the corpus already sweeps:
+
+  | URL                                            | Exit | Corpus records for that publisher |
+  | ---------------------------------------------- | ---- | --------------------------------- |
+  | `epoch.ai/blog/algorithmic-progress-in-…`      | 0    | 385                               |
+  | `epoch.ai/benchmarks/eci`                      | 5    | 385                               |
+  | `anthropic.com/research/alignment-faking`      | 0    | 177                               |
+  | `anthropic.com/news/core-views-on-ai-safety`   | 5    | 177                               |
+  | `deepmind.google/…`                            | 0    | 770                               |
+  | `deepmind.com/blog`                            | 5    | 770                               |
+  | `openai.com/index/chatgpt`                     | **1** | 13                               |
+
+  So exit 5 does **not** mean "this publisher is out of scope" — it can mean "this path of an
+  in-scope publisher is unclaimed". That weakens D1 option C's premise: using exit 5 as the scope
+  signal would wrongly skip `anthropic.com/news/`, which is 12 of the 17 Anthropic URLs this
+  textbook cites. **D1 should be decided knowing this**; the cleanest fix is upstream (widen the
+  path claims) rather than an allow-list here.
+
+  `openai.com` returning **exit 1** rather than 5 is a separate matter — exit 1 is "invalid input or
+  internal failure", so something is erroring rather than declining. 22 sources are affected.
