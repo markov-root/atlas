@@ -29017,9 +29017,14 @@ https://carnegieendowment.org/research/2019/09/the-global-expansion-of-ai-survei
     issued:
       date-parts:
         - - 2019
-    title: Feldstein, 2019
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 9
+          - 17
+    title: The Global Expansion of AI Surveillance
+    container-title: Carnegie Endowment for International Peace
+    abstract: A growing number of states are deploying advanced AI surveillance tools to monitor, track,
+      and surveil citizens. Carnegie’s new index explores how different countries are going about
+      this.
+  resolvedBy: opengraph
   anchors:
     - Feldstein, 2019
 https://carnegieendowment.org/research/2024/09/if-then-commitments-for-ai-risk-reduction?lang=en:
@@ -29032,9 +29037,14 @@ https://carnegieendowment.org/research/2024/09/if-then-commitments-for-ai-risk-r
     issued:
       date-parts:
         - - 2024
-    title: Karnofsky, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 9
+          - 13
+    title: If-Then Commitments for AI Risk Reduction
+    container-title: Carnegie Endowment for International Peace
+    abstract: If-then commitments are an emerging framework for preparing for risks from AI without
+      unnecessarily slowing the development of new technology. The more attention and interest there
+      is in these commitments, the faster a mature framework can progress.
+  resolvedBy: opengraph
   anchors:
     - Karnofsky, 2024
 https://cartercenter.org/resources/pdfs/peace/china/finding-firmer-ground-the-role-of-high-technology-in-u.s.-china-relations.pdf:
@@ -29076,10 +29086,11 @@ https://cdn.governance.ai/GovAI-Research-Agenda.pdf:
       - literal: Dafoe
     issued:
       date-parts:
-        - - 2023
-    title: Dafoe, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+        - - 2017
+          - 7
+    title: GovAI-Research-Agenda
+    note: Research-database record found, but no author labels.
+  resolvedBy: research-db
   anchors:
     - Dafoe, 2023
 https://cdn.governance.ai/Open_Problems_in_Technical_AI_Governance.pdf:
@@ -29107,9 +29118,10 @@ https://cdn.openai.com/openai-preparedness-framework-beta.pdf:
     issued:
       date-parts:
         - - 2023
-    title: OpenAI, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 12
+          - 18
+    title: openai-preparedness-framework-beta
+  resolvedBy: research-db
   anchors:
     - OpenAI, 2023
 https://cdn.openai.com/papers/dall-e-3.pdf:
@@ -29168,9 +29180,11 @@ https://centerforreducingsuffering.org/research/intro:
     issued:
       date-parts:
         - - 2017
-    title: Baumann, 2017
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "S-risks: An introduction"
+    container-title: Center for Reducing Suffering
+    abstract: What is an s-risk? An introduction to risks of astronomical suffering (also called
+      suffering risks or s-risks for short) written by Tobias Baumann
+  resolvedBy: opengraph
   anchors:
     - Baumann, 2017
 https://ceris.be/wp-content/uploads/2024/03/International-Institutions-for-Advanced-AI-Robert-Trager.pdf:
@@ -29198,9 +29212,13 @@ https://cfg.eu/building-cern-for-ai:
     issued:
       date-parts:
         - - 2025
-    title: " Petropoulos et al., 2025"
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 1
+          - 30
+    title: Building CERN for AI - An institutional blueprint
+    container-title: Centre for Future Generations
+    abstract: This report explores the institutional design of CERN for AI, covering its structure,
+      legal basis, governance, and funding model.
+  resolvedBy: opengraph
   anchors:
     - " Petropoulos et al., 2025"
     - CFG, 2025
@@ -29214,9 +29232,11 @@ https://chess.com:
     issued:
       date-parts:
         - - 2014
-    title: Chess.com, 2014
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Chess.com - Play Chess Online - Free Games
+    container-title: Chess.com
+    abstract: Play chess online for free on Chess.com with over 250 million members from around the
+      world. Have fun playing with friends or challenging the computer!
+  resolvedBy: opengraph
   anchors:
     - Chess.com, 2014
 https://cisa.gov/news-events/alerts/2024/02/07/cisa-and-partners-release-advisory-prc-sponsored-volt-typhoon-activity-and-supplemental-living-land:
@@ -29229,9 +29249,10 @@ https://cisa.gov/news-events/alerts/2024/02/07/cisa-and-partners-release-advisor
     issued:
       date-parts:
         - - 2024
-    title: CISA, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: CISA and Partners Release Advisory on PRC-sponsored Volt Typhoon Activity and Supplemental
+      Living Off the Land Guidance | CISA
+    container-title: Cybersecurity and Infrastructure Security Agency CISA
+  resolvedBy: opengraph
   anchors:
     - CISA, 2024
 https://cisa.gov/news-events/news/attack-colonial-pipeline-what-weve-learned-what-weve-done-over-past-two-years:
@@ -29244,9 +29265,12 @@ https://cisa.gov/news-events/news/attack-colonial-pipeline-what-weve-learned-wha
     issued:
       date-parts:
         - - 2021
-    title: CISA, 2021
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "The Attack on Colonial Pipeline: What We’ve Learned & What We’ve Done Over the Past Two
+      Years | CISA"
+    container-title: Cybersecurity and Infrastructure Security Agency CISA
+    abstract: Today marks two years since a watershed moment in the short but turbulent history of
+      cybersecurity.
+  resolvedBy: opengraph
   anchors:
     - CISA, 2021
 https://coefficientgiving.org/research/how-much-computational-power-does-it-take-to-match-the-human-brain:
@@ -29274,9 +29298,12 @@ https://cold-takes.com/why-ai-alignment-could-be-hard-with-modern-deep-learning:
     issued:
       date-parts:
         - - 2021
-    title: Cotra, 2021
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 9
+          - 21
+    title: Why AI alignment could be hard with modern deep learning
+    container-title: Cold Takes
+    abstract: Why would we program AI that wants to harm us? Because we might not know how to do otherwise.
+  resolvedBy: opengraph
   anchors:
     - Cotra, 2021
 https://controlai.com/deepfakes/deepfakes-policy:
@@ -29289,9 +29316,11 @@ https://controlai.com/deepfakes/deepfakes-policy:
     issued:
       date-parts:
         - - 2024
-    title: Control AI, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Deepfakes Policy | ControlAI "
+    abstract: |-
+      Top experts say AI poses an extinction risk on par with nuclear war.
+      We can prohibit the development of superintelligent AI to prevent this risk
+  resolvedBy: opengraph
   anchors:
     - Control AI, 2024
 https://convergenceanalysis.org/ai-regulatory-landscape/ai-incident-reporting:
@@ -29304,9 +29333,11 @@ https://convergenceanalysis.org/ai-regulatory-landscape/ai-incident-reporting:
     issued:
       date-parts:
         - - 2024
-    title: Cheng, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AI Incident Reporting | Convergence Analysis
+    abstract: Incident reporting refers to an emerging series of voluntary practices or regulatory
+      requirements for AI labs to document any unexpected events, malfunctions, or adverse effects
+      that arise from the deployment of AI systems.
+  resolvedBy: opengraph
   anchors:
     - Cheng, 2024
 https://convergenceanalysis.org/ai-regulatory-landscape/home:
@@ -29319,9 +29350,10 @@ https://convergenceanalysis.org/ai-regulatory-landscape/home:
     issued:
       date-parts:
         - - 2024
-    title: Cheng et al., 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: State of the AI Regulatory Landscape | Convergence Analysis
+    abstract: "This series is designed to be a primer for policymakers, researchers, and individuals
+      seeking to develop a high-level overview of the current state of AI regulation. "
+  resolvedBy: opengraph
   anchors:
     - Cheng & McKernon, 2024
     - Cheng et al., 2024
@@ -29335,9 +29367,11 @@ https://convergenceanalysis.org/research/ai-model-registries-a-foundational-tool
     issued:
       date-parts:
         - - 2024
-    title: McKernon et al., 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "AI Model Registries: A Foundational Tool for AI Governance | Convergence Analysis"
+    abstract: This report proposes the implementation of national registries for frontier AI models as a
+      foundational tool for AI governance. It explores the rationale, design, implementation, and
+      enforcement of such registries, with recommendations on each.
+  resolvedBy: opengraph
   anchors:
     - McKernon et al., 2024
 https://crfm.stanford.edu/2022/05/17/community-norms.html:
@@ -29350,9 +29384,9 @@ https://crfm.stanford.edu/2022/05/17/community-norms.html:
     issued:
       date-parts:
         - - 2022
-    title: Liang et al., 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Stanford CRFM
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Liang et al., 2022
 https://crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-Incident-Root-Cause-Analysis-08.06.2024.pdf:
@@ -29395,9 +29429,14 @@ https://cset.georgetown.edu/publication/key-concepts-in-ai-safety-an-overview:
     issued:
       date-parts:
         - - 2021
-    title: Rudner et al., 2021
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Key Concepts in AI Safety: An Overview | Center for Security and Emerging Technology"
+    container-title: Center for Security and Emerging Technology
+    abstract: "This paper is the first installment in a series on “AI safety,” an area of machine
+      learning research that aims to identify causes of unintended behavior in machine learning
+      systems and develop tools to ensure these systems work safely and reliably. In it, the authors
+      introduce three categories of AI safety issues: problems of robustness, assurance, and
+      specification. Other papers in this series elaborate on these and further key concepts."
+  resolvedBy: opengraph
   anchors:
     - Rudner et al., 2021
 https://cset.georgetown.edu/publication/the-ai-triad-and-what-it-means-for-national-security-strategy:
@@ -29410,9 +29449,14 @@ https://cset.georgetown.edu/publication/the-ai-triad-and-what-it-means-for-natio
     issued:
       date-parts:
         - - 2020
-    title: Buchanan, 2020
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The AI Triad and What It Means for National Security Strategy | Center for Security and
+      Emerging Technology
+    container-title: Center for Security and Emerging Technology
+    abstract: "One sentence summarizes the complexities of modern artificial intelligence: Machine
+      learning systems use computing power to execute algorithms that learn from data. This AI triad
+      of computing power, algorithms, and data offers a framework for decision-making in national
+      security policy."
+  resolvedBy: opengraph
   anchors:
     - " Buchanan, 2020"
     - Buchanan, 2020
@@ -29440,10 +29484,13 @@ https://danfaggella.com/worthy:
       - literal: Faggella
     issued:
       date-parts:
-        - - 2025
-    title: Faggella, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+        - - 2023
+          - 11
+          - 24
+    title: A Worthy Successor - The Purpose of AGI - Daniel Faggella
+    container-title: Daniel Faggella
+    abstract: Assuming AGI is achievable - what should be its purpose?
+  resolvedBy: opengraph
   anchors:
     - Faggella, 2025
 https://deepmind.com/blog/alphastar-mastering-the-real-time-strategy-game-starcraft-ii:
@@ -29456,9 +29503,9 @@ https://deepmind.com/blog/alphastar-mastering-the-real-time-strategy-game-starcr
     issued:
       date-parts:
         - - 2019
-    title: DeepMind, 2019
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "AlphaStar: Mastering the real-time strategy game StarCraft II — Google DeepMind"
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - DeepMind, 2019
 https://deepmind.com/blog/alphazero-shedding-new-light-on-chess-shogi-and-go:
@@ -29471,9 +29518,9 @@ https://deepmind.com/blog/alphazero-shedding-new-light-on-chess-shogi-and-go:
     issued:
       date-parts:
         - - 2018
-    title: DeepMind, 2018
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "AlphaZero: Shedding new light on chess, shogi, and Go — Google DeepMind"
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - DeepMind, 2018
 https://deepmind.com/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules:
@@ -29486,9 +29533,9 @@ https://deepmind.com/blog/muzero-mastering-go-chess-shogi-and-atari-without-rule
     issued:
       date-parts:
         - - 2020
-    title: DeepMind, 2020
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "MuZero: Mastering Go, chess, shogi and Atari without rules — Google DeepMind"
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - DeepMind, 2020
     - Google DeepMind, 2020
@@ -29502,9 +29549,9 @@ https://deepmind.com/blog/specification-gaming-the-flip-side-of-ai-ingenuity:
     issued:
       date-parts:
         - - 2020
-    title: Krakovna et al., 2020
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Specification gaming: the flip side of AI ingenuity — Google DeepMind"
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Krakovna et al., 2020
 https://deepmind.com/research/highlighted-research/alphago:
@@ -29517,9 +29564,9 @@ https://deepmind.com/research/highlighted-research/alphago:
     issued:
       date-parts:
         - - 2016
-    title: DeepMind, 2016
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AlphaGo — Google DeepMind
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - DeepMind, 2016
 https://deepmind.google/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad:
@@ -29528,13 +29575,16 @@ https://deepmind.google/blog/advanced-version-of-gemini-with-deep-think-official
     type: webpage
     URL: https://deepmind.google/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad
     author:
-      - literal: Google DeepMind
+      - literal: Thang Luong
+      - literal: Edward Lockhart
     issued:
       date-parts:
         - - 2025
-    title: Google DeepMind, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 7
+          - 21
+    title: Advanced version of Gemini with Deep Think officially achieves gold-medal standard at the
+      International Mathematical Olympiad
+  resolvedBy: research-db
   anchors:
     - Google DeepMind, 2025
 https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms:
@@ -29543,13 +29593,14 @@ https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-desig
     type: webpage
     URL: https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms
     author:
-      - literal: Google DeepMind
+      - literal: AlphaEvolve team
     issued:
       date-parts:
         - - 2025
-    title: Google DeepMind, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 5
+          - 14
+    title: "AlphaEvolve: A Gemini-powered coding agent for designing advanced algorithms"
+  resolvedBy: research-db
   anchors:
     - Google DeepMind, 2025
 https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology:
@@ -29561,10 +29612,11 @@ https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challen
       - literal: Google DeepMind
     issued:
       date-parts:
-        - - 2022
-    title: Google DeepMind, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+        - - 2020
+          - 11
+          - 30
+    title: "AlphaFold: a solution to a 50-year-old grand challenge in biology"
+  resolvedBy: research-db
   anchors:
     - Google DeepMind, 2022
 https://deepmind.google/blog/alphagenome-ai-for-better-understanding-the-genome:
@@ -29573,13 +29625,15 @@ https://deepmind.google/blog/alphagenome-ai-for-better-understanding-the-genome:
     type: webpage
     URL: https://deepmind.google/blog/alphagenome-ai-for-better-understanding-the-genome
     author:
-      - literal: Google DeepMind
+      - literal: Žiga Avsec
+      - literal: Natasha Latysheva
     issued:
       date-parts:
         - - 2025
-    title: Google DeepMind, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 6
+          - 25
+    title: "AlphaGenome: AI for better understanding the genome"
+  resolvedBy: research-db
   anchors:
     - Google DeepMind, 2025
 https://deepmind.google/blog/demis-hassabis-john-jumper-awarded-nobel-prize-in-chemistry:
@@ -29592,9 +29646,10 @@ https://deepmind.google/blog/demis-hassabis-john-jumper-awarded-nobel-prize-in-c
     issued:
       date-parts:
         - - 2024
-    title: Google DeepMind, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 10
+          - 9
+    title: Demis Hassabis & John Jumper awarded Nobel Prize in Chemistry
+  resolvedBy: research-db
   anchors:
     - Google DeepMind, 2024
 https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models:
@@ -29603,13 +29658,15 @@ https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models:
     type: webpage
     URL: https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models
     author:
-      - literal: DeepMind
+      - literal: Jack Parker-Holder
+      - literal: Shlomi Fruchter
     issued:
       date-parts:
         - - 2025
-    title: DeepMind, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 8
+          - 5
+    title: "Genie 3: A new frontier for world models"
+  resolvedBy: research-db
   anchors:
     - DeepMind, 2025
 https://deepmind.google/blog/how-alphachip-transformed-computer-chip-design:
@@ -29618,13 +29675,15 @@ https://deepmind.google/blog/how-alphachip-transformed-computer-chip-design:
     type: webpage
     URL: https://deepmind.google/blog/how-alphachip-transformed-computer-chip-design
     author:
-      - literal: Google DeepMind
+      - literal: Anna Goldie
+      - literal: Azalia Mirhoseini
     issued:
       date-parts:
         - - 2024
-    title: Google DeepMind, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 9
+          - 26
+    title: How AlphaChip transformed computer chip design
+  resolvedBy: research-db
   anchors:
     - Google DeepMind, 2024
 https://deepmind.google/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules:
@@ -29633,13 +29692,25 @@ https://deepmind.google/blog/muzero-mastering-go-chess-shogi-and-atari-without-r
     type: webpage
     URL: https://deepmind.google/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules
     author:
-      - literal: DeepMind
+      - literal: Julian Schrittwieser
+      - literal: Ioannis Antonoglou
+      - literal: Thomas Hubert
+      - literal: Karen Simonyan
+      - literal: Laurent Sifre
+      - literal: Simon Schmitt
+      - literal: Arthur Guez
+      - literal: Edward Lockhart
+      - literal: Demis Hassabis
+      - literal: Thore Graepel
+      - literal: Timothy Lillicrap
+      - literal: David Silver
     issued:
       date-parts:
         - - 2020
-    title: DeepMind, 2020
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 12
+          - 23
+    title: "MuZero: Mastering Go, chess, shogi and Atari without rules"
+  resolvedBy: research-db
   anchors:
     - DeepMind, 2020
 https://deepmind.google/blog/shaping-the-future-of-advanced-robotics:
@@ -29648,13 +29719,14 @@ https://deepmind.google/blog/shaping-the-future-of-advanced-robotics:
     type: webpage
     URL: https://deepmind.google/blog/shaping-the-future-of-advanced-robotics
     author:
-      - literal: Google DeepMind
+      - literal: Robotics team
     issued:
       date-parts:
         - - 2024
-    title: Google DeepMind, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 1
+          - 4
+    title: Shaping the future of advanced robotics
+  resolvedBy: research-db
   anchors:
     - Google DeepMind, 2024
 https://deepmind.google/blog/sima-2-an-agent-that-plays-reasons-and-learns-with-you-in-virtual-3d-worlds:
@@ -29663,13 +29735,14 @@ https://deepmind.google/blog/sima-2-an-agent-that-plays-reasons-and-learns-with-
     type: webpage
     URL: https://deepmind.google/blog/sima-2-an-agent-that-plays-reasons-and-learns-with-you-in-virtual-3d-worlds
     author:
-      - literal: Google DeepMind
+      - literal: SIMA team
     issued:
       date-parts:
         - - 2025
-    title: Google DeepMind, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 11
+          - 13
+    title: "SIMA 2: An Agent that Plays, Reasons, and Learns With You in Virtual 3D Worlds"
+  resolvedBy: research-db
   anchors:
     - Google DeepMind, 2025
 https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms:
@@ -29682,9 +29755,10 @@ https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-
     issued:
       date-parts:
         - - 2025
-    title: DeepMind, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "AlphaEvolve: A Gemini-powered coding agent for designing advanced algorithms — Google
+      DeepMind"
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - DeepMind, 2025
 https://deepmind.google/discover/blog/alphastar-mastering-the-real-time-strategy-game-starcraft-ii:
@@ -29697,9 +29771,9 @@ https://deepmind.google/discover/blog/alphastar-mastering-the-real-time-strategy
     issued:
       date-parts:
         - - 2019
-    title: Google DeepMind, 2019
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "AlphaStar: Mastering the real-time strategy game StarCraft II — Google DeepMind"
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Google DeepMind, 2019
 https://deepmind.google/discover/blog/exploring-institutions-for-global-ai-governance:
@@ -29712,9 +29786,9 @@ https://deepmind.google/discover/blog/exploring-institutions-for-global-ai-gover
     issued:
       date-parts:
         - - 2024
-    title: DeepMind, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Exploring institutions for global AI governance — Google DeepMind
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - DeepMind, 2024
 https://deepmind.google/discover/blog/funsearch-making-new-discoveries-in-mathematical-sciences-using-large-language-models:
@@ -29727,9 +29801,10 @@ https://deepmind.google/discover/blog/funsearch-making-new-discoveries-in-mathem
     issued:
       date-parts:
         - - 2023
-    title: DeepMind, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "FunSearch: Making new discoveries in mathematical sciences using Large Language Models —
+      Google DeepMind"
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - DeepMind, 2023
 https://deepmind.google/discover/blog/how-alphachip-transformed-computer-chip-design:
@@ -29742,9 +29817,9 @@ https://deepmind.google/discover/blog/how-alphachip-transformed-computer-chip-de
     issued:
       date-parts:
         - - 2024
-    title: DeepMind, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: How AlphaChip transformed computer chip design — Google DeepMind
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - DeepMind, 2024
 https://deepmind.google/discover/blog/introducing-the-frontier-safety-framework:
@@ -29757,9 +29832,9 @@ https://deepmind.google/discover/blog/introducing-the-frontier-safety-framework:
     issued:
       date-parts:
         - - 2024
-    title: DeepMind, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Introducing the Frontier Safety Framework — Google DeepMind
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - DeepMind, 2024
     - Dragan et al., 2024
@@ -29773,9 +29848,9 @@ https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-i
     issued:
       date-parts:
         - - 2020
-    title: Krakovna et al., 2020
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Specification gaming: the flip side of AI ingenuity — Google DeepMind"
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Krakovna et al., 2020
 https://deepmind.google/models/gemini:
@@ -29788,9 +29863,9 @@ https://deepmind.google/models/gemini:
     issued:
       date-parts:
         - - 2025
-    title: Google DeepMind, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Gemini
+    note: Research-database record found, but no publication date.
+  resolvedBy: research-db
   anchors:
     - Google DeepMind, 2025
 https://deepmind.google/models/gemini/pro:
@@ -29799,13 +29874,13 @@ https://deepmind.google/models/gemini/pro:
     type: webpage
     URL: https://deepmind.google/models/gemini/pro
     author:
-      - literal: Google
+      - literal: Google DeepMind
     issued:
       date-parts:
         - - 2025
-    title: Google, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Gemini 3.1 Pro
+    note: Research-database record found, but no publication date.
+  resolvedBy: research-db
   anchors:
     - Google, 2025
 https://deepmind.google/science/alphafold:
@@ -29814,13 +29889,13 @@ https://deepmind.google/science/alphafold:
     type: webpage
     URL: https://deepmind.google/science/alphafold
     author:
-      - literal: DeepMind
+      - literal: Google DeepMind
     issued:
       date-parts:
         - - 2024
-    title: DeepMind, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AlphaFold
+    note: Research-database record found, but no publication date.
+  resolvedBy: research-db
   anchors:
     - DeepMind, 2024
 https://deepmindsafetyresearch.medium.com/goal-misgeneralisation-why-correct-specifications-arent-enough-for-correct-goals-cf96ebc60924:
@@ -29893,9 +29968,10 @@ https://distill.pub/2019/safety-needs-social-scientists:
     issued:
       date-parts:
         - - 2019
-    title: Irving & Askell, 2019
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AI Safety Needs Social Scientists
+    container-title: Distill
+    abstract: If we want to train AI to do what humans want, we need to study humans.
+  resolvedBy: opengraph
   anchors:
     - Irving & Askell, 2019
 https://diu.mil/replicator:
@@ -29984,9 +30060,12 @@ https://dnascript.com:
     issued:
       date-parts:
         - - 2024
-    title: DnaScript, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Home | DNA Script
+    container-title: DNA Script
+    abstract: Revolutionizing biological research with enzymatic DNA synthesis technology. Our SYNTAX®
+      DNA printer and advanced enzymatic methods produce longer, more complex DNA sequences for
+      groundbreaking research applications.
+  resolvedBy: opengraph
   anchors:
     - DnaScript, 2024
 https://docs.google.com/document/d/1E2O7MSVI8u9LHbezdTgYoC6ULZmgki7EIm2XwCT0nuU/edit?tab=t.0:
@@ -29999,24 +30078,30 @@ https://docs.google.com/document/d/1E2O7MSVI8u9LHbezdTgYoC6ULZmgki7EIm2XwCT0nuU/
     issued:
       date-parts:
         - - 2024
-    title: Bowman, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "[External] 2024 Debate Agenda Writeup"
+    container-title: Google Docs
+    abstract: "The Anthropic–NYU Debate \vAgenda, Revisited   \vThis version is shared across multiple
+      organizations. Comment with caution.  What is this? I’ve been working on a version of the AI
+      Safety via Debate agenda for about three years with a whole bunch of collaborators and
+      consultants from Anthropic, N..."
+  resolvedBy: opengraph
   anchors:
     - Bowman, 2024
 https://doi.org/10.1007/978-3-540-70818-6_14:
   item:
     id: https://doi.org/10.1007/978-3-540-70818-6_14
-    type: article-journal
+    type: document
     URL: https://doi.org/10.1007/978-3-540-70818-6_14
     author:
-      - literal: Friedman et al.
+      - family: Friedman
+        given: Milton
     issued:
       date-parts:
-        - - 2007
-    title: Friedman et al., 2007
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+        - - null
+    title: The Social Responsibility of Business Is to Increase Its Profits
+    DOI: 10.1007/978-3-540-70818-6_14
+    container-title: Corporate Ethics and Corporate Governance
+  resolvedBy: crossref
   anchors:
     - Friedman et al., 2007
 https://drive.google.com/file/d/1SSRpckR_IhIPqkO13oRQ-8mmPOoDKLqd/view:
@@ -30029,9 +30114,9 @@ https://drive.google.com/file/d/1SSRpckR_IhIPqkO13oRQ-8mmPOoDKLqd/view:
     issued:
       date-parts:
         - - 2024
-    title: Masi, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Masi_GPU_Export_Controls_Updated.pdf
+    container-title: Google Docs
+  resolvedBy: opengraph
   anchors:
     - Masi, 2024
 https://dwarkesh.com/p/will-scaling-work:
@@ -30044,24 +30129,26 @@ https://dwarkesh.com/p/will-scaling-work:
     issued:
       date-parts:
         - - 2023
-    title: Patel, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Will scaling work?
+    abstract: Data bottlenecks, generalization benchmarks, primate evolution, intelligence as
+      compression, world modelers, and other considerations
+  resolvedBy: opengraph
   anchors:
     - Patel, 2023
 https://dwarkeshpatel.com/p/dario-amodei:
   item:
     id: https://dwarkeshpatel.com/p/dario-amodei
-    type: webpage
+    type: post-weblog
     URL: https://dwarkeshpatel.com/p/dario-amodei
     author:
-      - literal: Amodei
+      - literal: Dwarkesh Patel
     issued:
       date-parts:
         - - 2023
-    title: Amodei, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 8
+          - 8
+    title: Dario Amodei (Anthropic CEO) - Scaling, Alignment, & AI Progress
+  resolvedBy: research-db
   anchors:
     - Amodei, 2023
 https://dwarkeshpatel.com/p/francois-chollet:
@@ -30074,9 +30161,9 @@ https://dwarkeshpatel.com/p/francois-chollet:
     issued:
       date-parts:
         - - 2024
-    title: Chollet, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Francois Chollet, Mike Knoop - LLMs won’t lead to AGI - $1,000,000 Prize to find true solution
+    abstract: Listen now | “They're confusing skill and intelligence.”
+  resolvedBy: opengraph
   anchors:
     - Chollet, 2024
 https://earthobservatory.nasa.gov/features/RemoteSensingAtmosphere/remote_sensing5.php:
@@ -30088,10 +30175,15 @@ https://earthobservatory.nasa.gov/features/RemoteSensingAtmosphere/remote_sensin
       - literal: NASA
     issued:
       date-parts:
-        - - 2004
-    title: NASA, 2004
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+        - - 2001
+          - 12
+          - 10
+    title: Research Satellites for Atmospheric Sciences, 1978-Present - NASA Science
+    container-title: NASA Science
+    abstract: NASA and its affiliated agencies and research institutions developed a series of research
+      satellites that have enabled scientists to test new remote sensing technologies that have
+      advanced scientific understanding of both chemical and physical changes in the atmosphere.
+  resolvedBy: opengraph
   anchors:
     - NASA, 2004
 https://economics.mit.edu/sites/default/files/2022-09/aitocracy_20220701.pdf:
@@ -30134,9 +30226,12 @@ https://effectivealtruism.org/articles/paul-christiano-current-work-in-ai-alignm
     issued:
       date-parts:
         - - 2019
-    title: Christiano, 2019
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Paul Christiano: Current Work in AI Alignment | Effective Altruism"
+    container-title: Effective Altruism
+    abstract: "Paul Christiano, a researcher at OpenAI, discusses the current state of research on
+      aligning AI with human values: what’s happening now, what needs to happen, and how people can
+      help. This talk covers"
+  resolvedBy: opengraph
   anchors:
     - Christiano, 2019
 https://elibrary.imf.org/view/journals/001/2025/076/article-A001-en.xml:
@@ -30164,9 +30259,8 @@ https://en.wikipedia.org/wiki/AI-complete:
     issued:
       date-parts:
         - - 2022
-    title: Wikipedia, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AI-complete - Wikipedia
+  resolvedBy: opengraph
   anchors:
     - Wikipedia, 2022
 https://en.wikipedia.org/wiki/Space_Shuttle_Challenger_disaster:
@@ -30179,9 +30273,8 @@ https://en.wikipedia.org/wiki/Space_Shuttle_Challenger_disaster:
     issued:
       date-parts:
         - - 1986
-    title: Rogers Commission, 1986
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Space Shuttle Challenger disaster - Wikipedia
+  resolvedBy: opengraph
   anchors:
     - Rogers Commission, 1986
 https://en.wikiquote.org/wiki/Alan_Turing:
@@ -30194,9 +30287,8 @@ https://en.wikiquote.org/wiki/Alan_Turing:
     issued:
       date-parts:
         - - 1951
-    title: Turing, 1951
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Alan Turing - Wikiquote
+  resolvedBy: opengraph
   anchors:
     - Turing, 1951
 https://epicural.com/2021/04/27/goodharts-law:
