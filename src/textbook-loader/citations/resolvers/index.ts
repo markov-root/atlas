@@ -10,6 +10,7 @@ import { arxivResolver } from './arxiv';
 import { crossrefResolver } from './crossref';
 import { oembedResolver } from './oembed';
 import { opengraphResolver } from './opengraph';
+import { scholarMetaResolver } from './scholar-meta';
 
 export { resolveWith, RESOLVER_ORDER } from './types';
 export type { Resolver, ResolverContext, ResolveResult } from './types';
@@ -22,6 +23,7 @@ export const ALL_RESOLVERS: Resolver[] = [
   researchDbResolver,
   arxivResolver,
   crossrefResolver,
+  scholarMetaResolver,
   oembedResolver,
   opengraphResolver,
 ];

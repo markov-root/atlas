@@ -23,7 +23,7 @@ const USAGE = `atlas — AI Safety Atlas maintainer commands
   atlas citations extract  read citations from the cached documents into the CSL store
   atlas citations report   list citations needing attention: unresolved, malformed, inconsistent
   atlas citations export   write the whole-book bibliography as BibTeX and CSL-JSON
-  atlas citations resolve  fill in metadata from arXiv, Crossref, oEmbed and the local corpus
+  atlas citations resolve  fill in metadata (--limit=N, --redo=<resolver,...>)
   atlas citations urls     write every cited source, per chapter and section, as Markdown
 
 Run from anywhere in the checkout: ./bin/atlas <command>
@@ -47,8 +47,10 @@ export async function main(argv: string[]): Promise<number> {
     if (sub === 'export') return citationsExport(process.cwd(), argv[2]);
     if (sub === 'resolve') {
       const limitArg = argv.find((a) => a.startsWith('--limit='));
+      const redoArg = argv.find((a) => a.startsWith('--redo='));
       return citationsResolve(process.cwd(), {
         limit: limitArg ? Number(limitArg.split('=')[1]) : undefined,
+        redo: redoArg ? redoArg.split('=')[1].split(',').filter(Boolean) : undefined,
       });
     }
     if (sub === 'urls') return citationsUrls(process.cwd(), argv[2]);

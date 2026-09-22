@@ -32,10 +32,26 @@ const USER_AGENT =
 /** arXiv asks for roughly this much space between requests. */
 const DEFAULT_INTERVAL_MS = 3000;
 
-/** Entries still holding nothing but anchor text. */
-export function unresolvedKeys(store: Store): string[] {
+/**
+ * Entries to attempt: anchor-only, plus any whose resolver is being redone.
+ *
+ * `redo` also filters by whether a resolver would now *claim* the URL, so
+ * `--redo=opengraph` after adding a publisher resolver retries only the pages
+ * that resolver can actually help with, instead of re-fetching hundreds of blog
+ * posts that Open Graph already handled correctly.
+ */
+export function unresolvedKeys(
+  store: Store,
+  redo: string[] = [],
+  claimedBy?: (url: string) => boolean,
+): string[] {
   return Object.keys(store)
-    .filter((k) => store[k].resolvedBy === 'anchor')
+    .filter((k) => {
+      const by = store[k].resolvedBy;
+      if (by === 'anchor') return true;
+      if (!redo.includes(by)) return false;
+      return claimedBy ? claimedBy(k) : true;
+    })
     .sort();
 }
 
@@ -65,6 +81,18 @@ export type ResolveOptions = {
   limit?: number;
   /** Milliseconds between outbound requests. */
   intervalMs?: number;
+  /**
+   * Re-resolve entries previously answered by these resolvers.
+   *
+   * Resolution is sticky by design — a resolved entry is never re-fetched, which
+   * is what makes the long tail tractable. That works against you when a
+   * resolver *improves*: entries a weaker one already claimed would keep their
+   * thin metadata forever. This resets them so a better resolver gets a turn.
+   *
+   * It is the repeatable half of the workflow: add a resolver, redo the
+   * entries the old one answered, keep everything else.
+   */
+  redo?: string[];
 };
 
 export async function citationsResolve(root: string, opts: ResolveOptions = {}): Promise<number> {
@@ -77,7 +105,12 @@ export async function citationsResolve(root: string, opts: ResolveOptions = {}):
     return 1;
   }
 
-  const pending = unresolvedKeys(store);
+  // A redo only targets entries some *other* resolver would now claim — the
+  // point is to give newly-added coverage a turn, not to re-fetch the world.
+  const redo = opts.redo ?? [];
+  const claimedByNewer = (url: string) =>
+    ALL_RESOLVERS.some((r) => !redo.includes(r.name) && r.name !== 'opengraph' && r.claims(url));
+  const pending = unresolvedKeys(store, redo, redo.length ? claimedByNewer : undefined);
   if (pending.length === 0) {
     console.log('Nothing to resolve: every entry already carries resolved metadata.');
     return 0;
@@ -87,7 +120,9 @@ export async function citationsResolve(root: string, opts: ResolveOptions = {}):
   const ctx = makeThrottledContext(opts.intervalMs ?? DEFAULT_INTERVAL_MS, USER_AGENT);
 
   console.log(
-    `${pending.length} unresolved of ${Object.keys(store).length}; attempting ${targets.length}.`,
+    `${pending.length} to attempt of ${Object.keys(store).length}` +
+      (redo.length ? ` (including a redo of: ${redo.join(', ')})` : '') +
+      `; attempting ${targets.length}.`,
   );
 
   // Interrupt handling is what makes AC-3 true rather than aspirational. A run

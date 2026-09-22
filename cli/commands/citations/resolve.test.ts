@@ -41,6 +41,44 @@ describe('unresolvedKeys — incremental resolution (task:0027 AC-2)', () => {
   });
 });
 
+describe('unresolvedKeys — redo (making an improved resolver reachable)', () => {
+  const store: Store = {
+    'https://nature.com/a': { ...anchor('https://nature.com/a', 'A, 2020'), resolvedBy: 'opengraph' },
+    'https://lesswrong.com/b': {
+      ...anchor('https://lesswrong.com/b', 'B, 2021'),
+      resolvedBy: 'opengraph',
+    },
+    'https://arxiv.org/abs/1': { ...anchor('https://arxiv.org/abs/1', 'C, 2022'), resolvedBy: 'arxiv' },
+    'https://x.org/d': anchor('https://x.org/d', 'D, 2023'),
+  };
+
+  it('leaves everything resolved when no redo is asked for', () => {
+    expect(unresolvedKeys(store)).toEqual(['https://x.org/d']);
+  });
+
+  it('includes entries from a redone resolver', () => {
+    expect(unresolvedKeys(store, ['opengraph'])).toContain('https://nature.com/a');
+  });
+
+  // The point of the claim filter: after adding a publisher resolver, redoing
+  // opengraph should retry the Nature page and NOT the hundreds of blog posts
+  // opengraph already handled correctly.
+  it('redoes only URLs another resolver would now claim', () => {
+    const claims = (u: string) => u.includes('nature.com');
+    const out = unresolvedKeys(store, ['opengraph'], claims);
+    expect(out).toContain('https://nature.com/a');
+    expect(out).not.toContain('https://lesswrong.com/b');
+  });
+
+  it('never drops anchor-only entries, whatever the redo asks for', () => {
+    expect(unresolvedKeys(store, ['opengraph'], () => false)).toContain('https://x.org/d');
+  });
+
+  it('does not touch resolvers outside the redo list', () => {
+    expect(unresolvedKeys(store, ['opengraph'])).not.toContain('https://arxiv.org/abs/1');
+  });
+});
+
 describe('applyResolution', () => {
   it('lets resolved metadata win over anchor-derived guesses', () => {
     const e = anchor('https://arxiv.org/abs/1911.01547', 'Chollet, 2019');

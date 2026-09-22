@@ -67,7 +67,14 @@ export type ResolverContext = {
 };
 
 /** The order resolvers are tried. Local and free first, networked after. */
-export const RESOLVER_ORDER = ['research-db', 'arxiv', 'crossref', 'oembed', 'opengraph'] as const;
+export const RESOLVER_ORDER = [
+  'research-db',
+  'arxiv',
+  'crossref',
+  'scholar-meta',
+  'oembed',
+  'opengraph',
+] as const;
 
 /**
  * First non-null result, trying only resolvers that claim the URL.
