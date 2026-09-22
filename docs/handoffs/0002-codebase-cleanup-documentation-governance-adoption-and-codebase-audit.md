@@ -7,7 +7,7 @@ role: handoff
 status: current
 summary: 'Documentation governance is fully adopted and the five-audit sweep is complete; everything now waits on owner decisions.'
 created: '2026-09-21'
-updated: '2026-09-21'
+updated: '2026-09-22'
 owner: Markov Grey
 supersedes: ''
 superseded_by: ''
@@ -24,7 +24,7 @@ engineering_document:
     owner: Markov Grey
     scope: Continuation of the codebase-cleanup branch only
   created: '2026-09-21'
-  updated: '2026-09-21'
+  updated: '2026-09-22'
   transition_history: unverified
   transitions: []
   relationships: []
@@ -56,6 +56,13 @@ engineering_document:
 # Handoff 0002: Codebase cleanup: documentation governance adoption and codebase audit
 
 ## Outcome
+
+**Continuation moved to `handoff:0003` on 2026-09-22.** The branch this record covers,
+`codebase-cleanup`, was merged to `main` at `eb1432b`. This record is deliberately NOT marked
+superseded: its transition history is unverified, so the schema requires it to stay in its initial
+state, and faking a transition to silence a validator would put a false claim in the record. It
+stays `current` alongside `handoff:0001` and `handoff:0003` — which is the `current-multiple` finding
+the owner still needs to decide, exactly as this record's own Open Work says.
 
 **Documentation and audit phases are complete; the codebase refactor has not started.**
 

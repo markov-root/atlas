@@ -27,3 +27,4 @@ open work, blockers, and a safe resume command. Allocated with
 | ----------------------------------------------------------------------- | ------- | ---------------------------------------------- |
 | [handoff:0001](./0001-freelancer-handoff-make-atlas-self-sustaining.md) | current | Freelancer handoff: make Atlas self-sustaining |
 | [handoff:0002](./0002-codebase-cleanup-documentation-governance-adoption-and-codebase-audit.md) | current | Codebase cleanup: governance adopted, five-audit sweep complete |
+| [handoff:0003](./0003-bibliography-phase-1-complete-phase-2-and-the-write-back-pending.md) | current | Bibliography phase 1 complete; five atlas citations commands, 948 sources, nothing pushed |

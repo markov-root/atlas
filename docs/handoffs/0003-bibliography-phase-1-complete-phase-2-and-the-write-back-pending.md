@@ -1,0 +1,171 @@
+---
+schema_version: 2
+id: '0003'
+uid: 'handoff-20260922T111333679155Z-76850c1e'
+title: 'Bibliography phase 1 complete; phase 2 and the write-back pending'
+role: handoff
+status: current
+summary: 'The bibliography exists as files and five atlas commands; rendering and the corpus write-back are not started.'
+created: '2026-09-22'
+updated: '2026-09-22'
+owner: Markov Grey
+supersedes: ''
+superseded_by: ''
+engineering_document:
+  version: 1
+  contract_tier: full
+  role: handoff
+  id: '0003'
+  uid: handoff-20260922T111333679155Z-76850c1e
+  title: 'Bibliography phase 1 complete; phase 2 and the write-back pending'
+  state: current
+  authority:
+    kind: continuation-state
+    owner: Markov Grey
+    scope: The bibliography branch only
+  created: '2026-09-22'
+  updated: '2026-09-22'
+  transition_history: unverified
+  transitions: []
+  relationships: []
+  details:
+    captured_at: '2026-09-22T11:15:00Z'
+    repository: 'AI Safety Atlas (markov-root/atlas, GitHub)'
+    revision: 'branch bibliography at 43767a6, 10 commits ahead of main, working tree clean'
+    objective: 'Derive a bibliography from the citation links already in the Google Docs, delivering a file-based artifact before any rendering.'
+    completed: [task:0025, task:0026, task:0027]
+    open_work: [task:0021, task:0028, task:0022, task:0023, task:0013]
+    blockers: []
+    authority_refs:
+      [
+        AGENTS.md,
+        engineering.yaml,
+        'docs/tasks/0021-derive-a-bibliography-from-google-docs-citation-links.md',
+      ]
+    resume: 'engineering document validate && ./bin/atlas citations report'
+---
+
+# Handoff 0003: Bibliography phase 1 complete; phase 2 and the write-back pending
+
+## Outcome
+
+**Phase 1 of `task:0021` is done: the bibliography exists as files, built from the documents, with
+no rendering and no reader-facing change.** That was the owner's stated goal — "before getting it to
+appear on site, the first set is to actually just have the full bibliography across the book
+exportable into a sensible file."
+
+Five commands work end to end:
+
+| Command                   | Does                                          | Network |
+| ------------------------- | --------------------------------------------- | ------- |
+| `atlas citations extract` | AST → CSL store (948 sources)                 | none    |
+| `atlas citations report`  | what needs human attention, as a durable file | none    |
+| `atlas citations export`  | BibTeX + CSL-JSON                             | none    |
+| `atlas citations resolve` | fill metadata, incremental and resumable      | yes     |
+| `atlas citations urls`    | per-section Markdown for the ed-2 authors     | none    |
+
+Over the committed corpus: **1,722 citations, 948 unique sources, 76 cited with inconsistent
+spellings, 47 links whose anchor text is prose rather than author-year.**
+
+Gate at handoff: lint 0 errors, typecheck 0 errors over 152 files, **354 tests** (was 195 at the
+start of this work).
+
+## Completed work
+
+| Commit    | What                                                                      |
+| --------- | ------------------------------------------------------------------------- |
+| `e693014` | `/teach` country metric — derived figure replaced with a sourced snapshot |
+| `eb1432b` | merge of `codebase-cleanup` into `main`                                   |
+| `e94521b` | `task:0021` bibliography design, `task:0022` R2 upload defect             |
+| `f08cbaa` | `task:0023` asset custody, `task:0024` build resources, `audit:0011` log  |
+| `1ce6012` | `task:0021` decomposed into 9 banks across 3 child tasks                  |
+| `c17dfdb` | `cli/` type coverage — B1                                                 |
+| `4be3f30` | extraction, canonical URL identity, CSL store — B2/B3/B4                  |
+| `36dacc3` | the resolver contract — B8's interface                                    |
+| `8dbad6f` | `atlas citations urls` — the interim shareable file                       |
+| `1c6c4a7` | the CLI and five resolvers — B5/B6/B7/B8/B9                               |
+| `43767a6` | `task:0028` write-back design                                             |
+
+**Nothing is pushed.** The branch is 10 commits ahead of `origin/main`.
+
+## What the owner is waiting on
+
+1. **`docs/cited-sources.md` is ready to share** — 2,996 lines, per chapter and section, `Title (url)`
+   form, plus a deduplicated master list and the 47 unrecognised links. Built for the edition-2
+   authors, who are the stated customer of this whole task.
+2. **`task:0028` D1** is the next decision and it is irreversible. It decides what we are allowed to
+   write back into a shared corpus that offers no delete.
+
+## Open work
+
+1. **`task:0028`** — the write-back. Owner asked for it explicitly; D1 needs deciding first, and the
+   `epoch.ai` anomaly recorded there should be understood before building.
+2. **`task:0021` phase 2** — rendering. Deliberately not decomposed yet; do it against the data
+   phase 1 produced, not against assumptions. Surfaces fixed by D5: section-level after `#footnotes`,
+   chapter-level on the introduction page's download panel, site-wide `/bibliography`.
+3. **`task:0022`** — p1, and the only one that can destroy something. A plain `pnpm typecheck` tried
+   to PUT a 96 MB MP3 to production R2; only revoked credentials stopped it. **Must land before any
+   working R2 credentials exist.**
+4. **`task:0023`** — asset custody. `.cache/uc/` holds 1.9 GB of irreplaceable audio, gitignored and
+   unbacked, on a VM that has crashed twice. Backing it up is minutes of work.
+5. **`task:0013`** — Google Docs migration, now including the credential steps.
+
+## Resume
+
+```bash
+export SKIP_AUDIO_DOWNLOAD=1          # mandatory — see below
+engineering document validate          # expect 1 finding: current-multiple
+./bin/atlas citations report           # what still needs human attention
+git log --oneline main..HEAD           # 10 unpushed commits
+```
+
+`pnpm test` and `pnpm typecheck:cli` are cheap and safe. `pnpm verify` is not — see below.
+
+## Things that will bite the next person
+
+- **Always `export SKIP_AUDIO_DOWNLOAD=1`.** Without it, anything that loads a chapter runs the audio
+  renderer, whose phases 7 and 8 push to production R2. `.env` sets this variable but **it has no
+  effect there** — it is declared in neither the astro env schema nor bridged in `content.config.ts`,
+  so it must be exported into the shell. This is `audit:0011` F3 and the cause of `task:0022`.
+- **`pnpm verify` peaks at 94% memory commit** on this 4 GB VM with nothing else running. Do not run
+  it alongside anything. `pnpm test` and `pnpm typecheck:cli` are cheap.
+- **Node content lives in two places in the AST.** `Figure.caption`, `Iframe.caption`,
+  `Video.caption`, `Quote.sourceUrl` and `Definition.source` hold a `SpanGroup` node in an
+  **attribute**, not in `children`. A `children`-only walk misses 20% of citations. `utils.ts:15`
+  `traverseNodes` has this blind spot; `citations/extract.ts` has `allChildNodes()` as the local
+  remedy. `audit:0011` F5.
+- **`data/citations/sources.yaml` is committed; the three derived outputs are gitignored.** The store
+  accumulates resolver metadata that costs real time and other people's rate limits to rebuild.
+
+## Method notes worth carrying forward
+
+Three measurement errors were made and caught during this work. Each is recorded because each would
+otherwise have shipped as a confident, wrong claim:
+
+- **A 45-URL probe reported the research-database corpus at 24% coverage. It is 7.9%.** The probe
+  sampled arXiv plus Alignment Forum, LessWrong, Epoch, Anthropic, DeepMind, METR and GovAI —
+  precisely the organisations that corpus is built to cover. Sampling from the covered population
+  estimates nothing about the whole.
+- **The corpus was said to contain 9 unlinked footnote citations. It contains zero.** All 9 are
+  hyperlinked; the original scan matched parentheses without checking for a co-located anchor.
+- **A joining space in span reconstruction broke citation matching** while every unit test passed,
+  because fixtures put a citation in one span and Google Docs splits sentences across many. A fixture
+  tidier than the real data tests the fixture. The real-corpus reconciliation test is what caught it.
+
+On delegation: three pi agents built `task:0026` and `task:0027` in parallel, but the two things that
+fix a contract — entry identity (B4) and the resolver interface — were written first, alone. One
+agent reported another's tests as failing; running them directly showed 51 passing, because it had
+read them mid-write. **Verify handbacks against disk, not against the report.**
+
+## Blockers
+
+None.
+
+## Evidence and authority
+
+- `docs/tasks/0021` — the parent design, six recorded decisions, the dependency graph.
+- `docs/tasks/0025`, `0026`, `0027` — completion evidence tables, all criteria met.
+- `docs/audits/0011` — the incidental findings log, F1–F7.
+- Three `skill-feedback` notes filed to `research-database` on 2026-09-22: scraper coverage ranked by
+  real citation volume, a batch/idempotent fetch request, and the absence of a "would you claim this
+  URL?" probe.
