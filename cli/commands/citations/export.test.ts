@@ -106,13 +106,18 @@ describe('serializeBibtex — imports without error (task:0026 AC-4)', () => {
   it('emits a CSL literal author braced whole, unparseable as First Last', () => {
     // Without the braces a reference manager splits "Giattino et al." into a
     // family "al." and a given "Giattino et" — confidently wrong in every style.
+    //
+    // It needs TWO brace pairs: the outer one delimits the field value, the
+    // inner one protects the name. This assertion previously expected a single
+    // pair, which is the form that actually gets split — the intent above was
+    // right and the expectation encoded the bug.
     const store: Store = {
       'https://example.org/x': {
         ...entryFromAnchor('https://example.org/x', 'X, 2020', { author: 'X', year: '2020' }),
         item: item({ author: [{ literal: 'Giattino et al.' }] }),
       },
     };
-    expect(serializeBibtex(store)).toContain('author = {Giattino et al.}');
+    expect(serializeBibtex(store)).toContain('author = {{Giattino et al.}}');
   });
 
   it('maps CSL types onto the BibTeX types that carry their fields', () => {
@@ -196,6 +201,49 @@ describe('serializeBibtex — imports without error (task:0026 AC-4)', () => {
     };
     const keys = [...serializeBibtex(two).matchAll(/^@\w+\{([^,]+),$/gm)].map((m) => m[1]);
     expect(new Set(keys).size).toBe(keys.length);
+  });
+});
+
+describe('BibTeX author field structure', () => {
+  const entry = (authors: unknown[]) =>
+    serializeBibtex({
+      'https://a.org/x': {
+        item: { id: 'https://a.org/x', type: 'article', title: 'T', author: authors as never },
+        resolvedBy: 'arxiv',
+        anchors: [],
+      },
+    });
+
+  // Regression: names were emitted as `{A} and {B}`, which closes the field
+  // value at the first brace. Every author after the first was lost, and
+  // strict parsers rejected the entry outright.
+  it('wraps the whole field in one brace pair, not each name', () => {
+    const bib = entry([
+      { family: 'Hoffmann', given: 'Jordan' },
+      { family: 'Borgeaud', given: 'Sebastian' },
+    ]);
+    expect(bib).toContain('author = {Hoffmann, Jordan and Borgeaud, Sebastian},');
+    expect(bib).not.toContain('} and {');
+  });
+
+  // A braced structured name is treated by BibTeX as one unbreakable literal,
+  // so "Hoffmann, Jordan" would render instead of "J. Hoffmann".
+  it('leaves a structured name bare so BibTeX can split family from given', () => {
+    expect(entry([{ family: 'Hoffmann', given: 'Jordan' }])).toContain(
+      'author = {Hoffmann, Jordan},',
+    );
+  });
+
+  // The opposite case: a literal name MUST be braced so BibTeX does not try to
+  // read "Giattino et al." as First Last.
+  it('braces a literal name so BibTeX does not split it', () => {
+    expect(entry([{ literal: 'Giattino et al.' }])).toContain('author = {{Giattino et al.}},');
+  });
+
+  it('mixes both forms correctly in one field', () => {
+    expect(entry([{ literal: 'OpenAI' }, { family: 'Smith', given: 'Jo' }])).toContain(
+      'author = {{OpenAI} and Smith, Jo},',
+    );
   });
 });
 

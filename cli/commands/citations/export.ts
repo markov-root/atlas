@@ -103,22 +103,31 @@ const BIBTEX_TYPES: Record<string, string> = {
   document: 'misc',
 };
 
-/** CSL name → BibTeX author value, one name per call. */
+/**
+ * One CSL name as it appears *inside* a BibTeX author field.
+ *
+ * The two cases need opposite treatment, and getting it backwards is the easy
+ * mistake:
+ *
+ *   - A **structured** name is emitted bare — `Hoffmann, Jordan`. BibTeX parses
+ *     the comma as the family/given boundary. Wrapping it in braces would make
+ *     it one unbreakable literal, so a reference manager would render the
+ *     author as "Hoffmann, Jordan" rather than "J. Hoffmann".
+ *   - A **literal** name is braced — `{Giattino et al.}` — precisely so BibTeX
+ *     does NOT try to split it into First Last. `task:0025` keeps such names
+ *     unparsed because guessing their structure is confidently wrong in every
+ *     citation style; the braces carry that decision into the output.
+ *
+ * The caller joins these with ` and ` and wraps the whole field once.
+ */
 function bibtexName(n: CslName): string {
-  // Every name is braced whole. A literal CSL name must be, so BibTeX cannot
-  // parse "Giattino et al." as First Last — one undivided name by construction
-  // (`task:0025`: guessing structure would be confidently wrong in every
-  // style). A structured name is braced too: `{Family, Given}` is the
-  // brace-protected form every reference manager parses identically.
   if (n.literal !== undefined) return `{${bibtexEscape(n.literal)}}`;
   if (n.family !== undefined) {
-    const name =
-      n.given !== undefined
-        ? `${bibtexEscape(n.family)}, ${bibtexEscape(n.given)}`
-        : bibtexEscape(n.family);
-    return `{${name}}`;
+    return n.given !== undefined
+      ? `${bibtexEscape(n.family)}, ${bibtexEscape(n.given)}`
+      : bibtexEscape(n.family);
   }
-  return '{}';
+  return '';
 }
 
 /** The `key = {value}` lines of one entry, in a fixed order. */
@@ -129,7 +138,12 @@ function bibtexFields(key: string, item: CslItem): string[] {
   };
 
   if (item.author?.length) {
-    fields.push(`author = ${item.author.map(bibtexName).join(' and ')}`);
+    // One brace pair around the WHOLE field, with ` and ` separating names
+    // inside it. Emitting `{A} and {B}` instead terminates the field value at
+    // the first closing brace, so every author after the first is lost or the
+    // entry fails to parse.
+    const names = item.author.map(bibtexName).filter((n) => n !== '');
+    if (names.length) fields.push(`author = {${names.join(' and ')}}`);
   }
   add('title', item.title);
   add('year', item.issued?.['date-parts']?.[0]?.[0]);
