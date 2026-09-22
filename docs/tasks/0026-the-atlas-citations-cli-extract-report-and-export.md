@@ -7,7 +7,7 @@ role: task
 status: todo
 summary: 'Expose extraction as commands, and deliver the report the edition-2 authors actually asked for plus a whole-book export file.'
 created: '2026-09-21'
-updated: '2026-09-21'
+updated: '2026-09-22'
 owner: Markov Grey
 supersedes: ''
 superseded_by: ''
@@ -24,7 +24,7 @@ engineering_document:
     owner: Markov Grey
     scope: Banks B5, B6, B7 of task:0021 — CLI surface only, no network and no rendering
   created: '2026-09-21'
-  updated: '2026-09-21'
+  updated: '2026-09-22'
   transition_history: unverified
   transitions: []
   relationships: []
@@ -100,16 +100,20 @@ and the build must emit a one-line count pointing at it.
 
 ## Completion evidence
 
-_To be filled on completion. Each row must cite a criterion and durable evidence — a commit, a file
-path, or a test name — not a narrative claim._
+All five criteria met. Built by a delegated agent; every claim below was re-verified against disk by
+the coordinator, not accepted from the report.
 
-| Criterion | Evidence | Verified |
-| --------- | -------- | -------- |
-| AC-1      | —        | —        |
-| AC-2      | —        | —        |
-| AC-3      | —        | —        |
-| AC-4      | —        | —        |
-| AC-5      | —        | —        |
+| Criterion | Evidence                                                                                                                                                                                                       | Verified   |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| AC-1      | `cli/commands/citations/extract-cmd.ts`. Idempotence proven twice: a test, and two real corpus runs producing byte-identical `sources.yaml` (md5 `54af5a44…` both times). 948 sources, no credentials, no network. | 2026-09-22 |
+| AC-2      | `report.ts` — 948 unresolved · 0 malformed · 47 content links · 0 unlinked · **76 inconsistent spellings**, each with chapter, section and anchor text.                                                            | 2026-09-22 |
+| AC-3      | Report written to `data/citations/citation-report.md` (110 KB) as a durable file; the command prints a one-line summary naming it. Not log output.                                                                | 2026-09-22 |
+| AC-4      | `export.ts` → 948-entry `bibliography.bib` and `bibliography.json` from the committed store, offline. BibTeX keys are content-derived, so adding an entry never renumbers another.                                 | 2026-09-22 |
+| AC-5      | All logic is importable and unit-tested: 37 tests across four files, exercising pure functions with constructed input.                                                                                            | 2026-09-22 |
+
+**A real defect was caught by running the command rather than only its tests:** the first BibTeX
+export emitted field lines with no trailing comma, which strict parsers reject. Fixed, with a
+regression test named for the behaviour.
 
 ## Authority and inputs
 

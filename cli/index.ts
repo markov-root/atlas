@@ -12,11 +12,19 @@
  */
 import { docsCheck } from './commands/docs-check.js';
 import { citationsUrls } from './commands/citations/index.js';
+import { citationsExtract } from './commands/citations/extract-cmd.js';
+import { citationsReport } from './commands/citations/report.js';
+import { citationsExport } from './commands/citations/export.js';
+import { citationsResolve } from './commands/citations/resolve.js';
 
 const USAGE = `atlas — AI Safety Atlas maintainer commands
 
-  atlas docs check       verify governed documents against docs/standards/documentation.md
-  atlas citations urls   write every cited source, per chapter and section, as Markdown
+  atlas docs check         verify governed documents against docs/standards/documentation.md
+  atlas citations extract  read citations from the cached documents into the CSL store
+  atlas citations report   list citations needing attention: unresolved, malformed, inconsistent
+  atlas citations export   write the whole-book bibliography as BibTeX and CSL-JSON
+  atlas citations resolve  fill in metadata from arXiv, Crossref, oEmbed and the local corpus
+  atlas citations urls     write every cited source, per chapter and section, as Markdown
 
 Run from anywhere in the checkout: ./bin/atlas <command>
 `;
@@ -33,8 +41,17 @@ export async function main(argv: string[]): Promise<number> {
     return docsCheck(process.cwd());
   }
 
-  if (group === 'citations' && sub === 'urls') {
-    return citationsUrls(process.cwd(), argv[2]);
+  if (group === 'citations') {
+    if (sub === 'extract') return citationsExtract(process.cwd());
+    if (sub === 'report') return citationsReport(process.cwd(), argv[2]);
+    if (sub === 'export') return citationsExport(process.cwd(), argv[2]);
+    if (sub === 'resolve') {
+      const limitArg = argv.find((a) => a.startsWith('--limit='));
+      return citationsResolve(process.cwd(), {
+        limit: limitArg ? Number(limitArg.split('=')[1]) : undefined,
+      });
+    }
+    if (sub === 'urls') return citationsUrls(process.cwd(), argv[2]);
   }
 
   console.error(`atlas: unknown command \`${[group, sub].filter(Boolean).join(' ')}\`\n`);

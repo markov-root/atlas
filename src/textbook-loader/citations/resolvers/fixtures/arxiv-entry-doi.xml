@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/PfKVJARy5sBIv7HOQGm+VF4hh4I</id>
+  <title>arXiv Query: search_query=&amp;id_list=2004.13678&amp;start=0&amp;max_results=10</title>
+  <updated>2026-09-21T23:44:30Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=10&amp;id_list=2004.13678" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>10</opensearch:itemsPerPage>
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2004.13678v2</id>
+    <title>Ferroelectric Polarization in Antiferroelectric Chalcogenide Perovskite BaZrS3 Thin Film</title>
+    <updated>2020-04-30T07:58:23Z</updated>
+    <link href="https://arxiv.org/abs/2004.13678v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2004.13678v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Bulk chalcogenide perovskite BaZrS3 (BZS), with a direct band gap in visible region, is an important photovoltaic material, albeit with limited applicability owing to its antiferroelectric (AF) nature. Presently, ferroelectric (FE) perovskite-based photovoltaics are attracting enormous attention for environmental stability and better energy conversion efficiency through enhanced charge separation, owing to loss of center of inversion symmetry. We report on antiferroelectric-ferroelectric (AF-FE) phases of BZS thin film, grown with chemical vapor deposition (CVD), using temperature-dependent Raman investigations and first-principles calculations. The origin of FE phases is established from anomalous behavior of A7g ~ 300 cm-1 and B1g5 ~ 420 cm-1 modes, which involves the vibration of atoms at apical site of ZrS6 octahedra. Additionally, below 60 K, B1g1 and B2g2 ( ~ 85 cm-1) modes appear whereas B12g (~ 60 cm-1) disappears to stabilize the Pnma structure against ferroelectricity by local distortion. Here, B2g2 and B1g2 involve vibrations of Ba atoms in AF manner while B1g1 involves, in addition, the rotation of octahedra as well. Our first-principles calculations confirm that FE appears as a result of loss of center of inversion symmetry in ZrS6 octahedra due to existence of oxygen (O) impurities placed locally at apical sites of sulfur (S) atom.</summary>
+    <category term="cond-mat.mtrl-sci" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-04-28T17:32:10Z</published>
+    <arxiv:comment>7 figurs</arxiv:comment>
+    <arxiv:primary_category term="cond-mat.mtrl-sci"/>
+    <arxiv:journal_ref>Phys. Rev. B 102, 205308 (2020)</arxiv:journal_ref>
+    <author>
+      <name>Juhi Pandey</name>
+    </author>
+    <author>
+      <name>Debjit Ghoshal</name>
+    </author>
+    <author>
+      <name>Dibyendu Dey</name>
+    </author>
+    <author>
+      <name>Tushar Gupta</name>
+    </author>
+    <author>
+      <name>A. Taraphder</name>
+    </author>
+    <author>
+      <name>Nikhil Koratkar</name>
+    </author>
+    <author>
+      <name>Ajay Soni</name>
+    </author>
+    <arxiv:doi>10.1103/PhysRevB.102.205308</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1103/PhysRevB.102.205308" title="doi"/>
+  </entry>
+</feed>

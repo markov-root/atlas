@@ -1,0 +1,472 @@
+{
+ "status": "ok",
+ "message-type": "work",
+ "message-version": "1.0.0",
+ "message": {
+  "publisher": "Springer Science and Business Media LLC",
+  "issue": "7873",
+  "abstract": "<jats:title>Abstract</jats:title>\n                  <jats:p>\n                    Proteins are essential to life, and understanding their structure can facilitate a mechanistic understanding of their function. Through an enormous experimental effort\n                    <jats:sup>1\u20134</jats:sup>\n                    , the structures of around 100,000 unique proteins have been determined\n                    <jats:sup>5</jats:sup>\n                    , but this represents a small fraction of the billions of known protein sequences\n                    <jats:sup>6,7</jats:sup>\n                    . Structural coverage is bottlenecked by the months to years of painstaking effort required to determine a single protein structure. Accurate computational approaches are needed to address this gap and to enable large-scale structural bioinformatics. Predicting the three-dimensional structure that a protein will adopt based solely on its amino acid sequence\u2014the structure prediction component of the \u2018protein folding problem\u2019\n                    <jats:sup>8</jats:sup>\n                    \u2014has been an important open research problem for more than 50\u00a0years\n                    <jats:sup>9</jats:sup>\n                    . Despite recent progress\n                    <jats:sup>10\u201314</jats:sup>\n                    , existing methods fall far\u00a0short of atomic accuracy, especially when no homologous structure is available. Here we provide the first computational method that can regularly predict protein structures with atomic accuracy even in cases in which no similar structure is known. We validated an entirely redesigned version of our neural network-based model, AlphaFold, in the challenging 14th Critical Assessment of protein Structure Prediction (CASP14)\n                    <jats:sup>15</jats:sup>\n                    , demonstrating accuracy competitive with experimental structures in a majority of cases and greatly outperforming other methods. Underpinning the latest version of AlphaFold is a novel machine learning approach that incorporates physical and biological knowledge about protein structure, leveraging multi-sequence alignments, into the design of the deep learning algorithm.\n                  </jats:p>",
+  "DOI": "10.1038/s41586-021-03819-2",
+  "type": "journal-article",
+  "title": [
+   "Highly accurate protein structure prediction with AlphaFold"
+  ],
+  "volume": "596",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0001-6169-6580",
+    "authenticated-orcid": false,
+    "given": "John",
+    "family": "Jumper",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Richard",
+    "family": "Evans",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Alexander",
+    "family": "Pritzel",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-3227-1505",
+    "authenticated-orcid": false,
+    "given": "Tim",
+    "family": "Green",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Michael",
+    "family": "Figurnov",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Olaf",
+    "family": "Ronneberger",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Kathryn",
+    "family": "Tunyasuvunakool",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Russ",
+    "family": "Bates",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Augustin",
+    "family": "\u017d\u00eddek",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Anna",
+    "family": "Potapenko",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Alex",
+    "family": "Bridgland",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Clemens",
+    "family": "Meyer",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-4271-4418",
+    "authenticated-orcid": false,
+    "given": "Simon A. A.",
+    "family": "Kohl",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Andrew J.",
+    "family": "Ballard",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Andrew",
+    "family": "Cowie",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Bernardino",
+    "family": "Romera-Paredes",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Stanislav",
+    "family": "Nikolov",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Rishub",
+    "family": "Jain",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-9928-3407",
+    "authenticated-orcid": false,
+    "given": "Jonas",
+    "family": "Adler",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Trevor",
+    "family": "Back",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Stig",
+    "family": "Petersen",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "David",
+    "family": "Reiman",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Ellen",
+    "family": "Clancy",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Michal",
+    "family": "Zielinski",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-8781-9753",
+    "authenticated-orcid": false,
+    "given": "Martin",
+    "family": "Steinegger",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-2160-6226",
+    "authenticated-orcid": false,
+    "given": "Michalina",
+    "family": "Pacholska",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Tamas",
+    "family": "Berghammer",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Sebastian",
+    "family": "Bodenstein",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-5197-2892",
+    "authenticated-orcid": false,
+    "given": "David",
+    "family": "Silver",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Oriol",
+    "family": "Vinyals",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-2401-5691",
+    "authenticated-orcid": false,
+    "given": "Andrew W.",
+    "family": "Senior",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Koray",
+    "family": "Kavukcuoglu",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Pushmeet",
+    "family": "Kohli",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-2812-9917",
+    "authenticated-orcid": false,
+    "given": "Demis",
+    "family": "Hassabis",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": [
+   "Nature"
+  ],
+  "resource": {
+   "primary": {
+    "URL": "https://www.nature.com/articles/s41586-021-03819-2"
+   }
+  },
+  "subtitle": [],
+  "issued": {
+   "date-parts": [
+    [
+     2021,
+     7,
+     15
+    ]
+   ]
+  },
+  "URL": "https://doi.org/10.1038/s41586-021-03819-2",
+  "published": {
+   "date-parts": [
+    [
+     2021,
+     7,
+     15
+    ]
+   ]
+  }
+ }
+}

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/zaF6+HA9warF4J/HoA+e0wlzXV0</id>
+  <title>arXiv Query: search_query=&amp;id_list=2310.19773&amp;start=0&amp;max_results=10</title>
+  <updated>2026-09-21T23:42:41Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=10&amp;id_list=2310.19773" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>10</opensearch:itemsPerPage>
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2310.19773v1</id>
+    <title>MM-VID: Advancing Video Understanding with GPT-4V(ision)</title>
+    <updated>2023-10-30T17:44:09Z</updated>
+    <link href="https://arxiv.org/abs/2310.19773v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.19773v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We present MM-VID, an integrated system that harnesses the capabilities of GPT-4V, combined with specialized tools in vision, audio, and speech, to facilitate advanced video understanding. MM-VID is designed to address the challenges posed by long-form videos and intricate tasks such as reasoning within hour-long content and grasping storylines spanning multiple episodes. MM-VID uses a video-to-script generation with GPT-4V to transcribe multimodal elements into a long textual script. The generated script details character movements, actions, expressions, and dialogues, paving the way for large language models (LLMs) to achieve video understanding. This enables advanced capabilities, including audio description, character identification, and multimodal high-level comprehension. Experimental results demonstrate the effectiveness of MM-VID in handling distinct video genres with various video lengths. Additionally, we showcase its potential when applied to interactive environments, such as video games and graphic user interfaces.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-30T17:44:09Z</published>
+    <arxiv:comment>Project page at https://multimodal-vid.github.io/</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Kevin Lin</name>
+    </author>
+    <author>
+      <name>Faisal Ahmed</name>
+    </author>
+    <author>
+      <name>Linjie Li</name>
+    </author>
+    <author>
+      <name>Chung-Ching Lin</name>
+    </author>
+    <author>
+      <name>Ehsan Azarnasab</name>
+    </author>
+    <author>
+      <name>Zhengyuan Yang</name>
+    </author>
+    <author>
+      <name>Jianfeng Wang</name>
+    </author>
+    <author>
+      <name>Lin Liang</name>
+    </author>
+    <author>
+      <name>Zicheng Liu</name>
+    </author>
+    <author>
+      <name>Yumao Lu</name>
+    </author>
+    <author>
+      <name>Ce Liu</name>
+    </author>
+    <author>
+      <name>Lijuan Wang</name>
+    </author>
+  </entry>
+</feed>

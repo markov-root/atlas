@@ -1,0 +1,363 @@
+<html>
+<title>CIFAR-10 and CIFAR-100 datasets</title>
+<LINK REL=StyleSheet HREF="style.css">
+<body class="main">
+<p><a href="index.html">< Back to Alex Krizhevsky's home page</a></p>
+	    The CIFAR-10 and CIFAR-100 datasets are labeled subsets of the <a href="http://people.csail.mit.edu/torralba/tinyimages/">80 million tiny images</a> dataset. CIFAR-10 and CIFAR-100 were created by Alex Krizhevsky, Vinod Nair, and Geoffrey Hinton.
+<h2>The CIFAR-10 dataset</h2>
+The CIFAR-10 dataset consists of 60000 32x32 colour images in 10 classes, with 6000 images per class. There are 50000 training images and 10000 test images.
+<br/><br/>
+The dataset is divided into five training batches and one test batch, each with 10000 images. The test batch contains exactly 1000 randomly-selected images from each class. The training batches contain the remaining images in random order, but some training batches may contain more images from one class than another. Between them, the training batches contain exactly 5000 images from each class.</li>
+<br/><br/>
+Here are the classes in the dataset, as well as 10 random images from each:
+<table>
+    <tr>
+        <td class="cifar-class-name">airplane</td>
+        <td><img src="cifar-10-sample/airplane1.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/airplane2.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/airplane3.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/airplane4.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/airplane5.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/airplane6.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/airplane7.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/airplane8.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/airplane9.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/airplane10.png" class="cifar-sample" /></td>
+    </tr>
+    <tr>
+        <td class="cifar-class-name">automobile</td>
+        <td><img src="cifar-10-sample/automobile1.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/automobile2.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/automobile3.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/automobile4.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/automobile5.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/automobile6.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/automobile7.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/automobile8.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/automobile9.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/automobile10.png" class="cifar-sample" /></td>
+    </tr>
+    <tr>
+        <td class="cifar-class-name">bird</td>
+        <td><img src="cifar-10-sample/bird1.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/bird2.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/bird3.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/bird4.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/bird5.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/bird6.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/bird7.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/bird8.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/bird9.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/bird10.png" class="cifar-sample" /></td>
+    </tr>
+    <tr>
+        <td class="cifar-class-name">cat</td>
+        <td><img src="cifar-10-sample/cat1.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/cat2.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/cat3.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/cat4.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/cat5.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/cat6.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/cat7.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/cat8.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/cat9.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/cat10.png" class="cifar-sample" /></td>
+    </tr>
+    <tr>
+        <td class="cifar-class-name">deer</td>
+        <td><img src="cifar-10-sample/deer1.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/deer2.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/deer3.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/deer4.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/deer5.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/deer6.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/deer7.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/deer8.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/deer9.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/deer10.png" class="cifar-sample" /></td>
+    </tr>
+    <tr>
+        <td class="cifar-class-name">dog</td>
+        <td><img src="cifar-10-sample/dog1.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/dog2.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/dog3.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/dog4.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/dog5.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/dog6.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/dog7.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/dog8.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/dog9.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/dog10.png" class="cifar-sample" /></td>
+    </tr>
+    <tr>
+        <td class="cifar-class-name">frog</td>
+        <td><img src="cifar-10-sample/frog1.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/frog2.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/frog3.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/frog4.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/frog5.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/frog6.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/frog7.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/frog8.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/frog9.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/frog10.png" class="cifar-sample" /></td>
+    </tr>
+    <tr>
+        <td class="cifar-class-name">horse</td>
+        <td><img src="cifar-10-sample/horse1.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/horse2.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/horse3.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/horse4.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/horse5.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/horse6.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/horse7.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/horse8.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/horse9.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/horse10.png" class="cifar-sample" /></td>
+    </tr>
+    <tr>
+        <td class="cifar-class-name">ship</td>
+        <td><img src="cifar-10-sample/ship1.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/ship2.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/ship3.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/ship4.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/ship5.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/ship6.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/ship7.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/ship8.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/ship9.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/ship10.png" class="cifar-sample" /></td>
+    </tr>
+    <tr>
+        <td class="cifar-class-name">truck</td>
+        <td><img src="cifar-10-sample/truck1.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/truck2.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/truck3.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/truck4.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/truck5.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/truck6.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/truck7.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/truck8.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/truck9.png" class="cifar-sample" /></td>
+        <td><img src="cifar-10-sample/truck10.png" class="cifar-sample" /></td>
+    </tr>
+</table>
+<br/>
+The classes are completely mutually exclusive. There is no overlap between automobiles and trucks. "Automobile" includes sedans, SUVs, things of that sort. "Truck" includes only big trucks. Neither includes pickup trucks.
+<h3>Download</h3>
+If you're going to use this dataset, please cite the tech report at the bottom of this page. <br/>
+<table>
+    <tr class="heading">
+        <td width="420px">Version</td>
+        <td width="100px">Size</td>
+        <td>md5sum</td>
+    </tr>
+    <tr >
+        <td><a href="cifar-10-python.tar.gz">CIFAR-10 python version</a></td>
+        <td>163 MB</td>
+        <td>c58f30108f718f92721af3b95e74349a</td>
+    </tr>
+    <tr>
+        <td><a href="cifar-10-matlab.tar.gz">CIFAR-10 Matlab version</a></td>
+        <td>175 MB</td>
+        <td>70270af85842c9e89bb428ec9976c926</td>
+    </tr>
+    <tr>
+        <td><a href="cifar-10-binary.tar.gz">CIFAR-10 binary version (suitable for C programs)</a></td>
+        <td>162 MB</td>
+        <td>c32a1d4ab5d03f1284b67883e8d87530</td>
+    </tr>
+</table>      
+<h3>Baseline results</h3>
+You can find some baseline replicable results on this dataset <a href="http://code.google.com/p/cuda-convnet/">on the project page for cuda-convnet</a>. These results were obtained with a convolutional neural network. Briefly, they are 18% test error without data augmentation and 11% with. Additionally, <a href="http://www.cs.toronto.edu/~jasper/">Jasper Snoek</a> has a <a href="http://hips.seas.harvard.edu/content/practical-bayesian-optimization-machine-learning-algorithms">new paper</a> in which he used Bayesian hyperparameter optimization to find nice settings of the weight decay and other hyperparameters, which allowed him to obtain a test error rate of 15% (without data augmentation) using the architecture of the net that got 18%.
+<h3>Other results</h3>
+<a href="http://rodrigob.github.com/">Rodrigo Benenson</a> has collected results on CIFAR-10/100 and other datasets on his website; <a href="http://rodrigob.github.com/are_we_there_yet/build/classification_datasets_results.html">click here</a> to view.
+<h3>Dataset layout</h3>
+<h4>Python / Matlab versions</h4>
+I will describe the layout of the Python version of the dataset. The layout of the Matlab version is identical.
+<br/><br/>
+The archive contains the files <span class="code">data_batch_1</span>, <span class="code">data_batch_2</span>, ..., <span class="code">data_batch_5</span>, as well as <span class="code">test_batch</span>. Each of these files is a Python "pickled" object produced with <a href="http://www.python.org/doc/2.5/lib/module-cPickle.html">cPickle</a>. Here is a python2 routine which will open such a file and return a dictionary:
+
+<pre class="code">
+def unpickle(file):
+    import cPickle
+    with open(file, 'rb') as fo:
+        dict = cPickle.load(fo)
+    return dict
+</pre>
+
+And a python3 version:
+
+<pre class="code">
+def unpickle(file):
+    import pickle
+    with open(file, 'rb') as fo:
+        dict = pickle.load(fo, encoding='bytes')
+    return dict
+</pre>
+
+Loaded in this way, each of the batch files contains a dictionary with the following elements:
+<ul>
+    <li><b>data</b> -- a 10000x3072 <a href="http://numpy.scipy.org/">numpy</a> array of <span class="code">uint8</span>s. Each row of the array stores a 32x32 colour image. The first 1024 entries contain the red channel values, the next 1024 the green, and the final 1024 the blue. The image is stored in row-major order, so that the first 32 entries of the array are the red channel values of the first row of the image.
+    <li><b>labels</b> -- a list of 10000 numbers in the range 0-9. The number at index <i>i</i> indicates the label of the <i>i</i>th image in the array <b>data</b>.</li>
+</ul>
+<br/>
+The dataset contains another file, called <span class="code">batches.meta</span>. It too contains a Python dictionary object. It has the following entries:
+<ul>
+    <li><b>label_names</b> -- a 10-element list which gives meaningful names to the numeric labels in the <b>labels</b> array described above. For example, <span class="code">label_names[0] == "airplane"</span>, <span class="code">label_names[1] == "automobile"</span>, etc.</li>
+</ul> 
+
+<h4>Binary version</h4>
+The binary version contains the files <span class="code">data_batch_1.bin</span>, <span class="code">data_batch_2.bin</span>, ..., <span class="code">data_batch_5.bin</span>, as well as <span class="code">test_batch.bin</span>. Each of these files is formatted as follows:
+<pre class="code">
+&lt;1 x label&gt;&lt;3072 x pixel&gt;
+...
+&lt;1 x label&gt;&lt;3072 x pixel&gt;</pre>
+In other words, the first byte is the label of the first image, which is a number in the range 0-9. The next 3072 bytes are the values of the pixels of the image. The first 1024 bytes are the red channel values, the next 1024 the green, and the final 1024 the blue. The values are stored in row-major order, so the first 32 bytes are the red channel values of the first row of the image.
+<br/><br/>
+Each file contains 10000 such 3073-byte "rows" of images, although there is <b>nothing delimiting the rows</b>. Therefore each file should be exactly 30730000 bytes long.
+<br/><br/>
+There is another file, called <span class="code">batches.meta.txt</span>. This is an ASCII file that maps numeric labels in the range 0-9 to meaningful class names. It is merely a list of the 10 class names, one per row. The class name on row <i>i</i> corresponds to numeric label <i>i</i>.
+
+<h2>The CIFAR-100 dataset</h2>
+
+This dataset is just like the CIFAR-10, except it has 100 classes containing 600 images each. There are 500 training images and 100 testing images per class.
+The 100 classes in the CIFAR-100 are grouped into 20 superclasses. Each image comes with a "fine" label (the class to which it belongs) and a "coarse" label (the superclass to which it belongs).<br/>
+Here  is the list of classes in the CIFAR-100:<br/><br/>
+<table class="cifar">
+    <tr class="heading">
+        <td width="350px">Superclass</td>
+        <td>Classes</td>
+    </tr>
+    <tr>
+        <td>aquatic mammals</td>
+        <td>beaver, dolphin, otter, seal, whale</td>
+    </tr>
+    <tr>
+        <td>fish</td>
+        <td>aquarium fish, flatfish, ray, shark, trout</td>
+    </tr>
+    <tr>
+        <td>flowers</td>
+        <td>orchids, poppies, roses, sunflowers, tulips</td>
+    </tr>
+    <tr>
+        <td>food containers</td>
+        <td>bottles, bowls, cans, cups, plates</td>
+    </tr>
+    <tr>
+        <td>fruit and vegetables</td>
+        <td>apples, mushrooms, oranges, pears, sweet peppers</td>
+    </tr>
+    <tr>
+        <td>household electrical devices</td>
+        <td>clock, computer keyboard, lamp, telephone, television</td>
+    </tr>
+    <tr>
+        <td>household furniture</td>
+        <td>bed, chair, couch, table, wardrobe</td>
+    </tr>
+    <tr>
+        <td>insects</td>
+        <td>bee, beetle, butterfly, caterpillar, cockroach</td>
+    </tr>
+    <tr>
+        <td>large carnivores</td>
+        <td>bear, leopard, lion, tiger, wolf</td>
+    </tr>
+    <tr>
+        <td>large man-made outdoor things</td>
+        <td>bridge, castle, house, road, skyscraper</td>
+    </tr>
+    <tr>
+        <td>large natural outdoor scenes</td>
+        <td>cloud, forest, mountain, plain, sea</td>
+    </tr>
+    <tr>
+        <td>large omnivores and herbivores</td>
+        <td>camel, cattle, chimpanzee, elephant, kangaroo</td>
+    </tr>
+    <tr>
+        <td>medium-sized mammals</td>
+        <td>fox, porcupine, possum, raccoon, skunk</td>
+    </tr>
+    <tr>
+        <td>non-insect invertebrates</td>
+        <td>crab, lobster, snail, spider, worm</td>
+    </tr>
+    <tr>
+        <td>people</td>
+        <td>baby, boy, girl, man, woman</td>
+    </tr>
+    <tr>
+        <td>reptiles</td>
+        <td>crocodile, dinosaur, lizard, snake, turtle</td>
+    </tr>
+    <tr>
+        <td>small mammals</td>
+        <td>hamster, mouse, rabbit, shrew, squirrel</td>
+    </tr>
+    <tr>
+        <td>trees</td>
+        <td>maple, oak, palm, pine, willow</td>
+    </tr>
+    <tr>
+        <td>vehicles 1</td>
+        <td>bicycle, bus, motorcycle, pickup truck, train</td>
+    </tr>
+    <tr>
+        <td>vehicles 2</td>
+        <td>lawn-mower, rocket, streetcar, tank, tractor</td>
+    </tr>
+</table>
+<br/>
+Yes, I know mushrooms aren't really fruit or vegetables, and bears aren't really carnivores.
+<br/>
+<h3>Download</h3>
+<table>
+    <tr class="heading">
+        <td width="420px">Version</td>
+        <td width="100px">Size</td>
+        <td>md5sum</td>
+    </tr>
+    <tr >
+        <td><a href="cifar-100-python.tar.gz">CIFAR-100 python version</a></td>
+        <td>161 MB</td>
+        <td>eb9058c3a382ffc7106e4002c42a8d85</td>
+    </tr>
+    <tr>
+        <td><a href="cifar-100-matlab.tar.gz">CIFAR-100 Matlab version</a></td>
+        <td>175 MB</td>
+        <td>6a4bfa1dcd5c9453dda6bb54194911f4</td>
+    </tr>
+    <tr>
+        <td><a href="cifar-100-binary.tar.gz">CIFAR-100 binary version (suitable for C programs)</a></td>
+        <td>161 MB</td>
+        <td>03b5dce01913d631647c71ecec9e9cb8</td>
+    </tr>
+</table> 
+<h3>Dataset layout</h3>
+<h4>Python / Matlab versions</h4>
+The python and Matlab versions are identical in layout to the CIFAR-10, so I won't waste space describing them here.
+<h4>Binary version</h4>
+The binary version of the CIFAR-100 is just like the binary version of the CIFAR-10, except that each image has two label bytes (coarse and fine) and 3072 pixel bytes, so the binary files look like this: 
+<pre class="code">
+&lt;1 x coarse label&gt;&lt;1 x fine label&gt;&lt;3072 x pixel&gt;
+...
+&lt;1 x coarse label&gt;&lt;1 x fine label&gt;&lt;3072 x pixel&gt;</pre>
+<h3>Indices into the original 80 million tiny images dataset</h3>
+Sivan Sabato was kind enough to provide <a href="cifar_indexes">this file</a>, which maps CIFAR-100 images to images in the 80 million tiny images dataset. Sivan Writes:
+<pre class="code">
+The file has 60000 rows, each row contains a single index into the tiny db,
+where the first image in the tiny db is indexed "1". "0" stands for an image that is not from the tiny db.
+The first 50000 lines correspond to the training set, and the last 10000 lines correspond
+to the test set.
+</pre>
+<h3>Reference</h3>
+This tech report (Chapter 3) describes the dataset and the methodology followed when collecting it in much greater detail. Please cite it if you intend to use this dataset.
+<br/>
+<ul>
+    <li><a href="learning-features-2009-TR.pdf">Learning Multiple Layers of Features from Tiny Images</a>, Alex Krizhevsky, 2009.</li>
+</ul>
+</body>
+</html>

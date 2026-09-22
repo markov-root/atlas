@@ -67,3 +67,12 @@ public/audio/ch*/*.mp3
 # drops screenshots, page-*.yml snapshots and console logs in here. Nothing
 # in it is worth keeping; prefer an absolute path outside the repo.
 .playwright-mcp/
+
+# Derived citation outputs. `data/citations/sources.yaml` IS committed — it is
+# the source of truth, and it accumulates resolver metadata that costs real time
+# and other people's rate limits to rebuild. These three are regenerated from it
+# in about 6 seconds, so committing them would add ~760 KB of churn to a repo
+# task:0019 is trying to shrink, for no gain.
+data/citations/bibliography.bib
+data/citations/bibliography.json
+data/citations/citation-report.md
