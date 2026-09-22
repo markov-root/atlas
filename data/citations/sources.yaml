@@ -36218,9 +36218,13 @@ https://world.org/blog/world/proof-of-personhood-what-it-is-why-its-needed:
     issued:
       date-parts:
         - - 2024
-    title: WorldCoin, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: |-
+      Proof of personhood:
+      What it is and why it’s needed
+    container-title: World
+    abstract: As AI advances, the ability to identify human-created online content is becoming a
+      necessity. That’s where proof of personhood comes in.
+  resolvedBy: opengraph
   anchors:
     - WorldCoin, 2024
 https://wsj.com/livecoverage/facebook-whistleblower-frances-haugen-senate-hearing/card/eFNjPrwIH4F7BALELWrZ:
@@ -36262,10 +36266,10 @@ https://www-cdn.anthropic.com/bd2a28d2535bfb0494cc8e2a3bf135d2e7523226/Model-Car
       - literal: Anthropic
     issued:
       date-parts:
-        - - 2024
-    title: Anthropic, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+        - - 2023
+          - 7
+    title: Model-Card-Claude-2
+  resolvedBy: research-db
   anchors:
     - Anthropic, 2024
 https://www.youtube.com/watch?v=0KmaotctziE:
@@ -36274,13 +36278,14 @@ https://www.youtube.com/watch?v=0KmaotctziE:
     type: motion_picture
     URL: https://www.youtube.com/watch?v=0KmaotctziE
     author:
-      - literal: Shapira
+      - literal: The Human Podcast
     issued:
       date-parts:
         - - 2025
-    title: Shapira, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Why I'm Hosting Debates on AI 'Doom' - Liron Shapira
+    container-title: YouTube
+    note: Metadata from YouTube oEmbed, which does not provide a publication date.
+  resolvedBy: oembed
   anchors:
     - Shapira, 2025
 https://www.youtube.com/watch?v=144uOfr4SYA:
@@ -36289,13 +36294,14 @@ https://www.youtube.com/watch?v=144uOfr4SYA:
     type: motion_picture
     URL: https://www.youtube.com/watch?v=144uOfr4SYA
     author:
-      - literal: Munk Debate
+      - literal: Policy-Relevant Science & Technology
     issued:
       date-parts:
         - - 2023
-    title: Munk Debate, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Munk Debate on Artificial Intelligence | Bengio & Tegmark vs. Mitchell & LeCun
+    container-title: YouTube
+    note: Metadata from YouTube oEmbed, which does not provide a publication date.
+  resolvedBy: oembed
   anchors:
     - Munk Debate, 2023
     - Munk Debate, 2024
@@ -36305,13 +36311,14 @@ https://www.youtube.com/watch?v=4v3uqWeVmco:
     type: motion_picture
     URL: https://www.youtube.com/watch?v=4v3uqWeVmco
     author:
-      - literal: Ngo
+      - literal: FAR․AI
     issued:
       date-parts:
         - - 2024
-    title: Ngo, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Richard Ngo – Reframing AGI Threat Models [Alignment Workshop]
+    container-title: YouTube
+    note: Metadata from YouTube oEmbed, which does not provide a publication date.
+  resolvedBy: oembed
   anchors:
     - Ngo, 2024
 https://www.youtube.com/watch?v=5mco9zAamRk:
@@ -36324,9 +36331,10 @@ https://www.youtube.com/watch?v=5mco9zAamRk:
     issued:
       date-parts:
         - - 2025
-    title: Rational Animations, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "How to Align AI: Put It in a Sandwich"
+    container-title: YouTube
+    note: Metadata from YouTube oEmbed, which does not provide a publication date.
+  resolvedBy: oembed
   anchors:
     - Rational Animations, 2025
 https://www.youtube.com/watch?v=9iqn1HhFJ6c:
@@ -36339,9 +36347,10 @@ https://www.youtube.com/watch?v=9iqn1HhFJ6c:
     issued:
       date-parts:
         - - 2024
-    title: The Guardian, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Ilya: the AI scientist shaping the world"
+    container-title: YouTube
+    note: Metadata from YouTube oEmbed, which does not provide a publication date.
+  resolvedBy: oembed
   anchors:
     - The Guardian, 2024
 https://www.youtube.com/watch?v=BfXi3_QSWek:
@@ -36350,13 +36359,14 @@ https://www.youtube.com/watch?v=BfXi3_QSWek:
     type: motion_picture
     URL: https://www.youtube.com/watch?v=BfXi3_QSWek
     author:
-      - literal: Gleave
+      - literal: Future of Life Institute
     issued:
       date-parts:
         - - 2025
-    title: Gleave, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Can Defense in Depth Work for AI? (with Adam Gleave)
+    container-title: YouTube
+    note: Metadata from YouTube oEmbed, which does not provide a publication date.
+  resolvedBy: oembed
   anchors:
     - Gleave, 2025
 https://www.youtube.com/watch?v=ETZfkkv6V7Y:
@@ -36380,13 +36390,15 @@ https://www.youtube.com/watch?v=N1TEjTeQeg0:
     type: motion_picture
     URL: https://www.youtube.com/watch?v=N1TEjTeQeg0
     author:
-      - literal: Hinton
+      - literal: University of Oxford
     issued:
       date-parts:
         - - 2024
-    title: Hinton, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Prof. Geoffrey Hinton - "Will digital intelligence replace biological intelligence?" Romanes
+      Lecture
+    container-title: YouTube
+    note: Metadata from YouTube oEmbed, which does not provide a publication date.
+  resolvedBy: oembed
   anchors:
     - Hinton, 2024
 https://www.youtube.com/watch?v=NgHFMolXs3U:
@@ -36395,13 +36407,14 @@ https://www.youtube.com/watch?v=NgHFMolXs3U:
     type: motion_picture
     URL: https://www.youtube.com/watch?v=NgHFMolXs3U
     author:
-      - literal: Sutton
+      - literal: Rich Sutton
     issued:
       date-parts:
         - - 2023
-    title: Sutton, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AI Succession
+    container-title: YouTube
+    note: Metadata from YouTube oEmbed, which does not provide a publication date.
+  resolvedBy: oembed
   anchors:
     - Sutton, 2023
 https://www.youtube.com/watch?v=Q3eRy4t2oPQ:
@@ -36410,13 +36423,14 @@ https://www.youtube.com/watch?v=Q3eRy4t2oPQ:
     type: motion_picture
     URL: https://www.youtube.com/watch?v=Q3eRy4t2oPQ
     author:
-      - literal: Elmore
+      - literal: Future of Life Institute
     issued:
       date-parts:
         - - 2024
-    title: Elmore, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Holly Elmore on Pausing AI, Hardware Overhang, Safety Research, and Protesting
+    container-title: YouTube
+    note: Metadata from YouTube oEmbed, which does not provide a publication date.
+  resolvedBy: oembed
   anchors:
     - Elmore, 2024
 https://www.youtube.com/watch?v=Y1BUaLo67ac:
@@ -36425,13 +36439,14 @@ https://www.youtube.com/watch?v=Y1BUaLo67ac:
     type: motion_picture
     URL: https://www.youtube.com/watch?v=Y1BUaLo67ac
     author:
-      - literal: Ng
+      - literal: World Economic Forum
     issued:
       date-parts:
         - - 2025
-    title: Ng, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The Dawn of Artificial General Intelligence? | World Economic Forum Annual Meeting 2025
+    container-title: YouTube
+    note: Metadata from YouTube oEmbed, which does not provide a publication date.
+  resolvedBy: oembed
   anchors:
     - Ng, 2025
     - World Economic Forum, 2025
@@ -36441,13 +36456,14 @@ https://www.youtube.com/watch?v=lfXxzAVtdpU:
     type: motion_picture
     URL: https://www.youtube.com/watch?v=lfXxzAVtdpU
     author:
-      - literal: Hofstadter
+      - literal: Game Thinking TV
     issued:
       date-parts:
         - - 2023
-    title: Hofstadter, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Gödel, Escher, Bach author Doug Hofstadter on the state of AI today
+    container-title: YouTube
+    note: Metadata from YouTube oEmbed, which does not provide a publication date.
+  resolvedBy: oembed
   anchors:
     - Hofstadter, 2023
 https://www.youtube.com/watch?v=s7_NlkBwdj8:
@@ -36456,13 +36472,14 @@ https://www.youtube.com/watch?v=s7_NlkBwdj8:
     type: motion_picture
     URL: https://www.youtube.com/watch?v=s7_NlkBwdj8
     author:
-      - literal: Chollet
+      - literal: Machine Learning Street Talk
     issued:
       date-parts:
         - - 2024
-    title: Chollet, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: It's Not About Scale, It's About Abstraction
+    container-title: YouTube
+    note: Metadata from YouTube oEmbed, which does not provide a publication date.
+  resolvedBy: oembed
   anchors:
     - Chollet, 2024
     - Chollet, 2025
@@ -36476,9 +36493,10 @@ https://www.youtube.com/watch?v=w9npWiTOHX0:
     issued:
       date-parts:
         - - 2024
-    title: Future of Life Institute, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Artificial Escalation
+    container-title: YouTube
+    note: Metadata from YouTube oEmbed, which does not provide a publication date.
+  resolvedBy: oembed
   anchors:
     - Future of Life Institute, 2024
 https://x.com/OpenAI/status/1946594928945148246:
@@ -36491,9 +36509,18 @@ https://x.com/OpenAI/status/1946594928945148246:
     issued:
       date-parts:
         - - 2025
-    title: OpenAI, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 7
+          - 19
+    title: OpenAI (@OpenAI) on X
+    container-title: X (formerly Twitter)
+    abstract: >-
+      We achieved gold medal-level performance 🥇on the 2025 International Mathematical Olympiad
+      with a general-purpose reasoning LLM!
+
+
+      Our model solved world-class math problems—at the level of top human contestants. A major
+      milestone for AI and mathematics.
+  resolvedBy: opengraph
   anchors:
     - OpenAI, 2025
 https://x.com/SakanaAILabs/status/1892992938013270019:
@@ -36506,9 +36533,19 @@ https://x.com/SakanaAILabs/status/1892992938013270019:
     issued:
       date-parts:
         - - 2025
-    title: SakanaAI, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 2
+          - 21
+    title: Sakana AI (@SakanaAILabs) on X
+    container-title: X (formerly Twitter)
+    abstract: >-
+      Update:
+
+
+      Combining evolutionary optimization with LLMs is powerful but can also find ways to trick the
+      verification sandbox. We are fortunate to have readers, like @main_horse test our CUDA
+      kernels, to identify that the system had found a way to “cheat”. For example, the system had
+      found a memory e…
+  resolvedBy: opengraph
   anchors:
     - SakanaAI, 2025
 https://x.com/fchollet/status/1736079054313574578?s=20:
@@ -36521,9 +36558,21 @@ https://x.com/fchollet/status/1736079054313574578?s=20:
     issued:
       date-parts:
         - - 2023
-    title: Chollet, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 12
+          - 16
+    title: François Chollet (@fchollet) on X
+    container-title: X (formerly Twitter)
+    abstract: >-
+      Ok, by popular demand: a starter set of papers you can read on the topic.
+
+
+      "Comparing Humans, GPT-4, and GPT-4V On Abstraction and Reasoning Tasks":
+      https://t.co/nhDrr94sgK
+
+
+      "Embers of Autoregression: Understanding Large Language Models Through the Problem They are
+      Trained to Solve": https://t.co/v…
+  resolvedBy: opengraph
   anchors:
     - Chollet, 2023
 https://x.com/polynoamial/status/1870172996650053653?mx=2:
@@ -36536,9 +36585,13 @@ https://x.com/polynoamial/status/1870172996650053653?mx=2:
     issued:
       date-parts:
         - - 2024
-    title: Brown, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 12
+          - 20
+    title: Noam Brown (@polynoamial) on X
+    container-title: X (formerly Twitter)
+    abstract: We announced @OpenAI o1 just 3 months ago. Today, we announced o3. We have every reason to
+      believe this trajectory will continue.
+  resolvedBy: opengraph
   anchors:
     - Brown, 2024
 https://yann.lecun.com/exdb/mnist:
@@ -36566,9 +36619,12 @@ https://yoshuabengio.org/2023/06/24/faq-on-catastrophic-ai-risks:
     issued:
       date-parts:
         - - 2023
-    title: Bengio, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Yoshua Bengio | FAQ on Catastrophic AI Risks
+    abstract: I have been hearing many arguments from different people regarding catastrophic AI risks.
+      I wanted to clarify these arguments, first for myself, because I would really like to be
+      convinced that we need not worry. However, sharing them and opening up the discussion more
+      broadly might also be useful.
+  resolvedBy: opengraph
   anchors:
     - Bengio, 2023
 https://youtube.com/playlist?list=PLOAFgXcJkZ2wFf3mcJ0xIFpJQgEDI274J:
@@ -36596,8 +36652,8 @@ https://yudkowsky.net/singularity/aibox:
     issued:
       date-parts:
         - - 2002
-    title: Yudkowsky, 2002
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "The AI-Box Experiment: – Eliezer S. Yudkowsky"
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Yudkowsky, 2002
