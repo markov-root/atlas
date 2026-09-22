@@ -32961,9 +32961,9 @@ https://lesswrong.com/posts/TTFsKxQThrqgWeXYJ/how-might-we-safely-pass-the-buck-
     issued:
       date-parts:
         - - 2025
-    title: Clymer, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: How might we safely pass the buck to AI? — LessWrong
+    abstract: My goal as an AI safety researcher is to put myself out of a job. …
+  resolvedBy: opengraph
   anchors:
     - Clymer, 2025
 https://lesswrong.com/posts/YWwzccGbcHMJMpT45/ai-safety-via-market-making:
@@ -32976,9 +32976,10 @@ https://lesswrong.com/posts/YWwzccGbcHMJMpT45/ai-safety-via-market-making:
     issued:
       date-parts:
         - - 2020
-    title: Hubinger Evan, 2020
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AI safety via market making — LessWrong
+    abstract: Special thanks to Abram Demski, Paul Christiano, and Kate Woolverton for talking with me
+      about some of the ideas that turned into this post. …
+  resolvedBy: opengraph
   anchors:
     - Hubinger Evan, 2020
 https://lesswrong.com/posts/aEguDPoCzt3287CCD/how-will-we-update-about-scheming:
@@ -32991,9 +32992,10 @@ https://lesswrong.com/posts/aEguDPoCzt3287CCD/how-will-we-update-about-scheming:
     issued:
       date-parts:
         - - 2025
-    title: Greenblatt, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: How will we update about scheming? — LessWrong
+    abstract: I mostly work on risks from scheming (that is, misaligned, power-seeking AIs that plot
+      against their creators such as by faking alignment). Recently,…
+  resolvedBy: opengraph
   anchors:
     - Greenblatt, 2025
 https://lesswrong.com/posts/dqSwccGTWyBgxrR58/turntrout-s-shortform-feed?commentId=Sw89AxHGJ5j7E7ETf:
@@ -33006,9 +33008,19 @@ https://lesswrong.com/posts/dqSwccGTWyBgxrR58/turntrout-s-shortform-feed?comment
     issued:
       date-parts:
         - - 2023
-    title: Turner, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: TurnTrout's shortform feed — LessWrong
+    abstract: >-
+      Comment by TurnTrout - I regret each of the thousands of hours I spent on my power-seeking
+      theorems, and sometimes fantasize about retracting one or both papers. I am pained every time
+      someone cites "Optimal policies tend to seek power", and despair that it is included in the
+      alignment 201 curriculum. I think this work makes readers actively worse at thinking about
+      realistic trained systems.
+
+
+      I think a healthy alignment community would have rebuked me for that line of research, but
+      sadly I only remember about two people objecting that "optimality" is a horrible way of
+      understanding trained policies. 
+  resolvedBy: opengraph
   anchors:
     - Turner, 2023
 https://lesswrong.com/posts/jRf4WENQnhssCb6mJ/davidad-s-bold-plan-for-alignment-an-in-depth-explanation:
@@ -33021,9 +33033,10 @@ https://lesswrong.com/posts/jRf4WENQnhssCb6mJ/davidad-s-bold-plan-for-alignment-
     issued:
       date-parts:
         - - 2023
-    title: Segerie & Kolly, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Davidad's Bold Plan for Alignment: An In-Depth Explanation — LessWrong"
+    abstract: "Charbel-Raphaël summarizes Davidad's plan: Use near AGIs to build a detailed world
+      simulation, then train and formally verify an AI that follows coar…"
+  resolvedBy: opengraph
   anchors:
     - Segerie & Kolly, 2023
 https://lesswrong.com/posts/kYeHbXmW4Kppfkg5j/on-maim-and-superintelligence-strategy:
@@ -33036,9 +33049,10 @@ https://lesswrong.com/posts/kYeHbXmW4Kppfkg5j/on-maim-and-superintelligence-stra
     issued:
       date-parts:
         - - 2025
-    title: Mowshowitz, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: On MAIM and Superintelligence Strategy — LessWrong
+    abstract: Dan Hendrycks, Eric Schmidt and Alexandr Wang released an extensive paper titled
+      Superintelligence Strategy. There is also an op-ed in Time that summ…
+  resolvedBy: opengraph
   anchors:
     - Mowshowitz, 2025
 https://lesswrong.com/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-powerful-ais-are-controlled:
@@ -33051,9 +33065,10 @@ https://lesswrong.com/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-powerfu
     issued:
       date-parts:
         - - 2024
-    title: Greenblatt & Shlegeris, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The case for ensuring that powerful AIs are controlled — LessWrong
+    abstract: In this post, we argue that AI labs should ensure that powerful AIs are controlled. That
+      is, labs should make sure that the safety measures they appl…
+  resolvedBy: opengraph
   anchors:
     - Greenblatt & Shlegeris, 2024
 https://lesswrong.com/posts/nCvvhFBaayaXyuBiD/shut-up-and-do-the-impossible:
@@ -33066,9 +33081,10 @@ https://lesswrong.com/posts/nCvvhFBaayaXyuBiD/shut-up-and-do-the-impossible:
     issued:
       date-parts:
         - - 2008
-    title: Yudkowsky, 2008
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Shut up and do the impossible! — LessWrong
+    abstract: The virtue of tsuyoku naritai, "I want to become stronger", is to always keep improving—to
+      do better than your previous failures, not just humbly con…
+  resolvedBy: opengraph
   anchors:
     - Yudkowsky, 2008
 https://lesswrong.com/posts/neTbrpBziAsTH5Bn7/ai-companies-are-unlikely-to-make-high-assurance-safety:
@@ -33081,9 +33097,11 @@ https://lesswrong.com/posts/neTbrpBziAsTH5Bn7/ai-companies-are-unlikely-to-make-
     issued:
       date-parts:
         - - 2025
-    title: Greenblatt, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AI companies are unlikely to make high-assurance safety cases if timelines are short —
+      LessWrong
+    abstract: "One hope for keeping existential risks low is to get AI companies to (successfully) make
+      high-assurance safety cases: structured and auditable argume…"
+  resolvedBy: opengraph
   anchors:
     - Greenblatt, 2025
 https://lesswrong.com/posts/oJQnRDbgSS8i6DwNu/the-hopium-wars-the-agi-entente-delusion:
@@ -33096,9 +33114,10 @@ https://lesswrong.com/posts/oJQnRDbgSS8i6DwNu/the-hopium-wars-the-agi-entente-de
     issued:
       date-parts:
         - - 2024
-    title: Tegmark, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "The Hopium Wars: the AGI Entente Delusion — LessWrong"
+    abstract: As humanity gets closer to Artificial General Intelligence (AGI), a new geopolitical
+      strategy is gaining traction in US and allied circles, in the Na…
+  resolvedBy: opengraph
   anchors:
     - Tegmark, 2024
 https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?commentId=G5zcfntZodH3ZYDaP:
@@ -33171,9 +33190,10 @@ https://lesswrong.com/posts/qYPHryHTNiJ2y6Fhi/the-paris-ai-anti-safety-summit:
     issued:
       date-parts:
         - - 2025
-    title: Zvi, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The Paris AI Anti-Safety Summit — LessWrong
+    abstract: It doesn’t look good. • What used to be the AI Safety Summits were perhaps the most
+      promising thing happening towards international coordination for…
+  resolvedBy: opengraph
   anchors:
     - Zvi, 2025
 https://lesswrong.com/posts/rZcyemEpBHgb2hqLP/ai-control-may-increase-existential-risk:
@@ -33186,9 +33206,10 @@ https://lesswrong.com/posts/rZcyemEpBHgb2hqLP/ai-control-may-increase-existentia
     issued:
       date-parts:
         - - 2025
-    title: Kulveit, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AI Control May Increase Existential Risk — LessWrong
+    abstract: "Consider two broad possibilities: • I. In worlds where we are doing reasonably well on
+      alignment, AI control agenda does not have much impact. …"
+  resolvedBy: opengraph
   anchors:
     - Kulveit, 2025
 https://lesswrong.com/posts/uJFC5WrcyTdat3Qcc/case-studies-in-simulators-and-agents:
@@ -33201,9 +33222,10 @@ https://lesswrong.com/posts/uJFC5WrcyTdat3Qcc/case-studies-in-simulators-and-age
     issued:
       date-parts:
         - - 2025
-    title: Petillo et al., 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Case Studies in Simulators and Agents — LessWrong
+    abstract: Simulators was posted two and a half years ago and quite a bit has happened since then. 
+      Ideas that were once thought experiments now exist as observ…
+  resolvedBy: opengraph
   anchors:
     - Petillo et al., 2025
 https://lesswrong.com/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely-difficult:
@@ -33216,9 +33238,10 @@ https://lesswrong.com/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely-diff
     issued:
       date-parts:
         - - 2023
-    title: Beren, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Gradient hacking is extremely difficult — LessWrong
+    abstract: There has been a lot of discussion recently about gradient hackers as a potentially
+      important class of mesaoptimizers. The idea of gradient hackers i…
+  resolvedBy: opengraph
   anchors:
     - Beren, 2023
 https://lesswrong.com/posts/x2n7mBLryDXuLwGhx/technical-ai-safety-research-landscape-slides:
@@ -33231,9 +33254,10 @@ https://lesswrong.com/posts/x2n7mBLryDXuLwGhx/technical-ai-safety-research-lands
     issued:
       date-parts:
         - - 2023
-    title: Wache, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Technical AI Safety Research Landscape [Slides] — LessWrong
+    abstract: I recently gave a technical AI safety research overview talk at EAGx Berlin. Many people
+      told me they found the talk insightful, so I’m sharing the s…
+  resolvedBy: opengraph
   anchors:
     - Wache, 2023
 https://lesswrong.com/posts/xwBuoE9p8GE7RAuhd/brain-efficiency-much-more-than-you-wanted-to-know:
@@ -33246,9 +33270,10 @@ https://lesswrong.com/posts/xwBuoE9p8GE7RAuhd/brain-efficiency-much-more-than-yo
     issued:
       date-parts:
         - - 2022
-    title: Canell, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Brain Efficiency: Much More than You Wanted to Know — LessWrong"
+    abstract: What if the brain is highly efficient? To be more specific, there are several
+      interconnected key measures of efficiency for physical learning machine…
+  resolvedBy: opengraph
   anchors:
     - Canell, 2022
 https://lexfridman.com/roman-yampolskiy-transcript:
@@ -33261,9 +33286,19 @@ https://lexfridman.com/roman-yampolskiy-transcript:
     issued:
       date-parts:
         - - 2024
-    title: Yampolsky; 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 6
+          - 3
+    title: "Transcript for Roman Yampolskiy: Dangers of Superintelligent AI | Lex Fridman Podcast #431 -
+      Lex Fridman"
+    container-title: Lex Fridman
+    abstract: "This is a transcript of Lex Fridman Podcast #431 with Roman Yampolskiy. The timestamps in
+      the transcript are clickable links that take you directly to that point in the main video.
+      Please note that the transcript is human generated, and may have errors. Here are some useful
+      links: Go back to this episode’s main page Watch the full YouTube version of the podcast Table
+      of Contents Here are the loose “chapters” in the conversation. Click link to jump
+      approximately to that part in the transcript: 0:00 – Introduction 2:20 – Existential risk of
+      AGI 8:32 – Ikigai risk 16:44 –"
+  resolvedBy: opengraph
   anchors:
     - Yampolsky; 2024
 https://li:
@@ -33291,9 +33326,12 @@ https://link.springer.com/chapter/10.1007/978-1-349-17295-5_4:
     issued:
       date-parts:
         - - 1975
-    title: Goodhart, 1975
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Problems of Monetary Management: The UK Experience"
+    container-title: SpringerLink
+    abstract: In 1971 the monetary authorities1 in the UK adopted a new approach to monetary management,
+      a change of policy announced and described in several papers on competition and credit
+      control. The subsequent experience of trying to operate this revised system has, however,...
+  resolvedBy: opengraph
   anchors:
     - Goodhart, 1975
 https://linkedin.com/pulse/altman-multimodality-important-david-cronshaw-5fz0c:
@@ -33306,9 +33344,9 @@ https://linkedin.com/pulse/altman-multimodality-important-david-cronshaw-5fz0c:
     issued:
       date-parts:
         - - 2024
-    title: Cronshaw, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Checking your browser - reCAPTCHA
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Cronshaw, 2024
 https://longtermrisk.org/beginners-guide-to-reducing-s-risks:
@@ -33321,9 +33359,11 @@ https://longtermrisk.org/beginners-guide-to-reducing-s-risks:
     issued:
       date-parts:
         - - 2023
-    title: DiGiovanni, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Beginner’s guide to reducing s-risks — Center on Long-Term Risk
+    container-title: Center on Long-Term Risk
+    abstract: Suffering risks, or s-risks, are “risks of events that bring about suffering in cosmically
+      significant amounts” (Althaus and Gloor 2016).
+  resolvedBy: opengraph
   anchors:
     - DiGiovanni, 2023
 https://longtermrisk.org/reducing-risks-of-astronomical-suffering-a-neglected-priority:
@@ -33336,9 +33376,10 @@ https://longtermrisk.org/reducing-risks-of-astronomical-suffering-a-neglected-pr
     issued:
       date-parts:
         - - 2016
-    title: Althaus & Gloor, 2016
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Reducing Risks of Astronomical Suffering: A Neglected Priority — Center on Long-Term Risk"
+    container-title: Center on Long-Term Risk
+    abstract: Will we go extinct, or will we succeed in building a flourishing utopia?
+  resolvedBy: opengraph
   anchors:
     - Althaus & Gloor, 2016
 https://mass.gov/news/ag-campbell-files-lawsuit-against-meta-instagram-for-unfair-and-deceptive-practices-that-harm-young-people:
@@ -33351,9 +33392,12 @@ https://mass.gov/news/ag-campbell-files-lawsuit-against-meta-instagram-for-unfai
     issued:
       date-parts:
         - - 2023
-    title: Office of the Attorney General, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AG Campbell Files Lawsuit Against Meta, Instagram For Unfair And Deceptive Practices That
+      Harm Young People
+    container-title: Mass.gov
+    abstract: Bipartisan Coalition of 42 Attorneys General File in Federal, State Courts Alleging Meta
+      Deliberately Exploited Young Users’ Vulnerabilities for Profit
+  resolvedBy: opengraph
   anchors:
     - Office of the Attorney General, 2023
 https://metaculus.com/questions/38403/ai-authorered-paper-by-2028:
@@ -33396,9 +33440,9 @@ https://metr.github.io/autonomy-evals-guide:
     issued:
       date-parts:
         - - 2025
-    title: METR, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Redirecting...
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - METR, 2025
 https://metr.org/blog/2023-03-18-update-on-recent-evals:
@@ -33407,13 +33451,14 @@ https://metr.org/blog/2023-03-18-update-on-recent-evals:
     type: webpage
     URL: https://metr.org/blog/2023-03-18-update-on-recent-evals
     author:
-      - literal: METR
+      - literal: Beth Barnes
     issued:
       date-parts:
         - - 2023
-    title: METR, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 3
+          - 17
+    title: Update on ARC's recent eval efforts
+  resolvedBy: research-db
   anchors:
     - METR, 2023
 https://metr.org/blog/2023-08-01-new-report:
@@ -33422,13 +33467,14 @@ https://metr.org/blog/2023-08-01-new-report:
     type: webpage
     URL: https://metr.org/blog/2023-08-01-new-report
     author:
-      - literal: METR
+      - literal: Beth Barnes
     issued:
       date-parts:
         - - 2023
-    title: METR, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 7
+          - 31
+    title: "New report: Evaluating Language-Model Agents on Realistic Autonomous Tasks"
+  resolvedBy: research-db
   anchors:
     - METR, 2023
 https://metr.org/blog/2023-09-26-rsp:
@@ -33437,13 +33483,16 @@ https://metr.org/blog/2023-09-26-rsp:
     type: webpage
     URL: https://metr.org/blog/2023-09-26-rsp
     author:
-      - literal: METR
+      - literal: Beth Barnes
+      - literal: Hjalmar Wijk
+      - literal: Lawrence Chan
     issued:
       date-parts:
         - - 2023
-    title: METR, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 9
+          - 26
+    title: Responsible Scaling Policies (RSPs)
+  resolvedBy: research-db
   anchors:
     - METR, 2023
 https://metr.org/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully:
@@ -33452,13 +33501,14 @@ https://metr.org/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully:
     type: webpage
     URL: https://metr.org/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully
     author:
-      - literal: Kinniment
+      - literal: Megan Kinniment
     issued:
       date-parts:
         - - 2025
-    title: Kinniment, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 3
+          - 11
+    title: Why it’s good for AI reasoning to be legible and faithful
+  resolvedBy: research-db
   anchors:
     - Kinniment, 2025
 https://metr.org/blog/2025-03-26-common-elements-of-frontier-ai-safety-policies:
@@ -33471,9 +33521,9 @@ https://metr.org/blog/2025-03-26-common-elements-of-frontier-ai-safety-policies:
     issued:
       date-parts:
         - - 2025
-    title: METR, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Redirecting…
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - METR, 2025
 https://metr.org/language-model-pilot-report:
@@ -33486,9 +33536,10 @@ https://metr.org/language-model-pilot-report:
     issued:
       date-parts:
         - - 2024
-    title: METR, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Language Model Pilot Report
+    abstract: We explore the ability of language model agents to acquire resources, create copies of
+      themselves, and adapt to novel challenges they encounter in the wild.
+  resolvedBy: opengraph
   anchors:
     - METR, 2024
 https://milesbrundage.substack.com/p/feedback-on-the-second-draft-of-the:
@@ -33501,9 +33552,10 @@ https://milesbrundage.substack.com/p/feedback-on-the-second-draft-of-the:
     issued:
       date-parts:
         - - 2025
-    title: Brundage, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Feedback on the Second Draft of the General-Purpose AI Code of Practice
+    abstract: Compliance with the most intensive requirements is (mostly) feasible for big companies,
+      but that doesn't mean all is well.
+  resolvedBy: opengraph
   anchors:
     - Brundage, 2025
 https://mitpress.mit.edu/9780262530828/beyond-the-limits:
@@ -33531,9 +33583,9 @@ https://muckrakerfarm.com/1977/09/pinto-madness-ford-pintos-fire-prone-gas-tank:
     issued:
       date-parts:
         - - 1977
-    title: Dowie, 1977
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Pinto Madness: the Ford Pinto’s fire-prone gas tank"
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Dowie, 1977
 https://multiverseaccordingtoben.blogspot.com/2010/03/coherent-aggregated-volition-toward.html:
@@ -33546,9 +33598,11 @@ https://multiverseaccordingtoben.blogspot.com/2010/03/coherent-aggregated-voliti
     issued:
       date-parts:
         - - 2010
-    title: Goertzel, 2010
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Coherent Aggregated Volition: A Method for Deriving Goal System Content for Advanced,
+      Beneficial AGIs"
+    abstract: One approach to creating a superhuman AGI with a reasonably high likelihood of being
+      beneficial to humans is to separate "goal system struct...
+  resolvedBy: opengraph
   anchors:
     - Goertzel, 2010
 https://narrowpath.co/introduction:
@@ -33561,9 +33615,9 @@ https://narrowpath.co/introduction:
     issued:
       date-parts:
         - - 2024
-    title: Miotti et al, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Introduction
+    abstract: "How to secure our future "
+  resolvedBy: opengraph
   anchors:
     - Miotti et al, 2024
 https://nasdaq.com/articles/nvidia-dominating-artificial-intelligence-chip-market-apple-has-been-securing-supply:
@@ -33591,9 +33645,10 @@ https://nationalsecurity.ai:
     issued:
       date-parts:
         - - 2025
-    title: Hendrycks et al., 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Superintelligence Strategy
+    abstract: "Superintelligence Strategy is written by: Dan Hendrycks, Eric Schmidt, Alexandr Wang.
+      Rapid advances in AI are beginning to reshape national security."
+  resolvedBy: opengraph
   anchors:
     - Hendrycks et al., 2025
 https://nationalsecurity.ai/chapter/ai-is-pivotal-for-national-security:
@@ -33606,9 +33661,12 @@ https://nationalsecurity.ai/chapter/ai-is-pivotal-for-national-security:
     issued:
       date-parts:
         - - 2025
-    title: Hendrycks et al., 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AI Is Pivotal for National Security — Chapter 3 of Superintelligence Strategy
+    abstract: "Chapter 3: AI Is Pivotal for National Security.  Rapid advances in AI are beginning to
+      reshape national security. Destabilizing AI developments could rupture the balance of power
+      and raise the odds of great-power conflict, while widespread proliferation of capable AI
+      hackers and virologists would lower barriers for rogue actors to cause catastrophe."
+  resolvedBy: opengraph
   anchors:
     - Hendrycks et al., 2025
 https://nature.com/articles/nature09659:
@@ -33621,9 +33679,14 @@ https://nature.com/articles/nature09659:
     issued:
       date-parts:
         - - 2011
-    title: Haldane and May, 2011
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Systemic risk in banking ecosystems - Nature
+    container-title: Nature
+    abstract: In a Perspective review, Andrew Haldane, executive director for financial stability at the
+      Bank of England, and ecologist Robert May look at the nature of risk that led to the recent
+      global crisis in the international banking system. Utilizing tools more often used to analyse
+      ecological food webs and the spread of infectious diseases, they conclude that there are
+      lessons to be learned from the exercise that could inform future public policy decisions.
+  resolvedBy: opengraph
   anchors:
     - Haldane and May, 2011
 https://nature.com/articles/s41586-023-06735-9:
@@ -33636,9 +33699,12 @@ https://nature.com/articles/s41586-023-06735-9:
     issued:
       date-parts:
         - - 2023
-    title: Merchant et al., 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Scaling deep learning for materials discovery - Nature
+    container-title: Nature
+    abstract: A protocol using large-scale training of graph networks enables high-throughput discovery
+      of novel stable structures and led to the identification of 2.2 million crystal structures, of
+      which 381,000 are newly discovered&nbsp;stable materials.
+  resolvedBy: opengraph
   anchors:
     - Merchant et al., 2023
 https://nature.com/articles/s41591-023-02640-w:
@@ -33651,9 +33717,11 @@ https://nature.com/articles/s41591-023-02640-w:
     issued:
       date-parts:
         - - 2023
-    title: Cao et al., 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Large-scale pancreatic cancer detection via non-contrast CT and deep learning - Nature Medicine
+    container-title: Nature
+    abstract: A deep learning model provides high accuracy in detecting pancreatic lesions in
+      multicenter data, outperforming radiology specialists.
+  resolvedBy: opengraph
   anchors:
     - Cao et al., 2023
 https://nature.com/articles/s41599-024-03017-1:
@@ -33666,9 +33734,10 @@ https://nature.com/articles/s41599-024-03017-1:
     issued:
       date-parts:
         - - 2024
-    title: Cha, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Towards an international regulatory framework for AI safety: lessons from the IAEA’s nuclear
+      safety regulations - Humanities and Social Sciences Communications"
+    container-title: Nature
+  resolvedBy: opengraph
   anchors:
     - Cha, 2024
 https://nature.com/articles/s41599-024-03560-x:
@@ -33681,9 +33750,10 @@ https://nature.com/articles/s41599-024-03560-x:
     issued:
       date-parts:
         - - 2024
-    title: Zaidan & Ibrahim, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "AI Governance in a Complex and Rapidly Changing Regulatory Landscape: A Global Perspective -
+      Humanities and Social Sciences Communications"
+    container-title: Nature
+  resolvedBy: opengraph
   anchors:
     - Zaidan & Ibrahim, 2024
 https://nature.com/articles/s42003-022-03036-1:
@@ -33696,9 +33766,14 @@ https://nature.com/articles/s42003-022-03036-1:
     issued:
       date-parts:
         - - 2022
-    title: Caucheteux & King, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Brains and algorithms partially converge in natural language processing - Communications
+      Biology
+    container-title: Nature
+    abstract: Charlotte Caucheteux and Jean-Rémi King examine the ability of transformer neural networks
+      trained on word prediction tasks to fit representations in the human brain measured with fMRI
+      and MEG. Their results provide further insight into the workings of transformer language
+      models and their relevance to brain responses.
+  resolvedBy: opengraph
   anchors:
     - Caucheteux & King, 2022
 https://neuralt.com/news-insights/protect-your-subscribers-against-scam-calls-with-ai-powered-scamblock:
@@ -33711,9 +33786,10 @@ https://neuralt.com/news-insights/protect-your-subscribers-against-scam-calls-wi
     issued:
       date-parts:
         - - 2024
-    title: Neuralt, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Solution / SCAMblock
+    abstract: "SCAMBlock: Real-time, AI-powered scam call protection. Actively block suspicious calls,
+      safeguard subscribers, and customize alerts. Ultimate call defence."
+  resolvedBy: opengraph
   anchors:
     - Neuralt, 2024
 https://newyorker.com/magazine/2017/10/30/the-family-that-built-an-empire-of-pain:
@@ -33726,9 +33802,13 @@ https://newyorker.com/magazine/2017/10/30/the-family-that-built-an-empire-of-pai
     issued:
       date-parts:
         - - 2017
-    title: Keefe, 2017
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 10
+          - 23
+    title: The Family That Built an Empire of Pain
+    container-title: The New Yorker
+    abstract: The Sackler dynasty’s ruthless marketing of painkillers has generated billions of
+      dollars—and millions of addicts.
+  resolvedBy: opengraph
   anchors:
     - Keefe, 2017
 https://nickbostrom.com/existential/risks:
@@ -33741,9 +33821,9 @@ https://nickbostrom.com/existential/risks:
     issued:
       date-parts:
         - - 2002
-    title: Bostrom, 2002
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Existential Risks: Analyzing Human Extinction Scenarios and Related Hazards"
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Bostrom, 2002
 https://nikcheerla.github.io/deeplearningschool/2018/01/01/AlphaZero-Explained:
@@ -33756,9 +33836,13 @@ https://nikcheerla.github.io/deeplearningschool/2018/01/01/AlphaZero-Explained:
     issued:
       date-parts:
         - - 2018
-    title: Cheerla, 2018
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 1
+          - 1
+    title: AlphaZero Explained
+    container-title: On AI
+    abstract: "A practical guide to deep learning: for Python hackers, data scientists, the
+      chronically-impatient, and the AI researchers of the future."
+  resolvedBy: opengraph
   anchors:
     - Cheerla, 2018
 https://nist.gov/itl/ai-risk-management-framework:
@@ -33770,10 +33854,12 @@ https://nist.gov/itl/ai-risk-management-framework:
       - literal: NIST
     issued:
       date-parts:
-        - - 2023
-    title: NIST, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+        - - 2021
+          - 7
+          - 12
+    title: AI Risk Management Framework
+    container-title: NIST
+  resolvedBy: opengraph
   anchors:
     - NIST, 2023
 https://nist.gov/publications/reducing-risks-posed-synthetic-content-overview-technical-approaches-digital-content:
@@ -33786,9 +33872,14 @@ https://nist.gov/publications/reducing-risks-posed-synthetic-content-overview-te
     issued:
       date-parts:
         - - 2024
-    title: Chandra et al., 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 11
+          - 20
+    title: Reducing Risks Posed by Synthetic Content An Overview of Technical Approaches to Digital
+      Content Transparency
+    container-title: NIST
+    abstract: This report examines the existing standards, tools, methods, and practices, as well as the
+      potential development of further science-backed standards and techniq
+  resolvedBy: opengraph
   anchors:
     - Chandra et al., 2024
 https://nti.org/wp-content/uploads/2023/05/NTIBIO_Benchtop-DNA-Report_FINAL.pdf:
@@ -33831,9 +33922,11 @@ https://oecd.ai/en/wonk/ai-safety-institutes-challenge:
     issued:
       date-parts:
         - - 2024
-    title: Variengien & Martinet, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "AI Safety Institutes: Can countries meet the challenge?"
+    abstract: >
+      Countries are establishing specialised bodies to evaluate AI systems’ capabilities and risks,
+      and more.
+  resolvedBy: opengraph
   anchors:
     - Variengien & Martinet, 2024
 https://oecd.org/content/dam/oecd/en/publications/reports/2025/02/towards-a-common-reporting-framework-for-ai-incidents_8c488fdb/f326d4ac-en.pdf:
@@ -33846,9 +33939,9 @@ https://oecd.org/content/dam/oecd/en/publications/reports/2025/02/towards-a-comm
     issued:
       date-parts:
         - - 2025
-    title: OECD, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 2
+    title: Towards a common reporting framework for AI incidents (EN)
+  resolvedBy: research-db
   anchors:
     - OECD, 2025
 https://oecd.org/en/publications/2025/06/introducing-the-oecd-ai-capability-indicators_7c0731f0/full-report/component-4.html:
