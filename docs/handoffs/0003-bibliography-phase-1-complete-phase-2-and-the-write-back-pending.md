@@ -65,8 +65,9 @@ Five commands work end to end:
 | `atlas citations resolve` | fill metadata, incremental and resumable      | yes     |
 | `atlas citations urls`    | per-section Markdown for the ed-2 authors     | none    |
 
-Over the committed corpus: **1,722 citations, 948 unique sources, 76 cited with inconsistent
-spellings, 47 links whose anchor text is prose rather than author-year.**
+Over the committed corpus: **1,770 citation instances, 948 unique sources, 817 resolved (86%),
+131 unresolved, 76 cited with inconsistent spellings, 47 links whose anchor text is prose rather
+than author-year, 0 malformed.**
 
 Gate at handoff: both linters clean, typecheck 0 errors, **424 tests** — 247 TypeScript and 177
 Python (was 195 at the start of this work).
@@ -108,6 +109,19 @@ Python (was 195 at the start of this work).
    verbs, plus a new `scan`. 424 tests (247 TS + 177 Python), both suites in `pnpm verify`. The 789
    resolved entries survived with **zero semantic change**. Left at `todo` because accepting work is
    the owner's call, matching `task:0025`–`0027`.
+
+   Three more defects surfaced while porting, all of the same shape — a property stated only in a
+   comment, which no test ever checked. `audit:0011` **F8** (a BibTeX key stability claim the
+   algorithm does not honour; documentation corrected, behaviour kept so no `\cite` key moves),
+   **F9** (the all-sources index could not show within-section spelling inconsistencies, the very
+   thing it exists to surface; fixed) and **F10** (`--redo` re-fetched every entry because
+   `research-db` claims all URLs, so "would another resolver claim this?" always answered yes;
+   fixed, 539 targets → 191). F10 is almost certainly why the first redo run was killed by a
+   timeout.
+
+   The redo then ran to completion: **60 newly resolved, 19 of them through `scholar-meta`** — the
+   publisher pages that resolver was written for, now carrying journal, volume, pages, DOI and real
+   author names instead of a bare title or nothing.
 
 1. **`task:0028`** — the write-back. Owner asked for it explicitly, but it is now **blocked on an
    upstream capability**: the research corpus has no queryable coverage, so we cannot tell which of
@@ -165,8 +179,8 @@ afternoon.
   remedy. `audit:0011` F5.
 - **`data/citations/sources.yaml` is committed; every derived output is gitignored**, including
   `citations.json`, the TypeScript→Python handoff file. The store accumulates resolver metadata that
-  costs real time and other people's rate limits to rebuild. It holds **789 of 948 resolved**, all
-  of which survived the port unchanged.
+  costs real time and other people's rate limits to rebuild. It holds **817 of 948 resolved**; the
+  789 that predated the port survived it unchanged.
 - **The store is now emitted by a different YAML writer.** `ruamel.yaml` wraps and quotes
   differently from the npm `yaml` package, so the port produced a one-time whole-file reformat with
   no data change. Do not read that diff as content churn — `task:0029` D4 records why a byte
