@@ -34375,9 +34375,9 @@ https://openreview.net/forum?id=oycEeFXX74:
     issued:
       date-parts:
         - - 2024
-    title: Bhatt et al., 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Verifying your browser | OpenReview
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Bhatt et al., 2024
 https://openreview.net/pdf?id=BZ5a1r-kVsf:
@@ -34405,9 +34405,14 @@ https://optimists.ai/2023/11/28/ai-is-easy-to-control:
     issued:
       date-parts:
         - - 2023
-    title: AI Optimists, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 11
+          - 29
+    title: AI is easy to control
+    container-title: AI Optimism
+    abstract: Why are billions of dollars being poured into artificial intelligence R&D this year?
+      Companies certainly expect to get a return on their investment. Arguably, the main reason AI
+      is profitable i…
+  resolvedBy: opengraph
   anchors:
     - AI Optimists, 2023
 https://ought.org/research/factored-cognition:
@@ -34420,9 +34425,10 @@ https://ought.org/research/factored-cognition:
     issued:
       date-parts:
         - - 2018
-    title: Ought, 2018
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Factored Cognition | Ought
+    abstract: Can we solve difficult problems by composing small contributions from individual agents
+      who don't know the big picture?
+  resolvedBy: opengraph
   anchors:
     - Ought, 2018
 https://ourworldindata.org/artificial-intelligence:
@@ -34435,9 +34441,11 @@ https://ourworldindata.org/artificial-intelligence:
     issued:
       date-parts:
         - - 2023
-    title: Giattino et al., 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Artificial Intelligence
+    container-title: Our World in Data
+    abstract: AI already has a large impact on our world. Explore research and data to understand the
+      trajectory of this important technology.
+  resolvedBy: opengraph
   anchors:
     - Giattino et al., 2023
     - Our World in Data, 2023
@@ -34451,9 +34459,10 @@ https://ourworldindata.org/energy-production-consumption:
     issued:
       date-parts:
         - - 2024
-    title: Our World in Data, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Energy Production and Consumption
+    container-title: Our World in Data
+    abstract: Explore data on how energy production and use varies across the world.
+  resolvedBy: opengraph
   anchors:
     - Our World in Data, 2024
 https://ourworldindata.org/grapher/annual-industrial-robots-installed:
@@ -34466,9 +34475,10 @@ https://ourworldindata.org/grapher/annual-industrial-robots-installed:
     issued:
       date-parts:
         - - 2025
-    title: OWID, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: New industrial robots installed per year
+    container-title: Our World in Data
+    abstract: An interactive visualization from Our World in Data.
+  resolvedBy: opengraph
   anchors:
     - OWID, 2025
 https://ourworldindata.org/grapher/annual-professional-service-robots-installed-by-area:
@@ -34481,9 +34491,10 @@ https://ourworldindata.org/grapher/annual-professional-service-robots-installed-
     issued:
       date-parts:
         - - 2025
-    title: OWID, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Annual professional service robots installed globally, by application area
+    container-title: Our World in Data
+    abstract: An interactive visualization from Our World in Data.
+  resolvedBy: opengraph
   anchors:
     - OWID, 2025
 https://ourworldindata.org/grapher/cumulative-number-of-large-scale-ai-models-by-domain:
@@ -34496,9 +34507,12 @@ https://ourworldindata.org/grapher/cumulative-number-of-large-scale-ai-models-by
     issued:
       date-parts:
         - - 2023
-    title: Giattino et al., 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Language-based AI systems have grown rapidly in recent years
+    container-title: Our World in Data
+    abstract: In recent years, there has been a notable shift towards artificial intelligence (AI)
+      systems focused on language. They have outpaced advancements in other sectors like image
+      recognition, gaming, and biology.
+  resolvedBy: opengraph
   anchors:
     - Giattino et al., 2023
 https://ourworldindata.org/grapher/levelized-cost-of-energy:
@@ -34511,9 +34525,12 @@ https://ourworldindata.org/grapher/levelized-cost-of-energy:
     issued:
       date-parts:
         - - 2026
-    title: Our World in Data, 2026
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Levelized cost of energy for renewables
+    container-title: Our World in Data
+    abstract: The average cost per unit of energy generated across the lifetime of a new power plant.
+      This data is expressed in US dollars per kilowatt-hour. It is adjusted for inflation but does
+      not account for differences in living costs between countries.
+  resolvedBy: opengraph
   anchors:
     - Our World in Data, 2026
 https://ourworldindata.org/grapher/market-share-logic-chip-production-manufacturing-stage?tab=chart:
@@ -34631,10 +34648,13 @@ https://pauseai.info/pdoom:
       - literal: PauseAI
     issued:
       date-parts:
-        - - 2024
-    title: PauseAI, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+        - - 2023
+          - 12
+          - 18
+    title: List of p(doom) values
+    container-title: PauseAI
+    abstract: How likely do AI various researchers believe AI will cause human extinction?
+  resolvedBy: opengraph
   anchors:
     - PauseAI, 2024
     - PauseAI, 2025
@@ -34648,9 +34668,10 @@ https://pauseai.info/proposal:
     issued:
       date-parts:
         - - 2023
-    title: PauseAI, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: PauseAI Proposal
+    container-title: PauseAI
+    abstract: Implement a temporary pause on the training of the most powerful general AI systems.
+  resolvedBy: opengraph
   anchors:
     - PauseAI, 2023
 https://perez:
@@ -34739,9 +34760,12 @@ https://pmc.ncbi.nlm.nih.gov/articles/PMC2840845:
     issued:
       date-parts:
         - - 2010
-    title: Cima et al, 2010
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Psychopaths know right from wrong but don’t care
+    container-title: PubMed Central (PMC)
+    abstract: Adult psychopaths have deficits in emotional processing and inhibitory control, engage in
+      morally inappropriate behavior, and generally fail to distinguish moral from conventional
+      violations. These observations, together with a dominant tradition in ...
+  resolvedBy: opengraph
   anchors:
     - Cima et al, 2010
 https://pnas.org/content/118/45/e2105646118:
@@ -34784,9 +34808,17 @@ https://pourdemain.ngo/en/post/learning-from-history-gpai-serious-incident-repor
     issued:
       date-parts:
         - - 2024
-    title: Farrell, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 10
+          - 18
+    title: "Learning from History: GPAI serious incident reporting"
+    container-title: Pour Demain
+    abstract: In an era where General Purpose AI (GPAI) models are becoming increasingly prevalent and
+      powerful, the need for robust incident reporting mechanisms has never been more critical. Pour
+      Demain's latest policy paper (find below) explores policy recommendations for implementing
+      Article 55(1c) of the EU's AI Act, focusing on serious incident reporting obligations for GPAI
+      model providers with systemic risk.The policy paper outlines a comprehensive framework for
+      GPAI serious incident reporting, addres
+  resolvedBy: opengraph
   anchors:
     - Farrell, 2024
 https://primer.ought.org:
@@ -34799,9 +34831,9 @@ https://primer.ought.org:
     issued:
       date-parts:
         - - 2022
-    title: Ought, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Factored Cognition Primer | Primer
+    abstract: How to write compositional language model programs
+  resolvedBy: opengraph
   anchors:
     - Ought, 2022
 https://psycnet.apa.org/record/1981-27235-001:
@@ -34844,9 +34876,9 @@ https://pubmed.ncbi.nlm.nih.gov/13233369:
     issued:
       date-parts:
         - - 1954
-    title: Olds & Milner, 1954
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: pubmed.ncbi.nlm.nih.gov
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Olds & Milner, 1954
 https://pubmed.ncbi.nlm.nih.gov/20010582:
@@ -34859,9 +34891,9 @@ https://pubmed.ncbi.nlm.nih.gov/20010582:
     issued:
       date-parts:
         - - 2009
-    title: Carlson, 2009
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Checking your browser - reCAPTCHA
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Carlson, 2009
 https://pubmed.ncbi.nlm.nih.gov/22723358:
@@ -34874,9 +34906,9 @@ https://pubmed.ncbi.nlm.nih.gov/22723358:
     issued:
       date-parts:
         - - 2012
-    title: Houzel, 2012
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: pubmed.ncbi.nlm.nih.gov
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Houzel, 2012
 https://pubmed.ncbi.nlm.nih.gov/33563125:
@@ -34889,9 +34921,9 @@ https://pubmed.ncbi.nlm.nih.gov/33563125:
     issued:
       date-parts:
         - - 2021
-    title: Charvet, 2021
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Checking your browser - reCAPTCHA
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Charvet, 2021
 https://pubmed.ncbi.nlm.nih.gov/34265844:
@@ -34904,9 +34936,9 @@ https://pubmed.ncbi.nlm.nih.gov/34265844:
     issued:
       date-parts:
         - - 2021
-    title: Jumper et al., 2021
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: pubmed.ncbi.nlm.nih.gov
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Jumper et al., 2021
 https://pubmed.ncbi.nlm.nih.gov/36211133:
@@ -34919,9 +34951,9 @@ https://pubmed.ncbi.nlm.nih.gov/36211133:
     issued:
       date-parts:
         - - 2022
-    title: Urbina et al., 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Checking your browser - reCAPTCHA
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Urbina et al., 2022
 https://pubmed.ncbi.nlm.nih.gov/36413172:
@@ -34934,9 +34966,9 @@ https://pubmed.ncbi.nlm.nih.gov/36413172:
     issued:
       date-parts:
         - - 2022
-    title: Meta, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Checking your browser - reCAPTCHA
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - META, 2022
     - Meta, 2022
@@ -34950,9 +34982,9 @@ https://pubmed.ncbi.nlm.nih.gov/36789740:
     issued:
       date-parts:
         - - 2023
-    title: Pearson et al., 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: pubmed.ncbi.nlm.nih.gov
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Pearson et al., 2023
 https://pubmed.ncbi.nlm.nih.gov/37160371:
@@ -34965,9 +34997,9 @@ https://pubmed.ncbi.nlm.nih.gov/37160371:
     issued:
       date-parts:
         - - 2023
-    title: Federspiel et al., 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Checking your browser - reCAPTCHA
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Federspiel et al., 2023
 https://pubmed.ncbi.nlm.nih.gov/39572723:
@@ -34980,9 +35012,9 @@ https://pubmed.ncbi.nlm.nih.gov/39572723:
     issued:
       date-parts:
         - - 2024
-    title: Pannu et al., 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: pubmed.ncbi.nlm.nih.gov
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Pannu et al., 2024
 https://pubmed.ncbi.nlm.nih.gov/6770964:
@@ -34995,9 +35027,9 @@ https://pubmed.ncbi.nlm.nih.gov/6770964:
     issued:
       date-parts:
         - - 1980
-    title: Rolls et al., 1980
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Checking your browser - reCAPTCHA
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Rolls et al., 1980
 https://rand.org/content/dam/rand/pubs/research_reports/RRA2800/RRA2849-1/RAND_RRA2849-1.pdf:
@@ -35006,13 +35038,13 @@ https://rand.org/content/dam/rand/pubs/research_reports/RRA2800/RRA2849-1/RAND_R
     type: webpage
     URL: https://rand.org/content/dam/rand/pubs/research_reports/RRA2800/RRA2849-1/RAND_RRA2849-1.pdf
     author:
-      - literal: Nevo et al.
+      - literal: Sella Nevo, Dan Lahav, Ajay Karpur, Yogev Bar-On, Henry Alexander Bradley, Jeff Alstott
     issued:
       date-parts:
         - - 2024
-    title: Nevo et al., 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Securing AI Model Weights: Preventing Theft and Misuse of Frontier Models"
+    note: Research-database record found, but no publication date.
+  resolvedBy: research-db
   anchors:
     - Nevo et al., 2024
 https://rand.org/pubs/research_reports/RR2703.html:
@@ -35087,9 +35119,11 @@ https://ratings.safer-ai.org:
     issued:
       date-parts:
         - - 2025
-    title: SaferAI, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: SaferAI Frontier Risk Management Tracker
+    container-title: SaferAI Frontier Risk Management Tracker
+    abstract: We rate frontier AI companies' risk management practices. Our objective is to enhance the
+      accountability of private actors shaping the development of AI.
+  resolvedBy: opengraph
   anchors:
     - SaferAI, 2025
 https://ratings.safer-ai.org/comparison:
@@ -35102,9 +35136,10 @@ https://ratings.safer-ai.org/comparison:
     issued:
       date-parts:
         - - 2025
-    title: SaferAI, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Comparison – SaferAI Frontier Risk Management Tracker
+    container-title: SaferAI Frontier Risk Management Tracker
+    abstract: 870e2482-3050-49b6-befd-15760c9b9c23
+  resolvedBy: opengraph
   anchors:
     - SaferAI, 2025
 https://researchgate.net/publication/360644155_AI_GOVERNANCE_ARE_CHIEF_AI_OFFICERS_AND_AI_RISK_OFFICERS_NEEDED:
