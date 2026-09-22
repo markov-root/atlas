@@ -93,13 +93,17 @@ start of this work).
 1. **`docs/cited-sources.md` is ready to share** — 2,996 lines, per chapter and section, `Title (url)`
    form, plus a deduplicated master list and the 47 unrecognised links. Built for the edition-2
    authors, who are the stated customer of this whole task.
-2. **`task:0028` D1** is the next decision and it is irreversible. It decides what we are allowed to
-   write back into a shared corpus that offers no delete.
+2. **`task:0028` D1** decides what we may write back into a shared corpus that offers no delete.
+   My recommended option C was **withdrawn on 2026-09-22**: it rested on exit 5 meaning
+   "out of scope", and it does not. The corpus exposes no way to ask what it covers, so this task
+   probably waits on that upstream fix rather than encoding a workaround.
 
 ## Open work
 
-1. **`task:0028`** — the write-back. Owner asked for it explicitly; D1 needs deciding first, and the
-   `epoch.ai` anomaly recorded there should be understood before building.
+1. **`task:0028`** — the write-back. Owner asked for it explicitly, but it is now **blocked on an
+   upstream capability**: the research corpus has no queryable coverage, so we cannot tell which of
+   948 URLs are worth offering without fetching each one. Four feedback notes filed; the coverage
+   one is the blocker.
 2. **`task:0021` phase 2** — rendering. Deliberately not decomposed yet; do it against the data
    phase 1 produced, not against assumptions. Surfaces fixed by D5: section-level after `#footnotes`,
    chapter-level on the introduction page's download panel, site-wide `/bibliography`.
@@ -142,7 +146,14 @@ git log --oneline main..HEAD           # 10 unpushed commits
 Three measurement errors were made and caught during this work. Each is recorded because each would
 otherwise have shipped as a confident, wrong claim:
 
-- **A 45-URL probe reported the research-database corpus at 24% coverage. It is 7.9%.** The probe
+- **Three times, a reproducible measurement of that corpus was still wrong.** Coverage was reported
+  at 24% (it is 7.9%), then epoch.ai as an unsupported domain (it is swept, with path-scoped claims),
+  then planned-obsolescence and aisi as uncovered (both fully scraped). Each time the command output
+  was accurate and the conclusion was not, because `research fetch`'s exit 5 answers "can the ad-hoc
+  fetcher claim this URL" while the question being asked was "is this publisher in the corpus". When
+  a tool cannot answer the question you actually have, a confident answer to the adjacent question is
+  the dangerous outcome — the owner caught all three, not the data.
+- **The 45-URL coverage probe specifically:** The probe
   sampled arXiv plus Alignment Forum, LessWrong, Epoch, Anthropic, DeepMind, METR and GovAI —
   precisely the organisations that corpus is built to cover. Sampling from the covered population
   estimates nothing about the whole.
