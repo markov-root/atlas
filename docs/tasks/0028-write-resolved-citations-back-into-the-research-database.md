@@ -183,3 +183,23 @@ path, a test name, or a measured rate — not a narrative claim._
 
   `openai.com` returning **exit 1** rather than 5 is a separate matter — exit 1 is "invalid input or
   internal failure", so something is erroring rather than declining. 22 sources are affected.
+
+- **Exit 5 is not a usable scope signal at all, and D1 option C should be withdrawn.** The owner
+  identified further publishers as fully scraped that the probe reported as exit 5:
+  `planned-obsolescence.org` (26 records) and `aisi.gov.uk` (157 records), both confirmed exit 5.
+  Together with epoch, anthropic and deepmind, the **fetch claim set and the swept-source set are
+  substantially disjoint**.
+
+  The underlying cause is that the corpus exposes no way to ask what it covers. `research sources`
+  returns 25 sources whose record keys are `coverage, crawl_degraded, crawl_suspect, discovered_at,
+  display_name, ignored, locale_duplicates, not_pulled, pulled, source, synced, total` — **no url,
+  domain, host, site or pattern field anywhere**. A consumer holding 948 URLs therefore has no query
+  available and can only discover coverage by effectful fetches, which is how this task twice
+  reported a publisher as uncovered that its owner knew was fully scraped.
+
+  **Consequence for D1:** option C ("offer whatever it claims") rests on exit 5 meaning out-of-scope.
+  It does not. Withdrawn. Until source URL patterns are exposed upstream, the choice is between
+  option A with its pollution risk and a hand-maintained allow-list that goes stale whenever a
+  scraper is added. Filed upstream as the highest-value of the four feedback notes; **this task
+  should probably wait on it** rather than encode a workaround for a gap that is cheap to close at
+  the source.
