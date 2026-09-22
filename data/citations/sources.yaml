@@ -32304,9 +32304,9 @@ https://inferencemagazine.substack.com/p/how-much-economic-growth-from-ai:
     issued:
       date-parts:
         - - 2025
-    title: Wiseman & McClements, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: How much economic growth from AI should we expect, how soon?
+    abstract: Is this the steam engine, electricity, computers, or something bigger?
+  resolvedBy: opengraph
   anchors:
     - Wiseman & McClements, 2025
 https://insights.sei.cmu.edu/library/considerations-for-evaluating-large-language-models-for-cybersecurity-tasks:
@@ -32319,9 +32319,12 @@ https://insights.sei.cmu.edu/library/considerations-for-evaluating-large-languag
     issued:
       date-parts:
         - - 2024
-    title: Gennari et al., 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Considerations for Evaluating Large Language Models for Cybersecurity Tasks | CMU Software
+      Engineering Institute
+    container-title: SEI Digital Library
+    abstract: In this paper, researchers from the SEI and OpenAI explore the opportunities and risks
+      associated with using large language models (LLMs) for cybersecurity tasks.
+  resolvedBy: opengraph
   anchors:
     - Gennari et al., 2024
 https://intel.com/content/www/us/en/business/enterprise-computers/resources/trusted-platform-module.html:
@@ -32334,9 +32337,11 @@ https://intel.com/content/www/us/en/business/enterprise-computers/resources/trus
     issued:
       date-parts:
         - - 2024
-    title: Intel, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: What Is a Trusted Platform Module (TPM)? – Intel
+    container-title: Intel
+    abstract: A Trusted Platform Module (TPM) is a microcontroller used to ensure PCs or other devices
+      boot safely from trusted hardware and software.
+  resolvedBy: opengraph
   anchors:
     - Intel, 2024
 https://intelligence.org/2022/06/10/agi-ruin:
@@ -32349,9 +32354,13 @@ https://intelligence.org/2022/06/10/agi-ruin:
     issued:
       date-parts:
         - - 2022
-    title: Yudkowsky, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 6
+          - 10
+    title: "AGI Ruin: A List of Lethalities - Machine Intelligence Research Institute"
+    container-title: Machine Intelligence Research Institute
+    abstract: (If you're already familiar with all basics and don't want any preamble, skip ahead
+      to Section B for technical difficulties of alignment proper.)
+  resolvedBy: opengraph
   anchors:
     - " Yudkowsky, 2022"
     - Yudkowsky, 2022
@@ -32365,9 +32374,14 @@ https://intelligence.org/2023/04/07/pausing-ai-developments-isnt-enough-we-need-
     issued:
       date-parts:
         - - 2023
-    title: Yudkowsky, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 4
+          - 7
+    title: Pausing AI Developments Isn't Enough. We Need to Shut it All Down - Machine Intelligence
+      Research Institute
+    container-title: Machine Intelligence Research Institute
+    abstract: An open letter published today calls for “all AI labs to immediately pause for at least 6
+      months the training of AI systems more powerful than GPT-4.”
+  resolvedBy: opengraph
   anchors:
     - Yudkowsky, 2023
 https://intelligence.org/2023/11/24/ability-to-solve-long-horizon-tasks-correlates-with-wanting-things-in-the-behaviorist-sense:
@@ -32380,9 +32394,14 @@ https://intelligence.org/2023/11/24/ability-to-solve-long-horizon-tasks-correlat
     issued:
       date-parts:
         - - 2023
-    title: Soares, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 11
+          - 24
+    title: Ability to solve long-horizon tasks correlates with wanting things in the behaviorist sense -
+      Machine Intelligence Research Institute
+    container-title: Machine Intelligence Research Institute
+    abstract: "Status: Vague, sorry. The point seems almost tautological to me, and yet also seems like
+      the correct answer to the people going around saying “LLMs"
+  resolvedBy: opengraph
   anchors:
     - Soares, 2023
 https://intelligence.org/files/CEV.pdf:
@@ -32470,9 +32489,9 @@ https://jetpress.org/v22/goertzel-pitt.htm:
     issued:
       date-parts:
         - - 2012
-    title: Goertzel & Pitt, 2012
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Original file was NineWaysToFriendlyAI_v6.tex
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Goertzel & Pitt, 2012
 https://journalofdemocracy.org/articles/how-ai-threatens-democracy:
@@ -32485,9 +32504,12 @@ https://journalofdemocracy.org/articles/how-ai-threatens-democracy:
     issued:
       date-parts:
         - - 2023
-    title: Kreps & Kriner, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: How AI Threatens Democracy | Journal of Democracy
+    container-title: Journal of Democracy
+    abstract: Generative AI can flood the media, internet, and even personal correspondence, sowing
+      confusion for voters and government officials alike. If we fail to act, mounting mistrust will
+      polarize our…
+  resolvedBy: opengraph
   anchors:
     - Kreps & Kriner, 2023
 https://keepthefuturehuman.ai/wp-content/uploads/2025/03/Keep_the_Future_Human__AnthonyAguirre__5March2025.pdf:
@@ -32530,9 +32552,10 @@ https://lesswrong.com/posts/2mhFMgtAjFJesaSYR/2-d-robustness:
     issued:
       date-parts:
         - - 2019
-    title: Mikulik, 2019
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: 2-D Robustness — LessWrong
+    abstract: This is a short note on a framing that was developed in collaboration with Joar Skalse,
+      Chris van Merwijk and Evan Hubinger while working on Risks fr…
+  resolvedBy: opengraph
   anchors:
     - Mikulik, 2019
 https://lesswrong.com/posts/2oAxpRuadyjN2ERhe/information-security-considerations-for-ai-and-the-long-term:
@@ -32545,9 +32568,13 @@ https://lesswrong.com/posts/2oAxpRuadyjN2ERhe/information-security-consideration
     issued:
       date-parts:
         - - 2022
-    title: Ladish & Heim, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Information security considerations for AI and the long term future — LessWrong
+    abstract: >-
+      Summary
+
+      This post is authored by Jeffrey Ladish, who works on the security team at Anthropic, and
+      Lennart Heim, who works on AI Governance with GovAI…
+  resolvedBy: opengraph
   anchors:
     - Ladish & Heim, 2022
 https://lesswrong.com/posts/2sLwt2cSAag74nsdN/speaking-to-congressional-staffers-about-ai-risk:
@@ -32560,9 +32587,10 @@ https://lesswrong.com/posts/2sLwt2cSAag74nsdN/speaking-to-congressional-staffers
     issued:
       date-parts:
         - - 2023
-    title: Akash, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Speaking to Congressional staffers about AI risk — LessWrong
+    abstract: Orpheus16 shares his experience talking with ~60 congressional staffers about AI risk in
+      May - June 2023. He found staffers were surprisingly open-mi…
+  resolvedBy: opengraph
   anchors:
     - Akash, 2023
 https://lesswrong.com/posts/3nMpdmt8LrzxQnkGp/ai-timelines-via-cumulative-optimization-power-less-long:
@@ -32590,9 +32618,11 @@ https://lesswrong.com/posts/6RC3BNopCtzKaTeR6/thoughts-on-the-openai-alignment-p
     issued:
       date-parts:
         - - 2023
-    title: Ladish, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Thoughts on the OpenAI alignment plan: will AI research assistants be net-positive for AI
+      existential risk? — LessWrong"
+    abstract: "Note: I really appreciate the work that the OpenAI alignment team put into their
+      alignment plan writeup and related posts, especially Jan Leike, the…"
+  resolvedBy: opengraph
   anchors:
     - Ladish, 2023
 https://lesswrong.com/posts/6kBMqrK9bREuGsrnd/ai-enabled-coups-a-small-group-could-use-ai-to-seize-power-1:
@@ -32605,9 +32635,9 @@ https://lesswrong.com/posts/6kBMqrK9bREuGsrnd/ai-enabled-coups-a-small-group-cou
     issued:
       date-parts:
         - - 2025
-    title: Davidson, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "AI-enabled coups: a small group could use AI to seize power — LessWrong"
+    abstract: We’ve written a new report on the threat of AI-enabled coups.  …
+  resolvedBy: opengraph
   anchors:
     - Davidson, 2025
 https://lesswrong.com/posts/7gkXuHEm6CqEGT2mg/ai-safety-seems-hard-to-measure:
@@ -32620,9 +32650,10 @@ https://lesswrong.com/posts/7gkXuHEm6CqEGT2mg/ai-safety-seems-hard-to-measure:
     issued:
       date-parts:
         - - 2022
-    title: Karnofsky, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AI Safety Seems Hard to Measure — LessWrong
+    abstract: In previous pieces, I argued that there's a real and large risk of AI systems' developing
+      dangerous goals of their own and defeating all of humanity…
+  resolvedBy: opengraph
   anchors:
     - Karnofsky, 2022
 https://lesswrong.com/posts/8gy7c8GAPkuu6wTiX/frontier-models-are-capable-of-in-context-scheming:
@@ -32635,9 +32666,10 @@ https://lesswrong.com/posts/8gy7c8GAPkuu6wTiX/frontier-models-are-capable-of-in-
     issued:
       date-parts:
         - - 2024
-    title: Hobbhahn et al., 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Frontier Models are Capable of In-context Scheming — LessWrong
+    abstract: This is a brief summary of what we believe to be the most important takeaways from our new
+      paper and from our findings shown in the o1 system card. W…
+  resolvedBy: opengraph
   anchors:
     - Hobbhahn et al., 2024
 https://lesswrong.com/posts/8wBN8cdNAv3c7vt6p/the-case-against-ai-control-research:
@@ -32650,9 +32682,9 @@ https://lesswrong.com/posts/8wBN8cdNAv3c7vt6p/the-case-against-ai-control-resear
     issued:
       date-parts:
         - - 2025
-    title: Wentworth, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The Case Against AI Control Research — LessWrong
+    abstract: "The AI Control Agenda, in its own words: …"
+  resolvedBy: opengraph
   anchors:
     - Wentworth, 2025
 https://lesswrong.com/posts/9Yc7Pp7szcjPgPsjf/the-brain-as-a-universal-learning-machine:
@@ -32665,9 +32697,10 @@ https://lesswrong.com/posts/9Yc7Pp7szcjPgPsjf/the-brain-as-a-universal-learning-
     issued:
       date-parts:
         - - 2015
-    title: Canell, 2015
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The Brain as a Universal Learning Machine — LessWrong
+    abstract: This article presents an emerging architectural hypothesis of the brain as a biological
+      implementation of a Universal Learning Machine.  I present a…
+  resolvedBy: opengraph
   anchors:
     - Canell, 2015
 https://lesswrong.com/posts/9weLK2AJ9JEt2Tt8f/politics-is-the-mind-killer:
@@ -32680,9 +32713,10 @@ https://lesswrong.com/posts/9weLK2AJ9JEt2Tt8f/politics-is-the-mind-killer:
     issued:
       date-parts:
         - - 2007
-    title: Yudkowsky, 2007
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Politics is the Mind-Killer — LessWrong
+    abstract: "People go funny in the head when talking about politics. The evolutionary reasons for
+      this are so obvious as to be worth belaboring: In the ancestral…"
+  resolvedBy: opengraph
   anchors:
     - Yudkowsky, 2007
 https://lesswrong.com/posts/BoA3agdkAzL6HQtQP/clarifying-and-predicting-agi:
@@ -32695,9 +32729,9 @@ https://lesswrong.com/posts/BoA3agdkAzL6HQtQP/clarifying-and-predicting-agi:
     issued:
       date-parts:
         - - 2023
-    title: Ngo, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Clarifying and predicting AGI — LessWrong
+    abstract: This post is a slightly-adapted summary of two twitter threads, here and here. …
+  resolvedBy: opengraph
   anchors:
     - Ngo, 2023
 https://lesswrong.com/posts/Br4xDbYu4Frwrb64a/writeup-progress-on-ai-safety-via-debate-1:
@@ -32710,9 +32744,10 @@ https://lesswrong.com/posts/Br4xDbYu4Frwrb64a/writeup-progress-on-ai-safety-via-
     issued:
       date-parts:
         - - 2020
-    title: Barnes et al., 2020
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Writeup: Progress on AI Safety via Debate — LessWrong"
+    abstract: This is a writeup of the research done by the "Reflection-Humans" team at OpenAI in Q3 and
+      Q4 of 2019. During that period we investigated mechanisms…
+  resolvedBy: opengraph
   anchors:
     - Barnes et al., 2020
 https://lesswrong.com/posts/CJw2tNHaEimx6nwNy/ai-forecasting-one-year-in:
@@ -32725,9 +32760,10 @@ https://lesswrong.com/posts/CJw2tNHaEimx6nwNy/ai-forecasting-one-year-in:
     issued:
       date-parts:
         - - 2022
-    title: Steinhardt, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "AI Forecasting: One Year In — LessWrong"
+    abstract: Last August, my research group created a forecasting contest to predict AI progress on
+      four benchmarks. Forecasts were asked to predict state-of-the-…
+  resolvedBy: opengraph
   anchors:
     - Steinhardt, 2022
 https://lesswrong.com/posts/FBG7AghvvP7fPYzkx/my-thoughts-on-openai-s-alignment-plan-1:
@@ -32740,9 +32776,9 @@ https://lesswrong.com/posts/FBG7AghvvP7fPYzkx/my-thoughts-on-openai-s-alignment-
     issued:
       date-parts:
         - - 2022
-    title: Wasil, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: My thoughts on OpenAI's alignment plan — LessWrong
+    abstract: I’m grateful to Olivia Jimenez, Thomas Larsen, and Nicholas Dupuis for feedback. …
+  resolvedBy: opengraph
   anchors:
     - Wasil, 2022
 https://lesswrong.com/posts/FEcw6JQ8surwxvRfr/human-takeover-might-be-worse-than-ai-takeover:
@@ -32755,9 +32791,14 @@ https://lesswrong.com/posts/FEcw6JQ8surwxvRfr/human-takeover-might-be-worse-than
     issued:
       date-parts:
         - - 2025
-    title: Davidson et al, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Human takeover might be worse than AI takeover — LessWrong
+    abstract: >-
+      
+      Summary
+
+      Suppose a human used AI to take over the world. Would this be worse than AI taking over? I
+      think plausibly: …
+  resolvedBy: opengraph
   anchors:
     - Davidson et al, 2025
 https://lesswrong.com/posts/FtHidqjAFTerfMZLo/aisc-project-how-promising-is-automating-alignment-research:
@@ -32770,9 +32811,9 @@ https://lesswrong.com/posts/FtHidqjAFTerfMZLo/aisc-project-how-promising-is-auto
     issued:
       date-parts:
         - - 2023
-    title: " Ionut-Cirstea, 2023"
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "AISC project: How promising is automating alignment research? (literature review) — LessWrong"
+    abstract: Apply to work on this project with me at AI Safety Camp 2024 before 1st December 2023. …
+  resolvedBy: opengraph
   anchors:
     - " Ionut-Cirstea, 2023"
 https://lesswrong.com/posts/G4KHuYC3pHry6yMhi:
@@ -32785,9 +32826,9 @@ https://lesswrong.com/posts/G4KHuYC3pHry6yMhi:
     issued:
       date-parts:
         - - 2021
-    title: Heim, 2021
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Compute Research Questions and Metrics - Transformative AI and Compute [4/4] — LessWrong
+    abstract: Transformative AI and Compute - A holistic approach - Part 4 out of 4 …
+  resolvedBy: opengraph
   anchors:
     - Heim, 2021
 https://lesswrong.com/posts/GctJD5oCDRxCspEaZ/clarifying-ai-x-risk:
@@ -32800,9 +32841,10 @@ https://lesswrong.com/posts/GctJD5oCDRxCspEaZ/clarifying-ai-x-risk:
     issued:
       date-parts:
         - - 2022
-    title: DeepMind, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Clarifying AI X-risk — LessWrong
+    abstract: "TL;DR: We give a threat model literature review, propose a categorization and describe a
+      consensus threat model from some of DeepMind's AGI safety te…"
+  resolvedBy: opengraph
   anchors:
     - DeepMind, 2022
 https://lesswrong.com/posts/HxRjHq3QG8vcYy4yy/the-stochastic-parrot-hypothesis-is-debatable-for-the-last:
@@ -32815,9 +32857,12 @@ https://lesswrong.com/posts/HxRjHq3QG8vcYy4yy/the-stochastic-parrot-hypothesis-i
     issued:
       date-parts:
         - - 2023
-    title: Feuillade-Montixi & Peigné, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The Stochastic Parrot Hypothesis is debatable for the last generation of LLMs — LessWrong
+    abstract: Before diving into what model psychology is, it is crucial to clarify the nature of the
+      subject we are studying. In this post, I’ll challenge the commonly debated stochastic parrot
+      hypothesis for state-of-the-art large language models (≈GPT-4), and in the next post, I’ll
+      shed light on the foundations I am building model psychology from.
+  resolvedBy: opengraph
   anchors:
     - Feuillade-Montixi & Peigné, 2023
 https://lesswrong.com/posts/NSZhadmoYdjRKNq6X/openai-launches-superalignment-taskforce:
@@ -32830,9 +32875,10 @@ https://lesswrong.com/posts/NSZhadmoYdjRKNq6X/openai-launches-superalignment-tas
     issued:
       date-parts:
         - - 2023
-    title: " Mowshowitz, 2023"
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: OpenAI Launches Superalignment Taskforce — LessWrong
+    abstract: In their announcement Introducing Superalignment, OpenAI committed 20% of secured compute
+      and a new taskforce to solving the technical problem of ali…
+  resolvedBy: opengraph
   anchors:
     - " Mowshowitz, 2023"
 https://lesswrong.com/posts/PJLABqQ962hZEqhdB/debate-update-obfuscated-arguments-problem:
@@ -32845,9 +32891,9 @@ https://lesswrong.com/posts/PJLABqQ962hZEqhdB/debate-update-obfuscated-arguments
     issued:
       date-parts:
         - - 2020
-    title: Barnes et al., 2020
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Debate update: Obfuscated arguments problem — LessWrong"
+    abstract: This is an update on the work on AI Safety via Debate that we previously wrote about here. …
+  resolvedBy: opengraph
   anchors:
     - Barnes et al., 2020
 https://lesswrong.com/posts/PY3HEHc5fMQkTrQo4/beware-safety-washing:
@@ -32860,9 +32906,10 @@ https://lesswrong.com/posts/PY3HEHc5fMQkTrQo4/beware-safety-washing:
     issued:
       date-parts:
         - - 2023
-    title: Vaintrob, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Beware safety-washing — LessWrong
+    abstract: "Tl;dr: don’t be fooled into thinking that some groups working on AI are taking “safety”
+      concerns seriously (enough).[1] • Outline …"
+  resolvedBy: opengraph
   anchors:
     - Vaintrob, 2023
 https://lesswrong.com/posts/RYx6cLwzoajqjyB6b/what-convincing-warning-shot-could-help-prevent-extinction:
@@ -32875,9 +32922,17 @@ https://lesswrong.com/posts/RYx6cLwzoajqjyB6b/what-convincing-warning-shot-could
     issued:
       date-parts:
         - - 2024
-    title: Segerie, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: What convincing warning shot could help prevent extinction from AI? — LessWrong
+    abstract: |-
+      • 
+        • > - Tell me father, when is the line
+      > 
+      > where ends everything good and fine?
+      > 
+      > I keep searching, but I don't find.
+      > 
+      > - The line my s…
+  resolvedBy: opengraph
   anchors:
     - Segerie, 2024
 https://lesswrong.com/posts/SdkexhiynayG2sQCC/ai-forecasting-two-years-in:
@@ -32890,9 +32945,10 @@ https://lesswrong.com/posts/SdkexhiynayG2sQCC/ai-forecasting-two-years-in:
     issued:
       date-parts:
         - - 2023
-    title: Steinhardt, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "AI Forecasting: Two Years In — LessWrong"
+    abstract: Two years ago, I commissioned forecasts for state-of-the-art performance on several
+      popular ML benchmarks. Forecasters were asked to predict state-of…
+  resolvedBy: opengraph
   anchors:
     - Steinhardt, 2023
 https://lesswrong.com/posts/TTFsKxQThrqgWeXYJ/how-might-we-safely-pass-the-buck-to-ai:
