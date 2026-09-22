@@ -14,7 +14,11 @@ import { formatUrlMarkdown } from './urls.js';
 export async function citationsUrls(root: string, outPath?: string): Promise<number> {
   const chapters = await loadChaptersFromCache();
   const report = formatUrlMarkdown(chapters);
-  const dest = outPath ?? join(root, 'docs', 'cited-sources.md');
+  // Derived output, so it lives beside the other regenerated artifacts under
+  // data/citations/ and is gitignored. Only sources.yaml is committed: it is
+  // the source of truth and accumulates resolver metadata that costs real time
+  // and other people's rate limits to rebuild. This file is ~6 seconds of work.
+  const dest = outPath ?? join(root, 'data', 'citations', 'cited-sources.md');
   writeFileSync(dest, report.markdown, 'utf8');
   console.log(
     `${report.totalCitations} citations · ${report.uniqueSources} unique sources · ` +

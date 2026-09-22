@@ -76,3 +76,4 @@ public/audio/ch*/*.mp3
 data/citations/bibliography.bib
 data/citations/bibliography.json
 data/citations/citation-report.md
+data/citations/cited-sources.md
