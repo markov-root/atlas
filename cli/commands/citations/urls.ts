@@ -1,105 +1,185 @@
 /**
- * `atlas citations urls` — every cited source, per chapter and section, as
- * copy-pasteable Markdown.
+ * `atlas citations urls` — cited sources as copy-pasteable Markdown, one file
+ * per chapter.
  *
- * This is the deliberately crude slice of `task:0026`, shipped ahead of the CSL
- * export because it is immediately useful: the edition-2 authors can paste the
- * result into a Google Doc and start working from it today, without waiting for
- * metadata resolution (`task:0027`) or any rendering (phase 2).
+ * The crude slice of `task:0026`, shipped ahead of any rendering because the
+ * edition-2 authors can paste it into a Google Doc and work from it today.
  *
- * It is NOT the bibliography. Titles here are the citation's anchor text, not
- * resolved titles, so "Chollet, 2019" appears rather than "On the Measure of
- * Intelligence". That is the honest limit of what is knowable with no network
- * call, and the file says so at the top so nobody mistakes it for the finished
- * artifact.
+ * Three properties came from the authors actually trying to use it, and each
+ * one is the difference between a list and a usable list:
  *
- * Output is deterministic — no timestamp — so regenerating it produces a clean
- * diff rather than a whole-file change.
+ *   - **One file per chapter.** A single 3,000-line document is not something
+ *     anyone pastes into a Doc and reviews.
+ *   - **Deduplicated within a section.** A source cited three times in one
+ *     section is one entry there. The repetition is real in the prose and
+ *     meaningless in a reference list.
+ *   - **Titles, not URLs, as the link text.** "Sutton, 2019" next to a bare URL
+ *     tells a reader nothing they did not already know; the resolved title is
+ *     the thing that identifies the work.
+ *
+ * Titles come from the CSL store, so this file gets better as
+ * `atlas citations resolve` fills it in. Entries not yet resolved fall back to
+ * the raw URL rather than being hidden, so what is missing stays visible.
  */
 import type { Chapter } from '../../../src/textbook-loader/index.js';
 import {
   extractSectionCitations,
   type CitationInstance,
 } from '../../../src/textbook-loader/citations/extract.js';
+import type { Store } from '../../../src/textbook-loader/citations/store.js';
+
+export type ChapterFile = { filename: string; markdown: string; citations: number; unique: number };
 
 export type UrlReport = {
-  markdown: string;
+  files: ChapterFile[];
   totalCitations: number;
   uniqueSources: number;
   unrecognised: number;
+  resolvedTitles: number;
 };
 
-function bullet(c: CitationInstance): string {
-  const label = c.anchorText.trim() || c.key || '(no link text)';
-  const where = c.origin === 'footnote' ? ` [footnote ${c.footnoteNumber}]` : '';
-  return `- ${label}${where} (${c.key ?? 'no URL'})`;
+/** Zero-padded chapter number, so files sort correctly in a directory listing. */
+function pad(n: number): string {
+  return String(n).padStart(2, '0');
 }
 
 /**
- * Build the Markdown report. Pure: chapters in, string out, no I/O.
+ * The display form of one citation.
  *
- * Sections with no citations are still listed, with an explicit "none" line.
- * An author scanning for gaps needs to tell "this section cites nothing" apart
- * from "this section is missing from the report".
+ * `Author, Year ([Title](url))` — the title is the link text, matching what a
+ * reader needs to recognise the work. Where the store has no title yet, the
+ * URL is shown bare so the gap is obvious rather than papered over.
  */
-export function formatUrlMarkdown(chapters: Chapter[]): UrlReport {
+function bullet(c: CitationInstance, store: Store): string {
+  const label = c.anchorText.trim() || '(no link text)';
+  const where = c.origin === 'footnote' ? ` [fn ${c.footnoteNumber}]` : '';
+  if (!c.key) return `- ${label}${where} (no URL)`;
+
+  const entry = store[c.key];
+  const title = entry?.resolvedBy !== 'anchor' ? entry?.item?.title : undefined;
+  return title
+    ? `- ${label}${where} ([${escapeMd(String(title))}](${c.key}))`
+    : `- ${label}${where} (${c.key})`;
+}
+
+/** Markdown link text cannot contain unescaped brackets. */
+function escapeMd(s: string): string {
+  return s.replace(/([[\]])/g, '\\$1');
+}
+
+/**
+ * Deduplicate within one section by canonical URL.
+ *
+ * The first occurrence wins, so the order follows the prose. Citations with no
+ * URL (an unlinked footnote citation) are keyed by their text instead, since
+ * they have nothing else to be distinguished by.
+ */
+function dedupe(citations: CitationInstance[]): CitationInstance[] {
+  const seen = new Set<string>();
+  const out: CitationInstance[] = [];
+  for (const c of citations) {
+    const key = c.key ?? `text:${c.anchorText.trim()}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(c);
+  }
+  return out;
+}
+
+/** One chapter's file. Pure: chapter and store in, markdown out. */
+export function formatChapterMarkdown(
+  chapter: Chapter,
+  store: Store,
+): { markdown: string; citations: CitationInstance[]; unrecognised: CitationInstance[] } {
   const lines: string[] = [];
-  const allCitations: CitationInstance[] = [];
+  const kept: CitationInstance[] = [];
   const unrecognised: CitationInstance[] = [];
 
-  lines.push('# AI Safety Atlas — cited sources by chapter and section');
-  lines.push('');
-  lines.push(
-    'Generated by `atlas citations urls` directly from the Google Docs source. **This is an',
-  );
-  lines.push(
-    'interim list, not the finished bibliography.** Each entry shows the citation as it is',
-  );
-  lines.push(
-    'written in the text (author and year) followed by the URL it links to — titles have not',
-  );
-  lines.push('been looked up yet.');
-  lines.push('');
-  lines.push(
-    'Nothing here is hand-maintained: it is read out of the documents, so it cannot drift from',
-  );
-  lines.push('the prose. Re-run the command after editing and it updates.');
+  lines.push(`# Chapter ${chapter.number} — ${chapter.title}: cited sources`);
   lines.push('');
 
-  for (const chapter of chapters) {
-    const chapterCitations: CitationInstance[] = [];
-    const body: string[] = [];
+  const body: string[] = [];
+  for (const section of chapter.sections) {
+    const found = extractSectionCitations(section);
+    unrecognised.push(...found.filter((c) => c.kind === 'content-link'));
+    const cites = dedupe(found.filter((c) => c.kind === 'citation' || c.kind === 'unlinked'));
+    kept.push(...cites);
 
-    for (const section of chapter.sections) {
-      const found = extractSectionCitations(section);
-      const cites = found.filter((c) => c.kind === 'citation' || c.kind === 'unlinked');
-      unrecognised.push(...found.filter((c) => c.kind === 'content-link'));
-      chapterCitations.push(...cites);
-
-      body.push(`### ${chapter.number}.${section.number} ${section.title}`);
-      body.push('');
-      if (cites.length === 0) {
-        body.push('_No citations in this section._');
-      } else {
-        for (const c of cites) body.push(bullet(c));
-      }
-      body.push('');
+    body.push(`## ${chapter.number}.${section.number} ${section.title}`);
+    body.push('');
+    if (cites.length === 0) {
+      body.push('_No citations in this section._');
+    } else {
+      for (const c of cites) body.push(bullet(c, store));
     }
-
-    allCitations.push(...chapterCitations);
-    const unique = new Set(chapterCitations.map((c) => c.key).filter(Boolean)).size;
-    lines.push(`## Chapter ${chapter.number} — ${chapter.title}`);
-    lines.push('');
-    lines.push(`_${chapterCitations.length} citations · ${unique} unique sources._`);
-    lines.push('');
-    lines.push(...body);
+    body.push('');
   }
 
-  // A deduplicated master list. The per-section view answers "what does this
-  // section cite"; this one answers "what does the book cite", which is the
-  // question a bibliography actually exists to answer.
+  const uniqueInChapter = new Set(kept.map((c) => c.key).filter(Boolean)).size;
+  const withTitles = kept.filter(
+    (c) => c.key && store[c.key] && store[c.key].resolvedBy !== 'anchor',
+  ).length;
+
+  lines.push(
+    `_${kept.length} citations · ${uniqueInChapter} unique sources · ${withTitles} with a resolved title._`,
+  );
+  lines.push('');
+  lines.push(
+    'Read straight out of the Google Doc, so it cannot drift from the prose. Duplicates within a',
+  );
+  lines.push(
+    'section are collapsed. An entry showing a bare URL has not had its title looked up yet.',
+  );
+  lines.push('');
+  lines.push(...body);
+
+  if (unrecognised.length > 0) {
+    lines.push('---');
+    lines.push('');
+    lines.push(`## Links not recognised as citations (${unrecognised.length})`);
+    lines.push('');
+    lines.push('Hyperlinks whose text is prose rather than an author and year. Anything here that');
+    lines.push(
+      'should be a citation needs its link text changed in the Doc to "Author, Year" form.',
+    );
+    lines.push('');
+    for (const c of dedupe(unrecognised)) {
+      lines.push(
+        `- ${chapter.number}.${c.sectionNumber} — "${c.anchorText.trim()}" (${c.key ?? c.rawUrl})`,
+      );
+    }
+    lines.push('');
+  }
+
+  return { markdown: lines.join('\n'), citations: kept, unrecognised };
+}
+
+/**
+ * All chapter files plus a whole-book index.
+ *
+ * The index answers "what does the Atlas cite", which the per-chapter files
+ * cannot — and it is the question a bibliography exists for.
+ */
+export function formatUrlFiles(chapters: Chapter[], store: Store): UrlReport {
+  const files: ChapterFile[] = [];
+  const all: CitationInstance[] = [];
+  let unrecognised = 0;
+
+  for (const chapter of chapters) {
+    const { markdown, citations, unrecognised: un } = formatChapterMarkdown(chapter, store);
+    all.push(...citations);
+    unrecognised += un.length;
+    const slug = chapter.slug || `chapter-${chapter.number}`;
+    files.push({
+      filename: `chapter-${pad(chapter.number)}-${slug}.md`,
+      markdown,
+      citations: citations.length,
+      unique: new Set(citations.map((c) => c.key).filter(Boolean)).size,
+    });
+  }
+
   const byKey = new Map<string, string[]>();
-  for (const c of allCitations) {
+  for (const c of all) {
     if (!c.key) continue;
     const labels = byKey.get(c.key) ?? [];
     const label = c.anchorText.trim();
@@ -108,41 +188,41 @@ export function formatUrlMarkdown(chapters: Chapter[]): UrlReport {
   }
   const keys = [...byKey.keys()].sort();
 
-  lines.push('---');
-  lines.push('');
-  lines.push(`## All unique sources (${keys.length})`);
-  lines.push('');
-  lines.push('Deduplicated across the whole book. Where one source is cited with more than one');
-  lines.push('spelling, every spelling seen is shown — useful for spotting inconsistencies.');
-  lines.push('');
+  const index: string[] = [];
+  index.push('# AI Safety Atlas — all cited sources');
+  index.push('');
+  index.push(`_${keys.length} unique sources across ${chapters.length} chapters._`);
+  index.push('');
+  index.push(
+    'One file per chapter sits beside this one. Where a source is cited under more than one',
+  );
+  index.push(
+    'spelling, every spelling is shown — that is how inconsistent citation text gets found.',
+  );
+  index.push('');
+  let resolvedTitles = 0;
   for (const key of keys) {
-    lines.push(`- ${byKey.get(key)!.join(' / ') || '(no link text)'} (${key})`);
-  }
-  lines.push('');
-
-  if (unrecognised.length > 0) {
-    lines.push('---');
-    lines.push('');
-    lines.push(`## Links not recognised as citations (${unrecognised.length})`);
-    lines.push('');
-    lines.push('These are hyperlinks whose text is prose rather than an author and year, so they');
-    lines.push(
-      'were treated as ordinary links. **Worth a glance** — anything here that should be a',
+    const entry = store[key];
+    const title = entry?.resolvedBy !== 'anchor' ? entry?.item?.title : undefined;
+    if (title) resolvedTitles++;
+    const spellings = byKey.get(key)!.join(' / ') || '(no link text)';
+    index.push(
+      title ? `- ${spellings} ([${escapeMd(String(title))}](${key}))` : `- ${spellings} (${key})`,
     );
-    lines.push('citation needs its link text changed in the Google Doc to "Author, Year" form.');
-    lines.push('');
-    for (const c of unrecognised) {
-      lines.push(
-        `- ch${c.chapterNumber}.${c.sectionNumber} — "${c.anchorText.trim()}" (${c.key ?? c.rawUrl})`,
-      );
-    }
-    lines.push('');
   }
+  index.push('');
+  files.push({
+    filename: 'all-sources.md',
+    markdown: index.join('\n'),
+    citations: all.length,
+    unique: keys.length,
+  });
 
   return {
-    markdown: lines.join('\n'),
-    totalCitations: allCitations.length,
+    files,
+    totalCitations: all.length,
     uniqueSources: keys.length,
-    unrecognised: unrecognised.length,
+    unrecognised,
+    resolvedTitles,
   };
 }

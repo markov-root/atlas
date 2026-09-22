@@ -6,24 +6,33 @@
  * `resolve` (task:0027) is networked and slow. Behind one verb, the fast safe
  * command would inherit the slow one's caveats.
  */
-import { writeFileSync } from 'node:fs';
+import { writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadChaptersFromCache } from './load.js';
-import { formatUrlMarkdown } from './urls.js';
+import { formatUrlFiles } from './urls.js';
+import { readStore } from './extract-cmd.js';
 
-export async function citationsUrls(root: string, outPath?: string): Promise<number> {
+export async function citationsUrls(root: string, outDir?: string): Promise<number> {
   const chapters = await loadChaptersFromCache();
-  const report = formatUrlMarkdown(chapters);
-  // Derived output, so it lives beside the other regenerated artifacts under
-  // data/citations/ and is gitignored. Only sources.yaml is committed: it is
-  // the source of truth and accumulates resolver metadata that costs real time
-  // and other people's rate limits to rebuild. This file is ~6 seconds of work.
-  const dest = outPath ?? join(root, 'data', 'citations', 'cited-sources.md');
-  writeFileSync(dest, report.markdown, 'utf8');
+  // Titles come from the store, so this output improves as `resolve` fills it
+  // in. A missing store is not an error: the files still build, showing URLs.
+  let store = {};
+  try {
+    store = readStore(root);
+  } catch {
+    console.warn('[atlas] no citation store yet — run `atlas citations extract`; showing URLs only');
+  }
+
+  const report = formatUrlFiles(chapters, store);
+  const dest = outDir ?? join(root, 'data', 'citations', 'chapters');
+  mkdirSync(dest, { recursive: true });
+  for (const f of report.files) writeFileSync(join(dest, f.filename), f.markdown, 'utf8');
+
   console.log(
     `${report.totalCitations} citations · ${report.uniqueSources} unique sources · ` +
+      `${report.resolvedTitles} with a resolved title · ` +
       `${report.unrecognised} links not recognised as citations`,
   );
-  console.log(`wrote ${dest}`);
+  console.log(`wrote ${report.files.length} files to ${dest}`);
   return 0;
 }

@@ -66,9 +66,13 @@ https://aboutamazon.com/news/operations/amazon-hercules-robot:
     issued:
       date-parts:
         - - 2023
-    title: Amazon, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 9
+          - 7
+    title: 4 cool facts about Hercules, the small-but-mighty robot in Amazon’s fulfillment centers
+    container-title: Amazon News
+    abstract: "Hercules is featured in a new Nasdaq gallery alongside iconic artifacts from other
+      innovative companies. Here are four things that make this robot so fascinating. "
+  resolvedBy: opengraph
   anchors:
     - Amazon, 2023
 https://aboutamazon.com/news/operations/amazon-robotics-robots-fulfillment-center:
@@ -80,10 +84,14 @@ https://aboutamazon.com/news/operations/amazon-robotics-robots-fulfillment-cente
       - literal: Amazon
     issued:
       date-parts:
-        - - 2025
-    title: Amazon, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+        - - 2024
+          - 10
+          - 9
+    title: "Amazon uses robots that sort, lift, and carry packages—see them in action "
+    container-title: Amazon News
+    abstract: These nine robots help make employees' jobs safer and more productive by handling
+      physically demanding tasks, freeing up time for skilled technical roles.
+  resolvedBy: opengraph
   anchors:
     - Amazon, 2025
 https://academic.oup.com/edited-volume/41989/chapter-abstract/408516484:
@@ -156,9 +164,10 @@ https://ai-2027.com:
     issued:
       date-parts:
         - - 2025
-    title: Kokotajlo et al., 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AI 2027
+    abstract: |
+      A research-backed AI scenario forecast.
+  resolvedBy: opengraph
   anchors:
     - Kokotajlo et al., 2025
     - Kokotajlo, 2025
@@ -172,9 +181,11 @@ https://ai-2027.com/research/security-forecast:
     issued:
       date-parts:
         - - 2025
-    title: Dean, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Security Forecast — AI 2027
+    abstract: AI 2027 predicts AI models will be stolen due to poor security and highly valuable
+      algorithmic secrets will leak through espionage. This supplement justifies why we think this
+      is plausible.
+  resolvedBy: opengraph
   anchors:
     - " Dean, 2025"
     - Dean, 2025
@@ -248,9 +259,13 @@ https://ai-watch.ec.europa.eu/news/new-jrc-collection-external-scientific-report
     issued:
       date-parts:
         - - 2025
-    title: EU Commission, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: New JRC collection of external scientific reports to inform the implementation of the EU AI
+      Act on general-purpose AI models
+    container-title: AI Watch
+    abstract: The reports present methodologies and technical insights that will help identify,
+      classify, and assess compute, capabilities and risks of GPAI models operating within the
+      European regulatory framework.
+  resolvedBy: opengraph
   anchors:
     - EU Commission, 2025
 https://ai.stanford.edu/~kzliu/blog/unlearning:
@@ -263,9 +278,13 @@ https://ai.stanford.edu/~kzliu/blog/unlearning:
     issued:
       date-parts:
         - - 2024
-    title: Liu, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Machine Unlearning in 2024 | Ken Ziyu Liu - Stanford Computer Science
+    container-title: Ken Ziyu Liu - Stanford Computer Science
+    abstract: As our ML models today become larger and their (pre-)training sets grow to inscrutable
+      sizes, people are increasingly interested in the concept of machine unlearning to edit away
+      undesired things like private data, stale knowledge, copyrighted materials, toxic/unsafe
+      content, dangerous capabilities, and misinformation, without retraining models from scratch.
+  resolvedBy: opengraph
   anchors:
     - Liu, 2024
 https://aievaluation.substack.com/p/is-the-definition-of-agi-a-percentage:
@@ -278,9 +297,10 @@ https://aievaluation.substack.com/p/is-the-definition-of-agi-a-percentage:
     issued:
       date-parts:
         - - 2025
-    title: Pacchiardi  et al., 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Is the Definition of AGI a Percentage?
+    abstract: Zachary Tidler, Marko Tešić, Lorenzo Pacchiardi, John Burden, Lexin Zhou, Manuel Cebrián,
+      Fernando Martínez-Plumed, Jose Hernandez-Orallo
+  resolvedBy: opengraph
   anchors:
     - Pacchiardi  et al., 2025
 https://aiimpacts.org/time-for-ai-to-cross-the-human-performance-range-in-imagenet-image-classification:
@@ -292,10 +312,14 @@ https://aiimpacts.org/time-for-ai-to-cross-the-human-performance-range-in-imagen
       - literal: Korzekwa
     issued:
       date-parts:
-        - - 2022
-    title: Korzekwa, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+        - - 2020
+          - 10
+          - 19
+    title: Time for AI to cross the human performance range in ImageNet image classification
+    container-title: AI Impacts
+    abstract: Computer image classification performance took 3 years to go from untrained human level to
+      trained human level
+  resolvedBy: opengraph
   anchors:
     - Korzekwa, 2022
 https://aiimpacts.org/wp-content/uploads/2023/04/Thousands_of_AI_authors_on_the_future_of_AI.pdf:
@@ -338,9 +362,9 @@ https://ailabwatch.org/blog/external-evaluation:
     issued:
       date-parts:
         - - 2024
-    title: Perlman, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AI Lab Watch
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Perlman, 2024
 https://aima.cs.berkeley.edu:
@@ -353,9 +377,9 @@ https://aima.cs.berkeley.edu:
     issued:
       date-parts:
         - - 1994
-    title: Russel & Norvig, 1994
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Artificial Intelligence: A Modern Approach, 4th US ed."
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Russel & Norvig, 1994
 https://ainowinstitute.org/publications/research/ai-now-2025-landscape-report:
@@ -368,9 +392,14 @@ https://ainowinstitute.org/publications/research/ai-now-2025-landscape-report:
     issued:
       date-parts:
         - - 2025
-    title: Brennan et al., 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 6
+          - 3
+    title: "Artificial Power: 2025 Landscape Report - AI Now Institute"
+    container-title: AI Now Institute
+    abstract: In the aftermath of the “AI boom,” this report examines how the push to integrate AI
+      products everywhere grants AI companies - and the tech oligarchs that run them - power that
+      goes far beyond their deep pockets.
+  resolvedBy: opengraph
   anchors:
     - Brennan et al., 2025
 https://airesilience.substack.com/p/a-policy-agenda-for-defensive-acceleration:
@@ -383,9 +412,10 @@ https://airesilience.substack.com/p/a-policy-agenda-for-defensive-acceleration:
     issued:
       date-parts:
         - - 2024
-    title: Bernardi, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: A Policy Agenda for Defensive Acceleration Against AI Risks
+    abstract: The same AI capabilities underlie benefits and harms. How can we assure AI safety without
+      curtailing beneficial applications? Defensive acceleration charts a possible course.
+  resolvedBy: opengraph
   anchors:
     - Bernardi, 2024
 https://aisafetybook.com/textbook/alignment:
@@ -398,9 +428,11 @@ https://aisafetybook.com/textbook/alignment:
     issued:
       date-parts:
         - - 2024
-    title: Hendrycks, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "3.4: Alignment  | AI Safety, Ethics, and Society Textbook"
+    abstract: We need to develop better techniques to control AI systems and make them less hazardous.
+      If we fail to do this, we face a number of risks from AI systems including deceptive or
+      power-seeking tendencies.
+  resolvedBy: opengraph
   anchors:
     - Hendrycks, 2024
 https://aisafetybook.com/textbook/component-failure-accident-models:
@@ -413,9 +445,11 @@ https://aisafetybook.com/textbook/component-failure-accident-models:
     issued:
       date-parts:
         - - 2024
-    title: Hendrycks, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "4.5: Component Failure Accident Models and Methods  | AI Safety, Ethics, and Society Textbook"
+    abstract: Component failure models can help us to analyse and identify potential risks. However,
+      since we may not be able to anticipate every potential pathway to an accident, it is often
+      more fruitful to address systemic factors that diffusely influence risk.
+  resolvedBy: opengraph
   anchors:
     - Hendrycks, 2024
 https://aisafetybook.com/textbook/corporate-governance:
@@ -428,9 +462,10 @@ https://aisafetybook.com/textbook/corporate-governance:
     issued:
       date-parts:
         - - 2024
-    title: Hendrycks et al., 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "8.4: Corporate Governance  | AI Safety, Ethics, and Society Textbook"
+    abstract: "AI companies need sound corporate governance: it is essential that these firms are guided
+      in directions that enable the creation of safe and beneficial AIs."
+  resolvedBy: opengraph
   anchors:
     - Hendrycks et al., 2024
 https://aisafetybook.com/textbook/game-theory:
@@ -443,9 +478,12 @@ https://aisafetybook.com/textbook/game-theory:
     issued:
       date-parts:
         - - 2024
-    title: Hendryks, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "7.2: Game Theory  | AI Safety, Ethics, and Society Textbook"
+    abstract: This chapter explores the dynamics that may arise when AI and human agents interact. These
+      interactions create risks distinct from those generated by any individual AI agent acting in
+      isolation. One way we can study the strategic interdependence of agents is with the framework
+      of game theory.
+  resolvedBy: opengraph
   anchors:
     - Hendryks, 2024
 https://aisafetybook.com/textbook/introduction-to-complex-systems:
@@ -458,9 +496,11 @@ https://aisafetybook.com/textbook/introduction-to-complex-systems:
     issued:
       date-parts:
         - - 2025
-    title: Hendrycks, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "5.2: Introduction to Complex Systems  | AI Safety, Ethics, and Society Textbook"
+    abstract: Complex systems display emergent properties that arise from interactions. These properties
+      do not exist in any of the components in isolation and cannot easily be derived from reductive
+      analysis of the system.
+  resolvedBy: opengraph
   anchors:
     - Hendrycks, 2025
 https://aisafetybook.com/textbook/malicious-use:
@@ -473,9 +513,10 @@ https://aisafetybook.com/textbook/malicious-use:
     issued:
       date-parts:
         - - 2024
-    title: Hendrycks, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "1.2: Malicious Use  | AI Safety, Ethics, and Society Textbook"
+    abstract: AI systems could be used for malicious purposes such as terrorism, manipulation and
+      disinformation, or entrenching a totalitarian state.
+  resolvedBy: opengraph
   anchors:
     - Hendrycks, 2024
 https://aisafetybook.com/textbook/robustness:
@@ -488,9 +529,11 @@ https://aisafetybook.com/textbook/robustness:
     issued:
       date-parts:
         - - 2024
-    title: Hendrycks, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "3.3: Robustness  | AI Safety, Ethics, and Society Textbook"
+    abstract: AI systems are vulnerable to adversarial examples, Trojans and other attacks. We need
+      progress on improving the robustness of models to ensure that powerful AI systems are not
+      misused or stolen.
+  resolvedBy: opengraph
   anchors:
     - Hendrycks, 2024
 https://aisafetychina.substack.com/p/ai-safety-in-china-2024-in-review:
@@ -503,9 +546,10 @@ https://aisafetychina.substack.com/p/ai-safety-in-china-2024-in-review:
     issued:
       date-parts:
         - - 2025
-    title: AI Safety in China, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "AI Safety in China: 2024 in Review"
+    abstract: Entering into 2025, Concordia AI has analysed key developments in China’s AI safety and
+      governance from 2024 and provided projections for the coming year.
+  resolvedBy: opengraph
   anchors:
     - AI Safety in China, 2025
 https://aisi.gov.uk/work/aisis-research-direction-for-technical-solutions:
@@ -518,9 +562,10 @@ https://aisi.gov.uk/work/aisis-research-direction-for-technical-solutions:
     issued:
       date-parts:
         - - 2025
-    title: AISI, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: How we’re addressing the gap between AI capabilities and mitigations | AISI Work
+    container-title: AI Security Institute
+    abstract: We outline our approach to technical solutions for misuse and loss of control.
+  resolvedBy: opengraph
   anchors:
     - AISI, 2025
 https://aisi.gov.uk/work/pre-deployment-evaluation-of-anthropics-upgraded-claude-3-5-sonnet:
@@ -533,24 +578,28 @@ https://aisi.gov.uk/work/pre-deployment-evaluation-of-anthropics-upgraded-claude
     issued:
       date-parts:
         - - 2024
-    title: US & UK AISI, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Pre-deployment evaluation of Anthropic’s upgraded Claude 3.5 Sonnet  | AISI Work
+    container-title: AI Security Institute
+    abstract: The UK Artificial Intelligence Safety Institute and U.S. Artificial Intelligence Safety
+      Institute conducted a joint pre-deployment evaluation of Anthropic’s latest model
+  resolvedBy: opengraph
   anchors:
     - US & UK AISI, 2024
 https://aisnakeoil.com/p/ai-existential-risk-probabilities:
   item:
     id: https://aisnakeoil.com/p/ai-existential-risk-probabilities
-    type: webpage
+    type: post-weblog
     URL: https://aisnakeoil.com/p/ai-existential-risk-probabilities
     author:
-      - literal: Narayanan & Kapoor
+      - literal: Arvind Narayanan
+      - literal: Sayash Kapoor
     issued:
       date-parts:
         - - 2024
-    title: Narayanan & Kapoor, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 7
+          - 26
+    title: AI existential risk probabilities are too unreliable to inform policy
+  resolvedBy: research-db
   anchors:
     - Narayanan & Kapoor, 2024
 https://aisnakeoil.com/p/ai-safety-is-not-a-model-property:
@@ -563,9 +612,10 @@ https://aisnakeoil.com/p/ai-safety-is-not-a-model-property:
     issued:
       date-parts:
         - - 2024
-    title: Narayan & Kapoor, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AI safety is not a model property
+    abstract: Trying to make an AI model that can’t be misused is like trying to make a computer that
+      can’t be used for bad things
+  resolvedBy: opengraph
   anchors:
     - Narayan & Kapoor, 2024
 https://aligned.substack.com/p/alignment-optimism:
@@ -574,13 +624,14 @@ https://aligned.substack.com/p/alignment-optimism:
     type: post-weblog
     URL: https://aligned.substack.com/p/alignment-optimism
     author:
-      - literal: Leike
+      - literal: Jan Leike
     issued:
       date-parts:
         - - 2022
-    title: Leike, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 12
+          - 5
+    title: Why I’m optimistic about our alignment approach
+  resolvedBy: research-db
   anchors:
     - Leike, 2022
 https://aligned.substack.com/p/self-exfiltration:
@@ -593,9 +644,9 @@ https://aligned.substack.com/p/self-exfiltration:
     issued:
       date-parts:
         - - 2023
-    title: Leike, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Self-exfiltration is a key dangerous capability
+    abstract: We need to measure whether LLMs could “steal” themselves
+  resolvedBy: opengraph
   anchors:
     - Leike, 2023
 https://alignmentforum.org/posts/2wxufQWK8rXcDGbyL/access-to-powerful-ai-might-make-computer-security-radically:
@@ -604,13 +655,14 @@ https://alignmentforum.org/posts/2wxufQWK8rXcDGbyL/access-to-powerful-ai-might-m
     type: post-weblog
     URL: https://alignmentforum.org/posts/2wxufQWK8rXcDGbyL/access-to-powerful-ai-might-make-computer-security-radically
     author:
-      - literal: Schlegeris
+      - literal: Buck
     issued:
       date-parts:
         - - 2024
-    title: Schlegeris, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 6
+          - 8
+    title: Access to powerful AI might make computer security radically easier
+  resolvedBy: research-db
   anchors:
     - Schlegeris, 2024
     - Shlegeris, 2024
@@ -624,9 +676,10 @@ https://alignmentforum.org/posts/4nZRzoGTqg8xy5rr8/the-reward-engineering-proble
     issued:
       date-parts:
         - - 2019
-    title: Christiano, 2019
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The reward engineering problem  — AI Alignment Forum
+    abstract: Today we usually train reinforcement learning agents to perform narrow tasks with simple
+      goals. We may eventually want to train RL agents to behave “…
+  resolvedBy: opengraph
   anchors:
     - Christiano, 2019
 https://alignmentforum.org/posts/6jkGf5WEKMpMFXZp2/what-failure-looks-like-distilling-the-discussion:
@@ -639,9 +692,10 @@ https://alignmentforum.org/posts/6jkGf5WEKMpMFXZp2/what-failure-looks-like-disti
     issued:
       date-parts:
         - - 2020
-    title: Pace, 2020
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "What Failure Looks Like: Distilling the Discussion — AI Alignment Forum"
+    abstract: The comments under a post often contains valuable insights and additions. They are also
+      often very long and involved, and harder to cite than posts t…
+  resolvedBy: opengraph
   anchors:
     - Pace, 2020
 https://alignmentforum.org/posts/98c5WMDb3iKdzD4tM/oversight-misses-100-of-thoughts-the-ai-does-not-think:
@@ -654,9 +708,10 @@ https://alignmentforum.org/posts/98c5WMDb3iKdzD4tM/oversight-misses-100-of-thoug
     issued:
       date-parts:
         - - 2022
-    title: Wentworth, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Oversight Misses 100% of Thoughts The AI Does Not Think — AI Alignment Forum
+    abstract: "Problem: an overseer won’t see the AI which kills us all thinking about how to kill
+      humans, not because the AI conceals that thought, but because the…"
+  resolvedBy: opengraph
   anchors:
     - Wentworth, 2022
 https://alignmentforum.org/posts/9Fdd9N7Escg3tcymb/preventing-language-models-from-hiding-their-reasoning:
@@ -669,9 +724,10 @@ https://alignmentforum.org/posts/9Fdd9N7Escg3tcymb/preventing-language-models-fr
     issued:
       date-parts:
         - - 2023
-    title: Roger & Greenblatt, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Preventing Language Models from hiding their reasoning — AI Alignment Forum
+    abstract: When working with powerful AI models, one concern is that the AIs steganographically
+      encode secret messages when communicating with each other or in…
+  resolvedBy: opengraph
   anchors:
     - Roger & Greenblatt, 2023
 https://alignmentforum.org/posts/9pxcekdNjE7oNwvcC/goal-directedness-is-behavioral-not-structural:
@@ -684,9 +740,10 @@ https://alignmentforum.org/posts/9pxcekdNjE7oNwvcC/goal-directedness-is-behavior
     issued:
       date-parts:
         - - 2020
-    title: Shimi, 2020
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Goal-directedness is behavioral, not structural — AI Alignment Forum
+    abstract: "Goal-directedness is the term used by the AI Safety community to point to a specific
+      property: following a goal. It comes from Rohin Shah's post in h…"
+  resolvedBy: opengraph
   anchors:
     - Shimi, 2020
 https://alignmentforum.org/posts/A9NxPTwbw6r6Awuwt/how-likely-is-deceptive-alignment:
@@ -699,9 +756,10 @@ https://alignmentforum.org/posts/A9NxPTwbw6r6Awuwt/how-likely-is-deceptive-align
     issued:
       date-parts:
         - - 2022
-    title: Hubinger, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: How likely is deceptive alignment? — AI Alignment Forum
+    abstract: The following is an edited transcript of a talk I gave. I have given this talk at multiple
+      places, including first at Anthropic and then for ELK winn…
+  resolvedBy: opengraph
   anchors:
     - Hubinger, 2022
 https://alignmentforum.org/posts/BAzCGCys4BkzGDCWR/the-prototypical-catastrophic-ai-action-is-getting-root:
@@ -714,9 +772,11 @@ https://alignmentforum.org/posts/BAzCGCys4BkzGDCWR/the-prototypical-catastrophic
     issued:
       date-parts:
         - - 2022
-    title: Shlegeris, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The prototypical catastrophic AI action is getting root access to its datacenter — AI
+      Alignment Forum
+    abstract: (I think Carl Shulman came up with the “hacking the SSH server” example, thanks to him for
+      that. Thanks to Ryan Greenblatt, Jenny Nitishinskaya, and…
+  resolvedBy: opengraph
   anchors:
     - Shlegeris, 2022
 https://alignmentforum.org/posts/ChDH335ckdvpxXaXX/model-organisms-of-misalignment-the-case-for-a-new-pillar-of-1:
@@ -729,9 +789,11 @@ https://alignmentforum.org/posts/ChDH335ckdvpxXaXX/model-organisms-of-misalignme
     issued:
       date-parts:
         - - 2023
-    title: Hubinger et al., 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Model Organisms of Misalignment: The Case for a New Pillar of Alignment Research — AI
+      Alignment Forum"
+    abstract: Evan et al argue for developing "model organisms of misalignment" - AI systems
+      deliberately designed to exhibit concerning behaviors like deception o…
+  resolvedBy: opengraph
   anchors:
     - Hubinger et al., 2023
 https://alignmentforum.org/posts/CoZhXrhpQxpy9xw9y/where-i-agree-and-disagree-with-eliezer:
@@ -744,9 +806,10 @@ https://alignmentforum.org/posts/CoZhXrhpQxpy9xw9y/where-i-agree-and-disagree-wi
     issued:
       date-parts:
         - - 2022
-    title: " Christiano, 2022"
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Where I agree and disagree with Eliezer — AI Alignment Forum
+    abstract: Paul writes a list of 19 important places where he agrees with Eliezer on AI existential
+      risk and safety, and a list of 27 places where he disagrees.…
+  resolvedBy: opengraph
   anchors:
     - " Christiano, 2022"
     - Christiano, 2022
@@ -760,9 +823,10 @@ https://alignmentforum.org/posts/D7PumeYTDPfBTp3i7/the-waluigi-effect-mega-post:
     issued:
       date-parts:
         - - 2023
-    title: Nardo, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The Waluigi Effect (mega-post) — AI Alignment Forum
+    abstract: Everyone carries a shadow, and the less it is embodied in the individual’s conscious life,
+      the blacker and denser it is. — Carl Jung …
+  resolvedBy: opengraph
   anchors:
     - Nardo, 2023
 https://alignmentforum.org/posts/DZuBHHKao6jsDDreH/in-response-to-critiques-of-guaranteed-safe-ai:
@@ -775,9 +839,10 @@ https://alignmentforum.org/posts/DZuBHHKao6jsDDreH/in-response-to-critiques-of-g
     issued:
       date-parts:
         - - 2025
-    title: Ammann, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: In response to critiques of Guaranteed Safe AI  — AI Alignment Forum
+    abstract: In this post, I discuss a number of critiques of Guaranteed Safe AI (GSAI) approaches I’ve
+      encountered since releasing this position paper.  …
+  resolvedBy: opengraph
   anchors:
     - Ammann, 2025
 https://alignmentforum.org/posts/FLMyTjuTiGytE6sP2/inner-misalignment-in-simulator-llms:
@@ -790,9 +855,10 @@ https://alignmentforum.org/posts/FLMyTjuTiGytE6sP2/inner-misalignment-in-simulat
     issued:
       date-parts:
         - - 2023
-    title: Scherlis, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Inner Misalignment in "Simulator" LLMs — AI Alignment Forum
+    abstract: 'Alternate title: "Somewhat Contra Scott On Simulators". • Scott Alexander has a recent
+      post up on large language models as simulators. …'
+  resolvedBy: opengraph
   anchors:
     - Scherlis, 2023
 https://alignmentforum.org/posts/FRRb6Gqem8k69ocbi/externalized-reasoning-oversight-a-research-direction-for:
@@ -805,9 +871,14 @@ https://alignmentforum.org/posts/FRRb6Gqem8k69ocbi/externalized-reasoning-oversi
     issued:
       date-parts:
         - - 2022
-    title: Lanham 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Externalized reasoning oversight: a research direction for language model alignment — AI
+      Alignment Forum"
+    abstract: >-
+      Summary
+
+      In this post, I’ll present a research direction that I’m interested in for alignment of
+      pretrained language models. …
+  resolvedBy: opengraph
   anchors:
     - Lanham 2022
     - Lanham, 2022
@@ -821,9 +892,10 @@ https://alignmentforum.org/posts/FTk7ufqK2D4dkdBDr/notes-on-openai-s-alignment-p
     issued:
       date-parts:
         - - 2022
-    title: Flint, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Notes on OpenAI’s alignment plan — AI Alignment Forum
+    abstract: This work was supported by the Monastic Academy for the Preservation of Life on Earth. •
+      ---------------------------------------- …
+  resolvedBy: opengraph
   anchors:
     - Flint, 2022
 https://alignmentforum.org/posts/GNhMPAWcfBCASy8e6/a-central-ai-alignment-problem-capabilities-generalization:
@@ -836,9 +908,11 @@ https://alignmentforum.org/posts/GNhMPAWcfBCASy8e6/a-central-ai-alignment-proble
     issued:
       date-parts:
         - - 2022
-    title: Soares, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "A central AI alignment problem: capabilities generalization, and the sharp left turn — AI
+      Alignment Forum"
+    abstract: Nate Soares argues that one of the core problems with AI alignment is that an AI system's
+      capabilities will likely generalize to new domains much fas…
+  resolvedBy: opengraph
   anchors:
     - Soares, 2022
 https://alignmentforum.org/posts/HBxe6wdjxK239zajf/what-failure-looks-like:
@@ -851,9 +925,10 @@ https://alignmentforum.org/posts/HBxe6wdjxK239zajf/what-failure-looks-like:
     issued:
       date-parts:
         - - 2019
-    title: Christiano, 2019
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: What failure looks like — AI Alignment Forum
+    abstract: Paul Christiano paints a vivid and disturbing picture of how AI could go wrong, not with
+      sudden violent takeover, but through a gradual loss of human…
+  resolvedBy: opengraph
   anchors:
     - Christiano, 2019
 https://alignmentforum.org/posts/HXJXPjzWyS5aAoRCw/putting-up-bumpers:
@@ -866,9 +941,10 @@ https://alignmentforum.org/posts/HXJXPjzWyS5aAoRCw/putting-up-bumpers:
     issued:
       date-parts:
         - - 2024
-    title: Bowman, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Putting up Bumpers — AI Alignment Forum
+    abstract: "tl;dr: Even if we can't solve alignment, we can solve the problem of catching and fixing
+      misalignment. …"
+  resolvedBy: opengraph
   anchors:
     - Bowman, 2024
 https://alignmentforum.org/posts/Hna4aoMwr6Qx9rHBs/linkpost-introducing-superalignment?commentId=NsYXBdLY6edAXavsM:
@@ -896,9 +972,11 @@ https://alignmentforum.org/posts/J8ifgynkfhpmrGrL8/why-almost-every-rl-agent-doe
     issued:
       date-parts:
         - - 2023
-    title: Sharkey, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Why almost every RL agent does learned optimization — AI Alignment Forum
+    abstract: |-
+      Or "Why RL≈RL2 (And why that matters)"
+        …
+  resolvedBy: opengraph
   anchors:
     - Sharkey, 2023
 https://alignmentforum.org/posts/JtuTQgp9Wnd6R6F5s/when-discussing-ai-risks-talk-about-capabilities-not:
@@ -911,9 +989,10 @@ https://alignmentforum.org/posts/JtuTQgp9Wnd6R6F5s/when-discussing-ai-risks-talk
     issued:
       date-parts:
         - - 2023
-    title: Krakovna, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: When discussing AI risks, talk about capabilities, not intelligence — AI Alignment Forum
+    abstract: Public discussions about catastrophic risks from general AI systems are often derailed by
+      using the word “intelligence”. People often have different…
+  resolvedBy: opengraph
   anchors:
     - Krakovna, 2023
 https://alignmentforum.org/posts/KpD2fJa6zo8o2MBxg/consciousness-as-a-conflationary-alliance-term-for:
@@ -926,9 +1005,11 @@ https://alignmentforum.org/posts/KpD2fJa6zo8o2MBxg/consciousness-as-a-conflation
     issued:
       date-parts:
         - - 2023
-    title: Critch, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Consciousness as a conflationary alliance term for intrinsically valued internal experiences
+      — AI Alignment Forum
+    abstract: "Tl;dr: In this post, I argue from many anecdotes that the concept of 'consciousness' is
+      more conflated than people realize, in that there's a lot of…"
+  resolvedBy: opengraph
   anchors:
     - Critch, 2023
 https://alignmentforum.org/posts/KrJfoZzpSDpnrv9va/draft-report-on-ai-timelines:
@@ -941,9 +1022,10 @@ https://alignmentforum.org/posts/KrJfoZzpSDpnrv9va/draft-report-on-ai-timelines:
     issued:
       date-parts:
         - - 2020
-    title: Cotra, 2020
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Draft report on AI timelines — AI Alignment Forum
+    abstract: The original draft of Ayeja's report on biological anchors for AI timelines. The report
+      includes quantitative models and forecasts, though the specif…
+  resolvedBy: opengraph
   anchors:
     - Cotra, 2020
 https://alignmentforum.org/posts/LpM3EAakwYdS6aRKf/what-multipolar-failure-looks-like-and-robust-agent-agnostic:
@@ -956,9 +1038,11 @@ https://alignmentforum.org/posts/LpM3EAakwYdS6aRKf/what-multipolar-failure-looks
     issued:
       date-parts:
         - - 2021
-    title: Critch, 2021
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: What Multipolar Failure Looks Like, and Robust Agent-Agnostic Processes (RAAPs) — AI
+      Alignment Forum
+    abstract: This post tells a few different stories in which humanity dies out as a result of AI
+      technology, but where no single source of human or automated age…
+  resolvedBy: opengraph
   anchors:
     - Critch, 2021
 https://alignmentforum.org/posts/MDeGts4Aw9DktCkXw/toy-models-of-ai-control-for-concentrated-catastrophe:
@@ -1001,9 +1085,10 @@ https://alignmentforum.org/posts/Nsmabb9fhpLuLdtLE/takeoff-speeds-presentation-a
     issued:
       date-parts:
         - - 2023
-    title: Davidson, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Takeoff speeds presentation at Anthropic — AI Alignment Forum
+    abstract: This is a lightly edited transcript of a presentation about the risks of a fast takeoff
+      that I (Tom Davidson) gave  at Anthropic in September 2023. S…
+  resolvedBy: opengraph
   anchors:
     - Davidson, 2023
 https://alignmentforum.org/posts/PZtsoaoSLpKjjbMqM/the-case-for-aligning-narrowly-superhuman-models:
@@ -1016,9 +1101,10 @@ https://alignmentforum.org/posts/PZtsoaoSLpKjjbMqM/the-case-for-aligning-narrowl
     issued:
       date-parts:
         - - 2021
-    title: Cotra, 2021
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The case for aligning narrowly superhuman models — AI Alignment Forum
+    abstract: I wrote this post to get people’s takes on a type of work that seems exciting to me
+      personally; I’m not speaking for Open Phil as a whole. Institutio…
+  resolvedBy: opengraph
   anchors:
     - Cotra, 2021
 https://alignmentforum.org/posts/PwnadG4BFjaER3MGf/interpretability-will-not-reliably-find-deceptive-ai:
@@ -1031,9 +1117,10 @@ https://alignmentforum.org/posts/PwnadG4BFjaER3MGf/interpretability-will-not-rel
     issued:
       date-parts:
         - - 2025
-    title: Nanda, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Interpretability Will Not Reliably Find Deceptive AI — AI Alignment Forum
+    abstract: "Disclaimer: Post written in a personal capacity. These are personal opinions and do not
+      in any way represent my employer's views • TL;DR: …"
+  resolvedBy: opengraph
   anchors:
     - Nanda, 2025
 https://alignmentforum.org/posts/REesy8nqvknFFKywm/clarifying-wireheading-terminology:
@@ -1046,9 +1133,9 @@ https://alignmentforum.org/posts/REesy8nqvknFFKywm/clarifying-wireheading-termin
     issued:
       date-parts:
         - - 2022
-    title: Gao, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Clarifying wireheading terminology — AI Alignment Forum
+    abstract: "See also: Towards deconfusing wireheading and reward maximization, Everett et al. (2019). …"
+  resolvedBy: opengraph
   anchors:
     - Gao, 2022
 https://alignmentforum.org/posts/Sn5NiiD5WBi4dLzaB/agi-will-drastically-increase-economies-of-scale-1:
@@ -1061,9 +1148,10 @@ https://alignmentforum.org/posts/Sn5NiiD5WBi4dLzaB/agi-will-drastically-increase
     issued:
       date-parts:
         - - 2019
-    title: Dai, 2019
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: AGI will drastically increase economies of scale — AI Alignment Forum
+    abstract: In Strategic implications of AIs’ ability to coordinate at low cost, I talked about the
+      possibility that different AGIs can coordinate with each othe…
+  resolvedBy: opengraph
   anchors:
     - Dai, 2019
 https://alignmentforum.org/posts/SuvWoLaGiNjPDcA7d/metr-s-evaluation-of-gpt-5:
@@ -1076,9 +1164,10 @@ https://alignmentforum.org/posts/SuvWoLaGiNjPDcA7d/metr-s-evaluation-of-gpt-5:
     issued:
       date-parts:
         - - 2025
-    title: METR, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: METR's Evaluation of GPT-5 — AI Alignment Forum
+    abstract: METR (where I work, though I'm cross-posting in a personal capacity) evaluated GPT-5
+      before it was externally deployed. We performed a much more comp…
+  resolvedBy: opengraph
   anchors:
     - METR, 2025
 https://alignmentforum.org/posts/TWorNr22hhYegE4RT/models-don-t-get-reward:
@@ -1091,9 +1180,10 @@ https://alignmentforum.org/posts/TWorNr22hhYegE4RT/models-don-t-get-reward:
     issued:
       date-parts:
         - - 2022
-    title: Ringer, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Models Don't "Get Reward" — AI Alignment Forum
+    abstract: Models don't "get" reward. Reward is the mechanism by which we select parameters, it is
+      not something "given" to the model. Reinforcement learning sh…
+  resolvedBy: opengraph
   anchors:
     - Ringer, 2022
     - Turner, 2022
@@ -1107,9 +1197,10 @@ https://alignmentforum.org/posts/WCj7WgFSLmyKaMwPR/coup-probes-catching-catastro
     issued:
       date-parts:
         - - 2023
-    title: Roger et al., 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Coup probes: Catching catastrophes with probes trained off-policy — AI Alignment Forum"
+    abstract: Thanks to Ryan Greenblatt for the original description of the ideas and hopes, and to Erik
+      Jenner, Jean-Stanislas Denain, Nate Thomas, Ryan Greenblat…
+  resolvedBy: opengraph
   anchors:
     - Roger et al., 2023
 https://alignmentforum.org/posts/WZXqNYbJhtidjRXSi/what-will-gpt-2030-look-like:
@@ -1122,9 +1213,10 @@ https://alignmentforum.org/posts/WZXqNYbJhtidjRXSi/what-will-gpt-2030-look-like:
     issued:
       date-parts:
         - - 2023
-    title: Steinhardt, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: What will GPT-2030 look like? — AI Alignment Forum
+    abstract: GPT-4 surprised many people with its abilities at coding, creative brainstorming,
+      letter-writing, and other skills. Surprises in machine learning are…
+  resolvedBy: opengraph
   anchors:
     - Steinhardt, 2023
 https://alignmentforum.org/posts/XWwvwytieLtEWaFJX/deep-deceptiveness:
@@ -1137,9 +1229,10 @@ https://alignmentforum.org/posts/XWwvwytieLtEWaFJX/deep-deceptiveness:
     issued:
       date-parts:
         - - 2023
-    title: Soares, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Deep Deceptiveness — AI Alignment Forum
+    abstract: There are some obvious ways you might try to train deceptiveness out of AIs. But
+      deceptiveness can emerge from the recombination of non-deceptive cog…
+  resolvedBy: opengraph
   anchors:
     - Soares, 2023
 https://alignmentforum.org/posts/ZeE7EKHTFMBs8eMxn/clarifying-ai-alignment:
@@ -1152,9 +1245,10 @@ https://alignmentforum.org/posts/ZeE7EKHTFMBs8eMxn/clarifying-ai-alignment:
     issued:
       date-parts:
         - - 2018
-    title: Christiano, 2018
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Clarifying "AI Alignment" — AI Alignment Forum
+    abstract: "When I say an AI A is aligned with an operator H, I mean: • > A is trying to do what H
+      wants it to do. …"
+  resolvedBy: opengraph
   anchors:
     - Christiano, 2018
 https://alignmentforum.org/posts/ZwshvqiqCvXPsZEct/the-learning-theoretic-agenda-status-2023:
@@ -1167,9 +1261,10 @@ https://alignmentforum.org/posts/ZwshvqiqCvXPsZEct/the-learning-theoretic-agenda
     issued:
       date-parts:
         - - 2023
-    title: Kosoy, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "The Learning-Theoretic Agenda: Status 2023 — AI Alignment Forum"
+    abstract: "TLDR: I give an overview of (i) the key problems that the learning-theoretic AI alignment
+      research agenda is trying to solve, (ii) the insights we ha…"
+  resolvedBy: opengraph
   anchors:
     - Kosoy, 2023
 https://alignmentforum.org/posts/aEjckcqHZZny9L2zy/emergent-deception-and-emergent-optimization:
@@ -1182,9 +1277,10 @@ https://alignmentforum.org/posts/aEjckcqHZZny9L2zy/emergent-deception-and-emerge
     issued:
       date-parts:
         - - 2024
-    title: Steinhardt, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Emergent Deception and Emergent Optimization — AI Alignment Forum
+    abstract: "[Note: this post was drafted before Sydney (the Bing chatbot) was released, but Sydney
+      demonstrates some particularly good examples of some of the is…"
+  resolvedBy: opengraph
   anchors:
     - Steinhardt, 2024
 https://alignmentforum.org/posts/aPeJE8bSo6rAFoLqg/solidgoldmagikarp-plus-prompt-generation:
@@ -1197,9 +1293,10 @@ https://alignmentforum.org/posts/aPeJE8bSo6rAFoLqg/solidgoldmagikarp-plus-prompt
     issued:
       date-parts:
         - - 2023
-    title: Rumbelow & Watkins, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: SolidGoldMagikarp (plus, prompt generation) — AI Alignment Forum
+    abstract: Researchers have discovered a set of "glitch tokens" that cause ChatGPT and other language
+      models to produce bizarre, erratic, and sometimes inapprop…
+  resolvedBy: opengraph
   anchors:
     - Rumbelow & Watkins, 2023
 https://alignmentforum.org/posts/bxt7uCiHam4QXrQAA/cyborgism:
@@ -1212,9 +1309,10 @@ https://alignmentforum.org/posts/bxt7uCiHam4QXrQAA/cyborgism:
     issued:
       date-parts:
         - - 2023
-    title: Kees-Dupuis & Janus, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Cyborgism — AI Alignment Forum
+    abstract: Thanks to Garrett Baker, David Udell, Alex Gray, Paul Colognese, Akash Wasil, Jacques
+      Thibodeau, Michael Ivanitskiy, Zach Stein-Perlman, and Anish Up…
+  resolvedBy: opengraph
   anchors:
     - Kees-Dupuis & Janus, 2023
 https://alignmentforum.org/posts/cq5x4XDnLcBrYbb66/will-capabilities-generalise-more:
@@ -1227,9 +1325,10 @@ https://alignmentforum.org/posts/cq5x4XDnLcBrYbb66/will-capabilities-generalise-
     issued:
       date-parts:
         - - 2022
-    title: Kumar, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Will Capabilities Generalise More? — AI Alignment Forum
+    abstract: Nate and Eliezer (Lethality 21) claim that capabilities generalise further than alignment
+      once capabilities start generalising far at all. However, t…
+  resolvedBy: opengraph
   anchors:
     - Kumar, 2022
 https://alignmentforum.org/posts/cxkwQmys6mCB6bjDA/interlude-agents-as-automobiles:
@@ -1242,9 +1341,10 @@ https://alignmentforum.org/posts/cxkwQmys6mCB6bjDA/interlude-agents-as-automobil
     issued:
       date-parts:
         - - 2021
-    title: Kokotajlo, 2021
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Interlude: Agents as Automobiles — AI Alignment Forum"
+    abstract: I ended up writing a long rant about agency in my review of Joe Carlsmith’s report on
+      x-risk from power-seeking AI. I’ve polished the rant a bit and…
+  resolvedBy: opengraph
   anchors:
     - Kokotajlo, 2021
 https://alignmentforum.org/posts/dBmfb76zx6wjPsBC7/when-can-we-trust-model-evaluations:
@@ -1253,13 +1353,14 @@ https://alignmentforum.org/posts/dBmfb76zx6wjPsBC7/when-can-we-trust-model-evalu
     type: post-weblog
     URL: https://alignmentforum.org/posts/dBmfb76zx6wjPsBC7/when-can-we-trust-model-evaluations
     author:
-      - literal: Hubinger
+      - literal: evhub
     issued:
       date-parts:
         - - 2023
-    title: Hubinger, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+          - 7
+          - 28
+    title: When can we trust model evaluations?
+  resolvedBy: research-db
   anchors:
     - Hubinger, 2023
 https://alignmentforum.org/posts/dYnHLWMXCYdm9xu5j/simulator-framing-and-confusions-about-llms:
@@ -1272,9 +1373,10 @@ https://alignmentforum.org/posts/dYnHLWMXCYdm9xu5j/simulator-framing-and-confusi
     issued:
       date-parts:
         - - 2023
-    title: Barnes, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "'simulator' framing and confusions about LLMs  — AI Alignment Forum"
+    abstract: "Post status: pretty rough + unpolished, thought it might be worthwhile getting this out
+      anyway …"
+  resolvedBy: opengraph
   anchors:
     - Barnes, 2023
 https://alignmentforum.org/posts/etNJcXCsKC6izQQZj/pivotal-outcomes-and-pivotal-processes:
@@ -1287,9 +1389,10 @@ https://alignmentforum.org/posts/etNJcXCsKC6izQQZj/pivotal-outcomes-and-pivotal-
     issued:
       date-parts:
         - - 2022
-    title: Critch, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Pivotal outcomes and pivotal processes — AI Alignment Forum
+    abstract: 'tl;dr: If you think humanity is on a dangerous path, and needs to "pivot" toward a
+      different future in order to achieve safety, consider how such a p…'
+  resolvedBy: opengraph
   anchors:
     - Critch, 2022
 https://alignmentforum.org/posts/gHefoxiznGfsbiAu9/inner-and-outer-alignment-decompose-one-hard-problem-into:
@@ -1302,9 +1405,11 @@ https://alignmentforum.org/posts/gHefoxiznGfsbiAu9/inner-and-outer-alignment-dec
     issued:
       date-parts:
         - - 2022
-    title: Turner, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Inner and outer alignment decompose one hard problem into two extremely hard problems — AI
+      Alignment Forum
+    abstract: Alex Turner argues that the concepts of "inner alignment" and "outer alignment" in AI
+      safety are unhelpful and potentially misleading. The author con…
+  resolvedBy: opengraph
   anchors:
     - Turner, 2022
 https://alignmentforum.org/posts/gJJEjJpKiddoYGZKk/the-evals-gap:
@@ -1317,9 +1422,10 @@ https://alignmentforum.org/posts/gJJEjJpKiddoYGZKk/the-evals-gap:
     issued:
       date-parts:
         - - 2024
-    title: Hobbahn, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The Evals Gap — AI Alignment Forum
+    abstract: "In our engagements with governments, AI safety institutes, and frontier AI developers, we
+      found the concept of the “evaluation gap” (short: ‘evals ga…"
+  resolvedBy: opengraph
   anchors:
     - Hobbahn, 2024
 https://alignmentforum.org/posts/hirhSqvEAq7pdnyPG/auditing-failures-vs-concentrated-failures:
@@ -1332,9 +1438,10 @@ https://alignmentforum.org/posts/hirhSqvEAq7pdnyPG/auditing-failures-vs-concentr
     issued:
       date-parts:
         - - 2023
-    title: Greenblatt et al., 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Auditing failures vs concentrated failures — AI Alignment Forum
+    abstract: "TL;DR: If you want to notice when powerful AIs are behaving badly, a reasonable strategy
+      is to carefully audit a small fraction of AI actions. This k…"
+  resolvedBy: opengraph
   anchors:
     - Greenblatt et al., 2023
 https://alignmentforum.org/posts/i2nmBfCXnadeGmhzW/catching-ais-red-handed:
@@ -1347,9 +1454,10 @@ https://alignmentforum.org/posts/i2nmBfCXnadeGmhzW/catching-ais-red-handed:
     issued:
       date-parts:
         - - 2024
-    title: Greenblatt et al., 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Catching AIs red-handed — AI Alignment Forum
+    abstract: We’ve been spending a lot of time recently thinking about how to mitigate risks posed by
+      scheming (a.k.a. deceptively aligned) models intentionally s…
+  resolvedBy: opengraph
   anchors:
     - Greenblatt et al., 2024
 https://alignmentforum.org/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-powerful-ais-are-controlled:
@@ -1362,9 +1470,10 @@ https://alignmentforum.org/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-po
     issued:
       date-parts:
         - - 2024
-    title: Greenblatt et al., 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The case for ensuring that powerful AIs are controlled — AI Alignment Forum
+    abstract: In this post, we argue that AI labs should ensure that powerful AIs are controlled. That
+      is, labs should make sure that the safety measures they appl…
+  resolvedBy: opengraph
   anchors:
     - Greenblatt et al., 2024
 https://alignmentforum.org/posts/kphJvksj5TndGapuh/directions-and-desiderata-for-ai-alignment:
@@ -1377,9 +1486,10 @@ https://alignmentforum.org/posts/kphJvksj5TndGapuh/directions-and-desiderata-for
     issued:
       date-parts:
         - - 2017
-    title: Christiano, 2017
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Directions and desiderata for AI alignment — AI Alignment Forum
+    abstract: "Note: This is the first post from part four: what needs doing of the sequence on iterated
+      amplification. The fourth part of the sequence describes so…"
+  resolvedBy: opengraph
   anchors:
     - Christiano, 2017
 https://alignmentforum.org/posts/mFAvspg4sXkrfZ7FA/deep-forgetting-and-unlearning-for-safely-scoped-llms:
@@ -1392,9 +1502,10 @@ https://alignmentforum.org/posts/mFAvspg4sXkrfZ7FA/deep-forgetting-and-unlearnin
     issued:
       date-parts:
         - - 2023
-    title: Casper, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Deep Forgetting & Unlearning for Safely-Scoped LLMs — AI Alignment Forum
+    abstract: Thanks to Phillip Christoffersen, Adam Gleave, Anjali Gopal, Soroush Pour, and Fabien
+      Roger for useful discussions and feedback.  …
+  resolvedBy: opengraph
   anchors:
     - Casper, 2023
 https://alignmentforum.org/posts/mGCcZnr4WjGjqzX5s/the-checklist-what-succeeding-at-ai-safety-will-involve:
@@ -1407,9 +1518,11 @@ https://alignmentforum.org/posts/mGCcZnr4WjGjqzX5s/the-checklist-what-succeeding
     issued:
       date-parts:
         - - 2025
-    title: Bowman, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "The Checklist: What Succeeding at AI Safety Will Involve  — AI Alignment Forum"
+    abstract: This piece reflects my current best guess at the major goals that Anthropic (or another
+      similarly positioned AI developer) will need to accomplish to have things go well with the
+      development of broadly superhuman AI.
+  resolvedBy: opengraph
   anchors:
     - Bowman, 2025
 https://alignmentforum.org/posts/mKBfa8v4S9pNKSyKK/homogeneity-vs-heterogeneity-in-ai-takeoff-scenarios:
@@ -1422,9 +1535,9 @@ https://alignmentforum.org/posts/mKBfa8v4S9pNKSyKK/homogeneity-vs-heterogeneity-
     issued:
       date-parts:
         - - 2020
-    title: Hubinger, 2020
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Homogeneity vs. heterogeneity in AI takeoff scenarios — AI Alignment Forum
+    abstract: Special thanks to Kate Woolverton for comments and feedback. …
+  resolvedBy: opengraph
   anchors:
     - Hubinger, 2020
 https://alignmentforum.org/posts/ngEvKav9w57XrGQnb/cognitive-emulation-a-naive-ai-safety-proposal:
@@ -1437,9 +1550,9 @@ https://alignmentforum.org/posts/ngEvKav9w57XrGQnb/cognitive-emulation-a-naive-a
     issued:
       date-parts:
         - - 2023
-    title: Leahy & Alfour, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Cognitive Emulation: A Naive AI Safety Proposal — AI Alignment Forum"
+    abstract: This is part of the work done at Conjecture. …
+  resolvedBy: opengraph
   anchors:
     - Leahy & Alfour, 2023
 https://alignmentforum.org/posts/pGXR2ynhe5bBCCNqn/takeoff-speeds-and-discontinuities:
@@ -1452,9 +1565,10 @@ https://alignmentforum.org/posts/pGXR2ynhe5bBCCNqn/takeoff-speeds-and-discontinu
     issued:
       date-parts:
         - - 2021
-    title: Martin & Eth, 2021
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Takeoff Speeds and Discontinuities — AI Alignment Forum
+    abstract: This post is part 4 in our sequence on Modeling Transformative AI Risk. We are building a
+      model to understand debates around existential risks from a…
+  resolvedBy: opengraph
   anchors:
     - Martin & Eth, 2021
 https://alignmentforum.org/posts/pRkFkzwKZ2zfa3R6H/without-specific-countermeasures-the-easiest-path-to:
@@ -1467,9 +1581,11 @@ https://alignmentforum.org/posts/pRkFkzwKZ2zfa3R6H/without-specific-countermeasu
     issued:
       date-parts:
         - - 2022
-    title: Cotra, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Without specific countermeasures, the easiest path to transformative AI likely leads to AI
+      takeover — AI Alignment Forum
+    abstract: '"Human feedback on diverse tasks" could lead to transformative AI, while requiring little
+      innovation on current techniques. But it seems likely that…'
+  resolvedBy: opengraph
   anchors:
     - Cotra, 2022
 https://alignmentforum.org/posts/pZaPhGg2hmmPwByHc:
@@ -1482,9 +1598,10 @@ https://alignmentforum.org/posts/pZaPhGg2hmmPwByHc:
     issued:
       date-parts:
         - - 2022
-    title: " Steinhardt, 2022"
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Future ML Systems Will Be Qualitatively Different — AI Alignment Forum
+    abstract: In 1972, the Nobel prize-winning physicist Philip Anderson wrote the essay "More Is
+      Different". In it, he argues that quantitative changes can lead t…
+  resolvedBy: opengraph
   anchors:
     - " Steinhardt, 2022"
 https://alignmentforum.org/posts/pxiaLFjyr4WPmFdcm/take-2-building-tools-to-help-build-fai-is-a-legitimate:
@@ -1497,9 +1614,11 @@ https://alignmentforum.org/posts/pxiaLFjyr4WPmFdcm/take-2-building-tools-to-help
     issued:
       date-parts:
         - - 2022
-    title: Steiner, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Take 2: Building tools to help build FAI is a legitimate strategy, but it's dual-use. — AI
+      Alignment Forum"
+    abstract: As a writing exercise, I'm writing an AI Alignment Hot Take Advent Calendar - one new hot
+      take, written every day for 25 days. Or until I run out of…
+  resolvedBy: opengraph
   anchors:
     - Steiner, 2022
 https://alignmentforum.org/posts/q2rCMHNXazALgQpGH/conditions-for-mesa-optimization:
@@ -1512,9 +1631,10 @@ https://alignmentforum.org/posts/q2rCMHNXazALgQpGH/conditions-for-mesa-optimizat
     issued:
       date-parts:
         - - 2019
-    title: Hubinger et al., 2019
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Conditions for Mesa-Optimization — AI Alignment Forum
+    abstract: This is the second of five posts in the Risks from Learned Optimization Sequence based on
+      the paper “Risks from Learned Optimization in Advanced Mach…
+  resolvedBy: opengraph
   anchors:
     - Hubinger et al., 2019
 https://alignmentforum.org/posts/r3xwHzMmMf25peeHE/the-translucent-thoughts-hypotheses-and-their-implications:
@@ -1527,9 +1647,10 @@ https://alignmentforum.org/posts/r3xwHzMmMf25peeHE/the-translucent-thoughts-hypo
     issued:
       date-parts:
         - - 2023
-    title: Roger, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The Translucent Thoughts Hypotheses and Their Implications — AI Alignment Forum
+    abstract: Thanks to Marius Hobbhahn, Johannes Treutlein, Siméon Campos, and Jean-Stanislas Denain
+      for helpful feedback on drafts. …
+  resolvedBy: opengraph
   anchors:
     - Roger, 2023
 https://alignmentforum.org/posts/sWf8wj64AdDfMeTvf/thinking-about-propensity-evaluations:
@@ -1542,9 +1663,10 @@ https://alignmentforum.org/posts/sWf8wj64AdDfMeTvf/thinking-about-propensity-eva
     issued:
       date-parts:
         - - 2024
-    title: Riché et al., 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Thinking About Propensity Evaluations — AI Alignment Forum
+    abstract: 'Warning: This post was written at the start of 2024 as part of the AISC project
+      "Evaluating Alignment Evaluations". We are not especially satisfied w…'
+  resolvedBy: opengraph
   anchors:
     - Riché et al., 2024
 https://alignmentforum.org/posts/tD9zEiHfkvakpnNam/a-challenge-for-agi-organizations-and-a-challenge-for-1:
@@ -1557,9 +1679,10 @@ https://alignmentforum.org/posts/tD9zEiHfkvakpnNam/a-challenge-for-agi-organizat
     issued:
       date-parts:
         - - 2022
-    title: Yudkowsky, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: A challenge for AGI organizations, and a challenge for readers — AI Alignment Forum
+    abstract: "(Note: This post is a write-up by Rob of a point Eliezer wanted to broadcast. Nate helped
+      with the editing, and endorses the post’s main points.) •…"
+  resolvedBy: opengraph
   anchors:
     - Yudkowsky, 2022
 https://alignmentforum.org/posts/uMQ3cqWDPHhjtiesc/agi-ruin-a-list-of-lethalities:
@@ -1572,9 +1695,10 @@ https://alignmentforum.org/posts/uMQ3cqWDPHhjtiesc/agi-ruin-a-list-of-lethalitie
     issued:
       date-parts:
         - - 2022
-    title: Yudkowsky, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "AGI Ruin: A List of Lethalities — AI Alignment Forum"
+    abstract: A few dozen reason that Eliezer thinks AGI alignment is an extremely difficult problem,
+      which humanity is not on track to solve. …
+  resolvedBy: opengraph
   anchors:
     - Yudkowsky, 2022
 https://alignmentforum.org/posts/uqAdqrvxqGqeBHjTP/towards-understanding-based-safety-evaluations:
@@ -1587,9 +1711,10 @@ https://alignmentforum.org/posts/uqAdqrvxqGqeBHjTP/towards-understanding-based-s
     issued:
       date-parts:
         - - 2023
-    title: Hubinger, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Towards understanding-based safety evaluations — AI Alignment Forum
+    abstract: Thanks to Kate Woolverton, Ethan Perez, Beth Barnes, Holden Karnofsky, and Ansh
+      Radhakrishnan for useful conversations, comments, and feedback. …
+  resolvedBy: opengraph
   anchors:
     - Hubinger, 2023
 https://alignmentforum.org/posts/vERGLBpDE8m5mpT6t/autonomous-replication-and-adaptation-an-attempt-at-a:
@@ -1602,9 +1727,11 @@ https://alignmentforum.org/posts/vERGLBpDE8m5mpT6t/autonomous-replication-and-ad
     issued:
       date-parts:
         - - 2023
-    title: Wijk, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "Autonomous replication and adaptation: an attempt at a concrete danger threshold — AI
+      Alignment Forum"
+    abstract: A sketch a threshold at which concerns about agentic systems causing catastrophe seem hard
+      to rule out
+  resolvedBy: opengraph
   anchors:
     - Wijk, 2023
 https://alignmentforum.org/posts/vJFdjigzmcXMhNTsx/simulators:
@@ -1617,9 +1744,10 @@ https://alignmentforum.org/posts/vJFdjigzmcXMhNTsx/simulators:
     issued:
       date-parts:
         - - 2022
-    title: Janus, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Simulators — AI Alignment Forum
+    abstract: This post explores the concept of simulators in AI, particularly self-supervised models
+      like GPT. Janus argues that GPT and similar models are best u…
+  resolvedBy: opengraph
   anchors:
     - Janus, 2022
 https://alignmentforum.org/posts/vwu4kegAEZTBtpT6p/thoughts-on-the-impact-of-rlhf-research:
@@ -1632,9 +1760,10 @@ https://alignmentforum.org/posts/vwu4kegAEZTBtpT6p/thoughts-on-the-impact-of-rlh
     issued:
       date-parts:
         - - 2023
-    title: Christiano, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Thoughts on the impact of RLHF research — AI Alignment Forum
+    abstract: In this post I’m going to describe my basic justification for working on RLHF in
+      2017-2020, which I still stand behind. I’ll discuss various argument…
+  resolvedBy: opengraph
   anchors:
     - Christiano, 2023
 https://alignmentforum.org/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely-difficult:
@@ -1647,9 +1776,10 @@ https://alignmentforum.org/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely
     issued:
       date-parts:
         - - 2023
-    title: Millidge, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Gradient hacking is extremely difficult — AI Alignment Forum
+    abstract: There has been a lot of discussion recently about gradient hackers as a potentially
+      important class of mesaoptimizers. The idea of gradient hackers i…
+  resolvedBy: opengraph
   anchors:
     - Millidge, 2023
 https://alignmentforum.org/posts/wAczufCpMdaamF9fy/my-objections-to-we-re-all-gonna-die-with-eliezer-yudkowsky:
@@ -1662,9 +1792,13 @@ https://alignmentforum.org/posts/wAczufCpMdaamF9fy/my-objections-to-we-re-all-go
     issued:
       date-parts:
         - - 2023
-    title: Pope, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: My Objections to "We’re All Gonna Die with Eliezer Yudkowsky" — AI Alignment Forum
+    abstract: >-
+      Introduction
+
+      I recently watched Eliezer Yudkowsky's appearance on the Bankless podcast, where he argued
+      that AI was nigh-certain to end humanity. Sin…
+  resolvedBy: opengraph
   anchors:
     - Pope, 2023
 https://alignmentforum.org/posts/xFotXGEotcKouifky/worlds-where-iterative-design-fails:
@@ -1677,9 +1811,10 @@ https://alignmentforum.org/posts/xFotXGEotcKouifky/worlds-where-iterative-design
     issued:
       date-parts:
         - - 2022
-    title: Wentworth, 2022
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Worlds Where Iterative Design Fails — AI Alignment Forum
+    abstract: In worlds where AI alignment can be handled by iterative design, we probably survive. So
+      if we want to reduce X-risk, we generally need to focus on w…
+  resolvedBy: opengraph
   anchors:
     - Wentworth, 2022
 https://alignmentforum.org/posts/xWMqsvHapP3nwdSW8/my-views-on-doom:
@@ -1692,9 +1827,10 @@ https://alignmentforum.org/posts/xWMqsvHapP3nwdSW8/my-views-on-doom:
     issued:
       date-parts:
         - - 2023
-    title: Christiano, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: My views on “doom” — AI Alignment Forum
+    abstract: Paul Christiano lays out how he frames various questions of "will AI cause a really bad
+      outcome?", and gives some probabilities. …
+  resolvedBy: opengraph
   anchors:
     - Christiano, 2023
 https://alignmentforum.org/posts/xiRfJApXGDRsQBhvc/we-might-be-dropping-the-ball-on-autonomous-replication-and-1:
@@ -1707,9 +1843,9 @@ https://alignmentforum.org/posts/xiRfJApXGDRsQBhvc/we-might-be-dropping-the-ball
     issued:
       date-parts:
         - - 2024
-    title: Segerie & Gédéon, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: We might be dropping the ball on Autonomous Replication and Adaptation. — AI Alignment Forum
+    abstract: Here is a little Q&A • Can you explain your position quickly? …
+  resolvedBy: opengraph
   anchors:
     - Segerie & Gédéon, 2024
 https://alignmentforum.org/posts/yxdHp2cZeQbZGREEN/improving-model-written-evals-for-ai-safety-benchmarking:
@@ -1722,9 +1858,10 @@ https://alignmentforum.org/posts/yxdHp2cZeQbZGREEN/improving-model-written-evals
     issued:
       date-parts:
         - - 2024
-    title: Dev & Hobbhahn, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Improving Model-Written Evals for AI Safety Benchmarking — AI Alignment Forum
+    abstract: This post was written as part of the summer 2024 cohort of the ML Alignment & Theory
+      Scholars program, under the mentorship of Marius Hobbhahn. …
+  resolvedBy: opengraph
   anchors:
     - Dev & Hobbhahn, 2024
 https://alignmentforum.org/s/PC3yJgdKvk8kzqZyA/p/kcKrE9mzEHrdqtDpE:
@@ -1737,9 +1874,10 @@ https://alignmentforum.org/s/PC3yJgdKvk8kzqZyA/p/kcKrE9mzEHrdqtDpE:
     issued:
       date-parts:
         - - 2024
-    title: Greenblatt & Shlegeris, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: The case for ensuring that powerful AIs are controlled — AI Alignment Forum
+    abstract: In this post, we argue that AI labs should ensure that powerful AIs are controlled. That
+      is, labs should make sure that the safety measures they appl…
+  resolvedBy: opengraph
   anchors:
     - Greenblatt & Shlegeris, 2024
 https://alignmentforum.org/s/WCJtsn6fNib6L7ZBB/p/G8WwLmcGFa4H6Ld9d:
@@ -1752,9 +1890,10 @@ https://alignmentforum.org/s/WCJtsn6fNib6L7ZBB/p/G8WwLmcGFa4H6Ld9d:
     issued:
       date-parts:
         - - 2025
-    title: Greenblatt, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: An overview of control measures — AI Alignment Forum
+    abstract: We often talk about ensuring control, which in the context of this doc refers to
+      preventing AIs from being able to cause existential problems, even i…
+  resolvedBy: opengraph
   anchors:
     - Greenblatt, 2025
 https://alignmentforum.org/s/WCJtsn6fNib6L7ZBB/p/fCazYoZSSMadiT6sf:
@@ -1767,9 +1906,10 @@ https://alignmentforum.org/s/WCJtsn6fNib6L7ZBB/p/fCazYoZSSMadiT6sf:
     issued:
       date-parts:
         - - 2025
-    title: Greenblatt, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Prioritizing threats for AI control — AI Alignment Forum
+    abstract: We often talk about ensuring control, which in the context of this doc refers to
+      preventing AIs from being able to cause existential problems, even i…
+  resolvedBy: opengraph
   anchors:
     - Greenblatt, 2025
 https://alignmentforum.org/s/pvoxjtCbkcweBLn7j/p/RTkatYxJWvXR4Qbyd:
@@ -1782,9 +1922,10 @@ https://alignmentforum.org/s/pvoxjtCbkcweBLn7j/p/RTkatYxJWvXR4Qbyd:
     issued:
       date-parts:
         - - 2023
-    title: DavidW, 2023
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Deceptive Alignment is <1% Likely by Default — AI Alignment Forum
+    abstract: Thanks to Wil Perkins, Grant Fleming, Thomas Larsen, Declan Nishiyama, and Frank McBride
+      for feedback on this post. Thanks also to Paul Christiano, D…
+  resolvedBy: opengraph
   anchors:
     - DavidW, 2023
 https://amazon.com/Brief-History-Artificial-Intelligence-Where/dp/1250770742:
@@ -1797,9 +1938,10 @@ https://amazon.com/Brief-History-Artificial-Intelligence-Where/dp/1250770742:
     issued:
       date-parts:
         - - 2021
-    title: Wooldridge, 2021
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: "A Brief History of Artificial Intelligence: What It Is, Where We Are, and Where We Are
+      Going: Wooldridge, Michael: 9781250770745: Amazon.com: Books"
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
     - Wooldridge, 2021
 https://anthropic.com/claude/opus:
@@ -1812,9 +1954,9 @@ https://anthropic.com/claude/opus:
     issued:
       date-parts:
         - - 2025
-    title: Anthropic, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Claude Opus
+    abstract: Hybrid reasoning model built for serious coding and AI agents, featuring a 1M context window.
+  resolvedBy: opengraph
   anchors:
     - Anthropic, 2025
 https://anthropic.com/company:
@@ -1827,9 +1969,10 @@ https://anthropic.com/company:
     issued:
       date-parts:
         - - 2024
-    title: Anthropic, 2024
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Company
+    abstract: Anthropic is an AI safety and research company that's working to build reliable,
+      interpretable, and steerable AI systems.
+  resolvedBy: opengraph
   anchors:
     - Anthropic, 2024
 https://anthropic.com/engineering/advanced-tool-use:
@@ -1842,9 +1985,10 @@ https://anthropic.com/engineering/advanced-tool-use:
     issued:
       date-parts:
         - - 2025
-    title: Anthropic, 2025
-    note: "Unresolved: title and author taken from the citation anchor text."
-  resolvedBy: anchor
+    title: Introducing advanced tool use on the Claude Developer Platform
+    abstract: Claude can now discover, learn, and execute tools dynamically to enable agents that take
+      action in the real world. Here’s how.
+  resolvedBy: opengraph
   anchors:
     - Anthropic, 2025
 https://anthropic.com/index/anthropics-responsible-scaling-policy:
