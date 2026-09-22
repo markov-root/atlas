@@ -84,8 +84,14 @@ atlas/
 │   │   ├── transformer.ts # Doc JSON → custom AST
 │   │   ├── algolia.ts     # DocSearch record extraction + indexing
 │   │   └── renderers/     # pdf/ (Typst), audio/ (ElevenLabs + R2), markdown-renderer
+│   │   └── citations/     # Citation extraction — the TypeScript half (see below)
 │   ├── styles/            # Global Tailwind setup
 │   └── assets/uc/         # Downloaded chapter images (gitignored, regenerated)
+├── cli/                   # `atlas` maintainer commands (docs check, citations scan, dispatch)
+├── python/
+│   ├── atlas_citations/   # Citation resolvers, CSL store, BibTeX/report export
+│   └── tests/             # pytest suite, run by `pnpm test:py` inside `pnpm verify`
+├── data/citations/        # sources.yaml is COMMITTED; every other output is derived
 ├── .cache/
 │   ├── docs/              # COMMITTED snapshot of parsed Google Docs (~8.7MB)
 │   └── uc/, audio-chunks/, equation-descriptions/   # Build artifacts (gitignored)
@@ -96,6 +102,28 @@ atlas/
 ├── vitest.config.ts       # Test runner config
 └── pnpm-workspace.yaml    # pnpm build-script allow-list
 ```
+
+### The bibliography is two languages
+
+The citation pipeline is the one part of this repo that is not TypeScript, and the split is
+deliberate rather than accidental (`task:0029`). The boundary is a file:
+
+```
+TypeScript   Google Docs → AST → `atlas citations scan` → data/citations/citations.json
+Python       citations.json → resolve → data/citations/sources.yaml
+                                     → bibliography.bib / .json, reports, per-chapter Markdown
+```
+
+**TypeScript owns identity and extraction; Python owns metadata and output.** Extraction walks the
+AST, so it has to live where the AST is, and URL canonicalization goes with it because that is where
+entry identity is minted (`task:0021` D1). Everything downstream — resolvers, the CSL model, BibTeX —
+takes a URL and returns metadata, and has no tie to either language; it sits in Python because that
+is where the bibliography libraries are. The cost of pretending otherwise was a hand-rolled BibTeX
+serializer that shipped a structural bug across 303 entries.
+
+None of this is in the site build's path. `pnpm dev`, `pnpm build` and `pnpm test` never touch
+Python; only `pnpm verify` and the `atlas citations` verbs do. `bin/atlas` stays a logic-free
+adapter — `cli/index.ts` dispatches to `uv`, so the split is invisible at the command line.
 
 Note that `src/lib/` mixes build-time modules (`build-mode.ts`, `textbooks.ts`) and browser-runtime modules (`word-highlight.ts`, `audio-player.ts`, …) with no marker separating them — flagged in `audit:0002` F2; nothing in the tree yet signals which constraint a module runs under.
 
