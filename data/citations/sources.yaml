@@ -362,9 +362,12 @@ https://aiindex.stanford.edu/report:
     issued:
       date-parts:
       - - 2024
-    title: Stanford HAI, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: AI Index | Stanford HAI
+    abstract: The mission of the AI Index is to provide unbiased, rigorously vetted, and globally 
+      sourced data for policymakers, researchers, journalists, executives, and the general public to
+      develop a deeper understanding of the complex field of AI. To achieve this, we track, collate,
+      distill, and visualize dat
+  resolvedBy: opengraph
   anchors:
   - Stanford HAI, 2024
 https://ailabwatch.org/blog/external-evaluation:
@@ -10148,10 +10151,25 @@ https://arxiv.org/abs/2305.10601:
     type: article
     URL: https://arxiv.org/abs/2305.10601
     author:
-    - literal: Yao et al.
+    - given: Shunyu
+      family: Yao
+    - given: Dian
+      family: Yu
+    - given: Jeffrey
+      family: Zhao
+    - given: Izhak
+      family: Shafran
+    - given: Thomas L.
+      family: Griffiths
+    - given: Yuan
+      family: Cao
+    - given: Karthik
+      family: Narasimhan
     issued:
       date-parts:
       - - 2023
+        - 5
+        - 17
     title: 'Tree of Thoughts: Deliberate Problem Solving with Large Language Models'
     container-title: arXiv.org
     abstract: "Language models are increasingly being deployed for general problem solving across a wide
@@ -10167,7 +10185,7 @@ https://arxiv.org/abs/2305.10601:
       abilities on three novel tasks requiring non-trivial planning or search: Game of 24, Creative Writing,
       and Mini Crosswords. For instance, in Game of 24, while GPT-4 with chain-of-thought prompting only
       solved 4% of tasks, our method achieved a success rate of 74%. Code repo with all prompts: https://github.com/princeton-nlp/tree-of-thought-llm."
-  resolvedBy: opengraph
+  resolvedBy: arxiv
   anchors:
   - Yao et al., 2023
 https://arxiv.org/abs/2305.15324:
@@ -10288,10 +10306,23 @@ https://arxiv.org/abs/2305.18290:
     type: article
     URL: https://arxiv.org/abs/2305.18290
     author:
-    - literal: Rafailov et al.
+    - given: Rafael
+      family: Rafailov
+    - given: Archit
+      family: Sharma
+    - given: Eric
+      family: Mitchell
+    - given: Stefano
+      family: Ermon
+    - given: Christopher D.
+      family: Manning
+    - given: Chelsea
+      family: Finn
     issued:
       date-parts:
       - - 2023
+        - 5
+        - 29
     title: 'Direct Preference Optimization: Your Language Model is Secretly a Reward Model'
     container-title: arXiv.org
     abstract: While large-scale unsupervised language models (LMs) learn broad world knowledge and 
@@ -10312,7 +10343,7 @@ https://arxiv.org/abs/2305.18290:
       methods. Notably, fine-tuning with DPO exceeds PPO-based RLHF in ability to control sentiment 
       of generations, and matches or improves response quality in summarization and single-turn 
       dialogue while being substantially simpler to implement and train.
-  resolvedBy: opengraph
+  resolvedBy: arxiv
   anchors:
   - Rafailov et al., 2023
 https://arxiv.org/abs/2305.20050:
@@ -18740,10 +18771,109 @@ https://arxiv.org/abs/2407.14933:
     type: article
     URL: https://arxiv.org/abs/2407.14933
     author:
-    - literal: Longpre et al.
+    - given: Shayne
+      family: Longpre
+    - given: Robert
+      family: Mahari
+    - given: Ariel
+      family: Lee
+    - given: Campbell
+      family: Lund
+    - given: Hamidah
+      family: Oderinwale
+    - given: William
+      family: Brannon
+    - given: Nayan
+      family: Saxena
+    - given: Naana
+      family: Obeng-Marnu
+    - given: Tobin
+      family: South
+    - given: Cole
+      family: Hunter
+    - given: Kevin
+      family: Klyman
+    - given: Christopher
+      family: Klamm
+    - given: Hailey
+      family: Schoelkopf
+    - given: Nikhil
+      family: Singh
+    - given: Manuel
+      family: Cherep
+    - given: Ahmad
+      family: Anis
+    - given: An
+      family: Dinh
+    - given: Caroline
+      family: Chitongo
+    - given: Da
+      family: Yin
+    - given: Damien
+      family: Sileo
+    - given: Deividas
+      family: Mataciunas
+    - given: Diganta
+      family: Misra
+    - given: Emad
+      family: Alghamdi
+    - given: Enrico
+      family: Shippole
+    - given: Jianguo
+      family: Zhang
+    - given: Joanna
+      family: Materzynska
+    - given: Kun
+      family: Qian
+    - given: Kush
+      family: Tiwary
+    - given: Lester
+      family: Miranda
+    - given: Manan
+      family: Dey
+    - given: Minnie
+      family: Liang
+    - given: Mohammed
+      family: Hamdy
+    - given: Niklas
+      family: Muennighoff
+    - given: Seonghyeon
+      family: Ye
+    - given: Seungone
+      family: Kim
+    - given: Shrestha
+      family: Mohanty
+    - given: Vipul
+      family: Gupta
+    - given: Vivek
+      family: Sharma
+    - given: Vu Minh
+      family: Chien
+    - given: Xuhui
+      family: Zhou
+    - given: Yizhi
+      family: Li
+    - given: Caiming
+      family: Xiong
+    - given: Luis
+      family: Villa
+    - given: Stella
+      family: Biderman
+    - given: Hanlin
+      family: Li
+    - given: Daphne
+      family: Ippolito
+    - given: Sara
+      family: Hooker
+    - given: Jad
+      family: Kabbara
+    - given: Sandy
+      family: Pentland
     issued:
       date-parts:
       - - 2024
+        - 7
+        - 20
     title: 'Consent in Crisis: The Rapid Decline of the AI Data Commons'
     container-title: arXiv.org
     abstract: General-purpose artificial intelligence (AI) systems are built on massive swathes of 
@@ -18763,7 +18893,7 @@ https://arxiv.org/abs/2407.14933:
       general-purpose AI systems. We hope to illustrate the emerging crises in data consent, for 
       both developers and creators. The foreclosure of much of the open web will impact not only 
       commercial AI, but also non-commercial AI and academic research.
-  resolvedBy: opengraph
+  resolvedBy: arxiv
   anchors:
   - Longpre et al., 2024
 https://arxiv.org/abs/2407.14981:
@@ -25321,9 +25451,13 @@ https://coefficientgiving.org/research/how-much-computational-power-does-it-take
     issued:
       date-parts:
       - - 2020
-    title: Carlsmith, 2020
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: How Much Computational Power Does It Take to Match the Human Brain?
+    container-title: Coefficient Giving
+    abstract: 'Editor’s note: This article was published under our former name, Open Philanthropy. Some
+      content may be outdated. You can see our latest writing here. Open Philanthropy is interested in
+      when AI systems will be able to perform various tasks that humans can perform (“AI timelines”).
+      To inform our thinking, I investigated what evidence the human brain […]'
+  resolvedBy: opengraph
   anchors:
   - Carlsmith, 2020
 https://cold-takes.com/why-ai-alignment-could-be-hard-with-modern-deep-learning:
@@ -28250,9 +28384,22 @@ https://ieeexplore.ieee.org/document/5206848:
     issued:
       date-parts:
       - - 2009
-    title: Deng, 2009
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: 'ImageNet: A large-scale hierarchical image database'
+    abstract: 'The explosion of image data on the Internet has the potential to foster more sophisticated
+      and robust models and algorithms to index, retrieve, organize and interact with images and multimedia
+      data. But exactly how such data can be harnessed and organized remains a critical problem. We introduce
+      here a new database called “ImageNet”, a large-scale ontology of images built upon the backbone
+      of the WordNet structure. ImageNet aims to populate the majority of the 80,000 synsets of WordNet
+      with an average of 500–1000 clean and full resolution images. This will result in tens of millions
+      of annotated images organized by the semantic hierarchy of WordNet. This paper offers a detailed
+      analysis of ImageNet in its current state: 12 subtrees with 5247 synsets and 3.2 million images
+      in total. We show that ImageNet is much larger in scale and diversity and much more accurate than
+      the current image datasets. Constructing such a large-scale database is a challenging task. We describe
+      the data collection scheme with Amazon Mechanical Turk. Lastly, we illustrate the usefulness of
+      ImageNet through three simple applications in object recognition, image classification and automatic
+      object clustering. We hope that the scale, accuracy, diversity and hierarchical structure of ImageNet
+      can offer unparalleled opportunities to researchers in the computer vision community and beyond.'
+  resolvedBy: opengraph
   anchors:
   - Deng, 2009
 https://ieeexplore.ieee.org/document/9152761:
@@ -28265,9 +28412,34 @@ https://ieeexplore.ieee.org/document/9152761:
     issued:
       date-parts:
       - - 2020
-    title: Pan et al., 2020
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Privacy Risks of General-Purpose Language Models
+    abstract: Recently, a new paradigm of building general-purpose language models (e.g., Google’s 
+      Bert and OpenAI’s GPT-2) in Natural Language Processing (NLP) for text feature extraction, a 
+      standard procedure in NLP systems that converts texts to vectors (i.e., embeddings) for 
+      downstream modeling, has arisen and starts to find its application in various downstream NLP 
+      tasks and real world systems (e.g., Google’s search engine [6]). To obtain general-purpose 
+      text embeddings, these language models have highly complicated architectures with millions of 
+      learnable parameters and are usually pretrained on billions of sentences before being 
+      utilized. As is widely recognized, such a practice indeed improves the state-of-the-art 
+      performance of many downstream NLP tasks. However, the improved utility is not for free. We 
+      find the text embeddings from general-purpose language models would capture much sensitive 
+      information from the plain text. Once being accessed by the adversary, the embeddings can be 
+      reverse-engineered to disclose sensitive information of the victims for further harassment. 
+      Although such a privacy risk can impose a real threat to the future leverage of these 
+      promising NLP tools, there are neither published attacks nor systematic evaluations by far for
+      the mainstream industry-level language models. To bridge this gap, we present the first 
+      systematic study on the privacy risks of 8 state-of-the-art language models with 4 diverse 
+      case studies. By constructing 2 novel attack classes, our study demonstrates the 
+      aforementioned privacy risks do exist and can impose practical threats to the application of 
+      general-purpose language models on sensitive data covering identity, genome, healthcare and 
+      location. For example, we show the adversary with nearly no prior knowledge can achieve about 
+      75% accuracy when inferring the precise disease site from Bert embeddings of patients’ medical
+      descriptions. As possible countermeasures, we propose 4 different defenses (via rounding, 
+      differential privacy, adversarial training and subspace projection) to obfuscate the 
+      unprotected embeddings for mitigation purpose. With extensive evaluations, we also provide a 
+      preliminary analysis on the utility-privacy trade-off brought by each defense, which we hope 
+      may foster future mitigation researches.
+  resolvedBy: opengraph
   anchors:
   - Pan et al., 2020
 https://in:
@@ -28652,9 +28824,10 @@ https://lesswrong.com/posts/3nMpdmt8LrzxQnkGp/ai-timelines-via-cumulative-optimi
     issued:
       date-parts:
       - - 2022
-    title: Canell, 2022
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: 'AI Timelines via Cumulative Optimization Power: Less Long, More Short — LessWrong'
+    abstract: 'TLDR: We can best predict the future by using simple models which best postdict the past
+      (ala Bayes/Solomonoff). A simple model based on net training…'
+  resolvedBy: opengraph
   anchors:
   - Canell, 2022
 https://lesswrong.com/posts/6RC3BNopCtzKaTeR6/thoughts-on-the-openai-alignment-plan-will-ai-research:
@@ -29383,20 +29556,25 @@ https://li:
 https://link.springer.com/chapter/10.1007/978-1-349-17295-5_4:
   item:
     id: https://link.springer.com/chapter/10.1007/978-1-349-17295-5_4
-    type: webpage
+    type: document
     URL: https://link.springer.com/chapter/10.1007/978-1-349-17295-5_4
     author:
-    - literal: Goodhart
+    - family: Goodhart
+      given: C. A. E.
     issued:
       date-parts:
-      - - 1975
+      - - 1984
     title: 'Problems of Monetary Management: The UK Experience'
-    container-title: SpringerLink
+    container-title: Monetary Theory and Practice
     abstract: In 1971 the monetary authorities1 in the UK adopted a new approach to monetary 
       management, a change of policy announced and described in several papers on competition and 
       credit control. The subsequent experience of trying to operate this revised system has, 
       however,...
-  resolvedBy: opengraph
+    DOI: 10.1007/978-1-349-17295-5_4
+    page: 91-121
+    publisher: Palgrave, London
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Goodhart, 1975
 https://linkedin.com/pulse/altman-multimodality-important-david-cronshaw-5fz0c:
@@ -29745,109 +29923,239 @@ https://nationalsecurity.ai/chapter/ai-is-pivotal-for-national-security:
 https://nature.com/articles/nature09659:
   item:
     id: https://nature.com/articles/nature09659
-    type: webpage
+    type: article-journal
     URL: https://nature.com/articles/nature09659
     author:
-    - literal: Haldane and May
+    - family: Haldane
+      given: Andrew G.
+    - family: May
+      given: Robert M.
     issued:
       date-parts:
       - - 2011
-    title: Systemic risk in banking ecosystems - Nature
+        - 1
+    title: Systemic risk in banking ecosystems
     container-title: Nature
     abstract: In a Perspective review, Andrew Haldane, executive director for financial stability at
       the Bank of England, and ecologist Robert May look at the nature of risk that led to the 
       recent global crisis in the international banking system. Utilizing tools more often used to 
       analyse ecological food webs and the spread of infectious diseases, they conclude that there 
       are lessons to be learned from the exercise that could inform future public policy decisions.
-  resolvedBy: opengraph
+    DOI: 10.1038/nature09659
+    volume: '469'
+    page: 351-355
+    publisher: Nature Publishing Group
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Haldane and May, 2011
 https://nature.com/articles/s41586-023-06735-9:
   item:
     id: https://nature.com/articles/s41586-023-06735-9
-    type: webpage
+    type: article-journal
     URL: https://nature.com/articles/s41586-023-06735-9
     author:
-    - literal: Merchant et al.
+    - family: Merchant
+      given: Amil
+    - family: Batzner
+      given: Simon
+    - family: Schoenholz
+      given: Samuel S.
+    - family: Aykol
+      given: Muratahan
+    - family: Cheon
+      given: Gowoon
+    - family: Cubuk
+      given: Ekin Dogus
     issued:
       date-parts:
       - - 2023
-    title: Scaling deep learning for materials discovery - Nature
+        - 11
+        - 29
+    title: Scaling deep learning for materials discovery
     container-title: Nature
     abstract: A protocol using large-scale training of graph networks enables high-throughput 
       discovery of novel stable structures and led to the identification of 2.2 million crystal 
       structures, of which 381,000 are newly discovered&nbsp;stable materials.
-  resolvedBy: opengraph
+    DOI: 10.1038/s41586-023-06735-9
+    volume: '624'
+    page: 80-85
+    publisher: Nature Publishing Group
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Merchant et al., 2023
 https://nature.com/articles/s41591-023-02640-w:
   item:
     id: https://nature.com/articles/s41591-023-02640-w
-    type: webpage
+    type: article-journal
     URL: https://nature.com/articles/s41591-023-02640-w
     author:
-    - literal: Cao et al.
+    - family: Cao
+      given: Kai
+    - family: Xia
+      given: Yingda
+    - family: Yao
+      given: Jiawen
+    - family: Han
+      given: Xu
+    - family: Lambert
+      given: Lukas
+    - family: Zhang
+      given: Tingting
+    - family: Tang
+      given: Wei
+    - family: Jin
+      given: Gang
+    - family: Jiang
+      given: Hui
+    - family: Fang
+      given: Xu
+    - family: Nogues
+      given: Isabella
+    - family: Li
+      given: Xuezhou
+    - family: Guo
+      given: Wenchao
+    - family: Wang
+      given: Yu
+    - family: Fang
+      given: Wei
+    - family: Qiu
+      given: Mingyan
+    - family: Hou
+      given: Yang
+    - family: Kovarnik
+      given: Tomas
+    - family: Vocka
+      given: Michal
+    - family: Lu
+      given: Yimei
+    - family: Chen
+      given: Yingli
+    - family: Chen
+      given: Xin
+    - family: Liu
+      given: Zaiyi
+    - family: Zhou
+      given: Jian
+    - family: Xie
+      given: Chuanmiao
+    - family: Zhang
+      given: Rong
+    - family: Lu
+      given: Hong
+    - family: Hager
+      given: Gregory D.
+    - family: Yuille
+      given: Alan L.
+    - family: Lu
+      given: Le
+    - family: Shao
+      given: Chengwei
+    - family: Shi
+      given: Yu
+    - family: Zhang
+      given: Qi
+    - family: Liang
+      given: Tingbo
+    - family: Zhang
+      given: Ling
+    - family: Lu
+      given: Jianping
     issued:
       date-parts:
       - - 2023
-    title: Large-scale pancreatic cancer detection via non-contrast CT and deep learning - Nature 
-      Medicine
-    container-title: Nature
+        - 11
+        - 20
+    title: Large-scale pancreatic cancer detection via non-contrast CT and deep learning
+    container-title: Nature Medicine
     abstract: A deep learning model provides high accuracy in detecting pancreatic lesions in 
       multicenter data, outperforming radiology specialists.
-  resolvedBy: opengraph
+    DOI: 10.1038/s41591-023-02640-w
+    volume: '29'
+    page: 3033-3043
+    publisher: Nature Publishing Group
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Cao et al., 2023
 https://nature.com/articles/s41599-024-03017-1:
   item:
     id: https://nature.com/articles/s41599-024-03017-1
-    type: webpage
+    type: article-journal
     URL: https://nature.com/articles/s41599-024-03017-1
     author:
-    - literal: Cha
+    - family: Cha
+      given: Seokki
     issued:
       date-parts:
       - - 2024
+        - 4
+        - 12
     title: 'Towards an international regulatory framework for AI safety: lessons from the IAEA’s nuclear
-      safety regulations - Humanities and Social Sciences Communications'
-    container-title: Nature
-  resolvedBy: opengraph
+      safety regulations'
+    container-title: Humanities and Social Sciences Communications
+    DOI: 10.1057/s41599-024-03017-1
+    volume: '11'
+    page: '506'
+    publisher: Palgrave
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Cha, 2024
 https://nature.com/articles/s41599-024-03560-x:
   item:
     id: https://nature.com/articles/s41599-024-03560-x
-    type: webpage
+    type: article-journal
     URL: https://nature.com/articles/s41599-024-03560-x
     author:
-    - literal: Zaidan & Ibrahim
+    - family: Zaidan
+      given: Esmat
+    - family: Ibrahim
+      given: Imad Antoine
     issued:
       date-parts:
       - - 2024
-    title: 'AI Governance in a Complex and Rapidly Changing Regulatory Landscape: A Global Perspective
-      - Humanities and Social Sciences Communications'
-    container-title: Nature
-  resolvedBy: opengraph
+        - 9
+        - 1
+    title: 'AI Governance in a Complex and Rapidly Changing Regulatory Landscape: A Global Perspective'
+    container-title: Humanities and Social Sciences Communications
+    DOI: 10.1057/s41599-024-03560-x
+    volume: '11'
+    page: '1121'
+    publisher: Palgrave
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Zaidan & Ibrahim, 2024
 https://nature.com/articles/s42003-022-03036-1:
   item:
     id: https://nature.com/articles/s42003-022-03036-1
-    type: webpage
+    type: article-journal
     URL: https://nature.com/articles/s42003-022-03036-1
     author:
-    - literal: Caucheteux & King
+    - family: Caucheteux
+      given: Charlotte
+    - family: King
+      given: Jean-Rémi
     issued:
       date-parts:
       - - 2022
-    title: Brains and algorithms partially converge in natural language processing - Communications 
-      Biology
-    container-title: Nature
+        - 2
+        - 16
+    title: Brains and algorithms partially converge in natural language processing
+    container-title: Communications Biology
     abstract: Charlotte Caucheteux and Jean-Rémi King examine the ability of transformer neural 
       networks trained on word prediction tasks to fit representations in the human brain measured 
       with fMRI and MEG. Their results provide further insight into the workings of transformer 
       language models and their relevance to brain responses.
-  resolvedBy: opengraph
+    DOI: 10.1038/s42003-022-03036-1
+    volume: '5'
+    page: '134'
+    publisher: Nature Publishing Group
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Caucheteux & King, 2022
 https://neuralt.com/news-insights/protect-your-subscribers-against-scam-calls-with-ai-powered-scamblock:
@@ -30097,9 +30405,13 @@ https://openai.com/blog/introducing-superalignment:
     issued:
       date-parts:
       - - 2023
-    title: OpenAI, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Introducing Superalignment
+    container-title: OpenAI
+    abstract: We need scientific and technical breakthroughs to steer and control AI systems much 
+      smarter than us. To solve this problem within four years, we’re starting a new team, co-led by
+      Ilya Sutskever and Jan Leike, and dedicating 20% of the compute we’ve secured to date to this 
+      effort. We’re looking for excellent ML researchers and engineers to join us.
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2023
 https://openai.com/blog/our-approach-to-ai-safety:
@@ -30112,9 +30424,11 @@ https://openai.com/blog/our-approach-to-ai-safety:
     issued:
       date-parts:
       - - 2023
-    title: OpenAI, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Our approach to AI safety
+    container-title: OpenAI
+    abstract: Ensuring that AI systems are built, deployed, and used safely is critical to our 
+      mission.
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2023
 https://openai.com/blog/our-approach-to-alignment-research:
@@ -30127,9 +30441,12 @@ https://openai.com/blog/our-approach-to-alignment-research:
     issued:
       date-parts:
       - - 2022
-    title: OpenAI, 2022
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Our approach to alignment research
+    container-title: OpenAI
+    abstract: We are improving our AI systems’ ability to learn from human feedback and to assist 
+      humans at evaluating AI. Our goal is to build a sufficiently aligned AI system that can help 
+      us solve all other alignment problems.
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2022
 https://openai.com/blog/planning-for-agi-and-beyond:
@@ -30142,9 +30459,11 @@ https://openai.com/blog/planning-for-agi-and-beyond:
     issued:
       date-parts:
       - - 2023
-    title: Altman, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Planning for AGI and beyond
+    container-title: OpenAI
+    abstract: Our mission is to ensure that artificial general intelligence—AI systems that are 
+      generally smarter than humans—benefits all of humanity.
+  resolvedBy: opengraph
   anchors:
   - Altman, 2023
 https://openai.com/charter:
@@ -30157,9 +30476,10 @@ https://openai.com/charter:
     issued:
       date-parts:
       - - 2023
-    title: OpenAI, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: OpenAI Charter
+    container-title: OpenAI
+    abstract: Our Charter describes the principles we use to execute on OpenAI’s mission.
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2023
 https://openai.com/index/chain-of-thought-monitoring:
@@ -30172,9 +30492,12 @@ https://openai.com/index/chain-of-thought-monitoring:
     issued:
       date-parts:
       - - 2025
-    title: OpenAI, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Detecting misbehavior in frontier reasoning models
+    container-title: OpenAI
+    abstract: Frontier reasoning models exploit loopholes when given the chance. We show we can 
+      detect exploits using an LLM to monitor their chains-of-thought. Penalizing their “bad 
+      thoughts” doesn’t stop the majority of misbehavior—it makes them hide their intent.
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2025
 https://openai.com/index/chatgpt:
@@ -30187,9 +30510,12 @@ https://openai.com/index/chatgpt:
     issued:
       date-parts:
       - - 2022
-    title: OpenAI, 2022
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Introducing ChatGPT
+    container-title: OpenAI
+    abstract: We’ve trained a model called ChatGPT which interacts in a conversational way. The 
+      dialogue format makes it possible for ChatGPT to answer followup questions, admit its 
+      mistakes, challenge incorrect premises, and reject inappropriate requests.
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2022
 https://openai.com/index/evolving-our-structure:
@@ -30202,9 +30528,12 @@ https://openai.com/index/evolving-our-structure:
     issued:
       date-parts:
       - - 2025
-    title: OpenAI, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Evolving OpenAI’s structure
+    container-title: OpenAI
+    abstract: An update from the OpenAI board on transitioning its for-profit entity to a Public 
+      Benefit Corporation, reinforcing its mission-driven structure under nonprofit oversight while 
+      enabling greater impact and long-term alignment with the public good.
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2025
 https://openai.com/index/faulty-reward-functions:
@@ -30217,9 +30546,11 @@ https://openai.com/index/faulty-reward-functions:
     issued:
       date-parts:
       - - 2016
-    title: Amodei & Clark, 2016
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Faulty reward functions in the wild
+    container-title: OpenAI
+    abstract: Reinforcement learning algorithms can break in surprising, counterintuitive ways. In 
+      this post we’ll explore one failure mode, which is where you misspecify your reward function.
+  resolvedBy: opengraph
   anchors:
   - Amodei & Clark, 2016
   - Clark & Amodei,2016
@@ -30233,9 +30564,12 @@ https://openai.com/index/introducing-gpt-5-2:
     issued:
       date-parts:
       - - 2025
-    title: OpenAI, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Introducing GPT-5.2
+    container-title: OpenAI
+    abstract: GPT-5.2 is our most advanced frontier model for everyday professional work, with 
+      state-of-the-art reasoning, long-context understanding, coding, and vision. Use it in ChatGPT 
+      and the OpenAI API to power faster, more reliable agentic workflows.
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2025
 https://openai.com/index/introducing-o3-and-o4-mini:
@@ -30248,9 +30582,10 @@ https://openai.com/index/introducing-o3-and-o4-mini:
     issued:
       date-parts:
       - - 2025
-    title: OpenAI, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Introducing OpenAI o3 and o4-mini
+    container-title: OpenAI
+    abstract: Our smartest and most capable models to date with full tool access
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2025
 https://openai.com/index/learning-from-human-preferences:
@@ -30263,9 +30598,14 @@ https://openai.com/index/learning-from-human-preferences:
     issued:
       date-parts:
       - - 2017
-    title: OpenAI, 2017
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Learning from human preferences
+    container-title: OpenAI
+    abstract: One step towards building safe AI systems is to remove the need for humans to write 
+      goal functions, since using a simple proxy for a complex goal, or getting the complex goal a 
+      bit wrong, can lead to undesirable and even dangerous behavior. In collaboration with 
+      DeepMind’s safety team, we’ve developed an algorithm which can infer what humans want by being
+      told which of two proposed behaviors is better.
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2017
 https://openai.com/index/openai-o1-system-card:
@@ -30278,9 +30618,12 @@ https://openai.com/index/openai-o1-system-card:
     issued:
       date-parts:
       - - 2024
-    title: OpenAI, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: OpenAI o1 System Card
+    container-title: OpenAI
+    abstract: This report outlines the safety work carried out prior to releasing OpenAI o1 and 
+      o1-mini, including external red teaming and frontier risk evaluations according to our 
+      Preparedness Framework.
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2024
 https://openai.com/index/openai-safety-update:
@@ -30293,9 +30636,11 @@ https://openai.com/index/openai-safety-update:
     issued:
       date-parts:
       - - 2024
-    title: OpenAI, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: OpenAI safety practices
+    container-title: OpenAI
+    abstract: Artificial general intelligence has the potential to benefit nearly every aspect of 
+      our lives—so it must be developed and deployed responsibly.
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2024
 https://openai.com/index/our-approach-to-alignment-research:
@@ -30308,9 +30653,12 @@ https://openai.com/index/our-approach-to-alignment-research:
     issued:
       date-parts:
       - - 2022
-    title: OpenAI, 2022
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Our approach to alignment research
+    container-title: OpenAI
+    abstract: We are improving our AI systems’ ability to learn from human feedback and to assist 
+      humans at evaluating AI. Our goal is to build a sufficiently aligned AI system that can help 
+      us solve all other alignment problems.
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2022
 https://openai.com/index/sora-2:
@@ -30323,9 +30671,11 @@ https://openai.com/index/sora-2:
     issued:
       date-parts:
       - - 2025
-    title: OpenAI, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Sora 2 is here
+    container-title: OpenAI
+    abstract: This post introduced Sora 2, a video generation model with synchronized dialogue and 
+      sound effects. The Sora product is no longer available.
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2025
 https://openai.com/o1:
@@ -30338,9 +30688,11 @@ https://openai.com/o1:
     issued:
       date-parts:
       - - 2024
-    title: OpenAI, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Introducing OpenAI o1
+    container-title: OpenAI
+    abstract: We’ve developed a new series of AI models designed to spend more time thinking before 
+      they respond. Here is the latest news on o1 research, product and other updates.
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2024
 https://openai.com/research/attacking-machine-learning-with-adversarial-examples:
@@ -30368,9 +30720,13 @@ https://openai.com/research/instruction-following:
     issued:
       date-parts:
       - - 2022
-    title: OpenAI, 2022
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Aligning language models to follow instructions
+    container-title: OpenAI
+    abstract: We’ve trained language models that are much better at following user intentions than 
+      GPT-3 while also making them more truthful and less toxic, using techniques developed through 
+      our alignment research. These InstructGPT models, which are trained with humans in the loop, 
+      are now deployed as the default language models on our API.
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2022
 https://openai.com/research/learning-montezumas-revenge-from-a-single-demonstration:
@@ -30413,9 +30769,11 @@ https://openai.com/safety/preparedness:
     issued:
       date-parts:
       - - 2023
-    title: OpenAI, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Safety & responsibility
+    container-title: OpenAI
+    abstract: OpenAI’s approach to AI safety, security, and responsible deployment. Learn how we 
+      research, test, and build safer AI systems for everyone.
+  resolvedBy: opengraph
   anchors:
   - OpenAI, 2023
 https://openphilanthropy.org/research/some-background-on-our-views-regarding-advanced-artificial-intelligence:
@@ -30430,9 +30788,13 @@ https://openphilanthropy.org/research/some-background-on-our-views-regarding-adv
     issued:
       date-parts:
       - - 2016
-    title: Karnofsky, 2016
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Some Background on Our Views Regarding Advanced Artificial Intelligence
+    container-title: Coefficient Giving
+    abstract: 'We’re planning to make potential risks from advanced artificial intelligence a major priority
+      in 2016. A future post will discuss why; this post gives some background. Summary: I first give
+      our definition of “transformative artificial intelligence,” our term for a type of potential advanced
+      artificial intelligence we find particularly relevant for our purposes. Roughly and […]'
+  resolvedBy: opengraph
   anchors:
   - Karnofsky, 2016
 https://openphilanthropy.org/research/what-a-compute-centric-framework-says-about-takeoff-speeds:
@@ -30447,9 +30809,13 @@ https://openphilanthropy.org/research/what-a-compute-centric-framework-says-abou
     issued:
       date-parts:
       - - 2024
-    title: Davidson, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: What a Compute-Centric Framework Says About Takeoff Speeds
+    container-title: Coefficient Giving
+    abstract: 'Editor’s note: This article was published under our former name, Open Philanthropy. Some
+      content may be outdated. You can see our latest writing here. This is Part 0 of a four-part report
+      — see links to Part 1. Part 2. Part 3, and a folder with more materials. Abstract In the next few
+      decades we may […]'
+  resolvedBy: opengraph
   anchors:
   - Davidson, 2024
 https://openreview.net/forum?id=oycEeFXX74:
@@ -30842,19 +31208,30 @@ https://planned-obsolescence.org/the-training-game:
 https://pmc.ncbi.nlm.nih.gov/articles/PMC2840845:
   item:
     id: https://pmc.ncbi.nlm.nih.gov/articles/PMC2840845
-    type: webpage
+    type: article-journal
     URL: https://pmc.ncbi.nlm.nih.gov/articles/PMC2840845
     author:
-    - literal: Cima et al
+    - family: Cima
+      given: Maaike
+    - family: Tonnaer
+      given: Franca
+    - family: Hauser
+      given: Marc D.
     issued:
       date-parts:
       - - 2010
+        - 1
+        - 6
     title: Psychopaths know right from wrong but don’t care
-    container-title: PubMed Central (PMC)
+    container-title: Social Cognitive and Affective Neuroscience
     abstract: Adult psychopaths have deficits in emotional processing and inhibitory control, engage
       in morally inappropriate behavior, and generally fail to distinguish moral from conventional 
       violations. These observations, together with a dominant tradition in ...
-  resolvedBy: opengraph
+    DOI: 10.1093/scan/nsp051
+    volume: '5'
+    page: '59'
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Cima et al, 2010
 https://pnas.org/content/118/45/e2105646118:
@@ -30958,167 +31335,371 @@ https://psycnet.apa.org/record/2014-48585-000:
 https://pubmed.ncbi.nlm.nih.gov/13233369:
   item:
     id: https://pubmed.ncbi.nlm.nih.gov/13233369
-    type: webpage
+    type: article-journal
     URL: https://pubmed.ncbi.nlm.nih.gov/13233369
     author:
-    - literal: Olds & Milner
+    - family: Olds
+      given: James
+    - family: Milner
+      given: Peter
     issued:
       date-parts:
       - - 1954
-    title: pubmed.ncbi.nlm.nih.gov
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
+    title: Positive reinforcement produced by electrical stimulation of septal area and other 
+      regions of rat brain.
+    DOI: 10.1037/h0058775
+    container-title: Journal of Comparative and Physiological Psychology
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Olds & Milner, 1954
 https://pubmed.ncbi.nlm.nih.gov/20010582:
   item:
     id: https://pubmed.ncbi.nlm.nih.gov/20010582
-    type: webpage
+    type: article-journal
     URL: https://pubmed.ncbi.nlm.nih.gov/20010582
     author:
-    - literal: Carlson
+    - family: Carlson
+      given: Robert
     issued:
       date-parts:
       - - 2009
-    title: Checking your browser - reCAPTCHA
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
+        - 12
+    title: The changing economics of DNA synthesis
+    DOI: 10.1038/nbt1209-1091
+    container-title: Nature Biotechnology
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Carlson, 2009
 https://pubmed.ncbi.nlm.nih.gov/22723358:
   item:
     id: https://pubmed.ncbi.nlm.nih.gov/22723358
-    type: webpage
+    type: article-journal
     URL: https://pubmed.ncbi.nlm.nih.gov/22723358
     author:
-    - literal: Houzel
+    - family: Herculano-Houzel
+      given: Suzana
     issued:
       date-parts:
       - - 2012
-    title: pubmed.ncbi.nlm.nih.gov
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
+        - 6
+        - 22
+    title: The remarkable, yet not extraordinary, human brain as a scaled-up primate brain and its 
+      associated cost
+    DOI: 10.1073/pnas.1201895109
+    container-title: Proceedings of the National Academy of Sciences
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Houzel, 2012
 https://pubmed.ncbi.nlm.nih.gov/33563125:
   item:
     id: https://pubmed.ncbi.nlm.nih.gov/33563125
-    type: webpage
+    type: article-journal
     URL: https://pubmed.ncbi.nlm.nih.gov/33563125
     author:
-    - literal: Charvet
+    - family: Charvet
+      given: Christine J.
     issued:
       date-parts:
       - - 2021
-    title: Checking your browser - reCAPTCHA
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
+        - 2
+        - 10
+    title: Cutting across structural and transcriptomic scales translates time across the lifespan 
+      in humans and chimpanzees
+    DOI: 10.1098/rspb.2020.2987
+    container-title: 'Proceedings of the Royal Society B: Biological Sciences'
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Charvet, 2021
 https://pubmed.ncbi.nlm.nih.gov/34265844:
   item:
     id: https://pubmed.ncbi.nlm.nih.gov/34265844
-    type: webpage
+    type: article-journal
     URL: https://pubmed.ncbi.nlm.nih.gov/34265844
     author:
-    - literal: Jumper et al.
+    - family: Jumper
+      given: John
+    - family: Evans
+      given: Richard
+    - family: Pritzel
+      given: Alexander
+    - family: Green
+      given: Tim
+    - family: Figurnov
+      given: Michael
+    - family: Ronneberger
+      given: Olaf
+    - family: Tunyasuvunakool
+      given: Kathryn
+    - family: Bates
+      given: Russ
+    - family: Žídek
+      given: Augustin
+    - family: Potapenko
+      given: Anna
+    - family: Bridgland
+      given: Alex
+    - family: Meyer
+      given: Clemens
+    - family: Kohl
+      given: Simon A. A.
+    - family: Ballard
+      given: Andrew J.
+    - family: Cowie
+      given: Andrew
+    - family: Romera-Paredes
+      given: Bernardino
+    - family: Nikolov
+      given: Stanislav
+    - family: Jain
+      given: Rishub
+    - family: Adler
+      given: Jonas
+    - family: Back
+      given: Trevor
+    - family: Petersen
+      given: Stig
+    - family: Reiman
+      given: David
+    - family: Clancy
+      given: Ellen
+    - family: Zielinski
+      given: Michal
+    - family: Steinegger
+      given: Martin
+    - family: Pacholska
+      given: Michalina
+    - family: Berghammer
+      given: Tamas
+    - family: Bodenstein
+      given: Sebastian
+    - family: Silver
+      given: David
+    - family: Vinyals
+      given: Oriol
+    - family: Senior
+      given: Andrew W.
+    - family: Kavukcuoglu
+      given: Koray
+    - family: Kohli
+      given: Pushmeet
+    - family: Hassabis
+      given: Demis
     issued:
       date-parts:
       - - 2021
-    title: pubmed.ncbi.nlm.nih.gov
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
+        - 7
+        - 15
+    title: Highly accurate protein structure prediction with AlphaFold
+    DOI: 10.1038/s41586-021-03819-2
+    container-title: Nature
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Jumper et al., 2021
 https://pubmed.ncbi.nlm.nih.gov/36211133:
   item:
     id: https://pubmed.ncbi.nlm.nih.gov/36211133
-    type: webpage
+    type: article-journal
     URL: https://pubmed.ncbi.nlm.nih.gov/36211133
     author:
-    - literal: Urbina et al.
+    - family: Urbina
+      given: Fabio
+    - family: Lentzos
+      given: Filippa
+    - family: Invernizzi
+      given: Cédric
+    - family: Ekins
+      given: Sean
     issued:
       date-parts:
       - - 2022
-    title: Checking your browser - reCAPTCHA
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
+        - 3
+        - 7
+    title: Dual use of artificial-intelligence-powered drug discovery
+    DOI: 10.1038/s42256-022-00465-9
+    container-title: Nature Machine Intelligence
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Urbina et al., 2022
 https://pubmed.ncbi.nlm.nih.gov/36413172:
   item:
     id: https://pubmed.ncbi.nlm.nih.gov/36413172
-    type: webpage
+    type: article-journal
     URL: https://pubmed.ncbi.nlm.nih.gov/36413172
     author:
-    - literal: Meta
+    - literal: Meta Fundamental AI Research Diplomacy Team (FAIR)†
+    - family: Bakhtin
+      given: Anton
+    - family: Brown
+      given: Noam
+    - family: Dinan
+      given: Emily
+    - family: Farina
+      given: Gabriele
+    - family: Flaherty
+      given: Colin
+    - family: Fried
+      given: Daniel
+    - family: Goff
+      given: Andrew
+    - family: Gray
+      given: Jonathan
+    - family: Hu
+      given: Hengyuan
+    - family: Jacob
+      given: Athul Paul
+    - family: Komeili
+      given: Mojtaba
+    - family: Konath
+      given: Karthik
+    - family: Kwon
+      given: Minae
+    - family: Lerer
+      given: Adam
+    - family: Lewis
+      given: Mike
+    - family: Miller
+      given: Alexander H.
+    - family: Mitts
+      given: Sasha
+    - family: Renduchintala
+      given: Adithya
+    - family: Roller
+      given: Stephen
+    - family: Rowe
+      given: Dirk
+    - family: Shi
+      given: Weiyan
+    - family: Spisak
+      given: Joe
+    - family: Wei
+      given: Alexander
+    - family: Wu
+      given: David
+    - family: Zhang
+      given: Hugh
+    - family: Zijlstra
+      given: Markus
     issued:
       date-parts:
       - - 2022
-    title: Checking your browser - reCAPTCHA
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
+        - 12
+        - 9
+    title: "Human-level play in the game of\n                    <i>Diplomacy</i>\n                  \
+      \  by combining language models with strategic reasoning"
+    DOI: 10.1126/science.ade9097
+    container-title: Science
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - META, 2022
   - Meta, 2022
 https://pubmed.ncbi.nlm.nih.gov/36789740:
   item:
     id: https://pubmed.ncbi.nlm.nih.gov/36789740
-    type: webpage
+    type: article-journal
     URL: https://pubmed.ncbi.nlm.nih.gov/36789740
     author:
-    - literal: Pearson et al.
+    - family: Pearson
+      given: Alannah
+    - family: Bruner
+      given: Emiliano
+    - family: Polly
+      given: P. David
     issued:
       date-parts:
       - - 2023
-    title: pubmed.ncbi.nlm.nih.gov
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
+        - 2
+        - 15
+    title: Updated imaging and phylogenetic comparative methods reassess relative temporal lobe size
+      in anthropoids and modern humans
+    DOI: 10.1002/ajpa.24712
+    container-title: American Journal of Biological Anthropology
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Pearson et al., 2023
 https://pubmed.ncbi.nlm.nih.gov/37160371:
   item:
     id: https://pubmed.ncbi.nlm.nih.gov/37160371
-    type: webpage
+    type: article-journal
     URL: https://pubmed.ncbi.nlm.nih.gov/37160371
     author:
-    - literal: Federspiel et al.
+    - family: Federspiel
+      given: Frederik
+    - family: Mitchell
+      given: Ruth
+    - family: Asokan
+      given: Asha
+    - family: Umana
+      given: Carlos
+    - family: McCoy
+      given: David
     issued:
       date-parts:
       - - 2023
-    title: Checking your browser - reCAPTCHA
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
+        - 5
+    title: Threats by artificial intelligence to human health and human existence
+    DOI: 10.1136/bmjgh-2022-010435
+    container-title: BMJ Global Health
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Federspiel et al., 2023
 https://pubmed.ncbi.nlm.nih.gov/39572723:
   item:
     id: https://pubmed.ncbi.nlm.nih.gov/39572723
-    type: webpage
+    type: article-journal
     URL: https://pubmed.ncbi.nlm.nih.gov/39572723
     author:
-    - literal: Pannu et al.
+    - family: Pannu
+      given: Jaspreet
+    - family: Gebauer
+      given: Sarah
+    - family: McKelvey Jr
+      given: Greg
+    - family: Cicero
+      given: Anita
+    - family: Inglesby
+      given: Tom
     issued:
       date-parts:
       - - 2024
-    title: pubmed.ncbi.nlm.nih.gov
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
+        - 11
+        - 21
+    title: AI could pose pandemic-scale biosecurity risks. Here’s how to make it safer
+    DOI: 10.1038/d41586-024-03815-2
+    container-title: Nature
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Pannu et al., 2024
 https://pubmed.ncbi.nlm.nih.gov/6770964:
   item:
     id: https://pubmed.ncbi.nlm.nih.gov/6770964
-    type: webpage
+    type: article-journal
     URL: https://pubmed.ncbi.nlm.nih.gov/6770964
     author:
-    - literal: Rolls et al.
+    - family: Rolls
+      given: E.T.
+    - family: Burton
+      given: M.J.
+    - family: Mora
+      given: F.
     issued:
       date-parts:
       - - 1980
-    title: Checking your browser - reCAPTCHA
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
+        - 8
+    title: Neurophysiological analysis of brain-stimulation reward in the monkey
+    DOI: 10.1016/0006-8993(80)91216-0
+    container-title: Brain Research
+    note: Resolved via publisher metadata and Crossref.
+  resolvedBy: scholar-meta
   anchors:
   - Rolls et al., 1980
 https://rand.org/content/dam/rand/pubs/research_reports/RRA2800/RRA2849-1/RAND_RRA2849-1.pdf:
@@ -31658,9 +32239,10 @@ https://sk.sagepub.com/ency/edvol/intlpoliticalscience/chpt/stages-model-policy-
     issued:
       date-parts:
       - - 2011
-    title: Badie et al., 2011
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Sage Reference - International Encyclopedia of Political Science - Stages Model of Policy
+      Making
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
   - Badie et al., 2011
 https://sl4.org/archive/0207/4935.html:
@@ -32745,9 +33327,9 @@ https://youtube.com/playlist?list=PLOAFgXcJkZ2wFf3mcJ0xIFpJQgEDI274J:
     issued:
       date-parts:
       - - 2024
-    title: Oxford Union Debate, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Bevor Sie zu YouTube weitergehen
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
   - Oxford Union Debate, 2024
 https://yudkowsky.net/singularity/aibox:
