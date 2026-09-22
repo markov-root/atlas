@@ -85,3 +85,5 @@ in total, each with options, a recommendation, and what is irreversible if decid
   The atlas citations CLI: extract, report and export (todo — child of 0021; banks B5-B7; depends on 0025; delivers the edition-2 authors' report and the whole-book export file).
 - [task:0027](./0027-metadata-resolvers-and-incremental-citation-resolution.md) —
   Metadata resolvers and incremental citation resolution (todo — child of 0021; banks B8-B9; depends on 0025; four independent resolvers, the most parallelizable unit).
+- [task:0028](./0028-write-resolved-citations-back-into-the-research-database.md) —
+  Write resolved citations back into the research database (todo — child of 0021; turns the corpus from a lookup table into a write-back cache; 548 of 948 sources immediately acquirable, D1 decides scope).
