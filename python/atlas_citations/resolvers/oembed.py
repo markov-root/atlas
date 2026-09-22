@@ -23,6 +23,8 @@ TIMEOUT_S = 30.0
 
 class OembedResolver:
     name = "oembed"
+    #: Claims only canonical YouTube watch URLs.
+    selective = True
 
     def claims(self, canonical_url: str) -> bool:
         # Canonicalization (task:0025) has already folded youtu.be and mobile

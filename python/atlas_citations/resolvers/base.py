@@ -72,6 +72,18 @@ class Resolver(Protocol):
     #: Stable identifier, e.g. ``arxiv``. Written into the store as ``resolvedBy``.
     name: str
 
+    #: Whether this resolver claims a *recognisable subset* of URLs.
+    #:
+    #: ``arxiv``, ``crossref``, ``oembed`` and ``scholar-meta`` are selective:
+    #: they answer only for hosts or URL shapes they know, so "this resolver
+    #: claims the URL" is real evidence that it has something specific to say.
+    #: ``research-db`` and ``opengraph`` claim *every* HTTP URL — one because a
+    #: local lookup is free, the other because it is the last-resort fallback —
+    #: so their claim carries no such information.
+    #:
+    #: Only ``--redo`` uses this, and it needs it: see ``unresolved_keys``.
+    selective: bool
+
     def claims(self, canonical_url: str) -> bool:
         """Whether this resolver handles the URL at all.
 

@@ -242,6 +242,39 @@ edition-2 authors were actually given.
 
 Same shape as F8, found the same way: a claim in prose that no test asked about.
 
+### F10 — `--redo` re-fetched everything, because a universal claim counted as evidence
+
+**Severity:** medium · **Evidence:** measured · **Found:** 2026-09-22
+
+`atlas citations resolve --redo=<resolver>` exists so that adding a better resolver can be given a
+turn at entries a weaker one already answered. Its filter asks "would some _other_ resolver claim
+this URL?", and `resolve.ts` excluded `opengraph` by name from that question.
+
+It did not exclude `research-db`, whose `claims()` returns true for **every** HTTP URL — deliberately,
+because a local lookup is free. So the question answered yes for everything, and `--redo=opengraph`
+targeted **all 380** Open Graph entries rather than the publisher pages `scholar-meta` was written
+for. The file's own comment promised the opposite: "retries only the pages that resolver can actually
+help with, instead of re-fetching hundreds of blog posts that Open Graph already handled correctly."
+
+Measured on the committed store: 539 targets under the old filter, **191 under the corrected one**
+(159 never-resolved, plus 32 that a selective resolver genuinely claims — 20 publisher pages and 12
+arXiv papers that had fallen through to Open Graph). At the polite 3-second interval that is roughly
+27 minutes against 10, over other people's free infrastructure.
+
+This is the likely reason the first `--redo=opengraph` run was killed by a timeout rather than
+finishing.
+
+**Disposition:** fixed in `python/atlas_citations/resolvers/base.py` and `commands/resolve.py`.
+Resolvers now declare `selective`, and only selective ones count as evidence that a redo is
+worthwhile. Four tests pin it, including one asserting that the unselective resolvers really do claim
+everything — the property the flag records, rather than a restatement of the flag.
+
+Third finding in this cluster, all found by writing a test for a claim made in prose (see F8, F9).
+The pattern is worth naming: **this codebase's comments are unusually detailed, and that made them
+unusually load-bearing.** A detailed comment reads as specification, so a reviewer checks the code
+against it and stops. Where a comment states a property, the test that would fail if it were false is
+cheap and is the only thing that keeps the comment honest.
+
 ## Recommendations
 
 1. **Close F1 before `task:0021` adds `cli/` code.** Declaring `@types/node` and getting `cli/` into

@@ -88,6 +88,8 @@ def _collapse(text: str) -> str:
 
 class ArxivResolver:
     name = "arxiv"
+    #: Claims only canonical ``/abs/`` URLs.
+    selective = True
 
     def claims(self, canonical_url: str) -> bool:
         return arxiv_id_from_url(canonical_url) is not None

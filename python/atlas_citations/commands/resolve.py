@@ -45,10 +45,11 @@ def unresolved_keys(
 ) -> list[str]:
     """Entries to attempt: anchor-only, plus any whose resolver is being redone.
 
-    ``redo`` also filters by whether a resolver would now *claim* the URL, so
-    ``--redo=opengraph`` after adding a publisher resolver retries only the pages
-    that resolver can actually help with, instead of re-fetching hundreds of blog
-    posts Open Graph already handled correctly.
+    ``redo`` also filters by ``claimed_by``, so ``--redo=opengraph`` after adding
+    a publisher resolver retries only the pages that resolver can actually help
+    with, instead of re-fetching hundreds of blog posts Open Graph already
+    handled correctly. The caller supplies the predicate; see
+    :func:`citations_resolve` for the one that makes that promise true.
     """
     redo = redo or []
     out = []
@@ -106,14 +107,21 @@ def citations_resolve(root: Path, opts: ResolveOptions | None = None) -> int:
         return 1
     store = read_store(root)
 
-    # A redo only targets entries some *other* resolver would now claim — the
-    # point is to give newly-added coverage a turn, not to re-fetch the world.
+    # A redo only targets entries a more *specific* resolver would now claim —
+    # the point is to give newly-added coverage a turn, not to re-fetch the
+    # world.
+    #
+    # `selective` is what makes that true, and it is not a detail. `research-db`
+    # and `opengraph` both claim every HTTP URL, so a plain "does any other
+    # resolver claim this?" test answers yes for everything and `--redo` degrades
+    # into "re-fetch all of it". That is exactly what the TypeScript version did:
+    # it excluded `opengraph` by name but not `research-db`, so a redo of 380
+    # Open Graph entries targeted all 380 rather than the 43 publisher pages it
+    # was added for. See `audit:0011` F10.
     redo = opts.redo or []
 
     def claimed_by_newer(url: str) -> bool:
-        return any(
-            r.name not in redo and r.name != "opengraph" and r.claims(url) for r in ALL_RESOLVERS
-        )
+        return any(r.selective and r.name not in redo and r.claims(url) for r in ALL_RESOLVERS)
 
     pending = unresolved_keys(store, redo, claimed_by_newer if redo else None)
     if not pending:

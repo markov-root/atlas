@@ -146,6 +146,8 @@ def _with_www(url: str) -> str | None:
 
 class ResearchDbResolver:
     name = "research-db"
+    #: Claims every HTTP URL — a free local lookup, not a signal of coverage.
+    selective = False
 
     def claims(self, canonical_url: str) -> bool:
         # Broadly true by design: the corpus spans many domains, so almost any

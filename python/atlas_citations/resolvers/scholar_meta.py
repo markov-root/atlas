@@ -205,6 +205,8 @@ def _doi_from_pubmed(url: str, ctx: ResolverContext) -> str | None:
 
 class ScholarMetaResolver:
     name = "scholar-meta"
+    #: Claims only the explicit academic-publisher host list.
+    selective = True
 
     def claims(self, canonical_url: str) -> bool:
         host = host_of(canonical_url)

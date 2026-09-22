@@ -70,6 +70,8 @@ def title_tag(soup) -> str | None:
 
 class OpengraphResolver:
     name = "opengraph"
+    #: Claims every HTTP URL — it is the last-resort fallback.
+    selective = False
 
     def claims(self, canonical_url: str) -> bool:
         return canonical_url.startswith(("http://", "https://"))

@@ -83,6 +83,8 @@ def _map_issued(value: Any) -> dict[str, Any] | None:
 
 class CrossrefResolver:
     name = "crossref"
+    #: Claims only ``doi.org`` URLs.
+    selective = True
 
     def claims(self, canonical_url: str) -> bool:
         return canonical_url.startswith("https://doi.org/")

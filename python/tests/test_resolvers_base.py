@@ -19,6 +19,8 @@ from .helpers import make_ctx
 
 
 class Stub:
+    selective = True
+
     def __init__(self, name: str, claims: bool, result: ResolveResult | None) -> None:
         self.name = name
         self._claims = claims
@@ -35,6 +37,7 @@ class Stub:
 
 class Exploding:
     name = "research-db"
+    selective = False
 
     def claims(self, url: str) -> bool:
         return True
@@ -128,3 +131,41 @@ class TestThrottle:
         for _ in range(5):
             throttle()
         assert time.monotonic() - start < 0.05
+
+
+class TestSelectivity:
+    """``--redo`` depends on this, and gets it wrong without it. ``audit:0011`` F10."""
+
+    def test_the_broad_resolvers_declare_themselves_unselective(self) -> None:
+        from atlas_citations.resolvers import ALL_RESOLVERS
+
+        by_name = {r.name: r for r in ALL_RESOLVERS}
+        assert by_name["research-db"].selective is False
+        assert by_name["opengraph"].selective is False
+
+    def test_the_targeted_resolvers_declare_themselves_selective(self) -> None:
+        from atlas_citations.resolvers import ALL_RESOLVERS
+
+        by_name = {r.name: r for r in ALL_RESOLVERS}
+        for name in ("arxiv", "crossref", "oembed", "scholar-meta"):
+            assert by_name[name].selective is True, name
+
+    def test_an_unselective_resolver_really_does_claim_everything(self) -> None:
+        """The property the flag exists to record — asserted, not assumed."""
+        from atlas_citations.resolvers import ALL_RESOLVERS
+
+        urls = [
+            "https://lesswrong.com/posts/x",
+            "https://some-random-blog.example/post",
+            "https://nature.com/articles/x",
+        ]
+        for resolver in ALL_RESOLVERS:
+            if not resolver.selective:
+                assert all(resolver.claims(u) for u in urls), resolver.name
+
+    def test_a_selective_resolver_declines_an_unrelated_url(self) -> None:
+        from atlas_citations.resolvers import ALL_RESOLVERS
+
+        for resolver in ALL_RESOLVERS:
+            if resolver.selective:
+                assert not resolver.claims("https://some-random-blog.example/post"), resolver.name
