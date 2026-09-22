@@ -7,15 +7,19 @@ This file is the agent-facing entry point. Project-facing docs live under `docs/
 - Use `pnpm` (not npm or yarn)
 - `pnpm dev` — Start dev server (pass `--host 0.0.0.0` to bind beyond loopback)
 - `pnpm build` — Build for production
-- `pnpm test` — Unit + integration tests (~7s)
+- `pnpm test` — TypeScript unit + integration tests (~10s)
+- `pnpm test:py` — Python unit tests, the citation half (`uv run pytest`, ~11s)
 - `pnpm test:smoke` — End-to-end build smoke test (~33s)
-- `pnpm typecheck` — `astro check`
+- `pnpm typecheck` — `astro check` + `tsc -p cli/tsconfig.json`
 - `pnpm lint` — ESLint (warnings tolerated; errors fail)
+- `pnpm lint:py` — `ruff check` + `ruff format --check` over `python/`
 - `pnpm lint:actions` — Validate `.github/workflows/*.yml`
-- `pnpm check` — Fast pre-commit gate: typecheck + test (~10s)
-- `pnpm verify` — Full pre-push gate: lint + lint:actions + typecheck + test + build + test:smoke (~80s)
+- `pnpm check` — Fast pre-commit gate: typecheck + both test suites (~25s)
+- `pnpm verify` — Full pre-push gate: both linters + typecheck + both test suites + docs:check + build + smoke + a11y (~100s)
 
 The `pnpm verify` chain is enforced automatically as a `pre-push` git hook (`.githooks/pre-push`, activated by `pnpm install`'s `prepare` script). Use `git push --no-verify` only when fixing a genuine emergency.
+
+**The project is two languages since `task:0029`.** The site and the document pipeline are TypeScript; the citation resolvers, CSL store and bibliography exports are Python under `python/atlas_citations/`, run through `uv`. The boundary is `data/citations/citations.json`, written by `atlas citations scan`. Nothing in the site build needs Python — only `pnpm verify` and the `atlas citations` verbs do. Run `uv sync` once.
 
 ## Where to look
 

@@ -13,6 +13,17 @@ pnpm dev
 
 That's it. No `.env` file is needed for a contributor build. You should get a working dev server with the full textbook prose served from the committed `.cache/docs/` snapshot. Figures show captions but not images (intentional — see [ARCHITECTURE.md](./docs/ARCHITECTURE.md)).
 
+### If you are touching the bibliography
+
+The citation pipeline spans two languages ([`task:0029`](./docs/tasks/)): TypeScript extracts citations from the document AST, and Python owns the resolvers, the CSL store and every export. **Nothing about the site build needs Python** — `pnpm dev`, `pnpm build` and `pnpm test` are unaffected. You only need it to run `pnpm verify`, or any `atlas citations` command.
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh   # if you don't have uv
+uv sync                                            # installs the Python half
+```
+
+`uv` resolves the locked dependencies itself, so there is no virtualenv to activate.
+
 If `pnpm dev` doesn't bind to an address you can reach (it defaults to `127.0.0.1`), pass `--host` explicitly:
 
 ```bash
@@ -40,9 +51,9 @@ The build prints which mode it resolved at startup:
 
 Every chapter ships word-level timings (`public/audio/ch{N}/*.words.json`) so the narration can highlight the text as it plays. The MP3s are not committed -- they are large and reproducible -- so a page plays whichever source the build has:
 
-| Source | Where it comes from                                                            | Seeking |
-| ------ | ------------------------------------------------------------------------------- | ------- |
-| `cbr`  | Staged locally by `scripts/copy-chapter-audio.sh`. Preferred.                    | Exact -- constant bitrate |
+| Source | Where it comes from                                                                                                            | Seeking                                                                         |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- |
+| `cbr`  | Staged locally by `scripts/copy-chapter-audio.sh`. Preferred.                                                                  | Exact -- constant bitrate                                                       |
 | `cdn`  | The published file: `section.audioLink` in a build with credentials, otherwise the URL pinned in `src/data/chapter-timing.ts`. | Approximate -- the published file is variable bitrate, and browsers interpolate |
 
 So a plain clone still gets the read-along, streamed from the published audio; staging the local files is only needed for exact seeking, which is what work on click-a-word-to-seek wants. Sections with neither source render no player at all.
@@ -79,6 +90,7 @@ For a tour of the code, see [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md). In
 - `src/content.config.ts` — Astro content collection entry point
 - `src/textbook-loader/` — the Google Docs → AST → renderers pipeline
 - `src/components/nodes/` — one Astro component per AST node type
+- `python/atlas_citations/` — citation resolvers, the CSL store, BibTeX export
 
 ## Where to make changes
 
@@ -90,7 +102,8 @@ Most likely contribution areas:
 | Textbook rendering    | Per-node-type components               | `src/components/nodes/`                                           |
 | Reader UX             | Section navigation, audio player, etc. | `src/lib/reader.ts`, `src/lib/audio-player.ts`, `src/components/` |
 | Build pipeline        | Loader, transformer, renderers         | `src/textbook-loader/`                                            |
-| Tests                 | All test layers                        | `src/**/*.test.ts`, `tests/smoke/`                                |
+| Bibliography          | Resolvers, CSL store, BibTeX export    | `python/atlas_citations/`                                         |
+| Tests                 | All test layers                        | `src/**/*.test.ts`, `tests/smoke/`, `python/tests/`               |
 
 Editorial changes (chapter prose) happen in the Google Docs themselves, not in this repo. Contributors don't have access to the source docs by design; the workflow is "build a feature that improves how the textbook is rendered, not what it says."
 
@@ -111,13 +124,14 @@ If you want to translate the Atlas into another language, see [`TRANSLATING.md`]
 4. **Use `pnpm check` for fast feedback during iteration:**
 
    ```bash
-   pnpm check           # typecheck + 45 unit/integration tests, ~10s
+   pnpm check           # typecheck + the TypeScript and Python unit suites, ~25s
    ```
 
 5. **`pnpm verify` is the full pre-push gate** (runs automatically via the `pre-push` git hook on every `git push`):
 
    ```bash
-   pnpm verify          # lint + lint:actions + typecheck + test + build + test:smoke, ~80s
+   pnpm verify          # lint (TS + Python) + lint:actions + typecheck + both test suites
+                        # + docs:check + build + test:smoke + test:a11y, ~100s
    ```
 
    If the hook blocks your push, fix the failure instead of bypassing with `--no-verify`. The hook runs the same chain CI runs on the PR — passing locally means passing in CI.

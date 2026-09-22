@@ -1,0 +1,37 @@
+[project]
+name = "atlas-citations"
+version = "0.1.0"
+description = "Citation resolution and bibliography generation for the AI Safety Atlas"
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.12",
+    "bibtexparser>=2.0.0b7",
+    "feedparser>=6.0",
+    "httpx>=0.27",
+    "lxml>=5.0",
+    "ruamel.yaml>=0.18",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["python/atlas_citations"]
+
+[tool.pytest.ini_options]
+testpaths = ["python/tests"]
+pythonpath = ["python"]
+# No test may make a live network request. Resolvers take an injected HTTP
+# client precisely so the suite runs offline; see resolvers/base.py.
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+src = ["python"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]

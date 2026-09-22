@@ -77,3 +77,15 @@ data/citations/bibliography.bib
 data/citations/bibliography.json
 data/citations/citation-report.md
 data/citations/chapters/
+
+# The TypeScript→Python handoff file (task:0029 D1). Derived from the committed
+# document cache by `atlas citations scan`, which runs automatically before the
+# verbs that need it, so it is an intermediate rather than an artifact.
+data/citations/citations.json
+
+# Python toolchain
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/

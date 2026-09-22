@@ -11,6 +11,8 @@
     "test:watch": "vitest",
     "test:smoke": "vitest run --dir tests/smoke",
     "test:a11y": "vitest run --dir tests/a11y",
+    "test:py": "uv run pytest",
+    "lint:py": "uv run ruff check python/ && uv run ruff format --check python/",
     "typecheck": "NODE_OPTIONS=--max-old-space-size=3584 astro check && pnpm typecheck:cli",
     "typecheck:cli": "tsc -p cli/tsconfig.json",
     "lint": "eslint .",
@@ -18,8 +20,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "docs:check": "tsx cli/index.ts docs check",
-    "check": "pnpm typecheck && pnpm test",
-    "verify": "pnpm lint && pnpm lint:actions && pnpm typecheck && pnpm test && pnpm docs:check && pnpm build && pnpm test:smoke && pnpm test:a11y",
+    "check": "pnpm typecheck && pnpm test && pnpm test:py",
+    "verify": "pnpm lint && pnpm lint:py && pnpm lint:actions && pnpm typecheck && pnpm test && pnpm test:py && pnpm docs:check && pnpm build && pnpm test:smoke && pnpm test:a11y",
     "prepare": "git config --local core.hooksPath .githooks || true"
   },
   "dependencies": {

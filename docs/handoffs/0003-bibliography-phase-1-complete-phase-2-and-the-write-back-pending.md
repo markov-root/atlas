@@ -58,7 +58,8 @@ Five commands work end to end:
 
 | Command                   | Does                                          | Network |
 | ------------------------- | --------------------------------------------- | ------- |
-| `atlas citations extract` | AST → CSL store (948 sources)                 | none    |
+| `atlas citations scan`    | AST → `citations.json` (the language boundary) | none    |
+| `atlas citations extract` | `citations.json` → CSL store (948 sources)    | none    |
 | `atlas citations report`  | what needs human attention, as a durable file | none    |
 | `atlas citations export`  | BibTeX + CSL-JSON                             | none    |
 | `atlas citations resolve` | fill metadata, incremental and resumable      | yes     |
@@ -67,8 +68,8 @@ Five commands work end to end:
 Over the committed corpus: **1,722 citations, 948 unique sources, 76 cited with inconsistent
 spellings, 47 links whose anchor text is prose rather than author-year.**
 
-Gate at handoff: lint 0 errors, typecheck 0 errors over 152 files, **354 tests** (was 195 at the
-start of this work).
+Gate at handoff: both linters clean, typecheck 0 errors, **424 tests** — 247 TypeScript and 177
+Python (was 195 at the start of this work).
 
 ## Completed work
 
@@ -100,14 +101,13 @@ start of this work).
 
 ## Open work
 
-0. **`task:0029` — port the resolution half to Python. Do this first.** The citation pipeline was
-   written in TypeScript by inheritance, never by decision. 3,243 of its 3,810 lines are
-   language-agnostic scraping and bibliography work; only the 567-line extraction step is genuinely
-   tied to the AST. The cost is already visible: a hand-rolled BibTeX serializer shipped a
-   structural bug affecting all 303 arXiv entries (`6c4263e`), and HTML metadata is parsed with
-   regular expressions in two files. `bibtexparser`, `beautifulsoup4`, `habanero` and `arxiv` exist.
-   **Everything below is downstream of this** — phase 2 rendering and the write-back both build on
-   code this task moves.
+0. **`task:0029` — the Python port. DONE, awaiting owner acceptance.** All six criteria have
+   completion evidence in the record. The pipeline is now two languages: TypeScript extracts
+   citations from the AST and writes `data/citations/citations.json`; Python owns the resolvers, the
+   CSL store, BibTeX and every report. `atlas citations <verb>` is unchanged for all five original
+   verbs, plus a new `scan`. 424 tests (247 TS + 177 Python), both suites in `pnpm verify`. The 789
+   resolved entries survived with **zero semantic change**. Left at `todo` because accepting work is
+   the owner's call, matching `task:0025`–`0027`.
 
 1. **`task:0028`** — the write-back. Owner asked for it explicitly, but it is now **blocked on an
    upstream capability**: the research corpus has no queryable coverage, so we cannot tell which of
@@ -127,12 +127,14 @@ start of this work).
 
 ```bash
 export SKIP_AUDIO_DOWNLOAD=1          # mandatory — see below
+uv sync                                # the Python half (task:0029); once per checkout
 engineering document validate          # expect 1 finding: current-multiple
 ./bin/atlas citations report           # what still needs human attention
-git log --oneline main..HEAD           # 10 unpushed commits
+git log --oneline main..HEAD           # unpushed commits
 ```
 
-`pnpm test` and `pnpm typecheck:cli` are cheap and safe. `pnpm verify` is not — see below.
+`pnpm test`, `pnpm test:py` and `pnpm typecheck:cli` are cheap and safe. `pnpm verify` is not — see
+below.
 
 ## A standing instruction from the owner
 
@@ -161,9 +163,16 @@ afternoon.
   **attribute**, not in `children`. A `children`-only walk misses 20% of citations. `utils.ts:15`
   `traverseNodes` has this blind spot; `citations/extract.ts` has `allChildNodes()` as the local
   remedy. `audit:0011` F5.
-- **`data/citations/sources.yaml` is committed; every derived output is gitignored.** The store
-  accumulates resolver metadata that costs real time and other people's rate limits to rebuild. It
-  holds **786 of 948 resolved**; `task:0029` AC-4 requires the port to carry those over untouched.
+- **`data/citations/sources.yaml` is committed; every derived output is gitignored**, including
+  `citations.json`, the TypeScript→Python handoff file. The store accumulates resolver metadata that
+  costs real time and other people's rate limits to rebuild. It holds **789 of 948 resolved**, all
+  of which survived the port unchanged.
+- **The store is now emitted by a different YAML writer.** `ruamel.yaml` wraps and quotes
+  differently from the npm `yaml` package, so the port produced a one-time whole-file reformat with
+  no data change. Do not read that diff as content churn — `task:0029` D4 records why a byte
+  comparison was never obtainable and what was proven instead.
+- **`atlas citations` shells out to `uv`.** If a verb dies with "uv is not on PATH", run `uv sync`.
+  The site build is unaffected; only the citation verbs and `pnpm verify` need Python.
 - **Resolution is sticky, and that cuts both ways.** A resolved entry is never re-fetched, which is
   what makes the long tail tractable — but a *bad* resolution is equally permanent. Use
   `atlas citations resolve --redo=<resolver>` to give an improved resolver another turn.

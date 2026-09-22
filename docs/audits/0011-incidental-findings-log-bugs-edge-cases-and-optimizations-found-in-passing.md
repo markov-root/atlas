@@ -7,7 +7,7 @@ role: audit
 status: draft
 summary: 'Append-only log of defects and improvements discovered during unrelated work, so they are not lost or silently fixed.'
 created: '2026-09-21'
-updated: '2026-09-21'
+updated: '2026-09-22'
 owner: Markov Grey
 supersedes: ''
 superseded_by: ''
@@ -24,13 +24,20 @@ engineering_document:
     owner: Markov Grey
     scope: Findings discovered incidentally during other work, repo-wide
   created: '2026-09-21'
-  updated: '2026-09-21'
+  updated: '2026-09-22'
   transition_history: unverified
   transitions: []
   relationships: []
   details:
     as_of: '2026-09-21'
-    subjects: ['cli/**', '.cache/**', 'src/content.config.ts', 'src/textbook-loader/renderers/audio/renderer.ts', 'package.json']
+    subjects:
+      [
+        'cli/**',
+        '.cache/**',
+        'src/content.config.ts',
+        'src/textbook-loader/renderers/audio/renderer.ts',
+        'package.json',
+      ]
     method: Findings recorded opportunistically as they surface during unrelated work; each entry states whether it was reproduced or merely observed
     limitations:
       [
@@ -137,7 +144,7 @@ fleet running, approaches the failure boundary.
 
 **Disposition:** `task:0024`.
 
-### F5 — AST node content lives in `children` *and* in attributes, with no type-level distinction
+### F5 — AST node content lives in `children` _and_ in attributes, with no type-level distinction
 
 **Severity:** medium · **Evidence:** reproduced and measured · **Found:** 2026-09-21, while building `task:0025`
 
@@ -186,6 +193,54 @@ fixtures put the citation in a single span; only the real-corpus check exposed i
 transferable lesson is the one worth keeping: a fixture that is tidier than the real data tests the
 fixture. The real-corpus reconciliation test is what caught this, and is worth the cost for that
 reason alone.
+
+### F8 — A BibTeX key comment claimed a stability guarantee the algorithm does not give
+
+**Severity:** low · **Evidence:** reproduced by test · **Found:** 2026-09-22
+
+`assignBibtexKeys` in `export.ts` documented itself as breaking collisions with a URL digest "so
+adding an unrelated entry cannot renumber anyone". The digest does remove the counter dependency, but
+the claim is still too strong: within a colliding group the earliest-sorting URL keeps the **bare**
+key and the others take a suffix. Adding an entry whose URL sorts earlier than an existing one with
+the same base key therefore moves that existing key — and BibTeX keys are what authors type in every
+`\cite`.
+
+Found while porting the file under `task:0029`, by a test written to assert the documented property.
+The test failed; the algorithm was right and the comment was wrong.
+
+**Disposition:** behaviour deliberately unchanged, so no existing key moves under the port. The two
+properties are mutually exclusive: "bare key when unique" and "never changes when a colliding sibling
+appears" cannot both hold once two entries want the same base. The bare key is worth more, because
+collisions are rare and readable keys are read constantly. The docstring in `commands/export.py` now
+states the real guarantee, and both properties are pinned by test — the one that holds, and the
+narrower one that does not.
+
+The transferable point: a comment asserting an invariant is not evidence of it. This one survived
+because no test ever asked. Where a docstring claims a property, the cheap move is to write the test
+that would fail if it were false.
+
+### F9 — The all-sources index could not show the spelling inconsistencies it exists to surface
+
+**Severity:** low · **Evidence:** reproduced by test · **Found:** 2026-09-22
+
+`atlas citations urls` writes an `all-sources.md` index whose own preamble says: "Where a source is
+cited under more than one spelling, every spelling is shown — that is how inconsistent citation text
+gets found."
+
+It built that list from the per-chapter display lists, which are **deduplicated by URL within each
+section**. So a source cited twice in one section as `Chollet, 2019` and `Chollet 2019` contributed
+only the first spelling, and the index showed one — hiding exactly the inconsistency it promised to
+reveal. Cross-section inconsistencies were shown correctly, which is why it looked like it worked.
+
+Found while porting `urls.ts` under `task:0029`, by a test asserting the documented behaviour.
+
+**Disposition:** fixed in `commands/urls.py`. Spellings are now collected from every instance in the
+scan; the section body still deduplicates, because showing one source three times in a reference list
+helps nobody. Two tests pin both halves. `citation-report.md` was never affected — it reads the
+undeduplicated instances — so no inconsistency was lost overall, only under-reported in the file the
+edition-2 authors were actually given.
+
+Same shape as F8, found the same way: a claim in prose that no test asked about.
 
 ## Recommendations
 
