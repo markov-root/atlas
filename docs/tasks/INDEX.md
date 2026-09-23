@@ -95,3 +95,7 @@ in total, each with options, a recommendation, and what is irreversible if decid
   Collapse duplicate sources through an alias file (todo - child of 0021; detection shipped in the report, 7 groups; merging is a reviewed human decision).
 - [task:0032](./0032-close-the-citation-metadata-tail-to-complete-coverage.md) -
   Close the citation metadata tail to complete coverage (todo - child of 0021, p1; 132 unresolved sources classified by fetching all of them; new resolvers plus a reviewed override file for what no API describes).
+- [task:0033](./0033-replace-native-select-dropdowns-with-a-styled-listbox-component.md) -
+  Replace native select dropdowns with a styled listbox component (todo - p2; a native select's popup is drawn by the OS and ignores every site style; three inconsistent select styles exist today).
+- [task:0034](./0034-include-the-bibliography-in-the-chapter-pdf.md) -
+  Include the bibliography in the chapter PDF (todo - child of 0021, p2; every input exists, the Typst renderer never asked).
