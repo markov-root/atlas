@@ -36,9 +36,9 @@ from __future__ import annotations
 import os
 import re
 from typing import Any
-from urllib.parse import quote, urlsplit, urlunsplit
+from urllib.parse import quote
 
-from ..store import literal_name
+from ..store import literal_name, with_www
 from ._http import get_json
 from .base import ResolverContext, ResolveResult
 
@@ -142,14 +142,6 @@ def _attempt(ref_url: str, ctx: ResolverContext) -> ResolveResult | None:
     return ResolveResult(fields=fields, source="research-db", note=note)
 
 
-def _with_www(url: str) -> str | None:
-    parts = urlsplit(url)
-    if not parts.hostname or parts.hostname.startswith("www."):
-        return None
-    netloc = f"www.{parts.netloc}"
-    return urlunsplit((parts.scheme, netloc, parts.path, parts.query, parts.fragment))
-
-
 class ResearchDbResolver:
     name = "research-db"
     #: Claims every HTTP URL — a free local lookup, not a signal of coverage.
@@ -165,7 +157,7 @@ class ResearchDbResolver:
         result = _attempt(canonical_url, ctx)
         if result:
             return result
-        www = _with_www(canonical_url)
+        www = with_www(canonical_url)
         return _attempt(www, ctx) if www else None
 
 

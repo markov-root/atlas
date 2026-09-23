@@ -26,7 +26,7 @@ from __future__ import annotations
 
 import io
 from typing import Any
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, urlunsplit
 
 from ruamel.yaml import YAML
 
@@ -142,6 +142,29 @@ _CONTAINER_BY_HOST = {
     "alignmentforum.org": "AI Alignment Forum",
     "forum.effectivealtruism.org": "EA Forum",
 }
+
+
+def with_www(url: str) -> str | None:
+    """The same URL with a ``www.`` host, or ``None`` if it already has one.
+
+    Canonicalization strips ``www.`` (``canonical-url.ts``), which is right:
+    almost every host serves both, so keeping the prefix would mint two entries
+    for one source and defeat ``task:0021`` D1.
+
+    Almost every host. Measured over this corpus, **seven URLs answer only on
+    ``www.``** — the four ``planned-obsolescence.org`` posts (a Substack custom
+    domain, which 404s on the bare host), an AP News article, `overcomingbias`,
+    and a Carter Center PDF. Stripping it turned working citations into dead
+    ones, and because the store's URL is what the bibliography renders as a link,
+    a reader clicking those got a 404.
+
+    So identity keeps the stripped form and *reachability* is allowed to differ —
+    the same split CSL already draws between ``id`` and ``URL``.
+    """
+    parts = urlsplit(url)
+    if not parts.hostname or parts.hostname.startswith("www."):
+        return None
+    return urlunsplit((parts.scheme, f"www.{parts.netloc}", parts.path, parts.query, ""))
 
 
 def infer_container_title(url: str) -> str | None:

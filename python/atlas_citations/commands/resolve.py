@@ -22,8 +22,8 @@ from pathlib import Path
 from types import FrameType
 
 from ..overrides import OVERRIDE_SOURCE
-from ..resolvers import ALL_RESOLVERS, Unreachable, make_context, resolve_with
-from ..store import Store, StoreEntry
+from ..resolvers import ALL_RESOLVERS, ResolveResult, Unreachable, make_context, resolve_with
+from ..store import Store, StoreEntry, with_www
 from .extract import STORE_PATH, read_store, write_store
 
 #: Contactable user agent. ``task:0027`` AC-5 — Crossref's polite pool wants one.
@@ -111,6 +111,41 @@ def apply_unreachable(entry: StoreEntry, reason: str) -> StoreEntry:
     """
     updated = {**entry, "unreachable": reason}
     return updated
+
+
+def _retry_on_www(
+    result: ResolveResult | Unreachable | None,
+    key: str,
+    ctx,
+) -> ResolveResult | Unreachable | None:
+    """Try the ``www.`` host once when the canonical one answered nothing.
+
+    Canonicalization strips ``www.``, which is correct for identity and wrong for
+    *reachability* on the handful of hosts that serve only the prefixed form —
+    seven in this corpus, four of them one Substack custom domain. See
+    :func:`atlas_citations.store.with_www`.
+
+    Run here rather than inside each resolver so one retry covers all eight, and
+    only after the canonical URL has failed, so it costs nothing for the 900-odd
+    entries where the bare host is fine.
+
+    The recovered address is written to the entry's ``URL`` — which is what the
+    bibliography renders as a link — while the key, and therefore the entry's
+    identity, stays canonical (``task:0021`` D1).
+    """
+    if isinstance(result, ResolveResult):
+        return result
+    alternative = with_www(key)
+    if not alternative:
+        return result
+    retried = resolve_with(ALL_RESOLVERS, alternative, ctx)
+    if not isinstance(retried, ResolveResult):
+        return result
+    return ResolveResult(
+        fields={**retried.fields, "URL": alternative},
+        source=retried.source,
+        note=retried.note,
+    )
 
 
 def effective_redo(redo: list[str] | None) -> list[str]:
@@ -207,6 +242,7 @@ def citations_resolve(root: Path, opts: ResolveOptions | None = None) -> int:
                 break
             attempted += 1
             result = resolve_with(ALL_RESOLVERS, key, ctx)
+            result = _retry_on_www(result, key, ctx)
             if isinstance(result, Unreachable):
                 # Not resolved, and deliberately still not marked as such — but
                 # the reason is worth keeping, because "the page is gone" is a
