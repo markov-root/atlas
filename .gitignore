@@ -83,11 +83,12 @@ data/citations/chapters/
 # verbs that need it, so it is an intermediate rather than an artifact.
 data/citations/citations.json
 
-# A worklist, not an artifact: `atlas citations propose` gathers evidence for the
-# entries only a human can finish (task:0032 AC-5). What survives review moves by
-# hand into `data/citations/overrides.yaml`, which IS committed - it is the
-# reviewed input, and the one file here a person wrote.
-data/citations/overrides.proposed.yaml
+# `data/citations/overrides.proposed.yaml` is COMMITTED, against the rule above,
+# for the same reason `sources.yaml` is: rebuilding it costs ~7 minutes of
+# network against 57 third-party sites, not 6 seconds of local work. It is the
+# worklist someone finishes the bibliography from, so it has to exist on the
+# machine they are working on rather than only on the one that generated it.
+# What survives review moves by hand into `overrides.yaml`.
 
 # Python toolchain
 .venv/
