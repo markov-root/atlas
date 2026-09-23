@@ -64,13 +64,14 @@ Five commands work end to end:
 | `atlas citations export`  | BibTeX + CSL-JSON                             | none    |
 | `atlas citations resolve` | fill metadata, incremental and resumable      | yes     |
 | `atlas citations urls`    | per-section Markdown for the ed-2 authors     | none    |
+| `atlas citations render`  | 945 sources × 5 CSL styles → `rendered.json`  | none    |
 
 Over the committed corpus: **1,770 citation instances, 948 unique sources, 817 resolved (86%),
 131 unresolved, 76 cited with inconsistent spellings, 47 links whose anchor text is prose rather
 than author-year, 0 malformed.**
 
-Gate at handoff: both linters clean, typecheck 0 errors, **424 tests** — 247 TypeScript and 177
-Python (was 195 at the start of this work).
+Gate at handoff: both linters clean, typecheck 0 errors, **500 tests** — 299 TypeScript and 201
+Python (was 195 at the start of this work). `pnpm verify` green end to end.
 
 ## Completed work
 
@@ -95,7 +96,7 @@ Python (was 195 at the start of this work).
 1. **`docs/cited-sources.md` is ready to share** — 2,996 lines, per chapter and section, `Title (url)`
    form, plus a deduplicated master list and the 47 unrecognised links. Built for the edition-2
    authors, who are the stated customer of this whole task.
-6. **`task:0028` D1** decides what we may write back into a shared corpus that offers no delete.
+8. **`task:0028` D1** decides what we may write back into a shared corpus that offers no delete.
    My recommended option C was **withdrawn on 2026-09-22**: it rested on exit 5 meaning
    "out of scope", and it does not. The corpus exposes no way to ask what it covers, so this task
    probably waits on that upstream fix rather than encoding a workaround.
@@ -136,7 +137,34 @@ Python (was 195 at the start of this work).
    upstream capability**: the research corpus has no queryable coverage, so we cannot tell which of
    948 URLs are worth offering without fetching each one. Four feedback notes filed; the coverage
    one is the blocker.
-2. **`task:0021` phase 2** — rendering. **All three D5 surfaces are live** as of 2026-09-23:
+2. **`task:0030` — CSL rendering and the reader-facing control panel. PARTLY BUILT.**
+
+   Shipped: `atlas citations render` produces `data/citations/rendered.json` (945 sources × 5 styles,
+   ~49s, deterministic) via `citeproc-py` over CSL styles vendored under `vendor/csl/` (CC-BY-SA 3.0,
+   attribution in that directory's README). The site offers **Basic** (house style, the default),
+   APA, Chicago, MLA, Nature and IEEE; every style is in the DOM and the selector toggles visibility,
+   persisting the choice in `localStorage`. Numeric styles have their index stripped, because our
+   list is alphabetical and the prose cites by author-year.
+
+   **Not built, and recorded in the task rather than half-done:** one control panel with filters by
+   author / source / year / type, sort by source, and a **group-by chapter-and-section versus flat**
+   toggle. Only a single search box and a sort dropdown exist today. `~/Images/Icons` has 206 SVGs;
+   the choice between those and the existing `astro-icon` has not been made.
+
+   **D6 is a standing rule, not a one-off:** no reader-facing surface reports metadata completeness.
+   The first cut showed "132 awaiting full metadata" and a filter on it; both were removed. The site
+   will not ship until every source is resolved, so that instrumentation belongs in
+   `atlas citations report`, which is read by maintainers.
+
+7. **`task:0031` — collapse duplicate sources through an alias file. NOT STARTED.**
+   The same work appears under several URLs — `keepthefuturehuman.ai`/`.com`, `deepmind.com`/
+   `deepmind.google`, AlignmentForum/LessWrong cross-posts, arXiv beside a publisher page.
+   **Detection is shipped**: `atlas citations report` lists 7 groups, matched on first author, year
+   and a title fingerprint. Domain is not a usable signal — the AI Safety textbook alone has eight
+   different chapters under one author, year and site. Merging is a reviewed human decision, because
+   collapsing two identities on a heuristic silently loses a citation.
+
+6. **`task:0021` phase 2** — rendering. **All three D5 surfaces are live** as of 2026-09-23:
    section-level after `#footnotes`, chapter-level at `/bibliography/<version>/<chapter>` linked from
    the resources panel, and site-wide `/bibliography` with all 948 sources. `src/lib/bibliography.ts`
    reads the committed store; no new build step, no credentials, warn-never-block on a missing store.
@@ -183,6 +211,17 @@ ago. "It already works", "the tests pass" and "it would be a rewrite" are not ar
 a design that is wrong. `task:0029` exists because that rule was applied to work finished the same
 afternoon.
 
+## Where this stopped, 2026-09-23
+
+Everything below is committed and green. The branch is **44 commits ahead of `main`, nothing
+pushed.** A dev server may still be running in tmux as session `dev`; `tmux kill-session -t dev`.
+
+Reader-visible state: `/bibliography` (945 sources, search + sort + style switcher),
+`/bibliography/<version>/<chapter>`, and a reference list after every section's footnotes.
+
+The next piece of work is `task:0030`'s control panel — it is specified in that record, including
+the open questions, and deliberately not begun.
+
 ## Things that will bite the next person
 
 - **Always `export SKIP_AUDIO_DOWNLOAD=1`.** Without it, anything that loads a chapter runs the audio
@@ -209,6 +248,12 @@ afternoon.
 - **Resolution is sticky, and that cuts both ways.** A resolved entry is never re-fetched, which is
   what makes the long tail tractable — but a *bad* resolution is equally permanent. Use
   `atlas citations resolve --redo=<resolver>` to give an improved resolver another turn.
+- **`atlas citations render` takes ~49 seconds and must be re-run after `resolve`.** Nothing
+  enforces that ordering: a stale `rendered.json` silently shows the previous run's text. The site
+  falls back to the Basic style if the file is missing, but a *stale* file is not detected.
+- **`rendered.json` is committed** (`task:0030` D5), against this repo's usual rule for derived
+  outputs. Gitignoring it would put Python on the critical path of `pnpm build`, which `task:0029`
+  states it is not. 911 KB, changing only when the store changes.
 - **A resolve run takes ~75 minutes** at the polite 3s interval. Run it in tmux, and commit the
   store as it goes: the command saves to disk every 20 entries but git does not follow on its own,
   and 193 entries of work were once left uncommitted on a machine that has crashed twice.
