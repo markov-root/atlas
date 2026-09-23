@@ -27852,15 +27852,25 @@ https://digitallibrary.un.org/record/3905159?v=pdf:
   item:
     id: https://digitallibrary.un.org/record/3905159?v=pdf
     type: webpage
-    URL: https://digitallibrary.un.org/record/3905159?v=pdf
+    URL: https://www.digitallibrary.un.org/record/3905159?v=pdf
     author:
     - literal: Panel of Experts on Libya
     issued:
       date-parts:
       - - 2021
-    title: Panel of Experts on Libya, 2021
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Letter, 8 Mar. 2021, from the Panel of Experts on Libya Established pursuant to 
+      Resolution 1973 (2011)
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20250702063934/https://digitallibrary.un.org/record/3905159?v=pdf
+    container-title: United Nations Digital Library System
+    accessed:
+      date-parts:
+      - - 2025
+        - 7
+        - 2
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Panel of Experts on Libya, 2021
 https://distill.pub/2019/safety-needs-social-scientists:
@@ -27938,6 +27948,7 @@ https://dl.acm.org/doi/10.5555/1566174.1566226:
   resolvedBy: anchor
   anchors:
   - Omohundro, 2008
+  unreachable: refused
 https://dl.acm.org/doi/abs/10.1007/978-3-031-49008-8_8:
   item:
     id: https://dl.acm.org/doi/abs/10.1007/978-3-031-49008-8_8
@@ -28936,6 +28947,7 @@ https://fhi.ox.ac.uk/wp-content/uploads/Deciphering_Chinas_AI-Dream.pdf:
   resolvedBy: anchor
   anchors:
   - Ding, 2018
+  unreachable: unavailable
 https://findresearcher.sdu.dk/ws/portalfiles/portal/231643063/Loitering_Munitions_Unpredictability_WEB.pdf:
   item:
     id: 
@@ -30253,9 +30265,17 @@ https://incompleteideas.net/IncIdeas/BitterLesson.html:
     issued:
       date-parts:
       - - 2019
-    title: Sutton, 2019
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: The Bitter Lesson
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260919194030/http://www.incompleteideas.net/IncIdeas/BitterLesson.html
+    accessed:
+      date-parts:
+      - - 2026
+        - 9
+        - 19
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Sutton, 2019
 https://incompleteideas.net/Talks/waic3.pdf:
@@ -30273,6 +30293,7 @@ https://incompleteideas.net/Talks/waic3.pdf:
   resolvedBy: anchor
   anchors:
   - Sutton, 2023
+  unreachable: unavailable
 https://inferencemagazine.substack.com/p/how-much-economic-growth-from-ai:
   item:
     id: https://inferencemagazine.substack.com/p/how-much-economic-growth-from-ai
@@ -31456,9 +31477,10 @@ https://metaculus.com/questions/38403/ai-authorered-paper-by-2028:
     issued:
       date-parts:
       - - 2025
-    title: Metaculus, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: AI-authored paper published at NeurIPS, ICML, or ICLR before 2028?
+    abstract: Metaculus is an online forecasting platform and aggregation engine working to improve 
+      human reasoning and coordination on topics of global importance.
+  resolvedBy: opengraph
   anchors:
   - Metaculus, 2025
 https://metaculus.com/questions/38418/us-and-china-reach-an-agreement-to-limit-frontier-ai-development-before-2029:
@@ -31617,9 +31639,18 @@ https://mitpress.mit.edu/9780262530828/beyond-the-limits:
     issued:
       date-parts:
       - - 1989
-    title: Ceruzzi, 1989
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Beyond The Limits
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20241118205221/https://mitpress.mit.edu/9780262530828/beyond-the-limits/
+    container-title: MIT Press
+    accessed:
+      date-parts:
+      - - 2024
+        - 11
+        - 18
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Ceruzzi, 1989
 https://muckrakerfarm.com/1977/09/pinto-madness-ford-pintos-fire-prone-gas-tank:
@@ -31683,9 +31714,18 @@ https://nasdaq.com/articles/nvidia-dominating-artificial-intelligence-chip-marke
     issued:
       date-parts:
       - - 2024
-    title: Jagielski, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Nvidia Is Dominating the Artificial Intelligence Chip Market, but Apple Has Been Securing
+      Supply From Another Tech Giant
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260215001652/https://www.nasdaq.com/articles/nvidia-dominating-artificial-intelligence-chip-market-apple-has-been-securing-supply
+    accessed:
+      date-parts:
+      - - 2026
+        - 2
+        - 15
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Jagielski, 2024
 https://nationalsecurity.ai:
@@ -32095,9 +32135,17 @@ https://nytimes.com/interactive/2017/business/volkswagen-diesel-emissions-timeli
     issued:
       date-parts:
       - - 2017
-    title: Ewing, 2017
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: 'Engineering a Deception: What Led to Volkswagen’s Diesel Scandal (Published 2021)'
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260607173117/https://www.nytimes.com/interactive/2017/business/volkswagen-diesel-emissions-timeline.html
+    accessed:
+      date-parts:
+      - - 2026
+        - 6
+        - 7
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Ewing, 2017
 https://oecd.ai/en/wonk/ai-safety-institutes-challenge:
@@ -32145,9 +32193,18 @@ https://oecd.ai/en/wonk/ai-safety-institutes-challenge:
     issued:
       date-parts:
       - - 2025
-    title: OECD, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: 'Overview of current AI capabilities: Introducing the OECD AI Capability Indicators'
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260527194732/https://www.oecd.org/en/publications/2025/06/introducing-the-oecd-ai-capability-indicators_7c0731f0/full-report/component-4.html
+    container-title: OECD
+    accessed:
+      date-parts:
+      - - 2026
+        - 5
+        - 27
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - OECD, 2025
 ? https://oms-www.files.svdcdn.com/production/downloads/reports/Voice%20and%20Access%20in%20AI_%20Global%20AI%20Majority%20Participation%20in%20Artificial%20Intelligence%20Development%20and%20Governance-%20final.pdf?dm=1729247034

@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import httpx
 
-from atlas_citations.commands.resolve import _retry_on_www, apply_resolution, unresolved_keys
-from atlas_citations.resolvers import ALL_RESOLVERS, ResolveResult, resolve_with
+from atlas_citations.commands.resolve import apply_resolution, attempt, unresolved_keys
+from atlas_citations.resolvers import ResolveResult
 from atlas_citations.store import entry_from_anchor
 
 from .helpers import html_response, make_ctx
@@ -138,21 +138,21 @@ class TestTheWwwRetry:
 
     def test_recovers_an_entry_the_bare_host_404s(self) -> None:
         ctx, _ = self.resolvers_answering_only_www()
-        out = _retry_on_www(resolve_with(ALL_RESOLVERS, self.KEY, ctx), self.KEY, ctx)
+        out = attempt(self.KEY, ctx)
         assert isinstance(out, ResolveResult)
         assert out.fields["title"] == "Playing the training game"
 
     def test_the_recovered_address_is_what_a_reader_gets(self) -> None:
         """The store's URL is what the bibliography renders as a link."""
         ctx, _ = self.resolvers_answering_only_www()
-        out = _retry_on_www(resolve_with(ALL_RESOLVERS, self.KEY, ctx), self.KEY, ctx)
+        out = attempt(self.KEY, ctx)
         assert isinstance(out, ResolveResult)
         assert out.fields["URL"] == self.WWW
 
     def test_identity_still_comes_from_the_canonical_key(self) -> None:
         """``task:0021`` D1 — or the same source would mint two entries."""
         ctx, _ = self.resolvers_answering_only_www()
-        out = _retry_on_www(resolve_with(ALL_RESOLVERS, self.KEY, ctx), self.KEY, ctx)
+        out = attempt(self.KEY, ctx)
         entry = entry_from_anchor(self.KEY, "Piper, 2022", {"author": "Piper", "year": "2022"})
         assert apply_resolution(entry, out.fields, out.source)["item"]["id"] == self.KEY
 
@@ -165,12 +165,19 @@ class TestTheWwwRetry:
             return html_response("<html><head><title>Fine</title></head></html>")
 
         ctx = make_ctx(handler)
-        before = len(calls)
-        result = resolve_with(ALL_RESOLVERS, self.KEY, ctx)
-        _retry_on_www(result, self.KEY, ctx)
-        assert not any(u.startswith("https://www.planned") for u in calls[before:])
+        attempt(self.KEY, ctx)
+        assert not any(u.startswith("https://www.planned") for u in calls)
+        assert not any("archive.org" in u for u in calls), (
+            "no archive call when the live web answered"
+        )
 
-    def test_a_url_already_on_www_is_not_retried(self) -> None:
-        ctx, calls = self.resolvers_answering_only_www()
-        _retry_on_www(None, self.WWW, ctx)
-        assert calls == []
+    def test_the_archive_is_asked_once_not_once_per_url_form(self) -> None:
+        """It normalises www anyway, and it is a charity paying for our requests."""
+        calls = []
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            calls.append(str(request.url))
+            return httpx.Response(404)
+
+        attempt(self.KEY, make_ctx(handler))
+        assert sum(1 for u in calls if "archive.org/wayback/available" in u) == 1

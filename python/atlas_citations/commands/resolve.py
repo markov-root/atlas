@@ -113,39 +113,55 @@ def apply_unreachable(entry: StoreEntry, reason: str) -> StoreEntry:
     return updated
 
 
-def _retry_on_www(
-    result: ResolveResult | Unreachable | None,
-    key: str,
-    ctx,
-) -> ResolveResult | Unreachable | None:
-    """Try the ``www.`` host once when the canonical one answered nothing.
+#: Everything that asks the live web. The archive is held back deliberately: it
+#: is the last resort for *every* form of an address, so it must be tried after
+#: the ``www.`` variant rather than once per variant.
+LIVE_RESOLVERS = [r for r in ALL_RESOLVERS if r.name != "wayback"]
+ARCHIVE_RESOLVERS = [r for r in ALL_RESOLVERS if r.name == "wayback"]
 
-    Canonicalization strips ``www.``, which is correct for identity and wrong for
-    *reachability* on the handful of hosts that serve only the prefixed form —
-    seven in this corpus, four of them one Substack custom domain. See
-    :func:`atlas_citations.store.with_www`.
 
-    Run here rather than inside each resolver so one retry covers all eight, and
-    only after the canonical URL has failed, so it costs nothing for the 900-odd
-    entries where the bare host is fine.
+def attempt(key: str, ctx) -> ResolveResult | Unreachable | None:
+    """Resolve one entry: the live web, then the ``www.`` host, then the archive.
 
-    The recovered address is written to the entry's ``URL`` — which is what the
-    bibliography renders as a link — while the key, and therefore the entry's
-    identity, stays canonical (``task:0021`` D1).
+    Three steps rather than one chain, because two different things are being
+    tried and conflating them is both slower and wrong.
+
+    **The ``www.`` step** exists because canonicalization strips the prefix
+    (``canonical-url.ts``), which is right for identity and wrong for
+    *reachability* on the handful of hosts serving only the prefixed form — seven
+    in this corpus, four of them one Substack custom domain. See
+    :func:`atlas_citations.store.with_www`. The recovered address is written to
+    the entry's ``URL``, which is what the bibliography renders as a link, while
+    the key and therefore the entry's identity stay canonical (``task:0021`` D1).
+
+    **The archive comes last, once.** Folding it into the chain and then retrying
+    the chain would ask the Internet Archive about the same document twice, for
+    an address it normalises anyway — someone else's charity paying for our URL
+    handling.
+
+    Neither extra step costs anything for the ~900 entries whose canonical URL
+    answers on the first try.
     """
+    result = resolve_with(LIVE_RESOLVERS, key, ctx)
     if isinstance(result, ResolveResult):
         return result
+
     alternative = with_www(key)
-    if not alternative:
-        return result
-    retried = resolve_with(ALL_RESOLVERS, alternative, ctx)
-    if not isinstance(retried, ResolveResult):
-        return result
-    return ResolveResult(
-        fields={**retried.fields, "URL": alternative},
-        source=retried.source,
-        note=retried.note,
-    )
+    if alternative:
+        retried = resolve_with(LIVE_RESOLVERS, alternative, ctx)
+        if isinstance(retried, ResolveResult):
+            return ResolveResult(
+                fields={**retried.fields, "URL": alternative},
+                source=retried.source,
+                note=retried.note,
+            )
+
+    archived = resolve_with(ARCHIVE_RESOLVERS, key, ctx)
+    if isinstance(archived, ResolveResult):
+        return archived
+    # Prefer the live web's verdict: "this page is gone" is what an author needs
+    # to hear, and it is more specific than "the archive had no copy".
+    return result or archived
 
 
 def effective_redo(redo: list[str] | None) -> list[str]:
@@ -241,8 +257,7 @@ def citations_resolve(root: Path, opts: ResolveOptions | None = None) -> int:
             if state["stopping"]:
                 break
             attempted += 1
-            result = resolve_with(ALL_RESOLVERS, key, ctx)
-            result = _retry_on_www(result, key, ctx)
+            result = attempt(key, ctx)
             if isinstance(result, Unreachable):
                 # Not resolved, and deliberately still not marked as such — but
                 # the reason is worth keeping, because "the page is gone" is a
