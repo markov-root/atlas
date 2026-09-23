@@ -118,6 +118,29 @@ class TestCrossref:
             {"literal": "DeepMind"},
         ]
 
+    def test_a_footnote_marker_is_not_part_of_an_authors_name(self) -> None:
+        """Real corpus record: the Diplomacy paper's corresponding-author dagger.
+
+        It is typography lifted out of the PDF, and it renders in every style.
+        """
+        work = {
+            "message": {
+                "title": ["T"],
+                "author": [
+                    {"name": "Meta Fundamental AI Research Diplomacy Team (FAIR)\u2020"},
+                    {"family": "Stewart\u2021", "given": "Alexander J. *"},
+                ],
+            }
+        }
+        out = crossref_resolver.resolve(
+            "https://doi.org/10.1038/x", make_ctx(lambda r: json_response(work))
+        )
+        assert out is not None and not isinstance(out, Unreachable)
+        assert out.fields["author"] == [
+            {"literal": "Meta Fundamental AI Research Diplomacy Team (FAIR)"},
+            {"family": "Stewart", "given": "Alexander J."},
+        ]
+
     def test_an_unknown_type_falls_back_to_document(self) -> None:
         work = {"message": {"title": ["T"], "type": "database"}}
         out = crossref_resolver.resolve(

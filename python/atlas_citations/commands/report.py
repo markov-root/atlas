@@ -113,8 +113,18 @@ def dead_links(store: Store) -> list[str]:
     an automated fetch says nothing about whether the page is alive, and telling
     an author their citation is dead when it is merely paywalled would send them
     to fix something that is not broken.
+
+    An entry the Internet Archive rescued still belongs here. Finding a copy is a
+    fact about our metadata; the cited address being dead is a fact about the
+    citation, and only an author can decide whether to cite the archived copy,
+    find the work's new home, or cite something else. Recording the first must
+    not hide the second.
     """
-    return sorted(k for k, e in store.items() if e.get("unreachable") == "gone")
+    return sorted(
+        k
+        for k, e in store.items()
+        if e.get("unreachable") == "gone" or e.get("resolvedBy") == "wayback"
+    )
 
 
 @dataclass(frozen=True)

@@ -1,10 +1,11 @@
 """The resolver contract — bank B8 of ``task:0021``, per ``task:0027``.
 
-A resolver turns a canonical URL into CSL fields, or declines. Seven exist: the
+A resolver turns a canonical URL into CSL fields, or declines. Eight exist: the
 local research-database corpus, arXiv, Crossref, ForumMagnum (LessWrong, the EA
-Forum and the Alignment Forum), publisher citation metadata, oEmbed and Open
-Graph. They are independent of one another; this module is the only thing they
-share, which is what lets them be written and changed in parallel.
+Forum and the Alignment Forum), publisher citation metadata, oEmbed, Open Graph,
+and the Internet Archive for pages that no longer exist. They are independent of
+one another; this module is the only thing they share, which is what lets them be
+written and changed in parallel.
 
 Four rules the interface enforces by shape rather than by convention:
 
@@ -156,6 +157,8 @@ RESOLVER_ORDER = (
     "scholar-meta",
     "oembed",
     "opengraph",
+    # Last, and only ever reached for a page the live web could not answer.
+    "wayback",
 )
 
 

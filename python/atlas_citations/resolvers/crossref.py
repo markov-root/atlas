@@ -64,6 +64,18 @@ def _first(value: Any) -> str | None:
     return None
 
 
+#: Footnote markers a publisher carries into the author field — affiliation and
+#: corresponding-author daggers, mostly. Observed in this corpus on the
+#: Diplomacy paper, whose Crossref record credits "Meta Fundamental AI Research
+#: Diplomacy Team (FAIR)†". A marker is typography from the PDF, not part of
+#: anyone's name, and it renders in every citation style.
+_NAME_MARKERS = "†‡*¶§ ,"
+
+
+def _clean_name(text: str) -> str:
+    return _clean(text).strip(_NAME_MARKERS)
+
+
 def _map_authors(value: Any) -> list[dict[str, str]] | None:
     """Crossref gives real given/family splits — unlike the anchor text.
 
@@ -79,12 +91,13 @@ def _map_authors(value: Any) -> list[dict[str, str]] | None:
             continue
         family = author.get("family")
         given = author.get("given")
-        if isinstance(family, str):
-            names.append(
-                {"family": family, "given": given} if isinstance(given, str) else {"family": family}
-            )
-        elif isinstance(author.get("name"), str):
-            names.append({"literal": author["name"]})
+        if isinstance(family, str) and _clean_name(family):
+            name = {"family": _clean_name(family)}
+            if isinstance(given, str) and _clean_name(given):
+                name["given"] = _clean_name(given)
+            names.append(name)
+        elif isinstance(author.get("name"), str) and _clean_name(author["name"]):
+            names.append({"literal": _clean_name(author["name"])})
     return names or None
 
 

@@ -23,6 +23,7 @@ from .oembed import oembed_resolver
 from .opengraph import opengraph_resolver
 from .research_db import research_db_resolver
 from .scholar_meta import scholar_meta_resolver
+from .wayback import wayback_resolver
 
 #: Every resolver, in no particular order — :func:`resolve_with` sorts them by
 #: :data:`RESOLVER_ORDER`.
@@ -34,6 +35,7 @@ ALL_RESOLVERS: list[Resolver] = [
     scholar_meta_resolver,
     oembed_resolver,
     opengraph_resolver,
+    wayback_resolver,
 ]
 
 __all__ = [
@@ -54,4 +56,5 @@ __all__ = [
     "research_db_resolver",
     "resolve_with",
     "scholar_meta_resolver",
+    "wayback_resolver",
 ]
