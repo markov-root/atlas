@@ -11,7 +11,7 @@ import json
 import pytest
 
 from atlas_citations.commands.extract import extract_entries, next_store
-from atlas_citations.commands.report import build_citation_report
+from atlas_citations.commands.report import build_citation_report, duplicate_groups
 from atlas_citations.commands.urls import format_url_files
 from atlas_citations.scan import Scan, ScanError, parse_scan
 from atlas_citations.store import entry_from_anchor
@@ -289,3 +289,108 @@ class TestUrls:
         files = format_url_files(scan, {}).files
         assert "Chollet, 2019 / Chollet 2019" in files[-1].markdown
         assert files[0].markdown.count("https://a.org/x") == 1
+
+
+def resolved(key: str, title: str, author: str, year: int, by: str = "opengraph") -> dict:
+    return {
+        "item": {
+            "id": key,
+            "type": "webpage",
+            "URL": key,
+            "title": title,
+            "author": [{"literal": author}],
+            "issued": {"date-parts": [[year]]},
+        },
+        "resolvedBy": by,
+        "anchors": [],
+    }
+
+
+class TestDuplicateGroups:
+    """One work under several URLs. Reported, never merged."""
+
+    def test_finds_a_cross_post_whose_titles_differ_only_by_site_suffix(self) -> None:
+        store = {
+            "https://alignmentforum.org/posts/x": resolved(
+                "https://alignmentforum.org/posts/x",
+                "The case for ensuring that powerful AIs are controlled — AI Alignment Forum",
+                "Greenblatt",
+                2024,
+            ),
+            "https://lesswrong.com/posts/x": resolved(
+                "https://lesswrong.com/posts/x",
+                "The case for ensuring that powerful AIs are controlled — LessWrong",
+                "Greenblatt",
+                2024,
+            ),
+        }
+        assert duplicate_groups(store) == [sorted(store)]
+
+    def test_finds_a_mirror_on_a_different_domain(self) -> None:
+        store = {
+            "https://deepmind.com/blog/x": resolved(
+                "https://deepmind.com/blog/x", "Specification gaming", "Krakovna", 2020
+            ),
+            "https://deepmind.google/discover/blog/x": resolved(
+                "https://deepmind.google/discover/blog/x", "Specification gaming", "Krakovna", 2020
+            ),
+        }
+        assert len(duplicate_groups(store)) == 1
+
+    def test_different_works_by_one_author_in_one_year_are_not_duplicates(self) -> None:
+        """The textbook case: eight chapters, one author, one year, one site."""
+        store = {
+            f"https://aisafetybook.com/textbook/ch{n}": resolved(
+                f"https://aisafetybook.com/textbook/ch{n}",
+                f"{n}.1: A Distinct Chapter Title | AI Safety Textbook",
+                "Hendrycks",
+                2024,
+            )
+            for n in range(1, 6)
+        }
+        assert duplicate_groups(store) == []
+
+    def test_unresolved_entries_are_never_grouped(self) -> None:
+        """Their title IS the anchor text, so every one by an author in a year matches.
+
+        Including them produced three false groups on the real corpus.
+        """
+        store = {
+            "https://ai-alignment.com/reliability": {
+                **resolved(
+                    "https://ai-alignment.com/reliability", "Christiano, 2016", "Christiano", 2016
+                ),
+                "resolvedBy": "anchor",
+            },
+            "https://ai-alignment.com/security": {
+                **resolved(
+                    "https://ai-alignment.com/security", "Christiano, 2016", "Christiano", 2016
+                ),
+                "resolvedBy": "anchor",
+            },
+        }
+        assert duplicate_groups(store) == []
+
+    def test_a_different_year_is_a_different_work(self) -> None:
+        store = {
+            "https://a.org/1": resolved("https://a.org/1", "Annual Report", "Org", 2023),
+            "https://a.org/2": resolved("https://a.org/2", "Annual Report", "Org", 2024),
+        }
+        assert duplicate_groups(store) == []
+
+    def test_groups_are_reported_in_a_stable_order(self) -> None:
+        store = {
+            "https://b.org/x": resolved("https://b.org/x", "Same Title", "Author", 2024),
+            "https://a.org/x": resolved("https://a.org/x", "Same Title", "Author", 2024),
+        }
+        assert duplicate_groups(store) == [["https://a.org/x", "https://b.org/x"]]
+
+    def test_the_report_lists_them(self) -> None:
+        store = {
+            "https://a.org/x": resolved("https://a.org/x", "Same Title", "Author", 2024),
+            "https://b.org/x": resolved("https://b.org/x", "Same Title", "Author", 2024),
+        }
+        report = build_citation_report(scan_of([]), store)
+        assert report.counts.duplicates == 1
+        assert "Probable duplicates" in report.markdown
+        assert "https://a.org/x" in report.markdown

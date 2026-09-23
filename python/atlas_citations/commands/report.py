@@ -18,6 +18,7 @@ Ported from ``report.ts`` under ``task:0029``.
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -27,6 +28,68 @@ from .extract import STORE_PATH, read_store
 
 #: Where the report artifact is written, relative to the repo root.
 REPORT_PATH = Path("data") / "citations" / "citation-report.md"
+
+
+#: Trailing site name on a scraped title: " — Google DeepMind", " | LessWrong".
+_TITLE_SUFFIX = re.compile(r"\s*[-\u2013\u2014|:]\s*[^-\u2013\u2014|:]{1,40}$")
+
+
+def _title_fingerprint(title: str | None) -> str:
+    """A title reduced to what two spellings of the same work share.
+
+    Strips a trailing site name — the same post cross-published to the Alignment
+    Forum and LessWrong differs only in that suffix — then removes punctuation
+    and case. Truncated, because a mirror sometimes appends a subtitle.
+    """
+    stripped = _TITLE_SUFFIX.sub("", title or "")
+    return re.sub(r"[^a-z0-9]+", "", stripped.lower())[:60]
+
+
+def _first_author(item: dict) -> str:
+    authors = item.get("author") or [{}]
+    return (authors[0].get("family") or authors[0].get("literal") or "").strip().lower()
+
+
+def _year(item: dict) -> str:
+    parts = (item.get("issued") or {}).get("date-parts") or []
+    return str(parts[0][0]) if parts and parts[0] else ""
+
+
+def duplicate_groups(store: Store) -> list[list[str]]:
+    """Entries that are probably one work under several URLs.
+
+    Matched on **first author + year + title fingerprint**, and deliberately not
+    on domain. Measured over this corpus: author-and-year alone flags 98 groups
+    and domain-and-author-and-year flags 73, but most of both are legitimate —
+    the AI Safety textbook contributes eight *different chapters* under one
+    author, year and site. Adding the title cuts it to 12 groups of genuine
+    duplicates: cross-posts, mirrors, and an arXiv preprint beside its
+    publisher's page.
+
+    This reports; it never merges. ``task:0021`` D1 makes the canonical URL the
+    entry's identity, and collapsing two identities on a heuristic would silently
+    lose a citation — the failure mode canonicalization is written to avoid.
+    Acting on this list is a human decision recorded in an alias file.
+    """
+    groups: dict[tuple[str, str, str], list[str]] = {}
+    for key in sorted(store):
+        entry = store[key]
+        # Unresolved entries are excluded, and this is the difference between a
+        # usable list and a misleading one. An unresolved entry's title IS its
+        # anchor text — "Christiano, 2016" — so every unresolved work by one
+        # author in one year fingerprints identically. That produced three false
+        # groups on this corpus: two different ai-alignment.com posts, two
+        # different Metaculus questions, two different LessWrong comments.
+        # A title we did not resolve is not evidence about which work it is.
+        if entry.get("resolvedBy") == "anchor":
+            continue
+        item = entry.get("item", {})
+        author, year = _first_author(item), _year(item)
+        fingerprint = _title_fingerprint(item.get("title"))
+        if not (author and year and fingerprint):
+            continue
+        groups.setdefault((author, year, fingerprint), []).append(key)
+    return [keys for keys in groups.values() if len(keys) > 1]
 
 
 @dataclass(frozen=True)
@@ -41,6 +104,8 @@ class ReportCounts:
     unlinked: int
     #: Sources cited with more than one anchor spelling.
     inconsistent: int
+    #: Groups of entries that are probably one work under several URLs.
+    duplicates: int
 
 
 @dataclass(frozen=True)
@@ -90,6 +155,7 @@ def build_citation_report(scan: Scan, store: Store) -> CitationReport:
     unlinked = [c for c in instances if c.kind == "unlinked"]
     inconsistent = sorted((k, v) for k, v in anchors_by_key.items() if len(v) > 1)
     unresolved_keys = sorted(k for k, e in store.items() if e.get("resolvedBy") == "anchor")
+    duplicates = duplicate_groups(store)
 
     lines: list[str] = [
         "# Citation report — citations needing human attention",
@@ -168,12 +234,32 @@ def build_citation_report(scan: Scan, store: Store) -> CitationReport:
             lines.append(f"- {shown} — {_locations(instances_by_key.get(key, []))} — {key}")
         lines.append("")
 
+    if duplicates:
+        _heading(
+            lines,
+            "Probable duplicates — one work under several URLs",
+            len(duplicates),
+            "Same first author, same year, and effectively the same title. Usually a cross-post "
+            "(Alignment Forum and LessWrong), a mirror (`deepmind.com` and `deepmind.google`), "
+            "or a preprint beside its published page. Entry identity is the canonical URL "
+            "(`task:0021` D1), so these are **reported, never merged** — collapsing two identities "
+            "on a heuristic would silently lose a citation. Pick the URL to keep and record the "
+            "others as aliases.",
+        )
+        for group in duplicates:
+            title = store[group[0]]["item"].get("title") or "(no title)"
+            lines.append(f"- **{title}**")
+            for key in group:
+                lines.append(f"  - {key}")
+        lines.append("")
+
     counts = ReportCounts(
         unresolved=len(unresolved_keys),
         malformed=len(malformed),
         content_links=len(content_links),
         unlinked=len(unlinked),
         inconsistent=len(inconsistent),
+        duplicates=len(duplicates),
     )
     return CitationReport(markdown="\n".join(lines), counts=counts)
 
@@ -203,6 +289,7 @@ def citations_report(root: Path, out_path: Path | None = None) -> int:
     print(
         f"{c.unresolved} unresolved · {c.malformed} malformed · "
         f"{c.content_links} content links · {c.unlinked} unlinked · "
-        f"{c.inconsistent} inconsistent spellings — wrote {dest}"
+        f"{c.inconsistent} inconsistent spellings · {c.duplicates} probable duplicates "
+        f"— wrote {dest}"
     )
     return 0
