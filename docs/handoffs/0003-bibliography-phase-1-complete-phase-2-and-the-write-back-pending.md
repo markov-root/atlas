@@ -211,7 +211,71 @@ ago. "It already works", "the tests pass" and "it would be a rewrite" are not ar
 a design that is wrong. `task:0029` exists because that rule was applied to work finished the same
 afternoon.
 
-## Where this stopped, 2026-09-23
+## Where this stopped, 2026-09-23 (second session)
+
+**Pushed.** `origin/bibliography` is at `ec38b11`; the branch is no longer local-only. The push runs
+`pnpm verify` as a pre-push hook and it passes **only with `SKIP_AUDIO_DOWNLOAD=1` exported** - without
+it the build reaches R2 with revoked credentials and the hook dies on ETIMEDOUT. Note what the log
+says while failing: `[r2-cache] Failed to list R2 for push`. That is `task:0022` (p1), still real, and
+still stopped only by the credentials being dead.
+
+### Citation metadata: 813 -> 888 of 945 resolved
+
+`task:0032` is the record. Five resolve passes took the unresolved tail from **132 to 57**, and
+`container-title` from **191 to 684**, which is what makes `task:0030`'s source filter possible at all.
+
+New capability, all under `task:0032`: `Unreachable(reason)` in the resolver contract (a decline and a
+failure are different answers - `audit:0011` F12), `Accept` headers, Crossref from a DOI anywhere in a
+URL, a ForumMagnum resolver for LessWrong/EA Forum/Alignment Forum, an Internet Archive resolver, a
+reviewed `data/citations/overrides.yaml`, and `atlas citations propose` to gather evidence for it.
+
+**Four measured negatives, recorded so they are not retried:** PDF `/Title` metadata (0 of 12), a
+largest-font title heuristic (~5 of 16 clean), Crossref title search (returns a different paper,
+ranked first, at a score indistinguishable from a correct hit), and a headless browser against a WAF
+(Cloudflare refuses Playwright exactly as it refuses httpx; PsycNet was *worse* under a browser).
+`audit:0011` F15 and F17.
+
+**The remaining 57 are human work**, and the worklist is built:
+`data/citations/overrides.proposed.yaml` (gitignored), grouped by what each entry needs - 34 with no
+readable metadata (PDF first pages already extracted), 12 behind a paywall, 9 flaky, 2 genuinely gone.
+
+### Reader-facing
+
+`task:0030` AC-7 is done: one control panel on `/bibliography` and the chapter pages with search
+scoped to a field, filters on source/type/year, five sorts, and grouping by chapter or
+chapter-and-section. State syncs to the query string, so a filtered view is linkable. Both pages now
+sit on the house rounded-white surface; controls use the `VersionSelector` style on a six-column grid.
+
+The bibliography is now **reachable**: section reference lists link onward to the chapter and
+site-wide pages, and the footer carries one. It was previously built and unlinked.
+
+### A standing rule added this session
+
+**No em dashes anywhere.** 3,053 removed across 171 files; `tests/no-em-dash.test.ts` enforces it in
+`pnpm test` and names offenders. Quoted source data, three functional literals and upstream text are
+exempt **by path with a stated reason**: a cited work's title is that work's title (Turing 1950 is
+printed with one), and rewriting it would falsify the citation. Stated in `AGENTS.md`.
+
+### Open, with records
+
+- **`task:0032` AC-7** - 57 entries, human work, worklist generated.
+- **`task:0033`** - a styled listbox. A native select's popup is drawn by the OS and ignores every
+  site style, so the control looks like the Atlas until it opens. Three inconsistent select styles
+  exist today.
+- **`task:0034`** - the bibliography in the chapter PDF. Every input exists; the Typst renderer never
+  asked.
+- **`task:0031`** - duplicate aliasing, now **9** groups (more entries resolved, so more detected).
+
+### Things that will bite the next person, added
+
+- **A local dev build shows no PDF or audio link in the resources panel.** `chapter.pdfLink` and
+  `audioLink` are only set when the build generates them, which needs credentials this machine does
+  not have. Nothing is broken and nothing was displaced.
+- **`atlas citations resolve` is slow now** - roughly 45 minutes for 90 entries, because a failing
+  entry costs the live chain, a `www.` retry and an archive lookup. It saves every 20 and handles
+  SIGTERM, so stopping it is safe and cheap.
+
+## Where this stopped, 2026-09-23 (first session)
 
 Everything below is committed and green. The branch is **44 commits ahead of `main`, nothing
 pushed.** A dev server may still be running in tmux as session `dev`; `tmux kill-session -t dev`.
