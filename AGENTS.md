@@ -39,6 +39,7 @@ The `pnpm verify` chain is enforced automatically as a `pre-push` git hook (`.gi
 
 ## Agent norms
 
+- **No em dashes. Anywhere.** Code, comments, docs, commit messages, page copy. Use a spaced hyphen, a comma, or a colon; one of them almost always reads better. Enforced by `tests/no-em-dash.test.ts`, which runs in `pnpm test` and names any offending file. Quoted source data is exempt and says so by path: a cited work's title is that work's title, and rewriting it would falsify the citation.
 - Prefer editing existing files to creating new ones. The doc set above is intentionally small and single-purpose; if you find yourself wanting a new doc, check whether the content belongs in an existing one first.
 - Every principle in `docs/PRINCIPLES.md` has a code reference. When you change the code, check whether the matching principle needs updating in the same commit.
 - `docs/TODO.md` and `docs/lessons/` are gitignored - write to them freely as working notes; they don't ship to the repo.

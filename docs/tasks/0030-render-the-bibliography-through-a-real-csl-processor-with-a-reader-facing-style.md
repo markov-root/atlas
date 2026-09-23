@@ -184,13 +184,31 @@ over the list.
   The project already has `astro-icon` for its existing UI, so whichever is used should be one
   choice, not both.
 
-### Open questions for that work
+### Open questions, answered in the build
 
-- Does grouping by chapter change the URL, so a grouped view is linkable?
-- With 945 entries, does faceting stay client-side? It is display-only today, which is what keeps it
-  instant; a facet count per option is more work per keystroke.
-- Does the section-level list get any of this, or does it stay a plain list? (Probably plain - a
-  30-entry list does not need a control panel.)
+- **Does grouping change the URL?** Yes, and so does every other control. A reader who has narrowed
+  945 sources to twelve has done work, and a view they cannot send to someone is a view they have to
+  rebuild. `replaceState`, not `pushState`, so typing in a search box does not fill the back button.
+- **Does faceting stay client-side at 945 entries?** Yes. The counts are computed at build time,
+  because they are the same answer for every reader; only the filtering runs per keystroke, over
+  `data-` attributes already in the DOM. Nothing is fetched and no list is rebuilt from data.
+- **Does the section-level list get a panel?** No. A 30-entry list is faster to read than to filter,
+  and a panel above it is furniture. `searchable` is opt-in and the section list does not opt in.
+- **One question the build added:** the grouped view would need every entry repeated once per citing
+  chapter, which at 1,770 citation instances is nearly double the HTML on a page `task:0019` is
+  trying to slim. It clones on demand in the browser instead, so the cost is paid only by readers who
+  ask for it.
+
+### A decision the owner made during the build
+
+Icons come from `astro-icon` with `@iconify-json/tabler`, already used on five pages, rather than the
+102 loose SVGs under `~/Images/Icons`. The task said to make one choice, not both; the dependency
+that is already load-bearing wins.
+
+Controls use the house style from `VersionSelector` - borderless on a gray surface - and every one is
+a cell of a six-column grid, so the widths are systematic rather than whatever each select's longest
+option happened to be. `/bibliography` sits on the rounded white surface `docs/DESIGN.md` describes,
+which it previously did not.
 
 ## Done when
 
