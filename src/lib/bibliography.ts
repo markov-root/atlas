@@ -106,19 +106,46 @@ export function resetStoreCache(): void {
   cached = null;
 }
 
+/**
+ * The longest a real personal name part can plausibly be.
+ *
+ * Anything past this is a parse failure wearing a name's clothes. The store held
+ * three entries whose `given` field was tens of thousands of characters of raw
+ * Atom XML, because the TypeScript arXiv resolver's regex had swallowed the
+ * whole author block (`audit:0011` F11) — and the page rendered it as several
+ * hundred initials.
+ */
+const MAX_NAME_PART = 80;
+
+/**
+ * True for a value that cannot be a name.
+ *
+ * The resolvers are where clean data is supposed to come from, and they are
+ * fixed. This is the second line: `sources.yaml` is committed and hand-editable,
+ * so a bad value can arrive without any resolver being involved, and no data
+ * defect should be able to disfigure a page.
+ */
+function implausibleName(value: string): boolean {
+  return value.length > MAX_NAME_PART || value.includes('<');
+}
+
 /** "Jordan Hoffmann" → "Hoffmann, J."; a literal name is left exactly as written. */
 export function formatName(name: CslName): string {
-  if (name.literal) return name.literal;
-  if (!name.family) return name.given ?? '';
-  if (!name.given) return name.family;
+  if (name.literal) return implausibleName(name.literal) ? '' : name.literal;
+  // A corrupt `given` must not take the family name down with it: "Pokorny" is
+  // still useful, and dropping the whole entry would hide the source entirely.
+  const family = name.family && !implausibleName(name.family) ? name.family : '';
+  const given = name.given && !implausibleName(name.given) ? name.given : '';
+  if (!family) return given;
+  if (!given) return family;
   // Initials rather than full given names: a reference list is scanned, not
   // read, and the family name is what a reader matches against the citation.
-  const initials = name.given
+  const initials = given
     .split(/\s+/)
     .filter(Boolean)
     .map((part) => `${part[0].toUpperCase()}.`)
     .join(' ');
-  return `${name.family}, ${initials}`;
+  return `${family}, ${initials}`;
 }
 
 /**
@@ -158,9 +185,26 @@ export function displayUrl(url: string, max = 70): string {
   return `${bare.slice(0, max - tail.length - 1)}…${tail}`;
 }
 
+/**
+ * Strip inline markup and collapse whitespace.
+ *
+ * Crossref embeds presentational tags in titles — its record for "Human-level
+ * play in the game of `<i>`Diplomacy`</i>`" carries them verbatim — and CSL
+ * fields are plain text, so a template escapes them and shows them to the
+ * reader. The resolver now cleans this at the source; this is the same guard at
+ * the render layer, for entries already in the committed store and for the hand
+ * edits the store invites. `audit:0011` F11.
+ */
+function stripMarkup(text: string): string {
+  return text
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 /** Trailing sentence punctuation, so the template's own period does not double up. */
 function trimTerminal(text: string): string {
-  return text.replace(/\s*\.\s*$/, '');
+  return stripMarkup(text).replace(/\s*\.\s*$/, '');
 }
 
 /**

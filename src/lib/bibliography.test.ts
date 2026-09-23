@@ -65,6 +65,38 @@ describe('formatName', () => {
   });
 });
 
+// The store held three entries whose `given` was tens of thousands of characters
+// of raw Atom XML — the TypeScript arXiv resolver had swallowed the whole author
+// block — and the page rendered it as several hundred initials. The resolver is
+// fixed; this is the render-layer guard, because sources.yaml is committed and
+// hand-editable so bad values can arrive with no resolver involved.
+// audit:0011 F11.
+describe('formatName rejects values that cannot be names', () => {
+  const xmlBlob = 'OpenAI</name>\n  <arxiv:affiliation>Rai</arxiv:affiliation>\n  </author>';
+
+  it('drops a given name containing markup, keeping the family name', () => {
+    expect(formatName({ family: 'Pokorny', given: xmlBlob })).toBe('Pokorny');
+  });
+
+  it('drops an absurdly long given name, keeping the family name', () => {
+    expect(formatName({ family: 'Debnath', given: 'A'.repeat(5000) })).toBe('Debnath');
+  });
+
+  it('drops a literal name containing markup entirely', () => {
+    expect(formatName({ literal: xmlBlob })).toBe('');
+  });
+
+  it('never emits a name longer than a plausible one', () => {
+    const out = formatName({ family: 'X'.repeat(500), given: 'Y'.repeat(500) });
+    expect(out.length).toBeLessThan(100);
+  });
+
+  it('leaves a long but legitimate name alone', () => {
+    const real = { family: 'van der Berg-Schmidt', given: 'Maria Jos\u00e9 Antonia' };
+    expect(formatName(real)).toBe('van der Berg-Schmidt, M. J. A.');
+  });
+});
+
 describe('formatAuthors', () => {
   it('joins the final pair with an ampersand', () => {
     expect(formatAuthors([{ family: 'Amodei' }, { family: 'Clark' }])).toBe('Amodei & Clark');
@@ -300,6 +332,20 @@ describe('the committed store', () => {
     expect(refs.length).toBeGreaterThan(900);
     expect(refs.every((r) => typeof r.title === 'string' && r.title.length > 0)).toBe(true);
     expect(refs.every((r) => r.url.startsWith('http'))).toBe(true);
+  });
+
+  it('never renders markup or an absurd name from the real corpus', () => {
+    resetStoreCache();
+    const refs = allReferences(process.cwd());
+    const bad = refs.filter((r) => r.authors.includes('<') || r.authors.length > 300);
+    expect(bad.map((r) => r.key)).toEqual([]);
+  });
+
+  it('never renders markup in a title or container', () => {
+    resetStoreCache();
+    const refs = allReferences(process.cwd());
+    const bad = refs.filter((r) => r.title.includes('</') || r.container.includes('</'));
+    expect(bad.map((r) => r.key)).toEqual([]);
   });
 
   it('never renders a title that is just the author and year again', () => {

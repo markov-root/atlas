@@ -17,6 +17,7 @@ hand-rolled and wrong; this call is a thin one and stays ours.
 
 from __future__ import annotations
 
+import re
 from typing import Any
 from urllib.parse import quote, unquote, urlsplit
 
@@ -41,10 +42,25 @@ TYPE_MAP = {
 }
 
 
+_TAG = re.compile(r"<[^>]+>")
+
+
+def _clean(text: str) -> str:
+    """Strip inline markup and collapse whitespace.
+
+    Crossref embeds presentational markup in titles — the real record for
+    "Human-level play in the game of <i>Diplomacy</i>" carries those tags and
+    the newlines around them verbatim — and CSL fields are plain text. A
+    template escapes the tags rather than interpreting them, so they reached the
+    reader. See ``audit:0011`` F11.
+    """
+    return " ".join(_TAG.sub("", text).split())
+
+
 def _first(value: Any) -> str | None:
     """First element of a Crossref string-array field (``title``, ``container-title``)."""
     if isinstance(value, list) and value and isinstance(value[0], str):
-        return value[0]
+        return _clean(value[0]) or None
     return None
 
 

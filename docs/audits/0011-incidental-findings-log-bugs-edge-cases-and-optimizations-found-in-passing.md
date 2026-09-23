@@ -7,7 +7,7 @@ role: audit
 status: draft
 summary: 'Append-only log of defects and improvements discovered during unrelated work, so they are not lost or silently fixed.'
 created: '2026-09-21'
-updated: '2026-09-22'
+updated: '2026-09-23'
 owner: Markov Grey
 supersedes: ''
 superseded_by: ''
@@ -24,7 +24,7 @@ engineering_document:
     owner: Markov Grey
     scope: Findings discovered incidentally during other work, repo-wide
   created: '2026-09-21'
-  updated: '2026-09-22'
+  updated: '2026-09-23'
   transition_history: unverified
   transitions: []
   relationships: []
@@ -274,6 +274,70 @@ The pattern is worth naming: **this codebase's comments are unusually detailed, 
 unusually load-bearing.** A detailed comment reads as specification, so a reviewer checks the code
 against it and stops. Where a comment states a property, the test that would fail if it were false is
 cheap and is the only thing that keeps the comment honest.
+
+### F11 — The TypeScript arXiv resolver swallowed whole author blocks as one name
+
+**Severity:** medium · **Evidence:** reproduced, 3 entries affected · **Found:** 2026-09-23, by the owner reading the rendered page
+
+The rendered bibliography showed entries like:
+
+> Pokorny, O. &lt;. &lt;. &lt;. &lt;. A. &lt;. &lt;. &lt;. &lt;. A. &lt;. &lt;. &lt;. &lt;. A. … (several hundred more)
+
+The cause was in `arxiv.ts`, which extracted authors with
+`/<author>\s*<name>([\s\S]*?)<\/name>\s*<\/author>/g`. arXiv emits
+`<arxiv:affiliation>` between `</name>` and `</author>`, so that pattern could not match the first
+author — and the lazy quantifier therefore ran on until it found a `</name></author>` pair with
+nothing between them, swallowing every author in between into a single `given` field. One entry's
+`given` was **96,295 characters** of raw Atom XML. The render layer then abbreviated each
+whitespace-separated token to an initial, producing hundreds of `<.` fragments.
+
+Three entries were affected — `2501.14249` (1,158 authors), `2206.04615` (451), `2303.08774` (281) —
+which is to say the three with the largest author lists, because a long list is what makes the
+regex's failure mode visible.
+
+This is precisely the class of defect `task:0029` moved to a library to eliminate. `feedparser`
+parses all three correctly; the ported resolver was already immune when the bug was found.
+
+**Disposition:** all three entries re-resolved and clean. A regression test
+(`test_resolver_arxiv.py::TestAffiliations`) pins the affiliation shape and asserts that no author
+field contains markup or exceeds a plausible length. A second guard was added at the render layer
+(`src/lib/bibliography.ts`, `implausibleName`), because `sources.yaml` is committed and hand-editable
+— a bad value can arrive with no resolver involved, and no data defect should be able to disfigure a
+page. A corrupt `given` now drops while its `family` survives, so the entry degrades rather than
+disappearing.
+
+A fourth entry, a PubMed record, carried Crossref's inline markup in its title
+(`the game of <i>Diplomacy</i>`). CSL fields are plain text and a template escapes tags rather than
+interpreting them, so they reached the reader. Fixed at the resolver (`crossref.py`, `_clean`) and
+again at the render layer.
+
+**The lesson is not "regex cannot parse XML"** — everyone already says that, and the original author
+knew it and wrote the constraint down. It is that the file's own header listed what its parsing could
+not handle and this case was not on the list, because the limitation was reasoned about rather than
+tested against real feeds. The three worst-affected entries were in the corpus the whole time.
+
+### F12 — A transient network failure is recorded as a permanent resolver verdict
+
+**Severity:** medium · **Evidence:** reproduced · **Found:** 2026-09-23, while repairing F11
+
+While re-resolving the F11 entries, arXiv briefly failed under three rapid requests. The resolver
+treated that exactly as it treats "this paper does not exist": it returned `None`, the chain fell
+through, and Open Graph answered instead — giving the entry a bare title and **zero authors** where
+arXiv would have given 1,158. The same fetch succeeded on the next attempt, three times in a row.
+
+Because resolution is sticky by design, that verdict would have been permanent. Nothing distinguishes
+it in the store from a legitimate Open Graph result.
+
+The concerning implication is about data already collected: **386 entries are currently attributed to
+`opengraph`**, and there is no way to tell how many of those are genuine long-tail pages versus
+entries where a better resolver happened to fail transiently during the ~75-minute run. The
+`--redo` mechanism (F10) is the repair tool, but nothing signals that a repair is warranted.
+
+**Disposition:** unfixed, recorded. The minimal fix is to distinguish _declined_ from _unreachable_
+in the resolver contract — `ResolveResult | None` cannot express the difference today — and to retry
+an unreachable service once or twice before falling through. A larger version would record the
+failure in the entry so `--redo` could target exactly the entries that deserve another attempt. Worth
+a task; not worth inventing a design inside a bug-fix session.
 
 ## Recommendations
 

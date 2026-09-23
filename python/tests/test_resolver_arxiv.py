@@ -40,6 +40,32 @@ MULTI_AUTHOR = """<?xml version="1.0" encoding="UTF-8"?>
 </feed>
 """
 
+# The real shape that broke the TypeScript resolver: arXiv puts
+# <arxiv:affiliation> between </name> and </author>, which its regex
+# `<author>\s*<name>(.*?)</name>\s*</author>` could not match — so the lazy
+# quantifier ran on to a LATER </name></author> pair and swallowed hundreds of
+# authors into one name. See audit:0011 F11.
+AFFILIATED = """<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:arxiv="http://arxiv.org/schemas/atom">
+  <entry>
+    <id>http://arxiv.org/abs/2303.08774v1</id>
+    <published>2023-03-15T00:00:00Z</published>
+    <title>GPT-4 Technical Report</title>
+    <author>
+      <name>OpenAI</name>
+      <arxiv:affiliation>Rai</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Josh Achiam</name>
+      <arxiv:affiliation>Rai</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Steven Adler</name>
+    </author>
+  </entry>
+</feed>
+"""
+
 EMPTY_FEED = """<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"></feed>
 """
@@ -107,6 +133,27 @@ class TestMapping:
             {"given": "Sebastian", "family": "Borgeaud"},
             {"literal": "DeepMind"},
         ]
+
+
+class TestAffiliations:
+    """audit:0011 F11 — the defect that put 96 KB of raw XML in one author name."""
+
+    def test_an_affiliation_between_name_and_author_does_not_swallow_the_list(self) -> None:
+        out = arxiv_resolver.resolve("https://arxiv.org/abs/2303.08774", feed_ctx(AFFILIATED))
+        assert out is not None
+        assert out.fields["author"] == [
+            {"literal": "OpenAI"},
+            {"given": "Josh", "family": "Achiam"},
+            {"given": "Steven", "family": "Adler"},
+        ]
+
+    def test_no_author_field_carries_markup(self) -> None:
+        out = arxiv_resolver.resolve("https://arxiv.org/abs/2303.08774", feed_ctx(AFFILIATED))
+        assert out is not None
+        for name in out.fields["author"]:
+            for value in name.values():
+                assert "<" not in value, value
+                assert len(value) < 100, "a name this long is a parse failure, not a name"
 
 
 class TestTraps:
