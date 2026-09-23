@@ -89,12 +89,22 @@ def _map_authors(value: Any) -> list[dict[str, str]] | None:
 
 
 def _map_issued(value: Any) -> dict[str, Any] | None:
-    """Crossref hands ``issued`` over already in CSL ``date-parts`` shape."""
-    if isinstance(value, dict):
-        parts = value.get("date-parts")
-        if isinstance(parts, list) and parts and isinstance(parts[0], list):
-            return {"date-parts": parts}
-    return None
+    """Crossref hands ``issued`` over already in CSL ``date-parts`` shape.
+
+    With one trap: for a record it holds no date for, Crossref sends
+    ``{"date-parts": [[null]]}`` rather than omitting the field. That is a date
+    whose year is unknown, which is not a date — storing it produces an entry
+    that claims to have a publication date and cannot render one, and a CSL
+    processor reading it calls ``int(None)`` and raises.
+    """
+    if not isinstance(value, dict):
+        return None
+    parts = value.get("date-parts")
+    if not (isinstance(parts, list) and parts and isinstance(parts[0], list)):
+        return None
+    clean = [[p for p in part if isinstance(p, int)] for part in parts]
+    clean = [part for part in clean if part]
+    return {"date-parts": clean} if clean else None
 
 
 class CrossrefResolver:

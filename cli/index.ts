@@ -29,6 +29,7 @@ const USAGE = `atlas — AI Safety Atlas maintainer commands
   atlas citations export   write the whole-book bibliography as BibTeX and CSL-JSON
   atlas citations resolve  fill in metadata (--limit=N, --redo=<resolver,...>)
   atlas citations urls     write every cited source, per chapter and section, as Markdown
+  atlas citations render   pre-render every reference in every CSL style for the site
 
 Run from anywhere in the checkout: ./bin/atlas <command>
 `;

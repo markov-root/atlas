@@ -21,6 +21,7 @@ from pathlib import Path
 
 from .commands.export import citations_export
 from .commands.extract import citations_extract
+from .commands.render import citations_render
 from .commands.report import citations_report
 from .commands.resolve import ResolveOptions, citations_resolve
 from .commands.urls import citations_urls
@@ -53,6 +54,10 @@ def build_parser() -> argparse.ArgumentParser:
     urls = subs.add_parser("urls", help="write cited sources per chapter as Markdown")
     urls.add_argument("out", nargs="?", type=Path, default=None)
     urls.set_defaults(run=lambda a: citations_urls(a.root, a.out))
+
+    render = subs.add_parser("render", help="pre-render every reference in every CSL style")
+    render.add_argument("out", nargs="?", type=Path, default=None)
+    render.set_defaults(run=lambda a: citations_render(a.root, a.out))
 
     resolve = subs.add_parser("resolve", help="fill in metadata over the network")
     resolve.add_argument("--limit", type=int, default=None, help="stop after this many entries")

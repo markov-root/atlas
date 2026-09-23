@@ -37,19 +37,6 @@ const description = `Every source cited in the AI Safety Atlas — ${total} work
       cites.
     </p>
 
-    <p class="mt-4 text-sm text-gray-500">
-      <strong class="text-gray-700">{total}</strong> sources · <strong class="text-gray-700"
-        >{resolved}</strong
-      > with full metadata
-      {
-        pending > 0 && (
-          <span>
-            {' '}
-            · {pending} still showing only what the citation itself carries
-          </span>
-        )
-      }
-    </p>
 
     {
       pending > 0 && (
@@ -60,6 +47,12 @@ const description = `Every source cited in the AI Safety Atlas — ${total} work
       )
     }
 
-    <Bibliography references={references} heading={null} id="all-references" />
+    <Bibliography
+      references={references}
+      heading={null}
+      id="all-references"
+      showCount={true}
+      searchable={true}
+    />
   </div>
 </Default>

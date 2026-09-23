@@ -102,14 +102,34 @@ describe('citation extraction over the committed corpus', () => {
     expect(rawUnique - canonUnique).toBeGreaterThan(0);
   });
 
-  it('every citation carries a canonical key and a location', () => {
+  it('every keyed citation agrees with the canonicalizer, and carries a location', () => {
     const { citations } = summarizeCitations(sections);
     for (const c of citations) {
-      expect(c.key, c.rawUrl ?? '').toBeTruthy();
       expect(c.key).toBe(canonicalizeUrl(c.rawUrl!));
       expect(typeof c.chapterNumber).toBe('number');
       expect(c.sectionSlug).toBeTruthy();
     }
+  });
+
+  // A citation whose href is broken gets no key, deliberately: minting one put
+  // `https://in`, `https://li` and `https://perez` into the bibliography as
+  // real sources (`audit:0011` F13). They are reported instead, so an author
+  // can fix the Doc.
+  it('the only unkeyed citations are the ones with a broken link target', () => {
+    const { citations } = summarizeCitations(sections);
+    const unkeyed = citations.filter((c) => !c.key);
+    for (const c of unkeyed) {
+      let host: string;
+      try {
+        host = new URL(c.rawUrl!).hostname;
+      } catch {
+        host = '';
+      }
+      expect(host.includes('.'), `${c.rawUrl} should have been keyed`).toBe(false);
+    }
+    // Pinned so that a regression which starts dropping good URLs is visible as
+    // a number rather than as a quietly shorter bibliography.
+    expect(unkeyed.length).toBeLessThanOrEqual(5);
   });
 
   // AC-5. Correcting an earlier measurement error recorded in task:0021: the

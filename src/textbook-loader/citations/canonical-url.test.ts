@@ -111,3 +111,22 @@ describe('isAssetUrl', () => {
     expect(isAssetUrl('https://example.org/paper.pdf')).toBe(false);
   });
 });
+
+describe('malformed hosts are not documents (audit:0011 F13)', () => {
+  // `new URL()` accepts these: the hostname is "in", "li", "perez". All three
+  // came from truncated hrefs in the Google Doc and became store entries.
+  it.each(['https://in', 'https://li', 'https://perez', 'http://localhost'])(
+    'rejects %s, which has no dot in its hostname',
+    (raw) => {
+      expect(canonicalizeUrl(raw)).toBeNull();
+    },
+  );
+
+  it('rejects a trailing-dot hostname', () => {
+    expect(canonicalizeUrl('https://example.com.')).toBeNull();
+  });
+
+  it('still accepts ordinary hosts', () => {
+    expect(canonicalizeUrl('https://epoch.ai/blog/x')).toBe('https://epoch.ai/blog/x');
+  });
+});

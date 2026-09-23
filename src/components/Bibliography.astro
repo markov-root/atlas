@@ -1,28 +1,35 @@
 ---
 /**
- * A reference list. Phase 2 of `task:0021`, D5.
+ * A reference list, with a style selector and optional search/sort. `task:0030`.
  *
  * Used at three scales with the same markup: after a section's footnotes, on a
- * chapter's introduction page, and on the site-wide `/bibliography`. The only
- * differences are the heading and whether the count is worth showing, so they
- * are props rather than three components.
+ * chapter's bibliography page, and on the site-wide `/bibliography`.
+ *
+ * Every offered style is rendered into the page at build time, one `<span>` per
+ * style, and the selector toggles which is visible (`task:0030` D3). No
+ * citation processor runs in the browser, there is no request on switch, and
+ * with JavaScript off the default style is the one that shows — which is why
+ * the non-default variants are hidden with a class rather than by script.
+ *
+ * "Basic" is always present and always the default: it is the house style, it
+ * needs no pre-rendered file, and it is the one that reads best on a page
+ * because the title is the link text.
  *
  * Rendering nothing when there are no references is deliberate: a heading
  * followed by an empty list tells a reader the page is broken. Several sections
  * genuinely cite nothing.
  */
-import type { Reference } from '../lib/bibliography';
+import type { Reference, StyleOption } from '../lib/bibliography';
+import { availableStyles, defaultStyle, BASIC_STYLE } from '../lib/bibliography';
 
 interface Props {
   references: Reference[];
-  /** Heading text. Omit the heading entirely with `null`. */
   heading?: string | null;
-  /** Heading level, so this can sit under an `h1` or an `h2` without breaking outline order. */
   level?: 2 | 3;
-  /** Anchor id, for linking to the list from elsewhere on the page. */
   id?: string;
-  /** Show "N sources" under the heading. Useful at chapter and site scale. */
   showCount?: boolean;
+  /** Show the search / sort / filter controls. Worth it on a long list only. */
+  searchable?: boolean;
 }
 
 const {
@@ -31,66 +38,257 @@ const {
   level = 2,
   id = 'references',
   showCount = false,
+  searchable = false,
 } = Astro.props;
 
 const Heading = level === 3 ? 'h3' : 'h2';
 const unresolved = references.filter((r) => !r.resolved).length;
+
+const styles: StyleOption[] = availableStyles();
+const initialStyle = defaultStyle();
+const showSelector = styles.length > 1;
+
+/** Plain text for the search index and the sort keys, computed at build time. */
+function searchText(ref: Reference): string {
+  return [ref.authors, ref.year, ref.title, ref.container, ref.url, ...Object.values(ref.styled)]
+    .join(' ')
+    .toLowerCase();
+}
 ---
 
 {
   references.length > 0 && (
-    <section id={id} class="not-prose mt-12 pt-8 border-t border-gray-300">
-      {heading && (
-        <Heading class="text-xl font-semibold mb-1 text-gray-900">{heading}</Heading>
-      )}
+    <section id={id} class="not-prose mt-12 pt-8 border-t border-gray-300" data-bibliography>
+      {heading && <Heading class="text-xl font-semibold mb-1 text-gray-900">{heading}</Heading>}
+
       {showCount && (
         <p class="text-sm text-gray-500 mb-4">
-          {`${references.length} ${references.length === 1 ? 'source' : 'sources'}`}
+          <span data-visible-count>{references.length}</span>
+          {` of ${references.length} ${references.length === 1 ? 'source' : 'sources'}`}
           {unresolved > 0 && <span>{` · ${unresolved} awaiting full metadata`}</span>}
         </p>
       )}
-      <ol class="space-y-3 text-sm text-gray-700 list-none pl-0 mt-4">
+
+      {searchable && (
+        <div class="flex flex-wrap items-center gap-3 mb-4 text-sm">
+          <label class="sr-only" for={`${id}-search`}>
+            Search sources
+          </label>
+          <input
+            id={`${id}-search`}
+            type="search"
+            placeholder="Search author, title, or URL…"
+            data-bib-search
+            class="flex-1 min-w-[16rem] px-3 py-1.5 rounded border border-gray-300 focus:border-gray-500 focus:outline-none"
+          />
+          <label class="sr-only" for={`${id}-sort`}>
+            Sort
+          </label>
+          <select
+            id={`${id}-sort`}
+            data-bib-sort
+            class="px-2 py-1.5 rounded border border-gray-300 focus:border-gray-500 focus:outline-none text-gray-700"
+          >
+            <option value="author">Author (A–Z)</option>
+            <option value="year-desc">Year (newest)</option>
+            <option value="year-asc">Year (oldest)</option>
+            <option value="title">Title (A–Z)</option>
+          </select>
+          <label class="flex items-center gap-1.5 text-gray-600">
+            <input type="checkbox" data-bib-resolved-only class="rounded border-gray-300" />
+            Full metadata only
+          </label>
+        </div>
+      )}
+
+      {showSelector && (
+        <div class="flex flex-wrap items-center gap-2 mb-6 text-sm" data-style-picker>
+          <span class="text-gray-500">Style</span>
+          {styles.map((style) => (
+            <button
+              type="button"
+              data-style-button={style.id}
+              aria-pressed={style.id === initialStyle ? 'true' : 'false'}
+              class="px-2 py-0.5 rounded border border-gray-300 text-gray-700 hover:border-gray-500 transition-colors aria-pressed:bg-gray-900 aria-pressed:text-white aria-pressed:border-gray-900"
+              title={
+                style.numeric
+                  ? `${style.label} is a numbered style. The Atlas cites by author and year in the text, so the numbers are omitted here.`
+                  : undefined
+              }
+            >
+              {style.label}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <ol class="space-y-3 text-sm text-gray-700 list-none pl-0" data-bib-list>
         {references.map((ref) => (
           <li
             id={`ref-${encodeURIComponent(ref.key)}`}
             class="pl-6 -indent-6 leading-relaxed target:bg-brand-50"
+            data-bib-entry
+            data-search={searchText(ref)}
+            data-sort-author={(ref.authors || ref.title).toLowerCase()}
+            data-sort-title={ref.title.toLowerCase()}
+            data-sort-year={ref.year || '0000'}
+            data-resolved={ref.resolved ? 'true' : 'false'}
           >
-            {ref.authors && <span class="text-gray-900">{ref.authors}</span>}
-            {ref.authors && ref.year && ' '}
-            {ref.year && <span class="text-gray-600">({ref.year})</span>}
-            {(ref.authors || ref.year) && '. '}
-            {/* Always underlined, never colour alone. Each entry is a block of
-                text with a link inside it, which is exactly the shape axe's
-                `link-in-text-block` rule guards: colour is not a distinguisher
-                for a reader with a colour vision deficiency. This is the same
-                treatment the chapter resources panel already uses. */}
-            <a
-              href={ref.url}
-              rel="noopener noreferrer"
-              target="_blank"
-              class="text-brand-600 underline decoration-brand-300 underline-offset-2 hover:decoration-brand-600 transition-colors"
-              title={ref.anchors.length ? `Cited as: ${ref.anchors.join(' / ')}` : undefined}
-            >
-              {ref.title}
-            </a>
-            {ref.container && <span class="text-gray-600 italic">. {ref.container}</span>}
-            {'.'}
-            {ref.doi && (
-              <>
-                {' '}
-                <a
-                  href={`https://doi.org/${ref.doi}`}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  class="text-gray-500 underline decoration-gray-300 underline-offset-2 hover:decoration-gray-500 break-all"
-                >
-                  doi:{ref.doi}
-                </a>
-              </>
-            )}
+            {/* The house style. Always present, so the list works with no
+                pre-rendered file and with JavaScript off. */}
+            <span data-style={BASIC_STYLE.id}>
+              {ref.authors && <span class="text-gray-900">{ref.authors}</span>}
+              {ref.authors && ref.year && ' '}
+              {ref.year && <span class="text-gray-600">({ref.year})</span>}
+              {(ref.authors || ref.year) && '. '}
+              {/* Always underlined, never colour alone: each entry is a block of
+                  text with a link inside it, which is exactly the shape axe's
+                  `link-in-text-block` rule guards. */}
+              <a
+                href={ref.url}
+                rel="noopener noreferrer"
+                target="_blank"
+                class="text-brand-600 underline decoration-brand-300 underline-offset-2 hover:decoration-brand-600 transition-colors break-words"
+                title={ref.anchors.length ? `Cited as: ${ref.anchors.join(' / ')}` : undefined}
+              >
+                {ref.title}
+              </a>
+              {ref.container && <span class="text-gray-600 italic">. {ref.container}</span>}
+              {'.'}
+            </span>
+
+            {/* The CSL styles. These embed the URL as plain text, which is why
+                they need `break-all`: a 120-character PDF path has no space to
+                wrap at and would otherwise push the page sideways. */}
+            {Object.entries(ref.styled).map(([styleId, text]) => (
+              <span data-style={styleId} class="hidden break-all">
+                {text}
+              </span>
+            ))}
           </li>
         ))}
       </ol>
+
+      {searchable && (
+        <p class="hidden mt-6 text-sm text-gray-500" data-bib-empty>
+          No sources match that search.
+        </p>
+      )}
     </section>
   )
 }
+
+<script>
+  /**
+   * Citation style selection, plus search / sort / filter.
+   *
+   * All of it is display-only over markup that is already in the page: nothing
+   * is fetched, and every style of every entry was rendered at build time. That
+   * is what keeps the interaction instant on a 945-entry list.
+   */
+  const STORAGE_KEY = 'atlas:citation-style';
+
+  function applyStyle(styleId: string): void {
+    document.querySelectorAll<HTMLElement>('[data-bibliography]').forEach((root) => {
+      const present = new Set(
+        [...root.querySelectorAll<HTMLElement>('[data-style]')].map((el) => el.dataset.style!),
+      );
+      // A style saved from another page may not exist here — an older build, or
+      // a style since removed. Leave the page as rendered rather than hiding
+      // everything and showing an empty list.
+      if (!present.has(styleId)) return;
+
+      root.querySelectorAll<HTMLElement>('[data-style]').forEach((el) => {
+        el.classList.toggle('hidden', el.dataset.style !== styleId);
+      });
+      root.querySelectorAll<HTMLElement>('[data-style-button]').forEach((button) => {
+        button.setAttribute(
+          'aria-pressed',
+          button.dataset.styleButton === styleId ? 'true' : 'false',
+        );
+      });
+    });
+  }
+
+  function applyFilters(root: HTMLElement): void {
+    const search = root.querySelector<HTMLInputElement>('[data-bib-search]');
+    const sort = root.querySelector<HTMLSelectElement>('[data-bib-sort]');
+    const resolvedOnly = root.querySelector<HTMLInputElement>('[data-bib-resolved-only]');
+    const list = root.querySelector<HTMLElement>('[data-bib-list]');
+    if (!list) return;
+
+    const query = (search?.value ?? '').trim().toLowerCase();
+    const terms = query.split(/\s+/).filter(Boolean);
+    const entries = [...list.querySelectorAll<HTMLElement>('[data-bib-entry]')];
+
+    let visible = 0;
+    for (const entry of entries) {
+      const haystack = entry.dataset.search ?? '';
+      // Every term must appear, so "hendrycks 2024" narrows rather than widens.
+      const matches =
+        terms.every((term) => haystack.includes(term)) &&
+        (!resolvedOnly?.checked || entry.dataset.resolved === 'true');
+      entry.classList.toggle('hidden', !matches);
+      if (matches) visible++;
+    }
+
+    const mode = sort?.value ?? 'author';
+    const key = (el: HTMLElement): string => {
+      if (mode === 'title') return el.dataset.sortTitle ?? '';
+      if (mode.startsWith('year')) return el.dataset.sortYear ?? '0000';
+      return el.dataset.sortAuthor ?? '';
+    };
+    const sorted = [...entries].sort((a, b) => {
+      const cmp = key(a).localeCompare(key(b));
+      // Within a year, fall back to author so the order is stable and readable
+      // rather than whatever the previous sort happened to leave behind.
+      const tie = (a.dataset.sortAuthor ?? '').localeCompare(b.dataset.sortAuthor ?? '');
+      return mode === 'year-desc' ? -cmp || tie : cmp || tie;
+    });
+    for (const entry of sorted) list.appendChild(entry);
+
+    root.querySelector<HTMLElement>('[data-visible-count]')?.replaceChildren(String(visible));
+    root.querySelector<HTMLElement>('[data-bib-empty]')?.classList.toggle('hidden', visible > 0);
+  }
+
+  function init(): void {
+    let saved: string | null = null;
+    try {
+      saved = localStorage.getItem(STORAGE_KEY);
+    } catch {
+      // Private browsing, or storage disabled. The default style is already
+      // rendered, so there is nothing to recover from.
+    }
+    if (saved) applyStyle(saved);
+
+    document.querySelectorAll<HTMLElement>('[data-style-button]').forEach((button) => {
+      if (button.dataset.bound) return;
+      button.dataset.bound = 'true';
+      button.addEventListener('click', () => {
+        const styleId = button.dataset.styleButton!;
+        applyStyle(styleId);
+        try {
+          localStorage.setItem(STORAGE_KEY, styleId);
+        } catch {
+          // Not being able to remember the choice does not stop it applying now.
+        }
+      });
+    });
+
+    document.querySelectorAll<HTMLElement>('[data-bibliography]').forEach((root) => {
+      const controls = root.querySelectorAll<HTMLElement>(
+        '[data-bib-search], [data-bib-sort], [data-bib-resolved-only]',
+      );
+      controls.forEach((control) => {
+        if (control.dataset.bound) return;
+        control.dataset.bound = 'true';
+        control.addEventListener('input', () => applyFilters(root));
+        control.addEventListener('change', () => applyFilters(root));
+      });
+    });
+  }
+
+  init();
+  // The reader is a client-side navigation surface; re-bind after a swap.
+  document.addEventListener('astro:page-load', init);
+</script>

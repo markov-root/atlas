@@ -97,6 +97,15 @@ export function canonicalizeUrl(raw: string): string | null {
 
   if (url.protocol !== 'http:' && url.protocol !== 'https:') return null;
 
+  // A hostname with no dot cannot be a public document. `new URL()` happily
+  // accepts `https://in` — hostname "in" — so a truncated or malformed href in
+  // the Google Doc ("https://in", "https://li", "https://perez") became a
+  // bibliography entry that rendered as `Cihon. (2019). https://in`. Three were
+  // in the corpus. Rejecting them here means no entry is minted; the citation
+  // still surfaces in the report as a broken link target, which is what an
+  // author needs in order to fix the Doc. See `audit:0011` F13.
+  if (!url.hostname.includes('.') || url.hostname.endsWith('.')) return null;
+
   const special = canonicalizeArxiv(url) ?? canonicalizeDoi(url) ?? canonicalizeYouTube(url);
   if (special) return special;
 

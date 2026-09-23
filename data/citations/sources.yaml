@@ -26234,14 +26234,9 @@ https://books.google.se/books/about/AI.html?id=V3XsEAAAQBAJ&redir_esc=y:
     id: https://books.google.se/books/about/AI.html?id=V3XsEAAAQBAJ&redir_esc=y
     type: webpage
     URL: https://books.google.se/books/about/AI.html?id=V3XsEAAAQBAJ&redir_esc=y
-    author:
-    - literal: Yampolskiy
-    issued:
-      date-parts:
-      - - 2024
-    title: AI
-    container-title: Google Books
-  resolvedBy: opengraph
+    title: Yampolskiy, 2024
+    note: 'Unresolved: no author-year could be parsed from the anchor text.'
+  resolvedBy: anchor
   anchors:
   - Yampolskiy, 2024
 https://books.google.se/books/about/Superintelligence.html?id=7_H8AwAAQBAJ&redir_esc=y:
@@ -29659,21 +29654,6 @@ https://ieeexplore.ieee.org/document/9152761:
   resolvedBy: opengraph
   anchors:
   - Pan et al., 2020
-https://in:
-  item:
-    id: https://in
-    type: webpage
-    URL: https://in
-    author:
-    - literal: Cihon
-    issued:
-      date-parts:
-      - - 2019
-    title: Cihon, 2019
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
-  anchors:
-  - Cihon, 2019
 https://incidentdatabase.ai:
   item:
     id: https://incidentdatabase.ai
@@ -30755,21 +30735,6 @@ https://lexfridman.com/roman-yampolskiy-transcript:
   resolvedBy: opengraph
   anchors:
   - Yampolsky; 2024
-https://li:
-  item:
-    id: https://li
-    type: webpage
-    URL: https://li
-    author:
-    - literal: Bengio et al.
-    issued:
-      date-parts:
-      - - 2025
-    title: Bengio et al., 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
-  anchors:
-  - Bengio et al., 2025
 https://link.springer.com/chapter/10.1007/978-1-349-17295-5_4:
   item:
     id: https://link.springer.com/chapter/10.1007/978-1-349-17295-5_4
@@ -30799,14 +30764,9 @@ https://linkedin.com/pulse/altman-multimodality-important-david-cronshaw-5fz0c:
     id: https://linkedin.com/pulse/altman-multimodality-important-david-cronshaw-5fz0c
     type: webpage
     URL: https://linkedin.com/pulse/altman-multimodality-important-david-cronshaw-5fz0c
-    author:
-    - literal: Cronshaw
-    issued:
-      date-parts:
-      - - 2024
-    title: Checking your browser - reCAPTCHA
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
+    title: Cronshaw, 2024
+    note: 'Unresolved: no author-year could be parsed from the anchor text.'
+  resolvedBy: anchor
   anchors:
   - Cronshaw, 2024
 https://longtermrisk.org/beginners-guide-to-reducing-s-risks:
@@ -30899,14 +30859,9 @@ https://metr.github.io/autonomy-evals-guide:
     id: https://metr.github.io/autonomy-evals-guide
     type: webpage
     URL: https://metr.github.io/autonomy-evals-guide
-    author:
-    - literal: METR
-    issued:
-      date-parts:
-      - - 2025
-    title: Redirecting...
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
+    title: METR, 2025
+    note: 'Unresolved: no author-year could be parsed from the anchor text.'
+  resolvedBy: anchor
   anchors:
   - METR, 2025
 https://metr.org/blog/2023-03-18-update-on-recent-evals:
@@ -30980,14 +30935,9 @@ https://metr.org/blog/2025-03-26-common-elements-of-frontier-ai-safety-policies:
     id: https://metr.org/blog/2025-03-26-common-elements-of-frontier-ai-safety-policies
     type: webpage
     URL: https://metr.org/blog/2025-03-26-common-elements-of-frontier-ai-safety-policies
-    author:
-    - literal: METR
-    issued:
-      date-parts:
-      - - 2025
-    title: Redirecting…
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
+    title: METR, 2025
+    note: 'Unresolved: no author-year could be parsed from the anchor text.'
+  resolvedBy: anchor
   anchors:
   - METR, 2025
 https://metr.org/language-model-pilot-report:
@@ -32346,21 +32296,6 @@ https://pauseai.info/proposal:
   resolvedBy: opengraph
   anchors:
   - PauseAI, 2023
-https://perez:
-  item:
-    id: https://perez
-    type: webpage
-    URL: https://perez
-    author:
-    - literal: Perez et al.
-    issued:
-      date-parts:
-      - - 2022
-    title: Perez et al., 2022
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
-  anchors:
-  - Perez et al., 2022
 https://planned-obsolescence.org/ais-accelerating-ai-research:
   item:
     id: https://planned-obsolescence.org/ais-accelerating-ai-research

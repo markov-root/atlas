@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
+  BASIC_STYLE,
+  availableStyles,
   allReferences,
   chapterReferences,
   displayUrl,
@@ -9,6 +11,8 @@ import {
   loadStore,
   resetStoreCache,
   sectionReferences,
+  defaultStyle,
+  loadRendered,
   storeCoverage,
   toReference,
 } from './bibliography';
@@ -363,5 +367,64 @@ describe('a missing store degrades instead of failing', () => {
     // Pointed at a directory with no data/citations/sources.yaml.
     expect(allReferences('/nonexistent-root-for-test')).toEqual([]);
     resetStoreCache();
+  });
+});
+
+describe('style options (task:0030)', () => {
+  it('always offers the house style, and defaults to it', () => {
+    resetStoreCache();
+    expect(availableStyles(process.cwd())[0]).toEqual(BASIC_STYLE);
+    expect(defaultStyle()).toBe(BASIC_STYLE.id);
+  });
+
+  it('offers the pre-rendered CSL styles after it', () => {
+    resetStoreCache();
+    const ids = availableStyles(process.cwd()).map((s) => s.id);
+    expect(ids).toContain('apa');
+    expect(ids).toContain('chicago');
+    // Numeric styles are offered but flagged, because the prose cites by
+    // author-year and a number here corresponds to nothing.
+    const numeric = availableStyles(process.cwd()).filter((s) => s.numeric).map((s) => s.id);
+    expect(numeric).toEqual(['nature', 'ieee']);
+  });
+
+  it('still offers the house style with no rendered file at all', () => {
+    // task:0030 AC-4 — a contributor who has not run `atlas citations render`
+    // gets a working bibliography, just without the alternatives.
+    resetStoreCache();
+    expect(availableStyles('/nonexistent-root-for-test')).toEqual([BASIC_STYLE]);
+    resetStoreCache();
+  });
+
+  it('attaches pre-rendered text to references from the real corpus', () => {
+    resetStoreCache();
+    const refs = allReferences(process.cwd());
+    const withStyles = refs.filter((r) => Object.keys(r.styled).length > 0);
+    expect(withStyles.length).toBe(refs.length);
+    expect(Object.keys(withStyles[0].styled).sort()).toEqual(
+      ['apa', 'chicago', 'ieee', 'mla', 'nature'].sort(),
+    );
+  });
+
+  it('the rendered file covers every store entry', () => {
+    resetStoreCache();
+    const rendered = loadRendered(process.cwd());
+    expect(rendered).not.toBeNull();
+    const missing = allReferences(process.cwd()).filter((r) => !rendered!.entries[r.key]);
+    expect(missing.map((r) => r.key)).toEqual([]);
+  });
+});
+
+describe('the corpus has no impossible URLs (audit:0011 F13)', () => {
+  it('every entry key has a dotted hostname', () => {
+    resetStoreCache();
+    const bad = allReferences(process.cwd()).filter((r) => {
+      try {
+        return !new URL(r.key).hostname.includes('.');
+      } catch {
+        return true;
+      }
+    });
+    expect(bad.map((r) => r.key)).toEqual([]);
   });
 });

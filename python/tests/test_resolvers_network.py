@@ -175,6 +175,45 @@ class TestOpengraph:
         )
         assert opengraph_resolver.resolve("https://example.org/x.pdf", ctx) is None
 
+    # audit:0011 F13 — a bot check or redirect stub returns HTTP 200 with a
+    # well-formed <title>, so nothing upstream notices. Recording one is worse
+    # than recording nothing: the entry is marked resolved and never retried.
+    @pytest.mark.parametrize(
+        "title",
+        [
+            "Redirecting...",
+            "Redirecting\u2026",
+            "Checking your browser - reCAPTCHA",
+            "Just a moment...",
+            "Attention Required! | Cloudflare",
+            "Access denied",
+            "404 Not Found",
+            "AI",
+        ],
+    )
+    def test_declines_a_title_that_means_the_fetch_never_reached_the_document(
+        self, title: str
+    ) -> None:
+        page = f"<html><head><title>{title}</title></head></html>"
+        ctx = make_ctx(lambda r: html_response(page))
+        assert opengraph_resolver.resolve("https://example.org/x", ctx) is None
+
+    @pytest.mark.parametrize(
+        "title",
+        [
+            "Redirecting to the new home of our research",
+            "Error Correction in Quantum Computing",
+            "Loading the Dice: Scaling Laws and Chance",
+        ],
+    )
+    def test_keeps_a_real_title_that_merely_starts_with_a_suspect_word(self, title: str) -> None:
+        """The guard is anchored and word-bounded, so it must not eat real titles."""
+        page = f"<html><head><title>{title}</title></head></html>"
+        ctx = make_ctx(lambda r: html_response(page))
+        out = opengraph_resolver.resolve("https://example.org/x", ctx)
+        assert out is not None
+        assert out.fields["title"] == title
+
     def test_a_page_with_no_title_at_all_declines(self) -> None:
         ctx = make_ctx(lambda r: html_response("<html><body>nothing</body></html>"))
         assert opengraph_resolver.resolve("https://example.org/x", ctx) is None

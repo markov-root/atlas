@@ -75,7 +75,88 @@ export type Reference = {
   resolved: boolean;
   /** Anchor spellings seen in the prose, for the title attribute. */
   anchors: string[];
+  /**
+   * Pre-rendered text per style id, from `atlas citations render` (`task:0030`).
+   *
+   * Empty when `rendered.json` is absent or stale — the component then falls
+   * back to the structured fields above, which is what `task:0030` AC-4
+   * requires: a contributor who has not run the command still gets a site.
+   */
+  styled: Record<string, string>;
 };
+
+/** A style the reader can switch to, as declared by the render command. */
+export type StyleOption = { id: string; label: string; numeric: boolean };
+
+type RenderedFile = {
+  schemaVersion: number;
+  defaultStyle: string;
+  styles: StyleOption[];
+  entries: Record<string, Record<string, string>>;
+};
+
+/** Where `atlas citations render` writes its output, relative to the repo root. */
+const RENDERED_PATH = join('data', 'citations', 'rendered.json');
+
+/** The shape this reader understands. Python bumps it on a change. */
+const RENDERED_SCHEMA = 1;
+
+let renderedCache: RenderedFile | null | undefined;
+
+/**
+ * The pre-rendered references, or null when unavailable.
+ *
+ * Warns once and returns null for a missing, unparseable or wrong-version file.
+ * `task:0021` D4 is warn-never-block, and a bibliography that renders in one
+ * plain style beats a build that fails.
+ */
+export function loadRendered(root: string = process.cwd()): RenderedFile | null {
+  if (renderedCache !== undefined) return renderedCache;
+  try {
+    const parsed = JSON.parse(readFileSync(join(root, RENDERED_PATH), 'utf8')) as RenderedFile;
+    if (parsed?.schemaVersion !== RENDERED_SCHEMA) {
+      console.warn(
+        `[atlas] ${RENDERED_PATH} is schema ${parsed?.schemaVersion}, expected ${RENDERED_SCHEMA} — ` +
+          'falling back to plain formatting. Run `./bin/atlas citations render`.',
+      );
+      renderedCache = null;
+    } else {
+      renderedCache = parsed;
+    }
+  } catch {
+    console.warn(
+      `[atlas] no ${RENDERED_PATH} — references will render in one plain style. ` +
+        'Run `./bin/atlas citations render` for the full set.',
+    );
+    renderedCache = null;
+  }
+  return renderedCache;
+}
+
+/**
+ * The house style: author, year, and the work's title as the link.
+ *
+ * Always offered and always the default. It is the plainest of the options and
+ * the one that reads best on a web page — the title is the link text, so a
+ * reader scanning the list clicks the thing they recognise. The CSL styles are
+ * for copying a reference *out* of the Atlas into something with a house style
+ * of its own; they are not an improvement on this for reading.
+ *
+ * It also needs no pre-rendered file, which is what makes `task:0030` AC-4 true
+ * for free: a contributor who has not run `atlas citations render` still gets
+ * this, and only loses the alternatives.
+ */
+export const BASIC_STYLE: StyleOption = { id: 'basic', label: 'Basic', numeric: false };
+
+/** Every style on offer, house style first. */
+export function availableStyles(root?: string): StyleOption[] {
+  return [BASIC_STYLE, ...(loadRendered(root)?.styles ?? [])];
+}
+
+/** The style shown before the reader picks one. */
+export function defaultStyle(): string {
+  return BASIC_STYLE.id;
+}
 
 let cached: Store | null = null;
 
@@ -104,6 +185,7 @@ export function loadStore(root: string = process.cwd()): Store {
 /** Test seam: reset the module-scope cache. */
 export function resetStoreCache(): void {
   cached = null;
+  renderedCache = undefined;
 }
 
 /**
@@ -227,7 +309,11 @@ function dropRedundantContainer(title: string, container: string): string {
 }
 
 /** A store entry as a renderable reference. */
-export function toReference(key: string, entry: StoreEntry): Reference {
+export function toReference(
+  key: string,
+  entry: StoreEntry,
+  styled: Record<string, string> = {},
+): Reference {
   const resolved = entry.resolvedBy !== 'anchor';
   const item = entry.item ?? { id: key };
   const url = item.URL ?? key;
@@ -249,6 +335,7 @@ export function toReference(key: string, entry: StoreEntry): Reference {
     doi: item.DOI ?? '',
     resolved,
     anchors: entry.anchors ?? [],
+    styled,
   };
 }
 
@@ -288,7 +375,8 @@ function citedKeys(section: Section): string[] {
   }
 }
 
-function referencesForKeys(keys: string[], store: Store): Reference[] {
+function referencesForKeys(keys: string[], store: Store, root?: string): Reference[] {
+  const styled = loadRendered(root)?.entries ?? {};
   const refs: Reference[] = [];
   for (const key of keys) {
     const entry = store[key];
@@ -297,8 +385,12 @@ function referencesForKeys(keys: string[], store: Store): Reference[] {
     // a silently shorter bibliography is the failure D4 exists to prevent.
     refs.push(
       entry
-        ? toReference(key, entry)
-        : toReference(key, { item: { id: key, title: key }, resolvedBy: 'anchor', anchors: [] }),
+        ? toReference(key, entry, styled[key] ?? {})
+        : toReference(
+            key,
+            { item: { id: key, title: key }, resolvedBy: 'anchor', anchors: [] },
+            styled[key] ?? {},
+          ),
     );
   }
   return dedupeAndSort(refs);
@@ -306,19 +398,22 @@ function referencesForKeys(keys: string[], store: Store): Reference[] {
 
 /** References cited in one section, deduplicated and alphabetised. */
 export function sectionReferences(section: Section, root?: string): Reference[] {
-  return referencesForKeys(citedKeys(section), loadStore(root));
+  return referencesForKeys(citedKeys(section), loadStore(root), root);
 }
 
 /** References cited anywhere in one chapter. */
 export function chapterReferences(chapter: Chapter, root?: string): Reference[] {
   const keys = chapter.sections.flatMap(citedKeys);
-  return referencesForKeys(keys, loadStore(root));
+  return referencesForKeys(keys, loadStore(root), root);
 }
 
 /** Every source in the store, for the site-wide `/bibliography` page. */
 export function allReferences(root?: string): Reference[] {
   const store = loadStore(root);
-  return dedupeAndSort(Object.keys(store).map((key) => toReference(key, store[key])));
+  const styled = loadRendered(root)?.entries ?? {};
+  return dedupeAndSort(
+    Object.keys(store).map((key) => toReference(key, store[key], styled[key] ?? {})),
+  );
 }
 
 /** How much of the store carries real metadata — shown on `/bibliography`. */

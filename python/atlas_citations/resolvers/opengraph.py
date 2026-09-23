@@ -36,6 +36,52 @@ TIMEOUT_S = 10.0
 
 _ISO_DATE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})")
 
+#: Titles that mean the fetch did not reach the document.
+#:
+#: A bot check, a redirect interstitial or an error page all return HTTP 200 with
+#: a perfectly well-formed ``<title>``, so nothing upstream notices. Recording one
+#: is worse than recording nothing: the entry is marked resolved, so it is never
+#: retried, and the bibliography shows "METR (2025). Redirecting…" where the
+#: anchor text alone would at least have been accurate. Found in the corpus:
+#: "Checking your browser - reCAPTCHA", "Redirecting...", "Redirecting…".
+#: See ``audit:0011`` F13.
+#: Generic words that are only a signal when they are the *entire* title.
+#: "Error Correction in Quantum Computing" and "Loading the Dice: Scaling Laws"
+#: are real titles in this field, so a prefix match would eat them.
+_NON_TITLE_EXACT = re.compile(
+    r"^(redirecting|just a moment|please wait|one moment|loading|untitled|error|"
+    r"not found|forbidden|page not found)[\s.…!|-]*$",
+    re.IGNORECASE,
+)
+
+#: Phrases distinctive enough that a suffix is allowed — no real work is titled
+#: "Attention Required! | Cloudflare".
+_NON_TITLE_PREFIX = re.compile(
+    r"^(checking your browser|attention required|access denied|are you a robot|"
+    r"bot verification|security check|verify you are human|access to this page has been denied|"
+    r"403 forbidden|404 not found|redirecting\s*\.{3}|redirecting\s*…)\b",
+    re.IGNORECASE,
+)
+
+#: A title shorter than this carries no information a reader could use.
+#: The corpus held one: a Google Books page titled "AI".
+_MIN_TITLE_CHARS = 4
+
+
+def usable_title(title: str) -> bool:
+    """Whether a scraped title is worth recording.
+
+    Declining leaves the entry unresolved, which is honest and — because
+    ``resolve`` retries unresolved entries — recoverable. Recording a bot-check
+    page is neither.
+    """
+    text = title.strip()
+    if len(text) < _MIN_TITLE_CHARS:
+        return False
+    if _NON_TITLE_EXACT.match(text) or _NON_TITLE_PREFIX.match(text):
+        return False
+    return "recaptcha" not in text.lower()
+
 
 def _soup(html: str):
     from bs4 import BeautifulSoup
@@ -86,8 +132,9 @@ class OpengraphResolver:
         soup = _soup(html)
         og_title = meta_content(soup, "og:title")
         title = og_title or title_tag(soup)
-        if not title:
-            return None  # nothing to add beyond what the anchor gives
+        if not title or not usable_title(title):
+            # Nothing to add beyond what the anchor gives — or worse than it.
+            return None
 
         fields: dict[str, Any] = {
             # Webpage vs post-weblog is decided by the URL's domain — the same
