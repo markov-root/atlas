@@ -127,9 +127,19 @@ Python (was 195 at the start of this work).
    upstream capability**: the research corpus has no queryable coverage, so we cannot tell which of
    948 URLs are worth offering without fetching each one. Four feedback notes filed; the coverage
    one is the blocker.
-2. **`task:0021` phase 2** — rendering. Deliberately not decomposed yet; do it against the data
-   phase 1 produced, not against assumptions. Surfaces fixed by D5: section-level after `#footnotes`,
-   chapter-level on the introduction page's download panel, site-wide `/bibliography`.
+2. **`task:0021` phase 2** — rendering. **All three D5 surfaces are live** as of 2026-09-23:
+   section-level after `#footnotes`, chapter-level at `/bibliography/<version>/<chapter>` linked from
+   the resources panel, and site-wide `/bibliography` with all 948 sources. `src/lib/bibliography.ts`
+   reads the committed store; no new build step, no credentials, warn-never-block on a missing store.
+
+   Chapter bibliographies are **not** at `/chapters/<version>/<chapter>/bibliography` on purpose —
+   that path shares a namespace with section slugs and Astro prefers a static segment, so a section
+   called "Bibliography" would be silently shadowed. The url-stability snapshot caught it.
+
+   What phase 2 has NOT done: no citation-number superscripts in the prose (the anchors are still
+   author-year links), no back-links from a reference to the paragraphs citing it, no per-style
+   formatting (the format is one hand-rolled author-date, not CSL styles), and no copy/export button.
+   Those are the obvious next asks and none is decomposed yet.
 3. **`task:0022`** — p1, and the only one that can destroy something. A plain `pnpm typecheck` tried
    to PUT a 96 MB MP3 to production R2; only revoked credentials stopped it. **Must land before any
    working R2 credentials exist.**
