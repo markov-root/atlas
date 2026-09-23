@@ -21,7 +21,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from types import FrameType
 
-from ..resolvers import ALL_RESOLVERS, make_context, resolve_with
+from ..resolvers import ALL_RESOLVERS, Unreachable, make_context, resolve_with
 from ..store import Store, StoreEntry
 from .extract import STORE_PATH, read_store, write_store
 
@@ -82,7 +82,28 @@ def apply_resolution(
     item.pop("note", None)
     if note:
         item["note"] = note
-    return {"item": item, "resolvedBy": source, "anchors": entry.get("anchors", [])}
+    resolved: StoreEntry = {
+        "item": item,
+        "resolvedBy": source,
+        "anchors": entry.get("anchors", []),
+    }
+    # Whatever stopped the last attempt did not stop this one.
+    return resolved
+
+
+def apply_unreachable(entry: StoreEntry, reason: str) -> StoreEntry:
+    """Record *why* an entry could not be resolved, without claiming it was.
+
+    ``task:0032`` AC-1. ``resolvedBy`` is deliberately left alone, so the entry
+    stays in the retry set — that is the entire difference between a transient
+    failure and a permanent verdict, and it is what ``audit:0011`` F12 cost.
+
+    No timestamp. The report is a durable artifact whose diff should show what
+    changed about the *corpus*, and a stamped attempt time would rewrite ~130
+    lines on every run.
+    """
+    updated = {**entry, "unreachable": reason}
+    return updated
 
 
 @dataclass
@@ -152,6 +173,7 @@ def citations_resolve(root: Path, opts: ResolveOptions | None = None) -> int:
     }
 
     counts: dict[str, int] = {}
+    blocked_counts: dict[str, int] = {}
     resolved = 0
     attempted = 0
     dirty = False
@@ -168,7 +190,15 @@ def citations_resolve(root: Path, opts: ResolveOptions | None = None) -> int:
                 break
             attempted += 1
             result = resolve_with(ALL_RESOLVERS, key, ctx)
-            if result:
+            if isinstance(result, Unreachable):
+                # Not resolved, and deliberately still not marked as such — but
+                # the reason is worth keeping, because "the page is gone" is a
+                # defect only the authors can fix and "we were refused" is one
+                # only a human with a browser can.
+                store[key] = apply_unreachable(store[key], result.reason)
+                blocked_counts[result.reason] = blocked_counts.get(result.reason, 0) + 1
+                dirty = True
+            elif result:
                 store[key] = apply_resolution(store[key], result.fields, result.source, result.note)
                 counts[result.source] = counts.get(result.source, 0) + 1
                 resolved += 1
@@ -188,5 +218,8 @@ def citations_resolve(root: Path, opts: ResolveOptions | None = None) -> int:
     )
     suffix = f" ({by_resolver})" if by_resolver else ""
     print(f"{resolved} of {attempted} attempted resolved{suffix}.")
+    if blocked_counts:
+        blocked = " · ".join(f"{reason} {n}" for reason, n in sorted(blocked_counts.items()))
+        print(f"{sum(blocked_counts.values())} learned nothing ({blocked}) — see the report.")
     print(f"{len(unresolved_keys(store))} still unresolved. Re-run to continue.")
     return 0

@@ -29,7 +29,7 @@ from typing import Any
 
 from ..store import infer_csl_type
 from ._http import MAX_HTML_BYTES, get_text_capped
-from .base import ResolverContext, ResolveResult
+from .base import ResolverContext, ResolveResult, Unreachable
 
 #: Short, because one hung page must not stall a 948-URL run.
 TIMEOUT_S = 10.0
@@ -63,6 +63,28 @@ _NON_TITLE_PREFIX = re.compile(
     re.IGNORECASE,
 )
 
+#: Titles that are the *service's* name rather than the document's.
+#:
+#: A search or record page that renders behind JavaScript serves its own brand as
+#: the title with a 200 and valid Open Graph tags, so nothing above notices. Found
+#: by the ``task:0032`` probe: two PsycNet records, both titled "APA PsycNet".
+#: Matched whole, because "APA PsycNet's coverage of…" would be a real title.
+_SERVICE_NAME_TITLES = frozenset(
+    {
+        "apa psycnet",
+        "psycnet",
+        "sci-hub",
+        "semantic scholar",
+        "sciencedirect",
+        "springerlink",
+        "ssrn",
+        "researchgate",
+        "jstor",
+        "google books",
+        "google scholar",
+    }
+)
+
 #: A title shorter than this carries no information a reader could use.
 #: The corpus held one: a Google Books page titled "AI".
 _MIN_TITLE_CHARS = 4
@@ -79,6 +101,8 @@ def usable_title(title: str) -> bool:
     if len(text) < _MIN_TITLE_CHARS:
         return False
     if _NON_TITLE_EXACT.match(text) or _NON_TITLE_PREFIX.match(text):
+        return False
+    if text.lower().rstrip(".") in _SERVICE_NAME_TITLES:
         return False
     return "recaptcha" not in text.lower()
 
@@ -122,10 +146,17 @@ class OpengraphResolver:
     def claims(self, canonical_url: str) -> bool:
         return canonical_url.startswith(("http://", "https://"))
 
-    def resolve(self, canonical_url: str, ctx: ResolverContext) -> ResolveResult | None:
+    def resolve(
+        self, canonical_url: str, ctx: ResolverContext
+    ) -> ResolveResult | Unreachable | None:
         html = get_text_capped(
             ctx, canonical_url, cap=MAX_HTML_BYTES, timeout=TIMEOUT_S, html_only=True
         )
+        # Nothing follows this resolver, so propagating the reason is purely so
+        # the report can tell a dead citation (`gone`) from a blocked one
+        # (`refused`) — a distinction only the authors can act on.
+        if isinstance(html, Unreachable):
+            return html
         if not html:
             return None
 

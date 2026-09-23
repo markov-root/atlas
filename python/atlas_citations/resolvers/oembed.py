@@ -15,7 +15,7 @@ from urllib.parse import quote
 
 from ..store import literal_name
 from ._http import get_json
-from .base import ResolverContext, ResolveResult
+from .base import ResolverContext, ResolveResult, Unreachable
 
 ENDPOINT = "https://www.youtube.com/oembed"
 TIMEOUT_S = 30.0
@@ -31,14 +31,20 @@ class OembedResolver:
         # forms into this exact shape; the resolver only needs to recognise it.
         return canonical_url.startswith("https://www.youtube.com/watch?v=")
 
-    def resolve(self, canonical_url: str, ctx: ResolverContext) -> ResolveResult | None:
-        # 401/404 here is YouTube's answer for deleted or private videos — a
-        # normal outcome, not an error. get_json returns None for both.
+    def resolve(
+        self, canonical_url: str, ctx: ResolverContext
+    ) -> ResolveResult | Unreachable | None:
         body = get_json(
             ctx,
             f"{ENDPOINT}?url={quote(canonical_url, safe='')}&format=json",
             timeout=TIMEOUT_S,
         )
+        # A 401 or 404 from oEmbed is YouTube's answer for a deleted or private
+        # video — a real verdict about the video, which is why it is worth
+        # surfacing as `gone`/`refused` rather than silently falling through to
+        # a page scrape that will only find a consent wall.
+        if isinstance(body, Unreachable):
+            return body
         if not isinstance(body, dict):
             return None
 

@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 import pytest
 
+from atlas_citations.resolvers.base import Unreachable
 from atlas_citations.resolvers.scholar_meta import (
     citation_meta,
     meta_to_csl,
@@ -208,9 +209,16 @@ class TestResolve:
         ctx = make_ctx(lambda r: html_response("<html><head><title>Nothing</title></head></html>"))
         assert scholar_meta_resolver.resolve("https://nature.com/x", ctx) is None
 
-    def test_an_unreachable_host_declines_without_raising(self, unreachable_ctx) -> None:
-        assert scholar_meta_resolver.resolve("https://nature.com/x", unreachable_ctx) is None
+    def test_an_unreachable_host_reports_unreachable_without_raising(self, unreachable_ctx) -> None:
+        out = scholar_meta_resolver.resolve("https://nature.com/x", unreachable_ctx)
+        assert out == Unreachable("unavailable")
 
-    def test_a_non_2xx_response_declines(self) -> None:
+    def test_a_publisher_waf_is_refused_not_declined(self) -> None:
+        """The most common outcome on these hosts: 57 of the corpus's 132.
+
+        A 403 says nothing whatever about the paper — only that we were not
+        allowed to look. Recording it as a decline let Open Graph write the
+        bot-check page's title into the bibliography (``audit:0011`` F13).
+        """
         ctx = make_ctx(lambda r: httpx.Response(403))
-        assert scholar_meta_resolver.resolve("https://nature.com/x", ctx) is None
+        assert scholar_meta_resolver.resolve("https://nature.com/x", ctx) == Unreachable("refused")

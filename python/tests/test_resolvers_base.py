@@ -12,6 +12,7 @@ from atlas_citations.resolvers.base import (
     ResolverContext,
     ResolveResult,
     Throttle,
+    Unreachable,
     resolve_with,
 )
 
@@ -19,18 +20,23 @@ from .helpers import make_ctx
 
 
 class Stub:
-    selective = True
-
-    def __init__(self, name: str, claims: bool, result: ResolveResult | None) -> None:
+    def __init__(
+        self,
+        name: str,
+        claims: bool,
+        result: ResolveResult | Unreachable | None,
+        selective: bool = True,
+    ) -> None:
         self.name = name
         self._claims = claims
         self._result = result
+        self.selective = selective
         self.called = False
 
     def claims(self, url: str) -> bool:
         return self._claims
 
-    def resolve(self, url: str, ctx: ResolverContext) -> ResolveResult | None:
+    def resolve(self, url: str, ctx: ResolverContext) -> ResolveResult | Unreachable | None:
         self.called = True
         return self._result
 
@@ -117,6 +123,68 @@ class TestFailureIsolation:
         assert resolve_with([Exploding()], "https://arxiv.org/abs/1", ctx) is None
 
 
+class TestUnreachableStopsTheFallbackChain:
+    """``task:0032`` AC-1 — the fix for ``audit:0011`` F12, at the level it lives.
+
+    The individual resolvers merely *report* unreachability. Whether that report
+    protects an entry is decided here, and nowhere else.
+    """
+
+    def test_a_selective_resolver_that_could_not_be_reached_blocks_a_weaker_one(self, ctx) -> None:
+        """The F12 scenario, reproduced exactly.
+
+        arXiv is the authority for an arXiv paper. When arXiv cannot be asked,
+        Open Graph answering in its place is not a fallback, it is a downgrade
+        recorded as a fact — and because resolution is sticky, recorded forever.
+        """
+        arxiv = Stub("arxiv", True, Unreachable("unavailable"))
+        opengraph = Stub("opengraph", True, result("opengraph", "a consent wall"), selective=False)
+
+        out = resolve_with([arxiv, opengraph], "https://arxiv.org/abs/1", ctx)
+
+        assert out == Unreachable("unavailable")
+        assert opengraph.called is False, "a weaker resolver must not answer for a silent authority"
+
+    def test_a_selective_resolver_that_declined_does_not_block(self, ctx) -> None:
+        """The distinction has to cut both ways.
+
+        arXiv answering "no such paper" is a verdict, and Open Graph is then
+        exactly the right thing to try next.
+        """
+        out = resolve_with(
+            [Stub("arxiv", True, None), Stub("opengraph", True, result("opengraph"), False)],
+            "https://arxiv.org/abs/1",
+            ctx,
+        )
+        assert out is not None and not isinstance(out, Unreachable)
+        assert out.source == "opengraph"
+
+    def test_an_unselective_resolver_being_down_does_not_block_the_chain(self, ctx) -> None:
+        """``task:0027`` AC-6: a research-database outage leaves the bibliography identical.
+
+        It claims every URL, so its claim is no evidence of authority — giving it
+        a veto would let one local service being off turn the whole corpus
+        unresolvable.
+        """
+        out = resolve_with(
+            [
+                Stub("research-db", True, Unreachable("unavailable"), selective=False),
+                Stub("arxiv", True, result("arxiv")),
+            ],
+            "https://arxiv.org/abs/1",
+            ctx,
+        )
+        assert out is not None and not isinstance(out, Unreachable)
+        assert out.source == "arxiv"
+
+    def test_the_reason_survives_to_the_caller(self, ctx) -> None:
+        """``gone`` and ``refused`` reach the report, which is the point of having them."""
+        out = resolve_with(
+            [Stub("opengraph", True, Unreachable("gone"), False)], "https://x/y", ctx
+        )
+        assert out == Unreachable("gone")
+
+
 class TestThrottle:
     def test_paces_successive_requests(self) -> None:
         throttle = Throttle(0.04)
@@ -147,7 +215,7 @@ class TestSelectivity:
         from atlas_citations.resolvers import ALL_RESOLVERS
 
         by_name = {r.name: r for r in ALL_RESOLVERS}
-        for name in ("arxiv", "crossref", "oembed", "scholar-meta"):
+        for name in ("arxiv", "crossref", "forum-magnum", "oembed", "scholar-meta"):
             assert by_name[name].selective is True, name
 
     def test_an_unselective_resolver_really_does_claim_everything(self) -> None:

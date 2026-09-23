@@ -10,8 +10,8 @@ from __future__ import annotations
 import httpx
 import pytest
 
-from atlas_citations.resolvers import ALL_RESOLVERS
-from atlas_citations.resolvers.crossref import crossref_resolver
+from atlas_citations.resolvers import ALL_RESOLVERS, ResolveResult, Unreachable
+from atlas_citations.resolvers.crossref import crossref_resolver, doi_from_url
 from atlas_citations.resolvers.oembed import oembed_resolver
 from atlas_citations.resolvers.opengraph import opengraph_resolver
 from atlas_citations.resolvers.research_db import research_db_resolver
@@ -39,6 +39,65 @@ class TestCrossref:
         assert crossref_resolver.claims("https://doi.org/10.1038/x")
         assert not crossref_resolver.claims("https://nature.com/articles/x")
 
+    # task:0032 AC-3. These hosts block scraping outright — 12 of the corpus's
+    # 132 unresolved entries sit on them — but every one prints its DOI in the
+    # URL, which is an identity the publisher asserts rather than one we infer.
+    # See task:0032 D3 for the title-search alternative and why it was measured
+    # and rejected.
+    @pytest.mark.parametrize(
+        ("url", "doi"),
+        [
+            ("https://dl.acm.org/doi/10.1145/3278721.3278780", "10.1145/3278721.3278780"),
+            ("https://pnas.org/doi/10.1073/pnas.1208087109", "10.1073/pnas.1208087109"),
+            ("https://science.org/doi/10.1126/science.ade9097", "10.1126/science.ade9097"),
+            (
+                "https://onlinelibrary.wiley.com/doi/10.1111/jofi.1249",
+                "10.1111/jofi.1249",
+            ),
+            # The publisher's own view suffix is not part of the DOI.
+            (
+                "https://tandfonline.com/doi/full/10.1080/13523260.2019.1576464",
+                "10.1080/13523260.2019.1576464",
+            ),
+            ("https://doi.org/10.1038/nature09659", "10.1038/nature09659"),
+        ],
+    )
+    def test_reads_a_doi_out_of_a_publisher_url(self, url: str, doi: str) -> None:
+        assert doi_from_url(url) == doi
+        assert crossref_resolver.claims(url)
+
+    @pytest.mark.parametrize(
+        "url",
+        [
+            "https://academic.oup.com/ia/article/100/3/1275/7641064",
+            "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4424123",
+            "https://researchgate.net/publication/385353725_Safety_cases_for_frontier_AI",
+            "https://example.org/10/x",
+            "https://example.org/2024/10/03/a-post",
+        ],
+    )
+    def test_declines_a_url_with_no_doi_in_it(self, url: str) -> None:
+        """No guessing. A URL that merely contains digits is not a DOI.
+
+        These five are real corpus entries that stay unresolved rather than
+        acquiring a plausible wrong identity — ``task:0032`` D3.
+        """
+        assert doi_from_url(url) is None
+        assert not crossref_resolver.claims(url)
+
+    def test_the_entrys_url_is_not_replaced_by_crossrefs_doi_link(self) -> None:
+        """``task:0021`` D1: the key is the identity, and Crossref does not get a vote.
+
+        Crossref's ``URL`` is always a ``doi.org`` link. Writing it over a
+        publisher-keyed entry would leave the entry claiming an address that is
+        not its own.
+        """
+        cited = "https://pnas.org/doi/10.1073/pnas.1208087109"
+        out = crossref_resolver.resolve(cited, make_ctx(lambda r: json_response(CROSSREF_WORK)))
+        assert out is not None and not isinstance(out, Unreachable)
+        assert out.fields["URL"] == cited
+        assert out.fields["DOI"] == "10.1038/nature09659"
+
     def test_passes_crossref_fields_through_to_csl(self) -> None:
         out = crossref_resolver.resolve(
             "https://doi.org/10.1038/nature09659", make_ctx(lambda r: json_response(CROSSREF_WORK))
@@ -62,20 +121,20 @@ class TestCrossref:
     def test_an_unknown_type_falls_back_to_document(self) -> None:
         work = {"message": {"title": ["T"], "type": "database"}}
         out = crossref_resolver.resolve(
-            "https://doi.org/10/x", make_ctx(lambda r: json_response(work))
+            "https://doi.org/10.1038/x", make_ctx(lambda r: json_response(work))
         )
         assert out is not None
         assert out.fields["type"] == "document"
 
     def test_a_record_with_no_title_declines(self) -> None:
         out = crossref_resolver.resolve(
-            "https://doi.org/10/x", make_ctx(lambda r: json_response({"message": {}}))
+            "https://doi.org/10.1038/x", make_ctx(lambda r: json_response({"message": {}}))
         )
         assert out is None
 
     def test_a_404_declines(self) -> None:
         out = crossref_resolver.resolve(
-            "https://doi.org/10/x", make_ctx(lambda r: httpx.Response(404))
+            "https://doi.org/10.1038/x", make_ctx(lambda r: httpx.Response(404))
         )
         assert out is None
 
@@ -107,12 +166,19 @@ class TestOembed:
         assert out.note is not None
         assert "publication date" in out.note
 
-    def test_a_deleted_or_private_video_declines(self) -> None:
-        """401/404 is YouTube's normal answer here, not an error."""
+    def test_a_deleted_or_private_video_is_reported_not_invented(self) -> None:
+        """401/404 is YouTube's answer for a video that is gone or private.
+
+        Since ``task:0032`` that is surfaced rather than flattened to a decline,
+        and the difference is visible to a reader: the entry stays unresolved and
+        the report lists it, instead of Open Graph quietly recording the title of
+        YouTube's consent wall. A citation pointing at a deleted video is a
+        content defect only the authors can fix.
+        """
         out = oembed_resolver.resolve(
             "https://www.youtube.com/watch?v=abc", make_ctx(lambda r: httpx.Response(401))
         )
-        assert out is None
+        assert out == Unreachable("refused")
 
 
 OG_PAGE = """<html><head>
@@ -222,7 +288,10 @@ class TestOpengraph:
         def handler(request: httpx.Request) -> httpx.Response:
             return httpx.Response(302, headers={"location": "file:///etc/passwd"})
 
-        assert opengraph_resolver.resolve("https://example.org/x", make_ctx(handler)) is None
+        out = opengraph_resolver.resolve("https://example.org/x", make_ctx(handler))
+        # httpx refuses the hop by raising, which the resolver turns into "we
+        # learned nothing" — never into a bibliography entry sourced from disk.
+        assert not isinstance(out, ResolveResult)
 
 
 class TestResearchDb:
@@ -296,19 +365,41 @@ class TestResearchDb:
 
 
 class TestEveryResolverHonoursTheContract:
-    """Rule 2: a resolver never raises for an unreachable service."""
+    """Rules 2 and 3: never raise, and never call a failure a verdict."""
+
+    CLAIMABLE_URLS = (
+        "https://arxiv.org/abs/1911.01547",
+        "https://doi.org/10.1038/x",
+        "https://www.lesswrong.com/posts/puv8fRDCH9jx5yhbX/shortform",
+        "https://nature.com/articles/x",
+        "https://www.youtube.com/watch?v=abc",
+        "https://example.org/x",
+    )
 
     @pytest.mark.parametrize("resolver", ALL_RESOLVERS, ids=lambda r: r.name)
-    def test_an_unreachable_service_yields_none(self, resolver, unreachable_ctx) -> None:
-        for url in (
-            "https://arxiv.org/abs/1911.01547",
-            "https://doi.org/10.1038/x",
-            "https://nature.com/articles/x",
-            "https://www.youtube.com/watch?v=abc",
-            "https://example.org/x",
-        ):
+    def test_an_unreachable_service_never_raises(self, resolver, unreachable_ctx) -> None:
+        for url in self.CLAIMABLE_URLS:
             if resolver.claims(url):
-                assert resolver.resolve(url, unreachable_ctx) is None
+                # Whatever comes back, it must not be an exception and must not
+                # be a ResolveResult — nothing was learned, so nothing may be
+                # claimed.
+                outcome = resolver.resolve(url, unreachable_ctx)
+                assert not isinstance(outcome, ResolveResult)
+
+    @pytest.mark.parametrize("resolver", ALL_RESOLVERS, ids=lambda r: r.name)
+    def test_a_networked_resolver_reports_unreachable_rather_than_declining(
+        self, resolver, unreachable_ctx
+    ) -> None:
+        """``task:0032`` AC-1, stated as a property rather than per resolver.
+
+        ``research-db`` is the documented exception: ``task:0027`` AC-6 requires
+        its outage to be invisible, so it flattens the signal back to a decline.
+        """
+        if resolver.name == "research-db":
+            pytest.skip("task:0027 AC-6 — a corpus outage must leave the bibliography identical")
+        for url in self.CLAIMABLE_URLS:
+            if resolver.claims(url):
+                assert isinstance(resolver.resolve(url, unreachable_ctx), Unreachable)
 
     @pytest.mark.parametrize("resolver", ALL_RESOLVERS, ids=lambda r: r.name)
     def test_claims_is_pure_and_makes_no_request(self, resolver) -> None:

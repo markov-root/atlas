@@ -39,7 +39,7 @@ from typing import Any
 from urllib.parse import urlsplit
 
 from ._http import MAX_SCHOLAR_BYTES, get_json, get_text_capped
-from .base import ResolverContext, ResolveResult
+from .base import ResolverContext, ResolveResult, Unreachable
 from .crossref import crossref_resolver
 
 TIMEOUT_S = 15.0
@@ -214,7 +214,9 @@ class ScholarMetaResolver:
             return False
         return any(host == h or host.endswith("." + h) for h in ACADEMIC_HOSTS)
 
-    def resolve(self, canonical_url: str, ctx: ResolverContext) -> ResolveResult | None:
+    def resolve(
+        self, canonical_url: str, ctx: ResolverContext
+    ) -> ResolveResult | Unreachable | None:
         doi: str | None = None
         meta_fields: dict[str, Any] = {}
 
@@ -230,6 +232,13 @@ class ScholarMetaResolver:
                 timeout=TIMEOUT_S,
                 headers={"Accept": "text/html"},
             )
+            # A publisher WAF refusing us is the single most common outcome on
+            # these hosts — 57 of the corpus's 132 unresolved entries. Saying so
+            # keeps Open Graph from recording the bot-check page's title in
+            # place of the paper's (audit:0011 F13) and keeps the entry in the
+            # retry set rather than marking it permanently answered.
+            if isinstance(html, Unreachable):
+                return html
             if html is None:
                 return None
             meta = citation_meta(html)
@@ -244,6 +253,11 @@ class ScholarMetaResolver:
         # resolver. Its output wins over the page's own meta where they overlap.
         if doi:
             via_crossref = crossref_resolver.resolve(f"https://doi.org/{doi}", ctx)
+            if isinstance(via_crossref, Unreachable):
+                # Crossref, not the publisher, was the thing that failed. The
+                # page's own meta tags are still in hand and still better than a
+                # scrape, so fall through to them rather than discarding the work.
+                via_crossref = None
             if via_crossref:
                 return ResolveResult(
                     fields={

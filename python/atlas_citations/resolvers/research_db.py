@@ -97,6 +97,12 @@ def _attempt(ref_url: str, ctx: ResolverContext) -> ResolveResult | None:
     Returns ``None`` for every "tried, found nothing" outcome: network error,
     non-200, non-JSON body, ``success`` false, or a record too empty to improve
     the entry. It does not raise, which is what makes the two-variant retry safe.
+
+    Deliberately flattens ``task:0032``'s unreachable signal back to ``None``:
+    this corpus is a local accelerator, and ``task:0027`` AC-6 requires the
+    bibliography to come out identical when it is down. An outage here must be
+    invisible, not a verdict — which is also why the resolver is ``selective =
+    False`` and so cannot block the fallback chain.
     """
     url = f"{api_base()}/api/records/citation?ref={quote(ref_url, safe='')}&include_unreviewed=true"
     payload = get_json(ctx, url, timeout=TIMEOUT_S)

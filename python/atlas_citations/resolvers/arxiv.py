@@ -33,7 +33,7 @@ import feedparser
 
 from ..store import CslName
 from ._http import get_text_capped
-from .base import ResolverContext, ResolveResult
+from .base import ResolverContext, ResolveResult, Unreachable
 
 #: Remote service, so more slack than the LAN corpus — but never unbounded.
 TIMEOUT_S = 10.0
@@ -94,7 +94,9 @@ class ArxivResolver:
     def claims(self, canonical_url: str) -> bool:
         return arxiv_id_from_url(canonical_url) is not None
 
-    def resolve(self, canonical_url: str, ctx: ResolverContext) -> ResolveResult | None:
+    def resolve(
+        self, canonical_url: str, ctx: ResolverContext
+    ) -> ResolveResult | Unreachable | None:
         arxiv_id = arxiv_id_from_url(canonical_url)
         if not arxiv_id:
             return None
@@ -107,6 +109,11 @@ class ArxivResolver:
             cap=MAX_BYTES,
             timeout=TIMEOUT_S,
         )
+        # The exact case audit:0011 F12 was found on: arXiv being briefly
+        # unreachable must not hand this paper to Open Graph, which records it
+        # with no authors at all where arXiv gives over a thousand.
+        if isinstance(text, Unreachable):
+            return text
         if not text:
             return None
 
@@ -131,6 +138,12 @@ class ArxivResolver:
         fields: dict[str, Any] = {
             "type": "article",
             "title": _collapse(title),
+            # arXiv is where this preprint was published, and saying so is what
+            # lets a reader filter the bibliography by source (task:0030 AC-7).
+            # Without it the single largest group in the corpus — 303 entries —
+            # has no source at all. CSL styles already know what to do with a
+            # container on an `article`.
+            "container-title": "arXiv",
             "URL": canonical_url,
         }
 

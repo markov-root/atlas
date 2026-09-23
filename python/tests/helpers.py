@@ -16,11 +16,17 @@ from atlas_citations.resolvers.base import ResolverContext
 
 
 def make_ctx(handler: Callable[[httpx.Request], httpx.Response]) -> ResolverContext:
-    """A resolver context wired to a mock transport and a no-op throttle."""
+    """A resolver context wired to a mock transport, a no-op throttle, no backoff.
+
+    ``retry_backoff_s=0`` keeps the suite fast while still exercising the retry:
+    a failure case still makes both attempts, it just does not sleep two real
+    seconds between them.
+    """
     return ResolverContext(
         client=httpx.Client(transport=httpx.MockTransport(handler), follow_redirects=True),
         user_agent="test (mailto:test@example.org)",
         throttle=lambda: None,
+        retry_backoff_s=0.0,
     )
 
 

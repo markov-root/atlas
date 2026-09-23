@@ -10,6 +10,7 @@ import httpx
 import pytest
 
 from atlas_citations.resolvers.arxiv import arxiv_id_from_url, arxiv_resolver
+from atlas_citations.resolvers.base import Unreachable
 
 from .helpers import make_ctx
 
@@ -170,8 +171,28 @@ class TestTraps:
 
 
 class TestFailureModes:
-    def test_a_non_2xx_response_declines(self) -> None:
-        assert arxiv_resolver.resolve("https://arxiv.org/abs/1911.01547", feed_ctx("", 503)) is None
+    """``task:0032`` AC-1 on the resolver it was found on.
 
-    def test_an_unreachable_host_declines_without_raising(self, unreachable_ctx) -> None:
-        assert arxiv_resolver.resolve("https://arxiv.org/abs/1911.01547", unreachable_ctx) is None
+    arXiv is the authority for a paper it holds, so an arXiv *outage* must not
+    read as an arXiv *verdict*. ``audit:0011`` F12 is what happens when it does:
+    arXiv failed briefly, Open Graph answered in its place with zero authors
+    where arXiv gives 1,158, and because resolution is sticky the entry kept that
+    answer permanently.
+    """
+
+    def test_a_5xx_is_unreachable_not_a_decline(self) -> None:
+        out = arxiv_resolver.resolve("https://arxiv.org/abs/1911.01547", feed_ctx("", 503))
+        assert out == Unreachable("unavailable")
+
+    def test_an_unreachable_host_reports_unreachable_without_raising(self, unreachable_ctx) -> None:
+        out = arxiv_resolver.resolve("https://arxiv.org/abs/1911.01547", unreachable_ctx)
+        assert out == Unreachable("unavailable")
+
+    def test_an_empty_feed_is_still_a_decline(self) -> None:
+        """The distinction has to cut both ways or it is not a distinction.
+
+        HTTP 200 with no entries is arXiv saying "no such paper" — a real answer,
+        and one that should let the next resolver try.
+        """
+        feed = '<?xml version="1.0"?><feed xmlns="http://www.w3.org/2005/Atom"></feed>'
+        assert arxiv_resolver.resolve("https://arxiv.org/abs/1911.01547", feed_ctx(feed)) is None
