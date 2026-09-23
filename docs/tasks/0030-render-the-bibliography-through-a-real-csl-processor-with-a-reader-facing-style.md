@@ -29,7 +29,16 @@ engineering_document:
   transitions: []
   relationships: []
   details:
-    criteria: [criterion:AC-1, criterion:AC-2, criterion:AC-3, criterion:AC-4, criterion:AC-5]
+    criteria:
+      [
+        criterion:AC-1,
+        criterion:AC-2,
+        criterion:AC-3,
+        criterion:AC-4,
+        criterion:AC-5,
+        criterion:AC-6,
+        criterion:AC-7,
+      ]
     parent: '0021'
     depends_on: ['0029']
     size: m
@@ -77,9 +86,13 @@ This keeps `task:0029` D1's boundary exactly as it is — **Python owns metadata
 adds no runtime dependency to the site. The selector swaps pre-rendered strings; it does not run a
 citation processor in the browser.
 
-**Out of scope:** changing the in-text citation anchors. They are `(Author, Year)` links in the
-prose, and a numeric style implies `[1]` markers, citation-order numbering, and a non-alphabetical
-list. That is a separate, larger change and is the reason author-date styles are the default.
+## Out of scope
+
+- **Changing the in-text citation anchors.** They are `(Author, Year)` links in the prose, and a
+  numeric style implies `[1]` markers, citation-order numbering, and a non-alphabetical list. That
+  is a separate, larger change, and is the reason author-date styles are the default.
+- **Merging duplicate sources.** Detection lives in the report; acting on it is `task:0031`.
+- **Surfacing metadata completeness to readers.** See D6.
 
 ## Decisions
 
@@ -121,6 +134,24 @@ round.
 It changes only when the store changes, which is when `sources.yaml` already produces a far larger
 diff.
 
+### D6 — Does the site show how complete its metadata is? — **decided: no**
+
+Owner decision, 2026-09-23, correcting a design error in the first implementation.
+
+The first cut surfaced resolution state to readers: a "945 of 945 sources · 132 awaiting full
+metadata" line, a "Full metadata only" filter, and a note explaining that a bare address meant the
+title had not been looked up. All of it was removed.
+
+The reasoning is that **metadata completeness is a pre-publication condition, not a product
+feature**. The site will not ship until every source is resolved, so a control that filters on it is
+scaffolding that would be dead on the day it went live — and a note explaining the gap advertises a
+defect to a reader who cannot act on it. Where the gap is genuinely useful is in
+`atlas citations report`, which is for maintainers and already carries it.
+
+The general form, worth stating because it recurs: **a measurement that helps the people building a
+thing does not belong in the thing.** The completeness figure is real and useful; its audience is
+the maintainer, not the reader.
+
 ### D4 — What happens to the hand-rolled formatter? — **decided: deleted**
 
 `formatName`, `formatAuthors`, `formatYear` and the container/terminal-punctuation trimming go.
@@ -128,6 +159,38 @@ What stays is the part that is this project's judgement rather than bibliographi
 entries a section cites, dedup by canonical URL, sort order, the unresolved-entry fallback to a URL,
 and the `implausibleName` guard from `audit:0011` F11 — a guard against corrupt _data_ still earns
 its place regardless of who formats it.
+
+## Still to build
+
+Shipped so far: the render command, the vendored styles, the switcher, and a first search box with a
+sort dropdown. The control surface the owner asked for is larger than that, and is deliberately
+recorded here rather than half-built.
+
+### One control panel, not scattered inputs
+
+Search, sort, filter and grouping belong in a single panel rather than as separate widgets accreted
+over the list.
+
+- **Search** — currently one box matching any term against a concatenated blob. It should be
+  explicit about what it matches, and match per field.
+- **Filter** — not yet built. By **author**, **publication/source** (the container — arXiv, Nature,
+  LessWrong), **year range**, and **type** (paper, blog post, video, book). These are facets, so
+  each should show how many entries it would leave.
+- **Sort** — author, year, title exist. Add source/publication.
+- **Group by** — not yet built, and the most requested. A reader should be able to see the list
+  **grouped by chapter and section** — mirroring how they met the citations — or **flat across the
+  whole book**. Flat is the current behaviour and stays the default on `/bibliography`.
+- **Icons** — `~/Images/Icons` holds 206 SVGs; use them rather than adding an icon dependency.
+  The project already has `astro-icon` for its existing UI, so whichever is used should be one
+  choice, not both.
+
+### Open questions for that work
+
+- Does grouping by chapter change the URL, so a grouped view is linkable?
+- With 945 entries, does faceting stay client-side? It is display-only today, which is what keeps it
+  instant; a facet count per option is more work per keystroke.
+- Does the section-level list get any of this, or does it stay a plain list? (Probably plain — a
+  30-entry list does not need a control panel.)
 
 ## Done when
 
@@ -143,6 +206,9 @@ its place regardless of who formats it.
   working site.
 - **AC-5:** `vendor/csl/` carries the upstream licence and attribution, and `pnpm verify` passes with
   no network access.
+- **AC-6:** No reader-facing surface reports metadata completeness, per D6.
+- **AC-7:** `/bibliography` and the chapter pages carry one control panel providing search, filter
+  (author, source, year, type), sort, and a group-by-chapter/flat toggle.
 
 ## Completion evidence
 
@@ -156,6 +222,8 @@ path, or a test name — not a narrative claim._
 | AC-3      | —        | —        |
 | AC-4      | —        | —        |
 | AC-5      | —        | —        |
+| AC-6      | —        | —        |
+| AC-7      | —        | —        |
 
 ## Authority and inputs
 

@@ -42,7 +42,6 @@ const {
 } = Astro.props;
 
 const Heading = level === 3 ? 'h3' : 'h2';
-const unresolved = references.filter((r) => !r.resolved).length;
 
 const styles: StyleOption[] = availableStyles();
 const initialStyle = defaultStyle();
@@ -64,8 +63,7 @@ function searchText(ref: Reference): string {
       {showCount && (
         <p class="text-sm text-gray-500 mb-4">
           <span data-visible-count>{references.length}</span>
-          {` of ${references.length} ${references.length === 1 ? 'source' : 'sources'}`}
-          {unresolved > 0 && <span>{` · ${unresolved} awaiting full metadata`}</span>}
+          {` ${references.length === 1 ? 'source' : 'sources'}`}
         </p>
       )}
 
@@ -94,10 +92,6 @@ function searchText(ref: Reference): string {
             <option value="year-asc">Year (oldest)</option>
             <option value="title">Title (A–Z)</option>
           </select>
-          <label class="flex items-center gap-1.5 text-gray-600">
-            <input type="checkbox" data-bib-resolved-only class="rounded border-gray-300" />
-            Full metadata only
-          </label>
         </div>
       )}
 
@@ -132,7 +126,6 @@ function searchText(ref: Reference): string {
             data-sort-author={(ref.authors || ref.title).toLowerCase()}
             data-sort-title={ref.title.toLowerCase()}
             data-sort-year={ref.year || '0000'}
-            data-resolved={ref.resolved ? 'true' : 'false'}
           >
             {/* The house style. Always present, so the list works with no
                 pre-rendered file and with JavaScript off. */}
@@ -213,7 +206,6 @@ function searchText(ref: Reference): string {
   function applyFilters(root: HTMLElement): void {
     const search = root.querySelector<HTMLInputElement>('[data-bib-search]');
     const sort = root.querySelector<HTMLSelectElement>('[data-bib-sort]');
-    const resolvedOnly = root.querySelector<HTMLInputElement>('[data-bib-resolved-only]');
     const list = root.querySelector<HTMLElement>('[data-bib-list]');
     if (!list) return;
 
@@ -225,9 +217,7 @@ function searchText(ref: Reference): string {
     for (const entry of entries) {
       const haystack = entry.dataset.search ?? '';
       // Every term must appear, so "hendrycks 2024" narrows rather than widens.
-      const matches =
-        terms.every((term) => haystack.includes(term)) &&
-        (!resolvedOnly?.checked || entry.dataset.resolved === 'true');
+      const matches = terms.every((term) => haystack.includes(term));
       entry.classList.toggle('hidden', !matches);
       if (matches) visible++;
     }
@@ -277,7 +267,7 @@ function searchText(ref: Reference): string {
 
     document.querySelectorAll<HTMLElement>('[data-bibliography]').forEach((root) => {
       const controls = root.querySelectorAll<HTMLElement>(
-        '[data-bib-search], [data-bib-sort], [data-bib-resolved-only]',
+        '[data-bib-search], [data-bib-sort]',
       );
       controls.forEach((control) => {
         if (control.dataset.bound) return;

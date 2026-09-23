@@ -11,14 +11,12 @@
  */
 import Default from '@/layouts/Default.astro';
 import Bibliography from '@/components/Bibliography.astro';
-import { allReferences, storeCoverage } from '@/lib/bibliography';
+import { allReferences } from '@/lib/bibliography';
 import { ogImageUrl } from '@/lib/og';
 
 const references = allReferences();
-const { total, resolved } = storeCoverage();
-const pending = total - resolved;
 
-const description = `Every source cited in the AI Safety Atlas — ${total} works across all chapters.`;
+const description = `Every source cited in the AI Safety Atlas — ${references.length} works across all chapters.`;
 ---
 
 <Default
@@ -31,21 +29,9 @@ const description = `Every source cited in the AI Safety Atlas — ${total} work
       Bibliography
     </h1>
 
-    <p class="mt-6 text-base text-gray-600">
-      Every source cited anywhere in the Atlas, in one list. It is derived from the chapters
-      themselves rather than maintained by hand, so it cannot drift from what the prose actually
-      cites.
-    </p>
+    <p class="mt-6 text-base text-gray-600">Every source cited in the AI Safety Atlas.</p>
 
 
-    {
-      pending > 0 && (
-        <p class="mt-4 text-sm text-gray-500 border-l-2 border-gray-200 pl-4">
-          An entry showing a bare address has not had its title and authors looked up yet. Those are
-          shown rather than hidden, so what is missing stays visible.
-        </p>
-      )
-    }
 
     <Bibliography
       references={references}

@@ -89,3 +89,7 @@ in total, each with options, a recommendation, and what is irreversible if decid
   Write resolved citations back into the research database (todo — child of 0021; turns the corpus from a lookup table into a write-back cache; 548 of 948 sources immediately acquirable, D1 decides scope).
 - [task:0029](./0029-port-the-citation-resolution-half-to-python-behind-a-json-boundary.md) —
   Port the citation resolution half to Python behind a JSON boundary (todo — p1; 3,243 of 3,810 lines are language-agnostic; hand-rolled BibTeX already shipped a structural bug).
+- [task:0030](./0030-render-the-bibliography-through-a-real-csl-processor-with-a-reader-facing-style.md) —
+  Render the bibliography through a real CSL processor with a reader-facing style switcher (todo — child of 0021; replaces the hand-rolled formatter; styles shipped, control panel and grouping still to build).
+- [task:0031](./0031-collapse-duplicate-sources-through-an-alias-file.md) —
+  Collapse duplicate sources through an alias file (todo — child of 0021; detection shipped in the report, 7 groups; merging is a reviewed human decision).
