@@ -71,6 +71,12 @@ _NON_TITLE_PREFIX = re.compile(
 #: Matched whole, because "APA PsycNet's coverage of…" would be a real title.
 _SERVICE_NAME_TITLES = frozenset(
     {
+        # The Internet Archive's viewer chrome. Its snapshot of a *PDF* is an
+        # HTML wrapper titled "Wayback Machine", which is well-formed, returns
+        # 200, and is not the document — 17 of the first 25 archived entries
+        # took it before this line existed. See task:0032's note on the guard.
+        "wayback machine",
+        "internet archive",
         "apa psycnet",
         "psycnet",
         "sci-hub",

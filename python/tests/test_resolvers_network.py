@@ -433,3 +433,27 @@ class TestEveryResolverHonoursTheContract:
         assert ctx is not None
         for url in ("https://example.org/x", "https://arxiv.org/abs/1", "not a url"):
             resolver.claims(url)
+
+
+class TestTheArchivesOwnChromeIsNotATitle:
+    """The Internet Archive's snapshot of a PDF is an HTML wrapper titled
+    "Wayback Machine" — well-formed, HTTP 200, and not the document.
+
+    17 of the first 25 archived entries took it before the guard covered it. The
+    same shape as ``audit:0011`` F13, from a source that did not exist then.
+    """
+
+    @pytest.mark.parametrize("title", ["Wayback Machine", "Internet Archive", "wayback machine"])
+    def test_rejected(self, title: str) -> None:
+        page = f"<html><head><title>{title}</title></head></html>"
+        out = opengraph_resolver.resolve(
+            "https://web.archive.org/web/1/https://x/y.pdf", make_ctx(lambda r: html_response(page))
+        )
+        assert out is None
+
+    def test_a_real_title_mentioning_an_archive_survives(self) -> None:
+        page = "<html><head><title>The Internet Archive as a Research Corpus</title></head></html>"
+        out = opengraph_resolver.resolve(
+            "https://example.org/x", make_ctx(lambda r: html_response(page))
+        )
+        assert out is not None

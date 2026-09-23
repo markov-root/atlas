@@ -110,8 +110,10 @@ deliberate rather than accidental (`task:0029`). The boundary is a file:
 
 ```
 TypeScript   Google Docs → AST → `atlas citations scan` → data/citations/citations.json
-Python       citations.json → resolve → data/citations/sources.yaml
-                                     → bibliography.bib / .json, reports, per-chapter Markdown
+Python       citations.json ─┬→ resolve ─→ data/citations/sources.yaml
+                             └→ overrides.yaml (reviewed, hand-written, wins)
+                                          → bibliography.bib / .json, reports, per-chapter Markdown
+                                          → rendered.json (945 sources × 5 CSL styles)
 ```
 
 **TypeScript owns identity and extraction; Python owns metadata and output.** Extraction walks the
@@ -120,6 +122,29 @@ entry identity is minted (`task:0021` D1). Everything downstream — resolvers, 
 takes a URL and returns metadata, and has no tie to either language; it sits in Python because that
 is where the bibliography libraries are. The cost of pretending otherwise was a hand-rolled BibTeX
 serializer that shipped a structural bug across 303 entries.
+
+### Where citation metadata comes from
+
+Eight resolvers, tried in a fixed order (`resolvers/base.py`, `RESOLVER_ORDER`): the local
+research-database corpus, arXiv, Crossref, ForumMagnum (LessWrong / EA Forum / Alignment Forum),
+publisher `citation_*` meta tags, YouTube oEmbed, Open Graph, and the Internet Archive last of all.
+Local and free first, networked after; each declines what is not its business.
+
+Two properties of that chain are load-bearing and easy to break:
+
+- **A decline and a failure are different answers** (`audit:0011` F12, `task:0032` AC-1). A resolver
+  returns `Unreachable(reason)` when it could not ask, and a _selective_ resolver that could not be
+  reached stops the chain rather than letting a weaker one answer in its place. Conflating the two is
+  what let one transient arXiv failure permanently record a 1,158-author paper with zero authors.
+- **`research-db` and `opengraph` claim every URL**, so their claim carries no authority and they get
+  no veto. That is exactly what keeps `task:0027` AC-6 true: the bibliography is identical when the
+  research-database service is down.
+
+**Where no API can answer, a human does.** `data/citations/overrides.yaml` is reviewed, hand-written,
+committed, and outranks every resolver; `atlas citations propose` gathers the evidence for filling it
+(a PDF's first page, a page's meta tags, the sections citing it). `task:0032` D2 and D3 record the
+two ways of closing that gap automatically that were built, measured and rejected — both produce
+entries that look resolved and are wrong.
 
 None of this is in the site build's path. `pnpm dev`, `pnpm build` and `pnpm test` never touch
 Python; only `pnpm verify` and the `atlas citations` verbs do. `bin/atlas` stays a logic-free
@@ -157,15 +182,15 @@ Why this matters: if you want to change build behaviour based on credentials, yo
 
 The transition between modes is automatic. There is no `--contributor` flag.
 
-|  | Contributor mode | Maintainer mode |
-|---|---|---|
-| `.env` required | No | Yes (`GOOGLE_CREDENTIALS_BASE64`) |
-| Chapter text | ✓ from committed cache | ✓ fresh from Google Docs |
-| Figure images | Captions only | ✓ downloaded fresh |
-| Algolia search | ✓ works (public keys baked in) | ✓ works + indexes fresh content |
-| PDF generation | Skipped | ✓ via Typst |
-| Audio generation | Skipped | ✓ via ElevenLabs + Gemini |
-| R2 upload | Skipped | ✓ for PDFs and audio |
+|                  | Contributor mode               | Maintainer mode                   |
+| ---------------- | ------------------------------ | --------------------------------- |
+| `.env` required  | No                             | Yes (`GOOGLE_CREDENTIALS_BASE64`) |
+| Chapter text     | ✓ from committed cache         | ✓ fresh from Google Docs          |
+| Figure images    | Captions only                  | ✓ downloaded fresh                |
+| Algolia search   | ✓ works (public keys baked in) | ✓ works + indexes fresh content   |
+| PDF generation   | Skipped                        | ✓ via Typst                       |
+| Audio generation | Skipped                        | ✓ via ElevenLabs + Gemini         |
+| R2 upload        | Skipped                        | ✓ for PDFs and audio              |
 
 A startup banner declares the resolved mode:
 
@@ -202,7 +227,7 @@ The textbook prose lives in eight private Google Docs — one per chapter; the `
 - **A headless CMS (Sanity, Notion).** Worth re-evaluating in 12+ months, but for 8 chapters and ~4 authors the additional service is unjustified.
 - **Self-hosted CMS.** Adds an ops surface we don't want.
 
-This decision is load-bearing on the contributor-mode work — because the editorial source isn't in the repo, contributors need *some* representation of the textbook (the committed cache) to build the site. See "The committed cache" below.
+This decision is load-bearing on the contributor-mode work — because the editorial source isn't in the repo, contributors need _some_ representation of the textbook (the committed cache) to build the site. See "The committed cache" below.
 
 ## Content pipeline
 
@@ -215,7 +240,7 @@ Declares `TEXTBOOK_EDITIONS`: an array of `TextbookDefinition`s, each with a `ve
 Wraps the Google Docs API and the on-disk cache. Constructed with optional credentials and a `cacheOnly` flag.
 
 ```ts
-new DocsSDK(credentials, assetsPath, urlGenerator, cacheOnly)
+new DocsSDK(credentials, assetsPath, urlGenerator, cacheOnly);
 ```
 
 `fetchDoc(docId, tabId)` decision tree:
@@ -238,18 +263,18 @@ Takes the raw Google Docs `Schema$DocumentTab` and walks the document tree, prod
 
 Each `Section.nodes` is a tree of typed `Node`s: `Paragraph`, `Span`, `Heading`, `List`, `ListItem`, `Figure`, `Footnote`, `Callout`, `Definition`, `InlineEquation`, `DisplayEquation`, `Iframe`, `Video`, `Quote`, `NoteBox`, `Link`, `GlossaryDefinition`, etc. The same set is what `src/components/nodes/` renders.
 
-**State to be aware of:** the Transformer accumulates per-textbook counters (figure numbers, section indices) on the `TextbookLoader` instance. This is intentional — "Figure 3.2" requires knowing what chapter and figure we're up to — but it means `loadChapter(X)` is NOT idempotent on a reused loader. Test invariant: same source + *fresh* loader → same content hash.
+**State to be aware of:** the Transformer accumulates per-textbook counters (figure numbers, section indices) on the `TextbookLoader` instance. This is intentional — "Figure 3.2" requires knowing what chapter and figure we're up to — but it means `loadChapter(X)` is NOT idempotent on a reused loader. Test invariant: same source + _fresh_ loader → same content hash.
 
 ### `src/textbook-loader/loader.ts` — TextbookLoader
 
 Orchestrates the per-chapter pipeline:
 
 ```ts
-new TextbookLoader(creds, edition, { cacheOnly })
-  .load()
+new TextbookLoader(creds, edition, { cacheOnly }).load();
 ```
 
 `load()`:
+
 1. For each chapter definition, call `loadChapter` → fetch → transform.
 2. Run `linkSections` to populate `prevSection`/`nextSection` cross-references.
 3. Compute total reading time.
@@ -271,18 +296,18 @@ Glossary entries are loaded per edition from `src/content/glossary/{version}-{la
 
 Normative. For every stage that touches something that can fail, this section states what happens: does the build exit non-zero, or continue degraded — and if it continues, what ships. `PRINCIPLES.md` §2 states "fail loud, not silent" as a principle; this section is where you check whether it actually holds. Today the bar is met for Google Docs ingestion, Typst compilation, and content-collection schemas, and **not** met for R2 delivery or the Algolia delete/save ordering (`audit:0010` F2/F4/F6 are the evidence base). This document records current behaviour; closing the gaps is audit work, not a licence to describe the gaps as if they were closed.
 
-| Stage | On failure | Build exits | Live-site effect |
-|---|---|---|---|
-| Docs fetch + images (`fetchDoc`, `downloadImages`) | throw (after retries) | non-zero | nothing ships |
-| Transform (`transformChapter`) | warn-and-skip | 0 | silently missing prose |
-| Glossary load (`loadGlossary`) | throw (missing dir) | non-zero | nothing ships |
-| Logos index (`logosLoader`) | throw (index fetch) / warn (per logo) | non-zero / 0 | build error, or page missing a logo |
-| Typst compile (`renderChapter`) | throw | non-zero | nothing ships |
-| TTS synthesis (`synthesizeParagraphs`) | abort section, warn | 0 | section ships with no player |
-| R2 transfer (`r2-cache.ts`) | warn-and-continue | 0 | **404 audio/PDF links** |
-| Algolia (`indexTextbook`) | throw after destructive delete | non-zero | search index empty until next good build |
-| Figure render (`Figure.astro`) | short-circuit | 0 | caption-only figure |
-| OWID iframe (`Iframe.astro`) | spinner, no timeout | 0 (build) | infinite spinner at read time |
+| Stage                                              | On failure                            | Build exits  | Live-site effect                         |
+| -------------------------------------------------- | ------------------------------------- | ------------ | ---------------------------------------- |
+| Docs fetch + images (`fetchDoc`, `downloadImages`) | throw (after retries)                 | non-zero     | nothing ships                            |
+| Transform (`transformChapter`)                     | warn-and-skip                         | 0            | silently missing prose                   |
+| Glossary load (`loadGlossary`)                     | throw (missing dir)                   | non-zero     | nothing ships                            |
+| Logos index (`logosLoader`)                        | throw (index fetch) / warn (per logo) | non-zero / 0 | build error, or page missing a logo      |
+| Typst compile (`renderChapter`)                    | throw                                 | non-zero     | nothing ships                            |
+| TTS synthesis (`synthesizeParagraphs`)             | abort section, warn                   | 0            | section ships with no player             |
+| R2 transfer (`r2-cache.ts`)                        | warn-and-continue                     | 0            | **404 audio/PDF links**                  |
+| Algolia (`indexTextbook`)                          | throw after destructive delete        | non-zero     | search index empty until next good build |
+| Figure render (`Figure.astro`)                     | short-circuit                         | 0            | caption-only figure                      |
+| OWID iframe (`Iframe.astro`)                       | spinner, no timeout                   | 0 (build)    | infinite spinner at read time            |
 
 ### Google Docs fetch and image download — the reference posture
 
@@ -297,7 +322,7 @@ When normalizing any other integration's failure posture, this is the pattern to
 
 ### Transform — warn-and-skip
 
-`transformChapter` is pure in-process code with no external dependency, but it does have a degradation path: an unrecognised element type is logged (`Unknown component type: [...]`) and skipped, and content appearing before the first section heading is likewise warned and dropped. The build succeeds; prose is silently absent from the shipped chapter. There is no hard-failure path for unrecognised *content*.
+`transformChapter` is pure in-process code with no external dependency, but it does have a degradation path: an unrecognised element type is logged (`Unknown component type: [...]`) and skipped, and content appearing before the first section heading is likewise warned and dropped. The build succeeds; prose is silently absent from the shipped chapter. There is no hard-failure path for unrecognised _content_.
 
 ### Content collections — mixed
 
@@ -373,13 +398,13 @@ One Astro component per AST node type. `NodeRenderer.astro` is the recursive dis
 
 `src/components/AlgoliaSearch.astro` and `DocSearchProvider.astro` import the public app ID + search key from `astro:env/client` (not from `import.meta.env` — the two are different env systems in Astro). The schema in `astro.config.mjs` declares `default:` values for both, so the search UI works without a `.env`.
 
-The Algolia *write* path (`indexTextbook` in `src/textbook-loader/algolia.ts`) runs from the `textbooks` collection loader, gated on `BuildMode.indexAlgolia` — its failure semantics are in "Failure semantics by stage".
+The Algolia _write_ path (`indexTextbook` in `src/textbook-loader/algolia.ts`) runs from the `textbooks` collection loader, gated on `BuildMode.indexAlgolia` — its failure semantics are in "Failure semantics by stage".
 
 ## The committed cache (`.cache/docs/`)
 
 `.cache/docs/` is the **only** part of `.cache/` that is checked in. Layout: `.cache/docs/<docId>/<tabId>` — one JSON file per Google Doc tab (the logical cache key is `docId:tabId`).
 
-The cache files have their `inlineObject.contentUri` values rewritten to local asset paths (e.g., `/assets/uc/<sha256>.png`). The image *contents* are NOT committed — only the references. Contributors building without creds get the references but no files, which is why figures degrade to caption-only.
+The cache files have their `inlineObject.contentUri` values rewritten to local asset paths (e.g., `/assets/uc/<sha256>.png`). The image _contents_ are NOT committed — only the references. Contributors building without creds get the references but no files, which is why figures degrade to caption-only.
 
 Refreshing the cache (maintainer):
 
@@ -429,16 +454,16 @@ Normative. This document describes edition `v1`, language `en` behaviour — tha
 
 The data model already carries the dimension — `TextbookDefinition` is `{ version, language, chapters[] }`, and `content.config.ts` keys the collection entry `${version}-${language}` — but much of the downstream is single-edition or single-language by construction:
 
-| Concern | Scope today | Anchor |
-|---|---|---|
-| Chapter sources (docId+tabId), authors | per edition (`v1`) | `TEXTBOOK_EDITIONS` |
-| URL space | version-only, no language segment | `/chapters/{version}/...` routes |
-| Data access | English-locked: resolves `${version}-en`, filters `language === 'en'` | `getTextbooks`, `getLatestTextbook` in `src/lib/textbooks.ts` |
-| `<html lang>` | hardcoded `en` in both layouts | `Default.astro`, `Reader.astro` |
-| Glossary | per edition **and** language directory | `loadGlossary` → `src/content/glossary/{version}-{language}/` |
-| Search records | carry `version` only — a second language would collide with / wipe English records | `textbookToRecords`, `indexTextbook` (`audit:0007` F2) |
-| Read-along timings + audio | keyed by chapter and section **number only** — no version or language dimension; a second edition/language resolves the same English files | `chapterTimings` in `src/data/chapter-timing.ts`, `resolveSectionAudio` (`audit:0007` F3) |
-| TTS narration, audio content hashes | derived from English text; per-language narration would be distinct hashes | audio `Renderer` Phase 2 |
+| Concern                                | Scope today                                                                                                                                | Anchor                                                                                    |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| Chapter sources (docId+tabId), authors | per edition (`v1`)                                                                                                                         | `TEXTBOOK_EDITIONS`                                                                       |
+| URL space                              | version-only, no language segment                                                                                                          | `/chapters/{version}/...` routes                                                          |
+| Data access                            | English-locked: resolves `${version}-en`, filters `language === 'en'`                                                                      | `getTextbooks`, `getLatestTextbook` in `src/lib/textbooks.ts`                             |
+| `<html lang>`                          | hardcoded `en` in both layouts                                                                                                             | `Default.astro`, `Reader.astro`                                                           |
+| Glossary                               | per edition **and** language directory                                                                                                     | `loadGlossary` → `src/content/glossary/{version}-{language}/`                             |
+| Search records                         | carry `version` only — a second language would collide with / wipe English records                                                         | `textbookToRecords`, `indexTextbook` (`audit:0007` F2)                                    |
+| Read-along timings + audio             | keyed by chapter and section **number only** — no version or language dimension; a second edition/language resolves the same English files | `chapterTimings` in `src/data/chapter-timing.ts`, `resolveSectionAudio` (`audit:0007` F3) |
+| TTS narration, audio content hashes    | derived from English text; per-language narration would be distinct hashes                                                                 | audio `Renderer` Phase 2                                                                  |
 
 Because of the `textbooks.ts` filter, a non-English edition registered in `TEXTBOOK_EDITIONS` today would be built by the loader but silently invisible to every route — the build succeeds, the content is unreachable.
 
@@ -448,19 +473,19 @@ Because of the `textbooks.ts` filter, a non-English edition registered in `TEXTB
 
 Default `pnpm test`: 181 tests across 18 files, ~7s, no network, no build (vitest excludes `tests/smoke/` and `tests/a11y/`). As of this revision:
 
-| Area | Files (tests) | Asserts |
-|---|---|---|
-| Build mode | `build-mode.test.ts` (16) | Every env permutation → expected `BuildMode` |
-| Docs SDK | `gdocsdk.test.ts` (13) | `imagesExist` + `fetchDoc` decision tree + error contents |
-| Loader | `loader.test.ts` (6) | `loadChapter`, `loadGlossary`, full `load()`, content-hash determinism, `linkSections` |
-| Transformer | `transformer.test.ts` (10), `transformer.edge-cases.test.ts` (19) | Per-chapter AST digest snapshot; edge-case handling |
-| Renderers | `pdf/renderer.test.ts` (7), `audio/renderer.test.ts` (7), `text-renderer.test.ts` (11), `equation-describer.test.ts` (7), `r2-cache.test.ts` (11), `output-snapshots.test.ts` (2) | PDF/audio renderer units, R2 cache behaviour, output snapshots |
-| Search | `algolia.test.ts` (6) | Record extraction from textbooks |
-| Audio resolution | `section-audio.test.ts` (11), `chapter-timing.test.ts` (8) | Source resolution + timing table shape |
-| Data access & text utils | `textbooks.test.ts` (11), `sentences.test.ts` (5) | Collection access, sentence splitting |
-| Browser runtime | `word-align.test.ts` (17), `follow-scroll.test.ts` (14) | Reader-page helpers |
-| End-to-end | `tests/smoke/contributor-build.smoke.test.ts` (1, opt-in) | `pnpm build` produces real chapter HTML with prose and search wiring |
-| Accessibility | `tests/a11y/a11y.test.ts` (opt-in) | Against `baseline.json` |
+| Area                     | Files (tests)                                                                                                                                                                     | Asserts                                                                                |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| Build mode               | `build-mode.test.ts` (16)                                                                                                                                                         | Every env permutation → expected `BuildMode`                                           |
+| Docs SDK                 | `gdocsdk.test.ts` (13)                                                                                                                                                            | `imagesExist` + `fetchDoc` decision tree + error contents                              |
+| Loader                   | `loader.test.ts` (6)                                                                                                                                                              | `loadChapter`, `loadGlossary`, full `load()`, content-hash determinism, `linkSections` |
+| Transformer              | `transformer.test.ts` (10), `transformer.edge-cases.test.ts` (19)                                                                                                                 | Per-chapter AST digest snapshot; edge-case handling                                    |
+| Renderers                | `pdf/renderer.test.ts` (7), `audio/renderer.test.ts` (7), `text-renderer.test.ts` (11), `equation-describer.test.ts` (7), `r2-cache.test.ts` (11), `output-snapshots.test.ts` (2) | PDF/audio renderer units, R2 cache behaviour, output snapshots                         |
+| Search                   | `algolia.test.ts` (6)                                                                                                                                                             | Record extraction from textbooks                                                       |
+| Audio resolution         | `section-audio.test.ts` (11), `chapter-timing.test.ts` (8)                                                                                                                        | Source resolution + timing table shape                                                 |
+| Data access & text utils | `textbooks.test.ts` (11), `sentences.test.ts` (5)                                                                                                                                 | Collection access, sentence splitting                                                  |
+| Browser runtime          | `word-align.test.ts` (17), `follow-scroll.test.ts` (14)                                                                                                                           | Reader-page helpers                                                                    |
+| End-to-end               | `tests/smoke/contributor-build.smoke.test.ts` (1, opt-in)                                                                                                                         | `pnpm build` produces real chapter HTML with prose and search wiring                   |
+| Accessibility            | `tests/a11y/a11y.test.ts` (opt-in)                                                                                                                                                | Against `baseline.json`                                                                |
 
 The counts above are point-in-time; treat the shape (what each layer asserts) as the stable claim and `pnpm test` output as the live number. Opt-in `pnpm test:smoke` spawns `pnpm build`, ~33s.
 

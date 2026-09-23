@@ -88,7 +88,13 @@ def apply_resolution(
         "resolvedBy": source,
         "anchors": entry.get("anchors", []),
     }
-    # Whatever stopped the last attempt did not stop this one.
+    # Whatever stopped the last attempt did not stop this one — unless the
+    # answer came from an archive, which only ever runs *because* the live URL
+    # failed. Then the reason is still true and still the authors' to act on:
+    # having found a copy is a fact about our metadata, the address being dead
+    # is a fact about the citation.
+    if source == "wayback" and entry.get("unreachable"):
+        resolved["unreachable"] = entry["unreachable"]
     return resolved
 
 

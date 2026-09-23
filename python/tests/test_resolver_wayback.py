@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from atlas_citations.commands.report import dead_links
+from atlas_citations.commands.resolve import apply_resolution
 from atlas_citations.resolvers import RESOLVER_ORDER
 from atlas_citations.resolvers.base import Unreachable
 from atlas_citations.resolvers.wayback import snapshot_for, wayback_resolver
@@ -91,12 +92,30 @@ class TestResolve:
 
 
 class TestTheReportStillCallsItDead:
-    def test_a_rescued_entry_remains_a_dead_link(self) -> None:
+    def test_a_rescued_dead_link_is_still_reported_as_dead(self) -> None:
         """Finding a copy is a fact about our metadata; the address being dead is
         a fact about the citation, and only an author can act on the second."""
         entry = entry_from_anchor(DEAD, "Barnes, 2021", {"author": "Barnes", "year": "2021"})
-        store = {DEAD: {**entry, "resolvedBy": "wayback"}}
-        assert dead_links(store) == [DEAD]
+        rescued = apply_resolution({**entry, "unreachable": "gone"}, {"title": "T"}, "wayback")
+        assert rescued["unreachable"] == "gone"
+        assert dead_links({DEAD: rescued}) == [DEAD]
+
+    def test_a_rescued_paywalled_page_is_not_called_dead(self) -> None:
+        """The archive rescues refused and flaky pages too.
+
+        Telling an author 25 citations are dead when 17 merely sit behind a WAF
+        sends them to fix what is not broken — which is the whole reason a 403 is
+        excluded from this section in the first place.
+        """
+        entry = entry_from_anchor(DEAD, "X, 2024", {"author": "X", "year": "2024"})
+        rescued = apply_resolution({**entry, "unreachable": "refused"}, {"title": "T"}, "wayback")
+        assert dead_links({DEAD: rescued}) == []
+
+    def test_an_ordinary_resolution_clears_a_stale_reason(self) -> None:
+        """A live resolver succeeding means whatever blocked the last run is over."""
+        entry = entry_from_anchor(DEAD, "X, 2024", {"author": "X", "year": "2024"})
+        fixed = apply_resolution({**entry, "unreachable": "unavailable"}, {"title": "T"}, "arxiv")
+        assert "unreachable" not in fixed
 
 
 def make_route_ctx():

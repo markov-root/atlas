@@ -114,17 +114,18 @@ def dead_links(store: Store) -> list[str]:
     an author their citation is dead when it is merely paywalled would send them
     to fix something that is not broken.
 
-    An entry the Internet Archive rescued still belongs here. Finding a copy is a
-    fact about our metadata; the cited address being dead is a fact about the
-    citation, and only an author can decide whether to cite the archived copy,
-    find the work's new home, or cite something else. Recording the first must
-    not hide the second.
+    An entry the Internet Archive rescued still belongs here, and keeps its
+    ``unreachable`` reason for exactly that purpose: finding a copy is a fact
+    about our metadata, the cited address being dead is a fact about the
+    citation, and only an author can decide whether to cite the archive, find
+    the work's new home, or cite something else.
+
+    Keyed on the reason and never on ``resolvedBy == "wayback"``. The archive
+    rescues paywalled and flaky pages too, and telling an author that 25
+    citations are dead when 17 of them merely sit behind a WAF is the same false
+    alarm this docstring's first paragraph exists to prevent.
     """
-    return sorted(
-        k
-        for k, e in store.items()
-        if e.get("unreachable") == "gone" or e.get("resolvedBy") == "wayback"
-    )
+    return sorted(k for k, e in store.items() if e.get("unreachable") == "gone")
 
 
 @dataclass(frozen=True)
