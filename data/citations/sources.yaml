@@ -27467,34 +27467,60 @@ https://dl.acm.org/doi/10.5555/1566174.1566226:
   resolvedBy: anchor
   anchors:
   - Omohundro, 2008
+  unreachable: refused
 https://dl.acm.org/doi/abs/10.1007/978-3-031-49008-8_8:
   item:
     id: https://dl.acm.org/doi/abs/10.1007/978-3-031-49008-8_8
-    type: webpage
+    type: document
     URL: https://dl.acm.org/doi/abs/10.1007/978-3-031-49008-8_8
     author:
-    - literal: Cunha & Estima
+    - family: Cunha
+      given: Paulo Rupino
+    - family: Estima
+      given: Jacinto
     issued:
       date-parts:
       - - 2023
-    title: Cunha & Estima, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Navigating the Landscape of AI Ethics and Responsibility
+    DOI: 10.1007/978-3-031-49008-8_8
+    container-title: Lecture Notes in Computer Science
+  resolvedBy: crossref
   anchors:
   - Cunha & Estima, 2023
 https://dl.acm.org/doi/pdf/10.1145/3351095.3372873:
   item:
     id: https://dl.acm.org/doi/pdf/10.1145/3351095.3372873
-    type: webpage
+    type: paper-conference
     URL: https://dl.acm.org/doi/pdf/10.1145/3351095.3372873
     author:
-    - literal: Raji et al.
+    - family: Raji
+      given: Inioluwa Deborah
+    - family: Smart
+      given: Andrew
+    - family: White
+      given: Rebecca N.
+    - family: Mitchell
+      given: Margaret
+    - family: Gebru
+      given: Timnit
+    - family: Hutchinson
+      given: Ben
+    - family: Smith-Loud
+      given: Jamila
+    - family: Theron
+      given: Daniel
+    - family: Barnes
+      given: Parker
     issued:
       date-parts:
       - - 2020
-    title: ' Raji et al., 2020'
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 1
+        - 27
+    title: Closing the AI accountability gap
+    DOI: 10.1145/3351095.3372873
+    container-title: Proceedings of the 2020 Conference on Fairness, Accountability, and 
+      Transparency
+  resolvedBy: crossref
   anchors:
   - ' Raji et al., 2020'
 https://dnascript.com:
@@ -27699,6 +27725,7 @@ https://elibrary.imf.org/view/journals/001/2025/076/article-A001-en.xml:
   resolvedBy: anchor
   anchors:
   - Cerutti et al., 2025
+  unreachable: refused
 https://en.wikipedia.org/wiki/AI-complete:
   item:
     id: https://en.wikipedia.org/wiki/AI-complete
@@ -27756,6 +27783,7 @@ https://epicural.com/2021/04/27/goodharts-law:
   resolvedBy: anchor
   anchors:
   - Epicural, 2021
+  unreachable: gone
 https://epoch.ai/benchmarks/eci:
   item:
     id: https://epoch.ai/benchmarks/eci
@@ -28384,6 +28412,7 @@ https://exfilbench.com:
   resolvedBy: anchor
   anchors:
   - Exfilbench, 2025
+  unreachable: unavailable
 https://existential-risk.com/concept:
   item:
     id: https://existential-risk.com/concept
@@ -28414,6 +28443,7 @@ https://fhi.ox.ac.uk/wp-content/uploads/Deciphering_Chinas_AI-Dream.pdf:
   resolvedBy: anchor
   anchors:
   - Ding, 2018
+  unreachable: unavailable
 https://findresearcher.sdu.dk/ws/portalfiles/portal/231643063/Loitering_Munitions_Unpredictability_WEB.pdf:
   item:
     id: 
@@ -28512,13 +28542,15 @@ https://forum.effectivealtruism.org/posts/63stBTw3WAW6k45dY/paul-christiano-curr
     URL: 
       https://forum.effectivealtruism.org/posts/63stBTw3WAW6k45dY/paul-christiano-current-work-in-ai-alignment
     author:
-    - literal: Christiano
+    - literal: EA Global
     issued:
       date-parts:
       - - 2020
-    title: Christiano, 2020
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 4
+        - 3
+    title: 'Paul Christiano: Current work in AI alignment'
+    container-title: EA Forum
+  resolvedBy: forum-magnum
   anchors:
   - Christiano, 2020
 https://forum.effectivealtruism.org/posts/6aYfWyo9DKEheogf8/don-t-call-it-ai-alignment:
@@ -28545,13 +28577,15 @@ https://forum.effectivealtruism.org/posts/7WfMYzLfcTyDtD6Gn/pause-for-thought-th
     URL: 
       https://forum.effectivealtruism.org/posts/7WfMYzLfcTyDtD6Gn/pause-for-thought-the-ai-pause-debate
     author:
-    - literal: Alexander
+    - literal: Scott Alexander
     issued:
       date-parts:
       - - 2023
-    title: Alexander, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 10
+        - 10
+    title: 'Pause For Thought: The AI Pause Debate'
+    container-title: EA Forum
+  resolvedBy: forum-magnum
   anchors:
   - Alexander, 2023
 https://forum.effectivealtruism.org/posts/DXuwsXsqGq5GtmsB3/ai-alignment-with-humans-but-with-which-humans:
@@ -28580,13 +28614,16 @@ https://forum.effectivealtruism.org/posts/GsjmufaebreiaivF7/what-is-the-likeliho
     URL: 
       https://forum.effectivealtruism.org/posts/GsjmufaebreiaivF7/what-is-the-likelihood-that-civilizational-collapse-would
     author:
-    - literal: Rodriguez
+    - literal: Luisa_Rodriguez
     issued:
       date-parts:
       - - 2020
-    title: Rodriguez, 2020
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 12
+        - 24
+    title: What is the likelihood that civilizational collapse would directly lead to human 
+      extinction (within decades)?
+    container-title: EA Forum
+  resolvedBy: forum-magnum
   anchors:
   - Rodriguez, 2020
 https://forum.effectivealtruism.org/posts/f2qojPr8NaMPo2KJC/beware-safety-washing:
@@ -28599,9 +28636,11 @@ https://forum.effectivealtruism.org/posts/f2qojPr8NaMPo2KJC/beware-safety-washin
     issued:
       date-parts:
       - - 2023
-    title: Lizka, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 1
+        - 13
+    title: Beware safety-washing
+    container-title: EA Forum
+  resolvedBy: forum-magnum
   anchors:
   - ' Lizka, 2023'
   - Lizka, 2023
@@ -28636,9 +28675,9 @@ https://ft.com/content/d60fb4fb-cb85-4df7-b246-ec3d08260e6f:
     issued:
       date-parts:
       - - 2025
-    title: Stacey, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: AI-generated phishing scams target corporate executives
+    abstract: Fast-developing technology gives hackers ability to craft ‘perfect’ fraudulent emails
+  resolvedBy: opengraph
   anchors:
   - Stacey, 2025
 https://futureoflife.org/existential-risk/existential-risk:
@@ -29725,6 +29764,7 @@ https://incompleteideas.net/IncIdeas/BitterLesson.html:
   resolvedBy: anchor
   anchors:
   - Sutton, 2019
+  unreachable: unavailable
 https://incompleteideas.net/Talks/waic3.pdf:
   item:
     id: https://incompleteideas.net/Talks/waic3.pdf
@@ -29740,6 +29780,7 @@ https://incompleteideas.net/Talks/waic3.pdf:
   resolvedBy: anchor
   anchors:
   - Sutton, 2023
+  unreachable: unavailable
 https://inferencemagazine.substack.com/p/how-much-economic-growth-from-ai:
   item:
     id: https://inferencemagazine.substack.com/p/how-much-economic-growth-from-ai
@@ -30596,13 +30637,15 @@ https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?comment
     URL: 
       https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?commentId=G5zcfntZodH3ZYDaP
     author:
-    - literal: Wentworth
+    - literal: johnswentworth
     issued:
       date-parts:
-      - - 2025
-    title: Wentworth, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+      - - 2020
+        - 2
+        - 27
+    title: johnswentworth's Shortform
+    container-title: LessWrong
+  resolvedBy: forum-magnum
   anchors:
   - Wentworth, 2025
 https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?commentId=J2iPumP29GK9Qrm5p:
@@ -30613,13 +30656,15 @@ https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?comment
     URL: 
       https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?commentId=J2iPumP29GK9Qrm5p
     author:
-    - literal: Segerie
+    - literal: johnswentworth
     issued:
       date-parts:
-      - - 2025
-    title: Segerie, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+      - - 2020
+        - 2
+        - 27
+    title: johnswentworth's Shortform
+    container-title: LessWrong
+  resolvedBy: forum-magnum
   anchors:
   - Segerie, 2025
 https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?commentId=NLAW24oxDFuTLT3kx:
@@ -30630,13 +30675,15 @@ https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?comment
     URL: 
       https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?commentId=NLAW24oxDFuTLT3kx
     author:
-    - literal: Hernandez
+    - literal: johnswentworth
     issued:
       date-parts:
-      - - 2025
-    title: Hernandez, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+      - - 2020
+        - 2
+        - 27
+    title: johnswentworth's Shortform
+    container-title: LessWrong
+  resolvedBy: forum-magnum
   anchors:
   - Hernandez, 2025
 https://lesswrong.com/posts/puv8fRDCH9jx5yhbX?commentId=aBcAh8H9cSzdXmgb7:
@@ -30645,13 +30692,15 @@ https://lesswrong.com/posts/puv8fRDCH9jx5yhbX?commentId=aBcAh8H9cSzdXmgb7:
     type: post-weblog
     URL: https://lesswrong.com/posts/puv8fRDCH9jx5yhbX?commentId=aBcAh8H9cSzdXmgb7
     author:
-    - literal: Wentworth
+    - literal: johnswentworth
     issued:
       date-parts:
-      - - 2025
-    title: Wentworth, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+      - - 2020
+        - 2
+        - 27
+    title: johnswentworth's Shortform
+    container-title: LessWrong
+  resolvedBy: forum-magnum
   anchors:
   - Wentworth, 2025
 https://lesswrong.com/posts/qYPHryHTNiJ2y6Fhi/the-paris-ai-anti-safety-summit:
@@ -30805,9 +30854,10 @@ https://linkedin.com/pulse/altman-multimodality-important-david-cronshaw-5fz0c:
     id: https://linkedin.com/pulse/altman-multimodality-important-david-cronshaw-5fz0c
     type: webpage
     URL: https://linkedin.com/pulse/altman-multimodality-important-david-cronshaw-5fz0c
-    title: Cronshaw, 2024
-    note: 'Unresolved: no author-year could be parsed from the anchor text.'
-  resolvedBy: anchor
+    title: 'Altman to Gates: "Multimodality will be important"'
+    abstract: 'Sam Altman to Bill Gates, discussing the future of Generative AI and OpenAI: "Multimodality
+      will definitely be important. Speech in, speech out, images, eventually video.'
+  resolvedBy: opengraph
   anchors:
   - Cronshaw, 2024
 https://longtermrisk.org/beginners-guide-to-reducing-s-risks:
@@ -30878,6 +30928,7 @@ https://metaculus.com/questions/38403/ai-authorered-paper-by-2028:
   resolvedBy: anchor
   anchors:
   - Metaculus, 2025
+  unreachable: refused
 https://metaculus.com/questions/38418/us-and-china-reach-an-agreement-to-limit-frontier-ai-development-before-2029:
   item:
     id: 
@@ -30890,9 +30941,10 @@ https://metaculus.com/questions/38418/us-and-china-reach-an-agreement-to-limit-f
     issued:
       date-parts:
       - - 2025
-    title: Metaculus, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: US and China reach an agreement to limit frontier AI development before 2029?
+    abstract: Metaculus is an online forecasting platform and aggregation engine working to improve 
+      human reasoning and coordination on topics of global importance.
+  resolvedBy: opengraph
   anchors:
   - Metaculus, 2025
 https://metr.github.io/autonomy-evals-guide:
@@ -31028,6 +31080,7 @@ https://mitpress.mit.edu/9780262530828/beyond-the-limits:
   resolvedBy: anchor
   anchors:
   - Ceruzzi, 1989
+  unreachable: refused
 https://muckrakerfarm.com/1977/09/pinto-madness-ford-pintos-fire-prone-gas-tank:
   item:
     id: https://muckrakerfarm.com/1977/09/pinto-madness-ford-pintos-fire-prone-gas-tank
@@ -31094,6 +31147,7 @@ https://nasdaq.com/articles/nvidia-dominating-artificial-intelligence-chip-marke
   resolvedBy: anchor
   anchors:
   - Jagielski, 2024
+  unreachable: unavailable
 https://nationalsecurity.ai:
   item:
     id: https://nationalsecurity.ai
@@ -31506,6 +31560,7 @@ https://nytimes.com/interactive/2017/business/volkswagen-diesel-emissions-timeli
   resolvedBy: anchor
   anchors:
   - Ewing, 2017
+  unreachable: refused
 https://oecd.ai/en/wonk/ai-safety-institutes-challenge:
   item:
     id: https://oecd.ai/en/wonk/ai-safety-institutes-challenge
@@ -31556,6 +31611,7 @@ https://oecd.ai/en/wonk/ai-safety-institutes-challenge:
   resolvedBy: anchor
   anchors:
   - OECD, 2025
+  unreachable: refused
 ? https://oms-www.files.svdcdn.com/production/downloads/reports/Voice%20and%20Access%20in%20AI_%20Global%20AI%20Majority%20Participation%20in%20Artificial%20Intelligence%20Development%20and%20Governance-%20final.pdf?dm=1729247034
 : item:
     id: 
@@ -31576,16 +31632,22 @@ https://oecd.ai/en/wonk/ai-safety-institutes-challenge:
 https://onlinelibrary.wiley.com/doi/10.1002/9781118660584.ese0431:
   item:
     id: https://onlinelibrary.wiley.com/doi/10.1002/9781118660584.ese0431
-    type: webpage
+    type: document
     URL: https://onlinelibrary.wiley.com/doi/10.1002/9781118660584.ese0431
     author:
-    - literal: Schneider & McGrew
+    - family: Flanagan
+      given: Dawn P.
+    - family: Dixon
+      given: Shauna G.
     issued:
       date-parts:
-      - - 2018
-    title: Schneider & McGrew, 2018
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+      - - 2014
+        - 1
+        - 22
+    title: The Cattell‐Horn‐Carroll Theory of Cognitive Abilities
+    DOI: 10.1002/9781118660584.ese0431
+    container-title: Encyclopedia of Special Education
+  resolvedBy: crossref
   anchors:
   - Schneider & McGrew, 2018
 https://onlinelibrary.wiley.com/doi/abs/10.1111/jofi.1249:
@@ -31603,6 +31665,7 @@ https://onlinelibrary.wiley.com/doi/abs/10.1111/jofi.1249:
   resolvedBy: anchor
   anchors:
   - Kirilenko et al., 2017
+  unreachable: refused
 https://openai.com/blog/introducing-superalignment:
   item:
     id: https://openai.com/blog/introducing-superalignment
@@ -31918,6 +31981,7 @@ https://openai.com/research/attacking-machine-learning-with-adversarial-examples
   resolvedBy: anchor
   anchors:
   - OpenAI, 2017
+  unreachable: gone
 https://openai.com/research/instruction-following:
   item:
     id: https://openai.com/research/instruction-following
@@ -31952,6 +32016,7 @@ https://openai.com/research/learning-montezumas-revenge-from-a-single-demonstrat
   resolvedBy: anchor
   anchors:
   - OpenAI, 2018
+  unreachable: gone
 https://openai.com/research/openai-five-defeats-dota-2-world-champions:
   item:
     id: https://openai.com/research/openai-five-defeats-dota-2-world-champions
@@ -31967,6 +32032,7 @@ https://openai.com/research/openai-five-defeats-dota-2-world-champions:
   resolvedBy: anchor
   anchors:
   - OpenAI, 2019
+  unreachable: gone
 https://openai.com/safety/preparedness:
   item:
     id: https://openai.com/safety/preparedness
@@ -32051,9 +32117,9 @@ https://openreview.net/pdf?id=BZ5a1r-kVsf:
     issued:
       date-parts:
       - - 2022
-    title: LeCun, 2022
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Verifying your browser | OpenReview
+    note: Title read from the <title> tag; the page had no Open Graph metadata.
+  resolvedBy: opengraph
   anchors:
   - LeCun, 2022
 https://optimists.ai/2023/11/28/ai-is-easy-to-control:
@@ -32211,6 +32277,7 @@ https://ourworldindata.org/grapher/market-share-logic-chip-production-manufactur
   resolvedBy: anchor
   anchors:
   - Giattino et al., 2023
+  unreachable: gone
 https://overcomingbias.com/p/ai-risk-again:
   item:
     id: https://overcomingbias.com/p/ai-risk-again
@@ -32226,6 +32293,7 @@ https://overcomingbias.com/p/ai-risk-again:
   resolvedBy: anchor
   anchors:
   - Hanson, 2023
+  unreachable: unavailable
 https://oxfordreference.com/display/10.1093/acref/9780191826719.001.0001/q-oro-ed4-00006236:
   item:
     id: https://oxfordreference.com/display/10.1093/acref/9780191826719.001.0001/q-oro-ed4-00006236
@@ -32241,6 +32309,7 @@ https://oxfordreference.com/display/10.1093/acref/9780191826719.001.0001/q-oro-e
   resolvedBy: anchor
   anchors:
   - Oxford Reference, 2016
+  unreachable: refused
 https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4424123:
   item:
     id: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4424123
@@ -32256,6 +32325,7 @@ https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4424123:
   resolvedBy: anchor
   anchors:
   - Tallberg et al., 2023
+  unreachable: refused
 https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4491421:
   item:
     id: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4491421
@@ -32271,6 +32341,7 @@ https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4491421:
   resolvedBy: anchor
   anchors:
   - Mannheim, 2023
+  unreachable: refused
 https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579773:
   item:
     id: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579773
@@ -32287,6 +32358,7 @@ https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579773:
   anchors:
   - Maas & Villalobos, 2023
   - Maas & Villalobos, 2024
+  unreachable: refused
 https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5241351:
   item:
     id: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5241351
@@ -32302,6 +32374,7 @@ https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5241351:
   resolvedBy: anchor
   anchors:
   - Zhang et al., 2025
+  unreachable: refused
 https://pauseai.info/pdoom:
   item:
     id: https://pauseai.info/pdoom
@@ -32352,6 +32425,7 @@ https://planned-obsolescence.org/ais-accelerating-ai-research:
   resolvedBy: anchor
   anchors:
   - Cotra, 2023
+  unreachable: gone
 https://planned-obsolescence.org/language-models-surprised-us:
   item:
     id: https://planned-obsolescence.org/language-models-surprised-us
@@ -32367,6 +32441,7 @@ https://planned-obsolescence.org/language-models-surprised-us:
   resolvedBy: anchor
   anchors:
   - Cotra, 2023
+  unreachable: gone
 https://planned-obsolescence.org/scale-schlep-and-systems:
   item:
     id: https://planned-obsolescence.org/scale-schlep-and-systems
@@ -32383,6 +32458,7 @@ https://planned-obsolescence.org/scale-schlep-and-systems:
   anchors:
   - Cotra 2023
   - Cotra, 2023
+  unreachable: gone
 https://planned-obsolescence.org/the-training-game:
   item:
     id: https://planned-obsolescence.org/the-training-game
@@ -32398,6 +32474,7 @@ https://planned-obsolescence.org/the-training-game:
   resolvedBy: anchor
   anchors:
   - Piper, 2023
+  unreachable: gone
 https://pmc.ncbi.nlm.nih.gov/articles/PMC2840845:
   item:
     id: https://pmc.ncbi.nlm.nih.gov/articles/PMC2840845
@@ -32442,19 +32519,26 @@ https://pnas.org/content/118/45/e2105646118:
   resolvedBy: anchor
   anchors:
   - Schrimpf et al., 2021
+  unreachable: refused
 https://pnas.org/doi/full/10.1073/pnas.1208087109:
   item:
     id: https://pnas.org/doi/full/10.1073/pnas.1208087109
-    type: webpage
+    type: article-journal
     URL: https://pnas.org/doi/full/10.1073/pnas.1208087109
     author:
-    - literal: Stewart & Plotkin
+    - family: Stewart
+      given: Alexander J.
+    - family: Plotkin
+      given: Joshua B.
     issued:
       date-parts:
       - - 2012
-    title: Stewart & Plotkin, 2012
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 6
+        - 18
+    title: Extortion and cooperation in the Prisoner’s Dilemma
+    DOI: 10.1073/pnas.1208087109
+    container-title: Proceedings of the National Academy of Sciences
+  resolvedBy: crossref
   anchors:
   - Stewart & Plotkin, 2012
 https://pourdemain.ngo/en/post/learning-from-history-gpai-serious-incident-reporting:
@@ -32510,6 +32594,7 @@ https://psycnet.apa.org/record/1981-27235-001:
   resolvedBy: anchor
   anchors:
   - Searle, 1980
+  unreachable: refused
 https://psycnet.apa.org/record/2014-48585-000:
   item:
     id: https://psycnet.apa.org/record/2014-48585-000
@@ -32525,6 +32610,7 @@ https://psycnet.apa.org/record/2014-48585-000:
   resolvedBy: anchor
   anchors:
   - Bostrom, 2014
+  unreachable: refused
 https://pubmed.ncbi.nlm.nih.gov/13233369:
   item:
     id: https://pubmed.ncbi.nlm.nih.gov/13233369
@@ -32927,6 +33013,7 @@ https://rand.org/pubs/research_reports/RR2703.html:
   resolvedBy: anchor
   anchors:
   - ' Snyder et al., 2020'
+  unreachable: refused
 https://rand.org/pubs/research_reports/RRA2849-1.html:
   item:
     id: https://rand.org/pubs/research_reports/RRA2849-1.html
@@ -32943,6 +33030,7 @@ https://rand.org/pubs/research_reports/RRA2849-1.html:
   anchors:
   - ' Nevo et al., 2024'
   - Nevo et al., 2024
+  unreachable: refused
 https://rand.org/pubs/research_reports/RRA2977-1.html:
   item:
     id: https://rand.org/pubs/research_reports/RRA2977-1.html
@@ -32959,6 +33047,7 @@ https://rand.org/pubs/research_reports/RRA2977-1.html:
   anchors:
   - Mouton et al., 2023
   - Mouton et al., 2024
+  unreachable: refused
 https://rand.org/pubs/research_reports/RRA2981-1.html:
   item:
     id: https://rand.org/pubs/research_reports/RRA2981-1.html
@@ -32974,6 +33063,7 @@ https://rand.org/pubs/research_reports/RRA2981-1.html:
   resolvedBy: anchor
   anchors:
   - Willis et al., 2024
+  unreachable: refused
 https://ratings.safer-ai.org:
   item:
     id: https://ratings.safer-ai.org
@@ -33024,6 +33114,7 @@ https://researchgate.net/publication/360644155_AI_GOVERNANCE_ARE_CHIEF_AI_OFFICE
   resolvedBy: anchor
   anchors:
   - Schäfer et al., 2022
+  unreachable: refused
 ? https://researchgate.net/publication/367010605_The_state's_role_in_governing_artificial_intelligence_development_control_and_promotion_through_national_strategies
 : item:
     id: 
@@ -33041,6 +33132,7 @@ https://researchgate.net/publication/360644155_AI_GOVERNANCE_ARE_CHIEF_AI_OFFICE
   resolvedBy: anchor
   anchors:
   - Papyshev et al., 2023
+  unreachable: refused
 https://researchgate.net/publication/382885035_Reasons_to_Doubt_the_Impact_of_AI_Risk_Evaluations:
   item:
     id: 
@@ -33058,6 +33150,7 @@ https://researchgate.net/publication/382885035_Reasons_to_Doubt_the_Impact_of_AI
   resolvedBy: anchor
   anchors:
   - Mukobi, 2024
+  unreachable: refused
 https://researchgate.net/publication/385353725_Safety_cases_for_frontier_AI:
   item:
     id: https://researchgate.net/publication/385353725_Safety_cases_for_frontier_AI
@@ -33073,6 +33166,7 @@ https://researchgate.net/publication/385353725_Safety_cases_for_frontier_AI:
   resolvedBy: anchor
   anchors:
   - Buhl et al., 2024
+  unreachable: refused
 ? https://researchgate.net/publication/387399002_The_First_Global_AI_Treaty_Analyzing_the_Framework_Convention_on_Artificial_Intelligence_and_the_EU_AI_Act
 : item:
     id: 
@@ -33090,6 +33184,7 @@ https://researchgate.net/publication/385353725_Safety_cases_for_frontier_AI:
   resolvedBy: anchor
   anchors:
   - Cheng, 2024
+  unreachable: refused
 ? https://researchgate.net/publication/387730260_Exploring_China's_cyber_sovereignty_concept_and_artificial_intelligence_governance_model_a_machine_learning_approach
 : item:
     id: 
@@ -33107,6 +33202,7 @@ https://researchgate.net/publication/385353725_Safety_cases_for_frontier_AI:
   resolvedBy: anchor
   anchors:
   - Hung, 2025
+  unreachable: refused
 https://resources.nvidia.com/en-us-blackwell-architecture:
   item:
     id: https://resources.nvidia.com/en-us-blackwell-architecture
@@ -33142,6 +33238,7 @@ https://reuters.com/technology/what-happens-when-your-ai-chatbot-stops-loving-yo
   resolvedBy: anchor
   anchors:
   - Tong, 2023
+  unreachable: refused
 https://rsis.edu.sg/rsis-publication/rsis/we-need-to-prevent-a-global-ai-arms-race-now:
   item:
     id: https://rsis.edu.sg/rsis-publication/rsis/we-need-to-prevent-a-global-ai-arms-race-now
@@ -33152,9 +33249,9 @@ https://rsis.edu.sg/rsis-publication/rsis/we-need-to-prevent-a-global-ai-arms-ra
     issued:
       date-parts:
       - - 2023
-    title: Trajano & Ang, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: We Need to Prevent a Global AI Arms Race Now
+    container-title: RSIS_NTU
+  resolvedBy: opengraph
   anchors:
   - Trajano & Ang, 2023
 https://safe.ai/blog/cybersecurity-and-ai-the-evolving-security-landscape:
@@ -33262,16 +33359,72 @@ https://scholarship.law.georgetown.edu/facpub/2647:
 https://science.org/doi/10.1126/science.ade9097:
   item:
     id: https://science.org/doi/10.1126/science.ade9097
-    type: webpage
+    type: article-journal
     URL: https://science.org/doi/10.1126/science.ade9097
     author:
-    - literal: Meta
+    - literal: Meta Fundamental AI Research Diplomacy Team (FAIR)†
+    - family: Bakhtin
+      given: Anton
+    - family: Brown
+      given: Noam
+    - family: Dinan
+      given: Emily
+    - family: Farina
+      given: Gabriele
+    - family: Flaherty
+      given: Colin
+    - family: Fried
+      given: Daniel
+    - family: Goff
+      given: Andrew
+    - family: Gray
+      given: Jonathan
+    - family: Hu
+      given: Hengyuan
+    - family: Jacob
+      given: Athul Paul
+    - family: Komeili
+      given: Mojtaba
+    - family: Konath
+      given: Karthik
+    - family: Kwon
+      given: Minae
+    - family: Lerer
+      given: Adam
+    - family: Lewis
+      given: Mike
+    - family: Miller
+      given: Alexander H.
+    - family: Mitts
+      given: Sasha
+    - family: Renduchintala
+      given: Adithya
+    - family: Roller
+      given: Stephen
+    - family: Rowe
+      given: Dirk
+    - family: Shi
+      given: Weiyan
+    - family: Spisak
+      given: Joe
+    - family: Wei
+      given: Alexander
+    - family: Wu
+      given: David
+    - family: Zhang
+      given: Hugh
+    - family: Zijlstra
+      given: Markus
     issued:
       date-parts:
       - - 2022
-    title: Meta, 2022
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 12
+        - 9
+    title: Human-level play in the game of Diplomacy by combining language models with strategic 
+      reasoning
+    DOI: 10.1126/science.ade9097
+    container-title: Science
+  resolvedBy: crossref
   anchors:
   - Meta, 2022
 https://sciencedirect.com/science/article/pii/S0040162521003413:
@@ -33289,6 +33442,7 @@ https://sciencedirect.com/science/article/pii/S0040162521003413:
   resolvedBy: anchor
   anchors:
   - Gruetzemacher et al., 2021
+  unreachable: refused
 https://sciencedirect.com/science/article/pii/S0963868724000672:
   item:
     id: https://sciencedirect.com/science/article/pii/S0963868724000672
@@ -33304,6 +33458,7 @@ https://sciencedirect.com/science/article/pii/S0963868724000672:
   resolvedBy: anchor
   anchors:
   - Papagiannidis, 2025
+  unreachable: refused
 https://sciendo.com/issue/JAGI/11/2:
   item:
     id: https://sciendo.com/issue/JAGI/11/2
@@ -33453,6 +33608,7 @@ https://sl4.org/archive/0207/4935.html:
   resolvedBy: anchor
   anchors:
   - Corwin, 2002
+  unreachable: unavailable
 https://stateof.ai:
   item:
     id: https://stateof.ai
@@ -33491,6 +33647,7 @@ https://stateof.ai:
   - Sharkey et al. 2024
   - Sharkey et al., 2024
   - Sharkey, 2024
+  unreachable: gone
 https://substack.com/home/post/p-139945470:
   item:
     id: https://substack.com/home/post/p-139945470
@@ -33524,46 +33681,60 @@ https://swebench.com:
 https://tandfonline.com/doi/abs/10.1080/13523260.2019.1576464:
   item:
     id: https://tandfonline.com/doi/abs/10.1080/13523260.2019.1576464
-    type: webpage
+    type: article-journal
     URL: https://tandfonline.com/doi/abs/10.1080/13523260.2019.1576464
     author:
-    - literal: Maas
+    - family: Maas
+      given: Matthijs M.
     issued:
       date-parts:
       - - 2019
-    title: Maas, 2019
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 2
+        - 6
+    title: How viable is international arms control for military artificial intelligence? Three 
+      lessons from nuclear weapons
+    DOI: 10.1080/13523260.2019.1576464
+    container-title: Contemporary Security Policy
+  resolvedBy: crossref
   anchors:
   - Maas, 2019
 https://tandfonline.com/doi/full/10.1080/15027570.2023.2213985:
   item:
     id: https://tandfonline.com/doi/full/10.1080/15027570.2023.2213985
-    type: webpage
+    type: article-journal
     URL: https://tandfonline.com/doi/full/10.1080/15027570.2023.2213985
     author:
-    - literal: Trusilo
+    - family: Trusilo
+      given: Daniel
     issued:
       date-parts:
-      - - 2024
-    title: Trusilo, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+      - - 2023
+        - 1
+        - 2
+    title: 'Autonomous AI Systems in Conflict: Emergent Behavior and Its Impact on Predictability and
+      Reliability'
+    DOI: 10.1080/15027570.2023.2213985
+    container-title: Journal of Military Ethics
+  resolvedBy: crossref
   anchors:
   - Trusilo, 2024
 https://tandfonline.com/doi/full/10.1080/19331681.2025.2473994:
   item:
     id: https://tandfonline.com/doi/full/10.1080/19331681.2025.2473994
-    type: webpage
+    type: article-journal
     URL: https://tandfonline.com/doi/full/10.1080/19331681.2025.2473994
     author:
-    - literal: Chehoudi
+    - family: Chehoudi
+      given: Rafaa
     issued:
       date-parts:
       - - 2025
-    title: Chehoudi, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 3
+        - 6
+    title: 'Artificial intelligence and democracy: pathway to progress or decline?'
+    DOI: 10.1080/19331681.2025.2473994
+    container-title: Journal of Information Technology &amp; Politics
+  resolvedBy: crossref
   anchors:
   - Chehoudi, 2025
 https://techgov.intelligence.org/research/ai-governance-to-avoid-extinction:
@@ -33638,6 +33809,7 @@ https://telegraph.co.uk/news/2024/01/07/artificial-intelligence-train-problems:
   resolvedBy: anchor
   anchors:
   - Wooldridge, 2024
+  unreachable: refused
 https://testscience.org/wp-content/uploads/formidable/20/Autonomy-Lit-Review.pdf:
   item:
     id: https://testscience.org/wp-content/uploads/formidable/20/Autonomy-Lit-Review.pdf
@@ -33858,6 +34030,7 @@ https://tom7.org/mario/mario.pdf:
   resolvedBy: anchor
   anchors:
   - Murphy, 2013
+  unreachable: unavailable
 https://towardsdatascience.com/neural-networks-are-fundamentally-bayesian-bee9a172fad8:
   item:
     id: https://towardsdatascience.com/neural-networks-are-fundamentally-bayesian-bee9a172fad8
@@ -34135,6 +34308,7 @@ https://wsj.com/livecoverage/facebook-whistleblower-frances-haugen-senate-hearin
   resolvedBy: anchor
   anchors:
   - Haugen, 2021
+  unreachable: refused
 https://www-cdn.anthropic.com/1adf000c8f675958c2ee23805d91aaade1cd4613/responsible-scaling-policy.pdf:
   item:
     id: 
@@ -34281,6 +34455,7 @@ https://www.youtube.com/watch?v=ETZfkkv6V7Y:
   resolvedBy: anchor
   anchors:
   - LeCun, 2025
+  unreachable: refused
 https://www.youtube.com/watch?v=N1TEjTeQeg0:
   item:
     id: https://www.youtube.com/watch?v=N1TEjTeQeg0
@@ -34492,6 +34667,7 @@ https://yann.lecun.com/exdb/mnist:
   resolvedBy: anchor
   anchors:
   - LeCun, 1998
+  unreachable: unavailable
 https://yoshuabengio.org/2023/06/24/faq-on-catastrophic-ai-risks:
   item:
     id: https://yoshuabengio.org/2023/06/24/faq-on-catastrophic-ai-risks
