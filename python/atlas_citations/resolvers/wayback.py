@@ -30,7 +30,7 @@ from typing import Any
 
 from ._http import MAX_HTML_BYTES, get_json, get_text_capped
 from .base import ResolverContext, ResolveResult, Unreachable
-from .opengraph import _soup, meta_content, title_tag, usable_title
+from .opengraph import _soup, clean_title, meta_content, title_tag, usable_title
 
 #: The availability API: one URL in, the closest snapshot out.
 AVAILABILITY_API = "https://archive.org/wayback/available"
@@ -103,7 +103,7 @@ class WaybackResolver:
             return None
 
         soup = _soup(html)
-        title = meta_content(soup, "og:title") or title_tag(soup)
+        title = clean_title(meta_content(soup, "og:title") or title_tag(soup) or "")
         if not title or not usable_title(title):
             return None
 

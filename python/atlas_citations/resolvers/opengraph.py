@@ -91,6 +91,23 @@ _SERVICE_NAME_TITLES = frozenset(
     }
 )
 
+#: A directory listing is a web server's default index page, not a document.
+#: Found on `yann.lecun.com/exdb/mnist`, whose title is "Index of /exdb/mnist".
+_DIRECTORY_INDEX = re.compile(r"^index of\s*/", re.IGNORECASE)
+
+#: Markup inside a title. Publishers put it there — SSRN's Open Graph title for
+#: one corpus entry is literally "<span>A Three-Layered Framework…" — and a CSL
+#: field is plain text, so a template escapes the tag rather than interpreting
+#: it and the reader sees the angle brackets. Same defect as `audit:0011` F11,
+#: which crossref.py already strips for; this is the scraping side of it.
+_TAG = re.compile(r"<[^>]*>")
+
+
+def clean_title(title: str) -> str:
+    """Strip markup and collapse whitespace out of a scraped title."""
+    return " ".join(_TAG.sub(" ", title).split())
+
+
 #: A title shorter than this carries no information a reader could use.
 #: The corpus held one: a Google Books page titled "AI".
 _MIN_TITLE_CHARS = 4
@@ -109,6 +126,8 @@ def usable_title(title: str) -> bool:
     if _NON_TITLE_EXACT.match(text) or _NON_TITLE_PREFIX.match(text):
         return False
     if text.lower().rstrip(".") in _SERVICE_NAME_TITLES:
+        return False
+    if _DIRECTORY_INDEX.match(text):
         return False
     return "recaptcha" not in text.lower()
 
@@ -168,7 +187,7 @@ class OpengraphResolver:
 
         soup = _soup(html)
         og_title = meta_content(soup, "og:title")
-        title = og_title or title_tag(soup)
+        title = clean_title(og_title or title_tag(soup) or "")
         if not title or not usable_title(title):
             # Nothing to add beyond what the anchor gives — or worse than it.
             return None

@@ -457,3 +457,29 @@ class TestTheArchivesOwnChromeIsNotATitle:
             "https://example.org/x", make_ctx(lambda r: html_response(page))
         )
         assert out is not None
+
+
+class TestScrapedTitlesAreCleanedNotJustJudged:
+    def test_markup_inside_a_title_is_stripped(self) -> None:
+        """SSRN's Open Graph title for a corpus entry is literally
+        "<span>A Three-Layered Framework…". CSL fields are plain text, so a
+        template escapes the tag and the reader sees angle brackets — the
+        scraping half of ``audit:0011`` F11."""
+        page = (
+            "<html><head>"
+            '<meta property="og:title" content="&lt;span&gt;A Real Title">'
+            "</head></html>"
+        )
+        out = opengraph_resolver.resolve(
+            "https://papers.ssrn.com/x", make_ctx(lambda r: html_response(page))
+        )
+        assert out is not None
+        assert out.fields["title"] == "A Real Title"
+
+    def test_a_directory_listing_is_not_a_document(self) -> None:
+        """`yann.lecun.com/exdb/mnist` serves a web server's default index page."""
+        page = "<html><head><title>Index of /exdb/mnist</title></head></html>"
+        out = opengraph_resolver.resolve(
+            "https://yann.lecun.com/exdb/mnist", make_ctx(lambda r: html_response(page))
+        )
+        assert out is None

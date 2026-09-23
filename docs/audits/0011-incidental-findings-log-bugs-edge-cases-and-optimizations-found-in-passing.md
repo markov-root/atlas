@@ -393,6 +393,56 @@ metadata to the wrong work, and the result reads as more trustworthy than an unr
 **Disposition:** rejected by design, recorded as `task:0032` D2 and D3. The evidence both methods
 produce is genuinely useful to a _human_, which is what `atlas citations propose` exists to deliver.
 
+### F16 — Canonicalization's `www.` strip turned working citations into dead ones
+
+**Severity:** medium · **Evidence:** reproduced, 7 entries · **Found:** 2026-09-23, by the owner
+asking whether the unresolved URLs shared a pattern
+
+Stripping `www.` is correct canonicalization and should stay: almost every host serves both forms, so
+keeping the prefix would mint two entries for one source and defeat `task:0021` D1.
+
+Almost every host. Seven of this corpus's URLs answer **only** on the prefixed form — the four
+`planned-obsolescence.org` posts (a Substack custom domain, which 404s bare), an AP News article,
+`overcomingbias.com`, and a Carter Center PDF.
+
+This was worse than a resolution failure. **The store's `URL` is what the bibliography renders as a
+link**, so a reader clicking those four got a 404 — and the dead-link report was about to tell the
+authors their citations were broken when our own canonicalizer had broken them. A tool that
+misattributes its own defect to its user is worse than one that stays silent.
+
+The general form: **identity and reachability are different properties, and a canonical form
+optimised for one can be wrong for the other.** CSL already separates them — `id` versus `URL` — and
+the fix uses that separation rather than weakening canonicalization.
+
+**Disposition:** fixed under `task:0032` (commit `ffa7ed0`). `research_db.py` had carried a private
+`_with_www` helper since `task:0027`, which means someone hit this before and fixed it in one
+resolver instead of noticing it was general.
+
+### F17 — A headless browser does not defeat a WAF, and was about to be built on the assumption that it would
+
+**Severity:** low · **Evidence:** measured against three blocked hosts · **Found:** 2026-09-23,
+testing an owner suggestion before implementing it
+
+Adding Playwright to the resolver pipeline was proposed for the 45 entries a publisher WAF refuses.
+Measured first, against the real pages:
+
+| Page                             | httpx              | headless Chrome       |
+| -------------------------------- | ------------------ | --------------------- |
+| `academic.oup.com` (Turing 1950) | 403                | 403, "Just a moment…" |
+| `psycnet.apa.org/record/…`       | 200, useless title | **403 Forbidden**     |
+| `planned-obsolescence.org/about` | 404 (needs `www.`) | 200, renders fine     |
+
+Cloudflare detects headless Chrome and refuses it identically. PsycNet was _worse_ under a browser
+than under httpx. The one page a browser rendered correctly is one httpx also handles once F16 is
+fixed.
+
+So the blockage is **access control, not rendering**, and a browser dependency — a ~300 MB download,
+a new failure mode, and a much slower run — would have bought nothing against it. The corpus's
+genuinely client-rendered pages are the forum ones, and `forum-magnum` answers those from an API.
+
+**Disposition:** not built, recorded. Worth keeping because "just use a real browser" is the obvious
+next suggestion for a blocked scraper, and the obvious suggestion is wrong here.
+
 ## Recommendations
 
 1. **Close F1 before `task:0021` adds `cli/` code.** Declaring `@types/node` and getting `cli/` into
