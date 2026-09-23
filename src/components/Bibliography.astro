@@ -34,6 +34,14 @@ interface Props {
    * list is faster to read than to filter, and a panel above it is furniture.
    */
   searchable?: boolean;
+  /**
+   * Where to go for more sources than this list holds.
+   *
+   * A section's reference list is the only place most readers meet the
+   * bibliography, so it is the only place a link onward will be seen. Without
+   * one, the chapter and site-wide pages exist and nothing points at them.
+   */
+  more?: { href: string; label: string }[];
 }
 
 const {
@@ -43,6 +51,7 @@ const {
   id = 'references',
   showCount = false,
   searchable = false,
+  more = [],
 } = Astro.props;
 
 const Heading = level === 3 ? 'h3' : 'h2';
@@ -363,6 +372,20 @@ const groupByChapter = chapters.length > 1;
       {searchable && (
         <p class="hidden mt-6 text-sm text-gray-500" data-bib-empty>
           No sources match those filters.
+        </p>
+      )}
+
+      {more.length > 0 && (
+        <p class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+          {more.map((link) => (
+            <a
+              href={link.href}
+              class="inline-flex items-center gap-1.5 text-brand-600 underline decoration-brand-300 underline-offset-2 hover:decoration-brand-600 transition-colors"
+            >
+              {link.label}
+              <Icon name="tabler:arrow-right" class="h-4 w-4" aria-hidden="true" />
+            </a>
+          ))}
         </p>
       )}
 
