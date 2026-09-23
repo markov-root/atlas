@@ -65,7 +65,11 @@ PDF_HEAD_LINES = 6
 
 #: Fetching a PDF to read one page is the most expensive thing here.
 PDF_TIMEOUT_S = 30.0
-MAX_PDF_BYTES = 8 * 1024 * 1024
+
+#: The largest PDF this corpus cites is 28 MB (OpenAI's DALL-E 3 paper), so the
+#: bound is set above it rather than at a round number that would exclude it.
+#: One file at a time, on a machine where `pnpm verify` costs far more.
+MAX_PDF_BYTES = 32 * 1024 * 1024
 
 HEADER = f"""# Proposed overrides — evidence gathered, nothing decided.
 #
@@ -140,12 +144,19 @@ def gather_evidence(url: str, ctx) -> list[str]:
     ctx.throttle()
     try:
         response = ctx.client.get(url, timeout=PDF_TIMEOUT_S, follow_redirects=True)
-        content = response.content[:MAX_PDF_BYTES]
+        content = response.content
     except Exception as exc:
         return [f"(fetch failed: {type(exc).__name__})"]
-    if content.startswith(b"%PDF"):
-        return _evidence_for_pdf(content)
-    return ["(not HTML and not a PDF)"]
+    if not content.startswith(b"%PDF"):
+        return ["(not HTML and not a PDF)"]
+    # Never parse a truncated PDF. A PDF's cross-reference table lives at the
+    # *end* of the file, so a body cut at a byte cap is not a smaller document,
+    # it is a broken one — and the parser either raises (which is the lucky
+    # outcome) or returns nonsense. Found on the 28 MB DALL-E 3 paper, which an
+    # 8 MB cap turned into a PdfStreamError.
+    if len(content) > MAX_PDF_BYTES:
+        return [f"(PDF is {len(content) / 1e6:.0f} MB — too large to read here; open it by hand)"]
+    return _evidence_for_pdf(content)
 
 
 def _stub(key: str, store: Store, instances: list[Citation], evidence: list[str]) -> list[str]:

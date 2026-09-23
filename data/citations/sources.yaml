@@ -114,6 +114,7 @@ https://academic.oup.com/edited-volume/41989/chapter-abstract/408516484:
   resolvedBy: anchor
   anchors:
   - Dafoe, 2022
+  unreachable: refused
 https://academic.oup.com/ia/article/100/3/1275/7641064:
   item:
     id: https://academic.oup.com/ia/article/100/3/1275/7641064
@@ -129,6 +130,7 @@ https://academic.oup.com/ia/article/100/3/1275/7641064:
   resolvedBy: anchor
   anchors:
   - Roberts et al., 2024
+  unreachable: refused
 https://academic.oup.com/mind/article/LIX/236/433/986238?login=false:
   item:
     id: https://academic.oup.com/mind/article/LIX/236/433/986238?login=false
@@ -144,6 +146,7 @@ https://academic.oup.com/mind/article/LIX/236/433/986238?login=false:
   resolvedBy: anchor
   anchors:
   - Turing, 1950
+  unreachable: refused
 https://academic.oup.com/policyandsociety/article/44/1/38/7965776:
   item:
     id: https://academic.oup.com/policyandsociety/article/44/1/38/7965776
@@ -159,6 +162,7 @@ https://academic.oup.com/policyandsociety/article/44/1/38/7965776:
   resolvedBy: anchor
   anchors:
   - ' Janssen et al., 2025'
+  unreachable: refused
 https://ai-2027.com:
   item:
     id: https://ai-2027.com
@@ -2459,9 +2463,13 @@ https://apnews.com/article/artificial-intelligence-elections-disinformation-chat
     issued:
       date-parts:
       - - 2024
-    title: Swenson & Chan, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 3
+        - 14
+    title: Election disinformation takes a big leap with AI being used to deceive worldwide
+    container-title: AP News
+    abstract: A wave of AI deepfakes has coursed through social media for months, serving as a 
+      warning for more than 50 countries heading to the polls this year.
+  resolvedBy: opengraph
   anchors:
   - Swenson & Chan, 2024
 https://apnews.com/article/bb5628f2a7424a10b3e38b07f4eb90d4:
@@ -11993,6 +12001,7 @@ https://arxiv.org/abs/2307.15217':
   resolvedBy: anchor
   anchors:
   - Casper et al., 2023
+  unreachable: unavailable
 https://arxiv.org/abs/2307.16789:
   item:
     id: https://arxiv.org/abs/2307.16789
@@ -26617,6 +26626,7 @@ https://biotech.senate.gov/wp-content/uploads/2024/01/NSCEB_AIxBio_WP3_Risks.pdf
   resolvedBy: anchor
   anchors:
   - NSCEB, 2024
+  unreachable: refused
 https://blog.aiimpacts.org/p/2023-ai-survey-of-2778-six-things:
   item:
     id: https://blog.aiimpacts.org/p/2023-ai-survey-of-2778-six-things
@@ -26744,9 +26754,17 @@ https://britannica.com/technology/military-technology/The-castle:
     issued:
       date-parts:
       - - 2025
-    title: Encyclopedia Britannica, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Military technology - Castles, Fortifications, Defense | Britannica
+    container-title: Encyclopedia Britannica
+    abstract: 'Military technology - Castles, Fortifications, Defense: The earliest distinctive European
+      fortification characteristic of feudal patterns of social organization and warfare was the motte-and-bailey
+      castle, which appeared in the 10th and 11th centuries between the Rhine and Loire rivers and eventually
+      spread to most of western Europe. The motte-and-bailey castle consisted of an elevated mound of
+      earth, called the motte, which was crowned with a timber palisade and surrounded by a defensive
+      ditch that also separated the motte from a palisaded outer compound, called the bailey. Access to
+      the motte was by means of an elevated bridge across the ditch from the bailey. The earliest motte-and-bailey
+      castles'
+  resolvedBy: opengraph
   anchors:
   - Encyclopedia Britannica, 2025
 https://businessinsider.com/google-deepmind-ceo-demis-hassabis-anthropic-ceo-ai-pressure-worries-2025-2:
@@ -26824,6 +26842,7 @@ https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AI
   resolvedBy: anchor
   anchors:
   - Feldstein, 2021
+  unreachable: refused
 https://carnegieendowment.org/research/2019/09/the-global-expansion-of-ai-surveillance?lang=en:
   item:
     id: 
@@ -26885,6 +26904,7 @@ https://carnegieendowment.org/research/2024/09/if-then-commitments-for-ai-risk-r
   resolvedBy: anchor
   anchors:
   - Hsu et al., 2023
+  unreachable: unavailable
 ? https://cbc.ca/radio/day6/episode-279-playing-ball-on-grass-vs-turf-taytweets-big-fail-narco-subs-fake-food-and-more-1.3514966/microsoft-s-ai-chatbot-taytweets-suffers-another-meltdown-1.3515046
 : item:
     id: 
@@ -26897,9 +26917,18 @@ https://carnegieendowment.org/research/2024/09/if-then-commitments-for-ai-risk-r
     issued:
       date-parts:
       - - 2023
-    title: Time Magazine, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Microsoft's AI chatbot, TayTweets, suffers another meltdown | CBC Radio
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20250716211155/https://www.cbc.ca/radio/day6/episode-279-playing-ball-on-grass-vs-turf-taytweets-big-fail-narco-subs-fake-food-and-more-1.3514966/microsoft-s-ai-chatbot-taytweets-suffers-another-meltdown-1.3515046
+    container-title: CBC
+    accessed:
+      date-parts:
+      - - 2025
+        - 7
+        - 16
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Time Magazine, 2023
 https://cdn.governance.ai/GovAI-Research-Agenda.pdf:

@@ -93,3 +93,27 @@ class TestTheStub:
         text = "\n".join(_stub(KEY, {KEY: anchor_entry()}, [], []))
         for field in ("title:", "author:", "issued:", "type:", "container-title:"):
             assert field in text
+
+
+class TestALargePdfIsNotTruncatedIntoGarbage:
+    """A PDF's cross-reference table is at the *end* of the file.
+
+    A body cut at a byte cap is not a smaller document, it is a broken one —
+    found on the 28 MB DALL-E 3 paper, which an 8 MB cap turned into a
+    PdfStreamError that read as "this PDF is unreadable".
+    """
+
+    def test_reports_the_size_rather_than_parsing_a_fragment(self) -> None:
+        from atlas_citations.commands.propose import MAX_PDF_BYTES
+
+        oversized = b"%PDF-1.7" + b"\0" * (MAX_PDF_BYTES + 1)
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            return httpx.Response(
+                200, content=oversized, headers={"content-type": "application/pdf"}
+            )
+
+        out = gather_evidence("https://example.org/big.pdf", make_ctx(handler))
+        assert len(out) == 1
+        assert "too large to read here" in out[0]
+        assert "open it by hand" in out[0]
