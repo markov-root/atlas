@@ -1,0 +1,96 @@
+---
+/**
+ * A reference list. Phase 2 of `task:0021`, D5.
+ *
+ * Used at three scales with the same markup: after a section's footnotes, on a
+ * chapter's introduction page, and on the site-wide `/bibliography`. The only
+ * differences are the heading and whether the count is worth showing, so they
+ * are props rather than three components.
+ *
+ * Rendering nothing when there are no references is deliberate: a heading
+ * followed by an empty list tells a reader the page is broken. Several sections
+ * genuinely cite nothing.
+ */
+import type { Reference } from '../lib/bibliography';
+
+interface Props {
+  references: Reference[];
+  /** Heading text. Omit the heading entirely with `null`. */
+  heading?: string | null;
+  /** Heading level, so this can sit under an `h1` or an `h2` without breaking outline order. */
+  level?: 2 | 3;
+  /** Anchor id, for linking to the list from elsewhere on the page. */
+  id?: string;
+  /** Show "N sources" under the heading. Useful at chapter and site scale. */
+  showCount?: boolean;
+}
+
+const {
+  references,
+  heading = 'References',
+  level = 2,
+  id = 'references',
+  showCount = false,
+} = Astro.props;
+
+const Heading = level === 3 ? 'h3' : 'h2';
+const unresolved = references.filter((r) => !r.resolved).length;
+---
+
+{
+  references.length > 0 && (
+    <section id={id} class="not-prose mt-12 pt-8 border-t border-gray-300">
+      {heading && (
+        <Heading class="text-xl font-semibold mb-1 text-gray-900">{heading}</Heading>
+      )}
+      {showCount && (
+        <p class="text-sm text-gray-500 mb-4">
+          {`${references.length} ${references.length === 1 ? 'source' : 'sources'}`}
+          {unresolved > 0 && <span>{` · ${unresolved} awaiting full metadata`}</span>}
+        </p>
+      )}
+      <ol class="space-y-3 text-sm text-gray-700 list-none pl-0 mt-4">
+        {references.map((ref) => (
+          <li
+            id={`ref-${encodeURIComponent(ref.key)}`}
+            class="pl-6 -indent-6 leading-relaxed target:bg-brand-50"
+          >
+            {ref.authors && <span class="text-gray-900">{ref.authors}</span>}
+            {ref.authors && ref.year && ' '}
+            {ref.year && <span class="text-gray-600">({ref.year})</span>}
+            {(ref.authors || ref.year) && '. '}
+            {/* Always underlined, never colour alone. Each entry is a block of
+                text with a link inside it, which is exactly the shape axe's
+                `link-in-text-block` rule guards: colour is not a distinguisher
+                for a reader with a colour vision deficiency. This is the same
+                treatment the chapter resources panel already uses. */}
+            <a
+              href={ref.url}
+              rel="noopener noreferrer"
+              target="_blank"
+              class="text-brand-600 underline decoration-brand-300 underline-offset-2 hover:decoration-brand-600 transition-colors"
+              title={ref.anchors.length ? `Cited as: ${ref.anchors.join(' / ')}` : undefined}
+            >
+              {ref.title}
+            </a>
+            {ref.container && <span class="text-gray-600 italic">. {ref.container}</span>}
+            {'.'}
+            {ref.doi && (
+              <>
+                {' '}
+                <a
+                  href={`https://doi.org/${ref.doi}`}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  class="text-gray-500 underline decoration-gray-300 underline-offset-2 hover:decoration-gray-500 break-all"
+                >
+                  doi:{ref.doi}
+                </a>
+              </>
+            )}
+          </li>
+        ))}
+      </ol>
+    </section>
+  )
+}

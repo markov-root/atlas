@@ -1,0 +1,65 @@
+---
+/**
+ * `/bibliography` — every source the Atlas cites, in one place.
+ *
+ * `task:0021` D5's third surface, and the one that answers the question a
+ * bibliography exists for: what does this book actually rest on? The per-section
+ * lists cannot answer it, because no reader assembles eight chapters by hand.
+ *
+ * Built entirely from the committed store, so it renders identically in a
+ * contributor build with no credentials.
+ */
+import Default from '@/layouts/Default.astro';
+import Bibliography from '@/components/Bibliography.astro';
+import { allReferences, storeCoverage } from '@/lib/bibliography';
+import { ogImageUrl } from '@/lib/og';
+
+const references = allReferences();
+const { total, resolved } = storeCoverage();
+const pending = total - resolved;
+
+const description = `Every source cited in the AI Safety Atlas — ${total} works across all chapters.`;
+---
+
+<Default
+  title="Bibliography"
+  description={description}
+  image={ogImageUrl({ title: 'Bibliography' })}
+>
+  <div class="mx-auto max-w-4xl px-6 py-16 lg:py-24">
+    <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl font-display">
+      Bibliography
+    </h1>
+
+    <p class="mt-6 text-base text-gray-600">
+      Every source cited anywhere in the Atlas, in one list. It is derived from the chapters
+      themselves rather than maintained by hand, so it cannot drift from what the prose actually
+      cites.
+    </p>
+
+    <p class="mt-4 text-sm text-gray-500">
+      <strong class="text-gray-700">{total}</strong> sources · <strong class="text-gray-700"
+        >{resolved}</strong
+      > with full metadata
+      {
+        pending > 0 && (
+          <span>
+            {' '}
+            · {pending} still showing only what the citation itself carries
+          </span>
+        )
+      }
+    </p>
+
+    {
+      pending > 0 && (
+        <p class="mt-4 text-sm text-gray-500 border-l-2 border-gray-200 pl-4">
+          An entry showing a bare address has not had its title and authors looked up yet. Those are
+          shown rather than hidden, so what is missing stays visible.
+        </p>
+      )
+    }
+
+    <Bibliography references={references} heading={null} id="all-references" />
+  </div>
+</Default>

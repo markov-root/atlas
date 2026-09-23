@@ -89,3 +89,7 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .ruff_cache/
+
+# Playwright MCP scratch — screenshots and snapshots from agent browser sessions.
+# Never belongs in the repo; delete it when a session ends.
+.playwright-mcp/

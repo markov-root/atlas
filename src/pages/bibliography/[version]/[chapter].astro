@@ -1,0 +1,84 @@
+---
+/**
+ * `/bibliography/<version>/<chapter>` — one chapter's sources.
+ *
+ * `task:0021` D5's second surface. The per-section lists answer "what did this
+ * page cite"; the site-wide page answers "what does the book rest on". Neither
+ * answers the question a reader working through one chapter actually has, which
+ * is what that chapter rests on — so this sits between them, linked from the
+ * chapter's resources panel.
+ *
+ * **Why it does not live at `/chapters/<version>/<chapter>/bibliography`.** That
+ * path shares a namespace with section slugs, and Astro resolves a static
+ * segment ahead of a dynamic one — so a chapter containing a section actually
+ * called "Bibliography" would have that section silently shadowed and
+ * unreachable. Edition-2 authors asking for a bibliography is precisely the
+ * context in which someone writes that section. The `tests/smoke/url-stability`
+ * snapshot is what surfaced the clash.
+ */
+import type { Chapter } from '@/textbook-loader';
+import Default from '@/layouts/Default.astro';
+import Bibliography from '@/components/Bibliography.astro';
+import { chapterReferences } from '@/lib/bibliography';
+import { getTextbooks } from '@/lib/textbooks';
+import { ogImageUrl } from '@/lib/og';
+
+export async function getStaticPaths() {
+  const textbooks = await getTextbooks();
+  return textbooks.flatMap((textbook) =>
+    textbook.data.chapters.map((chapter: Chapter) => ({
+      params: { version: textbook.data.version, chapter: chapter.slug },
+      props: { version: textbook.data.version, chapter },
+    })),
+  );
+}
+
+const { version, chapter } = Astro.props as { version: string; chapter: Chapter };
+
+const references = chapterReferences(chapter);
+const title = `Chapter ${chapter.number} bibliography — ${chapter.title}`;
+const firstSection = chapter.sections[0];
+---
+
+<Default
+  title={title}
+  description={`Every source cited in chapter ${chapter.number}, ${chapter.title}.`}
+  image={ogImageUrl({ title: `${chapter.title} — Bibliography` })}
+>
+  <div class="mx-auto max-w-4xl px-6 py-16 lg:py-24">
+    <p class="text-base font-semibold text-brand-600">Chapter {chapter.number}</p>
+    <h1 class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl font-display">
+      {chapter.title}
+    </h1>
+    <p class="mt-4 text-lg text-gray-600">Bibliography</p>
+
+    <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+      {
+        firstSection && (
+          <a
+            href={`/chapters/${version}/${chapter.slug}/${firstSection.slug}`}
+            class="text-brand-600 hover:underline"
+          >
+            ← Back to the chapter
+          </a>
+        )
+      }
+      <a href="/bibliography" class="text-brand-600 hover:underline">
+        All sources across the Atlas →
+      </a>
+    </div>
+
+    {
+      references.length === 0 && (
+        <p class="mt-10 text-base text-gray-600">This chapter cites no external sources yet.</p>
+      )
+    }
+
+    <Bibliography
+      references={references}
+      heading={null}
+      id="chapter-references"
+      showCount={true}
+    />
+  </div>
+</Default>

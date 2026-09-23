@@ -9,6 +9,8 @@ import { getTextbooks } from "@/lib/textbooks";
 import { siteConfig } from "@/config/site";
 import { sectionOgImageUrl } from "@/lib/og";
 import { availableAudioSources, resolveSectionAudio } from '@/lib/section-audio';
+import Bibliography from '@/components/Bibliography.astro';
+import { sectionReferences } from '@/lib/bibliography';
 
 interface Props {
     version: string
@@ -91,6 +93,7 @@ const isLastSection = section.nextSection === null;
 
 const sectionMarkdownUrl = `/chapters/${version}/${chapter.slug}/${section.slug}.md`;
 const chapterMarkdownUrl = `/chapters/${version}/${chapter.slug}.md`;
+const chapterBibliographyUrl = `/bibliography/${version}/${chapter.slug}`;
 
 const lecture = resolveResource(chapter.meta.lecture);
 const paper = resolveResource(chapter.meta.paper);
@@ -238,6 +241,13 @@ const paper = resolveResource(chapter.meta.paper);
                                     <Icon name="tabler:markdown" class="size-4.5 text-gray-500 shrink-0" />
                                     <a href={chapterMarkdownUrl} download class="text-[15px] text-gray-700 underline decoration-gray-300 underline-offset-2 hover:text-gray-900 hover:decoration-gray-500 transition-colors">Download chapter as markdown</a>
                                 </li>
+                                {/* task:0021 D5 — the chapter's bibliography belongs with the
+                                    chapter's other whole-chapter resources, not inside one section. */}
+                                <li class="flex items-center gap-2.5">
+                                    <span class="text-gray-400 text-xl leading-none">&bull;</span>
+                                    <Icon name="tabler:books" class="size-4.5 text-amber-600 shrink-0" />
+                                    <a href={chapterBibliographyUrl} class="text-[15px] text-gray-700 underline decoration-gray-300 underline-offset-2 hover:text-gray-900 hover:decoration-gray-500 transition-colors">Chapter bibliography</a>
+                                </li>
                                 {paper && (
                                 <li class="flex items-center gap-2.5">
                                     <span class="text-gray-400 text-xl leading-none">&bull;</span>
@@ -326,6 +336,10 @@ const paper = resolveResource(chapter.meta.paper);
             </ol>
         </section>
         )}
+
+        {/* task:0021 D5 — the section's references sit after its footnotes, which is
+            where a reader who has just followed a citation expects to land. */}
+        <Bibliography references={sectionReferences(section)} />
 
         {section.number === 1 && chapter.meta.acknowledgements && chapter.meta.acknowledgements.length > 0 && (
         <>
