@@ -333,11 +333,65 @@ The concerning implication is about data already collected: **386 entries are cu
 entries where a better resolver happened to fail transiently during the ~75-minute run. The
 `--redo` mechanism (F10) is the repair tool, but nothing signals that a repair is warranted.
 
-**Disposition:** unfixed, recorded. The minimal fix is to distinguish _declined_ from _unreachable_
-in the resolver contract — `ResolveResult | None` cannot express the difference today — and to retry
-an unreachable service once or twice before falling through. A larger version would record the
-failure in the entry so `--redo` could target exactly the entries that deserve another attempt. Worth
-a task; not worth inventing a design inside a bug-fix session.
+~~**Disposition:** unfixed, recorded.~~ **Fixed under `task:0032`** (AC-1, commit `37ee16e`). The
+contract gained `Unreachable(reason)`, a selective resolver that could not be reached now stops the
+fallback chain, and the reason is recorded on the entry so the report can separate a dead citation
+from a blocked one. The scale was larger than this finding estimated: see F14.
+
+### F14 — The unresolved tail is four different problems, and only one of them is ours
+
+**Severity:** medium · **Evidence:** all 132 unresolved URLs fetched and classified · **Found:**
+2026-09-23, diagnosing `task:0032`
+
+`atlas citations resolve` had been run to exhaustion, so the 132 remaining entries looked like one
+undifferentiated long tail. Fetching every one of them and recording the outcome showed four
+populations needing four different responses:
+
+| Outcome                 |   n | Whose problem                                      |
+| ----------------------- | --: | -------------------------------------------------- |
+| 403 / 401 / 402         |  57 | Nobody's — a WAF or paywall refused us             |
+| PDF, fetched fine       |  29 | Ours: no resolver reads PDFs                       |
+| Connect error / timeout |  15 | Transient: F12                                     |
+| **404 / 410**           |  11 | **The authors': the cited page no longer exists**  |
+| 200, usable title       |   8 | F12 again — these resolve today                    |
+| 200, no or bad title    |  11 | Ours: client-rendered, or a bot check behind a 200 |
+
+Two things this measurement changed. First, **8 entries resolve perfectly right now** and were marked
+permanently unresolvable, which raised F12 from "worth a task" to the largest single cause. Second,
+**11 citations point at pages that do not exist** — including four on one domain the corpus was
+believed to cover fully — and that had been invisible because a dead link and an unresolvable one
+were being reported identically.
+
+The general form is worth keeping: **an exhausted worklist is not a homogeneous one.** "Everything
+that could resolve has resolved" invites treating the remainder as a single hard problem, when the
+remainder was four problems with different owners, three of which were tractable.
+
+**Disposition:** fixed under `task:0032`. The 404/410 population now has its own report section
+(AC-6), because it is the one an author must act on.
+
+### F15 — Two plausible ways to close the tail produce confident wrong metadata
+
+**Severity:** low · **Evidence:** measured against real corpus entries · **Found:** 2026-09-23,
+building `task:0032`
+
+Both were implemented before being rejected, and both are recorded because both will be suggested
+again:
+
+- **Reading a title out of a PDF.** The Info dictionary carried a `/Title` for **0 of 12** corpus
+  PDFs. A largest-font-run heuristic over page 1 came out clean about **5 times in 16**; for a report
+  set in a single size it returned "The American Enterprise Institute (AEI) is a nonpartisan,
+  nonprofit, 501(c)(3) educational organization…" as the title.
+- **Searching Crossref by title.** `query.bibliographic` returns an unnormalised score. Searching
+  **"Safety cases for frontier AI"** returned **"Safety Framework Cards: A Standardized
+  Specification…"** ranked first at 25.7 — a different paper, with a score indistinguishable from a
+  correct hit's.
+
+The shared failure is not inaccuracy but _undetectable_ inaccuracy: each attaches real-looking
+metadata to the wrong work, and the result reads as more trustworthy than an unresolved entry. A
+70%-correct title is worse than no title, because nothing downstream can tell which 70%.
+
+**Disposition:** rejected by design, recorded as `task:0032` D2 and D3. The evidence both methods
+produce is genuinely useful to a _human_, which is what `atlas citations propose` exists to deliver.
 
 ## Recommendations
 

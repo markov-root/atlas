@@ -93,3 +93,5 @@ in total, each with options, a recommendation, and what is irreversible if decid
   Render the bibliography through a real CSL processor with a reader-facing style switcher (todo — child of 0021; replaces the hand-rolled formatter; styles shipped, control panel and grouping still to build).
 - [task:0031](./0031-collapse-duplicate-sources-through-an-alias-file.md) —
   Collapse duplicate sources through an alias file (todo — child of 0021; detection shipped in the report, 7 groups; merging is a reviewed human decision).
+- [task:0032](./0032-close-the-citation-metadata-tail-to-complete-coverage.md) —
+  Close the citation metadata tail to complete coverage (todo — child of 0021, p1; 132 unresolved sources classified by fetching all of them; new resolvers plus a reviewed override file for what no API describes).

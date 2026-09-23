@@ -172,6 +172,26 @@ result looks _more_ trustworthy than an unresolved entry. This is the failure `t
 written to avoid, and the reason a DOI-in-URL (D-3 above, an identity the publisher asserts) is
 accepted while a title search is not.
 
+### D5 — What does "every entry has a source" actually mean? — **decided: state it, never invent it**
+
+AC-7 originally read "every entry carries a `container-title` or a recorded reason it cannot". That
+was wrong, and correcting it before building on it matters more than keeping the criterion tidy.
+
+**Most sources have no container to state.** A personal blog post, a lab announcement, a government
+page — `container-title` is genuinely absent for these, not missing. Demanding a recorded excuse per
+entry would add ~600 lines of bureaucratic noise to a file people read in diffs, to record the fact
+that a web page is a web page.
+
+So the store's obligation is narrow: **carry a container wherever the source states one.** arXiv
+states it (all 303 preprints now say `arXiv`), a journal states it, Open Graph's `og:site_name`
+states it, ForumMagnum states it.
+
+The facet's obligation is different and is `task:0030`'s: **fall back to the registrable domain**
+when no container was stated. `lesswrong.com` or `openai.com` is a true statement about where a
+source lives, requires no mapping table anyone has to maintain, and reads perfectly well in a filter
+list. The alternative — a hand-written domain-to-publisher-name table for a long tail of several
+hundred sites — is guesswork dressed as data, and would rot the first time a site renamed itself.
+
 ### D4 — Where does an override live and what wins? — **decided: a separate committed file, above everything**
 
 Not hand-edits to `sources.yaml`. The store is 1.2 MB of generated YAML; a hand-written entry in it
@@ -198,8 +218,9 @@ re-applied and never decays.
   carrying gathered evidence.
 - **AC-6:** `atlas citations report` lists dead links (HTTP 404/410) as their own section, separate
   from unresolved entries.
-- **AC-7:** Every store entry carries a `container-title` or a recorded reason it cannot, and
-  **zero entries remain `resolvedBy: anchor`.**
+- **AC-7:** **Zero entries remain `resolvedBy: anchor`**, and every entry whose source states a
+  container carries it — including all 303 arXiv preprints, which state `arXiv`. Per D5, an entry
+  whose source states no container is complete without one.
 
 ## Completion evidence
 
