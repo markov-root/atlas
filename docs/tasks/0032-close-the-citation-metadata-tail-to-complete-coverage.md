@@ -224,18 +224,39 @@ re-applied and never decays.
 
 ## Completion evidence
 
-_To be filled on completion. Each row must cite a criterion and durable evidence — a commit, a file
-path, or a test name — not a narrative claim._
+| Criterion | Evidence                                                                                                                                                                                                                                                                                    | Verified   |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| AC-1      | `Unreachable(reason)` in `resolvers/base.py`; the selective veto in `resolve_with`; `TestUnreachableStopsTheFallbackChain` (4 tests, including that a _decline_ still falls through) and per-resolver tests in `test_resolver_arxiv.py`, `test_resolver_scholar_meta.py`. Commit `37ee16e`. | yes        |
+| AC-2      | `DEFAULT_HEADERS` in `resolvers/base.py`, applied in both `_http` helpers. D1 records the measurement (7 of 32 blocked hosts unblocked; a Chrome UA bought 2 more and was rejected). Commit `37ee16e`.                                                                                      | yes        |
+| AC-3      | `doi_from_url` in `crossref.py`; `TestCrossref` parametrised over the five real corpus URL shapes plus five that must decline. 10 entries now resolved by Crossref, up from 1.                                                                                                              | yes        |
+| AC-4      | `resolvers/forum_magnum.py`, `test_resolver_forum_magnum.py` (14 tests). 8 entries resolved, including four shortform comment permalinks that are client-rendered and had no scrapable title at all.                                                                                        | yes        |
+| AC-5      | `data/citations/overrides.yaml` (committed, reviewed input); `overrides.py` with precedence and `--redo` immunity, `test_overrides.py` (12 tests); `atlas citations propose` and `test_propose.py` (11 tests). Commit `25941ba`.                                                            | yes        |
+| AC-6      | `dead_links()` and the report section in `commands/report.py`, keyed on the reason and not on `resolvedBy`; `TestTheReportStillCallsItDead`. Two follow-on defects found and fixed: `469b107`'s keying bug and `27d3565`'s wiped markers.                                                   | yes        |
+| AC-7      | `infer_container_title` / `fill_container_titles` in `store.py`, `TestContainerTitleFromTheUrl`. **Container: 191 of 813 → 669 of 881.** Zero-anchor entries **not yet met** — see below.                                                                                                   | **partly** |
 
-| Criterion | Evidence | Verified |
-| --------- | -------- | -------- |
-| AC-1      | —        | —        |
-| AC-2      | —        | —        |
-| AC-3      | —        | —        |
-| AC-4      | —        | —        |
-| AC-5      | —        | —        |
-| AC-6      | —        | —        |
-| AC-7      | —        | —        |
+### AC-7 is the one still open
+
+**Unresolved: 132 → 64**, over five resolve passes. Every remaining entry has been attempted and
+recorded a reason, so the residual is now a known quantity rather than an unexplored tail:
+
+| Group                                | Approx |
+| ------------------------------------ | -----: |
+| Publisher WAF or paywall, no archive |    ~25 |
+| PDFs with no metadata anywhere       |    ~20 |
+| Long tail, one host each             |    ~19 |
+
+Closing them is `overrides.yaml` work, which is what D2, D3 and D4 exist to make honest. The evidence
+is gathered: `atlas citations propose` writes a stub per entry carrying the PDF's first page, the
+page's own metadata, an archived copy where one exists, the anchor text and the citing sections.
+
+### Measured wins worth naming
+
+- **Turing 1950** — `academic.oup.com`, a Cloudflare 403 that no fetcher gets past — resolved from
+  the Internet Archive as "I.—COMPUTING MACHINERY AND INTELLIGENCE". So did the WSJ, NYT, Reuters,
+  Telegraph, RAND, ScienceDirect, SSRN and ACM entries.
+- **Four `planned-obsolescence.org` posts** resolved by the `www.` retry (F16) after being wrongly
+  classified as dead links.
+- **Three `openai.com/research/…` pages** that OpenAI removed, recovered from the archive.
 
 ## Authority and inputs
 

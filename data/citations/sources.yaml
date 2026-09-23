@@ -27866,6 +27866,7 @@ https://digitalcommons.law.villanova.edu/cgi/viewcontent.cgi?article=3670&contex
   resolvedBy: anchor
   anchors:
   - Li, 2025
+  unreachable: refused
 https://digitallibrary.un.org/record/3905159?v=pdf:
   item:
     id: https://digitallibrary.un.org/record/3905159?v=pdf
@@ -32973,9 +32974,17 @@ https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4424123:
     issued:
       date-parts:
       - - 2023
-    title: Tallberg et al., 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: 'The Global Governance of Artificial Intelligence: Next Steps for Empirical and Normative Research'
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20240514203326/https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4424123
+    accessed:
+      date-parts:
+      - - 2024
+        - 5
+        - 14
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Tallberg et al., 2023
   unreachable: refused
@@ -32989,9 +32998,17 @@ https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4491421:
     issued:
       date-parts:
       - - 2023
-    title: Mannheim, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: 'Building a Culture of Safety for AI: Perspectives and Challenges'
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260802053912/https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4491421
+    accessed:
+      date-parts:
+      - - 2026
+        - 8
+        - 2
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Mannheim, 2023
   unreachable: refused
@@ -33005,9 +33022,17 @@ https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579773:
     issued:
       date-parts:
       - - 2024
-    title: Maas & Villalobos, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: 'International AI Institutions: A Literature Review of Models, Examples, and Proposals'
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260917211638/https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579773
+    accessed:
+      date-parts:
+      - - 2026
+        - 9
+        - 17
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Maas & Villalobos, 2023
   - Maas & Villalobos, 2024
@@ -33177,9 +33202,18 @@ https://pnas.org/content/118/45/e2105646118:
     issued:
       date-parts:
       - - 2021
-    title: Schrimpf et al., 2021
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: 'The neural architecture of language: Integrative modeling converges on predictive processing'
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20220221135833/https://www.pnas.org/content/118/45/e2105646118
+    container-title: PNAS
+    accessed:
+      date-parts:
+      - - 2022
+        - 2
+        - 21
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Schrimpf et al., 2021
   unreachable: refused
@@ -33268,9 +33302,18 @@ https://psycnet.apa.org/record/2014-48585-000:
     issued:
       date-parts:
       - - 2014
-    title: Bostrom, 2014
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: 'Superintelligence: Paths, dangers, strategies.'
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260916233115/https://psycnet.apa.org/record/2014-48585-000
+    container-title: APA PsycNET
+    accessed:
+      date-parts:
+      - - 2026
+        - 9
+        - 16
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Bostrom, 2014
   unreachable: refused
@@ -33671,9 +33714,17 @@ https://rand.org/pubs/research_reports/RR2703.html:
     issued:
       date-parts:
       - - 2020
-    title: ' Snyder et al., 2020'
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Measuring Cybersecurity and Cyber Resiliency
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20250507024856/https://www.rand.org/pubs/research_reports/RR2703.html
+    accessed:
+      date-parts:
+      - - 2025
+        - 5
+        - 7
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - ' Snyder et al., 2020'
   unreachable: refused
@@ -33735,9 +33786,17 @@ https://rand.org/pubs/research_reports/RRA2981-1.html:
     issued:
       date-parts:
       - - 2024
-    title: Willis et al., 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Assessing Global Catastrophic and Existential Risks
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260514192225/https://www.rand.org/pubs/research_reports/RRA2981-1.html
+    accessed:
+      date-parts:
+      - - 2026
+        - 5
+        - 14
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Willis et al., 2024
   unreachable: refused
@@ -33843,7 +33902,7 @@ https://researchgate.net/publication/385353725_Safety_cases_for_frontier_AI:
   resolvedBy: anchor
   anchors:
   - Buhl et al., 2024
-  unreachable: refused
+  unreachable: unavailable
 ? https://researchgate.net/publication/387399002_The_First_Global_AI_Treaty_Analyzing_the_Framework_Convention_on_Artificial_Intelligence_and_the_EU_AI_Act
 : item:
     id: 
@@ -35383,6 +35442,7 @@ https://yann.lecun.com/exdb/mnist:
   resolvedBy: anchor
   anchors:
   - LeCun, 1998
+  unreachable: unavailable
 https://yoshuabengio.org/2023/06/24/faq-on-catastrophic-ai-risks:
   item:
     id: https://yoshuabengio.org/2023/06/24/faq-on-catastrophic-ai-risks
