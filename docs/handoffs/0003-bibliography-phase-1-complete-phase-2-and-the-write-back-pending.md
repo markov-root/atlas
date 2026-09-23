@@ -95,7 +95,7 @@ Python (was 195 at the start of this work).
 1. **`docs/cited-sources.md` is ready to share** — 2,996 lines, per chapter and section, `Title (url)`
    form, plus a deduplicated master list and the 47 unrecognised links. Built for the edition-2
    authors, who are the stated customer of this whole task.
-2. **`task:0028` D1** decides what we may write back into a shared corpus that offers no delete.
+6. **`task:0028` D1** decides what we may write back into a shared corpus that offers no delete.
    My recommended option C was **withdrawn on 2026-09-22**: it rested on exit 5 meaning
    "out of scope", and it does not. The corpus exposes no way to ask what it covers, so this task
    probably waits on that upstream fix rather than encoding a workaround.
@@ -123,7 +123,16 @@ Python (was 195 at the start of this work).
    publisher pages that resolver was written for, now carrying journal, volume, pages, DOI and real
    author names instead of a bare title or nothing.
 
-1. **`task:0028`** — the write-back. Owner asked for it explicitly, but it is now **blocked on an
+1. **`audit:0011` F12 — a transient network failure is recorded as a permanent verdict.** Found
+   2026-09-23 while repairing F11. A resolver returns `None` both for "this does not exist" and for
+   "the service just failed", so one flaky request hands an entry to a worse resolver *forever* —
+   observed live: arXiv briefly failed and Open Graph recorded the entry with 0 authors where arXiv
+   gives 1,158. **386 entries currently sit on `opengraph` and nothing distinguishes a genuine
+   long-tail page from a transient failure.** The minimal fix is to separate declined from
+   unreachable in the resolver contract and retry once; worth a task, deliberately not designed
+   inside a bug-fix session.
+
+2. **`task:0028`** — the write-back. Owner asked for it explicitly, but it is now **blocked on an
    upstream capability**: the research corpus has no queryable coverage, so we cannot tell which of
    948 URLs are worth offering without fetching each one. Four feedback notes filed; the coverage
    one is the blocker.
