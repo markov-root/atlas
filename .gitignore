@@ -83,6 +83,12 @@ data/citations/chapters/
 # verbs that need it, so it is an intermediate rather than an artifact.
 data/citations/citations.json
 
+# A worklist, not an artifact: `atlas citations propose` gathers evidence for the
+# entries only a human can finish (task:0032 AC-5). What survives review moves by
+# hand into `data/citations/overrides.yaml`, which IS committed — it is the
+# reviewed input, and the one file here a person wrote.
+data/citations/overrides.proposed.yaml
+
 # Python toolchain
 .venv/
 __pycache__/

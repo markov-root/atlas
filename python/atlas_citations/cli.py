@@ -21,6 +21,7 @@ from pathlib import Path
 
 from .commands.export import citations_export
 from .commands.extract import citations_extract
+from .commands.propose import citations_propose
 from .commands.render import citations_render
 from .commands.report import citations_report
 from .commands.resolve import ResolveOptions, citations_resolve
@@ -58,6 +59,13 @@ def build_parser() -> argparse.ArgumentParser:
     render = subs.add_parser("render", help="pre-render every reference in every CSL style")
     render.add_argument("out", nargs="?", type=Path, default=None)
     render.set_defaults(run=lambda a: citations_render(a.root, a.out))
+
+    propose = subs.add_parser("propose", help="gather evidence for entries only a human can finish")
+    propose.add_argument("--limit", type=int, default=None, help="stop after this many entries")
+    propose.add_argument(
+        "--interval", type=float, default=None, help="seconds between outbound requests"
+    )
+    propose.set_defaults(run=lambda a: citations_propose(a.root, a.limit, a.interval))
 
     resolve = subs.add_parser("resolve", help="fill in metadata over the network")
     resolve.add_argument("--limit", type=int, default=None, help="stop after this many entries")

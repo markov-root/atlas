@@ -12,7 +12,15 @@
 import { spawnSync } from 'node:child_process';
 
 /** Verbs owned by Python. `scan` is the one that stays in TypeScript. */
-export const PYTHON_VERBS = ['extract', 'report', 'export', 'resolve', 'urls', 'render'] as const;
+export const PYTHON_VERBS = [
+  'extract',
+  'report',
+  'export',
+  'resolve',
+  'propose',
+  'urls',
+  'render',
+] as const;
 
 /**
  * Run `atlas_citations.cli` with the given arguments, inheriting stdio.

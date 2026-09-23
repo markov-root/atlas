@@ -15,6 +15,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from ..overrides import OVERRIDES_PATH, apply_overrides, read_overrides
 from ..scan import Scan, ScanError, read_scan
 from ..store import (
     Store,
@@ -88,8 +89,20 @@ def citations_extract(root: Path) -> int:
         return 1
 
     merged = next_store(read_store(root), extract_entries(scan))
+
+    # Reviewed metadata is applied last and unconditionally, because it is the
+    # one input here a human wrote (task:0032 D4). Applying it on every extract
+    # is what makes the store disposable: delete it, re-extract, re-resolve, and
+    # the human judgement comes back.
+    merged, unmatched = apply_overrides(merged, read_overrides(root))
     write_store(root, merged)
 
     resolved = sum(1 for e in merged.values() if e.get("resolvedBy") != "anchor")
     print(f"{len(merged)} sources in {STORE_PATH} ({resolved} already resolved and preserved)")
+    if unmatched:
+        # Named rather than counted: an override pointing at nothing is a typo or
+        # a citation edited out of the prose, and either way someone must look.
+        print(f"{len(unmatched)} override(s) match no citation — check {OVERRIDES_PATH}:")
+        for key in unmatched:
+            print(f"  {key}")
     return 0

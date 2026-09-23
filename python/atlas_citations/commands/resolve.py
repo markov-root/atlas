@@ -21,6 +21,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from types import FrameType
 
+from ..overrides import OVERRIDE_SOURCE
 from ..resolvers import ALL_RESOLVERS, Unreachable, make_context, resolve_with
 from ..store import Store, StoreEntry
 from .extract import STORE_PATH, read_store, write_store
@@ -106,6 +107,16 @@ def apply_unreachable(entry: StoreEntry, reason: str) -> StoreEntry:
     return updated
 
 
+def effective_redo(redo: list[str] | None) -> list[str]:
+    """The resolvers a ``--redo`` may actually target.
+
+    An override is a human's decision, not a resolver's guess, so no amount of
+    ``--redo`` may overwrite one (``task:0032`` D4). Filtered here rather than
+    trusted to the caller: the whole value of that file is that it stays put.
+    """
+    return [name for name in (redo or []) if name != OVERRIDE_SOURCE]
+
+
 @dataclass
 class ResolveOptions:
     #: Stop after this many entries. The way a long tail gets chipped at.
@@ -139,7 +150,7 @@ def citations_resolve(root: Path, opts: ResolveOptions | None = None) -> int:
     # it excluded `opengraph` by name but not `research-db`, so a redo of 380
     # Open Graph entries targeted all 380 rather than the 43 publisher pages it
     # was added for. See `audit:0011` F10.
-    redo = opts.redo or []
+    redo = effective_redo(opts.redo)
 
     def claimed_by_newer(url: str) -> bool:
         return any(r.selective and r.name not in redo and r.claims(url) for r in ALL_RESOLVERS)

@@ -28,6 +28,7 @@ const USAGE = `atlas — AI Safety Atlas maintainer commands
   atlas citations report   list citations needing attention: unresolved, malformed, inconsistent
   atlas citations export   write the whole-book bibliography as BibTeX and CSL-JSON
   atlas citations resolve  fill in metadata (--limit=N, --redo=<resolver,...>)
+  atlas citations propose  gather evidence for the entries only a human can finish
   atlas citations urls     write every cited source, per chapter and section, as Markdown
   atlas citations render   pre-render every reference in every CSL style for the site
 
@@ -39,9 +40,10 @@ Run from anywhere in the checkout: ./bin/atlas <command>
  *
  * `export` and `resolve` are absent deliberately: both work from the committed
  * store alone, so requiring the document cache for them would add a dependency
- * they do not have.
+ * they do not have. `propose` is here because its worklist names the sections
+ * citing each source, which only the scan knows.
  */
-const NEEDS_SCAN = new Set(['extract', 'report', 'urls']);
+const NEEDS_SCAN = new Set(['extract', 'report', 'urls', 'propose']);
 
 export async function main(argv: string[]): Promise<number> {
   const [group, sub] = argv;

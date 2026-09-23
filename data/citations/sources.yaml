@@ -34,9 +34,14 @@ https://972mag.com/lavender-ai-israeli-army-gaza:
     issued:
       date-parts:
       - - 2024
-    title: Abraham, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 4
+        - 3
+    title: '‘Lavender’: The AI machine directing Israel’s bombing spree in Gaza'
+    container-title: +972 Magazine
+    abstract: The Israeli army has marked tens of thousands of Gazans as suspects for assassination,
+      using an AI targeting system with little human oversight and a permissive policy for 
+      casualties, +972 and Local Call reveal.
+  resolvedBy: opengraph
   anchors:
   - Abraham, 2024
 https://abnormalsecurity.com/blog/offensive-ai-defensive-ai:
@@ -109,6 +114,7 @@ https://academic.oup.com/edited-volume/41989/chapter-abstract/408516484:
   resolvedBy: anchor
   anchors:
   - Dafoe, 2022
+  unreachable: refused
 https://academic.oup.com/ia/article/100/3/1275/7641064:
   item:
     id: https://academic.oup.com/ia/article/100/3/1275/7641064
@@ -124,6 +130,7 @@ https://academic.oup.com/ia/article/100/3/1275/7641064:
   resolvedBy: anchor
   anchors:
   - Roberts et al., 2024
+  unreachable: refused
 https://academic.oup.com/mind/article/LIX/236/433/986238?login=false:
   item:
     id: https://academic.oup.com/mind/article/LIX/236/433/986238?login=false
@@ -139,6 +146,7 @@ https://academic.oup.com/mind/article/LIX/236/433/986238?login=false:
   resolvedBy: anchor
   anchors:
   - Turing, 1950
+  unreachable: refused
 https://academic.oup.com/policyandsociety/article/44/1/38/7965776:
   item:
     id: https://academic.oup.com/policyandsociety/article/44/1/38/7965776
@@ -154,6 +162,7 @@ https://academic.oup.com/policyandsociety/article/44/1/38/7965776:
   resolvedBy: anchor
   anchors:
   - ' Janssen et al., 2025'
+  unreachable: refused
 https://ai-2027.com:
   item:
     id: https://ai-2027.com
@@ -213,6 +222,7 @@ https://ai-alignment.com/clarifying-ai-alignment-cec47cd69dd6:
   resolvedBy: anchor
   anchors:
   - Christiano, 2018
+  unreachable: refused
 https://ai-alignment.com/policy-amplification-6a70cbee4f34:
   item:
     id: https://ai-alignment.com/policy-amplification-6a70cbee4f34
@@ -228,6 +238,7 @@ https://ai-alignment.com/policy-amplification-6a70cbee4f34:
   resolvedBy: anchor
   anchors:
   - Christiano Paul, 2016
+  unreachable: refused
 https://ai-alignment.com/reliability-amplification-a96efa115687:
   item:
     id: https://ai-alignment.com/reliability-amplification-a96efa115687
@@ -243,6 +254,7 @@ https://ai-alignment.com/reliability-amplification-a96efa115687:
   resolvedBy: anchor
   anchors:
   - Christiano, 2016
+  unreachable: refused
 https://ai-alignment.com/security-amplification-f4931419f903:
   item:
     id: https://ai-alignment.com/security-amplification-f4931419f903
@@ -258,6 +270,7 @@ https://ai-alignment.com/security-amplification-f4931419f903:
   resolvedBy: anchor
   anchors:
   - Christiano, 2016
+  unreachable: refused
 ? https://ai-watch.ec.europa.eu/news/new-jrc-collection-external-scientific-reports-inform-implementation-eu-ai-act-general-purpose-ai-2025-10-14_en
 : item:
     id: 
@@ -2235,9 +2248,10 @@ https://anthropic.com/news/evaluating-ai-systems:
     issued:
       date-parts:
       - - 2024
-    title: Anthropic, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Challenges in evaluating AI systems
+    abstract: Six challenges of AI evaluation, from benchmark fragility to expert red teaming, and 
+      policy recommendations for better evaluation science.
+  resolvedBy: opengraph
   anchors:
   - Anthropic, 2024
 https://anthropic.com/news/model-context-protocol:
@@ -2354,6 +2368,7 @@ https://apnews.com/article/artificial-intelligence-elections-disinformation-chat
   resolvedBy: anchor
   anchors:
   - Swenson & Chan, 2024
+  unreachable: refused
 https://apnews.com/article/bb5628f2a7424a10b3e38b07f4eb90d4:
   item:
     id: https://apnews.com/article/bb5628f2a7424a10b3e38b07f4eb90d4
@@ -2364,9 +2379,13 @@ https://apnews.com/article/bb5628f2a7424a10b3e38b07f4eb90d4:
     issued:
       date-parts:
       - - 2017
-    title: AP News, 2017
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 9
+        - 1
+    title: 'Putin: Leader in artificial intelligence will rule world'
+    container-title: AP News
+    abstract: MOSCOW (AP) — Russian President Vladimir Putin says that whoever reaches a 
+      breakthrough in developing artificial intelligence will come to dominate the world.
+  resolvedBy: opengraph
   anchors:
   - AP News, 2017
 https://apolloresearch.ai/blog/a-starter-guide-for-evals:
@@ -2394,9 +2413,10 @@ https://arbital.greaterwrong.com/p/Vingean_uncertainty:
     issued:
       date-parts:
       - - 2015
-    title: Yudkowsky, 2015
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Vingean uncertainty
+    abstract: You can't predict the exact actions of an agent smarter than you - so is there 
+      anything you _can_ say about them?
+  resolvedBy: opengraph
   anchors:
   - Yudkowsky, 2015
 https://arcprize.org/arc-agi/1:
@@ -11720,6 +11740,7 @@ https://arxiv.org/abs/2307.15217':
   resolvedBy: anchor
   anchors:
   - Casper et al., 2023
+  unreachable: unavailable
 https://arxiv.org/abs/2307.16789:
   item:
     id: https://arxiv.org/abs/2307.16789
@@ -26176,6 +26197,7 @@ https://biotech.senate.gov/wp-content/uploads/2024/01/NSCEB_AIxBio_WP3_Risks.pdf
   resolvedBy: anchor
   anchors:
   - NSCEB, 2024
+  unreachable: refused
 https://blog.aiimpacts.org/p/2023-ai-survey-of-2778-six-things:
   item:
     id: https://blog.aiimpacts.org/p/2023-ai-survey-of-2778-six-things
@@ -26303,6 +26325,7 @@ https://britannica.com/technology/military-technology/The-castle:
   resolvedBy: anchor
   anchors:
   - Encyclopedia Britannica, 2025
+  unreachable: refused
 https://businessinsider.com/google-deepmind-ceo-demis-hassabis-anthropic-ceo-ai-pressure-worries-2025-2:
   item:
     id: 
@@ -26352,6 +26375,7 @@ https://careerservices.fas.harvard.edu/blog/2025/05/01/what-is-ai-ethics:
   resolvedBy: anchor
   anchors:
   - ' Harvard, 2025'
+  unreachable: gone
 https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AISurveillance_final1.pdf:
   item:
     id: 
@@ -26369,6 +26393,7 @@ https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AI
   resolvedBy: anchor
   anchors:
   - Feldstein, 2021
+  unreachable: refused
 https://carnegieendowment.org/research/2019/09/the-global-expansion-of-ai-surveillance?lang=en:
   item:
     id: 
@@ -26430,6 +26455,7 @@ https://carnegieendowment.org/research/2024/09/if-then-commitments-for-ai-risk-r
   resolvedBy: anchor
   anchors:
   - Hsu et al., 2023
+  unreachable: unavailable
 ? https://cbc.ca/radio/day6/episode-279-playing-ball-on-grass-vs-turf-taytweets-big-fail-narco-subs-fake-food-and-more-1.3514966/microsoft-s-ai-chatbot-taytweets-suffers-another-meltdown-1.3515046
 : item:
     id: 
@@ -26447,6 +26473,7 @@ https://carnegieendowment.org/research/2024/09/if-then-commitments-for-ai-risk-r
   resolvedBy: anchor
   anchors:
   - Time Magazine, 2023
+  unreachable: unavailable
 https://cdn.governance.ai/GovAI-Research-Agenda.pdf:
   item:
     id: https://cdn.governance.ai/GovAI-Research-Agenda.pdf
@@ -26807,6 +26834,7 @@ https://cs.toronto.edu/~kriz/cifar.html:
   resolvedBy: anchor
   anchors:
   - Krizhevsky, 2009
+  unreachable: gone
 https://cset.georgetown.edu/publication/key-concepts-in-ai-safety-an-overview:
   item:
     id: https://cset.georgetown.edu/publication/key-concepts-in-ai-safety-an-overview
@@ -27311,10 +27339,14 @@ https://deepmind.google/science/alphafold:
     - literal: DeepMind
     issued:
       date-parts:
-      - - 2022
-    title: DeepMind, 2022
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+      - - 2023
+        - 3
+        - 24
+    title: 'Goal Misgeneralisation: Why Correct Specifications Aren’t Enough For Correct Goals'
+    container-title: Medium
+    abstract: By Rohin Shah, Vikrant Varma, Ramana Kumar, Mary Phuong, Victoria Krakovna, Jonathan 
+      Uesato, and Zac Kenton. For more details, check out…
+  resolvedBy: opengraph
   anchors:
   - DeepMind, 2022
 https://deepmindsafetyresearch.medium.com/scalable-agent-alignment-via-reward-modeling-bf4ab06dfd84:
@@ -27334,6 +27366,7 @@ https://deepmindsafetyresearch.medium.com/scalable-agent-alignment-via-reward-mo
   resolvedBy: anchor
   anchors:
   - DeepMind, 2018
+  unreachable: refused
 https://digitalcommons.law.villanova.edu/cgi/viewcontent.cgi?article=3670&context=vlr:
   item:
     id: https://digitalcommons.law.villanova.edu/cgi/viewcontent.cgi?article=3670&context=vlr
@@ -27349,6 +27382,7 @@ https://digitalcommons.law.villanova.edu/cgi/viewcontent.cgi?article=3670&contex
   resolvedBy: anchor
   anchors:
   - Li, 2025
+  unreachable: refused
 https://digitallibrary.un.org/record/3905159?v=pdf:
   item:
     id: https://digitallibrary.un.org/record/3905159?v=pdf
@@ -27396,19 +27430,26 @@ https://diu.mil/replicator:
   anchors:
   - Defense Innovation Unit, 2023
   - U.S Defense Innovation Unit, 2023
+  unreachable: gone
 https://dl.acm.org/doi/10.1145/3278721.3278780:
   item:
     id: https://dl.acm.org/doi/10.1145/3278721.3278780
-    type: webpage
+    type: paper-conference
     URL: https://dl.acm.org/doi/10.1145/3278721.3278780
     author:
-    - literal: Cave & Ó hÉigeartaigh
+    - family: Cave
+      given: Stephen
+    - family: ÓhÉigeartaigh
+      given: Seán S.
     issued:
       date-parts:
       - - 2018
-    title: Cave & Ó hÉigeartaigh, 2018
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 12
+        - 27
+    title: An AI Race for Strategic Advantage
+    DOI: 10.1145/3278721.3278780
+    container-title: Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society
+  resolvedBy: crossref
   anchors:
   - Cave & Ó hÉigeartaigh, 2018
 https://dl.acm.org/doi/10.5555/1566174.1566226:

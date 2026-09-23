@@ -1,0 +1,26 @@
+# Reviewed citation metadata — hand-written, never generated.
+#
+# One block per canonical URL, holding CSL fields that override whatever the
+# resolvers found (or failed to find). See task:0032 D4.
+#
+# Use this for sources no API describes: a paywalled paper, a PDF with no
+# metadata, a page behind a bot check, a dead link you have found an archived
+# copy of. Every field is optional; what you give wins, what you leave out
+# falls back to the resolvers.
+#
+#   https://example.org/some-report.pdf:
+#     title: The Title As Printed On The Document
+#     author:
+#       - literal: Some Institute          # organisation: no given/family split
+#       - family: Chollet
+#         given: François
+#     issued: { date-parts: [[2024, 5]] }  # year, or year and month, or full date
+#     type: report                         # see CSL_TYPES in store.py
+#     container-title: Journal or Publisher
+#     DOI: 10.1000/example
+#
+# `atlas citations propose` writes a starting point for each unresolved entry,
+# with whatever evidence could be gathered, into overrides.proposed.yaml.
+#
+# Applied by `atlas citations extract`, above every resolver, and never
+# re-fetched: `resolve --redo` refuses to target an entry this file owns.

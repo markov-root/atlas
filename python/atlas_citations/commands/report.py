@@ -92,10 +92,37 @@ def duplicate_groups(store: Store) -> list[list[str]]:
     return [keys for keys in groups.values() if len(keys) > 1]
 
 
+#: How each recorded ``unreachable`` reason is described to a human, and whether
+#: it is theirs to fix. ``task:0032`` AC-6.
+UNREACHABLE_REASONS = {
+    "gone": "the page no longer exists",
+    "refused": "a paywall or bot check refused us",
+    "unavailable": "the site could not be reached",
+}
+
+
+def dead_links(store: Store) -> list[str]:
+    """Entries whose cited page answered "this does not exist".
+
+    Separated from the unresolved list because the two need different people. An
+    unresolved entry is a gap in *our* metadata; a dead link is a citation in the
+    book pointing at nothing, which only the authors can fix — by finding the
+    work's new home, citing an archived copy, or citing something else.
+
+    HTTP 404 and 410 only. A 403 is deliberately not here: a publisher refusing
+    an automated fetch says nothing about whether the page is alive, and telling
+    an author their citation is dead when it is merely paywalled would send them
+    to fix something that is not broken.
+    """
+    return sorted(k for k, e in store.items() if e.get("unreachable") == "gone")
+
+
 @dataclass(frozen=True)
 class ReportCounts:
     #: Store entries whose only metadata is the anchor text.
     unresolved: int
+    #: Cited pages that answered HTTP 404 or 410.
+    dead: int
     #: Anchor texts classified as citations that split into no author+year.
     malformed: int
     #: Prose-anchored links that might be citations.
@@ -155,6 +182,7 @@ def build_citation_report(scan: Scan, store: Store) -> CitationReport:
     unlinked = [c for c in instances if c.kind == "unlinked"]
     inconsistent = sorted((k, v) for k, v in anchors_by_key.items() if len(v) > 1)
     unresolved_keys = sorted(k for k, e in store.items() if e.get("resolvedBy") == "anchor")
+    dead = dead_links(store)
     duplicates = duplicate_groups(store)
 
     lines: list[str] = [
@@ -165,6 +193,23 @@ def build_citation_report(scan: Scan, store: Store) -> CitationReport:
         "",
     ]
 
+    if dead:
+        _heading(
+            lines,
+            "Dead links — the cited page no longer exists",
+            len(dead),
+            "The server answered HTTP 404 or 410 for these, which is not a gap in our metadata "
+            "but a citation pointing at nothing. **Only an author can fix one**: find where the "
+            "work moved, cite an archived copy, or cite something else. Pages merely behind a "
+            "paywall or a bot check are *not* listed here — being refused says nothing about "
+            "whether a page is alive.",
+        )
+        for key in dead:
+            anchors = " / ".join(f"`{a}`" for a in store[key].get("anchors", []))
+            where = _locations(instances_by_key.get(key, []))
+            lines.append(f"- {anchors or '(no anchor text)'} — {where} — {key}")
+        lines.append("")
+
     if unresolved_keys:
         _heading(
             lines,
@@ -172,12 +217,16 @@ def build_citation_report(scan: Scan, store: Store) -> CitationReport:
             len(unresolved_keys),
             "Only the anchor text is known for these — no metadata has been resolved and nothing "
             "beyond author/year can be rendered. `atlas citations resolve` fills them from arXiv, "
-            "Crossref and page metadata; hand edits to this store file are also preserved.",
+            "Crossref and page metadata; hand edits to this store file are also preserved. Where "
+            "the last attempt learned nothing, the reason is given — a resolver that could not "
+            "*ask* is not a resolver that found nothing (`audit:0011` F12).",
         )
         for key in unresolved_keys:
             anchors = " / ".join(f"`{a}`" for a in store[key].get("anchors", []))
             where = _locations(instances_by_key.get(key, []))
-            lines.append(f"- {anchors or '(no anchor text)'} — {where} — {key}")
+            reason = UNREACHABLE_REASONS.get(str(store[key].get("unreachable", "")))
+            why = f" — _{reason}_" if reason else ""
+            lines.append(f"- {anchors or '(no anchor text)'} — {where} — {key}{why}")
         lines.append("")
 
     if malformed:
@@ -255,6 +304,7 @@ def build_citation_report(scan: Scan, store: Store) -> CitationReport:
 
     counts = ReportCounts(
         unresolved=len(unresolved_keys),
+        dead=len(dead),
         malformed=len(malformed),
         content_links=len(content_links),
         unlinked=len(unlinked),
@@ -287,7 +337,7 @@ def citations_report(root: Path, out_path: Path | None = None) -> int:
 
     c = report.counts
     print(
-        f"{c.unresolved} unresolved · {c.malformed} malformed · "
+        f"{c.unresolved} unresolved · {c.dead} dead links · {c.malformed} malformed · "
         f"{c.content_links} content links · {c.unlinked} unlinked · "
         f"{c.inconsistent} inconsistent spellings · {c.duplicates} probable duplicates "
         f"— wrote {dest}"
