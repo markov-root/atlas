@@ -34,6 +34,7 @@ from ..resolvers import make_context
 from ..resolvers._http import MAX_HTML_BYTES, get_text_capped
 from ..resolvers.base import Unreachable
 from ..resolvers.opengraph import _soup, meta_content, title_tag
+from ..resolvers.wayback import snapshot_for
 from ..scan import Citation, ScanError, read_scan
 from ..store import Store
 from .extract import STORE_PATH, read_store
@@ -43,6 +44,19 @@ from .resolve import DEFAULT_INTERVAL_S, USER_AGENT
 #: Gitignored: a worklist, not an artifact. What survives review moves by hand
 #: into ``overrides.yaml``, which is the committed file.
 PROPOSALS_PATH = Path("data") / "citations" / "overrides.proposed.yaml"
+
+#: The order groups appear in the worklist, and it is the order the work batches
+#: in: what a library login fixes, then what a dead link needs decided, then the
+#: PDFs and client-rendered pages that just need opening.
+REASON_ORDER = {"refused": 0, "gone": 1, "unavailable": 2}
+
+#: What each group needs from a person, said in those terms rather than in HTTP.
+GROUP_TITLES = {
+    "refused": "BEHIND A PAYWALL OR BOT CHECK — needs whatever access you have",
+    "gone": "THE PAGE IS GONE — decide what to cite instead, or cite the archive",
+    "unavailable": "THE SITE WOULD NOT ANSWER — worth retrying before filling in by hand",
+    "": "NO METADATA TO READ — a PDF, or a page that renders client-side",
+}
 
 #: Enough of a PDF's first page to contain a title and a byline, not so much that
 #: the file becomes unreadable. Measured against the corpus: every title that was
@@ -109,7 +123,15 @@ def gather_evidence(url: str, ctx) -> list[str]:
     """Fetch the source and report what it says about itself. Never decides."""
     body = get_text_capped(ctx, url, cap=MAX_HTML_BYTES, timeout=PDF_TIMEOUT_S, html_only=True)
     if isinstance(body, Unreachable):
-        return [f"(fetch failed: {UNREACHABLE_REASONS.get(body.reason, body.reason)})"]
+        found = [f"(fetch failed: {UNREACHABLE_REASONS.get(body.reason, body.reason)})"]
+        # The most useful thing we can hand someone who has to open this by hand
+        # is a link that actually opens. A paywall or a dead address often has a
+        # readable copy in the archive even when the resolver could not use it —
+        # a PDF snapshot, typically, which is exactly what the resolver declines.
+        snapshot = snapshot_for(url, ctx)
+        if isinstance(snapshot, tuple):
+            found.append(f"archived copy: {snapshot[0]}")
+        return found
     if body:
         return _evidence_for_html(body) or ["(the page carries no title metadata)"]
 
@@ -171,7 +193,15 @@ def citations_propose(root: Path, limit: int | None = None, interval_s: float | 
         if citation.key:
             instances_by_key.setdefault(citation.key, []).append(citation)
 
-    pending = sorted(k for k, e in store.items() if e.get("resolvedBy") == "anchor")
+    # Grouped by *why* each one is here, because the work batches that way: the
+    # paywalled ones need whatever library access the reader has, the PDFs need
+    # opening and skimming, the dead ones need a decision about what to cite
+    # instead. Sorted within a group so the file diffs cleanly between runs.
+    def group(key: str) -> tuple[int, str]:
+        reason = str(store[key].get("unreachable", ""))
+        return (REASON_ORDER.get(reason, len(REASON_ORDER)), key)
+
+    pending = sorted((k for k, e in store.items() if e.get("resolvedBy") == "anchor"), key=group)
     if not pending:
         print("Nothing to propose: every entry carries resolved or reviewed metadata.")
         return 0
@@ -184,8 +214,13 @@ def citations_propose(root: Path, limit: int | None = None, interval_s: float | 
     print(f"Gathering evidence for {len(targets)} unresolved of {len(pending)}.")
 
     lines = [HEADER.rstrip()]
+    seen_group: str | None = None
     try:
         for index, key in enumerate(targets, 1):
+            reason = str(store[key].get("unreachable", ""))
+            if reason != seen_group:
+                seen_group = reason
+                lines += ["", f"# ===== {GROUP_TITLES.get(reason, GROUP_TITLES[''])}"]
             lines += _stub(key, store, instances_by_key.get(key, []), gather_evidence(key, ctx))
             if index % 25 == 0:
                 print(f"  {index}/{len(targets)}")

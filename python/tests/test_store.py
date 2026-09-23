@@ -231,3 +231,27 @@ class TestContainerTitleFromTheUrl:
         out, filled = fill_container_titles(store)
         assert filled == 0
         assert out["https://arxiv.org/abs/1"]["item"]["container-title"] == "Nature"
+
+
+class TestTheAttemptRecordSurvivesReExtraction:
+    """``task:0032`` AC-6. ``extract`` runs immediately before ``report``, so an
+    ``unreachable`` marker it wipes is one the report can never show."""
+
+    def entry(self, **extra):
+        base = entry_from_anchor("https://x/y", "A, 2024", {"author": "A", "year": "2024"})
+        return {**base, **extra}
+
+    def test_a_dead_link_stays_marked_dead_across_an_extract(self) -> None:
+        merged = merge_entry(self.entry(unreachable="gone"), self.entry())
+        assert merged["unreachable"] == "gone"
+
+    def test_the_anchor_text_is_still_re_derived(self) -> None:
+        """The prose can be edited; the address's HTTP status cannot be, by editing prose."""
+        incoming = entry_from_anchor("https://x/y", "B, 2025", {"author": "B", "year": "2025"})
+        merged = merge_entry(self.entry(unreachable="refused"), incoming)
+        assert merged["item"]["title"] == "B, 2025"
+        assert merged["unreachable"] == "refused"
+
+    def test_a_resolved_entry_is_untouched_as_before(self) -> None:
+        resolved = {**self.entry(), "resolvedBy": "arxiv", "item": {"title": "Real"}}
+        assert merge_entry(resolved, self.entry())["item"]["title"] == "Real"

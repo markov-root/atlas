@@ -220,7 +220,16 @@ def merge_entry(existing: StoreEntry, incoming: StoreEntry) -> StoreEntry:
     anchors = sorted(set(existing.get("anchors", [])) | set(incoming.get("anchors", [])))
     if existing.get("resolvedBy") != "anchor":
         return {**existing, "anchors": anchors}
-    return {**incoming, "anchors": anchors}
+
+    # Re-derive the anchor content — the prose may have been edited — but keep
+    # what the last resolve attempt learned about the *address*, which no edit to
+    # a sentence can change. Without this, `extract` silently wiped every
+    # `unreachable` marker, and since `extract` runs immediately before `report`,
+    # the dead-link section (task:0032 AC-6) would have been permanently empty.
+    merged: StoreEntry = {**incoming, "anchors": anchors}
+    if existing.get("unreachable"):
+        merged["unreachable"] = existing["unreachable"]
+    return merged
 
 
 def upsert_entries(store: Store, entries: list[tuple[str, StoreEntry]]) -> Store:
