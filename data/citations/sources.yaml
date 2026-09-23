@@ -216,13 +216,15 @@ https://ai-alignment.com/clarifying-ai-alignment-cec47cd69dd6:
     - literal: Christiano
     issued:
       date-parts:
-      - - 2018
-    title: Christiano, 2018
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+      - - 2021
+        - 4
+        - 9
+    title: Clarifying “AI alignment”
+    container-title: Medium
+    abstract: Clarifying what I mean when I say that an AI is aligned.
+  resolvedBy: opengraph
   anchors:
   - Christiano, 2018
-  unreachable: refused
 https://ai-alignment.com/policy-amplification-6a70cbee4f34:
   item:
     id: https://ai-alignment.com/policy-amplification-6a70cbee4f34
@@ -232,13 +234,16 @@ https://ai-alignment.com/policy-amplification-6a70cbee4f34:
     - literal: Christiano Paul
     issued:
       date-parts:
-      - - 2016
-    title: Christiano Paul, 2016
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+      - - 2017
+        - 2
+        - 6
+    title: Capability amplification
+    container-title: Medium
+    abstract: Can we use a weak policy with a fast implementation to construct a stronger policy 
+      with a slow implementation?
+  resolvedBy: opengraph
   anchors:
   - Christiano Paul, 2016
-  unreachable: refused
 https://ai-alignment.com/reliability-amplification-a96efa115687:
   item:
     id: https://ai-alignment.com/reliability-amplification-a96efa115687
@@ -249,12 +254,20 @@ https://ai-alignment.com/reliability-amplification-a96efa115687:
     issued:
       date-parts:
       - - 2016
-    title: Christiano, 2016
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Reliability amplification
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260919053943/https://ai-alignment.com/reliability-amplification-a96efa115687
+    container-title: Medium
+    accessed:
+      date-parts:
+      - - 2026
+        - 9
+        - 19
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Christiano, 2016
-  unreachable: refused
 https://ai-alignment.com/security-amplification-f4931419f903:
   item:
     id: https://ai-alignment.com/security-amplification-f4931419f903
@@ -265,12 +278,20 @@ https://ai-alignment.com/security-amplification-f4931419f903:
     issued:
       date-parts:
       - - 2016
-    title: Christiano, 2016
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Security amplification
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260919053943/https://ai-alignment.com/security-amplification-f4931419f903
+    container-title: Medium
+    accessed:
+      date-parts:
+      - - 2026
+        - 9
+        - 19
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Christiano, 2016
-  unreachable: refused
 ? https://ai-watch.ec.europa.eu/news/new-jrc-collection-external-scientific-reports-inform-implementation-eu-ai-act-general-purpose-ai-2025-10-14_en
 : item:
     id: 
@@ -2445,9 +2466,17 @@ https://arcprize.org/media/arc-prize-2024-technical-report.pdf:
     issued:
       date-parts:
       - - 2024
-    title: Chollet et al., 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Wayback Machine
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260918070706/https://arcprize.org/media/arc-prize-2024-technical-report.pdf
+    accessed:
+      date-parts:
+      - - 2026
+        - 9
+        - 18
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Chollet et al., 2024
 ? https://armedservices.house.gov/sites/evo-subsites/republicans-armedservices.house.gov/files/greenwalt%20aei%20testimony%20on%20replicator%20before%20citi%20subcommittee%20hasc%20v2.pdf
@@ -2462,9 +2491,17 @@ https://arcprize.org/media/arc-prize-2024-technical-report.pdf:
     issued:
       date-parts:
       - - 2023
-    title: Greenwalt, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Wayback Machine
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260411060314/https://armedservices.house.gov/sites/evo-subsites/republicans-armedservices.house.gov/files/greenwalt%20aei%20testimony%20on%20replicator%20before%20citi%20subcommittee%20hasc%20v2.pdf
+    accessed:
+      date-parts:
+      - - 2026
+        - 4
+        - 11
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Greenwalt, 2023
 https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index:
@@ -26108,9 +26145,17 @@ https://assets.ctfassets.net/kftzwdyauwt9/67qJD51Aur3eIc96iOfeOP/71551c3d223cd97
     issued:
       date-parts:
       - - 2024
-    title: OpenAI, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Wayback Machine
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260917202407/https://assets.ctfassets.net/kftzwdyauwt9/67qJD51Aur3eIc96iOfeOP/71551c3d223cd97e591aa89567306912/o1_system_card.pdf
+    accessed:
+      date-parts:
+      - - 2026
+        - 9
+        - 17
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - OpenAI, 2024
 ? https://assets.publishing.service.gov.uk/media/679a0c48a77d250007d313ee/International_AI_Safety_Report_2025_accessible_f.pdf
@@ -26192,12 +26237,19 @@ https://biotech.senate.gov/wp-content/uploads/2024/01/NSCEB_AIxBio_WP3_Risks.pdf
     issued:
       date-parts:
       - - 2024
-    title: NSCEB, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Wayback Machine
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260601024914/https://www.biotech.senate.gov/wp-content/uploads/2024/01/NSCEB_AIxBio_WP3_Risks.pdf
+    accessed:
+      date-parts:
+      - - 2026
+        - 6
+        - 1
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - NSCEB, 2024
-  unreachable: refused
 https://blog.aiimpacts.org/p/2023-ai-survey-of-2778-six-things:
   item:
     id: https://blog.aiimpacts.org/p/2023-ai-survey-of-2778-six-things
@@ -26355,9 +26407,17 @@ https://calteches.library.caltech.edu/2807/1/olds.pdf:
     issued:
       date-parts:
       - - 1956
-    title: Olds, 1956
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Wayback Machine
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260417160309/https://calteches.library.caltech.edu/2807/1/olds.pdf
+    accessed:
+      date-parts:
+      - - 2026
+        - 4
+        - 17
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Olds, 1956
 https://careerservices.fas.harvard.edu/blog/2025/05/01/what-is-ai-ethics:
@@ -26370,12 +26430,20 @@ https://careerservices.fas.harvard.edu/blog/2025/05/01/what-is-ai-ethics:
     issued:
       date-parts:
       - - 2025
-    title: ' Harvard, 2025'
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: What is AI ethics?
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260123144850/https://careerservices.fas.harvard.edu/blog/2025/05/01/what-is-ai-ethics/
+    container-title: Harvard FAS | Mignone Center for Career Success
+    accessed:
+      date-parts:
+      - - 2026
+        - 1
+        - 23
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - ' Harvard, 2025'
-  unreachable: gone
 https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AISurveillance_final1.pdf:
   item:
     id: 
@@ -26388,12 +26456,19 @@ https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AI
     issued:
       date-parts:
       - - 2021
-    title: Feldstein, 2021
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Wayback Machine
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260122184748/https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AISurveillance_final1.pdf
+    accessed:
+      date-parts:
+      - - 2026
+        - 1
+        - 22
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Feldstein, 2021
-  unreachable: refused
 https://carnegieendowment.org/research/2019/09/the-global-expansion-of-ai-surveillance?lang=en:
   item:
     id: 
@@ -26450,12 +26525,19 @@ https://carnegieendowment.org/research/2024/09/if-then-commitments-for-ai-risk-r
     issued:
       date-parts:
       - - 2023
-    title: Hsu et al., 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Wayback Machine
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20250711004244/https://www.cartercenter.org/resources/pdfs/peace/china/finding-firmer-ground-the-role-of-high-technology-in-u.s.-china-relations.pdf
+    accessed:
+      date-parts:
+      - - 2025
+        - 7
+        - 11
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Hsu et al., 2023
-  unreachable: unavailable
 ? https://cbc.ca/radio/day6/episode-279-playing-ball-on-grass-vs-turf-taytweets-big-fail-narco-subs-fake-food-and-more-1.3514966/microsoft-s-ai-chatbot-taytweets-suffers-another-meltdown-1.3515046
 : item:
     id: 
@@ -26531,9 +26613,17 @@ https://cdn.openai.com/papers/dall-e-3.pdf:
     issued:
       date-parts:
       - - 2023
-    title: Betker et al., 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Wayback Machine
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260919094011/https://cdn.openai.com/papers/dall-e-3.pdf
+    accessed:
+      date-parts:
+      - - 2026
+        - 9
+        - 19
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Betker et al., 2023
 https://cdn.openai.com/papers/gpt-4-system-card.pdf:
@@ -26598,9 +26688,17 @@ https://ceris.be/wp-content/uploads/2024/03/International-Institutions-for-Advan
     issued:
       date-parts:
       - - 2023
-    title: Ho et al., 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Wayback Machine
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260321080756/https://www.ceris.be/wp-content/uploads/2024/03/International-Institutions-for-Advanced-AI-Robert-Trager.pdf
+    accessed:
+      date-parts:
+      - - 2026
+        - 3
+        - 21
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Ho et al., 2023
 https://cfg.eu/building-cern-for-ai:
@@ -26814,9 +26912,17 @@ https://crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-Incident-Roo
     issued:
       date-parts:
       - - 2024
-    title: CrowdStrike, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Wayback Machine
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260916013702/https://www.crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-Incident-Root-Cause-Analysis-08.06.2024.pdf
+    accessed:
+      date-parts:
+      - - 2026
+        - 9
+        - 16
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - CrowdStrike, 2024
 https://cs.toronto.edu/~kriz/cifar.html:
@@ -26829,12 +26935,19 @@ https://cs.toronto.edu/~kriz/cifar.html:
     issued:
       date-parts:
       - - 2009
-    title: Krizhevsky, 2009
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: CIFAR-10 and CIFAR-100 datasets
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260607155414/https://www.cs.toronto.edu/%7Ekriz/cifar.html
+    accessed:
+      date-parts:
+      - - 2026
+        - 6
+        - 7
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Krizhevsky, 2009
-  unreachable: gone
 https://cset.georgetown.edu/publication/key-concepts-in-ai-safety-an-overview:
   item:
     id: https://cset.georgetown.edu/publication/key-concepts-in-ai-safety-an-overview
@@ -26887,9 +27000,17 @@ https://dam.gcsp.ch/files/doc/gcsp-geneva-paper-29-22:
     issued:
       date-parts:
       - - 2022
-    title: Esvelt, 2022
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Wayback Machine
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260917071336/https://dam.gcsp.ch/files/doc/gcsp-geneva-paper-29-22
+    accessed:
+      date-parts:
+      - - 2026
+        - 9
+        - 17
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Esvelt, 2022
 https://danfaggella.com/worthy:
@@ -27361,12 +27482,14 @@ https://deepmindsafetyresearch.medium.com/scalable-agent-alignment-via-reward-mo
     issued:
       date-parts:
       - - 2018
-    title: DeepMind, 2018
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 11
+        - 20
+    title: Scalable agent alignment via reward modeling
+    container-title: Medium
+    abstract: By Jan Leike
+  resolvedBy: opengraph
   anchors:
   - DeepMind, 2018
-  unreachable: refused
 https://digitalcommons.law.villanova.edu/cgi/viewcontent.cgi?article=3670&context=vlr:
   item:
     id: https://digitalcommons.law.villanova.edu/cgi/viewcontent.cgi?article=3670&context=vlr
@@ -27424,13 +27547,19 @@ https://diu.mil/replicator:
     issued:
       date-parts:
       - - 2023
-    title: U.S Defense Innovation Unit, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: The Replicator Initiative
+    archive: Internet Archive
+    archive_location: https://web.archive.org/web/20260303150022/https://www.diu.mil/replicator
+    accessed:
+      date-parts:
+      - - 2026
+        - 3
+        - 3
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Defense Innovation Unit, 2023
   - U.S Defense Innovation Unit, 2023
-  unreachable: gone
 https://dl.acm.org/doi/10.1145/3278721.3278780:
   item:
     id: https://dl.acm.org/doi/10.1145/3278721.3278780
@@ -27672,9 +27801,17 @@ https://economics.mit.edu/sites/default/files/2022-09/aitocracy_20220701.pdf:
     issued:
       date-parts:
       - - 2023
-    title: Beraja et al., 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Wayback Machine
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20251014183158/https://economics.mit.edu/sites/default/files/2022-09/aitocracy_20220701.pdf
+    accessed:
+      date-parts:
+      - - 2025
+        - 10
+        - 14
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Beraja et al., 2023
 https://edition.cnn.com/2023/04/29/us/ai-scam-calls-kidnapping-cec/index.html:
@@ -27720,12 +27857,20 @@ https://elibrary.imf.org/view/journals/001/2025/076/article-A001-en.xml:
     issued:
       date-parts:
       - - 2025
-    title: Cerutti et al., 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: The Global Impact of AI – Mind the Gap
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260909150837/https://www.elibrary.imf.org/view/journals/001/2025/076/article-A001-en.xml
+    container-title: IMF eLibrary
+    accessed:
+      date-parts:
+      - - 2026
+        - 9
+        - 9
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Cerutti et al., 2025
-  unreachable: refused
 https://en.wikipedia.org/wiki/AI-complete:
   item:
     id: https://en.wikipedia.org/wiki/AI-complete
@@ -27778,12 +27923,20 @@ https://epicural.com/2021/04/27/goodharts-law:
     issued:
       date-parts:
       - - 2021
-    title: Epicural, 2021
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Goodhart’s Law - Epicural, LLC
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20210804125857/https://www.epicural.com/2021/04/27/goodharts-law/
+    container-title: Epicural, LLC - Change is hard. The Epicural Team “does hard.”
+    accessed:
+      date-parts:
+      - - 2021
+        - 8
+        - 4
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Epicural, 2021
-  unreachable: gone
 https://epoch.ai/benchmarks/eci:
   item:
     id: https://epoch.ai/benchmarks/eci

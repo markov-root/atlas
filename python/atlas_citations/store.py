@@ -127,6 +127,68 @@ def infer_csl_type(url: str) -> str:
     return "webpage"
 
 
+#: Hosts whose *platform name* is a real container title, and differs from the
+#: bare domain in a way worth stating. ``task:0032`` D5.
+#:
+#: Deliberately short. These are proper names — "arXiv" is not a prettified
+#: `arxiv.org`, it is what the preprint server is called and what every citation
+#: style expects to see. Everything outside this table falls back to its domain
+#: at the facet layer, which is true without needing a table anyone maintains.
+_CONTAINER_BY_HOST = {
+    "arxiv.org": "arXiv",
+    "youtube.com": "YouTube",
+    "youtu.be": "YouTube",
+    "lesswrong.com": "LessWrong",
+    "alignmentforum.org": "AI Alignment Forum",
+    "forum.effectivealtruism.org": "EA Forum",
+}
+
+
+def infer_container_title(url: str) -> str | None:
+    """The container a canonical URL names with certainty, or ``None``.
+
+    The same shape as :func:`infer_csl_type`, and for the same reason: a fact the
+    URL states outright, computed in one place so a resolver and the extractor
+    cannot disagree about it. A resolver with a *stated* container always wins —
+    this only ever fills a blank.
+    """
+    try:
+        host = (urlsplit(url).hostname or "").lower()
+    except ValueError:
+        return None
+    if not host:
+        return None
+    host = host.removeprefix("www.")
+    for suffix, container in _CONTAINER_BY_HOST.items():
+        if host == suffix or host.endswith("." + suffix):
+            return container
+    return None
+
+
+def fill_container_titles(store: Store) -> tuple[Store, int]:
+    """Give every entry whose URL names a container one, without re-fetching.
+
+    ``task:0032`` AC-7. 306 arXiv preprints were resolved before the arXiv
+    resolver recorded a container, and ``--redo=arxiv`` would re-fetch all 306
+    from a public API to learn a constant we already know. That is both slow and
+    rude to someone else's infrastructure for zero information gained.
+
+    Never overwrites: an entry that already states a container keeps it, because
+    a resolver read that off the source and this only reads it off the address.
+    """
+    out: Store = dict(store)
+    filled = 0
+    for key, entry in out.items():
+        item = entry.get("item", {})
+        if item.get("container-title"):
+            continue
+        container = infer_container_title(item.get("URL") or key)
+        if container:
+            out[key] = {**entry, "item": {**item, "container-title": container}}
+            filled += 1
+    return out, filled
+
+
 def entry_from_anchor(key: str, anchor_text: str, parsed: dict[str, str] | None) -> StoreEntry:
     """A minimal entry built from nothing but a canonical URL and its anchor text.
 

@@ -21,6 +21,7 @@ from ..store import (
     Store,
     StoreEntry,
     entry_from_anchor,
+    fill_container_titles,
     parse_store,
     serialize_store,
     upsert_entries,
@@ -90,6 +91,11 @@ def citations_extract(root: Path) -> int:
 
     merged = next_store(read_store(root), extract_entries(scan))
 
+    # Offline, and never overwriting: an entry whose URL names its container
+    # ("arXiv", "LessWrong") gets one without a request. See task:0032 AC-7 for
+    # why this is not a --redo.
+    merged, filled = fill_container_titles(merged)
+
     # Reviewed metadata is applied last and unconditionally, because it is the
     # one input here a human wrote (task:0032 D4). Applying it on every extract
     # is what makes the store disposable: delete it, re-extract, re-resolve, and
@@ -99,6 +105,8 @@ def citations_extract(root: Path) -> int:
 
     resolved = sum(1 for e in merged.values() if e.get("resolvedBy") != "anchor")
     print(f"{len(merged)} sources in {STORE_PATH} ({resolved} already resolved and preserved)")
+    if filled:
+        print(f"{filled} entries given a container title derived from their URL")
     if unmatched:
         # Named rather than counted: an override pointing at nothing is a typo or
         # a citation edited out of the prose, and either way someone must look.

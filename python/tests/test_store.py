@@ -13,6 +13,8 @@ import pytest
 
 from atlas_citations.store import (
     entry_from_anchor,
+    fill_container_titles,
+    infer_container_title,
     infer_csl_type,
     literal_name,
     merge_entry,
@@ -184,3 +186,48 @@ class TestCommittedCorpus:
     def test_every_entry_is_keyed_by_its_own_id(self, store) -> None:
         mismatched = [k for k, v in store.items() if v["item"]["id"] != k]
         assert mismatched == [], "entry identity is the canonical URL (task:0021 D1)"
+
+
+class TestContainerTitleFromTheUrl:
+    """``task:0032`` AC-7 / D5 — state a container, never invent one."""
+
+    def test_names_the_platforms_whose_proper_name_differs_from_their_domain(self) -> None:
+        assert infer_container_title("https://arxiv.org/abs/1911.01547") == "arXiv"
+        assert infer_container_title("https://www.youtube.com/watch?v=abc") == "YouTube"
+        assert infer_container_title("https://lesswrong.com/posts/x") == "LessWrong"
+        assert (
+            infer_container_title("https://www.alignmentforum.org/posts/x") == "AI Alignment Forum"
+        )
+
+    def test_declines_everything_else_rather_than_prettifying_a_domain(self) -> None:
+        """D5: the facet falls back to the domain, which is true and needs no table."""
+        assert infer_container_title("https://openai.com/index/x") is None
+        assert infer_container_title("https://some-blog.example/post") is None
+        assert infer_container_title("not a url") is None
+
+    def test_backfills_without_a_single_request(self) -> None:
+        """--redo=arxiv would re-fetch 300+ records from a public API for a constant."""
+        store = {
+            "https://arxiv.org/abs/1": {
+                "item": {"id": "https://arxiv.org/abs/1", "URL": "https://arxiv.org/abs/1"},
+                "resolvedBy": "arxiv",
+            }
+        }
+        out, filled = fill_container_titles(store)
+        assert filled == 1
+        assert out["https://arxiv.org/abs/1"]["item"]["container-title"] == "arXiv"
+
+    def test_never_overwrites_a_container_a_resolver_read_off_the_source(self) -> None:
+        store = {
+            "https://arxiv.org/abs/1": {
+                "item": {
+                    "id": "https://arxiv.org/abs/1",
+                    "URL": "https://arxiv.org/abs/1",
+                    "container-title": "Nature",
+                },
+                "resolvedBy": "crossref",
+            }
+        }
+        out, filled = fill_container_titles(store)
+        assert filled == 0
+        assert out["https://arxiv.org/abs/1"]["item"]["container-title"] == "Nature"

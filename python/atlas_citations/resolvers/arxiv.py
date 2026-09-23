@@ -31,7 +31,7 @@ from urllib.parse import unquote
 
 import feedparser
 
-from ..store import CslName
+from ..store import CslName, infer_container_title
 from ._http import get_text_capped
 from .base import ResolverContext, ResolveResult, Unreachable
 
@@ -140,10 +140,11 @@ class ArxivResolver:
             "title": _collapse(title),
             # arXiv is where this preprint was published, and saying so is what
             # lets a reader filter the bibliography by source (task:0030 AC-7).
-            # Without it the single largest group in the corpus — 303 entries —
-            # has no source at all. CSL styles already know what to do with a
-            # container on an `article`.
-            "container-title": "arXiv",
+            # Without it the single largest group in the corpus — over 300
+            # entries — has no source at all. Read from the store's table rather
+            # than written here, so the extractor and this resolver cannot
+            # disagree about what arxiv.org is called.
+            "container-title": infer_container_title(canonical_url) or "arXiv",
             "URL": canonical_url,
         }
 
