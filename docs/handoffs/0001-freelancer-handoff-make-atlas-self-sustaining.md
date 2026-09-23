@@ -55,10 +55,10 @@ Pages, the `ai-safety-atlas.com` domain/DNS. Gemini + ElevenLabs keys are trivia
 
 ## Completed work
 
-- **`audit:0001`** — full external-service dependency audit (the durable context record). Surfaced
+- **`audit:0001`** - full external-service dependency audit (the durable context record). Surfaced
   `imagegen.foreview.org`, a runtime dependency absent from the freelancer's Slack list.
-- **`adr:0001`** — recorded the independence strategy (own-or-back-up, then rotate).
-- **R2 backup complete and verified** — `dumps/r2-backup.mjs` pulled all **3229 objects / 5.8 GB** of
+- **`adr:0001`** - recorded the independence strategy (own-or-back-up, then rotate).
+- **R2 backup complete and verified** - `dumps/r2-backup.mjs` pulled all **3229 objects / 5.8 GB** of
   bucket `atlas-cache` to `~/atlas-r2-backup/` (`final-audio/` 79, `audio/` 95, `audio-chunks/` 2995,
   `pdf/` 28, `equation-descriptions/` 32).
 - Adopted `engineering.yaml` (checks mirror `pnpm verify`; task/handoff/audit/adr roles) and created
@@ -68,14 +68,14 @@ Pages, the `ai-safety-atlas.com` domain/DNS. Gemini + ElevenLabs keys are trivia
 
 Each item is a governed task. Rough dependency order:
 
-1. **`task:0003`** — independent Google Docs control (own service account, share/copy, offline backups).
-2. **`task:0002`** — migrate R2 to our own Cloudflare account and repoint config (backup already done).
-3. **`task:0005`** — de-risk frozen audio (own ElevenLabs key, verified regeneration, `ffmpeg -c copy`).
-4. **`task:0004`** — rotate every freelancer-held credential and reset the 10 GitHub Actions secrets
+1. **`task:0003`** - independent Google Docs control (own service account, share/copy, offline backups).
+2. **`task:0002`** - migrate R2 to our own Cloudflare account and repoint config (backup already done).
+3. **`task:0005`** - de-risk frozen audio (own ElevenLabs key, verified regeneration, `ffmpeg -c copy`).
+4. **`task:0004`** - rotate every freelancer-held credential and reset the 10 GitHub Actions secrets
    (depends on 0002/0003 having minted the new creds).
-5. **`task:0001`** — eliminate `imagegen.foreview.org` (build-time OG images). See Blockers.
-6. **`task:0006`** — decide the `@foreview` logos posture (low priority, non-blocking).
-7. **`task:0007`** — publication security & privacy remediation (git author email, EXIF, stale
+5. **`task:0001`** - eliminate `imagegen.foreview.org` (build-time OG images). See Blockers.
+6. **`task:0006`** - decide the `@foreview` logos posture (low priority, non-blocking).
+7. **`task:0007`** - publication security & privacy remediation (git author email, EXIF, stale
    untracked files, dependency CVEs). Independent of the above; found via `inspect publication`.
 
 ## Blockers

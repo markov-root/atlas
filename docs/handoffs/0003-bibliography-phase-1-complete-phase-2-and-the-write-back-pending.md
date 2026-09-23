@@ -50,7 +50,7 @@ engineering_document:
 ## Outcome
 
 **Phase 1 of `task:0021` is done: the bibliography exists as files, built from the documents, with
-no rendering and no reader-facing change.** That was the owner's stated goal — "before getting it to
+no rendering and no reader-facing change.** That was the owner's stated goal - "before getting it to
 appear on site, the first set is to actually just have the full bibliography across the book
 exportable into a sensible file."
 
@@ -70,30 +70,30 @@ Over the committed corpus: **1,770 citation instances, 948 unique sources, 817 r
 131 unresolved, 76 cited with inconsistent spellings, 47 links whose anchor text is prose rather
 than author-year, 0 malformed.**
 
-Gate at handoff: both linters clean, typecheck 0 errors, **500 tests** — 299 TypeScript and 201
+Gate at handoff: both linters clean, typecheck 0 errors, **500 tests** - 299 TypeScript and 201
 Python (was 195 at the start of this work). `pnpm verify` green end to end.
 
 ## Completed work
 
 | Commit    | What                                                                      |
 | --------- | ------------------------------------------------------------------------- |
-| `e693014` | `/teach` country metric — derived figure replaced with a sourced snapshot |
+| `e693014` | `/teach` country metric - derived figure replaced with a sourced snapshot |
 | `eb1432b` | merge of `codebase-cleanup` into `main`                                   |
 | `e94521b` | `task:0021` bibliography design, `task:0022` R2 upload defect             |
 | `f08cbaa` | `task:0023` asset custody, `task:0024` build resources, `audit:0011` log  |
 | `1ce6012` | `task:0021` decomposed into 9 banks across 3 child tasks                  |
-| `c17dfdb` | `cli/` type coverage — B1                                                 |
-| `4be3f30` | extraction, canonical URL identity, CSL store — B2/B3/B4                  |
-| `36dacc3` | the resolver contract — B8's interface                                    |
-| `8dbad6f` | `atlas citations urls` — the interim shareable file                       |
-| `1c6c4a7` | the CLI and five resolvers — B5/B6/B7/B8/B9                               |
+| `c17dfdb` | `cli/` type coverage - B1                                                 |
+| `4be3f30` | extraction, canonical URL identity, CSL store - B2/B3/B4                  |
+| `36dacc3` | the resolver contract - B8's interface                                    |
+| `8dbad6f` | `atlas citations urls` - the interim shareable file                       |
+| `1c6c4a7` | the CLI and five resolvers - B5/B6/B7/B8/B9                               |
 | `43767a6` | `task:0028` write-back design                                             |
 
 **Nothing is pushed.** The branch is 10 commits ahead of `origin/main`.
 
 ## What the owner is waiting on
 
-1. **`docs/cited-sources.md` is ready to share** — 2,996 lines, per chapter and section, `Title (url)`
+1. **`docs/cited-sources.md` is ready to share** - 2,996 lines, per chapter and section, `Title (url)`
    form, plus a deduplicated master list and the 47 unrecognised links. Built for the edition-2
    authors, who are the stated customer of this whole task.
 8. **`task:0028` D1** decides what we may write back into a shared corpus that offers no delete.
@@ -103,7 +103,7 @@ Python (was 195 at the start of this work). `pnpm verify` green end to end.
 
 ## Open work
 
-0. **`task:0029` — the Python port. DONE, awaiting owner acceptance.** All six criteria have
+0. **`task:0029` - the Python port. DONE, awaiting owner acceptance.** All six criteria have
    completion evidence in the record. The pipeline is now two languages: TypeScript extracts
    citations from the AST and writes `data/citations/citations.json`; Python owns the resolvers, the
    CSL store, BibTeX and every report. `atlas citations <verb>` is unchanged for all five original
@@ -111,7 +111,7 @@ Python (was 195 at the start of this work). `pnpm verify` green end to end.
    resolved entries survived with **zero semantic change**. Left at `todo` because accepting work is
    the owner's call, matching `task:0025`–`0027`.
 
-   Three more defects surfaced while porting, all of the same shape — a property stated only in a
+   Three more defects surfaced while porting, all of the same shape - a property stated only in a
    comment, which no test ever checked. `audit:0011` **F8** (a BibTeX key stability claim the
    algorithm does not honour; documentation corrected, behaviour kept so no `\cite` key moves),
    **F9** (the all-sources index could not show within-section spelling inconsistencies, the very
@@ -120,24 +120,24 @@ Python (was 195 at the start of this work). `pnpm verify` green end to end.
    fixed, 539 targets → 191). F10 is almost certainly why the first redo run was killed by a
    timeout.
 
-   The redo then ran to completion: **60 newly resolved, 19 of them through `scholar-meta`** — the
+   The redo then ran to completion: **60 newly resolved, 19 of them through `scholar-meta`** - the
    publisher pages that resolver was written for, now carrying journal, volume, pages, DOI and real
    author names instead of a bare title or nothing.
 
-1. **`audit:0011` F12 — a transient network failure is recorded as a permanent verdict.** Found
+1. **`audit:0011` F12 - a transient network failure is recorded as a permanent verdict.** Found
    2026-09-23 while repairing F11. A resolver returns `None` both for "this does not exist" and for
-   "the service just failed", so one flaky request hands an entry to a worse resolver *forever* —
+   "the service just failed", so one flaky request hands an entry to a worse resolver *forever* -
    observed live: arXiv briefly failed and Open Graph recorded the entry with 0 authors where arXiv
    gives 1,158. **386 entries currently sit on `opengraph` and nothing distinguishes a genuine
    long-tail page from a transient failure.** The minimal fix is to separate declined from
    unreachable in the resolver contract and retry once; worth a task, deliberately not designed
    inside a bug-fix session.
 
-2. **`task:0028`** — the write-back. Owner asked for it explicitly, but it is now **blocked on an
+2. **`task:0028`** - the write-back. Owner asked for it explicitly, but it is now **blocked on an
    upstream capability**: the research corpus has no queryable coverage, so we cannot tell which of
    948 URLs are worth offering without fetching each one. Four feedback notes filed; the coverage
    one is the blocker.
-2. **`task:0030` — CSL rendering and the reader-facing control panel. PARTLY BUILT.**
+2. **`task:0030` - CSL rendering and the reader-facing control panel. PARTLY BUILT.**
 
    Shipped: `atlas citations render` produces `data/citations/rendered.json` (945 sources × 5 styles,
    ~49s, deterministic) via `citeproc-py` over CSL styles vendored under `vendor/csl/` (CC-BY-SA 3.0,
@@ -156,20 +156,20 @@ Python (was 195 at the start of this work). `pnpm verify` green end to end.
    will not ship until every source is resolved, so that instrumentation belongs in
    `atlas citations report`, which is read by maintainers.
 
-7. **`task:0031` — collapse duplicate sources through an alias file. NOT STARTED.**
-   The same work appears under several URLs — `keepthefuturehuman.ai`/`.com`, `deepmind.com`/
+7. **`task:0031` - collapse duplicate sources through an alias file. NOT STARTED.**
+   The same work appears under several URLs - `keepthefuturehuman.ai`/`.com`, `deepmind.com`/
    `deepmind.google`, AlignmentForum/LessWrong cross-posts, arXiv beside a publisher page.
    **Detection is shipped**: `atlas citations report` lists 7 groups, matched on first author, year
-   and a title fingerprint. Domain is not a usable signal — the AI Safety textbook alone has eight
+   and a title fingerprint. Domain is not a usable signal - the AI Safety textbook alone has eight
    different chapters under one author, year and site. Merging is a reviewed human decision, because
    collapsing two identities on a heuristic silently loses a citation.
 
-6. **`task:0021` phase 2** — rendering. **All three D5 surfaces are live** as of 2026-09-23:
+6. **`task:0021` phase 2** - rendering. **All three D5 surfaces are live** as of 2026-09-23:
    section-level after `#footnotes`, chapter-level at `/bibliography/<version>/<chapter>` linked from
    the resources panel, and site-wide `/bibliography` with all 948 sources. `src/lib/bibliography.ts`
    reads the committed store; no new build step, no credentials, warn-never-block on a missing store.
 
-   Chapter bibliographies are **not** at `/chapters/<version>/<chapter>/bibliography` on purpose —
+   Chapter bibliographies are **not** at `/chapters/<version>/<chapter>/bibliography` on purpose -
    that path shares a namespace with section slugs and Astro prefers a static segment, so a section
    called "Bibliography" would be silently shadowed. The url-stability snapshot caught it.
 
@@ -177,24 +177,24 @@ Python (was 195 at the start of this work). `pnpm verify` green end to end.
    author-year links), no back-links from a reference to the paragraphs citing it, no per-style
    formatting (the format is one hand-rolled author-date, not CSL styles), and no copy/export button.
    Those are the obvious next asks and none is decomposed yet.
-3. **`task:0022`** — p1, and the only one that can destroy something. A plain `pnpm typecheck` tried
+3. **`task:0022`** - p1, and the only one that can destroy something. A plain `pnpm typecheck` tried
    to PUT a 96 MB MP3 to production R2; only revoked credentials stopped it. **Must land before any
    working R2 credentials exist.**
-4. **`task:0023`** — asset custody. `.cache/uc/` holds 1.9 GB of irreplaceable audio, gitignored and
+4. **`task:0023`** - asset custody. `.cache/uc/` holds 1.9 GB of irreplaceable audio, gitignored and
    unbacked, on a VM that has crashed twice. Backing it up is minutes of work.
-5. **`task:0013`** — Google Docs migration, now including the credential steps.
+5. **`task:0013`** - Google Docs migration, now including the credential steps.
 
 ## Resume
 
 ```bash
-export SKIP_AUDIO_DOWNLOAD=1          # mandatory — see below
+export SKIP_AUDIO_DOWNLOAD=1          # mandatory - see below
 uv sync                                # the Python half (task:0029); once per checkout
 engineering document validate          # expect 1 finding: current-multiple
 ./bin/atlas citations report           # what still needs human attention
 git log --oneline main..HEAD           # unpushed commits
 ```
 
-`pnpm test`, `pnpm test:py` and `pnpm typecheck:cli` are cheap and safe. `pnpm verify` is not — see
+`pnpm test`, `pnpm test:py` and `pnpm typecheck:cli` are cheap and safe. `pnpm verify` is not - see
 below.
 
 ## A standing instruction from the owner
@@ -219,14 +219,14 @@ pushed.** A dev server may still be running in tmux as session `dev`; `tmux kill
 Reader-visible state: `/bibliography` (945 sources, search + sort + style switcher),
 `/bibliography/<version>/<chapter>`, and a reference list after every section's footnotes.
 
-The next piece of work is `task:0030`'s control panel — it is specified in that record, including
+The next piece of work is `task:0030`'s control panel - it is specified in that record, including
 the open questions, and deliberately not begun.
 
 ## Things that will bite the next person
 
 - **Always `export SKIP_AUDIO_DOWNLOAD=1`.** Without it, anything that loads a chapter runs the audio
   renderer, whose phases 7 and 8 push to production R2. `.env` sets this variable but **it has no
-  effect there** — it is declared in neither the astro env schema nor bridged in `content.config.ts`,
+  effect there** - it is declared in neither the astro env schema nor bridged in `content.config.ts`,
   so it must be exported into the shell. This is `audit:0011` F3 and the cause of `task:0022`.
 - **`pnpm verify` peaks at 94% memory commit** on this 4 GB VM with nothing else running. Do not run
   it alongside anything. `pnpm test` and `pnpm typecheck:cli` are cheap.
@@ -241,12 +241,12 @@ the open questions, and deliberately not begun.
   789 that predated the port survived it unchanged.
 - **The store is now emitted by a different YAML writer.** `ruamel.yaml` wraps and quotes
   differently from the npm `yaml` package, so the port produced a one-time whole-file reformat with
-  no data change. Do not read that diff as content churn — `task:0029` D4 records why a byte
+  no data change. Do not read that diff as content churn - `task:0029` D4 records why a byte
   comparison was never obtainable and what was proven instead.
 - **`atlas citations` shells out to `uv`.** If a verb dies with "uv is not on PATH", run `uv sync`.
   The site build is unaffected; only the citation verbs and `pnpm verify` need Python.
 - **Resolution is sticky, and that cuts both ways.** A resolved entry is never re-fetched, which is
-  what makes the long tail tractable — but a *bad* resolution is equally permanent. Use
+  what makes the long tail tractable - but a *bad* resolution is equally permanent. Use
   `atlas citations resolve --redo=<resolver>` to give an improved resolver another turn.
 - **`atlas citations render` takes ~49 seconds and must be re-run after `resolve`.** Nothing
   enforces that ordering: a stale `rendered.json` silently shows the previous run's text. The site
@@ -269,9 +269,9 @@ otherwise have shipped as a confident, wrong claim:
   was accurate and the conclusion was not, because `research fetch`'s exit 5 answers "can the ad-hoc
   fetcher claim this URL" while the question being asked was "is this publisher in the corpus". When
   a tool cannot answer the question you actually have, a confident answer to the adjacent question is
-  the dangerous outcome — the owner caught all three, not the data.
+  the dangerous outcome - the owner caught all three, not the data.
 - **The 45-URL coverage probe specifically:** The probe
-  sampled arXiv plus Alignment Forum, LessWrong, Epoch, Anthropic, DeepMind, METR and GovAI —
+  sampled arXiv plus Alignment Forum, LessWrong, Epoch, Anthropic, DeepMind, METR and GovAI -
   precisely the organisations that corpus is built to cover. Sampling from the covered population
   estimates nothing about the whole.
 - **The corpus was said to contain 9 unlinked footnote citations. It contains zero.** All 9 are
@@ -281,7 +281,7 @@ otherwise have shipped as a confident, wrong claim:
   tidier than the real data tests the fixture. The real-corpus reconciliation test is what caught it.
 
 On delegation: three pi agents built `task:0026` and `task:0027` in parallel, but the two things that
-fix a contract — entry identity (B4) and the resolver interface — were written first, alone. One
+fix a contract - entry identity (B4) and the resolver interface - were written first, alone. One
 agent reported another's tests as failing; running them directly showed 51 passing, because it had
 read them mid-write. **Verify handbacks against disk, not against the report.**
 
@@ -291,9 +291,9 @@ None.
 
 ## Evidence and authority
 
-- `docs/tasks/0021` — the parent design, six recorded decisions, the dependency graph.
-- `docs/tasks/0025`, `0026`, `0027` — completion evidence tables, all criteria met.
-- `docs/audits/0011` — the incidental findings log, F1–F7.
+- `docs/tasks/0021` - the parent design, six recorded decisions, the dependency graph.
+- `docs/tasks/0025`, `0026`, `0027` - completion evidence tables, all criteria met.
+- `docs/audits/0011` - the incidental findings log, F1–F7.
 - Three `skill-feedback` notes filed to `research-database` on 2026-09-22: scraper coverage ranked by
   real citation volume, a batch/idempotent fetch request, and the absence of a "would you claim this
   URL?" probe.

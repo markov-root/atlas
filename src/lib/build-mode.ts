@@ -51,7 +51,7 @@ export function detectBuildMode(env: EnvSnapshot): BuildMode {
     generatePdf: !skipPdf,
     generateAudio: !skipAudio,
     // R2 audio traffic only makes sense in a real build with creds.
-    // Dev mode never pulls/pushes — prevents the "SKIP_AUDIO=1 still
+    // Dev mode never pulls/pushes - prevents the "SKIP_AUDIO=1 still
     // downloads N MP3s" footgun.
     downloadAudio: hasR2Creds && !isDev,
     uploadAudio: hasR2Creds && !isDev && !skipAudio,

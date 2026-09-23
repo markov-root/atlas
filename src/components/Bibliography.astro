@@ -8,7 +8,7 @@
  * Every offered style is rendered into the page at build time, one `<span>` per
  * style, and the selector toggles which is visible (`task:0030` D3). No
  * citation processor runs in the browser, there is no request on switch, and
- * with JavaScript off the default style is the one that shows — which is why
+ * with JavaScript off the default style is the one that shows - which is why
  * the non-default variants are hidden with a class rather than by script.
  *
  * "Basic" is always present and always the default: it is the house style, it
@@ -19,6 +19,7 @@
  * followed by an empty list tells a reader the page is broken. Several sections
  * genuinely cite nothing.
  */
+import { Icon } from 'astro-icon/components';
 import type { Reference, StyleOption } from '../lib/bibliography';
 import { availableStyles, defaultStyle, BASIC_STYLE } from '../lib/bibliography';
 
@@ -28,7 +29,10 @@ interface Props {
   level?: 2 | 3;
   id?: string;
   showCount?: boolean;
-  /** Show the search / sort / filter controls. Worth it on a long list only. */
+  /**
+   * Show the control panel. Worth it on a long list only - a 30-entry section
+   * list is faster to read than to filter, and a panel above it is furniture.
+   */
   searchable?: boolean;
 }
 
@@ -43,6 +47,26 @@ const {
 
 const Heading = level === 3 ? 'h3' : 'h2';
 
+/**
+ * One control style, applied to every control.
+ *
+ * Borderless on a gray surface, matching `VersionSelector` and the light-card
+ * idiom in `docs/DESIGN.md`. `appearance-none` plus an explicit chevron is what
+ * makes a select look designed rather than left at the browser default, and it
+ * renders identically across browsers, which the native control does not.
+ */
+const CONTROL =
+  'h-9 rounded-lg border-0 bg-white px-3 text-sm text-gray-700 transition-colors' +
+  ' placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400';
+
+// The chevron is a CSS rule below rather than a Tailwind arbitrary value: a
+// data-URI SVG inside a class name needs three levels of quote escaping and
+// fails silently when one is wrong, which is exactly what it did first time.
+const SELECT = `${CONTROL} w-full cursor-pointer pr-8`;
+
+/** Every control is labelled, in the same place, at the same size. */
+const LABEL = 'mb-1 block text-xs font-medium uppercase tracking-wide text-gray-500';
+
 const styles: StyleOption[] = availableStyles();
 const initialStyle = defaultStyle();
 const showSelector = styles.length > 1;
@@ -53,6 +77,45 @@ function searchText(ref: Reference): string {
     .join(' ')
     .toLowerCase();
 }
+
+/**
+ * Facet options with counts, most-cited first.
+ *
+ * Counted at build time because it is the same answer for every reader, and
+ * counting 945 entries per keystroke in the browser is work nobody asked for.
+ * The counts are static - they describe the whole list, not the filtered one -
+ * which is the honest reading of a facet label: "choosing this leaves N".
+ */
+function facet(values: string[]): { value: string; count: number }[] {
+  const counts = new Map<string, number>();
+  for (const value of values) if (value) counts.set(value, (counts.get(value) ?? 0) + 1);
+  return [...counts]
+    .map(([value, count]) => ({ value, count }))
+    .sort((a, b) => b.count - a.count || a.value.localeCompare(b.value));
+}
+
+const sources = searchable ? facet(references.map((r) => r.source)) : [];
+const kinds = searchable ? facet(references.map((r) => r.kind)) : [];
+const years = searchable
+  ? [...new Set(references.map((r) => r.year).filter(Boolean))].sort().reverse()
+  : [];
+
+/** Chapters in reading order, for the group-by view. */
+const chapters = searchable
+  ? [
+      ...new Map(
+        references
+          .flatMap((r) => r.cited)
+          .map((c) => [c.chapterSlug, c] as const)
+          .sort((a, b) => a[1].chapterNumber - b[1].chapterNumber),
+      ).values(),
+    ]
+  : [];
+const groupable = chapters.length > 0;
+// On a chapter page every entry is from that chapter by construction, so
+// "by chapter" is one group containing everything. Section is the only
+// grouping that says anything there.
+const groupByChapter = chapters.length > 1;
 ---
 
 {
@@ -68,34 +131,154 @@ function searchText(ref: Reference): string {
       )}
 
       {searchable && (
-        <div class="flex flex-wrap items-center gap-3 mb-4 text-sm">
-          <label class="sr-only" for={`${id}-search`}>
-            Search sources
-          </label>
-          <input
-            id={`${id}-search`}
-            type="search"
-            placeholder="Search author, title, or URL…"
-            data-bib-search
-            class="flex-1 min-w-[16rem] px-3 py-1.5 rounded border border-gray-300 focus:border-gray-500 focus:outline-none"
-          />
-          <label class="sr-only" for={`${id}-sort`}>
-            Sort
-          </label>
-          <select
-            id={`${id}-sort`}
-            data-bib-sort
-            class="px-2 py-1.5 rounded border border-gray-300 focus:border-gray-500 focus:outline-none text-gray-700"
-          >
-            <option value="author">Author (A–Z)</option>
-            <option value="year-desc">Year (newest)</option>
-            <option value="year-asc">Year (oldest)</option>
-            <option value="title">Title (A–Z)</option>
-          </select>
+        <div class="mb-6 rounded-2xl bg-gray-100 p-4 sm:p-5" data-bib-panel role="search">
+          <div class="flex flex-wrap items-center gap-2">
+            <div class="relative flex-1 min-w-[14rem]">
+              <Icon
+                name="tabler:search"
+                class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400"
+                aria-hidden="true"
+              />
+              <label class="sr-only" for={`${id}-search`}>
+                Search sources
+              </label>
+              <input
+                id={`${id}-search`}
+                type="search"
+                placeholder="Search sources"
+                data-bib-search
+                class={`${CONTROL} w-full pl-9`}
+              />
+            </div>
+            <button
+              type="button"
+              data-bib-reset
+              class="inline-flex h-9 items-center gap-1.5 rounded-lg px-3 text-sm text-gray-600 transition-colors hover:bg-gray-200 hover:text-gray-900 cursor-pointer"
+            >
+              <Icon name="tabler:rotate" class="h-4 w-4" aria-hidden="true" />
+              Reset
+            </button>
+          </div>
+
+          {/* One grid, one cell per control, so every dropdown is the same
+              width by construction rather than by whatever its longest option
+              happened to be. */}
+          <div class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+            <div>
+              <label class={LABEL} for={`${id}-field`}>
+                Search in
+              </label>
+              <select id={`${id}-field`} data-bib-field class={SELECT}>
+                <option value="all">Anywhere</option>
+                <option value="author">Author</option>
+                <option value="title">Title</option>
+                <option value="source">Source</option>
+              </select>
+            </div>
+
+            <div>
+              <label class={LABEL} for={`${id}-source`}>
+                Source
+              </label>
+              <select id={`${id}-source`} data-bib-filter="source" class={SELECT}>
+                <option value="">All sources</option>
+                {sources.map((s) => (
+                  <option value={s.value}>{`${s.value} (${s.count})`}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label class={LABEL} for={`${id}-kind`}>
+                Type
+              </label>
+              <select id={`${id}-kind`} data-bib-filter="kind" class={SELECT}>
+                <option value="">All types</option>
+                {kinds.map((k) => (
+                  <option value={k.value}>{`${k.value} (${k.count})`}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label class={LABEL} for={`${id}-from`}>
+                From
+              </label>
+              <select id={`${id}-from`} data-bib-from class={SELECT}>
+                <option value="">Any year</option>
+                {years.map((y) => (
+                  <option value={y}>{y}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label class={LABEL} for={`${id}-to`}>
+                To
+              </label>
+              <select id={`${id}-to`} data-bib-to class={SELECT}>
+                <option value="">Any year</option>
+                {years.map((y) => (
+                  <option value={y}>{y}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label class={LABEL} for={`${id}-sort`}>
+                Sort by
+              </label>
+              <select id={`${id}-sort`} data-bib-sort class={SELECT}>
+                <option value="author">Author</option>
+                <option value="year-desc">Year, newest</option>
+                <option value="year-asc">Year, oldest</option>
+                <option value="title">Title</option>
+                <option value="source">Source</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-3 flex flex-wrap items-end gap-x-6 gap-y-3">
+            {groupable && (
+              <div class="w-full sm:w-auto sm:min-w-[12rem]">
+                <label class={LABEL} for={`${id}-group`}>
+                  Group by
+                </label>
+                <select id={`${id}-group`} data-bib-group class={SELECT}>
+                  <option value="">Flat list</option>
+                  {groupByChapter && <option value="chapter">Chapter</option>}
+                  <option value="section">{groupByChapter ? 'Chapter and section' : 'Section'}</option>
+                </select>
+              </div>
+            )}
+
+            {showSelector && (
+              <div data-style-picker>
+                <span class={LABEL}>Citation style</span>
+                <div class="flex flex-wrap items-center gap-1">
+                  {styles.map((style) => (
+                    <button
+                      type="button"
+                      data-style-button={style.id}
+                      aria-pressed={style.id === initialStyle ? 'true' : 'false'}
+                      class="h-9 rounded-lg px-3 text-sm text-gray-700 transition-colors cursor-pointer hover:bg-gray-200 aria-pressed:bg-gray-900 aria-pressed:text-white"
+                      title={
+                        style.numeric
+                          ? `${style.label} is a numbered style. The Atlas cites by author and year in the text, so the numbers are omitted here.`
+                          : undefined
+                      }
+                    >
+                      {style.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       )}
 
-      {showSelector && (
+      {!searchable && showSelector && (
         <div class="flex flex-wrap items-center gap-2 mb-6 text-sm" data-style-picker>
           <span class="text-gray-500">Style</span>
           {styles.map((style) => (
@@ -123,9 +306,17 @@ function searchText(ref: Reference): string {
             class="pl-6 -indent-6 leading-relaxed target:bg-brand-50"
             data-bib-entry
             data-search={searchText(ref)}
+            data-author={ref.authors.toLowerCase()}
+            data-title={ref.title.toLowerCase()}
+            data-source={ref.source}
+            data-kind={ref.kind}
             data-sort-author={(ref.authors || ref.title).toLowerCase()}
             data-sort-title={ref.title.toLowerCase()}
+            data-sort-source={ref.source.toLowerCase()}
             data-sort-year={ref.year || '0000'}
+            data-cited={ref.cited
+              .map((c) => `${String(c.chapterNumber).padStart(2, '0')}|${c.chapterSlug}|${c.sectionNumber}`)
+              .join(' ')}
           >
             {/* The house style. Always present, so the list works with no
                 pre-rendered file and with JavaScript off. */}
@@ -162,14 +353,48 @@ function searchText(ref: Reference): string {
         ))}
       </ol>
 
+      {/* Group headings and their copies are built here by the client on
+          demand. Shipping 945 entries once and cloning on request keeps the HTML
+          at one copy per source: a source cited in four chapters appears in four
+          groups, which would be four times the markup if it were pre-rendered,
+          on a page `task:0019` is already trying to slim. */}
+      {groupable && <div class="hidden" data-bib-groups />}
+
       {searchable && (
         <p class="hidden mt-6 text-sm text-gray-500" data-bib-empty>
-          No sources match that search.
+          No sources match those filters.
         </p>
+      )}
+
+      {groupable && (
+        <template data-bib-group-names>
+          {chapters.map((c) => (
+            <span data-slug={c.chapterSlug}>{`${c.chapterNumber}. ${c.chapterTitle}`}</span>
+          ))}
+        </template>
       )}
     </section>
   )
 }
+
+<style>
+  /* One rule for every control in the panel, so a select looks designed rather
+     than left at the browser default. `appearance: none` removes the native
+     arrow, which differs on every platform, and the chevron below replaces it
+     with the same tabler glyph the rest of the site uses. */
+  [data-bib-panel] select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6l6 -6'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 0.625rem center;
+  }
+
+  /* Safari renders a search input's own clear affordance on top of ours. */
+  [data-bib-panel] input[type='search']::-webkit-search-decoration,
+  [data-bib-panel] input[type='search']::-webkit-search-cancel-button {
+    appearance: none;
+  }
+</style>
 
 <script>
   /**
@@ -186,7 +411,7 @@ function searchText(ref: Reference): string {
       const present = new Set(
         [...root.querySelectorAll<HTMLElement>('[data-style]')].map((el) => el.dataset.style!),
       );
-      // A style saved from another page may not exist here — an older build, or
+      // A style saved from another page may not exist here - an older build, or
       // a style since removed. Leave the page as rendered rather than hiding
       // everything and showing an empty list.
       if (!present.has(styleId)) return;
@@ -203,42 +428,169 @@ function searchText(ref: Reference): string {
     });
   }
 
-  function applyFilters(root: HTMLElement): void {
-    const search = root.querySelector<HTMLInputElement>('[data-bib-search]');
-    const sort = root.querySelector<HTMLSelectElement>('[data-bib-sort]');
-    const list = root.querySelector<HTMLElement>('[data-bib-list]');
-    if (!list) return;
+  type Controls = {
+    query: string;
+    field: string;
+    source: string;
+    kind: string;
+    from: string;
+    to: string;
+    sort: string;
+    group: string;
+  };
 
-    const query = (search?.value ?? '').trim().toLowerCase();
-    const terms = query.split(/\s+/).filter(Boolean);
-    const entries = [...list.querySelectorAll<HTMLElement>('[data-bib-entry]')];
+  function readControls(root: HTMLElement): Controls {
+    const value = (selector: string): string =>
+      root.querySelector<HTMLInputElement | HTMLSelectElement>(selector)?.value ?? '';
+    return {
+      query: value('[data-bib-search]').trim().toLowerCase(),
+      field: value('[data-bib-field]') || 'all',
+      source: value('[data-bib-filter="source"]'),
+      kind: value('[data-bib-filter="kind"]'),
+      from: value('[data-bib-from]'),
+      to: value('[data-bib-to]'),
+      sort: value('[data-bib-sort]') || 'author',
+      group: value('[data-bib-group]'),
+    };
+  }
 
-    let visible = 0;
-    for (const entry of entries) {
-      const haystack = entry.dataset.search ?? '';
-      // Every term must appear, so "hendrycks 2024" narrows rather than widens.
-      const matches = terms.every((term) => haystack.includes(term));
-      entry.classList.toggle('hidden', !matches);
-      if (matches) visible++;
+  /** Does one entry survive the current controls? */
+  function matches(entry: HTMLElement, c: Controls): boolean {
+    // Which text the query applies to. "Anywhere" is the concatenated blob;
+    // the others are single fields, which is what makes "everything by
+    // Christiano" answerable without also matching his name in a URL.
+    const haystack =
+      c.field === 'author'
+        ? (entry.dataset.author ?? '')
+        : c.field === 'title'
+          ? (entry.dataset.title ?? '')
+          : c.field === 'source'
+            ? (entry.dataset.source ?? '').toLowerCase()
+            : (entry.dataset.search ?? '');
+    // Every term must appear, so "hendrycks 2024" narrows rather than widens.
+    for (const term of c.query.split(/\s+/).filter(Boolean)) {
+      if (!haystack.includes(term)) return false;
     }
+    if (c.source && entry.dataset.source !== c.source) return false;
+    if (c.kind && entry.dataset.kind !== c.kind) return false;
+    const year = entry.dataset.sortYear ?? '0000';
+    // An entry with no year is excluded by a year filter rather than kept: a
+    // reader asking for 2020–2024 has said something about what they want.
+    if (c.from && (year === '0000' || year < c.from)) return false;
+    if (c.to && (year === '0000' || year > c.to)) return false;
+    return true;
+  }
 
-    const mode = sort?.value ?? 'author';
+  function sortComparator(mode: string): (a: HTMLElement, b: HTMLElement) => number {
     const key = (el: HTMLElement): string => {
       if (mode === 'title') return el.dataset.sortTitle ?? '';
+      if (mode === 'source') return el.dataset.sortSource ?? '';
       if (mode.startsWith('year')) return el.dataset.sortYear ?? '0000';
       return el.dataset.sortAuthor ?? '';
     };
-    const sorted = [...entries].sort((a, b) => {
+    return (a, b) => {
       const cmp = key(a).localeCompare(key(b));
-      // Within a year, fall back to author so the order is stable and readable
+      // Within a tie, fall back to author so the order is stable and readable
       // rather than whatever the previous sort happened to leave behind.
       const tie = (a.dataset.sortAuthor ?? '').localeCompare(b.dataset.sortAuthor ?? '');
       return mode === 'year-desc' ? -cmp || tie : cmp || tie;
-    });
-    for (const entry of sorted) list.appendChild(entry);
+    };
+  }
 
-    root.querySelector<HTMLElement>('[data-visible-count]')?.replaceChildren(String(visible));
-    root.querySelector<HTMLElement>('[data-bib-empty]')?.classList.toggle('hidden', visible > 0);
+  /** Chapter slug → display name, read from the template the page shipped. */
+  function groupNames(root: HTMLElement): Map<string, string> {
+    const template = root.querySelector<HTMLTemplateElement>('[data-bib-group-names]');
+    const names = new Map<string, string>();
+    for (const span of template?.content.querySelectorAll<HTMLElement>('[data-slug]') ?? []) {
+      names.set(span.dataset.slug!, span.textContent ?? span.dataset.slug!);
+    }
+    return names;
+  }
+
+  /**
+   * Rebuild the grouped view by cloning visible entries into group containers.
+   *
+   * A source cited in four chapters belongs under all four - that is what makes
+   * the grouped view answer "what does chapter 4 rest on". Cloning does that
+   * without shipping four copies of every such entry in the HTML.
+   */
+  function renderGroups(root: HTMLElement, visible: HTMLElement[], mode: string): void {
+    const container = root.querySelector<HTMLElement>('[data-bib-groups]');
+    const list = root.querySelector<HTMLElement>('[data-bib-list]');
+    if (!container || !list) return;
+
+    if (!mode) {
+      container.classList.add('hidden');
+      container.replaceChildren();
+      list.classList.remove('hidden');
+      return;
+    }
+
+    const names = groupNames(root);
+    const buckets = new Map<string, { label: string; entries: HTMLElement[] }>();
+    for (const entry of visible) {
+      for (const location of (entry.dataset.cited ?? '').split(' ').filter(Boolean)) {
+        const [number, slug, section] = location.split('|');
+        // Keyed on the zero-padded chapter number so groups come out in reading
+        // order. Sorting on the slug put chapter 7 between 1 and 2, because a
+        // slug is the chapter's title and titles are not in book order.
+        const id = mode === 'chapter' ? number : `${number}|${section}`;
+        const label =
+          mode === 'chapter'
+            ? (names.get(slug) ?? slug)
+            : `${names.get(slug) ?? slug} - §${section}`;
+        const bucket = buckets.get(id) ?? { label, entries: [] };
+        bucket.entries.push(entry);
+        buckets.set(id, bucket);
+      }
+    }
+
+    const fragment = document.createDocumentFragment();
+    for (const [, bucket] of [...buckets].sort((a, b) => a[0].localeCompare(b[0], undefined, { numeric: true }))) {
+      const heading = document.createElement('h3');
+      heading.className = 'mt-8 mb-3 text-base font-semibold text-gray-900';
+      heading.textContent = `${bucket.label} (${bucket.entries.length})`;
+      const ol = document.createElement('ol');
+      ol.className = 'space-y-3 text-sm text-gray-700 list-none pl-0';
+      for (const entry of bucket.entries) {
+        const clone = entry.cloneNode(true) as HTMLElement;
+        // A clone must not duplicate an id: a `#ref-…` deep link has to keep
+        // resolving to exactly one element.
+        clone.removeAttribute('id');
+        ol.appendChild(clone);
+      }
+      fragment.append(heading, ol);
+    }
+
+    container.replaceChildren(fragment);
+    container.classList.remove('hidden');
+    list.classList.add('hidden');
+  }
+
+  function applyFilters(root: HTMLElement): void {
+    const list = root.querySelector<HTMLElement>('[data-bib-list]');
+    if (!list) return;
+
+    const controls = readControls(root);
+    const entries = [...list.querySelectorAll<HTMLElement>('[data-bib-entry]')];
+
+    const visible: HTMLElement[] = [];
+    for (const entry of entries) {
+      const shown = matches(entry, controls);
+      entry.classList.toggle('hidden', !shown);
+      if (shown) visible.push(entry);
+    }
+
+    const sorted = [...entries].sort(sortComparator(controls.sort));
+    for (const entry of sorted) list.appendChild(entry);
+    visible.sort(sortComparator(controls.sort));
+
+    renderGroups(root, visible, controls.group);
+
+    root.querySelector<HTMLElement>('[data-visible-count]')?.replaceChildren(String(visible.length));
+    root
+      .querySelector<HTMLElement>('[data-bib-empty]')
+      ?.classList.toggle('hidden', visible.length > 0);
   }
 
   function init(): void {
@@ -266,16 +618,100 @@ function searchText(ref: Reference): string {
     });
 
     document.querySelectorAll<HTMLElement>('[data-bibliography]').forEach((root) => {
+      const panel = root.querySelector<HTMLElement>('[data-bib-panel]');
+      if (!panel) return;
+
+      restoreFromUrl(root);
+
       const controls = root.querySelectorAll<HTMLElement>(
-        '[data-bib-search], [data-bib-sort]',
+        '[data-bib-search], [data-bib-field], [data-bib-filter], [data-bib-sort],' +
+          ' [data-bib-from], [data-bib-to], [data-bib-group]',
       );
       controls.forEach((control) => {
         if (control.dataset.bound) return;
         control.dataset.bound = 'true';
-        control.addEventListener('input', () => applyFilters(root));
-        control.addEventListener('change', () => applyFilters(root));
+        const run = () => {
+          applyFilters(root);
+          syncUrl(root);
+        };
+        control.addEventListener('input', run);
+        control.addEventListener('change', run);
       });
+
+      const reset = root.querySelector<HTMLElement>('[data-bib-reset]');
+      if (reset && !reset.dataset.bound) {
+        reset.dataset.bound = 'true';
+        reset.addEventListener('click', () => {
+          root
+            .querySelectorAll<HTMLInputElement | HTMLSelectElement>(
+              '[data-bib-search], [data-bib-field], [data-bib-filter],' +
+                ' [data-bib-from], [data-bib-to], [data-bib-group], [data-bib-sort]',
+            )
+            .forEach((control) => {
+              control.value = control instanceof HTMLSelectElement ? control.options[0].value : '';
+            });
+          applyFilters(root);
+          syncUrl(root);
+        });
+      }
+
+      // Only run once bound, and only when something is actually set - an
+      // untouched page is already rendered correctly by the server.
+      if (location.search) applyFilters(root);
     });
+  }
+
+  /**
+   * The panel's state in the query string, so a filtered or grouped view can be
+   * linked, bookmarked and sent to someone.
+   *
+   * `task:0030` left this open ("does grouping by chapter change the URL?").
+   * It should: a reader who has narrowed 945 sources to the twelve that matter
+   * has done work, and a view they cannot share is a view they have to
+   * reconstruct. `replaceState` rather than `pushState` - typing in a search box
+   * should not fill the back button with keystrokes.
+   */
+  const URL_PARAMS: Record<string, string> = {
+    q: '[data-bib-search]',
+    in: '[data-bib-field]',
+    source: '[data-bib-filter="source"]',
+    type: '[data-bib-filter="kind"]',
+    from: '[data-bib-from]',
+    to: '[data-bib-to]',
+    sort: '[data-bib-sort]',
+    group: '[data-bib-group]',
+  };
+
+  function syncUrl(root: HTMLElement): void {
+    const params = new URLSearchParams(location.search);
+    for (const [name, selector] of Object.entries(URL_PARAMS)) {
+      const control = root.querySelector<HTMLInputElement | HTMLSelectElement>(selector);
+      const value = control?.value ?? '';
+      const isDefault =
+        control instanceof HTMLSelectElement ? value === control.options[0].value : value === '';
+      if (isDefault) params.delete(name);
+      else params.set(name, value);
+    }
+    const query = params.toString();
+    history.replaceState(null, '', query ? `${location.pathname}?${query}` : location.pathname);
+  }
+
+  function restoreFromUrl(root: HTMLElement): void {
+    const params = new URLSearchParams(location.search);
+    for (const [name, selector] of Object.entries(URL_PARAMS)) {
+      const value = params.get(name);
+      if (value === null) continue;
+      const control = root.querySelector<HTMLInputElement | HTMLSelectElement>(selector);
+      if (!control) continue;
+      // A stale link - a source since renamed, a chapter since removed - must
+      // not leave the page showing an empty list under a control that claims
+      // otherwise. Ignore what no longer exists.
+      if (control instanceof HTMLSelectElement) {
+        if ([...control.options].some((option) => option.value === value)) control.value = value;
+      } else {
+        control.value = value;
+      }
+    }
   }
 
   init();

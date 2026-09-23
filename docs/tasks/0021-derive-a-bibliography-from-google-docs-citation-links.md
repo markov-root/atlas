@@ -48,7 +48,7 @@ engineering_document:
 
 ## Problem
 
-The textbook cites heavily and has no bibliography. **The people writing edition 2 want one** — that
+The textbook cites heavily and has no bibliography. **The people writing edition 2 want one** - that
 is the reason this work exists, and it makes the authors, not readers, the first customer.
 
 Hand-maintaining a reference list is the wrong fix: it drifts from the prose immediately, and it
@@ -72,13 +72,13 @@ path** and no new credentials.
 Footnotes carry citations too: **36 footnotes, 16 containing links.**
 
 **Correction, 2026-09-21.** An earlier version of this record claimed 9 of those were "plain-text
-author-year citations with no link at all". That was a measurement error — the original scan counted
+author-year citations with no link at all". That was a measurement error - the original scan counted
 parenthesised author-year patterns in footnote text without checking whether a hyperlink covered the
 same span. Verified anchor-by-anchor during `task:0025`: **all 9 are hyperlinked**
 (`(METR, 2024)`, `(Ewing, 2017)`, `(Critch, 2023)`, `(Piper, 2023)`, `(Prime Intellect, 2025)`,
 `(Wang and Gleave et al., 2022)`, `(Anthropic, 2024)`, `(Anthropic, 2025)`, `(Rodriguez, 2020)`).
 There is no unlinked-citation population in the current corpus. The handling is still built, because
-it is cheap and the alternative is silently dropping the first one an author writes — but it is a
+it is cheap and the alternative is silently dropping the first one an author writes - but it is a
 guard, not a backlog.
 
 Resolvability of the 1,001 unique URLs:
@@ -95,7 +95,7 @@ Because 96.8% of anchor texts already carry author and year, a useful bibliograp
 
 No chapter contains a `Bibliography` or `References` heading today, so nothing conflicts.
 
-## Decisions — recorded 2026-09-21
+## Decisions - recorded 2026-09-21
 
 All six are settled by the owner. They are recorded here rather than left open, and child tasks
 inherit them.
@@ -103,11 +103,11 @@ inherit them.
 | #   | Question               | Decision                                                                                                              |
 | --- | ---------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | D1  | Entry identity         | **Global entry per source**, with per-`(edition, language, chapter, section)` instances. A URL does not translate.    |
-| D2  | Data format            | **CSL** — CSL-YAML for storage, CSL-JSON compiled. No bespoke schema.                                                 |
+| D2  | Data format            | **CSL** - CSL-YAML for storage, CSL-JSON compiled. No bespoke schema.                                                 |
 | D3  | Archival               | **Separate concern**, exposed as `atlas citations archive`. Not in phase 1.                                           |
 | D4  | Unresolvable citations | **Warn, never block a deploy.**                                                                                       |
 | D5  | Placement              | Section-level after `#footnotes`; chapter-level on the introduction page's download panel; site-wide `/bibliography`. |
-| D6  | Command naming         | **Plural** — `atlas citations <verb>`.                                                                                |
+| D6  | Command naming         | **Plural** - `atlas citations <verb>`.                                                                                |
 
 ### D4 carries an implementation obligation
 
@@ -117,7 +117,7 @@ therefore only a real decision if the warning survives the build: a committed re
 one-line count in build output, and a command that prints it. Warning into a log stream is
 indistinguishable from silence, and choosing D4 is not choosing that.
 
-### D5 — why not the auto-injected table-of-contents entry
+### D5 - why not the auto-injected table-of-contents entry
 
 The alternative considered was injecting a bibliography as a pseudo-section at the end of the ToC,
 skipped by previous/next navigation. **Rejected.** Previous/next is derived from `allSections`
@@ -130,7 +130,7 @@ that the existing download panel on the introduction page
 
 ## Scope
 
-### Phase 1 — a bibliography that exists as a file
+### Phase 1 - a bibliography that exists as a file
 
 **Owner's direction: "before getting it to appear on site, the first set is to actually just have the
 full bibliography across the book exportable into a sensible file. All the UI/UX stuff is later."**
@@ -138,7 +138,7 @@ full bibliography across the book exportable into a sensible file. All the UI/UX
 Phase 1 changes **no rendered output**. That is its safety property: nothing a reader sees can break,
 so it can land while `src/` questions remain open.
 
-### Phase 2 — rendering
+### Phase 2 - rendering
 
 Deferred, and deliberately not decomposed yet. Covers the three D5 surfaces. Decompose it only once
 phase 1 has produced real data, because the shape of that data should inform the rendering, not the
@@ -151,20 +151,20 @@ are grouped into three child tasks.
 
 | Bank   | Change                                                             | Depends on | Child task  |
 | ------ | ------------------------------------------------------------------ | ---------- | ----------- |
-| **B1** | Declare `@types/node`; bring `cli/` into a typechecked path        | —          | `task:0020` |
-| **B2** | Citation extraction: pure function over AST nodes                  | —          | `task:0025` |
-| **B3** | URL canonicalization: pure                                         | —          | `task:0025` |
+| **B1** | Declare `@types/node`; bring `cli/` into a typechecked path        | -          | `task:0020` |
+| **B2** | Citation extraction: pure function over AST nodes                  | -          | `task:0025` |
+| **B3** | URL canonicalization: pure                                         | -          | `task:0025` |
 | **B4** | CSL-YAML store, entry identity, read/write                         | B3         | `task:0025` |
-| **B5** | `atlas citations extract` — job 1, offline, writes URL-keyed stubs | B2, B4     | `task:0026` |
-| **B6** | `atlas citations report` — unresolved, malformed, unclassifiable   | B5         | `task:0026` |
-| **B7** | `atlas citations export` — BibTeX and CSL-JSON                     | B4         | `task:0026` |
-| **B8** | Resolvers: arXiv, Crossref, oEmbed, Open Graph — one interface     | B4         | `task:0027` |
-| **B9** | `atlas citations resolve` — job 2, incremental, idempotent         | B4, B8     | `task:0027` |
+| **B5** | `atlas citations extract` - job 1, offline, writes URL-keyed stubs | B2, B4     | `task:0026` |
+| **B6** | `atlas citations report` - unresolved, malformed, unclassifiable   | B5         | `task:0026` |
+| **B7** | `atlas citations export` - BibTeX and CSL-JSON                     | B4         | `task:0026` |
+| **B8** | Resolvers: arXiv, Crossref, oEmbed, Open Graph - one interface     | B4         | `task:0027` |
+| **B9** | `atlas citations resolve` - job 2, incremental, idempotent         | B4, B8     | `task:0027` |
 
 ### Causal dependency graph
 
 ```
-B1 (precondition — cli/ typecheck)
+B1 (precondition - cli/ typecheck)
       │
       ├── B2 ─────────────┐
       │                   ├──> B5 ──> B6
@@ -180,31 +180,31 @@ lands; and the four resolvers inside B8 are independent of one another, which is
 parallelizable unit in the whole task.
 
 **What must not be parallelized:** B4. It fixes entry identity, which D1 flags as the one
-irreversible choice — every citation instance points at it, and changing it later rewrites every
+irreversible choice - every citation instance points at it, and changing it later rewrites every
 reference in every chapter and language. One author, reviewed, before anything depends on it.
 
 ## Interaction with other work
 
-- **`task:0013` (Google Docs migration) — no conflict, and this is a genuine benefit of deriving
+- **`task:0013` (Google Docs migration) - no conflict, and this is a genuine benefit of deriving
   rather than authoring.** New documents mean extraction re-runs and the bibliography is correct.
   There is no list to migrate.
-- **`task:0023` (R2 custody) — no interaction.** Phase 1 touches no audio, no R2, no CDN. This is one
+- **`task:0023` (R2 custody) - no interaction.** Phase 1 touches no audio, no R2, no CDN. This is one
   of the few pieces of work not blocked by the custody problem, which is an argument for doing it now.
-- **`task:0014` (language and edition)** — D1 must stay consistent with the content identity key. The
+- **`task:0014` (language and edition)** - D1 must stay consistent with the content identity key. The
   split is clean: entries are global, instances carry the key.
-- **`task:0015` (discriminated-union AST)** — B2 is a good first consumer: read-only, small, and a
+- **`task:0015` (discriminated-union AST)** - B2 is a good first consumer: read-only, small, and a
   low-risk proof of that design before larger content types depend on it.
-- **`task:0018` (lib boundary)** — B2 and B3 are build-time, not browser, code. They should land on
+- **`task:0018` (lib boundary)** - B2 and B3 are build-time, not browser, code. They should land on
   the correct side of that boundary from the start rather than being moved later.
-- **`task:0024` (build resources)** — phase 1 adds no build-time network calls and no per-page weight.
+- **`task:0024` (build resources)** - phase 1 adds no build-time network calls and no per-page weight.
 
 ## Out of scope
 
 - **Changing how authors write citations in Google Docs.** This must work against the docs as they
   are. The scan found real inconsistencies (`Burns et. al. 2023`, `Chen et al., 2024)` with a stray
   paren, missing-comma variants); the report **surfaces** these, it does not require them fixed first.
-- **Archival** — D3, later, as `atlas citations archive`.
-- **All rendering** — phase 2.
+- **Archival** - D3, later, as `atlas citations archive`.
+- **All rendering** - phase 2.
 - **Replacing OWID iframes with self-hosted datasets.** Related in spirit, separate work.
 
 ## Known edge cases
@@ -216,7 +216,7 @@ Recorded so they are not mistaken for defects later.
    consistently-rendered entry. Inconsistent input, consistent output.
 2. **Preprint versus published version is a real duplicate.** Canonicalization handles
    `arxiv.org/abs/X` versus `/pdf/X`. It does **not** handle one chapter citing an arXiv preprint and
-   another citing the journal DOI for the same work — different URLs, one paper. Accept as duplicates
+   another citing the journal DOI for the same work - different URLs, one paper. Accept as duplicates
    in phase 1 and add a manual alias file; automatic detection would be wrong often enough to be
    worse than the duplicate.
 3. **A footnote citation with no hyperlink would have no URL to key on.** The corpus currently has
@@ -234,7 +234,7 @@ evidence phase 1 produces.
 
 - **AC-1:** `task:0025`, `task:0026` and `task:0027` are complete, each against its own criteria.
 - **AC-2:** A single command produces the whole book's bibliography as a file, from the committed
-  store, with no credentials and no network — the owner's stated phase-1 goal.
+  store, with no credentials and no network - the owner's stated phase-1 goal.
 - **AC-3:** The edition-2 authors have used the report at least once, and their feedback is recorded
   here. They are the stated customer; shipping without checking with them would make this record's
   own premise unverified.
@@ -243,29 +243,29 @@ evidence phase 1 produces.
 
 ## Completion evidence
 
-_To be filled on completion. Each row must cite a criterion and durable evidence — a commit, a file
-path, or a recorded owner decision — not a narrative claim._
+_To be filled on completion. Each row must cite a criterion and durable evidence - a commit, a file
+path, or a recorded owner decision - not a narrative claim._
 
 | Criterion | Evidence | Verified |
 | --------- | -------- | -------- |
-| AC-1      | —        | —        |
-| AC-2      | —        | —        |
-| AC-3      | —        | —        |
-| AC-4      | —        | —        |
+| AC-1      | -        | -        |
+| AC-2      | -        | -        |
+| AC-3      | -        | -        |
+| AC-4      | -        | -        |
 
 ## Authority and inputs
 
 - Corpus measurement, 2026-09-21, over the eight tabs in `.cache/docs/`. Counts are reproducible from
   those files; the anchor-shape classification is approximate at the margin.
 - Footnote measurement, same date: 36 footnotes, 16 with links, 9 unlinked author-year citations.
-- `src/textbook-loader/transformer.ts:554` — `Link` nodes carry `{href, content}`.
-- `src/textbook-loader/renderers/audio/text-renderer.ts:6` — `stripCitations` already encodes an
+- `src/textbook-loader/transformer.ts:554` - `Link` nodes carry `{href, content}`.
+- `src/textbook-loader/renderers/audio/text-renderer.ts:6` - `stripCitations` already encodes an
   author-year regex for the audio path. Extraction must not invent a second, divergent one.
-- `src/textbook-loader/gdocsdk.ts:41` — the cache pattern this design mirrors.
-- `src/layouts/Reader.astro:41-42` — previous/next derivation; the reason D5 rejects a virtual section.
-- `src/pages/chapters/[version]/[chapter]/[section].astro:222-260,316` — the download panel and the
+- `src/textbook-loader/gdocsdk.ts:41` - the cache pattern this design mirrors.
+- `src/layouts/Reader.astro:41-42` - previous/next derivation; the reason D5 rejects a virtual section.
+- `src/pages/chapters/[version]/[chapter]/[section].astro:222-260,316` - the download panel and the
   `#footnotes` block; the two surfaces D5 selects.
-- `src/pages/chapters/[chapter]/index.astro:36` — chapter index is a 301 redirect, so no chapter
+- `src/pages/chapters/[chapter]/index.astro:36` - chapter index is a 301 redirect, so no chapter
   landing page exists to hold a chapter bibliography.
-- `audit:0010` F2 — why D4 carries an implementation obligation.
-- `audit:0011` F1 — the `cli/` typecheck gap that B1 closes.
+- `audit:0010` F2 - why D4 carries an implementation obligation.
+- `audit:0011` F1 - the `cli/` typecheck gap that B1 closes.

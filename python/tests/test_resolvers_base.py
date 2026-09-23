@@ -124,7 +124,7 @@ class TestFailureIsolation:
 
 
 class TestUnreachableStopsTheFallbackChain:
-    """``task:0032`` AC-1 — the fix for ``audit:0011`` F12, at the level it lives.
+    """``task:0032`` AC-1 - the fix for ``audit:0011`` F12, at the level it lives.
 
     The individual resolvers merely *report* unreachability. Whether that report
     protects an entry is decided here, and nowhere else.
@@ -135,7 +135,7 @@ class TestUnreachableStopsTheFallbackChain:
 
         arXiv is the authority for an arXiv paper. When arXiv cannot be asked,
         Open Graph answering in its place is not a fallback, it is a downgrade
-        recorded as a fact — and because resolution is sticky, recorded forever.
+        recorded as a fact - and because resolution is sticky, recorded forever.
         """
         arxiv = Stub("arxiv", True, Unreachable("unavailable"))
         opengraph = Stub("opengraph", True, result("opengraph", "a consent wall"), selective=False)
@@ -162,7 +162,7 @@ class TestUnreachableStopsTheFallbackChain:
     def test_an_unselective_resolver_being_down_does_not_block_the_chain(self, ctx) -> None:
         """``task:0027`` AC-6: a research-database outage leaves the bibliography identical.
 
-        It claims every URL, so its claim is no evidence of authority — giving it
+        It claims every URL, so its claim is no evidence of authority - giving it
         a veto would let one local service being off turn the whole corpus
         unresolvable.
         """
@@ -219,7 +219,7 @@ class TestSelectivity:
             assert by_name[name].selective is True, name
 
     def test_an_unselective_resolver_really_does_claim_everything(self) -> None:
-        """The property the flag exists to record — asserted, not assumed."""
+        """The property the flag exists to record - asserted, not assumed."""
         from atlas_citations.resolvers import ALL_RESOLVERS
 
         urls = [

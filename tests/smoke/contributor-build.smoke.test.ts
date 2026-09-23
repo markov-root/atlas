@@ -35,7 +35,7 @@ describe('contributor build smoke test', () => {
     );
     expect(versioned.length).toBeGreaterThan(0);
 
-    // Pick the largest versioned section page — that's the one most
+    // Pick the largest versioned section page - that's the one most
     // likely to be a real section (not a redirect stub).
     const sized = versioned
       .map((p) => ({ path: p, words: countWords(readFileSync(p, 'utf-8')) }))
@@ -58,7 +58,7 @@ describe('contributor build smoke test', () => {
       cwd: process.cwd(),
       env: {
         ...process.env,
-        // Defensive — content.config.ts already sets these for contributor
+        // Defensive - content.config.ts already sets these for contributor
         // mode, but if BuildMode wiring regresses we don't want the test to
         // accidentally try to hit Google Docs / ElevenLabs / R2.
         SKIP_PDF: '1',
@@ -86,7 +86,7 @@ describe('contributor build smoke test', () => {
     expect(sized[0].words).toBeGreaterThan(1_000);
 
     // No chapter HTML should reference /assets/uc/ via a direct <img src>
-    // — figures must degrade to caption-only when assets are missing.
+    // - figures must degrade to caption-only when assets are missing.
     for (const { path } of sized) {
       const html = readFileSync(path, 'utf-8');
       expect(html.includes('src="/assets/uc/')).toBe(false);

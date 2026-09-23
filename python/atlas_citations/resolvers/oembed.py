@@ -1,4 +1,4 @@
-"""oEmbed resolver — YouTube videos.
+"""oEmbed resolver - YouTube videos.
 
 YouTube's oEmbed endpoint needs no API key, which is why it is the whole
 integration; a Data API key would buy upload date and view counts, but the date
@@ -40,7 +40,7 @@ class OembedResolver:
             timeout=TIMEOUT_S,
         )
         # A 401 or 404 from oEmbed is YouTube's answer for a deleted or private
-        # video — a real verdict about the video, which is why it is worth
+        # video - a real verdict about the video, which is why it is worth
         # surfacing as `gone`/`refused` rather than silently falling through to
         # a page scrape that will only find a consent wall.
         if isinstance(body, Unreachable):

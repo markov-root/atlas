@@ -1,16 +1,16 @@
 ---
 /**
- * `/bibliography/<version>/<chapter>` — one chapter's sources.
+ * `/bibliography/<version>/<chapter>` - one chapter's sources.
  *
  * `task:0021` D5's second surface. The per-section lists answer "what did this
  * page cite"; the site-wide page answers "what does the book rest on". Neither
  * answers the question a reader working through one chapter actually has, which
- * is what that chapter rests on — so this sits between them, linked from the
+ * is what that chapter rests on - so this sits between them, linked from the
  * chapter's resources panel.
  *
  * **Why it does not live at `/chapters/<version>/<chapter>/bibliography`.** That
  * path shares a namespace with section slugs, and Astro resolves a static
- * segment ahead of a dynamic one — so a chapter containing a section actually
+ * segment ahead of a dynamic one - so a chapter containing a section actually
  * called "Bibliography" would have that section silently shadowed and
  * unreachable. Edition-2 authors asking for a bibliography is precisely the
  * context in which someone writes that section. The `tests/smoke/url-stability`
@@ -36,16 +36,19 @@ export async function getStaticPaths() {
 const { version, chapter } = Astro.props as { version: string; chapter: Chapter };
 
 const references = chapterReferences(chapter);
-const title = `Chapter ${chapter.number} bibliography — ${chapter.title}`;
+const title = `Chapter ${chapter.number} bibliography - ${chapter.title}`;
 const firstSection = chapter.sections[0];
 ---
 
 <Default
   title={title}
   description={`Every source cited in chapter ${chapter.number}, ${chapter.title}.`}
-  image={ogImageUrl({ title: `${chapter.title} — Bibliography` })}
+  image={ogImageUrl({ title: `${chapter.title} - Bibliography` })}
 >
-  <div class="mx-auto max-w-4xl px-6 py-16 lg:py-24">
+  {/* The house page idiom (docs/DESIGN.md): a rounded surface on the grained
+      page background, matching /bibliography and every other content page. */}
+  <section class="sm:mx-4 mt-4 mb-4 rounded-3xl overflow-hidden bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-12 lg:px-8 lg:py-16">
     <p class="text-base font-semibold text-brand-600">Chapter {chapter.number}</p>
     <h1 class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl font-display">
       {chapter.title}
@@ -80,6 +83,7 @@ const firstSection = chapter.sections[0];
       id="chapter-references"
       showCount={true}
       searchable={true}
-    />
-  </div>
+      />
+    </div>
+  </section>
 </Default>

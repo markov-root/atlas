@@ -62,7 +62,7 @@ rather than loudly, and all three bite a maintainer who was not the author.
 
 1. **Nothing ties the table to the files.** No check asserts that every entry in `chapter-timing.ts`
    has its committed `.words.json`, or the reverse. A dropped file, a renumbered section after a
-   content refresh, or a typo in a path yields a page that quietly renders no read-along — or fetches
+   content refresh, or a typo in a path yields a page that quietly renders no read-along - or fetches
    a 404 and swallows it, because `word-highlight.ts` ends in a bare `.catch()` that deliberately
    leaves the text as rendered. Nothing in `pnpm verify` notices.
 
@@ -100,7 +100,7 @@ PR #12 is unlikely to be available.
   possible: the narration text includes Gemini-generated equation descriptions that a contributor
   build pulls from R2. Genuine remote-drift detection stays a credentialed, manual step
   (`pipeline.py --check-remote` in `atlas-podcast`, per the note in `chapter-timing.ts`). This task
-  buys structural integrity, not freshness — see Limitations.
+  buys structural integrity, not freshness - see Limitations.
 - Regenerating any timings or audio (`task:0005` owns audio regeneration).
 - Performing the R2 migration itself (`task:0002`).
 - The duplicate-render / duplicate-`id` issue the read-along works around
@@ -121,7 +121,7 @@ PR #12 is unlikely to be available.
   must point at a filename matching `atlas-ch4-s2-`).
 - **AC-4:** No encoder call that writes a **final, published** MP3 passes `-q:a 4`; every such call
   passes `-b:a 96k -write_xing 0`. The intermediate per-paragraph chunk encoder
-  (`elevenlabs-tts.ts:150`, piping to `pipe:1`) is explicitly exempt — PR #13 left it variable on
+  (`elevenlabs-tts.ts:150`, piping to `pipe:1`) is explicitly exempt - PR #13 left it variable on
   purpose because the normalization pass re-encodes it, and forcing CBR there would cost size for
   no seek benefit. The reason the Gemini path was aligned rather than deleted (or vice versa) is
   recorded in this task's evidence.
@@ -145,17 +145,17 @@ PRs #11, #13, #12).
 
 **State is `in_progress`, not `done`, deliberately.** All six criteria below are met and evidenced,
 but this record's authority block places acceptance with the owner, and the criteria were drafted by
-the same agent that implemented them — self-certifying that pairing would be exactly the failure the
+the same agent that implemented them - self-certifying that pairing would be exactly the failure the
 authority model exists to prevent. The branch is also unmerged. The owner flips this to `done` on
 accepting the evidence.
 
 | Criterion | Evidence                                                                                                                                                                                                                                            |
 | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| AC-1      | `src/data/chapter-timing.test.ts` — "has a committed .words.json for every entry" and "has a table entry for every committed .words.json" (commit `2f5bff7`).                                                                                       |
-| AC-2      | Same file — "parses every file as a non-empty array", "gives every word a string and a finite, non-negative span", "orders every file by non-decreasing start time".                                                                                |
-| AC-3      | Same file — "points each entry at URLs bearing its own chapter and section", plus an https assertion.                                                                                                                                               |
+| AC-1      | `src/data/chapter-timing.test.ts` - "has a committed .words.json for every entry" and "has a table entry for every committed .words.json" (commit `2f5bff7`).                                                                                       |
+| AC-2      | Same file - "parses every file as a non-empty array", "gives every word a string and a finite, non-negative span", "orders every file by non-decreasing start time".                                                                                |
+| AC-3      | Same file - "points each entry at URLs bearing its own chapter and section", plus an https assertion.                                                                                                                                               |
 | AC-4      | `901b05c`. `rg -n 'q:a 4' src/textbook-loader/renderers/audio/` now matches only `elevenlabs-tts.ts:150` (the exempt intermediate chunk encoder) and a comment at `:221`. Both final-output paths in `gemini-tts.ts` pass `-b:a 96k -write_xing 0`. |
-| AC-5      | `7c23e39` — `task:0002` Scope now names `src/data/chapter-timing.ts` with its 71 occurrences and why they are pinned rather than derived.                                                                                                           |
+| AC-5      | `7c23e39` - `task:0002` Scope now names `src/data/chapter-timing.ts` with its 71 occurrences and why they are pinned rather than derived.                                                                                                           |
 | AC-6      | `pnpm verify` on `7c23e39`: lint 0 errors / 11 pre-existing warnings, `astro check` 0 errors, **18 test files / 181 unit tests** (was 17 / 173), build complete, smoke 3/3, a11y 6/6.                                                               |
 
 **Mutation evidence for AC-1 to AC-3.** A passing guard proves nothing unless it fails on the defect
@@ -172,7 +172,7 @@ it targets, so each was checked against an injected fault, then reverted:
 
 The first run of the missing-file case exposed a defect in the guard itself: the eager
 `readFileSync` at `describe` scope threw during collection, so the suite reported "no tests" instead
-of naming the section — failing AC-1's own wording. Fixed before commit by folding absent and
+of naming the section - failing AC-1's own wording. Fixed before commit by folding absent and
 unparseable files into the result set.
 
 **AC-4 decision.** The Gemini path was **aligned, not deleted.** It is imported nowhere, undocumented

@@ -10,11 +10,11 @@
  * docs/tasks, docs/adr, docs/audits, docs/handoffs and docs/lessons. It does NOT
  * cover the living documents, because declaring a living role in
  * `engineering.yaml` would force a 4-digit filename prefix on ARCHITECTURE.md
- * and friends — see docs/adr/0002. This checker closes exactly that gap, and
+ * and friends - see docs/adr/0002. This checker closes exactly that gap, and
  * runs with no skill installed, so a fresh clone can verify conformance.
  *
  * Word floors are a blunt instrument on purpose. They do not measure quality;
- * they catch the specific failure this repo already made once — adding the
+ * they catch the specific failure this repo already made once - adding the
  * headings a standard names and filling them with something thin, then reporting
  * the standard adopted because a validator went green.
  */
@@ -22,7 +22,7 @@
 export type SectionRule = {
   /**
    * Case-insensitive substring matched against `## ` / `### ` heading text.
-   * An array accepts alternatives — the role fixes the requirement, not the
+   * An array accepts alternatives - the role fixes the requirement, not the
    * wording. The first entry is used as the display label.
    */
   heading: string | string[];

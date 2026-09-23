@@ -1,4 +1,4 @@
-"""The resolver contract — bank B8 of ``task:0021``, per ``task:0027``.
+"""The resolver contract - bank B8 of ``task:0021``, per ``task:0027``.
 
 A resolver turns a canonical URL into CSL fields, or declines. Eight exist: the
 local research-database corpus, arXiv, Crossref, ForumMagnum (LessWrong, the EA
@@ -20,7 +20,7 @@ Four rules the interface enforces by shape rather than by convention:
    :data:`UNREACHABLE`, and let the runner decide.
 
 3. **"I found nothing" and "I could not ask" are different answers.** This is
-   ``audit:0011`` F12, and it is the reason :class:`Unreachable` exists — see its
+   ``audit:0011`` F12, and it is the reason :class:`Unreachable` exists - see its
    docstring for what conflating them cost.
 
 4. **Partial metadata is worth returning.** An entry with a title and no author
@@ -48,7 +48,7 @@ class Unreachable:
     "this document is not mine to describe" and for "the request failed", and the
     difference is the whole story: **a decline is a verdict, a failure is a
     missing verdict.** Recording the second as the first is what made one bad
-    moment permanent — arXiv briefly failed for a paper it holds 1,158 authors
+    moment permanent - arXiv briefly failed for a paper it holds 1,158 authors
     for, Open Graph answered instead with zero, and because resolution is sticky
     the entry kept that answer forever.
 
@@ -59,11 +59,11 @@ class Unreachable:
     ``reason`` is recorded on the entry so the report can separate a dead citation
     from a blocked one:
 
-    - ``gone`` — HTTP 404 or 410. The cited page does not exist. A content defect
+    - ``gone`` - HTTP 404 or 410. The cited page does not exist. A content defect
       for the authors, not a resolver gap.
-    - ``refused`` — HTTP 401/402/403. A paywall or bot check. The document may be
+    - ``refused`` - HTTP 401/402/403. A paywall or bot check. The document may be
       perfectly alive; we were not allowed to look.
-    - ``unavailable`` — transport failure, timeout, 429 or 5xx, after one retry.
+    - ``unavailable`` - transport failure, timeout, 429 or 5xx, after one retry.
     """
 
     reason: str = "unavailable"
@@ -77,7 +77,7 @@ UNREACHABLE = Unreachable()
 class ResolveResult:
     """What a resolver found."""
 
-    #: CSL fields discovered. Partial by design — merged over the existing item.
+    #: CSL fields discovered. Partial by design - merged over the existing item.
     fields: dict[str, Any]
     #: Resolver name, stored as the entry's ``resolvedBy``.
     source: str
@@ -96,7 +96,7 @@ class ResolverContext:
     """
 
     client: httpx.Client
-    #: Identifies this project to the services it queries. ``task:0027`` AC-5 —
+    #: Identifies this project to the services it queries. ``task:0027`` AC-5 -
     #: an anonymous scraper hammering Crossref is how a project gets blocked,
     #: and these are other people's free infrastructure.
     user_agent: str
@@ -121,8 +121,8 @@ class Resolver(Protocol):
     #: are selective:
     #: they answer only for hosts or URL shapes they know, so "this resolver
     #: claims the URL" is real evidence that it has something specific to say.
-    #: ``research-db`` and ``opengraph`` claim *every* HTTP URL — one because a
-    #: local lookup is free, the other because it is the last-resort fallback —
+    #: ``research-db`` and ``opengraph`` claim *every* HTTP URL - one because a
+    #: local lookup is free, the other because it is the last-resort fallback -
     #: so their claim carries no such information.
     #:
     #: Only ``--redo`` uses this, and it needs it: see ``unresolved_keys``.
@@ -172,7 +172,7 @@ def resolve_with(
     Order matters and is fixed by :data:`RESOLVER_ORDER`: the local corpus
     answers part of this project's URLs with no network call at all, so asking it
     first is free. A resolver that raises despite rule 2 is caught here and
-    treated as a decline — one misbehaving resolver must not abort a run over
+    treated as a decline - one misbehaving resolver must not abort a run over
     948 URLs.
 
     **A selective resolver that could not be reached stops the fallback chain.**
@@ -185,7 +185,7 @@ def resolve_with(
     Only ``selective`` resolvers get this veto, and the distinction is the same
     one ``--redo`` relies on: ``research-db`` and ``opengraph`` claim every HTTP
     URL, so their claim is not evidence of authority. A research-database outage
-    must leave the bibliography identical (``task:0027`` AC-6) — it would not if a
+    must leave the bibliography identical (``task:0027`` AC-6) - it would not if a
     universal claimant could block the chain.
     """
     blocked: Unreachable | None = None
@@ -196,7 +196,7 @@ def resolve_with(
             result = resolver.resolve(canonical_url, ctx)
         except Exception:
             # Rule 2 says resolvers do not raise; this is the backstop for when
-            # one does anyway. Swallowed deliberately — a single bad resolver
+            # one does anyway. Swallowed deliberately - a single bad resolver
             # must not take down a run over 948 URLs.
             continue
         if isinstance(result, Unreachable):
@@ -241,7 +241,7 @@ class Throttle:
 
 #: Sent on every outbound request alongside the User-Agent.
 #:
-#: ``task:0032`` D1: adding these turned **7 of 32 blocked hosts into 200s** —
+#: ``task:0032`` D1: adding these turned **7 of 32 blocked hosts into 200s** -
 #: rand.org, metaculus, OpenReview, Oxford Reference, the FT and the IMF library
 #: among them. A full Chrome User-Agent string, measured against the same 32,
 #: bought two more and was rejected: these headers are *true* (they state what

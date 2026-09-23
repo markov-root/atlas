@@ -113,7 +113,7 @@ function isAnchor(spoken: string[], si: number, written: string[], wi: number): 
  * Find the nearest point at or after (si, wi) where the streams agree again.
  *
  * Searched in order of total distance skipped, so a resync that drops three
- * spoken words is preferred over one that drops thirty — the highlight
+ * spoken words is preferred over one that drops thirty - the highlight
  * should rejoin the text at the first honest opportunity.
  */
 function findResync(

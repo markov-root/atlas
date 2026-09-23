@@ -1,9 +1,9 @@
-"""LessWrong, the EA Forum and the Alignment Forum — one API for all three.
+"""LessWrong, the EA Forum and the Alignment Forum - one API for all three.
 
 ``task:0032`` AC-4. These three sites run the same open-source software
 (ForumMagnum) and expose the same public GraphQL endpoint, so one resolver
-answers all of them. The post id is already in the URL path — ``/posts/<id>/<slug>``
-— which means identity comes from the address rather than from a search, the
+answers all of them. The post id is already in the URL path - ``/posts/<id>/<slug>``
+- which means identity comes from the address rather than from a search, the
 same standard ``crossref.py`` holds itself to.
 
 This resolver exists because scraping these sites does not work and cannot be
@@ -12,8 +12,8 @@ permalink returns HTTP 200 with no title at all, which the ``task:0032`` probe
 found for every LessWrong entry in the unresolved set. Open Graph has no way to
 succeed there, and no amount of retrying changes that.
 
-They are also a large and *growing* share of this corpus — the AI safety
-literature these chapters cite lives on these three sites as much as on arXiv —
+They are also a large and *growing* share of this corpus - the AI safety
+literature these chapters cite lives on these three sites as much as on arXiv -
 so leaving them to a last-resort scraper was always going to age badly.
 """
 
@@ -90,7 +90,7 @@ def _authors(result: dict[str, Any]) -> list[dict[str, str]] | None:
     """Submitter plus coauthors, as CSL literal names.
 
     ``literal`` and not a family/given split, deliberately: a display name on
-    these sites is a chosen handle — "johnswentworth", "So8res", "Zvi" — and
+    these sites is a chosen handle - "johnswentworth", "So8res", "Zvi" - and
     splitting one on its last space invents a surname that does not exist. This
     is exactly the case ``store.literal_name`` was written for.
     """
@@ -146,8 +146,8 @@ class ForumMagnumResolver:
             return None
 
         # GraphQL reports "no such post" as a 200 with `data.post.result: null`,
-        # which is an answer — the id in the URL is wrong or the post was
-        # deleted — and not something a retry would change.
+        # which is an answer - the id in the URL is wrong or the post was
+        # deleted - and not something a retry would change.
         result = ((body.get("data") or {}).get("post") or {}).get("result")
         if not isinstance(result, dict):
             return None

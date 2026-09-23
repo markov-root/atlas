@@ -22,7 +22,7 @@ engineering_document:
   authority:
     kind: work-state
     owner: Markov Grey
-    scope: Banks B8, B9 of task:0021 — the only networked part of phase 1
+    scope: Banks B8, B9 of task:0021 - the only networked part of phase 1
   created: '2026-09-21'
   updated: '2026-09-22'
   transition_history: unverified
@@ -54,13 +54,13 @@ The work is **long-tailed, not hard**. Of 1,001 unique URLs:
 
 **A fifth resolver exists locally and should be tried first.** The `research-database` corpus
 (4,735 articles, AI-safety and frontier-lab source material) holds a measured **7.9% of our cited
-URLs** — 78 of 987, established by driving the real resolver over every canonical URL in the corpus.
+URLs** - 78 of 987, established by driving the real resolver over every canonical URL in the corpus.
 For those, it returns title, `publication_date`, authors and a content hash: CSL-grade metadata,
 locally, with no rate limit and no third-party etiquette to observe.
 
 **Correction to an earlier figure in this record.** This task previously claimed 24%, from a 45-URL
 probe. That probe was **domain-biased and the number was wrong**: it sampled arXiv plus Alignment
-Forum, LessWrong, Epoch, Anthropic, DeepMind, METR and GovAI — which are precisely the organisations
+Forum, LessWrong, Epoch, Anthropic, DeepMind, METR and GovAI - which are precisely the organisations
 the corpus is built to cover. Measuring coverage on a sample drawn from the covered population
 estimates nothing about the whole. The honest figure is 7.9%, and it is three times worse than the
 one that motivated adding this resolver.
@@ -70,7 +70,7 @@ the resolver is written. But the argument for it is now "a useful free head star
 the work".
 
 **The `www.` retry is load-bearing.** The corpus indexes URLs by exact string match after lowercasing
-scheme and host only — no `www.` aliasing and no path normalization — while our canonical form strips
+scheme and host only - no `www.` aliasing and no path normalization - while our canonical form strips
 `www.` and roughly 39% of stored URLs carry it. Without a retry against the `www.` variant, 27 of the
 78 hits (2.7 percentage points) are silently lost.
 
@@ -79,7 +79,7 @@ scheme and host only — no `www.` aliasing and no path normalization — while 
 
 ## Scope
 
-### B8 — resolvers behind one interface
+### B8 - resolvers behind one interface
 
 Five independent implementations: **research-database**, arXiv, Crossref, oEmbed, Open Graph. Each
 takes a canonical URL and returns CSL fields or nothing. **They are independent of each other**,
@@ -96,7 +96,7 @@ four things decide it:
 2. **Scope differs.** That corpus holds frontier-AI and AI-safety source material. Our bibliography
    also cites Oxford Reference, MNIST, CIFAR, a Wikipedia image and YouTube lectures, which are
    correctly out of its scope and always will be.
-3. **The models answer different questions.** That corpus is provenance-first — its central
+3. **The models answer different questions.** That corpus is provenance-first - its central
    distinction is who *published* a document versus who wrote it versus what it is about. A
    bibliography is bibliographic-first: author, title, year, container. Both are right for their own
    purpose; neither should be bent into the other.
@@ -111,10 +111,10 @@ required and only the rendering is missing. Until that lands, this resolver maps
 Two mapping hazards recorded there: `authors[]` carries `{kind, label, resolved}` rather than
 family/given, and CSL requires an item `type` that has to be derived from `source_type`.
 
-### B9 — `atlas citations resolve`
+### B9 - `atlas citations resolve`
 
 **Incremental and idempotent: it touches only entries that are not yet filled.** This is the property
-that makes 604 entries tractable — the command is chipped at across many runs rather than requiring
+that makes 604 entries tractable - the command is chipped at across many runs rather than requiring
 one complete session, and re-running it is always safe. Interrupting it must lose at most the
 in-flight request.
 
@@ -126,7 +126,7 @@ its user agent, and backing off rather than hammering on failure.
 - **Making resolution a build step.** `task:0021` D4 is warn-never-block, and the stronger form of
   that promise is that the build never needs the network at all. `resolve` is a maintainer command,
   like `atlas pull` and the audio commands.
-- **`atlas citations archive`** — `task:0021` D3, separate.
+- **`atlas citations archive`** - `task:0021` D3, separate.
 - **Automatic preprint-versus-published merging** (`task:0021` edge case 2). Accept duplicates; a
   manual alias file is the phase-1 answer.
 - **Hand-curating the 604.** This task ships the machinery and whatever it can resolve automatically.
@@ -140,7 +140,7 @@ its user agent, and backing off rather than hammering on failure.
   first makes no network request and changes no file.
 - **AC-3:** Interrupting the command mid-run loses at most the in-flight request; resuming continues
   from where it stopped. Demonstrated, not asserted.
-- **AC-4:** Resolution rates are reported per resolver against the real corpus — how many of the 347
+- **AC-4:** Resolution rates are reported per resolver against the real corpus - how many of the 347
   arXiv, 35 DOI, 15 YouTube and 604 other URLs actually resolved. A number, not an estimate. The
   research-database resolver's real-world hit rate is reported against all 1,001 URLs, not against
   the 45-URL probe that motivated it.
@@ -168,21 +168,21 @@ Every claim re-verified against disk by the coordinator.
 
 - **arXiv returns HTTP 200 for a malformed id**, with `totalResults: 1` and an entry titled "Error"
   authored by "arXiv api core". Mapping that blindly fabricates a bibliography entry from an error
-  page. A nonexistent id, by contrast, returns 200 with an empty feed — two different failures behind
+  page. A nonexistent id, by contrast, returns 200 with an empty feed - two different failures behind
   the same status code.
 - **Alignment Forum renders its `og:` tags in the body, after `</head>`**, with no `<title>` at all. A
-  head-only reader misses those pages entirely — which matters, as it is the third-largest domain in
+  head-only reader misses those pages entirely - which matters, as it is the third-largest domain in
   the corpus.
 
 ## Authority and inputs
 
-- `task:0021` — parent; D2 (CSL) and D4 (warn, never block) bind this task.
-- `task:0025` — supplies canonicalization and the store. Hard dependency.
+- `task:0021` - parent; D2 (CSL) and D4 (warn, never block) bind this task.
+- `task:0025` - supplies canonicalization and the store. Hard dependency.
 - Domain histogram over the eight cached chapters, 2026-09-21, reproducible from `.cache/docs/`.
-- `task:0024` — build resources; this task must not add network calls or memory to the build.
-- `research-database` corpus — full measurement 2026-09-21: the real resolver driven over all 987
+- `task:0024` - build resources; this task must not add network calls or memory to the build.
+- `research-database` corpus - full measurement 2026-09-21: the real resolver driven over all 987
   canonical cited URLs returned 78 hits (7.9%), cross-checked against an independent string-equality
   simulation giving the same 78 (51 direct + 27 via the `www.` retry). This supersedes an earlier
   45-URL probe that reported 24%; that probe was drawn from corpus-covered organisations and was not
   a valid estimate of overall coverage.
-- `lesson:0001` — the credential-free contributor build, which point 4 above protects.
+- `lesson:0001` - the credential-free contributor build, which point 4 above protects.

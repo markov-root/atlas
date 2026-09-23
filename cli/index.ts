@@ -1,5 +1,5 @@
 /**
- * `atlas` — maintainer control surface.
+ * `atlas` - maintainer control surface.
  *
  * Dispatch only. Every command is an importable function in cli/commands/ so it
  * can be unit-tested without going through argv; this file must stay free of
@@ -9,18 +9,18 @@
  * Since `task:0029` the citation pipeline spans two languages. TypeScript walks
  * the document AST and writes `data/citations/citations.json`; Python owns the
  * resolvers, the CSL store and every export. D3 keeps `atlas` as the single
- * entry point, so that split is invisible here at the command line — the three
+ * entry point, so that split is invisible here at the command line - the three
  * verbs that read the documents run `scan` first and then hand over.
  *
  * Contributor-facing lifecycle commands stay in package.json (`pnpm dev`,
- * `check`, `verify`) — they are referenced by the pre-push hook, CI and
+ * `check`, `verify`) - they are referenced by the pre-push hook, CI and
  * CONTRIBUTING.md, and moving them would break all three for no gain.
  */
 import { docsCheck } from './commands/docs-check.js';
 import { citationsScan } from './commands/citations/scan.js';
 import { PYTHON_VERBS, runPython } from './commands/citations/python.js';
 
-const USAGE = `atlas — AI Safety Atlas maintainer commands
+const USAGE = `atlas - AI Safety Atlas maintainer commands
 
   atlas docs check         verify governed documents against docs/standards/documentation.md
   atlas citations scan     read citations from the cached documents into citations.json

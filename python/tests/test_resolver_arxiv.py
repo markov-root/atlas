@@ -43,7 +43,7 @@ MULTI_AUTHOR = """<?xml version="1.0" encoding="UTF-8"?>
 
 # The real shape that broke the TypeScript resolver: arXiv puts
 # <arxiv:affiliation> between </name> and </author>, which its regex
-# `<author>\s*<name>(.*?)</name>\s*</author>` could not match — so the lazy
+# `<author>\s*<name>(.*?)</name>\s*</author>` could not match - so the lazy
 # quantifier ran on to a LATER </name></author> pair and swallowed hundreds of
 # authors into one name. See audit:0011 F11.
 AFFILIATED = """<?xml version="1.0" encoding="UTF-8"?>
@@ -137,7 +137,7 @@ class TestMapping:
 
 
 class TestAffiliations:
-    """audit:0011 F11 — the defect that put 96 KB of raw XML in one author name."""
+    """audit:0011 F11 - the defect that put 96 KB of raw XML in one author name."""
 
     def test_an_affiliation_between_name_and_author_does_not_swallow_the_list(self) -> None:
         out = arxiv_resolver.resolve("https://arxiv.org/abs/2303.08774", feed_ctx(AFFILIATED))
@@ -191,7 +191,7 @@ class TestFailureModes:
     def test_an_empty_feed_is_still_a_decline(self) -> None:
         """The distinction has to cut both ways or it is not a distinction.
 
-        HTTP 200 with no entries is arXiv saying "no such paper" — a real answer,
+        HTTP 200 with no entries is arXiv saying "no such paper" - a real answer,
         and one that should let the next resolver try.
         """
         feed = '<?xml version="1.0"?><feed xmlns="http://www.w3.org/2005/Atom"></feed>'

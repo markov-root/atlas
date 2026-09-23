@@ -47,7 +47,7 @@ class TestOrdering:
         assert RESOLVER_ORDER[-1] == "wayback"
 
     def test_never_blocks_the_chain(self) -> None:
-        """Non-selective, like Open Graph — it claims every URL, so its claim is
+        """Non-selective, like Open Graph - it claims every URL, so its claim is
         no evidence of authority and it gets no veto."""
         assert wayback_resolver.selective is False
 
@@ -81,7 +81,7 @@ class TestResolve:
         assert out.note is not None and "no longer exists" in out.note
 
     def test_no_snapshot_declines(self) -> None:
-        """Coverage is genuinely partial — 2 of 4 sampled corpus dead links had one."""
+        """Coverage is genuinely partial - 2 of 4 sampled corpus dead links had one."""
         ctx = make_ctx_json({"archived_snapshots": {}})
         assert wayback_resolver.resolve(DEAD, ctx) is None
         assert snapshot_for(DEAD, ctx) is None
@@ -104,7 +104,7 @@ class TestTheReportStillCallsItDead:
         """The archive rescues refused and flaky pages too.
 
         Telling an author 25 citations are dead when 17 merely sit behind a WAF
-        sends them to fix what is not broken — which is the whole reason a 403 is
+        sends them to fix what is not broken - which is the whole reason a 403 is
         excluded from this section in the first place.
         """
         entry = entry_from_anchor(DEAD, "X, 2024", {"author": "X", "year": "2024"})

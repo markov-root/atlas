@@ -22,9 +22,9 @@ function tracked(latex: string, describer: EquationDescriber, paths: string[]): 
 // LLM-generated descriptions sound wrong when read aloud. They MUST win
 // over both the on-disk cache and any API call. If this breaks, a
 // maintainer who fixed a mispronounced equation in code will hear the bad
-// description return on the next audio build — and there's no surface
+// description return on the next audio build - and there's no surface
 // signal that the override was ignored.
-describe('EquationDescriber — manual overrides have priority over cache and API', () => {
+describe('EquationDescriber - manual overrides have priority over cache and API', () => {
   it('returns the manual override for known LaTeX strings, ignoring cache and API key state', () => {
     const d = new EquationDescriber(undefined);
     expect(d.getDescription('n L_n (w^)', 'display')).toBe('n times L sub n of w-hat');
@@ -47,7 +47,7 @@ describe('EquationDescriber — manual overrides have priority over cache and AP
 // described. If cache reads break, every build re-hits Gemini and either
 // blows past quota mid-build (failing audio for half the textbook) or
 // produces inconsistent descriptions for the same equation across builds.
-describe('EquationDescriber — on-disk cache rehydration', () => {
+describe('EquationDescriber - on-disk cache rehydration', () => {
   const writtenPaths: string[] = [];
 
   afterEach(() => {
@@ -71,7 +71,7 @@ describe('EquationDescriber — on-disk cache rehydration', () => {
   it('getDescription() reads the cache on demand even when queue() was skipped', () => {
     // The text-renderer may ask for a description for an equation that was
     // never queued (e.g., a late-arriving node). It should still find the
-    // cached description if one exists — otherwise the renderer falls
+    // cached description if one exists - otherwise the renderer falls
     // back to reading raw LaTeX aloud.
     mkdirSync(CACHE_DIR, { recursive: true });
     const d = new EquationDescriber(undefined);
@@ -87,8 +87,8 @@ describe('EquationDescriber — on-disk cache rehydration', () => {
 // crashing or stalling. The describer becomes a no-op that returns null,
 // and the text-renderer falls back to a readable phrase. If this breaks,
 // contributor builds will either hang or fail outright on any chapter
-// that contains equations — i.e. most of the textbook.
-describe('EquationDescriber — graceful no-op when no API key is configured', () => {
+// that contains equations - i.e. most of the textbook.
+describe('EquationDescriber - graceful no-op when no API key is configured', () => {
   it('returns null for any non-cached, non-overridden equation', () => {
     const d = new EquationDescriber(undefined);
     expect(d.getDescription(testLatex('totally-unknown'), 'inline')).toBeNull();

@@ -1,8 +1,8 @@
-"""The arXiv resolver — the biggest single win in the corpus (303 of 948 sources).
+"""The arXiv resolver - the biggest single win in the corpus (303 of 948 sources).
 
 The arXiv API (``export.arxiv.org/api/query``) answers one id with an Atom feed
-of title, authors as full-name strings, a published timestamp, a summary, and —
-for papers that already have one — the published DOI.
+of title, authors as full-name strings, a published timestamp, a summary, and -
+for papers that already have one - the published DOI.
 
 Ported from ``arxiv.ts`` under ``task:0029``, and the port removes a stated
 limitation rather than carrying it across. The TypeScript version extracted
@@ -19,7 +19,7 @@ parsing is where the risk was, and that is what has been handed to a library.
 
 Two response shapes are still answered ``None`` rather than mapped, because both
 would otherwise fabricate a bibliography entry: an empty feed (HTTP 200, zero
-entries — a nonexistent id) and the *error entry* — a malformed id still returns
+entries - a nonexistent id) and the *error entry* - a malformed id still returns
 HTTP 200 with a single entry titled "Error" authored by "arXiv api core".
 """
 
@@ -35,7 +35,7 @@ from ..store import CslName, infer_container_title
 from ._http import get_text_capped
 from .base import ResolverContext, ResolveResult, Unreachable
 
-#: Remote service, so more slack than the LAN corpus — but never unbounded.
+#: Remote service, so more slack than the LAN corpus - but never unbounded.
 TIMEOUT_S = 10.0
 
 #: An Atom feed for a single entry is small; this is a sanity bound, not a filter.
@@ -59,7 +59,7 @@ def _split_name(full: str) -> CslName:
     """arXiv gives full names as single strings; split on the last space.
 
     This puts most Western names into family/given correctly. Multi-word family
-    names ("van der Berg", transliterated East Asian orders) come out wrong — the
+    names ("van der Berg", transliterated East Asian orders) come out wrong - the
     given part absorbs the extra words. Accepted over a ``literal`` name because
     the split is right for the large majority and wrong for almost none of this
     corpus's authors, while ``literal`` degrades every inverted-name style for
@@ -123,7 +123,7 @@ class ArxivResolver:
         entry = feed.entries[0]
 
         # The malformed-id shape: a 200 response whose only entry is the API's
-        # own error record. Detected by its id, not its title — the title is
+        # own error record. Detected by its id, not its title - the title is
         # prose that could change.
         if "arxiv.org/api/errors" in entry.get("id", ""):
             return None
@@ -134,14 +134,14 @@ class ArxivResolver:
             return None
 
         # Preprint: the published version, if any, is a different entry keyed by
-        # its DOI (task:0021 edge case 2 — duplicates are accepted in phase 1).
+        # its DOI (task:0021 edge case 2 - duplicates are accepted in phase 1).
         fields: dict[str, Any] = {
             "type": "article",
             "title": _collapse(title),
             # arXiv is where this preprint was published, and saying so is what
             # lets a reader filter the bibliography by source (task:0030 AC-7).
-            # Without it the single largest group in the corpus — over 300
-            # entries — has no source at all. Read from the store's table rather
+            # Without it the single largest group in the corpus - over 300
+            # entries - has no source at all. Read from the store's table rather
             # than written here, so the extractor and this resolver cannot
             # disagree about what arxiv.org is called.
             "container-title": infer_container_title(canonical_url) or "arXiv",

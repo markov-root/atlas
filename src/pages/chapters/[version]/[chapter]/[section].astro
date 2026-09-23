@@ -99,11 +99,11 @@ const lecture = resolveResource(chapter.meta.lecture);
 const paper = resolveResource(chapter.meta.paper);
 ---
 <Fragment set:html={`<!--
-    AI Safety Atlas — the open textbook for AI Safety
+    AI Safety Atlas - the open textbook for AI Safety
     Published by the French Center for AI Safety (CeSIA)
     https://ai-safety-atlas.com
 
-    This page: Chapter ${chapter.number}, Section ${section.number} — ${section.title}
+    This page: Chapter ${chapter.number}, Section ${section.number} - ${section.title}
     Authors: ${chapter.meta.authors.map(a => a.name).join(', ')}
     Version: ${version}
 
@@ -241,7 +241,7 @@ const paper = resolveResource(chapter.meta.paper);
                                     <Icon name="tabler:markdown" class="size-4.5 text-gray-500 shrink-0" />
                                     <a href={chapterMarkdownUrl} download class="text-[15px] text-gray-700 underline decoration-gray-300 underline-offset-2 hover:text-gray-900 hover:decoration-gray-500 transition-colors">Download chapter as markdown</a>
                                 </li>
-                                {/* task:0021 D5 — the chapter's bibliography belongs with the
+                                {/* task:0021 D5 - the chapter's bibliography belongs with the
                                     chapter's other whole-chapter resources, not inside one section. */}
                                 <li class="flex items-center gap-2.5">
                                     <span class="text-gray-400 text-xl leading-none">&bull;</span>
@@ -337,7 +337,7 @@ const paper = resolveResource(chapter.meta.paper);
         </section>
         )}
 
-        {/* task:0021 D5 — the section's references sit after its footnotes, which is
+        {/* task:0021 D5 - the section's references sit after its footnotes, which is
             where a reader who has just followed a citation expects to land. */}
         <Bibliography references={sectionReferences(section)} />
 

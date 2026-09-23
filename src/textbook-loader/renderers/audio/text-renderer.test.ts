@@ -27,13 +27,13 @@ function node(name: string, attributes: Record<string, unknown> = {}, children: 
 const span = (content: string) => node('Span', { content });
 const paragraph = (...children: Node[]) => node('Paragraph', {}, children);
 
-// Citations like "(Smith, 2023)" are visible noise when spoken aloud — a
+// Citations like "(Smith, 2023)" are visible noise when spoken aloud - a
 // narrator reading "(Smith comma 2023)" pulls listeners out of the prose.
 // The audio pipeline strips them before TTS. If these tests fail, generated
 // audio for any chapter that cites academic sources (most of them) will
 // either re-introduce the noise or, worse, drop legitimate parenthetical
 // prose. Both manifest as a listener-facing quality regression.
-describe('TextRenderer — citation stripping for spoken text', () => {
+describe('TextRenderer - citation stripping for spoken text', () => {
   it('strips single-author citations like "(Smith, 2023)"', () => {
     const r = makeRenderer();
     const out = r.renderNodes([
@@ -55,7 +55,7 @@ describe('TextRenderer — citation stripping for spoken text', () => {
 
   it('drops paragraphs that become empty after citation stripping', () => {
     // A paragraph containing nothing but a citation should not produce a
-    // standalone silent gap in the audio — the entry is omitted entirely.
+    // standalone silent gap in the audio - the entry is omitted entirely.
     const r = makeRenderer();
     const out = r.renderNodes([paragraph(span('(Smith, 2020)'))]);
     expect(out).toEqual([]);
@@ -68,7 +68,7 @@ describe('TextRenderer — citation stripping for spoken text', () => {
 // only their visible text, glossary terms speak their matched text. If
 // these contracts break, audio listeners hear either URL/footnote noise or
 // dropped sentence fragments.
-describe('TextRenderer — inline link / glossary / footnote handling for spoken text', () => {
+describe('TextRenderer - inline link / glossary / footnote handling for spoken text', () => {
   it('speaks Link visible text only (not the URL)', () => {
     const r = makeRenderer();
     const out = r.renderNodes([
@@ -104,7 +104,7 @@ describe('TextRenderer — inline link / glossary / footnote handling for spoken
 // with a clear fallback string when one is not available. If these
 // contracts break, listeners hear either garbled symbol-by-symbol LaTeX or
 // silence where an equation should be.
-describe('TextRenderer — equation handling and describer integration', () => {
+describe('TextRenderer - equation handling and describer integration', () => {
   it("uses the describer's description for inline equations when available", () => {
     const stub = new StubDescriber();
     stub.preset('x^2', 'x squared');

@@ -6,8 +6,8 @@ the 132 unresolved entries live behind a publisher WAF or a paywall, 29 are PDFs
 with an empty metadata dictionary, and a further 11 are pages that no longer
 exist at all.
 
-For those, a human reads the page — they cited it, so they have read it once
-already — and records what it is. This file is where that judgement lives.
+For those, a human reads the page - they cited it, so they have read it once
+already - and records what it is. This file is where that judgement lives.
 
 **Why not hand-edit the store instead?** ``task:0032`` D4. ``sources.yaml`` is
 1.2 MB of generated YAML, so an entry typed into it by hand is invisible in
@@ -18,7 +18,7 @@ lets the store stay disposable.
 Precedence is **override → resolver → anchor**, and an override is never
 overwritten: ``resolve`` skips an entry it owns, and ``--redo`` refuses to target
 it. The same posture ``task:0031`` takes for aliases and ``task:0021`` D1 takes
-for identity — where a machine cannot know, a human records the answer and the
+for identity - where a machine cannot know, a human records the answer and the
 tool stops guessing.
 """
 
@@ -39,7 +39,7 @@ OVERRIDES_PATH = Path("data") / "citations" / "overrides.yaml"
 #: resolver name: nothing resolved this, someone decided it.
 OVERRIDE_SOURCE = "override"
 
-FILE_HEADER = """# Reviewed citation metadata — hand-written, never generated.
+FILE_HEADER = """# Reviewed citation metadata - hand-written, never generated.
 #
 # One block per canonical URL, holding CSL fields that override whatever the
 # resolvers found (or failed to find). See task:0032 D4.
@@ -124,7 +124,7 @@ def apply_override(entry: StoreEntry, fields: CslItem) -> StoreEntry:
 def apply_overrides(store: Store, overrides: dict[str, CslItem]) -> tuple[Store, list[str]]:
     """Apply every override that matches a store entry.
 
-    Returns the new store and the keys that matched nothing — a URL in the
+    Returns the new store and the keys that matched nothing - a URL in the
     overrides file with no entry behind it is almost always a typo or a citation
     that has since been edited out of the prose, and silently ignoring it is how
     a file like this rots.

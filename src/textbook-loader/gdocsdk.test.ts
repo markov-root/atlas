@@ -91,7 +91,7 @@ describe("DocsSDK.fetchDoc cache decisions", () => {
   it("contributor (no creds): cache hit returns cached even when images missing", async () => {
     // Pointing assetsPath at an empty temp dir so imagesExist would return
     // false. But with no client, the safety check is skipped and we still
-    // serve the cached doc — that's the contributor degradation path.
+    // serve the cached doc - that's the contributor degradation path.
     const empty = mkdtempSync(join(tmpdir(), "atlas-empty-"));
     try {
       const sdk = new DocsSDK(null, empty);
@@ -150,7 +150,7 @@ describe("DocsSDK.fetchDoc cache decisions", () => {
       const sdk = new DocsSDK(FAKE_CREDS, empty, undefined, false);
       // Real cache hit, but assetsPath is empty so imagesExist returns false.
       // The branch falls through to client.documents.get, which will fail
-      // because FAKE_CREDS isn't a real key — that's expected.
+      // because FAKE_CREDS isn't a real key - that's expected.
       await expect(
         sdk.fetchDoc(KNOWN_DOC.docId, KNOWN_DOC.tabId),
       ).rejects.toBeDefined();

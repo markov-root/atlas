@@ -59,10 +59,13 @@ class TestCitationMeta:
         assert citation_meta("<html><head><title>x</title></head></html>") == {}
 
     def test_decodes_html_entities_in_meta_content(self) -> None:
+        # Named and numeric entities both. The numeric one used to be an em dash
+        # until the repository forbade them; the test is about decoding, not
+        # about which character, so it moved rather than earning an exemption.
         meta = citation_meta(
-            '<meta name="citation_title" content="Cats &amp; Dogs &#8212; A Study"/>'
+            '<meta name="citation_title" content="Caf&eacute; &amp; Co&#8482; A Study"/>'
         )
-        assert meta["citation_title"][0] == "Cats & Dogs — A Study"
+        assert meta["citation_title"][0] == "Caf\u00e9 & Co\u2122 A Study"
 
     def test_reads_unquoted_attributes_the_regex_version_could_not(self) -> None:
         """A parser handles what the TypeScript's regex documented as unhandled."""
@@ -163,7 +166,7 @@ class TestResolve:
         assert out.fields["DOI"] == "10.1038/nature09659"
         assert out.fields["container-title"] == "Nature"
         assert any("api.crossref.org" in c for c in calls)
-        # URL must stay the cited one, not doi.org — the entry's identity.
+        # URL must stay the cited one, not doi.org - the entry's identity.
         assert out.fields["URL"] == "https://nature.com/articles/nature09659"
 
     def test_falls_back_to_page_metadata_when_crossref_has_no_record(self) -> None:
@@ -216,7 +219,7 @@ class TestResolve:
     def test_a_publisher_waf_is_refused_not_declined(self) -> None:
         """The most common outcome on these hosts: 57 of the corpus's 132.
 
-        A 403 says nothing whatever about the paper — only that we were not
+        A 403 says nothing whatever about the paper - only that we were not
         allowed to look. Recording it as a decline let Open Graph write the
         bot-check page's title into the bibliography (``audit:0011`` F13).
         """

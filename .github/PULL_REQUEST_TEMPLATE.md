@@ -4,7 +4,7 @@
 
 ## Linked issue
 
-<!-- Closes #N, or "no issue — describe in summary" -->
+<!-- Closes #N, or "no issue - describe in summary" -->
 
 ## Test plan
 

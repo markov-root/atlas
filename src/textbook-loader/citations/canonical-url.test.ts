@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { canonicalizeUrl, isAssetUrl } from './canonical-url';
 
-describe('canonicalizeUrl — arXiv (task:0025 AC-3)', () => {
+describe('canonicalizeUrl - arXiv (task:0025 AC-3)', () => {
   // The headline case: the corpus cites the same paper as /abs and /pdf, and
   // without this they would be two bibliography entries for one work.
   it('collapses /abs, /pdf, /pdf.pdf and /html to one key', () => {
@@ -39,7 +39,7 @@ describe('canonicalizeUrl — arXiv (task:0025 AC-3)', () => {
   });
 });
 
-describe('canonicalizeUrl — DOI and YouTube', () => {
+describe('canonicalizeUrl - DOI and YouTube', () => {
   it('normalizes DOI resolver prefixes and case', () => {
     const want = 'https://doi.org/10.1038/s41586-021-03819-2';
     for (const v of [
@@ -58,7 +58,7 @@ describe('canonicalizeUrl — DOI and YouTube', () => {
   });
 });
 
-describe('canonicalizeUrl — general rules', () => {
+describe('canonicalizeUrl - general rules', () => {
   it('upgrades scheme, lowercases host, strips www and trailing slash', () => {
     expect(canonicalizeUrl('http://WWW.Epoch.AI/blog/some-post/')).toBe(
       'https://epoch.ai/blog/some-post',

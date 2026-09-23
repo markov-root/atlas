@@ -52,7 +52,7 @@ class TestClaims:
     def test_a_comment_permalink_keeps_its_post_id(self) -> None:
         """The bibliography cites the post; a comment has no title of its own.
 
-        This is the shape Open Graph could never handle — the page renders
+        This is the shape Open Graph could never handle - the page renders
         client-side and a plain fetch returns no title at all.
         """
         url = "https://lesswrong.com/posts/puv8fRDCH9jx5yhbX?commentId=aBcAh8H9cSzdXm"
@@ -116,7 +116,7 @@ class TestResolve:
         assert out.fields["URL"] == cited
 
     def test_a_deleted_post_declines_rather_than_reporting_unreachable(self) -> None:
-        """GraphQL says "no such post" with a 200 and a null result — a verdict."""
+        """GraphQL says "no such post" with a 200 and a null result - a verdict."""
         payload = {"data": {"post": {"result": None}}}
         out = forum_magnum_resolver.resolve(
             "https://www.lesswrong.com/posts/puv8fRDCH9jx5yhbX/x",

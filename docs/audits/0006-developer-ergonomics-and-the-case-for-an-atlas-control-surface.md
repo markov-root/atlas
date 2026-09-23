@@ -38,7 +38,7 @@ engineering_document:
     method: 'Static inspection of package.json, scripts/, .github/workflows/, astro.config.mjs, and process.env reads; no command executed'
     limitations:
       - 'No operation was run end to end; friction is inferred from invocation shape, not measured'
-      - 'No timing data — "expensive" claims come from code comments, not measurement'
+      - 'No timing data - "expensive" claims come from code comments, not measurement'
       - 'Single-maintainer workflow was not observed directly; inferred from docs and script headers'
 ---
 
@@ -73,7 +73,7 @@ infrastructure §10 warns against and a recommendation has to engage with that.
 
 ## Findings
 
-### F1 — The two highest-value maintainer operations have no direct invocation
+### F1 - The two highest-value maintainer operations have no direct invocation
 
 _Observation._ Refreshing content from Google Docs and generating audio are both reachable **only**
 as side effects of a full `astro build`, gated by environment variables:
@@ -94,9 +94,9 @@ The operations already exist as code; what is missing is an addressable name for
 consequence for blast radius: because the only invocation is "whole build", a maintainer who wants
 one chapter's audio has no way to ask for less.
 
-### F2 — Operator knowledge lives in file headers, not in a discoverable surface
+### F2 - Operator knowledge lives in file headers, not in a discoverable surface
 
-_Observation._ The two files in `scripts/` are unusually well documented — and entirely by prose
+_Observation._ The two files in `scripts/` are unusually well documented - and entirely by prose
 comment:
 
 - `scripts/copy-chapter-audio.sh` (146 lines) opens with a ~30-line header explaining two acquisition
@@ -107,13 +107,13 @@ comment:
 `pnpm run` lists the 16 `package.json` scripts. Neither of these two operations appears in that list.
 Discovering them requires `ls scripts/`, and understanding them requires opening the file.
 
-_Inference._ `swap-cbr-audio.ts` has already independently invented the conventions of a CLI —
+_Inference._ `swap-cbr-audio.ts` has already independently invented the conventions of a CLI -
 dry-run by default, explicit `--yes` to act, positional filter argument. The shape of the control
 surface is not hypothetical; it is already present, just not addressable or discoverable. The quality
 of these headers is a point in the project's favour, but prose in a file the reader has to already
 know about is the least discoverable place for it.
 
-### F3 — The env surface is larger than the schema declares
+### F3 - The env surface is larger than the schema declares
 
 _Observation._ `astro.config.mjs` declares 13 fields via `envField`. Four further variables are read
 directly from `process.env` in `src/` and never appear in that schema:
@@ -127,13 +127,13 @@ directly from `process.env` in `src/` and never appear in that schema:
 
 A fifth, `ATLAS_AUDIO_SRC`, is read only by `scripts/copy-chapter-audio.sh`.
 
-_Inference._ `SKIP_AUDIO_DOWNLOAD` is **not** an oversight — `docs/PRINCIPLES.md:29` names it
+_Inference._ `SKIP_AUDIO_DOWNLOAD` is **not** an oversight - `docs/PRINCIPLES.md:29` names it
 explicitly as a sanctioned local-dev escape hatch, and `CONTRIBUTING.md:72` and
 `docs/ARCHITECTURE.md:208` both document it. The other three are undocumented model/voice overrides
 with hardcoded defaults. The finding is not "these are wrong" but that the schema is no longer a
 complete inventory, so `astro.config.mjs` cannot be used as the one place to learn what is tunable.
 
-### F4 — `lint:actions` embeds shell logic in a JSON string
+### F4 - `lint:actions` embeds shell logic in a JSON string
 
 _Observation._ `package.json`:
 
@@ -149,7 +149,7 @@ use. It is a small instance of the general pattern: when an operation outgrows o
 `package.json` scripts field has nowhere for it to go, so it gets crammed in anyway. It is a
 one-line example of the pressure a control surface would relieve.
 
-### F5 — The `atlas lint` the owner envisages has no existing home
+### F5 - The `atlas lint` the owner envisages has no existing home
 
 _Observation._ The owner's envisaged surface includes prose/voice quality checks and dead-link
 checking. Neither exists. `docs/ROADMAP.md` §Next already plans a "Link checker (lychee, scheduled)";
@@ -157,9 +157,9 @@ there is no plan of record for prose or voice checks.
 
 _Inference._ These are net-new capabilities rather than renamings of existing ones, which makes them
 weaker justification for the control surface than F1 and F2. They are better read as evidence about
-_direction_ — the owner expects the operation count to grow — than as present need.
+_direction_ - the owner expects the operation count to grow - than as present need.
 
-### F6 — The comparison reference is more separated than Atlas needs
+### F6 - The comparison reference is more separated than Atlas needs
 
 _Observation._ `~/Git/CoP Dataset/bin/cop` is 6 lines: `cd` to the repo root and
 `exec uv run python -m utility "$@"`. Its header states the adapter is deliberately logic-free and
@@ -172,15 +172,15 @@ The three-equivalent-entry-points property is driven by Python packaging and ins
 scripts; Atlas is a pnpm/TypeScript repo where the equivalent is a `tsx` entry point, and copying the
 Python shape literally would be cargo-culting.
 
-### F7 — The current surface is not, on its own evidence, broken
+### F7 - The current surface is not, on its own evidence, broken
 
 _Observation._ 16 `package.json` scripts, of which 4 are thin Astro pass-throughs (`dev`, `build`,
 `preview`, `astro`) and 2 are documented composites (`check`, `verify`). They use `:` as informal
 namespacing (`test:smoke`, `test:a11y`, `lint:actions`, `format:check`). Two CI workflows exist.
 `docs/PRINCIPLES.md:123` states YAGNI: "don't speculate, but build when demand is real."
 
-_Inference._ Recorded deliberately as the counter-case. A day-to-day contributor's loop — `pnpm dev`,
-`pnpm check`, `pnpm verify` — is well served today, and nothing in this audit shows that loop failing.
+_Inference._ Recorded deliberately as the counter-case. A day-to-day contributor's loop - `pnpm dev`,
+`pnpm check`, `pnpm verify` - is well served today, and nothing in this audit shows that loop failing.
 The case for a control surface rests entirely on the **maintainer** operations in F1 and F2, not on
 the contributor loop. An audit that ignored this would be advocacy rather than evidence.
 
@@ -201,7 +201,7 @@ the contributor loop. An audit that ignored this would be advocacy rather than e
 ## Recommendations
 
 The owner stated a lean toward the `bin/` approach and asked the audit for evidence. **The evidence
-supports it, but narrowly and for a specific reason** — not because 16 scripts is too many, but
+supports it, but narrowly and for a specific reason** - not because 16 scripts is too many, but
 because F1 shows two significant operations have _no_ invocation at all, and F2 shows a third already
 CLI-shaped but undiscoverable.
 
@@ -217,19 +217,19 @@ CLI-shaped but undiscoverable.
 
    Risk: this is new infrastructure in a repo whose §10 is YAGNI. The mitigation is that three of
    these four wrap code that already exists, so the first version is an addressing layer rather than
-   new capability. **Do not build `atlas lint` in the first pass** (F5) — it is net-new capability,
+   new capability. **Do not build `atlas lint` in the first pass** (F5) - it is net-new capability,
    and bundling it would convert a justified refactor into a speculative one.
 
 2. **Keep `bin/atlas` logic-free; put the logic in a testable TypeScript module (F6). Size S,
    inside 1.** Follow the _separation_ from `bin/cop`, not its Python shape: a short shell adapter
    that `exec`s a `tsx` entry point, with commands as ordinary importable functions. This is what
-   makes the surface testable — the current `scripts/` operations have no tests, and a CLI that is
+   makes the surface testable - the current `scripts/` operations have no tests, and a CLI that is
    mostly `process.argv` parsing around imported functions can have them. Risk: low.
 
 3. **Leave `package.json` scripts alone (F7). Size zero.** `dev`, `build`, `check`, `verify` are the
    contributor-facing loop, they are referenced by `CONTRIBUTING.md`, `AGENTS.md`, the pre-push hook,
-   and CI, and this audit found no problem with them. Two surfaces with distinct audiences —
-   contributor lifecycle in `package.json`, maintainer operations in `atlas` — is the honest split.
+   and CI, and this audit found no problem with them. Two surfaces with distinct audiences -
+   contributor lifecycle in `package.json`, maintainer operations in `atlas` - is the honest split.
    Risk of ignoring this: a migration that moves `pnpm verify` into `atlas verify` breaks the git
    hook and both workflows for no gain.
 
@@ -259,5 +259,5 @@ surface the owner sketched: build the addressing layer for operations that alrea
 Per `handoff:0002` §Constraints, a design task record should be written and agreed before any code is
 written. Recommendation 1's command table is the proposed starting scope for that record.
 
-If the owner prefers, declining entirely is defensible on F7 alone — but it leaves F1 unaddressed,
+If the owner prefers, declining entirely is defensible on F7 alone - but it leaves F1 unaddressed,
 and F1 is a real gap rather than a matter of taste.

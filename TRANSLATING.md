@@ -4,37 +4,37 @@ We want translations. This doc is what you need to start one.
 
 ## What you're translating
 
-The reference for translators is **Edition 1** — the current state of the English textbook. There's no minor-version ceremony to track; readers see "Edition 1" and that's the unit you translate against. The maintainer will let you know if and when Edition 1 changes enough that you'd want to incorporate the delta.
+The reference for translators is **Edition 1** - the current state of the English textbook. There's no minor-version ceremony to track; readers see "Edition 1" and that's the unit you translate against. The maintainer will let you know if and when Edition 1 changes enough that you'd want to incorporate the delta.
 
 ## Before you start
 
 Open a GitHub issue titled `[Translation] {Language}` (e.g. `[Translation] Spanish`) with:
 
 - **Target language code** in [BCP 47](https://www.rfc-editor.org/info/bcp47) form (e.g. `es`, `fr`, `pt-BR`)
-- **Brief introduction** — your background, why you're interested, links if relevant
-- **Solo or team** — roughly how many people
-- **Rough timeline** — weeks, months, etc. (no commitment, just so we can plan)
+- **Brief introduction** - your background, why you're interested, links if relevant
+- **Solo or team** - roughly how many people
+- **Rough timeline** - weeks, months, etc. (no commitment, just so we can plan)
 
 The maintainer will:
 
 1. Confirm there isn't already an in-flight translation for your language
-2. Set up your working Google Docs (one per chapter — described below) and share them with you
+2. Set up your working Google Docs (one per chapter - described below) and share them with you
 3. Help connect you to adjacent translators if relevant
 
 You never need to touch Git, Astro, or any code. The whole translator workflow happens in Google Docs.
 
 ## How the working Docs are organized
 
-For each translation, the maintainer creates **8 new Google Docs** — one per chapter — by copying the canonical English Docs. These copies are yours to work in; the canonical English Docs are never touched by translators.
+For each translation, the maintainer creates **8 new Google Docs** - one per chapter - by copying the canonical English Docs. These copies are yours to work in; the canonical English Docs are never touched by translators.
 
 Each of your 8 chapter Docs has **two tabs**:
 
 | Tab                             | Purpose                                                                       | Edit it?                     |
 | ------------------------------- | ----------------------------------------------------------------------------- | ---------------------------- |
-| `English (Edition 1 reference)` | A frozen snapshot of the English chapter at the time your translation started | No — read-only by convention |
-| `{Your-language} translation`   | Where you do the work                                                         | Yes — this is your tab       |
+| `English (Edition 1 reference)` | A frozen snapshot of the English chapter at the time your translation started | No - read-only by convention |
+| `{Your-language} translation`   | Where you do the work                                                         | Yes - this is your tab       |
 
-The reference tab sits in the same Doc as your translation, so you can flip between them when checking nuance or context. The reference is **frozen** — if the canonical English Doc gets edited after your translation starts, the reference tab doesn't auto-update. The maintainer will flag substantive deltas in your registration issue; minor edits don't propagate.
+The reference tab sits in the same Doc as your translation, so you can flip between them when checking nuance or context. The reference is **frozen** - if the canonical English Doc gets edited after your translation starts, the reference tab doesn't auto-update. The maintainer will flag substantive deltas in your registration issue; minor edits don't propagate.
 
 If the maintainer eventually refreshes your reference snapshot (e.g. before you start a new chapter, or after an Edition 1 update you choose to incorporate), they'll do it deliberately, in conversation with you.
 
@@ -42,7 +42,7 @@ If the maintainer eventually refreshes your reference snapshot (e.g. before you 
 
 ### 1. Get a sanity-check partner
 
-Before you start translating, identify a **second person fluent in the target language with some ML / AI-safety background**. They review your translation for both linguistic and technical accuracy. This is non-negotiable — solo translations don't get merged, because we can't independently verify accuracy. If you can't find one, say so in the issue thread; we'll help connect you to the community.
+Before you start translating, identify a **second person fluent in the target language with some ML / AI-safety background**. They review your translation for both linguistic and technical accuracy. This is non-negotiable - solo translations don't get merged, because we can't independently verify accuracy. If you can't find one, say so in the issue thread; we'll help connect you to the community.
 
 ### 2. Confirm your Docs are set up
 
@@ -50,11 +50,11 @@ After the maintainer creates your 8 chapter Docs, they'll share them with you (e
 
 ### 3. Establish your glossary
 
-Technical terms — alignment, RLHF, deceptive alignment, mesa-optimizer, capability overhang, etc. — need consistent translations across the whole textbook. Create a separate Google Doc titled `Atlas Glossary [your language]`. Add terms as you encounter them; decide once, use the decision everywhere.
+Technical terms - alignment, RLHF, deceptive alignment, mesa-optimizer, capability overhang, etc. - need consistent translations across the whole textbook. Create a separate Google Doc titled `Atlas Glossary [your language]`. Add terms as you encounter them; decide once, use the decision everywhere.
 
 If a translation in your language is already in progress, ask the existing translator(s) for their glossary doc and inherit those decisions. Each language has its own glossary.
 
-Glossary terms eventually get added to the repo (see "How the glossary lands in the site" below), but you don't need to do that yourself — the maintainer handles it.
+Glossary terms eventually get added to the repo (see "How the glossary lands in the site" below), but you don't need to do that yourself - the maintainer handles it.
 
 ### 4. Translate
 
@@ -88,11 +88,11 @@ From the next deploy, your translation appears at `/{lang}/chapters/v1/...` on t
 | Citation titles                              | Translate only if the paper has an official translated version |
 | Figure images (the visuals themselves)       | The captions translate; the images stay                        |
 
-Translate everything else — chapter prose, headings, figure captions, footnotes, callouts, sidebars, definitions, alt text on figures.
+Translate everything else - chapter prose, headings, figure captions, footnotes, callouts, sidebars, definitions, alt text on figures.
 
 ### Alt text specifically
 
-Each figure has an alt-text field for accessibility (screen readers). Please translate alt text directly in your tabs alongside the figure captions. **Don't rely on automated alt-text generation in your language** — quality varies a lot, and we want translated editions to read consistently.
+Each figure has an alt-text field for accessibility (screen readers). Please translate alt text directly in your tabs alongside the figure captions. **Don't rely on automated alt-text generation in your language** - quality varies a lot, and we want translated editions to read consistently.
 
 ## What the site provides for a translated edition
 
@@ -100,18 +100,18 @@ Each figure has an alt-text field for accessibility (screen readers). Please tra
 | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Web pages at `/{lang}/chapters/v1/...` | ✓                                                                                                                                                                                                                                  |
 | Search (Algolia, per-language index)   | ✓ once content is indexed                                                                                                                                                                                                          |
-| Per-chapter PDFs (via Typst)           | ✓ for Latin-script European languages (Spanish, French, German, Portuguese, Italian, etc.). Non-Latin scripts (CJK, Arabic, Hebrew, Cyrillic, Devanagari, etc.) need the Typst template extended — flag in your registration issue |
+| Per-chapter PDFs (via Typst)           | ✓ for Latin-script European languages (Spanish, French, German, Portuguese, Italian, etc.). Non-Latin scripts (CJK, Arabic, Hebrew, Cyrillic, Devanagari, etc.) need the Typst template extended - flag in your registration issue |
 | Audio narration (TTS)                  | Per-language voice selection. Quality varies by language and provider. May lag behind text publication; we coordinate per language                                                                                                 |
-| Glossary hover-on definitions          | ✓ — uses your translated glossary                                                                                                                                                                                                  |
+| Glossary hover-on definitions          | ✓ - uses your translated glossary                                                                                                                                                                                                  |
 
 ### Known limitations
 
-- **Right-to-left languages** (Arabic, Hebrew, Persian, Urdu): the Typst PDF template and some CSS layouts don't yet support RTL rendering. If you're translating into an RTL language, flag it in your issue — we'll prioritize the template work alongside your translation.
+- **Right-to-left languages** (Arabic, Hebrew, Persian, Urdu): the Typst PDF template and some CSS layouts don't yet support RTL rendering. If you're translating into an RTL language, flag it in your issue - we'll prioritize the template work alongside your translation.
 - **Audio quality** varies significantly by language and TTS provider. We're actively working on this; for some languages, audio may ship later than the text.
 
 ## How the glossary lands in the site
 
-The per-language glossary lives in the repo as an Astro content collection: one JSON file per term at `src/content/glossary/{version}-{language}/{term-slug}.json`. When you register your translation, the maintainer converts your glossary doc into per-term JSON files and commits them. You don't write JSON — that's our side of the boundary.
+The per-language glossary lives in the repo as an Astro content collection: one JSON file per term at `src/content/glossary/{version}-{language}/{term-slug}.json`. When you register your translation, the maintainer converts your glossary doc into per-term JSON files and commits them. You don't write JSON - that's our side of the boundary.
 
 ## Credit
 
@@ -133,7 +133,7 @@ Readers never see minor version numbers. Internally, the maintainer tracks what'
 
 ## Where to ask
 
-Use the registration issue as your home base — questions about specific terms, structural decisions, status updates, and review requests all happen there.
+Use the registration issue as your home base - questions about specific terms, structural decisions, status updates, and review requests all happen there.
 
 For unrelated questions or proposals to change this process itself, open a new issue.
 

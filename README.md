@@ -13,7 +13,7 @@ pnpm install
 pnpm dev
 ```
 
-Open the URL pnpm prints (defaults to `http://localhost:4321`). **No `.env` file is required for local development** — chapter prose comes from the committed `.cache/docs/` snapshot.
+Open the URL pnpm prints (defaults to `http://localhost:4321`). **No `.env` file is required for local development** - chapter prose comes from the committed `.cache/docs/` snapshot.
 
 ## Commands
 
@@ -44,7 +44,7 @@ External contributions welcome. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for s
 
 ## License
 
-Code is MIT, textbook content is CC BY-SA 4.0 — both covered in [`LICENSE`](./LICENSE).
+Code is MIT, textbook content is CC BY-SA 4.0 - both covered in [`LICENSE`](./LICENSE).
 
 ---
 

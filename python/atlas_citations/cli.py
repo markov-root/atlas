@@ -1,4 +1,4 @@
-"""``atlas citations`` — the Python half of the maintainer control surface.
+"""``atlas citations`` - the Python half of the maintainer control surface.
 
 ``task:0021`` D6 fixes the plural noun. Verbs are deliberately separate rather
 than modes of one command: ``urls``, ``extract``, ``report`` and ``export`` are
@@ -9,7 +9,7 @@ fast safe command would inherit the slow one's caveats.
 dispatches here for these verbs and to ``tsx`` for the rest; the user-facing
 contract does not fracture because the implementation language did.
 
-Dispatch only — every command is an importable function so it can be unit-tested
+Dispatch only - every command is an importable function so it can be unit-tested
 without going through argv.
 """
 

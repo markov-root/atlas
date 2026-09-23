@@ -116,7 +116,7 @@ describe("alignWords", () => {
   // spoken, so it must be stepped over silently rather than blocking the walk.
   it("steps over punctuation-only written tokens", () => {
     const spoken = toks("progress was rapid and sustained")
-    const written = toks("progress was rapid — and sustained")
+    const written = toks("progress was rapid - and sustained")
     const { spokenToWritten } = alignWords(spoken, written)
     expect(spokenToWritten[spoken.indexOf("sustained")]).toBe(written.indexOf("sustained"))
   })

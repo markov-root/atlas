@@ -21,9 +21,9 @@ export default defineConfig({
   env: {
     schema: {
       // Maintainer-only: needed to fetch fresh content from Google Docs.
-      // Contributors build from the committed .cache/docs/ snapshot — see docs/CONTRIBUTING.md.
+      // Contributors build from the committed .cache/docs/ snapshot - see docs/CONTRIBUTING.md.
       GOOGLE_CREDENTIALS_BASE64: envField.string({ context: "server", access: "secret", optional: true }),
-      // Public Algolia keys — safe to commit. The search-only key cannot
+      // Public Algolia keys - safe to commit. The search-only key cannot
       // modify the index; only ALGOLIA_WRITE_KEY (secret) can.
       PUBLIC_ALGOLIA_APP_ID: envField.string({ context: "client", access: "public", default: "W6WTQ7JBP1" }),
       PUBLIC_ALGOLIA_SEARCH_KEY: envField.string({ context: "client", access: "public", default: "636da71890a5466401dc666df2be6fb3" }),

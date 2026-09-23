@@ -71,7 +71,7 @@ export class ElevenLabsTTS {
       }
     }
 
-    // Skip synthesis if no API key — only use cached chunks
+    // Skip synthesis if no API key - only use cached chunks
     if (!this.throttledCall) {
       if (needed.length > 0) {
         console.log(`[elevenlabs-tts] No API key, skipping ${needed.length} uncached paragraphs.`);

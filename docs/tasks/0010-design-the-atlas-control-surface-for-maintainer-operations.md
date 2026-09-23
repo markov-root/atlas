@@ -55,8 +55,8 @@ for less than the whole site.
 Two more operations exist but are undiscoverable. `scripts/copy-chapter-audio.sh` and
 `scripts/swap-cbr-audio.ts` do not appear in `pnpm run`; finding them requires `ls scripts/`, and
 understanding them requires opening the file and reading a 25–30 line header comment
-(`audit:0006` F2). `swap-cbr-audio.ts` has already independently invented CLI conventions — dry-run
-by default, `--yes` to act, an optional positional chapter filter — which is evidence that the shape
+(`audit:0006` F2). `swap-cbr-audio.ts` has already independently invented CLI conventions - dry-run
+by default, `--yes` to act, an optional positional chapter filter - which is evidence that the shape
 is needed, not hypothetical.
 
 This matters now because the operation count is growing, not static: the owner expects to add prose
@@ -65,7 +65,7 @@ and voice checks, dead-link checking, and further utilities as the textbook deve
 **The counter-case is recorded in `audit:0006` F7 and must not be ignored:** the 16 `package.json`
 scripts serve the day-to-day contributor loop well, and `docs/PRINCIPLES.md` §10 (YAGNI) warns
 against exactly this kind of speculative infrastructure. The justification for this task rests on
-F1 and F2 — operations that exist but cannot be named — not on a general claim that the current
+F1 and F2 - operations that exist but cannot be named - not on a general claim that the current
 surface is bad.
 
 ## Scope
@@ -81,11 +81,11 @@ follow-on. Specifically:
    | `atlas generate audio [--chapter N]` | the audio renderer path         | no invocation          |
    | `atlas audio stage [--fetch] N [S]`  | `scripts/copy-chapter-audio.sh` | exists, undiscoverable |
    | `atlas audio publish-cbr [--yes] N`  | `scripts/swap-cbr-audio.ts`     | exists, undiscoverable |
-   | `atlas docs check`                   | nothing — net-new               | **shipped** (`301634e`) |
+   | `atlas docs check`                   | nothing - net-new               | **shipped** (`301634e`) |
 
    **Owner decision 2026-09-21:** implementation began with `atlas docs check`, chosen because it is
    low-risk, proves the CLI shape before the audio and pull commands touch anything expensive, and
-   closes a real gap — a cloner had no way to check documentation conformance without a
+   closes a real gap - a cloner had no way to check documentation conformance without a
    locally-installed skill. `bin/atlas` and `cli/` now exist and are wired into `pnpm verify`; the
    four commands above remain to be built. This is the one command that is net-new capability rather
    than an addressing layer, so it is the stated exception to the YAGNI argument above, justified by
@@ -94,7 +94,7 @@ follow-on. Specifically:
 2. **Shape.** `bin/atlas` as a logic-free adapter, following the _separation_ in
    `~/Git/CoP Dataset/bin/cop` (6 lines: `cd` to root, `exec` the real entry point) but not its
    Python packaging shape. All logic in importable TypeScript modules invoked via `tsx`, so commands
-   are ordinary functions that can be unit-tested — which the current `scripts/` cannot be.
+   are ordinary functions that can be unit-tested - which the current `scripts/` cannot be.
 
 3. **Conventions**, adopted from what `swap-cbr-audio.ts` already does: dry-run by default for
    anything that writes to R2 or mutates published state; `--yes` to act; `--chapter` / positional
@@ -118,7 +118,7 @@ follow-on. Specifically:
 
 ## Out of scope
 
-- **`atlas lint`** — prose/voice quality checks and dead-link checking. `audit:0006` F5 establishes
+- **`atlas lint`** - prose/voice quality checks and dead-link checking. `audit:0006` F5 establishes
   these are net-new capability, not renamings. Including them would convert a justified addressing
   layer into the speculative infrastructure §10 warns against. Dead-link checking additionally has a
   plan of record already (`docs/ROADMAP.md` §Next, "Link checker (lychee, scheduled)"); `atlas lint`
@@ -131,7 +131,7 @@ follow-on. Specifically:
 - **Implementation of the four wrapping commands.** `atlas docs check` shipped under a specific
   owner decision; `atlas pull`, `atlas generate audio`, and the two audio commands still need design
   agreement before they are built, because they touch content fetching and paid synthesis.
-- **Env-var consolidation** (`audit:0006` F3, recommendation 5) — sequenced after this, because a
+- **Env-var consolidation** (`audit:0006` F3, recommendation 5) - sequenced after this, because a
   partial migration leaves two places to look, which is worse than one.
 
 ## Done when
@@ -139,7 +139,7 @@ follow-on. Specifically:
 - **AC-1:** A written design names every command in the initial set, its flags, its default
   (dry-run where it mutates published state), and the existing code path it wraps.
 - **AC-2:** The design states where logic lives versus where the adapter lives, and demonstrates
-  that each command is an importable function rather than a script body — i.e. that it is unit
+  that each command is an importable function rather than a script body - i.e. that it is unit
   testable. Testability is the point of the separation, not tidiness.
 - **AC-3:** The `package.json` / `atlas` split is stated explicitly, with the four references to
   `pnpm verify` enumerated and confirmed unbroken.
@@ -153,23 +153,23 @@ follow-on. Specifically:
 ## Completion evidence
 
 _To be filled on completion. Each row must cite a criterion and durable evidence (a commit, a file
-path, or a recorded owner decision) — not a narrative claim._
+path, or a recorded owner decision) - not a narrative claim._
 
 | Criterion | Evidence | Verified |
 | --------- | -------- | -------- |
-| AC-1      | —        | —        |
-| AC-2      | —        | —        |
-| AC-3      | —        | —        |
-| AC-4      | —        | —        |
-| AC-5      | —        | —        |
-| AC-6      | —        | —        |
+| AC-1      | -        | -        |
+| AC-2      | -        | -        |
+| AC-3      | -        | -        |
+| AC-4      | -        | -        |
+| AC-5      | -        | -        |
+| AC-6      | -        | -        |
 
 ## Authority and inputs
 
-- `audit:0006` — the evidence base. F1 and F2 justify the task; F5 and F7 bound it.
+- `audit:0006` - the evidence base. F1 and F2 justify the task; F5 and F7 bound it.
 - `audit:0002` recommendation 2 notes a citation-checking command as a possible later subcommand;
   `audit:0005` recommendation 1 notes `pnpm typecheck` needs a headroom-aware invocation. Both are
   candidate _future_ subcommands and are deliberately excluded from the initial set.
-- `~/Git/CoP Dataset/bin/cop` and its `bin/README.md` — the structural reference, governed there by
+- `~/Git/CoP Dataset/bin/cop` and its `bin/README.md` - the structural reference, governed there by
   ADR-0119.
 - `docs/PRINCIPLES.md` §10 (YAGNI), §14 (Explicit non-goals); `docs/ROADMAP.md` §Next, §Not planned.

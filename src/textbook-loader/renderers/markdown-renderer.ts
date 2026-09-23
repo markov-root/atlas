@@ -42,7 +42,7 @@ function renderInlineNode(node: Node): string {
     return `[^${num}]`;
   }
 
-  // Unknown inline — recurse into children
+  // Unknown inline - recurse into children
   return renderInlineChildren(node.children);
 }
 
@@ -80,7 +80,7 @@ function renderBlockNode(node: Node): string {
     const speaker = node.attributes.speaker as string | undefined;
     const content = renderInlineChildren(node.children);
     const lines = content.split("\n").map((l) => `> ${l}`);
-    if (speaker) lines.push(`> — ${speaker}`);
+    if (speaker) lines.push(`> - ${speaker}`);
     return lines.join("\n");
   }
 
@@ -97,7 +97,7 @@ function renderBlockNode(node: Node): string {
   if (node.name === "Definition") {
     const term = node.attributes.term as string | undefined;
     const content = renderBlockChildren(node.children);
-    return term ? `**Definition: ${term}** — ${content}` : content;
+    return term ? `**Definition: ${term}** - ${content}` : content;
   }
 
   if (node.name === "NoteBox") {
@@ -143,7 +143,7 @@ function renderBlockNode(node: Node): string {
     return "";
   }
 
-  // Unknown block — recurse
+  // Unknown block - recurse
   return renderBlockChildren(node.children);
 }
 

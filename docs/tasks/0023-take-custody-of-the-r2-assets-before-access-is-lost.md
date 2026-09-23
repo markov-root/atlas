@@ -56,12 +56,12 @@ Cloudflare account of its own. Two separate risks follow, and they are not equal
 | ------------------------ | ------------- | ------------------------------------- |
 | `audio/`                 | public HTTPS  | **readable now** (HTTP 200 verified)  |
 | `pdf/`                   | public HTTPS  | readable now                          |
-| `audio-chunks/`          | S3 API only   | **unreachable — credentials revoked** |
-| `equation-descriptions/` | S3 API only   | **unreachable — credentials revoked** |
-| `final-audio/`           | S3 API only   | **unreachable — credentials revoked** |
+| `audio-chunks/`          | S3 API only   | **unreachable - credentials revoked** |
+| `equation-descriptions/` | S3 API only   | **unreachable - credentials revoked** |
+| `final-audio/`           | S3 API only   | **unreachable - credentials revoked** |
 
 The `R2_*` credentials in `.env` are well-formed (32-character access key ID, 64-character secret,
-valid account endpoint) but every request — read **and** write, across all five prefixes — returns
+valid account endpoint) but every request - read **and** write, across all five prefixes - returns
 `SignatureDoesNotMatch`. Well-formed plus universally rejected means the token was **revoked or
 deleted**, not mistyped. There is no credential fix available on our side.
 
@@ -78,7 +78,7 @@ ElevenLabs cost. That should be stated plainly rather than discovered later.
 
 ### What is already safe
 
-Better news than expected. `.cache/uc/` on the development VM holds **88 MP3 files, 1.9 GB** — 71
+Better news than expected. `.cache/uc/` on the development VM holds **88 MP3 files, 1.9 GB** - 71
 section files and 17 chapter files. Of the 71 URLs the built site references, **70 already have a
 local copy**; the one exception,
 `atlas-ch2-s6-3015ad6eb1fd8a1b4580c7597150bd8d95c983e21d4dfbe7d5183bd8f395db09.mp3`, returns HTTP 200
@@ -98,7 +98,7 @@ notice until a build needed it. This is the most urgent item in this task and th
 3. **Ask the freelancer for a fresh R2 API token**, scoped read-only if possible, for the sole
    purpose of copying `audio-chunks/`, `equation-descriptions/` and `final-audio/` out. This is the
    only path to that data; it cannot be recovered from the public CDN, and it cannot be regenerated
-   without paying full synthesis cost. **Treat this as time-critical** — it depends on a third party's
+   without paying full synthesis cost. **Treat this as time-critical** - it depends on a third party's
    account remaining active and their willingness to help.
 4. **Stand up a project-owned Cloudflare account and R2 bucket**, and a project-owned domain to front
    it, replacing `atlas.foreviewusercontent.com`.
@@ -107,7 +107,7 @@ notice until a build needed it. This is the most urgent item in this task and th
 ## Out of scope
 
 - **Regenerating any audio.** If `audio-chunks/` proves unrecoverable, the decision about whether to
-  re-synthesize belongs to `task:0016`, together with the voice-unification decision — doing it twice
+  re-synthesize belongs to `task:0016`, together with the voice-unification decision - doing it twice
   would be wasteful.
 - **Fixing the upload gating defect.** That is `task:0022`, which must land **before** working
   credentials exist again, since working credentials plus current code is the destructive combination.
@@ -115,7 +115,7 @@ notice until a build needed it. This is the most urgent item in this task and th
 
 ## Decisions required before execution
 
-### D1 — Do we ask the freelancer for a new token, and how hard do we push?
+### D1 - Do we ask the freelancer for a new token, and how hard do we push?
 
 | Option                                     | Consequence                                                                                 |
 | ------------------------------------------ | ------------------------------------------------------------------------------------------- |
@@ -130,7 +130,7 @@ everything, having the old chunks makes that a comparison rather than a leap.
 **Irreversible if wrong:** if the account lapses or the bucket is deleted, `audio-chunks/` is gone
 permanently, and `atlas.foreviewusercontent.com` going dark also breaks audio on the live site.
 
-### D2 — New domain for the CDN
+### D2 - New domain for the CDN
 
 | Option                                | Consequence                                                               |
 | ------------------------------------- | ------------------------------------------------------------------------- |
@@ -139,7 +139,7 @@ permanently, and `atlas.foreviewusercontent.com` going dark also breaks audio on
 
 **Recommendation: A.** Fewer things to lose custody of is the lesson this task exists to record.
 
-### D3 — Do the 71 pinned CDN URLs move to the new domain in the same change?
+### D3 - Do the 71 pinned CDN URLs move to the new domain in the same change?
 
 `src/data/chapter-timing.ts` hardcodes 71 absolute URLs on the freelancer's domain. They must be
 rewritten at cutover. Decide whether to rewrite them to the new absolute domain, or make them
@@ -154,7 +154,7 @@ someone else's domain in 71 places; repeating that shape guarantees repeating th
   verified by checksum on at least one file.
 - **AC-2:** Every CDN asset referenced by a production build has a verified local copy; the count is
   recorded and the previously-missing chapter-2 file is among them.
-- **AC-3:** A recorded decision exists on D1, and if the answer was to ask, the outcome is recorded —
+- **AC-3:** A recorded decision exists on D1, and if the answer was to ask, the outcome is recorded -
   including "he declined" or "no response by <date>", which are legitimate outcomes.
 - **AC-4:** A project-owned R2 bucket exists under a project-owned Cloudflare account, holding the
   assets from AC-1 and AC-2.
@@ -164,17 +164,17 @@ someone else's domain in 71 places; repeating that shape guarantees repeating th
 
 ## Completion evidence
 
-_To be filled on completion. Each row must cite a criterion and durable evidence — a commit, a file
-path, a checksum manifest, or a recorded decision — not a narrative claim._
+_To be filled on completion. Each row must cite a criterion and durable evidence - a commit, a file
+path, a checksum manifest, or a recorded decision - not a narrative claim._
 
 | Criterion | Evidence | Verified |
 | --------- | -------- | -------- |
-| AC-1      | —        | —        |
-| AC-2      | —        | —        |
-| AC-3      | —        | —        |
-| AC-4      | —        | —        |
-| AC-5      | —        | —        |
-| AC-6      | —        | —        |
+| AC-1      | -        | -        |
+| AC-2      | -        | -        |
+| AC-3      | -        | -        |
+| AC-4      | -        | -        |
+| AC-5      | -        | -        |
+| AC-6      | -        | -        |
 
 ## Authority and inputs
 
@@ -183,10 +183,10 @@ path, a checksum manifest, or a recorded decision — not a narrative claim._
   HTTP 200. Both are reproducible.
 - Credential shape check: access key ID 32 chars, secret 64 chars, endpoint
   `c4f04943ecf145d310709d02fe56f780.r2.cloudflarestorage.com`, bucket `atlas-cache`.
-- `src/textbook-loader/renderers/audio/renderer.ts:10` and `renderers/pdf/renderer.ts:12` —
+- `src/textbook-loader/renderers/audio/renderer.ts:10` and `renderers/pdf/renderer.ts:12` -
   `CDN_BASE` hardcoded to the freelancer's domain.
-- `src/data/chapter-timing.ts` — 71 absolute URLs on that domain.
-- `src/textbook-loader/renderers/audio/r2-cache.ts:35,183,195` — the private prefixes.
-- `task:0022` — must land before credentials work again.
-- `task:0016`, `audit:0009` — the regeneration economics this task's outcome determines.
-- `handoff:0001` — freelancer independence; this is the concrete asset-custody half of it.
+- `src/data/chapter-timing.ts` - 71 absolute URLs on that domain.
+- `src/textbook-loader/renderers/audio/r2-cache.ts:35,183,195` - the private prefixes.
+- `task:0022` - must land before credentials work again.
+- `task:0016`, `audit:0009` - the regeneration economics this task's outcome determines.
+- `handoff:0001` - freelancer independence; this is the concrete asset-custody half of it.

@@ -78,7 +78,7 @@ afterEach(() => {
 // would corrupt the PDF layout (or, in adversarial scenarios, inject Typst
 // markup). If this fails, downloaded PDFs for chapters with special
 // characters in titles/authors will render incorrectly or fail to compile.
-describe('PDF Renderer — Typst escaping of user-supplied strings', () => {
+describe('PDF Renderer - Typst escaping of user-supplied strings', () => {
   it('escapes Typst special characters in chapter title and author fields', () => {
     const r = new Renderer(textbook([]), '/tmp/assets', tmpOut);
     const ch = chapter(1, [section(1)]);
@@ -98,7 +98,7 @@ describe('PDF Renderer — Typst escaping of user-supplied strings', () => {
 // heading; appending it when there are some ensures contributors get
 // credit. If this fails, readers either see stray empty sections or named
 // contributors lose attribution in the PDF artifact.
-describe('PDF Renderer — Acknowledgements visibility', () => {
+describe('PDF Renderer - Acknowledgements visibility', () => {
   it('appends an Acknowledgements section when the chapter has acknowledgements', () => {
     const r = new Renderer(textbook([]), '/tmp/assets', tmpOut);
     const ch = chapter(1, [section(1)]);
@@ -120,11 +120,11 @@ describe('PDF Renderer — Acknowledgements visibility', () => {
 
 // Typst compilation runs as a subprocess at build time. If subprocess
 // invocation breaks (wrong command, wrong stdin, wrong destination path),
-// PDF generation silently fails or writes PDFs to the wrong location —
+// PDF generation silently fails or writes PDFs to the wrong location -
 // readers either see stale PDFs or no PDFs at all. If this test fails, a
 // contributor changing the PDF pipeline has broken the build's primary
 // integration point with the Typst compiler.
-describe('PDF Renderer — Typst subprocess invocation', () => {
+describe('PDF Renderer - Typst subprocess invocation', () => {
   it('invokes typst with the chapter Typst source as stdin and writes to the expected path', async () => {
     const r = new Renderer(textbook([]), '/tmp/assets', tmpOut);
     const ch = chapter(5, [section(1)]);
@@ -141,7 +141,7 @@ describe('PDF Renderer — Typst subprocess invocation', () => {
 
   it('short-circuits Typst invocation when the content-hashed PDF already exists locally', () => {
     // Content-hashed filenames are the cache key. If this short-circuit
-    // breaks, every build will regenerate every chapter PDF — making maintainer
+    // breaks, every build will regenerate every chapter PDF - making maintainer
     // builds an order of magnitude slower and burning Typst CPU on no-ops.
     const r = new Renderer(textbook([]), '/tmp/assets', tmpOut);
     const ch = chapter(7, [section(1)]);
@@ -183,7 +183,7 @@ describe('PDF Renderer — Typst subprocess invocation', () => {
 // R2 prefix. If this fails, the website displays "Download PDF" buttons
 // pointing to URLs that 404, breaking a documented user-facing feature
 // (offline reading).
-describe('PDF Renderer — full pipeline links chapters and pushes to CDN', () => {
+describe('PDF Renderer - full pipeline links chapters and pushes to CDN', () => {
   it('sets chapter.pdfLink for each chapter and pushes PDFs to the public CDN prefix', async () => {
     const tb = textbook([
       chapter(1, [section(1)], { contentHash: 'h1' }),

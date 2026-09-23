@@ -6,7 +6,7 @@
  * same as it did when the exporter was TypeScript. This function is the seam.
  *
  * `uv run` is used rather than a bare `python` so the command works from a fresh
- * checkout with no virtualenv activated — `uv` resolves the locked dependencies
+ * checkout with no virtualenv activated - `uv` resolves the locked dependencies
  * itself. That is the same reason `pnpm` is mandated for the Node half.
  */
 import { spawnSync } from 'node:child_process';
@@ -29,8 +29,8 @@ export const PYTHON_VERBS = [
  * appears as it happens. Capturing it would make the command look hung.
  *
  * `-u` is not optional. Python block-buffers stdout whenever it is not a TTY,
- * so the moment anyone runs this under `tee`, into a log, or inside tmux — which
- * is exactly what a run over hundreds of URLs should be run under — inheriting
+ * so the moment anyone runs this under `tee`, into a log, or inside tmux - which
+ * is exactly what a run over hundreds of URLs should be run under - inheriting
  * stdio is not enough on its own and the output arrives in one lump at the end.
  * Unbuffering costs nothing here: this process prints a line every fifty
  * entries, not a stream.
@@ -45,7 +45,7 @@ export function runPython(root: string, args: string[]): number {
   if (result.error) {
     const hint =
       (result.error as NodeJS.ErrnoException).code === 'ENOENT'
-        ? 'uv is not on PATH — see CONTRIBUTING.md for the Python toolchain setup'
+        ? 'uv is not on PATH - see CONTRIBUTING.md for the Python toolchain setup'
         : result.error.message;
     console.error(`atlas: could not run the Python citation commands: ${hint}`);
     return 1;

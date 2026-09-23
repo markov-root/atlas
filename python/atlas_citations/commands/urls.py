@@ -1,4 +1,4 @@
-"""``atlas citations urls`` — cited sources as copy-pasteable Markdown, per chapter.
+"""``atlas citations urls`` - cited sources as copy-pasteable Markdown, per chapter.
 
 The crude slice of ``task:0026``, shipped ahead of any rendering because the
 edition-2 authors can paste it into a Google Doc and work from it today.
@@ -60,7 +60,7 @@ def _escape_md(text: str) -> str:
 def _resolved_title(store: Store, key: str | None) -> str | None:
     """The store's title for a key, but only once something resolved it.
 
-    An unresolved entry's title is the anchor text, which is already the label —
+    An unresolved entry's title is the anchor text, which is already the label -
     showing it as the link text would say the same thing twice and hide the fact
     that nothing has been looked up.
     """
@@ -132,7 +132,7 @@ def format_chapter_markdown(
     with_titles = sum(1 for c in kept if _resolved_title(store, c.key))
 
     lines = [
-        f"# Chapter {chapter.number} — {chapter.title}: cited sources",
+        f"# Chapter {chapter.number} - {chapter.title}: cited sources",
         "",
         f"_{len(kept)} citations · {unique_in_chapter} unique sources · "
         f"{with_titles} with a resolved title._",
@@ -160,7 +160,7 @@ def format_chapter_markdown(
         for c in _dedupe(unrecognised):
             target = c.key or c.raw_url
             lines.append(
-                f'- {chapter.number}.{c.section_number} — "{c.anchor_text.strip()}" ({target})'
+                f'- {chapter.number}.{c.section_number} - "{c.anchor_text.strip()}" ({target})'
             )
         lines.append("")
 
@@ -171,7 +171,7 @@ def format_url_files(scan: Scan, store: Store) -> UrlReport:
     """All chapter files plus a whole-book index.
 
     The index answers "what does the Atlas cite", which the per-chapter files
-    cannot — and it is the question a bibliography exists for.
+    cannot - and it is the question a bibliography exists for.
     """
     files: list[ChapterFile] = []
     everything: list[Citation] = []
@@ -193,7 +193,7 @@ def format_url_files(scan: Scan, store: Store) -> UrlReport:
 
     # Spellings are collected from EVERY instance in the scan, not from the
     # per-section display lists. Those are deduplicated by URL, so a source cited
-    # twice in one section under two spellings contributes only the first — and
+    # twice in one section under two spellings contributes only the first - and
     # the index below promises that "every spelling is shown", which is how
     # inconsistent citation text gets found. Reading the deduplicated lists here
     # made that promise false for precisely the within-section case it exists to
@@ -209,12 +209,12 @@ def format_url_files(scan: Scan, store: Store) -> UrlReport:
 
     keys = sorted(by_key)
     index = [
-        "# AI Safety Atlas — all cited sources",
+        "# AI Safety Atlas - all cited sources",
         "",
         f"_{len(keys)} unique sources across {len(scan.chapters)} chapters._",
         "",
         "One file per chapter sits beside this one. Where a source is cited under more than one",
-        "spelling, every spelling is shown — that is how inconsistent citation text gets found.",
+        "spelling, every spelling is shown - that is how inconsistent citation text gets found.",
         "",
     ]
     resolved_titles = 0
@@ -257,7 +257,7 @@ def citations_urls(root: Path, out_dir: Path | None = None) -> int:
     # in. A missing store is not an error: the files still build, showing URLs.
     store = read_store(root)
     if not store:
-        print("[atlas] no citation store yet — run `atlas citations extract`; showing URLs only")
+        print("[atlas] no citation store yet - run `atlas citations extract`; showing URLs only")
 
     report = format_url_files(scan, store)
     dest = out_dir or (root / "data" / "citations" / "chapters")

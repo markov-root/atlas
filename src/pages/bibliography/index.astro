@@ -1,6 +1,6 @@
 ---
 /**
- * `/bibliography` — every source the Atlas cites, in one place.
+ * `/bibliography` - every source the Atlas cites, in one place.
  *
  * `task:0021` D5's third surface, and the one that answers the question a
  * bibliography exists for: what does this book actually rest on? The per-section
@@ -11,12 +11,18 @@
  */
 import Default from '@/layouts/Default.astro';
 import Bibliography from '@/components/Bibliography.astro';
-import { allReferences } from '@/lib/bibliography';
+import { allReferencesWithLocations } from '@/lib/bibliography';
+import { getTextbooks } from '@/lib/textbooks';
 import { ogImageUrl } from '@/lib/og';
 
-const references = allReferences();
+// Locations as well as sources: the grouped view exists because a reader met
+// these citations inside a chapter, and an alphabetical run of 945 does not
+// mirror that (task:0030 AC-7).
+const textbooks = await getTextbooks();
+const chapters = textbooks.flatMap((textbook) => textbook.data.chapters);
+const references = allReferencesWithLocations(chapters);
 
-const description = `Every source cited in the AI Safety Atlas — ${references.length} works across all chapters.`;
+const description = `Every source cited in the AI Safety Atlas: ${references.length} works across all chapters.`;
 ---
 
 <Default
@@ -24,21 +30,24 @@ const description = `Every source cited in the AI Safety Atlas — ${references.
   description={description}
   image={ogImageUrl({ title: 'Bibliography' })}
 >
-  <div class="mx-auto max-w-4xl px-6 py-16 lg:py-24">
-    <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl font-display">
-      Bibliography
-    </h1>
+  {/* The house page idiom (docs/DESIGN.md): a rounded surface floating on the
+      grained page background, with the content inside it. This page previously
+      sat straight on that background with no layer, which every other page has. */}
+  <section class="sm:mx-4 mt-4 mb-4 rounded-3xl overflow-hidden bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-12 lg:px-8 lg:py-16">
+      <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl font-display">
+        Bibliography
+      </h1>
 
-    <p class="mt-6 text-base text-gray-600">Every source cited in the AI Safety Atlas.</p>
+      <p class="mt-6 text-base text-gray-600">Every source cited in the AI Safety Atlas.</p>
 
-
-
-    <Bibliography
-      references={references}
-      heading={null}
-      id="all-references"
-      showCount={true}
-      searchable={true}
-    />
-  </div>
+      <Bibliography
+        references={references}
+        heading={null}
+        id="all-references"
+        showCount={true}
+        searchable={true}
+      />
+    </div>
+  </section>
 </Default>

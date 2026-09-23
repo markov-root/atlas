@@ -6,7 +6,7 @@ const EDITION = TEXTBOOK_EDITIONS[0];
 const FIRST_CHAPTER = EDITION.chapters[0];
 
 // Exercises the contributor build path end-to-end against the committed
-// .cache/docs/ snapshot — null credentials, cacheOnly mode.
+// .cache/docs/ snapshot - null credentials, cacheOnly mode.
 describe("TextbookLoader (contributor / cacheOnly)", () => {
   const prevSkipPdf = process.env.SKIP_PDF;
   const prevSkipAudio = process.env.SKIP_AUDIO;

@@ -17,7 +17,7 @@ superseded_by: ''
 
 ## Purpose
 
-Governed `handoff` records — bounded continuation checkpoints capturing objective, completed work,
+Governed `handoff` records - bounded continuation checkpoints capturing objective, completed work,
 open work, blockers, and a safe resume command. Allocated with
 `engineering document new handoff --title "..."`.
 

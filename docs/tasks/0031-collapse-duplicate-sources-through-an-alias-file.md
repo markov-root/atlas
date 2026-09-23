@@ -22,7 +22,7 @@ engineering_document:
   authority:
     kind: work-state
     owner: Markov Grey
-    scope: Entry identity aliasing only — canonicalization itself is unchanged
+    scope: Entry identity aliasing only - canonicalization itself is unchanged
   created: "2026-09-23"
   updated: "2026-09-23"
   transition_history: unverified
@@ -54,7 +54,7 @@ The same work appears in the bibliography under several addresses:
 `task:0021` D1 makes the canonical URL the entry's identity, and canonicalization is deliberately
 conservative: it merges two URLs only when they are the same document _by construction_ (an arXiv
 `/abs` and `/pdf`, a DOI resolver prefix). None of the pairs above is mechanically derivable from
-the other, and `task:0021` edge case 2 already anticipated this — "a manual alias file is the
+the other, and `task:0021` edge case 2 already anticipated this - "a manual alias file is the
 intended answer".
 
 **Detection now exists** (`atlas citations report`, shipped 2026-09-23): the report lists 7 groups
@@ -72,8 +72,8 @@ https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-i
 ```
 
 The key is the surviving entry; the list is what folds into it. Applied in `extract`, after
-canonicalization and before the store upsert, so every downstream consumer — report, export, urls,
-render, the site — sees one entry with the union of the anchor texts.
+canonicalization and before the store upsert, so every downstream consumer - report, export, urls,
+render, the site - sees one entry with the union of the anchor texts.
 
 ## Out of scope
 
@@ -84,16 +84,16 @@ render, the site — sees one entry with the union of the anchor texts.
 
 ## Decisions required before execution
 
-### D1 — What happens to an aliased entry already in the store?
+### D1 - What happens to an aliased entry already in the store?
 
 Options: delete it on the next extract; keep it and mark it superseded; or leave the store alone and
 alias only at read time. Deleting is simplest and matches "one work, one entry", but the store is
 committed and a deletion is invisible in a 900-entry YAML diff. **Recommend deleting, with the
-extract command naming each removal on stdout** — the same posture `task:0021` D4 takes elsewhere.
+extract command naming each removal on stdout** - the same posture `task:0021` D4 takes elsewhere.
 
-### D2 — Does the surviving entry keep both sets of metadata?
+### D2 - Does the surviving entry keep both sets of metadata?
 
-Two resolutions may disagree — the arXiv record and the publisher's page for the o1 System Card have
+Two resolutions may disagree - the arXiv record and the publisher's page for the o1 System Card have
 different types and containers. **Recommend keeping the surviving entry's own metadata and recording
 the alias URLs in a `sameAs` field**, so nothing is invented by merging and the alternative address
 is still available to a reader.
@@ -105,7 +105,7 @@ is still available to a reader.
 - **AC-2:** `atlas citations extract` folds aliased URLs onto the surviving key, the store holds one
   entry per group, and the union of anchor texts is preserved.
 - **AC-3:** A citation in the prose pointing at an aliased URL still resolves to the surviving entry
-  on every surface — section, chapter, `/bibliography`, BibTeX, CSL-JSON.
+  on every surface - section, chapter, `/bibliography`, BibTeX, CSL-JSON.
 - **AC-4:** The report stops listing a group once it is aliased, so the list is a worklist rather
   than a standing complaint.
 
@@ -115,24 +115,24 @@ _To be filled on completion._
 
 | Criterion | Evidence | Verified |
 | --------- | -------- | -------- |
-| AC-1      | —        | —        |
-| AC-2      | —        | —        |
-| AC-3      | —        | —        |
-| AC-4      | —        | —        |
+| AC-1      | -        | -        |
+| AC-2      | -        | -        |
+| AC-3      | -        | -        |
+| AC-4      | -        | -        |
 
 ## Authority and inputs
 
 - Owner report, 2026-09-23, from reading the rendered bibliography.
 - `task:0021` D1 (identity is the canonical URL) and edge case 2 (an alias file is the intended
   answer).
-- `python/atlas_citations/commands/report.py`, `duplicate_groups` — the detection, with the measured
+- `python/atlas_citations/commands/report.py`, `duplicate_groups` - the detection, with the measured
   reason domain is not a usable signal.
-- `data/citations/citation-report.md` — the current list of 7 groups.
+- `data/citations/citation-report.md` - the current list of 7 groups.
 
 ## Note on the limit of detection
 
 Groups are only found among **resolved** entries, because an unresolved entry's title is its anchor
 text and every unresolved work by one author in one year would fingerprint identically. Some real
-duplicates are therefore still invisible — the `keepthefuturehuman` pair among them, since one side
+duplicates are therefore still invisible - the `keepthefuturehuman` pair among them, since one side
 is unresolved. The list grows as resolution does, which is an argument for re-running the report
 after each resolve rather than treating it as a one-off.

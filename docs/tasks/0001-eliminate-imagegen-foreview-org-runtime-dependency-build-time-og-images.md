@@ -57,23 +57,23 @@ Consumers to migrate (every page passing an `image` prop): `src/pages/index.astr
 
 ## Scope
 
-- `src/lib/og.ts` — return self-hosted URLs; keep the `ogImageUrl` / `sectionOgImageUrl` signatures
+- `src/lib/og.ts` - return self-hosted URLs; keep the `ogImageUrl` / `sectionOgImageUrl` signatures
   stable so call sites are untouched.
 - New build-time OG render module (Satori → SVG, rasterized to PNG with `sharp`, already a
   dependency) + Astro static image endpoint routes (e.g. `src/pages/**/og.png.ts` via
   `getStaticPaths`) that prerender the PNGs into `dist/`.
 - Embed the already-installed brand fonts (`@fontsource-variable/jost`, `@fontsource/righteous`).
 - Content-hash caching so unchanged cards are not re-rendered each build.
-- `package.json` — add `satori` (and `@resvg/resvg-js` only if `sharp` proves insufficient).
+- `package.json` - add `satori` (and `@resvg/resvg-js` only if `sharp` proves insufficient).
 
 **Recommended first step:** obtain the imagegen service source from the freelancer so the new cards
-match the current design exactly (this is a blocker on visual parity — AC-4).
+match the current design exactly (this is a blocker on visual parity - AC-4).
 
 ## Out of scope
 
 - Redesigning the OG cards (parity with the current design is the target, not a redesign).
-- The rest of the freelancer handoff — R2 bucket migration, Google Docs ownership cutover, and
-  credential rotation — tracked separately (see the handoff record).
+- The rest of the freelancer handoff - R2 bucket migration, Google Docs ownership cutover, and
+  credential rotation - tracked separately (see the handoff record).
 - **Alternative not chosen:** self-hosting the _same_ imagegen service on our own infra (e.g. a
   Cloudflare Worker under `ai-safety-atlas.com`) and changing only `IMAGEGEN_BASE`. This is the
   fallback if build-time cost or design parity proves unacceptable; reconsider before abandoning
@@ -85,11 +85,11 @@ match the current design exactly (this is a blocker on visual parity — AC-4).
   except an intentional explanatory comment, if any).
 - AC-2: Every page emits an `og:image` absolute URL under `https://ai-safety-atlas.com` pointing at
   a PNG that is present in `dist/` after `pnpm build`.
-- AC-3: The contributor build (no `.env`) generates OG images successfully — OG generation requires
+- AC-3: The contributor build (no `.env`) generates OG images successfully - OG generation requires
   no credentials.
 - AC-4: Generated cards reach visual parity with the current design (spot-check old vs new; validate
   one URL in a link-preview inspector).
-- AC-5: OG PNGs are cached by content hash — a second consecutive build re-renders nothing.
+- AC-5: OG PNGs are cached by content hash - a second consecutive build re-renders nothing.
 - AC-6: `pnpm verify` is green and the build-time delta is measured and recorded.
 
 ## Completion evidence

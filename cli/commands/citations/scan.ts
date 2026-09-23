@@ -1,11 +1,11 @@
 /**
- * `atlas citations scan` — the TypeScript half of the citation pipeline, and
+ * `atlas citations scan` - the TypeScript half of the citation pipeline, and
  * the only thing that crosses into Python.
  *
  * `task:0029` D1 puts the language boundary here. Extraction stays in
  * TypeScript because it walks the AST that 1,123 lines of loader code produce,
- * and that AST is not callable from outside this process. Everything after it —
- * resolvers, the CSL store, BibTeX, the reports — is ordinary scraping and
+ * and that AST is not callable from outside this process. Everything after it -
+ * resolvers, the CSL store, BibTeX, the reports - is ordinary scraping and
  * bibliography work with no tie to this language, and lives in `python/`.
  *
  * This command writes `data/citations/citations.json`: every citation instance
@@ -18,7 +18,7 @@
  * single definition of what a citation anchor looks like, shared with the audio
  * renderer so the two cannot drift (`task:0025` AC-6). The Python side needs the
  * parsed author and year for its report, and reimplementing the pattern there
- * would fork that definition — the precise failure AC-6 exists to prevent. So
+ * would fork that definition - the precise failure AC-6 exists to prevent. So
  * the parse is performed once, here, and its result travels in the file.
  */
 import { mkdirSync, writeFileSync } from 'node:fs';

@@ -27,7 +27,7 @@ export const siteConfig = {
       },
       {
         question: "What strategies can prevent AI from causing harm?",
-        description: "Technical and governance approaches across timescales—from misuse prevention today to alignment challenges with superintelligence.",
+        description: "Technical and governance approaches across timescales, from misuse prevention today to alignment challenges with superintelligence.",
         chapters: [3],
       },
       {

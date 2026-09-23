@@ -33,7 +33,7 @@ class ScanError(RuntimeError):
 class Citation:
     """One citation instance, as extracted from the documents."""
 
-    #: Canonical URL — the bibliography entry identity. ``None`` for ``unlinked``.
+    #: Canonical URL - the bibliography entry identity. ``None`` for ``unlinked``.
     key: str | None
     #: The URL exactly as it appeared, kept so a report can show the original.
     raw_url: str | None
@@ -113,7 +113,7 @@ def parse_scan(text: str) -> Scan:
     version = raw.get("schemaVersion")
     if version != SCHEMA_VERSION:
         raise ScanError(
-            f"citations.json is schema version {version!r}, expected {SCHEMA_VERSION} — "
+            f"citations.json is schema version {version!r}, expected {SCHEMA_VERSION} - "
             "re-run `atlas citations scan`"
         )
 
@@ -142,5 +142,5 @@ def read_scan(root: Path) -> Scan:
     """Read the handoff file from a checkout root."""
     path = root / SCAN_PATH
     if not path.exists():
-        raise ScanError(f"no citation scan at {SCAN_PATH} — run `atlas citations scan` first")
+        raise ScanError(f"no citation scan at {SCAN_PATH} - run `atlas citations scan` first")
     return parse_scan(path.read_text(encoding="utf-8"))

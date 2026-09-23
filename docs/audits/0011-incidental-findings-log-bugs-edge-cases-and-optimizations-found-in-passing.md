@@ -53,7 +53,7 @@ engineering_document:
 
 `audit:0002`–`0010` are **scoped sweeps**: a dimension was chosen, the codebase examined against it,
 and the record closed. This record is deliberately different. It is **append-only and never closes**.
-It exists to catch the findings that surface while doing something else — a defect noticed while
+It exists to catch the findings that surface while doing something else - a defect noticed while
 running a build, an edge case hit while testing an unrelated feature, an optimization spotted in
 passing.
 
@@ -63,17 +63,17 @@ unrelated commit where no reviewer can see them. Both are bad. This record is th
 **What belongs here:** anything real, observed, and not worth interrupting current work for.
 
 **What does not:** anything urgent or dangerous enough to need its own record with acceptance
-criteria and a decision trail. Those get a `task` — `task:0022` is the worked example, promoted out
+criteria and a decision trail. Those get a `task` - `task:0022` is the worked example, promoted out
 of this log on the day it was found because it could destroy irreplaceable data.
 
-**Boundary — this log does not authorize fixes.** An entry is an observation with evidence, not a
+**Boundary - this log does not authorize fixes.** An entry is an observation with evidence, not a
 decision to act. Promotion to a `task` is what authorizes work. Entries may be batched into
 `task:0020` (standalone hygiene fixes) when several small ones accumulate.
 
 ## Method
 
 Entries are recorded when found, with whatever evidence was to hand at that moment. That is the
-point — the cost of an entry has to stay near zero or it will not get written.
+point - the cost of an entry has to stay near zero or it will not get written.
 
 ## Limitations
 
@@ -86,25 +86,25 @@ point — the cost of an entry has to stay near zero or it will not get written.
 
 ## Findings
 
-### F1 — `cli/` is not typechecked, and `@types/node` is undeclared
+### F1 - `cli/` is not typechecked, and `@types/node` is undeclared
 
 **Severity:** low · **Evidence:** reproduced · **Found:** 2026-09-21, while preparing `task:0021`
 
 `@types/node` is not a declared dependency. `pnpm exec tsc --noEmit cli/index.ts` reports **7 errors**
 (`Cannot find module 'node:fs'`, `Cannot find name 'process'`, two implicit-`any` parameters in
 `cli/commands/docs-check.ts:123-124`), while `pnpm typecheck` passes clean. `tsconfig.json` includes
-`**/*`, so the exclusion is not from configuration — `astro check` simply does not surface these.
+`**/*`, so the exclusion is not from configuration - `astro check` simply does not surface these.
 
 The consequence is that `cli/`, which `pnpm verify` now depends on, has no type coverage. This will
 widen as `atlas` grows; `task:0021` alone would add substantially more code there.
 
 **Disposition: RESOLVED 2026-09-21.** `@types/node` declared as a dev dependency, and
 `cli/tsconfig.json` plus a `typecheck:cli` script chained into `pnpm typecheck`. All 7 errors were
-knock-on effects of the missing types — once declared, the two implicit-`any` parameters resolved on
+knock-on effects of the missing types - once declared, the two implicit-`any` parameters resolved on
 their own, because `readdirSync` became typed. The gate was verified by introducing a deliberate type
 error and confirming it fails; a check that cannot fail is not a check.
 
-### F2 — `.cache/uc/` holds 1.9 GB of irreplaceable audio, gitignored and unbacked
+### F2 - `.cache/uc/` holds 1.9 GB of irreplaceable audio, gitignored and unbacked
 
 **Severity:** high · **Evidence:** reproduced · **Found:** 2026-09-21, while probing R2 access
 
@@ -113,9 +113,9 @@ excludes. This VM has crashed twice in two days. The audio cannot be regenerated
 (`[[atlas-audio-is-frozen]]`), and no backup exists.
 
 **Disposition:** promoted to `task:0023` AC-1. Recorded here because the general lesson is broader
-than one directory — gitignored working caches can hold assets whose value nobody has assessed.
+than one directory - gitignored working caches can hold assets whose value nobody has assessed.
 
-### F3 — Stale `.env` values give false confidence about which safety switches are active
+### F3 - Stale `.env` values give false confidence about which safety switches are active
 
 **Severity:** medium · **Evidence:** reproduced · **Found:** 2026-09-21, during the pre-merge gate
 
@@ -128,10 +128,10 @@ This is the proximate cause of the `task:0022` incident and is recorded separate
 _class_ of problem is broader: `.env` is not validated against the set of variables the code actually
 reads, so any typo or retired variable name fails silently and looks configured.
 
-**Disposition:** the specific instance is `task:0022` AC-4. The general case — validating `.env` keys
-against a declared set and warning on unknown or ineffective ones — is an unowned improvement.
+**Disposition:** the specific instance is `task:0022` AC-4. The general case - validating `.env` keys
+against a declared set and warning on unknown or ineffective ones - is an unowned improvement.
 
-### F4 — `pnpm verify` peaks at 94% memory commit
+### F4 - `pnpm verify` peaks at 94% memory commit
 
 **Severity:** medium · **Evidence:** measured · **Found:** 2026-09-21
 
@@ -144,7 +144,7 @@ fleet running, approaches the failure boundary.
 
 **Disposition:** `task:0024`.
 
-### F5 — AST node content lives in `children` _and_ in attributes, with no type-level distinction
+### F5 - AST node content lives in `children` _and_ in attributes, with no type-level distinction
 
 **Severity:** medium · **Evidence:** reproduced and measured · **Found:** 2026-09-21, while building `task:0025`
 
@@ -153,7 +153,7 @@ not. Five component types put a `SpanGroup` **node inside an attribute**: `Figur
 `Iframe.caption`, `Video.caption` (`transformer.ts:288,314,340`), `Quote.sourceUrl` (`:294`) and
 `Definition.source` (`:321`).
 
-Nothing in the `Node` type — `{name, attributes: Record<string, unknown>, children: Node[]}` — signals
+Nothing in the `Node` type - `{name, attributes: Record<string, unknown>, children: Node[]}` - signals
 this, so the obvious traversal is wrong. **Measured cost: a `children`-only walk found 1,414 of 1,778
 links. 364 citations, 20% of the corpus, were invisible**, overwhelmingly in figure captions, which is
 exactly where a textbook cites its sources.
@@ -162,17 +162,17 @@ Any code that walks this AST and does not know about attribute-held nodes is sil
 includes the existing `traverseNodes` helper in `utils.ts:15`.
 
 **Disposition:** `task:0025` added `allChildNodes()` in `citations/extract.ts` as a local remedy. The
-real fix is `task:0015` (discriminated-union AST), and this is concrete evidence for it — a measured
+real fix is `task:0015` (discriminated-union AST), and this is concrete evidence for it - a measured
 20% miss rate, not a stylistic preference. Worth auditing every other `traverseNodes` caller for the
 same defect before then.
 
-### F6 — hyperlinks inside flattened component fields are discarded entirely
+### F6 - hyperlinks inside flattened component fields are discarded entirely
 
 **Severity:** low · **Evidence:** hypothesis with a measured residual · **Found:** 2026-09-21
 
 After F5 was fixed, extraction saw 1,770 of 1,778 substantive links. The residual 8 are unexplained by
 any traversal bug. The probable cause is `getTrimmedString`, which flattens a table cell to plain text
-for `SectionDescription.content`, `Quote.speaker/position/date`, `Video.source` and `Iframe.src` — a
+for `SectionDescription.content`, `Quote.speaker/position/date`, `Video.source` and `Iframe.src` - a
 hyperlink in such a field loses its URL before any node is built, so it is unrecoverable downstream.
 
 Stated as a hypothesis: the residual is consistent with it, but the specific 8 have not been located.
@@ -180,7 +180,7 @@ Stated as a hypothesis: the residual is consistent with it, but the specific 8 h
 **Disposition:** unowned. At 0.45% it does not justify work on its own, and the remedy overlaps
 `task:0015`. Recorded so the number is explained rather than mysterious.
 
-### F7 — a joining separator in text reconstruction silently broke pattern matching
+### F7 - a joining separator in text reconstruction silently broke pattern matching
 
 **Severity:** low · **Evidence:** reproduced · **Found:** 2026-09-21
 
@@ -194,7 +194,7 @@ transferable lesson is the one worth keeping: a fixture that is tidier than the 
 fixture. The real-corpus reconciliation test is what caught this, and is worth the cost for that
 reason alone.
 
-### F8 — A BibTeX key comment claimed a stability guarantee the algorithm does not give
+### F8 - A BibTeX key comment claimed a stability guarantee the algorithm does not give
 
 **Severity:** low · **Evidence:** reproduced by test · **Found:** 2026-09-22
 
@@ -202,7 +202,7 @@ reason alone.
 adding an unrelated entry cannot renumber anyone". The digest does remove the counter dependency, but
 the claim is still too strong: within a colliding group the earliest-sorting URL keeps the **bare**
 key and the others take a suffix. Adding an entry whose URL sorts earlier than an existing one with
-the same base key therefore moves that existing key — and BibTeX keys are what authors type in every
+the same base key therefore moves that existing key - and BibTeX keys are what authors type in every
 `\cite`.
 
 Found while porting the file under `task:0029`, by a test written to assert the documented property.
@@ -212,37 +212,37 @@ The test failed; the algorithm was right and the comment was wrong.
 properties are mutually exclusive: "bare key when unique" and "never changes when a colliding sibling
 appears" cannot both hold once two entries want the same base. The bare key is worth more, because
 collisions are rare and readable keys are read constantly. The docstring in `commands/export.py` now
-states the real guarantee, and both properties are pinned by test — the one that holds, and the
+states the real guarantee, and both properties are pinned by test - the one that holds, and the
 narrower one that does not.
 
 The transferable point: a comment asserting an invariant is not evidence of it. This one survived
 because no test ever asked. Where a docstring claims a property, the cheap move is to write the test
 that would fail if it were false.
 
-### F9 — The all-sources index could not show the spelling inconsistencies it exists to surface
+### F9 - The all-sources index could not show the spelling inconsistencies it exists to surface
 
 **Severity:** low · **Evidence:** reproduced by test · **Found:** 2026-09-22
 
 `atlas citations urls` writes an `all-sources.md` index whose own preamble says: "Where a source is
-cited under more than one spelling, every spelling is shown — that is how inconsistent citation text
+cited under more than one spelling, every spelling is shown - that is how inconsistent citation text
 gets found."
 
 It built that list from the per-chapter display lists, which are **deduplicated by URL within each
 section**. So a source cited twice in one section as `Chollet, 2019` and `Chollet 2019` contributed
-only the first spelling, and the index showed one — hiding exactly the inconsistency it promised to
+only the first spelling, and the index showed one - hiding exactly the inconsistency it promised to
 reveal. Cross-section inconsistencies were shown correctly, which is why it looked like it worked.
 
 Found while porting `urls.ts` under `task:0029`, by a test asserting the documented behaviour.
 
 **Disposition:** fixed in `commands/urls.py`. Spellings are now collected from every instance in the
 scan; the section body still deduplicates, because showing one source three times in a reference list
-helps nobody. Two tests pin both halves. `citation-report.md` was never affected — it reads the
-undeduplicated instances — so no inconsistency was lost overall, only under-reported in the file the
+helps nobody. Two tests pin both halves. `citation-report.md` was never affected - it reads the
+undeduplicated instances - so no inconsistency was lost overall, only under-reported in the file the
 edition-2 authors were actually given.
 
 Same shape as F8, found the same way: a claim in prose that no test asked about.
 
-### F10 — `--redo` re-fetched everything, because a universal claim counted as evidence
+### F10 - `--redo` re-fetched everything, because a universal claim counted as evidence
 
 **Severity:** medium · **Evidence:** measured · **Found:** 2026-09-22
 
@@ -250,14 +250,14 @@ Same shape as F8, found the same way: a claim in prose that no test asked about.
 turn at entries a weaker one already answered. Its filter asks "would some _other_ resolver claim
 this URL?", and `resolve.ts` excluded `opengraph` by name from that question.
 
-It did not exclude `research-db`, whose `claims()` returns true for **every** HTTP URL — deliberately,
+It did not exclude `research-db`, whose `claims()` returns true for **every** HTTP URL - deliberately,
 because a local lookup is free. So the question answered yes for everything, and `--redo=opengraph`
 targeted **all 380** Open Graph entries rather than the publisher pages `scholar-meta` was written
 for. The file's own comment promised the opposite: "retries only the pages that resolver can actually
 help with, instead of re-fetching hundreds of blog posts that Open Graph already handled correctly."
 
 Measured on the committed store: 539 targets under the old filter, **191 under the corrected one**
-(159 never-resolved, plus 32 that a selective resolver genuinely claims — 20 publisher pages and 12
+(159 never-resolved, plus 32 that a selective resolver genuinely claims - 20 publisher pages and 12
 arXiv papers that had fallen through to Open Graph). At the polite 3-second interval that is roughly
 27 minutes against 10, over other people's free infrastructure.
 
@@ -267,7 +267,7 @@ finishing.
 **Disposition:** fixed in `python/atlas_citations/resolvers/base.py` and `commands/resolve.py`.
 Resolvers now declare `selective`, and only selective ones count as evidence that a redo is
 worthwhile. Four tests pin it, including one asserting that the unselective resolvers really do claim
-everything — the property the flag records, rather than a restatement of the flag.
+everything - the property the flag records, rather than a restatement of the flag.
 
 Third finding in this cluster, all found by writing a test for a claim made in prose (see F8, F9).
 The pattern is worth naming: **this codebase's comments are unusually detailed, and that made them
@@ -275,7 +275,7 @@ unusually load-bearing.** A detailed comment reads as specification, so a review
 against it and stops. Where a comment states a property, the test that would fail if it were false is
 cheap and is the only thing that keeps the comment honest.
 
-### F11 — The TypeScript arXiv resolver swallowed whole author blocks as one name
+### F11 - The TypeScript arXiv resolver swallowed whole author blocks as one name
 
 **Severity:** medium · **Evidence:** reproduced, 3 entries affected · **Found:** 2026-09-23, by the owner reading the rendered page
 
@@ -286,12 +286,12 @@ The rendered bibliography showed entries like:
 The cause was in `arxiv.ts`, which extracted authors with
 `/<author>\s*<name>([\s\S]*?)<\/name>\s*<\/author>/g`. arXiv emits
 `<arxiv:affiliation>` between `</name>` and `</author>`, so that pattern could not match the first
-author — and the lazy quantifier therefore ran on until it found a `</name></author>` pair with
+author - and the lazy quantifier therefore ran on until it found a `</name></author>` pair with
 nothing between them, swallowing every author in between into a single `given` field. One entry's
 `given` was **96,295 characters** of raw Atom XML. The render layer then abbreviated each
 whitespace-separated token to an initial, producing hundreds of `<.` fragments.
 
-Three entries were affected — `2501.14249` (1,158 authors), `2206.04615` (451), `2303.08774` (281) —
+Three entries were affected - `2501.14249` (1,158 authors), `2206.04615` (451), `2303.08774` (281) -
 which is to say the three with the largest author lists, because a long list is what makes the
 regex's failure mode visible.
 
@@ -302,7 +302,7 @@ parses all three correctly; the ported resolver was already immune when the bug 
 (`test_resolver_arxiv.py::TestAffiliations`) pins the affiliation shape and asserts that no author
 field contains markup or exceeds a plausible length. A second guard was added at the render layer
 (`src/lib/bibliography.ts`, `implausibleName`), because `sources.yaml` is committed and hand-editable
-— a bad value can arrive with no resolver involved, and no data defect should be able to disfigure a
+- a bad value can arrive with no resolver involved, and no data defect should be able to disfigure a
 page. A corrupt `given` now drops while its `family` survives, so the entry degrades rather than
 disappearing.
 
@@ -311,18 +311,18 @@ A fourth entry, a PubMed record, carried Crossref's inline markup in its title
 interpreting them, so they reached the reader. Fixed at the resolver (`crossref.py`, `_clean`) and
 again at the render layer.
 
-**The lesson is not "regex cannot parse XML"** — everyone already says that, and the original author
+**The lesson is not "regex cannot parse XML"** - everyone already says that, and the original author
 knew it and wrote the constraint down. It is that the file's own header listed what its parsing could
 not handle and this case was not on the list, because the limitation was reasoned about rather than
 tested against real feeds. The three worst-affected entries were in the corpus the whole time.
 
-### F12 — A transient network failure is recorded as a permanent resolver verdict
+### F12 - A transient network failure is recorded as a permanent resolver verdict
 
 **Severity:** medium · **Evidence:** reproduced · **Found:** 2026-09-23, while repairing F11
 
 While re-resolving the F11 entries, arXiv briefly failed under three rapid requests. The resolver
 treated that exactly as it treats "this paper does not exist": it returned `None`, the chain fell
-through, and Open Graph answered instead — giving the entry a bare title and **zero authors** where
+through, and Open Graph answered instead - giving the entry a bare title and **zero authors** where
 arXiv would have given 1,158. The same fetch succeeded on the next attempt, three times in a row.
 
 Because resolution is sticky by design, that verdict would have been permanent. Nothing distinguishes
@@ -338,7 +338,7 @@ contract gained `Unreachable(reason)`, a selective resolver that could not be re
 fallback chain, and the reason is recorded on the entry so the report can separate a dead citation
 from a blocked one. The scale was larger than this finding estimated: see F14.
 
-### F14 — The unresolved tail is four different problems, and only one of them is ours
+### F14 - The unresolved tail is four different problems, and only one of them is ours
 
 **Severity:** medium · **Evidence:** all 132 unresolved URLs fetched and classified · **Found:**
 2026-09-23, diagnosing `task:0032`
@@ -349,17 +349,17 @@ populations needing four different responses:
 
 | Outcome                 |   n | Whose problem                                      |
 | ----------------------- | --: | -------------------------------------------------- |
-| 403 / 401 / 402         |  57 | Nobody's — a WAF or paywall refused us             |
+| 403 / 401 / 402         |  57 | Nobody's - a WAF or paywall refused us             |
 | PDF, fetched fine       |  29 | Ours: no resolver reads PDFs                       |
 | Connect error / timeout |  15 | Transient: F12                                     |
 | **404 / 410**           |  11 | **The authors': the cited page no longer exists**  |
-| 200, usable title       |   8 | F12 again — these resolve today                    |
+| 200, usable title       |   8 | F12 again - these resolve today                    |
 | 200, no or bad title    |  11 | Ours: client-rendered, or a bot check behind a 200 |
 
 Two things this measurement changed. First, **8 entries resolve perfectly right now** and were marked
 permanently unresolvable, which raised F12 from "worth a task" to the largest single cause. Second,
-**11 citations point at pages that do not exist** — including four on one domain the corpus was
-believed to cover fully — and that had been invisible because a dead link and an unresolvable one
+**11 citations point at pages that do not exist** - including four on one domain the corpus was
+believed to cover fully - and that had been invisible because a dead link and an unresolvable one
 were being reported identically.
 
 The general form is worth keeping: **an exhausted worklist is not a homogeneous one.** "Everything
@@ -369,7 +369,7 @@ remainder was four problems with different owners, three of which were tractable
 **Disposition:** fixed under `task:0032`. The 404/410 population now has its own report section
 (AC-6), because it is the one an author must act on.
 
-### F15 — Two plausible ways to close the tail produce confident wrong metadata
+### F15 - Two plausible ways to close the tail produce confident wrong metadata
 
 **Severity:** low · **Evidence:** measured against real corpus entries · **Found:** 2026-09-23,
 building `task:0032`
@@ -383,7 +383,7 @@ again:
   nonprofit, 501(c)(3) educational organization…" as the title.
 - **Searching Crossref by title.** `query.bibliographic` returns an unnormalised score. Searching
   **"Safety cases for frontier AI"** returned **"Safety Framework Cards: A Standardized
-  Specification…"** ranked first at 25.7 — a different paper, with a score indistinguishable from a
+  Specification…"** ranked first at 25.7 - a different paper, with a score indistinguishable from a
   correct hit's.
 
 The shared failure is not inaccuracy but _undetectable_ inaccuracy: each attaches real-looking
@@ -393,7 +393,7 @@ metadata to the wrong work, and the result reads as more trustworthy than an unr
 **Disposition:** rejected by design, recorded as `task:0032` D2 and D3. The evidence both methods
 produce is genuinely useful to a _human_, which is what `atlas citations propose` exists to deliver.
 
-### F16 — Canonicalization's `www.` strip turned working citations into dead ones
+### F16 - Canonicalization's `www.` strip turned working citations into dead ones
 
 **Severity:** medium · **Evidence:** reproduced, 7 entries · **Found:** 2026-09-23, by the owner
 asking whether the unresolved URLs shared a pattern
@@ -401,24 +401,24 @@ asking whether the unresolved URLs shared a pattern
 Stripping `www.` is correct canonicalization and should stay: almost every host serves both forms, so
 keeping the prefix would mint two entries for one source and defeat `task:0021` D1.
 
-Almost every host. Seven of this corpus's URLs answer **only** on the prefixed form — the four
+Almost every host. Seven of this corpus's URLs answer **only** on the prefixed form - the four
 `planned-obsolescence.org` posts (a Substack custom domain, which 404s bare), an AP News article,
 `overcomingbias.com`, and a Carter Center PDF.
 
 This was worse than a resolution failure. **The store's `URL` is what the bibliography renders as a
-link**, so a reader clicking those four got a 404 — and the dead-link report was about to tell the
+link**, so a reader clicking those four got a 404 - and the dead-link report was about to tell the
 authors their citations were broken when our own canonicalizer had broken them. A tool that
 misattributes its own defect to its user is worse than one that stays silent.
 
 The general form: **identity and reachability are different properties, and a canonical form
-optimised for one can be wrong for the other.** CSL already separates them — `id` versus `URL` — and
+optimised for one can be wrong for the other.** CSL already separates them - `id` versus `URL` - and
 the fix uses that separation rather than weakening canonicalization.
 
 **Disposition:** fixed under `task:0032` (commit `ffa7ed0`). `research_db.py` had carried a private
 `_with_www` helper since `task:0027`, which means someone hit this before and fixed it in one
 resolver instead of noticing it was general.
 
-### F17 — A headless browser does not defeat a WAF, and was about to be built on the assumption that it would
+### F17 - A headless browser does not defeat a WAF, and was about to be built on the assumption that it would
 
 **Severity:** low · **Evidence:** measured against three blocked hosts · **Found:** 2026-09-23,
 testing an owner suggestion before implementing it
@@ -436,8 +436,8 @@ Cloudflare detects headless Chrome and refuses it identically. PsycNet was _wors
 than under httpx. The one page a browser rendered correctly is one httpx also handles once F16 is
 fixed.
 
-So the blockage is **access control, not rendering**, and a browser dependency — a ~300 MB download,
-a new failure mode, and a much slower run — would have bought nothing against it. The corpus's
+So the blockage is **access control, not rendering**, and a browser dependency - a ~300 MB download,
+a new failure mode, and a much slower run - would have bought nothing against it. The corpus's
 genuinely client-rendered pages are the forum ones, and `forum-magnum` answers those from an API.
 
 **Disposition:** not built, recorded. Worth keeping because "just use a real browser" is the obvious

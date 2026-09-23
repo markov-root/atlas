@@ -66,11 +66,11 @@ git ls-files -z 'src/assets/**' | xargs -0 du -k                        # live a
 ```
 
 Dependency usage was checked by grepping each package name across `src/` and `astro.config.mjs`.
-**This method produced one false positive that was caught and corrected** — see Limitations.
+**This method produced one false positive that was caught and corrected** - see Limitations.
 
 ## Findings
 
-### F1 — The git pack is 1.59 GiB; the live tree accounts for under 30 MB of it
+### F1 - The git pack is 1.59 GiB; the live tree accounts for under 30 MB of it
 
 _Observation._
 
@@ -83,17 +83,17 @@ Against that, the current committed payload is small: 16.9 MB of images under `s
 of `.cache/docs/`, 6.0 MB under `public/audio/` (71 `.words.json`; zero committed `.mp3`).
 
 History accounts for the difference. Files added and later removed include 27 `.mp3` paths, 18
-`.zip`, and 9 `.pdf`, under paths such as `docs/chapters/05/tts/01.mp3` — the pre-Astro Docusaurus
+`.zip`, and 9 `.pdf`, under paths such as `docs/chapters/05/tts/01.mp3` - the pre-Astro Docusaurus
 layout, which `.gitignore` still references as `previous-version-w-docusaurus`.
 
 _Inference._ Every `git clone` of this repository transfers ~1.6 GB, almost all of it audio and
 archives that no longer exist in any branch. This is the largest single piece of cruft found, and it
 falls directly on the constituency the project is trying to serve: `lesson:0001` records an external
 contributor blocked for two months by build friction, and `CONTRIBUTING.md` targets exactly that
-onboarding path. Note that removing it is not a normal cleanup — it requires history rewriting, with
+onboarding path. Note that removing it is not a normal cleanup - it requires history rewriting, with
 consequences covered under Recommendations.
 
-### F2 — Committed images are unoptimized
+### F2 - Committed images are unoptimized
 
 _Observation._ Twelve committed files exceed 500 KB, all images:
 
@@ -103,16 +103,16 @@ _Observation._ Twelve committed files exceed 500 KB, all images:
 | `src/assets/static/portraits/demis_hassabis.jpg` | 1.6 MB |
 | `src/assets/static/portraits/kamala_harris.png`  | 1.5 MB |
 | `src/assets/reader-screenshot.png`               | 1.2 MB |
-| 8 more between 0.5 and 0.8 MB                    |      — |
+| 8 more between 0.5 and 0.8 MB                    |      - |
 
 Total committed image weight under `src/assets/`: 16.9 MB. The project already depends on `sharp`,
 and `astro.config.mjs` configures `svgoOptimizer`.
 
 _Inference._ Portrait photographs at 1.5–1.7 MB are one to two orders of magnitude larger than their
 rendered size requires. Astro's image pipeline optimizes these at build time, so this is not a
-page-weight defect for readers — it is repo weight, paid on every clone, and it compounds F1.
+page-weight defect for readers - it is repo weight, paid on every clone, and it compounds F1.
 
-### F3 — Two build-time packages are declared as runtime dependencies
+### F3 - Two build-time packages are declared as runtime dependencies
 
 _Observation._ `package.json` lists 26 `dependencies` and 14 `devDependencies`. `@astrojs/check` and
 `typescript` are in `dependencies`. Both are used only by `pnpm typecheck` (`astro check`); neither
@@ -122,19 +122,19 @@ _Inference._ Cosmetic for a statically-built site that ships no `node_modules`, 
 installs this package as a library. The cost is accuracy of the manifest as documentation rather than
 install weight.
 
-### F4 — Four `.gitignore` entries resolve to nothing
+### F4 - Four `.gitignore` entries resolve to nothing
 
 _Observation._ Of the paths named in `.gitignore`, four do not exist in the working tree:
 `convert.js`, `previous-version-w-docusaurus`, `public/uc/`, `service-account.json`.
 
-_Inference._ `service-account.json` should **stay** regardless — it is a defensive guard against
+_Inference._ `service-account.json` should **stay** regardless - it is a defensive guard against
 committing a credential file, and its value is precisely that it fires before the file exists. The
 same defensive reading arguably applies to `public/uc/`. `convert.js` and
 `previous-version-w-docusaurus` are residue of a migration that completed; they guard against
 nothing. Distinguishing the two kinds matters more than the cleanup itself: deleting a defensive
 ignore rule to tidy a list is a net loss.
 
-### F5 — The source tree itself is clean
+### F5 - The source tree itself is clean
 
 _Observation._ Scanning every non-test `.ts` module in `src/`:
 
@@ -151,7 +151,7 @@ result.
 ## Limitations
 
 - **The dependency check produced a false positive.** Grepping for `@iconify-json/cib` returned zero
-  references, suggesting an unused dependency. It is used — icons are referenced by prefix string
+  references, suggesting an unused dependency. It is used - icons are referenced by prefix string
   (`<Icon name="cib:github" />` at `src/components/Footer.astro:31`), not by package name. Every
   "unused dependency" claim from a name grep is unreliable for this class of package; only the two
   in F3 are asserted, and both were confirmed by their absence from any import.
@@ -159,7 +159,7 @@ result.
 - **No `pnpm audit`** or transitive dependency review was run; this audit says nothing about
   vulnerabilities or stale versions.
 - **The history scan was type-limited** to `.mp3`, `.zip`, `.pdf`, `.mp4`. Other large blob types in
-  history would not have been seen, so F1's attribution is partial — it identifies a sufficient
+  history would not have been seen, so F1's attribution is partial - it identifies a sufficient
   cause for the pack size, not necessarily the complete one.
 - **No per-blob history sizing.** `git count-objects` gives the total; individual historical blob
   sizes were not enumerated, because doing so on a 1.6 GiB pack is expensive and this VM is
@@ -167,19 +167,19 @@ result.
 
 ## Recommendations
 
-1. **Decide whether to rewrite history to drop the pre-Astro binaries (F1). Size L, high risk —
+1. **Decide whether to rewrite history to drop the pre-Astro binaries (F1). Size L, high risk -
    owner decision, not an engineering one.** This would cut clone size by roughly 50×. It is listed
    first because it is the largest effect, _not_ because it is recommended lightly. It rewrites every
    commit SHA, which breaks: existing clones and forks, any SHA referenced in `docs/` records
    (`lesson:0003` and `lesson:0006` cite commit SHAs), and any external link to a commit. Given that
    this is a public repository with outside contributors, the coordination cost is real. A cheaper
    partial alternative is to leave history alone and document the clone size in `CONTRIBUTING.md`,
-   with `git clone --depth 1` as the suggested contributor command — that captures most of the
+   with `git clone --depth 1` as the suggested contributor command - that captures most of the
    onboarding benefit at near-zero risk. **Recommend the cheap alternative first.**
 
 2. **Optimize the twelve oversized committed images (F2). Size S.** `sharp` is already a dependency.
    Re-encoding portraits at a sane resolution would reclaim most of the 16.9 MB going forward. Risk:
-   low, but note it _adds_ to history rather than shrinking it — the old blobs remain. Worth doing
+   low, but note it _adds_ to history rather than shrinking it - the old blobs remain. Worth doing
    only alongside a decision on 1, or accepted as preventing further growth.
 
 3. **Move `@astrojs/check` and `typescript` to `devDependencies` (F3). Size S.** Risk: near-zero;

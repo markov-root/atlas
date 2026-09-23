@@ -79,10 +79,10 @@ function asyncBody(content: string) {
 // configured. The textbook is built by both maintainers (with R2 creds)
 // and contributors (without). If any of these functions tries to talk to
 // R2 in contributor mode, the build either fails outright with a
-// confusing AWS-SDK error, or — worse — leaks an attempted request that
+// confusing AWS-SDK error, or - worse - leaks an attempted request that
 // surprises the contributor. The build must never reach R2 without
 // explicit credentials.
-describe('r2-cache — every public function is a no-op without R2 credentials', () => {
+describe('r2-cache - every public function is a no-op without R2 credentials', () => {
   beforeEach(() => unsetR2Env());
 
   it.each([
@@ -107,7 +107,7 @@ describe('r2-cache — every public function is a no-op without R2 credentials',
 // returns NoSuchKey, treat it as "new content, fine" rather than an
 // error. If either breaks, builds either become slow / costly, or fail
 // the first time a new equation or paragraph is encountered.
-describe('r2-cache.pullFromR2 — hydrates local cache without re-downloading or erroring on misses', () => {
+describe('r2-cache.pullFromR2 - hydrates local cache without re-downloading or erroring on misses', () => {
   beforeEach(() => setR2Env());
 
   it('only downloads keys whose local file is missing', async () => {
@@ -151,7 +151,7 @@ describe('r2-cache.pullFromR2 — hydrates local cache without re-downloading or
 // re-running a build doesn't burn bandwidth re-uploading 100+ MB of
 // unchanged audio. If these break, readers either see broken downloads
 // or maintainer builds become unworkably slow.
-describe('r2-cache.pushPublicFiles — content-type and skip-existing contract', () => {
+describe('r2-cache.pushPublicFiles - content-type and skip-existing contract', () => {
   beforeEach(() => setR2Env());
 
   it('skips files already present in R2 and sets Content-Type on the ones it uploads', async () => {
@@ -191,7 +191,7 @@ describe('r2-cache.pushPublicFiles — content-type and skip-existing contract',
 // ListObjectsV2 call (which still costs an R2 list operation) when the
 // caller has nothing to upload. Minor but visible on the R2 billing
 // dashboard and in build logs.
-describe('r2-cache — empty inputs short-circuit before reaching R2', () => {
+describe('r2-cache - empty inputs short-circuit before reaching R2', () => {
   beforeEach(() => setR2Env());
 
   it.each([

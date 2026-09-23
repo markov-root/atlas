@@ -14,6 +14,8 @@ import {
   defaultStyle,
   loadRendered,
   storeCoverage,
+  sourceOf,
+  allReferencesWithLocations,
   toReference,
 } from './bibliography';
 import type { Chapter, Section } from '../textbook-loader';
@@ -70,8 +72,8 @@ describe('formatName', () => {
 });
 
 // The store held three entries whose `given` was tens of thousands of characters
-// of raw Atom XML — the TypeScript arXiv resolver had swallowed the whole author
-// block — and the page rendered it as several hundred initials. The resolver is
+// of raw Atom XML - the TypeScript arXiv resolver had swallowed the whole author
+// block - and the page rendered it as several hundred initials. The resolver is
 // fixed; this is the render-layer guard, because sources.yaml is committed and
 // hand-editable so bad values can arrive with no resolver involved.
 // audit:0011 F11.
@@ -203,13 +205,13 @@ describe('toReference', () => {
   });
 
   // Open Graph titles routinely carry the site name, and og:site_name then
-  // supplies it again — the first render showed "… — Center on Long-Term Risk.
+  // supplies it again - the first render showed "… - Center on Long-Term Risk.
   // Center on Long-Term Risk."
   it('drops a container the title already ends with', () => {
     const ref = toReference(
       'https://a.org/x',
       entry({
-        title: 'Reducing Risks of Astronomical Suffering — Center on Long-Term Risk',
+        title: 'Reducing Risks of Astronomical Suffering - Center on Long-Term Risk',
         'container-title': 'Center on Long-Term Risk',
       }),
     );
@@ -271,7 +273,7 @@ describe('sectionReferences', () => {
     expect(sectionReferences(s, root).length).toBe(1);
   });
 
-  it('excludes prose links and assets — they are not references', () => {
+  it('excludes prose links and assets - they are not references', () => {
     resetStoreCache();
     const s = section([
       para(link('https://example.org/guide', 'available here')),
@@ -282,7 +284,7 @@ describe('sectionReferences', () => {
 
   it('renders a cited URL that is not yet in the store, rather than dropping it', () => {
     // A silently shorter bibliography is the failure task:0021 D4 exists to
-    // prevent — the store can lag the prose.
+    // prevent - the store can lag the prose.
     resetStoreCache();
     const s = section([para(link('https://not-in-store.example/paper', 'Nobody, 2099'))]);
     const refs = sectionReferences(s, root);
@@ -389,7 +391,7 @@ describe('style options (task:0030)', () => {
   });
 
   it('still offers the house style with no rendered file at all', () => {
-    // task:0030 AC-4 — a contributor who has not run `atlas citations render`
+    // task:0030 AC-4 - a contributor who has not run `atlas citations render`
     // gets a working bibliography, just without the alternatives.
     resetStoreCache();
     expect(availableStyles('/nonexistent-root-for-test')).toEqual([BASIC_STYLE]);
@@ -426,5 +428,90 @@ describe('the corpus has no impossible URLs (audit:0011 F13)', () => {
       }
     });
     expect(bad.map((r) => r.key)).toEqual([]);
+  });
+});
+
+describe('the source facet (task:0030 AC-7, task:0032 D5)', () => {
+  it('uses the container a source states', () => {
+    expect(sourceOf('arXiv', 'https://arxiv.org/abs/1')).toBe('arXiv');
+  });
+
+  it('falls back to the domain rather than inventing a publisher name', () => {
+    // A domain is a true statement about where a work lives and needs no
+    // mapping table anyone has to maintain. The alternative - a hand-written
+    // domain-to-publisher table for a long tail of several hundred sites - is
+    // guesswork dressed as data.
+    expect(sourceOf('', 'https://www.openai.com/index/x')).toBe('openai.com');
+    expect(sourceOf('', 'https://some-blog.example/post')).toBe('some-blog.example');
+  });
+
+  it('never returns empty, so no entry falls out of the facet', () => {
+    expect(sourceOf('', 'not a url')).toBe('Unknown');
+  });
+
+  it('keeps the stated container even when the title already ends with it', () => {
+    // `dropRedundantContainer` blanks the *display* container so a reference
+    // does not say "LessWrong" twice. The facet must still be able to filter on
+    // it - the two are different jobs on the same field.
+    const ref = toReference(
+      'https://lesswrong.com/posts/x',
+      entry(
+        {
+          title: 'Beware safety-washing - LessWrong',
+          'container-title': 'LessWrong',
+          URL: 'https://lesswrong.com/posts/x',
+        },
+        'forum-magnum',
+      ),
+    );
+    expect(ref.container).toBe('');
+    expect(ref.source).toBe('LessWrong');
+  });
+});
+
+describe('the type facet', () => {
+  it('names CSL types in a readers words', () => {
+    expect(toReference('u', entry({ type: 'post-weblog' })).kind).toBe('Blog post');
+    expect(toReference('u', entry({ type: 'motion_picture' })).kind).toBe('Video');
+    expect(toReference('u', entry({ type: 'article-journal' })).kind).toBe('Journal article');
+  });
+
+  it('buckets an unmapped type rather than showing the schema word', () => {
+    // A filter option nobody understands is worse than one bucket.
+    expect(toReference('u', entry({ type: 'dataset' })).kind).toBe('Other');
+    expect(toReference('u', entry({ type: undefined })).kind).toBe('Other');
+  });
+});
+
+describe('allReferencesWithLocations (task:0030 AC-7)', () => {
+  const cited = (href: string) => para(link(href, 'Author, 2024'));
+
+  function chapterWith(sections: Section[], number = 2, slug = 'ch2'): Chapter {
+    return { title: 'A Chapter', number, slug, sections } as Chapter;
+  }
+
+  // A real key, because the site-wide list is built from the committed store:
+  // a URL with no store entry has nothing to attach a location to.
+  const url = Object.keys(loadStore())[0];
+
+  it('tags a source with every chapter and section citing it', () => {
+    const chapter = chapterWith([section([cited(url)], 1), section([cited(url)], 3)]);
+    const found = allReferencesWithLocations([chapter]).find((r) => r.key === url);
+    expect(found?.cited.map((c) => c.sectionNumber)).toEqual(['2.1', '2.3']);
+    expect(found?.cited[0].chapterSlug).toBe('ch2');
+  });
+
+  it('counts a section once however often it cites the same source', () => {
+    const chapter = chapterWith([section([cited(url), cited(url), cited(url)], 1)]);
+    const found = allReferencesWithLocations([chapter]).find((r) => r.key === url);
+    expect(found?.cited).toHaveLength(1);
+  });
+
+  it('leaves an uncited store entry with no locations rather than dropping it', () => {
+    // /bibliography answers "what does this book rest on", and the store is the
+    // authority on that - an entry the walk did not reach is still a source.
+    const refs = allReferencesWithLocations([chapterWith([section([])])]);
+    expect(refs.length).toBeGreaterThan(0);
+    expect(refs.every((r) => Array.isArray(r.cited))).toBe(true);
   });
 });

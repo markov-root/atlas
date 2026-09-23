@@ -1,9 +1,9 @@
-"""The Internet Archive — last resort, for citations whose page is gone.
+"""The Internet Archive - last resort, for citations whose page is gone.
 
 ``task:0032``, scope item 5. Eleven of this corpus's citations point at pages
 that answer HTTP 404 or 410: four `planned-obsolescence.org` posts, a Defense
 Innovation Unit page, the CIFAR dataset page, an Our World in Data chart. The
-works existed — the authors read them — and the addresses no longer resolve.
+works existed - the authors read them - and the addresses no longer resolve.
 
 Citing an archived copy is the standard scholarly answer to that, and it is
 strictly better than the alternatives: dropping the citation loses the evidence,
@@ -42,14 +42,14 @@ TIMEOUT_S = 30.0
 def snapshot_for(canonical_url: str, ctx: ResolverContext) -> tuple[str, str] | Unreachable | None:
     """The closest archived snapshot's URL and timestamp, or ``None``.
 
-    Coverage is genuinely partial — 2 of 4 sampled corpus dead links had a
-    snapshot — so this reduces the set a human must finish rather than closing
+    Coverage is genuinely partial - 2 of 4 sampled corpus dead links had a
+    snapshot - so this reduces the set a human must finish rather than closing
     it. That is worth saying plainly: a resolver that half works is still worth
     having when the alternative is hand-writing every entry.
     """
     body = get_json(ctx, f"{AVAILABILITY_API}?url={canonical_url}", timeout=TIMEOUT_S)
     # The Archive being down is not evidence that no snapshot exists. Reported so
-    # the entry is retried rather than written off — the same distinction the
+    # the entry is retried rather than written off - the same distinction the
     # rest of the contract turns on (audit:0011 F12).
     if isinstance(body, Unreachable):
         return body
@@ -79,7 +79,7 @@ def _issued_from_timestamp(timestamp: str) -> dict[str, Any] | None:
 
 class WaybackResolver:
     name = "wayback"
-    #: Claims every HTTP URL, like Open Graph — but runs after it, so in practice
+    #: Claims every HTTP URL, like Open Graph - but runs after it, so in practice
     #: it only ever sees what the live web could not answer.
     selective = False
 

@@ -1,4 +1,4 @@
-"""``atlas citations propose`` — gathers evidence, decides nothing. ``task:0032`` AC-5."""
+"""``atlas citations propose`` - gathers evidence, decides nothing. ``task:0032`` AC-5."""
 
 from __future__ import annotations
 
@@ -98,7 +98,7 @@ class TestTheStub:
 class TestALargePdfIsNotTruncatedIntoGarbage:
     """A PDF's cross-reference table is at the *end* of the file.
 
-    A body cut at a byte cap is not a smaller document, it is a broken one —
+    A body cut at a byte cap is not a smaller document, it is a broken one -
     found on the 28 MB DALL-E 3 paper, which an 8 MB cap turned into a
     PdfStreamError that read as "this PDF is unreadable".
     """

@@ -56,7 +56,7 @@ checks:
   build:
     command: [pnpm, run, build]
     applies_to: ['**/*']
-  # Note: `format:check` (prettier) is intentionally NOT adopted — the project
+  # Note: `format:check` (prettier) is intentionally NOT adopted - the project
   # defers a bulk reformat (see docs/ROADMAP.md) and omits it from `pnpm verify`.
 
 profiles:
@@ -106,7 +106,7 @@ docs:
 
 # Deliberately NOT declared here: the four living documents (ARCHITECTURE.md,
 # PRINCIPLES.md, DESIGN.md, ROADMAP.md). `docs.currency.roles` governs
-# append-only numbered record *series* — it requires a 4-digit filename prefix
+# append-only numbered record *series* - it requires a 4-digit filename prefix
 # on every matched file (`id_prefix_digits` has schema minimum 1, so there is
 # no opt-out), which would force renames like `docs/0001-architecture.md` and
 # break every inbound link for no reader benefit. The living documents instead
@@ -114,7 +114,7 @@ docs:
 # its own living documents. See docs/adr/0002 for the full reasoning.
 
 # Additional record roles (research, plan, …) ship with the skill and can be
-# adopted the same way when the first such record is created — an adopted role
+# adopted the same way when the first such record is created - an adopted role
 # must contain at least one record, so they are declared on first use.
 
 task_inventory:

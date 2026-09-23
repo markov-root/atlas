@@ -33,9 +33,9 @@ function findChapterPaths(): string[] {
 
 // Chapter and section slugs are public URLs. Search engines index them,
 // readers bookmark them, partner-school syllabi link to them, and the
-// browser-side reader navigates via them. If a slug changes silently —
+// browser-side reader navigates via them. If a slug changes silently -
 // for example because someone edited a Google Doc heading and didn't
-// realize the URL would change — every inbound link from the outside
+// realize the URL would change - every inbound link from the outside
 // world breaks with a 404. We don't get notified about that until
 // readers complain.
 //
@@ -44,7 +44,7 @@ function findChapterPaths(): string[] {
 // the snapshot diff makes the change visible at review time. Intentional
 // URL changes regenerate the snapshot and the PR mentions the redirects
 // shipped alongside; accidental changes get reverted.
-describe('URL stability — built chapter and section paths', () => {
+describe('URL stability - built chapter and section paths', () => {
   it('the full set of /chapters/v*/<chapter>/[<section>] paths matches the snapshot', () => {
     if (!existsSync(DIST_DIR)) {
       throw new Error(

@@ -61,7 +61,7 @@ fdfind -e ts . src | rg -v '\.test\.ts$'              # modules, then check for 
 ```
 
 `pnpm test` was run and completed in 7.81s; memory commit was sampled before and after and held at
-69%. **`pnpm test:smoke`, `pnpm test:a11y`, and `pnpm build` were deliberately not run** — this VM
+69%. **`pnpm test:smoke`, `pnpm test:a11y`, and `pnpm build` were deliberately not run** - this VM
 has crashed twice under build load, and `handoff:0002` §Constraints forbids them. Findings about
 those suites therefore rest on reading them, not on running them.
 
@@ -70,16 +70,16 @@ forming conclusions.
 
 ## Findings
 
-### F1 — Pure logic is tested; DOM-touching code is not
+### F1 - Pure logic is tested; DOM-touching code is not
 
 _Observation._ The seven browser-runtime modules in `src/lib/` split exactly along whether they touch
 the DOM:
 
 | Module                   | Lines | Tests | Touches DOM directly   |
 | ------------------------ | ----: | ----: | ---------------------- |
-| `word-align.ts`          |   327 |    17 | no — alignment math    |
-| `follow-scroll.ts`       |    90 |    14 | no — scroll geometry   |
-| `section-audio.ts`       |   106 |    11 | no — source resolution |
+| `word-align.ts`          |   327 |    17 | no - alignment math    |
+| `follow-scroll.ts`       |    90 |    14 | no - scroll geometry   |
+| `section-audio.ts`       |   106 |    11 | no - source resolution |
 | `word-highlight.ts`      |   724 | **0** | yes                    |
 | `audio-player.ts`        |   484 | **0** | yes                    |
 | `reader.ts`              |   256 | **0** | yes                    |
@@ -87,7 +87,7 @@ the DOM:
 
 523 lines of pure logic carry 42 tests. 1,574 lines of DOM-touching code carry none.
 
-_Inference._ This is not neglect — it is a deliberate pattern that was applied and then stopped.
+_Inference._ This is not neglect - it is a deliberate pattern that was applied and then stopped.
 `src/lib/follow-scroll.ts:4` states it is "Kept separate from the DOM wiring in word-highlight.ts so
 the decisions -- when to scroll and how far -- can be checked directly." The project already knows
 the technique: extract the decision from the wiring, test the decision, leave a thin shell. It was
@@ -95,7 +95,7 @@ applied to scroll geometry and to alignment, and `word-highlight.ts` is the 724-
 it was not completed. The gap is therefore _shaped_ rather than uniform, which makes it far more
 tractable than a bare "no tests on the browser code" would suggest.
 
-### F2 — The largest and newest module is the least tested
+### F2 - The largest and newest module is the least tested
 
 _Observation._ `src/lib/word-highlight.ts` is 724 lines, the second-largest file in the repo, shipped
 2026-09-20, and has no test file. Two defects in it were found and fixed within 24 hours of shipping,
@@ -108,26 +108,26 @@ it is two shipped regressions in one day. `task:0008` responded by adding
 `src/data/chapter-timing.test.ts` (8 tests) as a structural guard over the _timing data_, which is
 the adjacent risk, but nothing covers the DOM-wrapping behaviour where both defects actually were.
 
-### F3 — Node-side pipeline coverage is proportionate, with one thin spot
+### F3 - Node-side pipeline coverage is proportionate, with one thin spot
 
 _Observation._ The content pipeline is well covered relative to size, except `transformer.ts`:
 
 | Module              | Lines |                                                                   Tests |
 | ------------------- | ----: | ----------------------------------------------------------------------: |
 | `transformer.ts`    |   750 | 22 (3 in `transformer.test.ts`, 19 in `transformer.edge-cases.test.ts`) |
-| `gdocsdk.ts`        |     — |                                                                      13 |
-| `renderers/audio/*` |     — |                                                       28 across 4 files |
-| `loader.ts`         |     — |                                                                       6 |
-| `algolia.ts`        |     — |                                                                       6 |
+| `gdocsdk.ts`        |     - |                                                                      13 |
+| `renderers/audio/*` |     - |                                                       28 across 4 files |
+| `loader.ts`         |     - |                                                                       6 |
+| `algolia.ts`        |     - |                                                                       6 |
 
 _Inference._ 22 cases for the repo's largest module is the thinnest ratio on the Node side, and
 `transformer.ts` is also the module `docs/ROADMAP.md` §Later already targets for a state refactor.
 Those two facts compound: a refactor of the least-tested large module is the riskiest kind. This is
 an argument for strengthening its tests _before_ that refactor, not for doing either now.
 
-### F4 — The layering claimed in PRINCIPLES §7 holds
+### F4 - The layering claimed in PRINCIPLES §7 holds
 
-_Observation._ `docs/PRINCIPLES.md` §7 describes layered testing; the tree matches it — pure unit
+_Observation._ `docs/PRINCIPLES.md` §7 describes layered testing; the tree matches it - pure unit
 tests beside their modules, storage/integration tests in `textbook-loader/`, snapshot tests
 (`output-snapshots.test.ts`, `__snapshots__/`), a build smoke suite (`tests/smoke/`), and an
 accessibility suite (`tests/a11y/`). `pnpm verify` chains all of them, enforced by a `pre-push` hook.
@@ -135,13 +135,13 @@ accessibility suite (`tests/a11y/`). `pnpm verify` chains all of them, enforced 
 _Inference._ No finding. Recorded because an audit that lists only gaps misrepresents a suite whose
 architecture is sound; the issue in F1/F2 is coverage of one region, not the design of the layering.
 
-### F5 — The a11y suite generates its cases from build output
+### F5 - The a11y suite generates its cases from build output
 
 _Observation._ `tests/a11y/a11y.test.ts` contains no literal `it(`/`test(` calls at the top level. It
 walks `dist/` (`readdirSync` over version → chapter → section at lines 47–55) and generates cases
 inside `describe('axe-core accessibility scan')`, with a `baseline.json` alongside.
 
-_Inference._ A naive count reports this file as having zero tests — it does not; the count is a
+_Inference._ A naive count reports this file as having zero tests - it does not; the count is a
 measurement artifact of the regex used in this audit's method. The real property worth noting is that
 this suite's case count is a function of built output, so it cannot run without a prior build, and
 its coverage silently tracks however many sections `dist/` happens to contain.
@@ -149,7 +149,7 @@ its coverage silently tracks however many sections `dist/` happens to contain.
 ## Limitations
 
 - **No coverage instrumentation.** "Untested" throughout means "has no sibling `.test.ts`". A module
-  may still be exercised indirectly — `word-highlight.ts` is certainly touched by the a11y suite via
+  may still be exercised indirectly - `word-highlight.ts` is certainly touched by the a11y suite via
   rendered pages. Line or branch coverage is entirely unestablished.
 - **Three suites were not executed.** `test:smoke`, `test:a11y`, and `build` were not run, per the
   VM constraint. Statements about them come from reading their source.
@@ -167,13 +167,13 @@ its coverage silently tracks however many sections `dist/` happens to contain.
    wrappable, whether an element should be skipped as nested or unspoken, and how a word index maps
    to a span. Each is a pure decision currently embedded in DOM traversal. Risk: this is a refactor
    of the least settled module, so it should be sequenced with audit:0002's recommendation 4 rather
-   than done independently — and per `handoff:0002` it needs design agreement first.
+   than done independently - and per `handoff:0002` it needs design agreement first.
 
 2. **Add a DOM-level test for the two defect classes that actually shipped (F2). Size S.** A jsdom
    test asserting that a list item's words get wrapped, and that a wrapped element's computed
    containment does not clip its marker, would have caught both 2026-09-20 regressions. Risk: low;
    this is additive and touches no production code. **This is the highest value-to-risk item in the
-   audit** — it is small, additive, and targets two demonstrated failures rather than a hypothesis.
+   audit** - it is small, additive, and targets two demonstrated failures rather than a hypothesis.
 
 3. **Strengthen `transformer.ts` coverage before the ROADMAP state refactor, not now (F3). Size M.**
    Risk of acting now: spending effort on tests that the refactor will rewrite. Risk of not acting:

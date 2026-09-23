@@ -1,8 +1,8 @@
-"""``atlas citations extract`` — fold the scanned citations into the CSL store.
+"""``atlas citations extract`` - fold the scanned citations into the CSL store.
 
 Bank B5 of ``task:0021``, ported from ``extract-cmd.ts`` under ``task:0029``.
 Offline and instant, deliberately separate from ``resolve``, which is networked
-and slow — behind one verb the safe command would inherit the unsafe one's
+and slow - behind one verb the safe command would inherit the unsafe one's
 caveats.
 
 AC-1 idempotence is structural rather than an added check: ``serialize_store``
@@ -37,7 +37,7 @@ def extract_entries(scan: Scan) -> list[tuple[str, StoreEntry]]:
     Only ``citation``-kind instances become entries: content links are prose, and
     unlinked citations have no URL to key on (they surface in the report
     instead). The same URL cited twice with different anchor spellings collapses
-    to one entry whose anchor list records both spellings — that is
+    to one entry whose anchor list records both spellings - that is
     ``merge_entry``'s job, applied by ``upsert_entries``.
     """
     out: list[tuple[str, StoreEntry]] = []
@@ -110,7 +110,7 @@ def citations_extract(root: Path) -> int:
     if unmatched:
         # Named rather than counted: an override pointing at nothing is a typo or
         # a citation edited out of the prose, and either way someone must look.
-        print(f"{len(unmatched)} override(s) match no citation — check {OVERRIDES_PATH}:")
+        print(f"{len(unmatched)} override(s) match no citation - check {OVERRIDES_PATH}:")
         for key in unmatched:
             print(f"  {key}")
     return 0

@@ -35,8 +35,8 @@ engineering_document:
 
 ## Problem
 
-The freelancer has held every secret this project uses — the Google service account, the four
-`R2_*` keys, `ALGOLIA_WRITE_KEY`, `GEMINI_API_KEY`, and `ELEVENLABS_API_KEY` — all present in their
+The freelancer has held every secret this project uses - the Google service account, the four
+`R2_*` keys, `ALGOLIA_WRITE_KEY`, `GEMINI_API_KEY`, and `ELEVENLABS_API_KEY` - all present in their
 `.env` and in the 10 GitHub Actions secrets they populated (`deploy.yml`). Per `adr:0001`, obtaining
 copies is not independence; the credentials must be re-minted under our own accounts and the old ones
 revoked. See `audit:0001` findings #4–#6.

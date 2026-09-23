@@ -19,20 +19,20 @@ We'll acknowledge receipt within a few days and let you know our planned timelin
 
 The project's security surface is small but non-zero:
 
-- **The deployed site** at https://ai-safety-atlas.com — XSS, SSRF, content-injection, malformed-input handling
-- **The build pipeline** — secret leakage via committed cache (see `.cache/docs/README.md` for the secret-scan procedure), supply-chain risks via `package.json` dependencies
-- **Cloudflare R2 distribution** — accidental write-access leakage, public-bucket misconfiguration
+- **The deployed site** at https://ai-safety-atlas.com - XSS, SSRF, content-injection, malformed-input handling
+- **The build pipeline** - secret leakage via committed cache (see `.cache/docs/README.md` for the secret-scan procedure), supply-chain risks via `package.json` dependencies
+- **Cloudflare R2 distribution** - accidental write-access leakage, public-bucket misconfiguration
 
 ## What's out of scope
 
 - **Reports against the live Google Docs source.** Editorial-content access is controlled by Google's sharing model; we can't act on those reports here.
 - **Denial-of-service against the static CDN.** Cloudflare handles this; reports about static-site DoS aren't actionable for us.
 - **Reports requiring physical access to the maintainer's machine** or pre-existing compromise of credentials.
-- **Algolia public search-only key disclosure** — that key is public-by-design (see `docs/PRINCIPLES.md` §6). It cannot modify the search index.
+- **Algolia public search-only key disclosure** - that key is public-by-design (see `docs/PRINCIPLES.md` §6). It cannot modify the search index.
 
 ## Coordinated disclosure
 
-We prefer coordinated disclosure: please give us a chance to ship a fix before publishing details. Once a fix is deployed we'll credit you in the commit message and any related notes (unless you'd rather stay anonymous — just tell us).
+We prefer coordinated disclosure: please give us a chance to ship a fix before publishing details. Once a fix is deployed we'll credit you in the commit message and any related notes (unless you'd rather stay anonymous - just tell us).
 
 ## What this policy does not promise
 

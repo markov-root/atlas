@@ -1,7 +1,7 @@
 """Academic publisher pages: Highwire ``citation_*`` meta tags, then Crossref.
 
 Added after the first full resolve run showed the gap. 43 cited sources sit on
-publisher domains — Nature, IEEE, ACM, Wiley, OUP, SSRN, PNAS, PubMed — and none
+publisher domains - Nature, IEEE, ACM, Wiley, OUP, SSRN, PNAS, PubMed - and none
 of them reached Crossref, because :class:`CrossrefResolver` only claims
 ``doi.org/*`` and the whole corpus contains exactly **one** such URL. Those 43
 fell through to Open Graph, which gave 18 of them a bare title and left 25 with
@@ -13,8 +13,8 @@ authoritative record: real author names, journal, volume, pages, date.
 Two routes, because publishers differ:
 
 1. **Highwire meta tags** (``citation_doi``, ``citation_title``,
-   ``citation_author``, …). A de-facto standard — it is what Google Scholar
-   indexes — so most publishers emit it.
+   ``citation_author``, …). A de-facto standard - it is what Google Scholar
+   indexes - so most publishers emit it.
 2. **PubMed** emits none of it: the page is JS-rendered and returns a stub to a
    plain fetch. But the URL carries a PMID, and NCBI's esummary API maps that to
    a DOI for free and without a key.
@@ -27,7 +27,7 @@ Ported from ``scholar-meta.ts`` under ``task:0029``, replacing regex meta-tag
 extraction with a real parser. The trap that motivated the original's careful
 matching is unchanged and still tested: a substring search for ``citation_doi``
 also matches **inside** ``citation_reference`` tags, which carry the DOIs of the
-paper's own bibliography — Nature emits dozens. Attributing a cited work's
+paper's own bibliography - Nature emits dozens. Attributing a cited work's
 metadata to the citing paper is worse than failing, so ``citation_reference`` is
 skipped outright.
 """
@@ -47,8 +47,8 @@ TIMEOUT_S = 15.0
 #: Hosts this resolver claims.
 #:
 #: Deliberately an explicit list rather than "any URL". Claiming everything would
-#: double the network load on the long tail — this resolver and Open Graph would
-#: each fetch the same page — to serve a small minority. Adding a publisher is a
+#: double the network load on the long tail - this resolver and Open Graph would
+#: each fetch the same page - to serve a small minority. Adding a publisher is a
 #: one-line change here.
 ACADEMIC_HOSTS = (
     "pubmed.ncbi.nlm.nih.gov",
@@ -92,8 +92,8 @@ def host_of(url: str) -> str | None:
 def citation_meta(html: str) -> dict[str, list[str]]:
     """Values of every ``<meta name="citation_x" content="...">`` on the page.
 
-    ``citation_reference`` is skipped: it describes a DIFFERENT work — one of the
-    paper's own references — and never this one.
+    ``citation_reference`` is skipped: it describes a DIFFERENT work - one of the
+    paper's own references - and never this one.
     """
     from bs4 import BeautifulSoup
 
@@ -114,7 +114,7 @@ def _parse_author(raw: str) -> dict[str, str]:
 
     A comma is the reliable signal: with one, the part before it is the family
     name. Without, the last whitespace-separated token is taken as the family
-    name — wrong for "van den Berg" and for mononyms, which is why it is only
+    name - wrong for "van den Berg" and for mononyms, which is why it is only
     used when no comma is present and never on a name we could preserve intact.
     """
     name = raw.strip()
@@ -222,7 +222,7 @@ class ScholarMetaResolver:
 
         if pubmed_id(canonical_url):
             # PubMed's own page is JS-rendered and yields nothing, so it is
-            # never fetched — the PMID goes straight to esummary.
+            # never fetched - the PMID goes straight to esummary.
             doi = _doi_from_pubmed(canonical_url, ctx)
         else:
             html = get_text_capped(
@@ -233,7 +233,7 @@ class ScholarMetaResolver:
                 headers={"Accept": "text/html"},
             )
             # A publisher WAF refusing us is the single most common outcome on
-            # these hosts — 57 of the corpus's 132 unresolved entries. Saying so
+            # these hosts - 57 of the corpus's 132 unresolved entries. Saying so
             # keeps Open Graph from recording the bot-check page's title in
             # place of the paper's (audit:0011 F13) and keeps the entry in the
             # retry set rather than marking it permanently answered.
@@ -248,8 +248,8 @@ class ScholarMetaResolver:
             values = meta.get("citation_doi")
             doi = values[0] if values else None
 
-        # A DOI means Crossref can give the authoritative record — real author
-        # names, journal, volume, pages — which is the whole point of this
+        # A DOI means Crossref can give the authoritative record - real author
+        # names, journal, volume, pages - which is the whole point of this
         # resolver. Its output wins over the page's own meta where they overlap.
         if doi:
             via_crossref = crossref_resolver.resolve(f"https://doi.org/{doi}", ctx)

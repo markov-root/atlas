@@ -22,7 +22,7 @@ engineering_document:
   authority:
     kind: work-state
     owner: Markov Grey
-    scope: "transformer.ts Node type and node vocabulary, NodeRenderer.astro dispatch, typed Props under src/components/nodes/, the markdown/PDF/audio renderers' node handling, and the per-kind renderability contract — gated on the decisions in this record"
+    scope: "transformer.ts Node type and node vocabulary, NodeRenderer.astro dispatch, typed Props under src/components/nodes/, the markdown/PDF/audio renderers' node handling, and the per-kind renderability contract - gated on the decisions in this record"
   created: "2026-09-21"
   updated: "2026-09-21"
   transition_history: unverified
@@ -33,7 +33,7 @@ engineering_document:
     size: l
     priority: p1
     atomic_large:
-      rationale: "The union refactor, applicability contract, and pilot content kind share one vocabulary change — splitting them means migrating the same files twice (the failure D4 exists to prevent)."
+      rationale: "The union refactor, applicability contract, and pilot content kind share one vocabulary change - splitting them means migrating the same files twice (the failure D4 exists to prevent)."
       rollback: "Refactor lands behind a snapshot baseline of current renderer outputs (AC-5); a revert restores the stringly-typed Node and the baseline still passes."
       checkpoints: ["snapshot baseline recorded", "union + exhaustiveness compiles clean", "renderability table matches baseline", "pilot kind renders in all four renderers"]
 ---
@@ -45,43 +45,43 @@ engineering_document:
 This is the one task that unblocks three things the owner has asked for at once: **inline
 quizzes**, **flashcards**, and **replacing the 28 OWID iframes with self-hosted datasets and an
 interactive layer** (ROADMAP "Next" already contains "Discriminated-union AST node types" and
-"Quizzes and flashcards as inline content types", and "Later" contains the OWID item — this record
+"Quizzes and flashcards as inline content types", and "Later" contains the OWID item - this record
 is the concrete form of the first plus the applicability model, not new scope).
 
 The gap it fixes is in the AST itself. `Node` is defined at
 `src/textbook-loader/transformer.ts:5-9` as `{ name: string; attributes: Record<string, unknown>;
-children: Node[] }` — one wide, stringly-typed object (`audit:0008` F1). Every consumer dispatches
+children: Node[] }` - one wide, stringly-typed object (`audit:0008` F1). Every consumer dispatches
 on the bare string `node.name`, so TypeScript cannot express "every renderer handles every node
 kind", and a node kind unknown to a renderer is dropped with severity that varies by renderer
 (`audit:0008` F2): **fully silent on web** (`NodeRenderer.astro:50-55` renders nothing for a missing
-key), **text-soup in markdown and audio** (unknown-node fallbacks inline the flattened children —
+key), **text-soup in markdown and audio** (unknown-node fallbacks inline the flattened children -
 for a quiz, that means the question, every option and the correct answer read aloud flat),
-**warn-and-continue in PDF** — the only renderer that even notices. There is no existing notion of
+**warn-and-continue in PDF** - the only renderer that even notices. There is no existing notion of
 "a node some renderers skip" (`audit:0008` F3): skipping is re-decided, differently, inside each of
 the four renderers' if-chains, which is exactly the pattern a quiz needs (meaningful on web,
 meaningless in narration).
 
 The concrete cost of the status quo is `audit:0008` F4's edit-site count: adding one table
 component today touches **7 code files, ~9 edit sites**, of which four are pure "don't leak content"
-guards — and forgetting one produces no error anywhere. The OWID side is already anticipated by the
+guards - and forgetting one produces no error anywhere. The OWID side is already anticipated by the
 AST shape (`audit:0008` F5): 28 embeds across 4 of 8 chapters, 24 unique grapher slugs, and the
 `Iframe` node's `{ src, stillImage, caption }` already carries the still-image fallback the
 non-web renderers need.
 
 **Who it affects:** authors (cannot add quizzes/flashcards at all today), translators (new content
 types multiply the edition/language axis), and readers (OWID iframes are external runtime
-dependencies whose failure state is an infinite spinner — `audit:0010` F8).
+dependencies whose failure state is an infinite spinner - `audit:0010` F8).
 
 **Counter-case recorded:** the refactor is not free. `audit:0008` F1 and ROADMAP both note that a
-discriminated union *alone* buys narrowing, not completeness — it must ship with an exhaustiveness
+discriminated union *alone* buys narrowing, not completeness - it must ship with an exhaustiveness
 mechanism (`satisfies Record<NodeKind, Handler>` or a `default: never` arm) or the silent-drop
 failure class survives. ROADMAP's break trigger also applies: if a content type is needed before
-this lands, the choice is to delay the content type, not to skip the union — `audit:0008`'s
+this lands, the choice is to delay the content type, not to skip the union - `audit:0008`'s
 "what I would not do" explicitly declines hand-writing quiz branches on the stringly-typed `Node`.
 
 ## Decisions required before execution
 
-### D1 — Authoring surface for quizzes and flashcards
+### D1 - Authoring surface for quizzes and flashcards
 
 **Question:** do quizzes/flashcards enter through a Google Docs component-table component or an
 Astro content collection?
@@ -99,20 +99,20 @@ mechanism verbatim (`transformer.ts:74-82`, `processComponent` at `:243`, conver
 and keeps quizzes in prose position where authors already work. Revisit the collection path only if
 quizzes get reused across editions or rendered outside chapter flow (a standalone practice page).
 
-**Irreversible / expensive to undo:** whichever surface is chosen, authored quiz content —
-including its **translatable strings and its correct answer** — accumulates there. This interacts
+**Irreversible / expensive to undo:** whichever surface is chosen, authored quiz content -
+including its **translatable strings and its correct answer** - accumulates there. This interacts
 with task:0014 (language and edition through the whole stack): a collection gives a per-language
 directory for free; a Doc table rides the edition's Doc translation flow, where a quiz's answer key
 is embedded in the translated document. Migrating authored quizzes between surfaces after either
-pile grows means re-keying content per edition and per language — that migration cost, not the
+pile grows means re-keying content per edition and per language - that migration cost, not the
 code, is the lock-in. Decide before the first quiz is authored, not before the refactor lands.
 
-### D2 — What a renderer does with an inapplicable node
+### D2 - What a renderer does with an inapplicable node
 
 **Question:** when a node kind does not apply to a renderer (a quiz in the PDF; a chart in
 narration), is it skipped silently, replaced with a placeholder, or a build failure?
 
-- **Skip silently:** cheapest, but recreates `audit:0008` F2 for *known* kinds — a missing quiz in
+- **Skip silently:** cheapest, but recreates `audit:0008` F2 for *known* kinds - a missing quiz in
   the PDF becomes indistinguishable from a wiring bug. Consequence: content gaps ship invisibly.
 - **Declared placeholder** (e.g. "(interactive version on website)", already the markdown pattern
   for Iframe at `markdown-renderer.ts` label rendering): the absence is a *design choice* visible to
@@ -121,19 +121,19 @@ narration), is it skipped silently, replaced with a placeholder, or a build fail
   content that was never meant for PDF. Too blunt for a textbook where interactivity is expected to
   degrade.
 
-**Recommendation:** the renderability contract from `audit:0008` R2 — a per-kind capability table
+**Recommendation:** the renderability contract from `audit:0008` R2 - a per-kind capability table
 (`render | summarize | skip | label` per renderer) co-located with the node vocabulary, with
 renderers consuming the table instead of re-deciding ad hoc. Validate it against the four existing
 renderer disagreements (Video/Iframe/NoteBox/Callout, F3) behind a snapshot baseline. An *unknown*
 node kind stays a compile error (D2 overlaps D1's exhaustiveness mechanism, not a policy choice).
 
-**Irreversible / expensive to undo:** not the code — the contract is cheap to change — but the
+**Irreversible / expensive to undo:** not the code - the contract is cheap to change - but the
 **policy silence** is: if silent-skip ships, readers may hold or print a PDF missing interactive
 content with no defect recorded anywhere, and the gap is discovered by accident. Choosing the
 contract before the first web-only kind exists is what keeps "is the missing quiz a defect or a
 design choice?" answerable by inspection.
 
-### D3 — OWID replacement scope, chart library, and licensing
+### D3 - OWID replacement scope, chart library, and licensing
 
 **Question:** self-host all 24 unique grapher slugs or start with a subset; which chart library;
 and are we allowed to?
@@ -144,26 +144,26 @@ and are we allowed to?
   embeds): validates the fetch pipeline cheaply; leaves mixed iframe/self-hosted states to explain.
 
 **Recommendation:** extend the `Iframe` node with a **dataset variant** rather than minting a new
-node kind (`audit:0008` F5/R4) — `Iframe` already has the exact capability profile needed
+node kind (`audit:0008` F5/R4) - `Iframe` already has the exact capability profile needed
 (web-interactive, audio-summarized, PDF-still-image, markdown-label); a new `Chart` kind would
 re-declare the same four-way behaviour. Pilot with a small slug subset to validate the build-time
 grapher-fetch step (beside the existing `pushPublicFiles` asset-pipeline precedent), then batch the
 rest. The chart library must fit the client-JS budget the ROADMAP page-load performance pass
-establishes — that pass runs **before** this work, not after (ROADMAP dependency direction).
+establishes - that pass runs **before** this work, not after (ROADMAP dependency direction).
 
 **Licensing:** `audit:0008` F5 observes OWID publishes its data under a permissive attribution
 licence (attribution naturally riding the existing `caption`/`figcaption` surface), but the exact
-terms are **unverified and this record makes no legal conclusion** — ROADMAP's Later item already
+terms are **unverified and this record makes no legal conclusion** - ROADMAP's Later item already
 flags this as the open question to resolve before building, with a break trigger: if the licence
 resolves against self-hosting, this piece dies and the iframes stay. **The owner must verify the
 licence terms; that check is not delegated to implementation.**
 
 **Irreversible / expensive to undo:** the licence determination (a "no" kills the item per the
-ROADMAP break trigger) and, more mundanely, the authoring surface — once Docs drop the iframe embeds
+ROADMAP break trigger) and, more mundanely, the authoring surface - once Docs drop the iframe embeds
 for dataset references, the `src`/`stillImage` attribute habit is retired and reverting means
 re-authoring 28 embed cells across 4 chapter Docs.
 
-### D4 — Sequencing against task:0014
+### D4 - Sequencing against task:0014
 
 **Question:** task:0014 (model language and edition through the whole stack) and this task both
 change `transformer.ts` and all four renderers. Which lands first?
@@ -172,13 +172,13 @@ change `transformer.ts` and all four renderers. Which lands first?
   0014's changes type-narrowed and compiler-checked; 0014 rides typed nodes instead of stringly
   dispatch.
 - **0014 first:** edition modelling lands sooner on the current code; but every file it touches is
-  migrated again by the union refactor afterwards — the same files churn twice, and any 0014-era
+  migrated again by the union refactor afterwards - the same files churn twice, and any 0014-era
   renderer branches written in the old style must be rewritten.
 - **Merged:** one coordinated sequence landing both; loses the behaviour-preserving safety of a
   standalone refactor review (snapshot churn from two sources mixed in one diff).
 
 **Recommendation:** this task first, as ROADMAP already states ("Depends on: the format pass;
-Blocks: the quizzes/flashcards item and the OWID replacement") — but coordinate with 0014's owner so
+Blocks: the quizzes/flashcards item and the OWID replacement") - but coordinate with 0014's owner so
 0014 does not start touching the renderers concurrently. The snapshot baseline (AC-5) is what keeps
 this task reviewable at all; do not begin until the baseline is recorded.
 
@@ -208,7 +208,7 @@ In execution order; each step gates the next:
 4. **Renderability contract** (`audit:0008` R2): the per-kind capability table, validated against
    the existing Video/Iframe/NoteBox/Callout disagreements; renderers consume it. Declared
    behaviour changes from the baseline are enumerated, not silent.
-5. **Pilot content kind** (per D1): the first quiz or flashcard — transformer converter, web
+5. **Pilot content kind** (per D1): the first quiz or flashcard - transformer converter, web
    component with its client script, one dispatch entry the compiler checks, one capability-table
    row, reading-time/word-count bookkeeping (`transformer.ts:729-745`), Algolia indexing if wanted
    (`algolia.ts:33-54`), and the read-along exclusion (`UNSPOKEN_SELECTOR`, `word-highlight.ts:57`)
@@ -220,15 +220,15 @@ The OWID dataset migration itself is *unblocked* by steps 3–5 but executes und
 
 ## Out of scope
 
-- **The OWID migration's data-fetch pipeline and chart runtime** — tracked in ROADMAP "Later"
+- **The OWID migration's data-fetch pipeline and chart runtime** - tracked in ROADMAP "Later"
   (self-hosted OWID datasets); this task only makes its node-kind change cheap.
-- **Certification machinery** — accounts, answer-hiding, server-side scoring, anti-gaming. Explicit
+- **Certification machinery** - accounts, answer-hiding, server-side scoring, anti-gaming. Explicit
   non-goal (PRINCIPLES §14; ROADMAP "Not planned" scope note). Quizzes here are inline self-check
   content with answers visible in the page source; that is a feature of the scope, not an oversight.
-- **task:0014's edition/language modelling** — coordinated for sequencing (D4) but executed as its
+- **task:0014's edition/language modelling** - coordinated for sequencing (D4) but executed as its
   own record.
-- **The rejected authoring surface** (whichever of D1's options is not chosen) — do not build both.
-- **Editing `docs/PRINCIPLES.md` or `docs/ROADMAP.md`** — both already carry the quiz-vs-
+- **The rejected authoring surface** (whichever of D1's options is not chosen) - do not build both.
+- **Editing `docs/PRINCIPLES.md` or `docs/ROADMAP.md`** - both already carry the quiz-vs-
   certification scope note; no drift to fix there.
 
 ## Done when
@@ -243,7 +243,7 @@ The OWID dataset migration itself is *unblocked* by steps 3–5 but executes und
   existing kind, and its `Video`/`Iframe`/`NoteBox`/`Callout` rows match pre-refactor renderer
   behaviour as captured in the snapshot baseline.
 - **AC-4:** The pilot content kind (per D1) renders on web and has declared, table-driven behaviour
-  in markdown, PDF and audio — a reviewer can point at the capability-table row and the rendered
+  in markdown, PDF and audio - a reviewer can point at the capability-table row and the rendered
   output in each format; `UNSPOKEN_SELECTOR` includes the pilot kind's DOM in the same diff.
 - **AC-5:** Renderer outputs for all pre-existing content are unchanged from the snapshot baseline
   except for behaviour changes enumerated and accepted in the renderability-table review.
@@ -254,26 +254,26 @@ The OWID dataset migration itself is *unblocked* by steps 3–5 but executes und
 
 | Criterion | Evidence | Verified |
 | --------- | -------- | -------- |
-| AC-1      | —        | —        |
-| AC-2      | —        | —        |
-| AC-3      | —        | —        |
-| AC-4      | —        | —        |
-| AC-5      | —        | —        |
-| AC-6      | —        | —        |
+| AC-1      | -        | -        |
+| AC-2      | -        | -        |
+| AC-3      | -        | -        |
+| AC-4      | -        | -        |
+| AC-5      | -        | -        |
+| AC-6      | -        | -        |
 
 ## Authority and inputs
 
-- `audit:0008` — all findings F1–F8 and recommendations R1–R5; this record's F4 edit-site count,
+- `audit:0008` - all findings F1–F8 and recommendations R1–R5; this record's F4 edit-site count,
   F5 OWID surface count, F8 authoring-surface trade-off, and F2 failure-mode severity carry over by
   citation.
-- `docs/ROADMAP.md` — "Next": Discriminated-union AST node types (this task's R1 half, already
+- `docs/ROADMAP.md` - "Next": Discriminated-union AST node types (this task's R1 half, already
   scoped there); Quizzes and flashcards as inline content types (the authoring-surface decision and
   its break trigger); "Later": Self-hosted OWID datasets (D3's downstream execution and licence
   break trigger); "Not planned": certification-program scope note distinguishing inline quizzes.
-- `docs/PRINCIPLES.md` — §10 (YAGNI: demand is real and named — the owner wants quizzes/flashcards
-  and OWID independence), §11 (type safety where it catches bugs — the union is its fix), §14
+- `docs/PRINCIPLES.md` - §10 (YAGNI: demand is real and named - the owner wants quizzes/flashcards
+  and OWID independence), §11 (type safety where it catches bugs - the union is its fix), §14
   (explicit non-goals: certification machinery stays rejected).
-- task:0014 — the concurrent-file-touch constraint sequenced in D4.
+- task:0014 - the concurrent-file-touch constraint sequenced in D4.
 - Code anchors: `src/textbook-loader/transformer.ts:5-9` (Node type), `:243-277` (component-table
   mechanism), `:729-745` (reading-time bookkeeping); `src/components/NodeRenderer.astro:29-55`
   (dispatch and silent drop); `src/textbook-loader/renderers/markdown-renderer.ts:146-147`,

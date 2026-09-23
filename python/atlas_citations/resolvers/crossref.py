@@ -1,4 +1,4 @@
-"""Crossref resolver — DOI-bearing sources.
+"""Crossref resolver - DOI-bearing sources.
 
 Crossref speaks CSL natively (``api.crossref.org/works/<doi>`` returns the same
 field names a CSL-JSON item uses), so this is deliberately a thin pass-through of
@@ -8,7 +8,7 @@ they differ in shape, not meaning: titles and container titles are arrays
 form.
 
 Ported from ``crossref.ts`` under ``task:0029``. ``habanero`` was considered and
-not adopted: what it buys — pagination, query building, the polite-pool header —
+not adopted: what it buys - pagination, query building, the polite-pool header -
 is either unused here (we do single-record lookups by DOI) or one line. What it
 would cost is the injected HTTP client that keeps the test suite offline. The
 libraries this port does adopt were chosen where they replace something
@@ -48,9 +48,9 @@ _TAG = re.compile(r"<[^>]+>")
 def _clean(text: str) -> str:
     """Strip inline markup and collapse whitespace.
 
-    Crossref embeds presentational markup in titles — the real record for
+    Crossref embeds presentational markup in titles - the real record for
     "Human-level play in the game of <i>Diplomacy</i>" carries those tags and
-    the newlines around them verbatim — and CSL fields are plain text. A
+    the newlines around them verbatim - and CSL fields are plain text. A
     template escapes the tags rather than interpreting them, so they reached the
     reader. See ``audit:0011`` F11.
     """
@@ -64,7 +64,7 @@ def _first(value: Any) -> str | None:
     return None
 
 
-#: Footnote markers a publisher carries into the author field — affiliation and
+#: Footnote markers a publisher carries into the author field - affiliation and
 #: corresponding-author daggers, mostly. Observed in this corpus on the
 #: Diplomacy paper, whose Crossref record credits "Meta Fundamental AI Research
 #: Diplomacy Team (FAIR)†". A marker is typography from the PDF, not part of
@@ -77,7 +77,7 @@ def _clean_name(text: str) -> str:
 
 
 def _map_authors(value: Any) -> list[dict[str, str]] | None:
-    """Crossref gives real given/family splits — unlike the anchor text.
+    """Crossref gives real given/family splits - unlike the anchor text.
 
     That is why this resolver is allowed to produce structured names.
     Organisation authors arrive as ``name`` and stay literal: inventing a split
@@ -106,7 +106,7 @@ def _map_issued(value: Any) -> dict[str, Any] | None:
 
     With one trap: for a record it holds no date for, Crossref sends
     ``{"date-parts": [[null]]}`` rather than omitting the field. That is a date
-    whose year is unknown, which is not a date — storing it produces an entry
+    whose year is unknown, which is not a date - storing it produces an entry
     that claims to have a publication date and cannot render one, and a CSL
     processor reading it calls ``int(None)`` and raises.
     """

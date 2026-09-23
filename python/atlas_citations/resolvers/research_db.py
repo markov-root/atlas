@@ -1,4 +1,4 @@
-"""The research-database resolver — the local, free, try-first accelerator.
+"""The research-database resolver - the local, free, try-first accelerator.
 
 The homelab corpus answers by exact URL with CSL-grade metadata and no
 third-party etiquette to observe, so it is tried before any networked resolver.
@@ -13,18 +13,18 @@ Three traps this file exists to handle, all discovered against the live service:
    Without it, resolution quietly misses records the corpus holds.
 2. **URL spelling.** The corpus stores scraped URLs verbatim (modulo scheme/host
    case) and matching is exact string equality. Roughly 39% of stored URLs carry
-   ``www.`` while our canonical form drops it, which silently loses cited URLs —
+   ``www.`` while our canonical form drops it, which silently loses cited URLs -
    so a miss retries once with ``www.`` inserted. Trailing-slash differences are
    handled server-side; nothing else is aliased, and inventing more variants
    would be guessing at corpus state.
 3. **Authorship shape.** ``authors[]`` entries are ``{kind, label, resolved}``
-   bylines, not family/given — and a *resolved organisation* author has no
+   bylines, not family/given - and a *resolved organisation* author has no
    ``label`` at all. Labels map to CSL ``literal`` names and nulls are dropped;
    guessing a split here would produce confidently wrong output in every
    rendered style.
 
 AC-6 is structural: an unreachable service, a non-200 response, or an unusable
-body all return ``None`` — never a raise, never a hang — so a resolver that
+body all return ``None`` - never a raise, never a hang - so a resolver that
 accelerates a minority of sources cannot become a single point of failure for the
 rest.
 
@@ -101,7 +101,7 @@ def _attempt(ref_url: str, ctx: ResolverContext) -> ResolveResult | None:
     Deliberately flattens ``task:0032``'s unreachable signal back to ``None``:
     this corpus is a local accelerator, and ``task:0027`` AC-6 requires the
     bibliography to come out identical when it is down. An outage here must be
-    invisible, not a verdict — which is also why the resolver is ``selective =
+    invisible, not a verdict - which is also why the resolver is ``selective =
     False`` and so cannot block the fallback chain.
     """
     url = f"{api_base()}/api/records/citation?ref={quote(ref_url, safe='')}&include_unreviewed=true"
@@ -144,7 +144,7 @@ def _attempt(ref_url: str, ctx: ResolverContext) -> ResolveResult | None:
 
 class ResearchDbResolver:
     name = "research-db"
-    #: Claims every HTTP URL — a free local lookup, not a signal of coverage.
+    #: Claims every HTTP URL - a free local lookup, not a signal of coverage.
     selective = False
 
     def claims(self, canonical_url: str) -> bool:

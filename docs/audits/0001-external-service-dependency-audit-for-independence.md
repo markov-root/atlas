@@ -69,7 +69,7 @@ keys are trivially rotatable.
 
 **External dependencies and their state:**
 
-1. **Google Docs (8 chapter docs).** `src/textbook-loader/data.ts` — fetched by `docId`+`tabId`
+1. **Google Docs (8 chapter docs).** `src/textbook-loader/data.ts` - fetched by `docId`+`tabId`
    via a service account (`GOOGLE_CREDENTIALS_BASE64`, `documents.readonly`). Also 7 facilitation-guide
    docs referenced as URLs. → `task:0003`.
 2. **Cloudflare R2.** Bucket `atlas-cache` on account `c4f04943…`, fronted by
@@ -77,19 +77,19 @@ keys are trivially rotatable.
    `renderers/audio/renderer.ts`). Prefixes: `final-audio/` (79), `audio/` (95), `audio-chunks/` (2995),
    `pdf/` (28), `equation-descriptions/` (32) = 3229 objects / 5.7 GB. Backed up to `~/atlas-r2-backup`
    (verified 3229 files, 5.8 GB). Migration to own account → `task:0002`.
-3. **imagegen.foreview.org** — NOT on the freelancer's list. `src/lib/og.ts` points every page's
+3. **imagegen.foreview.org** - NOT on the freelancer's list. `src/lib/og.ts` points every page's
    `og:image`/`twitter:image` at this freelancer-hosted on-demand renderer. Sole remaining external
    _runtime_ dependency; link previews break silently if it dies. → `task:0001`.
-4. **ElevenLabs + Gemini** — audio TTS (stock voice "George" `JBFqnCBsd6RMkjVDRZzb`) and equation
+4. **ElevenLabs + Gemini** - audio TTS (stock voice "George" `JBFqnCBsd6RMkjVDRZzb`) and equation
    alt-text (`gemini-2.5-flash`). Audio is FROZEN: CI runs `SKIP_AUDIO=1`, no `ELEVENLABS_API_KEY` in
-   CI, so nothing regenerates the MP3s — the R2 copy is the only one. → `task:0005`.
-5. **Algolia** — public app `W6WTQ7JBP1`/index `atlas-foreview` committed as defaults in
+   CI, so nothing regenerates the MP3s - the R2 copy is the only one. → `task:0005`.
+5. **Algolia** - public app `W6WTQ7JBP1`/index `atlas-foreview` committed as defaults in
    `astro.config.mjs` (search works for everyone); `ALGOLIA_WRITE_KEY` (secret) needed to reindex.
    Rotation → `task:0004`.
-6. **GitHub Actions secrets** — `deploy.yml` reads 10 secrets (`GOOGLE_CREDENTIALS_BASE64`, 3×
+6. **GitHub Actions secrets** - `deploy.yml` reads 10 secrets (`GOOGLE_CREDENTIALS_BASE64`, 3×
    `PUBLIC_ALGOLIA_*`, `ALGOLIA_WRITE_KEY`, `GEMINI_API_KEY`, 4× `R2_*`). Populated by the freelancer;
    must be reset with own credentials. → `task:0004`.
-7. **`@foreview/ais-logos-astro`** — partner-org logos. Published _public_ on npm (source
+7. **`@foreview/ais-logos-astro`** - partner-org logos. Published _public_ on npm (source
    `github.com/foreview/aisafety-logos`); build needs no private access. Non-blocking. → `task:0006`.
 
 ## Limitations

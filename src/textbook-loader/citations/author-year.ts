@@ -2,7 +2,7 @@
  * The single definition of what an author-year citation looks like.
  *
  * `task:0025` AC-6 requires exactly one such pattern in the codebase, or a
- * recorded reason for two. There are two *uses*, and they genuinely differ —
+ * recorded reason for two. There are two *uses*, and they genuinely differ -
  * so the core is shared here and each use wraps it:
  *
  *   - The audio renderer strips citations out of narration prose, where the

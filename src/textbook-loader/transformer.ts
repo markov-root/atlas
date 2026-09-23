@@ -395,7 +395,7 @@ export class Transformer {
 
   private getDocFromSlice(cell: Cell): Partial<Section> {
     // Caption rendering builds a stripped-down Section just to capture nodes.
-    // The other Section fields aren't read by transformSection — safe cast.
+    // The other Section fields aren't read by transformSection - safe cast.
     return this.transformSection({ nodes: [], readingTimeInSeconds: 0, footnotes: [], toc: [] } as unknown as Section, this.normalizeCell(cell));
   }
 

@@ -93,7 +93,7 @@ class TestOverridesAreNeverReFetched:
         assert unresolved_keys(store) == []
 
     def test_redo_cannot_target_an_override(self) -> None:
-        """``task:0032`` D4 — the whole value of the file is that it stays put.
+        """``task:0032`` D4 - the whole value of the file is that it stays put.
 
         The guard is in ``effective_redo``, which is what the command passes to
         ``unresolved_keys``; asserted as that composition rather than on either

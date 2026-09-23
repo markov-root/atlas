@@ -1,5 +1,5 @@
 /**
- * Reconciliation against the real committed corpus — `task:0025` AC-2 and AC-3.
+ * Reconciliation against the real committed corpus - `task:0025` AC-2 and AC-3.
  *
  * The unit tests above prove extraction behaves correctly on constructed input.
  * This file proves it behaves correctly on the actual textbook, by checking the
@@ -9,7 +9,7 @@
  * Bounds are ranges, not equalities, and the reason matters. The `jq` scan
  * counted every hyperlinked text run; extraction counts classified citations,
  * excluding assets and content links and adding unlinked footnote citations the
- * scan could not see. The two should be close but must not be identical — an
+ * scan could not see. The two should be close but must not be identical - an
  * exact match would mean the classifier is doing nothing.
  */
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
@@ -68,7 +68,7 @@ describe('citation extraction over the committed corpus', () => {
   // several component fields are flattened to plain strings by
   // `getTrimmedString` (SectionDescription.content, Quote.speaker/position/date,
   // Iframe.src), which discards a hyperlink's URL before any AST node exists.
-  // Recorded as a hypothesis, not a fact — see audit:0011.
+  // Recorded as a hypothesis, not a fact - see audit:0011.
   it('sees essentially every substantive link in the real corpus (AC-2)', () => {
     const { instances } = summarizeCitations(sections);
     const linked = instances.filter((i) => i.kind !== 'unlinked');
@@ -135,7 +135,7 @@ describe('citation extraction over the committed corpus', () => {
   // AC-5. Correcting an earlier measurement error recorded in task:0021: the
   // corpus was said to hold "9 plain-text author-year citations with no link".
   // It does not. All 9 parenthetical citations in footnote text are ALSO
-  // hyperlinked, verified anchor-by-anchor against the raw documents — the
+  // hyperlinked, verified anchor-by-anchor against the raw documents - the
   // original count matched parentheses without checking for a co-located link.
   //
   // So the correct expectation is zero, and the unlinked path is a guard for

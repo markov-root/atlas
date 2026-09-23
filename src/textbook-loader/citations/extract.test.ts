@@ -33,7 +33,7 @@ function section(nodes: Node[], footnotes: Section['footnotes'] = []): Section {
   } as Section;
 }
 
-describe('extractSectionCitations — classification (task:0025 AC-1)', () => {
+describe('extractSectionCitations - classification (task:0025 AC-1)', () => {
   it('extracts an author-year citation with its location', () => {
     const s = section([
       para(span('As shown '), link('https://arxiv.org/abs/1911.01547', 'Chollet, 2019')),
@@ -102,7 +102,7 @@ describe('extractSectionCitations — classification (task:0025 AC-1)', () => {
   });
 });
 
-describe('extractSectionCitations — footnotes (task:0025 AC-5)', () => {
+describe('extractSectionCitations - footnotes (task:0025 AC-5)', () => {
   it('records a linked footnote citation with its footnote number', () => {
     const s = section(
       [para(span('Text'), { name: 'Footnote', attributes: { number: '4' }, children: [] })],
@@ -219,7 +219,7 @@ describe('summarizeCitations', () => {
     expect(s.uniqueKeys).toEqual(['https://arxiv.org/abs/1911.01547']);
   });
 
-  it('is pure — repeated calls give identical results', () => {
+  it('is pure - repeated calls give identical results', () => {
     const s = section([para(link('https://arxiv.org/abs/1911.01547', 'Chollet, 2019'))]);
     expect(summarizeCitations([s])).toEqual(summarizeCitations([s]));
   });

@@ -1,4 +1,4 @@
-"""``atlas citations report`` — what needs human attention.
+"""``atlas citations report`` - what needs human attention.
 
 Bank B6 of ``task:0021``, and the point of the whole citation pipeline: the
 edition-2 authors asked for a bibliography, but what helps them *while writing*
@@ -10,7 +10,7 @@ because warnings scroll past in a build log and nobody reads them. Printing a
 count to stdout is exactly that failure; writing the file and naming it in one
 line is the fix (``task:0021`` D4's implementation obligation).
 
-Output is deterministic — no timestamp — so re-running after doc edits produces a
+Output is deterministic - no timestamp - so re-running after doc edits produces a
 diff of what changed, not a whole-file rewrite.
 
 Ported from ``report.ts`` under ``task:0029``.
@@ -30,15 +30,15 @@ from .extract import STORE_PATH, read_store
 REPORT_PATH = Path("data") / "citations" / "citation-report.md"
 
 
-#: Trailing site name on a scraped title: " — Google DeepMind", " | LessWrong".
+#: Trailing site name on a scraped title: " - Google DeepMind", " | LessWrong".
 _TITLE_SUFFIX = re.compile(r"\s*[-\u2013\u2014|:]\s*[^-\u2013\u2014|:]{1,40}$")
 
 
 def _title_fingerprint(title: str | None) -> str:
     """A title reduced to what two spellings of the same work share.
 
-    Strips a trailing site name — the same post cross-published to the Alignment
-    Forum and LessWrong differs only in that suffix — then removes punctuation
+    Strips a trailing site name - the same post cross-published to the Alignment
+    Forum and LessWrong differs only in that suffix - then removes punctuation
     and case. Truncated, because a mirror sometimes appends a subtitle.
     """
     stripped = _TITLE_SUFFIX.sub("", title or "")
@@ -60,7 +60,7 @@ def duplicate_groups(store: Store) -> list[list[str]]:
 
     Matched on **first author + year + title fingerprint**, and deliberately not
     on domain. Measured over this corpus: author-and-year alone flags 98 groups
-    and domain-and-author-and-year flags 73, but most of both are legitimate —
+    and domain-and-author-and-year flags 73, but most of both are legitimate -
     the AI Safety textbook contributes eight *different chapters* under one
     author, year and site. Adding the title cuts it to 12 groups of genuine
     duplicates: cross-posts, mirrors, and an arXiv preprint beside its
@@ -68,7 +68,7 @@ def duplicate_groups(store: Store) -> list[list[str]]:
 
     This reports; it never merges. ``task:0021`` D1 makes the canonical URL the
     entry's identity, and collapsing two identities on a heuristic would silently
-    lose a citation — the failure mode canonicalization is written to avoid.
+    lose a citation - the failure mode canonicalization is written to avoid.
     Acting on this list is a human decision recorded in an alias file.
     """
     groups: dict[tuple[str, str, str], list[str]] = {}
@@ -76,7 +76,7 @@ def duplicate_groups(store: Store) -> list[list[str]]:
         entry = store[key]
         # Unresolved entries are excluded, and this is the difference between a
         # usable list and a misleading one. An unresolved entry's title IS its
-        # anchor text — "Christiano, 2016" — so every unresolved work by one
+        # anchor text - "Christiano, 2016" - so every unresolved work by one
         # author in one year fingerprints identically. That produced three false
         # groups on this corpus: two different ai-alignment.com posts, two
         # different Metaculus questions, two different LessWrong comments.
@@ -106,7 +106,7 @@ def dead_links(store: Store) -> list[str]:
 
     Separated from the unresolved list because the two need different people. An
     unresolved entry is a gap in *our* metadata; a dead link is a citation in the
-    book pointing at nothing, which only the authors can fix — by finding the
+    book pointing at nothing, which only the authors can fix - by finding the
     work's new home, citing an archived copy, or citing something else.
 
     HTTP 404 and 410 only. A 403 is deliberately not here: a publisher refusing
@@ -168,7 +168,7 @@ def _heading(lines: list[str], title: str, count: int, explanation: str) -> None
 def build_citation_report(scan: Scan, store: Store) -> CitationReport:
     """Build the report. Pure: scan and store in, Markdown out.
 
-    Sections with zero findings are omitted entirely — an author scanning the
+    Sections with zero findings are omitted entirely - an author scanning the
     file should meet only the sections that need them, and a count of zero in a
     heading is noise that trains people to stop reading headings.
     """
@@ -197,7 +197,7 @@ def build_citation_report(scan: Scan, store: Store) -> CitationReport:
     duplicates = duplicate_groups(store)
 
     lines: list[str] = [
-        "# Citation report — citations needing human attention",
+        "# Citation report - citations needing human attention",
         "",
         "Generated by `atlas citations report` from the Google Docs source and the citation store.",
         "Re-run after editing the documents; nothing here is hand-maintained, so it cannot drift.",
@@ -207,18 +207,18 @@ def build_citation_report(scan: Scan, store: Store) -> CitationReport:
     if dead:
         _heading(
             lines,
-            "Dead links — the cited page no longer exists",
+            "Dead links - the cited page no longer exists",
             len(dead),
             "The server answered HTTP 404 or 410 for these, which is not a gap in our metadata "
             "but a citation pointing at nothing. **Only an author can fix one**: find where the "
             "work moved, cite an archived copy, or cite something else. Pages merely behind a "
-            "paywall or a bot check are *not* listed here — being refused says nothing about "
+            "paywall or a bot check are *not* listed here - being refused says nothing about "
             "whether a page is alive.",
         )
         for key in dead:
             anchors = " / ".join(f"`{a}`" for a in store[key].get("anchors", []))
             where = _locations(instances_by_key.get(key, []))
-            lines.append(f"- {anchors or '(no anchor text)'} — {where} — {key}")
+            lines.append(f"- {anchors or '(no anchor text)'} - {where} - {key}")
         lines.append("")
 
     if unresolved_keys:
@@ -226,18 +226,18 @@ def build_citation_report(scan: Scan, store: Store) -> CitationReport:
             lines,
             "Unresolved entries",
             len(unresolved_keys),
-            "Only the anchor text is known for these — no metadata has been resolved and nothing "
+            "Only the anchor text is known for these - no metadata has been resolved and nothing "
             "beyond author/year can be rendered. `atlas citations resolve` fills them from arXiv, "
             "Crossref and page metadata; hand edits to this store file are also preserved. Where "
-            "the last attempt learned nothing, the reason is given — a resolver that could not "
+            "the last attempt learned nothing, the reason is given - a resolver that could not "
             "*ask* is not a resolver that found nothing (`audit:0011` F12).",
         )
         for key in unresolved_keys:
             anchors = " / ".join(f"`{a}`" for a in store[key].get("anchors", []))
             where = _locations(instances_by_key.get(key, []))
             reason = UNREACHABLE_REASONS.get(str(store[key].get("unreachable", "")))
-            why = f" — _{reason}_" if reason else ""
-            lines.append(f"- {anchors or '(no anchor text)'} — {where} — {key}{why}")
+            why = f" - _{reason}_" if reason else ""
+            lines.append(f"- {anchors or '(no anchor text)'} - {where} - {key}{why}")
         lines.append("")
 
     if malformed:
@@ -246,18 +246,18 @@ def build_citation_report(scan: Scan, store: Store) -> CitationReport:
             "Malformed anchor text",
             len(malformed),
             "These look like citations but could not be split into an author and a year, so no "
-            "bibliography entry can name them. Fix the link text in the Google Doc — the corpus "
+            "bibliography entry can name them. Fix the link text in the Google Doc - the corpus "
             "shows real cases: `Burns et. al. 2023` (missing comma), a stray closing paren.",
         )
         for c in malformed:
             target = c.key or c.raw_url or "no URL"
-            lines.append(f"- `{c.location}` — `{c.anchor_text.strip()}` ({target})")
+            lines.append(f"- `{c.location}` - `{c.anchor_text.strip()}` ({target})")
         lines.append("")
 
     if content_links:
         _heading(
             lines,
-            "Content links — prose anchors that might be citations",
+            "Content links - prose anchors that might be citations",
             len(content_links),
             'Hyperlinks whose text is prose ("available here") rather than an author and year. '
             "Many are ordinary links; anything that *should* be cited needs its link text changed "
@@ -265,7 +265,7 @@ def build_citation_report(scan: Scan, store: Store) -> CitationReport:
         )
         for c in content_links:
             target = c.key or c.raw_url or "no URL"
-            lines.append(f"- `{c.location}` — `{c.anchor_text.strip()}` ({target})")
+            lines.append(f"- `{c.location}` - `{c.anchor_text.strip()}` ({target})")
         lines.append("")
 
     if unlinked:
@@ -274,11 +274,11 @@ def build_citation_report(scan: Scan, store: Store) -> CitationReport:
             "Unlinked footnote citations",
             len(unlinked),
             "Author-year text in a footnote with no hyperlink, so there is no URL to key an entry "
-            "on. The corpus currently has none — this section exists so the first one an author "
+            "on. The corpus currently has none - this section exists so the first one an author "
             "writes is reported rather than silently dropped.",
         )
         for c in unlinked:
-            lines.append(f"- `{c.location}` — `{c.anchor_text.strip()}`")
+            lines.append(f"- `{c.location}` - `{c.anchor_text.strip()}`")
         lines.append("")
 
     if inconsistent:
@@ -291,18 +291,18 @@ def build_citation_report(scan: Scan, store: Store) -> CitationReport:
         )
         for key, spellings in inconsistent:
             shown = " / ".join(f"`{a}`" for a in sorted(spellings))
-            lines.append(f"- {shown} — {_locations(instances_by_key.get(key, []))} — {key}")
+            lines.append(f"- {shown} - {_locations(instances_by_key.get(key, []))} - {key}")
         lines.append("")
 
     if duplicates:
         _heading(
             lines,
-            "Probable duplicates — one work under several URLs",
+            "Probable duplicates - one work under several URLs",
             len(duplicates),
             "Same first author, same year, and effectively the same title. Usually a cross-post "
             "(Alignment Forum and LessWrong), a mirror (`deepmind.com` and `deepmind.google`), "
             "or a preprint beside its published page. Entry identity is the canonical URL "
-            "(`task:0021` D1), so these are **reported, never merged** — collapsing two identities "
+            "(`task:0021` D1), so these are **reported, never merged** - collapsing two identities "
             "on a heuristic would silently lose a citation. Pick the URL to keep and record the "
             "others as aliases.",
         )
@@ -333,7 +333,7 @@ def citations_report(root: Path, out_path: Path | None = None) -> int:
     one almost certainly means extract has not run.
     """
     if not (root / STORE_PATH).exists():
-        print(f"no citation store at {STORE_PATH} — run `atlas citations extract` first")
+        print(f"no citation store at {STORE_PATH} - run `atlas citations extract` first")
         return 1
     try:
         scan = read_scan(root)
@@ -351,6 +351,6 @@ def citations_report(root: Path, out_path: Path | None = None) -> int:
         f"{c.unresolved} unresolved · {c.dead} dead links · {c.malformed} malformed · "
         f"{c.content_links} content links · {c.unlinked} unlinked · "
         f"{c.inconsistent} inconsistent spellings · {c.duplicates} probable duplicates "
-        f"— wrote {dest}"
+        f"- wrote {dest}"
     )
     return 0

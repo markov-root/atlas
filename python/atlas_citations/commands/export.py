@@ -1,4 +1,4 @@
-"""``atlas citations export`` — the whole-book bibliography as BibTeX and CSL-JSON.
+"""``atlas citations export`` - the whole-book bibliography as BibTeX and CSL-JSON.
 
 Bank B7 of ``task:0021``, and the owner's stated phase-1 goal: "the full
 bibliography across the book exportable into a sensible file". Read from the
@@ -7,8 +7,8 @@ committed store; no network, no credentials.
 Ported from ``export.ts`` under ``task:0029``, and **this file is the reason the
 port exists.** The TypeScript version hand-rolled BibTeX serialization and got it
 structurally wrong: every multi-author entry emitted ``author = {A} and {B}``,
-which terminates the field value at the first closing brace. 303 arXiv entries —
-precisely the ones with real author lists — were malformed. It was fixed in
+which terminates the field value at the first closing brace. 303 arXiv entries -
+precisely the ones with real author lists - were malformed. It was fixed in
 ``6c4263e``, but it was never ours to get wrong: ``bibtexparser`` builds the
 entry model and writes the file, and field separation, brace balance and escaping
 are its problem.
@@ -54,7 +54,7 @@ BIBTEX_TYPES = {
 
 
 def _slug(text: str, max_len: int = 20) -> str:
-    """Lowercase alphanumerics only — safe in every BibTeX key parser."""
+    """Lowercase alphanumerics only - safe in every BibTeX key parser."""
     return "".join(c for c in text.lower() if c.isalnum() and c.isascii())[:max_len]
 
 
@@ -62,7 +62,7 @@ def _short_hash(text: str) -> str:
     """Short deterministic digest of a URL, used only to break key collisions.
 
     djb2, reproduced from the TypeScript so that existing keys do not change
-    under the port — a key that moves invalidates every ``\\cite`` written
+    under the port - a key that moves invalidates every ``\\cite`` written
     against it. Not a security hash and not used as one.
     """
     h = 5381
@@ -93,7 +93,7 @@ def base_bibtex_key(item: CslItem) -> str:
     """The key an entry would have if the store contained nothing else.
 
     Deliberately content-derived (``name+year+title-word``). The title word is
-    dropped when it repeats the name — unresolved entries carry the anchor text
+    dropped when it repeats the name - unresolved entries carry the anchor text
     as their title, which would otherwise give "Chollet, 2019" the absurd key
     ``chollet2019chollet``.
     """
@@ -111,7 +111,7 @@ def base_bibtex_key(item: CslItem) -> str:
 def assign_bibtex_keys(store: Store) -> dict[str, str]:
     """One key per store entry, deterministic for a given store.
 
-    Collisions — two Anthropic 2024 pages, say — are broken with a digest of the
+    Collisions - two Anthropic 2024 pages, say - are broken with a digest of the
     entry's own canonical URL rather than a counter, so the suffix does not
     depend on how many entries precede it.
 
@@ -123,7 +123,7 @@ def assign_bibtex_keys(store: Store) -> dict[str, str]:
       whatever else is added. This is the overwhelming majority.
     - Within a *colliding* group, the URL that sorts first keeps the bare key and
       the rest take a suffix. So adding a new entry that collides with an
-      existing bare key can move that key — if the newcomer's URL sorts earlier.
+      existing bare key can move that key - if the newcomer's URL sorts earlier.
 
     Making both properties true at once is not possible: "bare key when unique"
     and "never changes when a colliding sibling appears" contradict each other
@@ -153,11 +153,11 @@ def bibtex_name(name: dict[str, str]) -> str:
     The two cases need opposite treatment, and getting it backwards is the easy
     mistake:
 
-    - A **structured** name is emitted bare — ``Hoffmann, Jordan``. BibTeX parses
+    - A **structured** name is emitted bare - ``Hoffmann, Jordan``. BibTeX parses
       the comma as the family/given boundary. Wrapping it in braces would make it
       one unbreakable literal, so a reference manager would render the author as
       "Hoffmann, Jordan" rather than "J. Hoffmann".
-    - A **literal** name is braced — ``{Giattino et al.}`` — precisely so BibTeX
+    - A **literal** name is braced - ``{Giattino et al.}`` - precisely so BibTeX
       does NOT try to split it into First Last. ``task:0025`` keeps such names
       unparsed because guessing their structure is confidently wrong in every
       citation style; the braces carry that decision into the output.
@@ -176,7 +176,7 @@ def bibtex_name(name: dict[str, str]) -> str:
 def bibtex_entry(key: str, item: CslItem) -> Entry:
     """One ``bibtexparser`` entry, with fields in a fixed order.
 
-    Field *separation* is bibtexparser's job — the bug this port exists to
+    Field *separation* is bibtexparser's job - the bug this port exists to
     prevent. What is decided here is only which CSL field becomes which BibTeX
     field.
     """
@@ -239,20 +239,20 @@ def serialize_bibtex(store: Store) -> str:
 
 
 def serialize_csl_json(store: Store) -> str:
-    """The CSL-JSON half of the export — a straight compile of the store."""
+    """The CSL-JSON half of the export - a straight compile of the store."""
     return json.dumps(to_csl_json(store), indent=2, ensure_ascii=False) + "\n"
 
 
 def citations_export(root: Path, out_dir: Path | None = None) -> int:
     """Write both files, print one line naming them.
 
-    The store must exist before this is meaningful — exporting an empty
+    The store must exist before this is meaningful - exporting an empty
     bibliography and calling it success would be the exact warn-into-a-log
     failure AC-3 exists to prevent, so a missing store is a hard stop with a
     pointer to the command that creates it.
     """
     if not (root / STORE_PATH).exists():
-        print(f"no citation store at {STORE_PATH} — run `atlas citations extract` first")
+        print(f"no citation store at {STORE_PATH} - run `atlas citations extract` first")
         return 1
 
     store = read_store(root)

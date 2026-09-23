@@ -276,8 +276,8 @@ class TestUrls:
     def test_the_index_shows_both_spellings_from_within_one_section(self) -> None:
         """The case the per-section dedupe used to hide. See ``audit:0011`` F9.
 
-        The section body still shows the source once — that is what the dedupe is
-        for — but the index must see both spellings, because finding inconsistent
+        The section body still shows the source once - that is what the dedupe is
+        for - but the index must see both spellings, because finding inconsistent
         citation text is the reason it lists them.
         """
         scan = scan_of(
@@ -313,13 +313,13 @@ class TestDuplicateGroups:
         store = {
             "https://alignmentforum.org/posts/x": resolved(
                 "https://alignmentforum.org/posts/x",
-                "The case for ensuring that powerful AIs are controlled — AI Alignment Forum",
+                "The case for ensuring that powerful AIs are controlled - AI Alignment Forum",
                 "Greenblatt",
                 2024,
             ),
             "https://lesswrong.com/posts/x": resolved(
                 "https://lesswrong.com/posts/x",
-                "The case for ensuring that powerful AIs are controlled — LessWrong",
+                "The case for ensuring that powerful AIs are controlled - LessWrong",
                 "Greenblatt",
                 2024,
             ),

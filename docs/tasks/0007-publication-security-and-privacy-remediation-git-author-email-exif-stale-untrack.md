@@ -36,7 +36,7 @@ engineering_document:
 ## Problem
 
 `engineering inspect publication --target github` (run 2026-08-17) fails. Triage: **no secret is in
-any tracked/committable file** — all 86 gitleaks hits are in gitignored `.env` and `dist/`, so no API
+any tracked/committable file** - all 86 gitleaks hits are in gitignored `.env` and `dist/`, so no API
 key is published. The remaining failures are genuine but privacy/maintenance, and should be tracked
 so they aren't rediscovered:
 
@@ -44,7 +44,7 @@ so they aren't rediscovered:
    email (likely `markov@cesia.org`), which contradicts the global rule to use
    `183495292+markov-root@users.noreply.github.com` on GitHub.
 2. **EXIF metadata in tracked portraits.** `src/assets/static/portraits/*.jpg` (Hassabis, Tegmark,
-   Sutton, von der Leyen, Bengio) carry `Creator` / `OwnerName` / `SerialNumber` — photographer/camera
+   Sutton, von der Leyen, Bengio) carry `Creator` / `OwnerName` / `SerialNumber` - photographer/camera
    PII that would publish.
 3. **Stale files that are neither tracked nor gitignored.** Leftovers from the old Docusaurus era
    (`src/theme/`, `src/data/courses*`, `scripts/preprocessed/`, `static/img/`, `docs/chapters/`, some
@@ -52,7 +52,7 @@ so they aren't rediscovered:
    `git add .`.
 4. **46 known dependency CVEs** (osv-scanner, `pnpm-lock.yaml`).
 5. A user-home path candidate inside committed `.cache/docs/1Z5…/t.0` (benign but should be scrubbed
-   at the next cache refresh — the secret-scan step in `.cache/docs/README.md`).
+   at the next cache refresh - the secret-scan step in `.cache/docs/README.md`).
 
 Public-by-design org/course contact emails in `src/content/organizations/*.json` are acceptable and
 out of scope.

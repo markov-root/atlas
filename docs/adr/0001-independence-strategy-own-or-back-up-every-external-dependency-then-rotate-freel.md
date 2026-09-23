@@ -43,7 +43,7 @@ AI Safety Atlas was built and operated by a freelancer who held every external c
 one runtime service (`imagegen.foreview.org`). Handing the project to Markov/CeSIA requires making it
 self-sustaining. The full dependency surface is in `audit:0001`. A handoff done as "get copies of the
 keys" leaves every secret live in a departing party's hands and leaves runtime dependencies on
-infrastructure we don't control — that is not independence.
+infrastructure we don't control - that is not independence.
 
 ## Decision
 
@@ -53,7 +53,7 @@ Adopt a two-part standard for the whole handoff:
    (Cloudflare R2, Google Docs, Algolia, GitHub Actions secrets) or, where migration lags, take a
    verified local backup first (done for R2 → `~/atlas-r2-backup`). Eliminate or self-host any
    external _runtime_ dependency (`imagegen.foreview.org` → `task:0001`).
-2. **Then rotate every credential the freelancer ever held** — not just obtain copies. Getting
+2. **Then rotate every credential the freelancer ever held** - not just obtain copies. Getting
    access unblocks work; rotation is what actually closes the door (`task:0004`).
 
 Scope: the freelancer handoff and the independence work tracked in `task:0001`–`task:0006` under
@@ -67,13 +67,13 @@ document workflow (`engineering.yaml`) as the mechanism for tracking that work.
 - **Costs:** duplicated setup effort (new accounts/keys), a one-time migration per service, and
   ongoing ownership of infrastructure the freelancer previously ran.
 - **Responsibilities:** Markov owns the accounts and rotation; each service has a tracking task.
-- **Revisit triggers:** if a dependency proves impractical to own (e.g. `@foreview` logos — see
+- **Revisit triggers:** if a dependency proves impractical to own (e.g. `@foreview` logos - see
   `task:0006`), record an explicit accept-as-external decision rather than silently depending on it.
 
 ## Alternatives considered
 
-- **Copy credentials, skip rotation.** Rejected — leaves secrets in a departing party's control.
+- **Copy credentials, skip rotation.** Rejected - leaves secrets in a departing party's control.
 - **Keep using freelancer-hosted infrastructure (imagegen, their R2/Cloudflare).** Rejected as the
-  steady state — it is exactly the dependency we are removing; acceptable only as a temporary bridge.
-- **Do nothing / treat the repo as the whole handoff.** Rejected — misses the runtime and credential
+  steady state - it is exactly the dependency we are removing; acceptable only as a temporary bridge.
+- **Do nothing / treat the repo as the whole handoff.** Rejected - misses the runtime and credential
   surface entirely (the original Slack list omitted `imagegen` and all credential rotation).

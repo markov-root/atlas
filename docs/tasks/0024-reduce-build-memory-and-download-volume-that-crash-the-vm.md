@@ -44,16 +44,16 @@ memory pressure from this project's own build and test commands rather than to a
 **Measured 2026-09-21:** a full `pnpm verify` on an otherwise idle VM, sampling
 `Committed_AS / (MemTotal + SwapTotal)` every 20 seconds, peaked at **94%** against a standing 90%
 caution threshold. That is with nothing else running. It leaves no headroom for a parallel task, an
-editor, or a second agent — which is precisely the condition both crashes occurred under.
+editor, or a second agent - which is precisely the condition both crashes occurred under.
 
 Three separate contributors, which should not be conflated:
 
 1. **Peak memory in a single phase.** `pnpm typecheck` already carries
-   `NODE_OPTIONS=--max-old-space-size=3584` (`package.json:14`) — a 3.5 GB ceiling on a 4 GB machine,
+   `NODE_OPTIONS=--max-old-space-size=3584` (`package.json:14`) - a 3.5 GB ceiling on a 4 GB machine,
    which is a workaround rather than a fix and one that guarantees the machine is at the edge.
 2. **Serial phases that each re-pay startup.** `verify` runs eight phases sequentially; each Node
    process re-imports and re-transforms. The unit suite alone reports `import 12.35s` against
-   `tests 2.46s` — import dominates execution by 5×.
+   `tests 2.46s` - import dominates execution by 5×.
 3. **Gigabyte-scale audio movement.** `.cache/uc/` is 1.9 GB. The R2 pull/push paths move whole MP3s,
    and Phase 8 of the audio renderer re-uploads every MP3 present on disk regardless of whether it
    changed (`task:0022`). Most of that traffic is avoidable.
@@ -70,11 +70,11 @@ machine can hold, which is the constraint every other task runs into.
   different problems with different fixes.
 - Reduce peak memory in whichever phase dominates.
 - Reduce redundant work across phases, where doing so does not weaken the gate.
-- Reduce avoidable audio traffic — which overlaps with `task:0022` and should not be done twice.
+- Reduce avoidable audio traffic - which overlaps with `task:0022` and should not be done twice.
 
 ## Out of scope
 
-- **Shipped page weight and repository clone size** — `task:0019`. This task is about what the build
+- **Shipped page weight and repository clone size** - `task:0019`. This task is about what the build
   consumes, not what the reader downloads.
 - **Weakening `verify`.** Dropping checks would reduce memory and is not the goal. Any change must
   preserve what the gate catches.
@@ -83,7 +83,7 @@ machine can hold, which is the constraint every other task runs into.
 
 ## Decisions required before execution
 
-### D1 — Is the target a smaller peak, or a gate that does not need one machine to hold it all?
+### D1 - Is the target a smaller peak, or a gate that does not need one machine to hold it all?
 
 | Option                                                   | Consequence                                                                    |
 | -------------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -107,24 +107,24 @@ phases to pass. Splitting is the change that actually removes the ceiling rather
 
 ## Completion evidence
 
-_To be filled on completion. Each row must cite a criterion and durable evidence — a measurement, a
-commit, or a recorded decision — not a narrative claim._
+_To be filled on completion. Each row must cite a criterion and durable evidence - a measurement, a
+commit, or a recorded decision - not a narrative claim._
 
 | Criterion | Evidence | Verified |
 | --------- | -------- | -------- |
-| AC-1      | —        | —        |
-| AC-2      | —        | —        |
-| AC-3      | —        | —        |
-| AC-4      | —        | —        |
+| AC-1      | -        | -        |
+| AC-2      | -        | -        |
+| AC-3      | -        | -        |
+| AC-4      | -        | -        |
 
 ## Authority and inputs
 
 - Measurement, 2026-09-21: 10 samples at 20s intervals across a full `pnpm verify`; peak 94%, second
   83%. Method is `Committed_AS / (MemTotal + SwapTotal)`, which matches `sar`'s `%commit` and is the
-  metric that tracked both crashes — `free -h` does not.
-- `package.json:14` — the existing memory ceiling workaround.
+  metric that tracked both crashes - `free -h` does not.
+- `package.json:14` - the existing memory ceiling workaround.
 - Unit suite timing, same run: `import 12.35s` versus `tests 2.46s`.
-- `audit:0011` F4 — the finding this task owns.
-- `task:0022` — the ungated upload path; overlapping surface.
-- `task:0019` — page and repo weight; explicitly separate.
-- `[[atlas-dont-crash-this-vm]]` — the operational rules derived from both crashes.
+- `audit:0011` F4 - the finding this task owns.
+- `task:0022` - the ungated upload path; overlapping surface.
+- `task:0019` - page and repo weight; explicitly separate.
+- `[[atlas-dont-crash-this-vm]]` - the operational rules derived from both crashes.

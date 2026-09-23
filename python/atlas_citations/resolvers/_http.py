@@ -41,7 +41,7 @@ RETRY_STATUSES = frozenset({408, 425, 429, 500, 502, 503, 504})
 def classify_status(status: int) -> Unreachable | None:
     """Whether an HTTP status means "nothing was learned", and why.
 
-    ``None`` means the status is a usable answer — including a 200 whose body
+    ``None`` means the status is a usable answer - including a 200 whose body
     turns out to be useless, which is the caller's problem rather than this
     function's.
     """
@@ -67,11 +67,11 @@ def get_text_capped(
 
     Three outcomes, per the resolver contract: the body, :class:`Unreachable`
     when the request failed or was refused, and ``None`` when the request
-    succeeded but there was nothing here to read — a non-HTML content type under
+    succeeded but there was nothing here to read - a non-HTML content type under
     ``html_only``, or an empty body.
 
     The body is streamed and abandoned at the cap rather than fetched whole and
-    sliced — a sliced 50 MB response would still have been 50 MB in memory.
+    sliced - a sliced 50 MB response would still have been 50 MB in memory.
     """
     request_headers = {"User-Agent": ctx.user_agent, **DEFAULT_HEADERS, **(headers or {})}
 
@@ -125,7 +125,7 @@ def get_json(
     """GET (or POST, given ``json_body``) ``url`` and return its parsed JSON body.
 
     Same three outcomes as :func:`get_text_capped`. ``None`` is reserved for a
-    successful response whose body was not JSON — a login page served with a 200,
+    successful response whose body was not JSON - a login page served with a 200,
     typically, which is an answer of sorts.
     """
     request_headers = {"User-Agent": ctx.user_agent, **DEFAULT_HEADERS, **(headers or {})}

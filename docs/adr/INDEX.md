@@ -17,12 +17,12 @@ superseded_by: ''
 
 ## Purpose
 
-Governed `adr` records — consequential, standalone decisions with context, options, and
+Governed `adr` records - consequential, standalone decisions with context, options, and
 consequences. Allocated with `engineering document new adr --title "..."`.
 
 ## Entries
 
-- [adr:0001](./0001-independence-strategy-own-or-back-up-every-external-dependency-then-rotate-freel.md) —
+- [adr:0001](./0001-independence-strategy-own-or-back-up-every-external-dependency-then-rotate-freel.md) -
   Independence strategy: own or back up every external dependency, then rotate freelancer-held credentials (proposed).
-- [adr:0002](./0002-govern-living-documents-by-frontmatter-at-stable-paths-not-as-numbered-record-se.md) —
+- [adr:0002](./0002-govern-living-documents-by-frontmatter-at-stable-paths-not-as-numbered-record-se.md) -
   Govern living documents by frontmatter at stable paths, not as numbered record series (proposed).

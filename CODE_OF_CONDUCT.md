@@ -15,7 +15,7 @@ This code applies in all project spaces: the GitHub repository (issues, PRs, dis
 
 ## Reporting
 
-If you experience or witness behavior that violates this code, please reach out to the maintainer through their GitHub profile, or open a GitHub issue marked `[CONDUCT — private]` and a maintainer will reach out for a private channel.
+If you experience or witness behavior that violates this code, please reach out to the maintainer through their GitHub profile, or open a GitHub issue marked `[CONDUCT - private]` and a maintainer will reach out for a private channel.
 
 All reports will be reviewed and investigated. The maintainer will respect the confidentiality of the reporter.
 

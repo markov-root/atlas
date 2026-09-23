@@ -62,7 +62,7 @@ wrapped in a `.word-span`.
 
 Three consequences, in increasing severity:
 
-1. **Clicking a word in a list did nothing** — the reported symptom. `onArticleClick` resolves a
+1. **Clicking a word in a list did nothing** - the reported symptom. `onArticleClick` resolves a
    click through `spanIndex`, and unwrapped text has no span to resolve.
 2. **List text never highlighted.**
 3. **The aligner's two streams disagreed.** Those words are present in the spoken stream and absent
@@ -72,7 +72,7 @@ Three consequences, in increasing severity:
    read a 30-item list, recovering only incidentally at ~243s.
 
 Scale, measured across eight list-bearing sections: **4117 narrated words** had no counterpart on
-the page. On `6.5` alone that is 1209 words against 4212 spoken — 29% of the section.
+the page. On `6.5` alone that is 1209 words against 4212 spoken - 29% of the section.
 
 Footnote `<li>`s were unaffected because `[section].astro` builds them as `<li><p>…</p></li>`, and
 the inner `<p>` already matched. That is also why the defect was easy to miss: the first pages
@@ -89,7 +89,7 @@ excluded.
 ## Out of scope
 
 - **Unit tests for the wrapping itself.** `word-highlight.ts` is the DOM shell the project
-  deliberately left untested — its testable logic was extracted into `word-align.ts`,
+  deliberately left untested - its testable logic was extracted into `word-align.ts`,
   `sentences.ts`, and `follow-scroll.ts`. Testing selection would require a DOM environment
   (`jsdom`/`happy-dom`); neither is installed, and adding a dev dependency is a project decision,
   not this fix's to make. Evidence here is browser measurement instead. See Limitations.
@@ -108,7 +108,7 @@ excluded.
 - **AC-3:** With the narration playing over a list, the highlighted word matches the word being
   spoken, rather than parking on the preceding block.
 - **AC-4:** Clicking a word inside a list item seeks the audio to that word.
-- **AC-5:** `pnpm verify` passes, including the axe-core a11y suite — the fix adds thousands of
+- **AC-5:** `pnpm verify` passes, including the axe-core a11y suite - the fix adds thousands of
   inline spans, so accessibility is a real regression surface.
 - **AC-6:** Prose lists still render their markers. No `li` inside `[data-chapter-article]` computes
   a `contain` value including `paint`, and both an `ol` (decimal) and a `ul` (disc) render visible
@@ -118,14 +118,14 @@ excluded.
 
 Verified by direct browser measurement against the running dev server, not by an automated test. A
 future regression in `WRAPPABLE_SELECTOR` would not be caught by `pnpm verify`. Closing that needs a
-DOM test environment — recorded here as a known, deliberate gap rather than an oversight.
+DOM test environment - recorded here as a known, deliberate gap rather than an oversight.
 
 ## Completion evidence
 
 | Criterion | Evidence |
 | --- | --- |
 | AC-1 | `6.5 learning-from-feedback`: wrapped spans **3025 -> 4244**, and words wrapped inside list items **0 -> 1219**, matching the 1209-word measured list content. Across the 8-section sample, unreachable list words **4117 -> 0**. |
-| AC-2 | Same page: `spans.length === new Set(spans).size` (4244 both). On `1.2 current-capabilities` (which has `<li><p>` footnotes): total unchanged at 2912, zero repeated elements, footnote spans 68/36 against 66/32 raw words — proportionate, not doubled (doubling would show ~132). |
+| AC-2 | Same page: `spans.length === new Set(spans).size` (4244 both). On `1.2 current-capabilities` (which has `<li><p>` footnotes): total unchanged at 2912, zero repeated elements, footnote spans 68/36 against 66/32 raw words - proportionate, not doubled (doubling would show ~132). |
 | AC-3 | Probes at 185s / 194s / 218s during the 30-item list. Before: `"Figure 6.14"` at all three. After: `learn` -> `learn`, `reward` -> `reward`, `not` -> `not`, each inside a list item. |
 | AC-4 | Clicked the wrapped word `"always"` inside a list item with narration playing; `audio.currentTime` moved 243s -> 997s. |
 | AC-5 | `pnpm verify`: lint 0 errors / 11 pre-existing warnings, `astro check` 0 errors, 18 files / 181 tests, build complete, smoke 3/3, **a11y 6/6 with no new baseline violations**. |
@@ -139,7 +139,7 @@ paragraphs. That was wrong, and it shipped a visible defect: a list marker is pa
 item's principal box (`list-style-position: outside`), which is precisely what paint containment
 clips. Every bullet and number silently disappeared and lists rendered as indented paragraphs.
 
-Caught by the maintainer on `5.8 control-evaluations`, not by any check — `pnpm verify` passed with
+Caught by the maintainer on `5.8 control-evaluations`, not by any check - `pnpm verify` passed with
 the markers missing, because nothing asserts on rendered list markers and axe does not treat a
 missing marker as a violation. Reverted; the rule is back to `p, figcaption` and the CSS now carries
 a comment naming the mechanism so it is not re-added.

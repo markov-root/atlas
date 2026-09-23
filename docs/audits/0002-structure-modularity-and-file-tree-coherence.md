@@ -75,7 +75,7 @@ Fan-in counts were cross-checked by grepping each module's bare name, which is h
 
 ## Findings
 
-### F1 — The documented repo layout no longer matches the tree
+### F1 - The documented repo layout no longer matches the tree
 
 _Observation._ `docs/ARCHITECTURE.md:56-85` documents a tree containing
 `src/components/ # Astro components (nodes/, navigation/, etc.)`. There is no
@@ -95,7 +95,7 @@ ordinary documentation drift rather than a structural defect, but `AGENTS.md` na
 `docs/ARCHITECTURE.md` as the answer to "how the build pipeline and Astro layer fit together", so a
 reader following the project's own routing gets an incomplete map.
 
-### F2 — `src/lib/` mixes build-time and browser-runtime modules with no marker
+### F2 - `src/lib/` mixes build-time and browser-runtime modules with no marker
 
 _Observation._ `src/lib/` holds 11 non-test modules totalling ~1,900 lines (3,160 including tests).
 They split cleanly into two groups that never interact:
@@ -106,31 +106,31 @@ They split cleanly into two groups that never interact:
 
 Nothing in a filename, directory, or export signals which group a module belongs to.
 
-_Inference._ The browser group is 2,097 lines — about 10× the build-time group — and carries
+_Inference._ The browser group is 2,097 lines - about 10× the build-time group - and carries
 different constraints (no Node APIs, ships to users, affects page weight). `docs/PRINCIPLES.md:109`
 states "High cohesion within modules, loose coupling between"; the cohesion within each group is
 high, but `src/lib/` as a container has none. A contributor cannot tell from the tree whether adding
 a Node import to a `lib/` module is safe.
 
-### F3 — The read-along feature has no module boundary
+### F3 - The read-along feature has no module boundary
 
 _Observation._ The word-level read-along shipped 2026-09-20 and its implementation is distributed
 across four locations with no shared directory:
 
-- `src/lib/word-highlight.ts` (724) — DOM wrapping and highlight state
-- `src/lib/word-align.ts` (327) — alignment and anchor resync
-- `src/lib/follow-scroll.ts` (90) — scroll behaviour, deliberately split out
-- `src/data/chapter-timing.ts` (396) — the timing table, 71 pinned CDN URLs
-- `src/layouts/Reader.astro:388` — the only wiring point (`import '../lib/word-highlight'`)
-- `public/audio/ch*/*.words.json` — 71 committed timing payloads
+- `src/lib/word-highlight.ts` (724) - DOM wrapping and highlight state
+- `src/lib/word-align.ts` (327) - alignment and anchor resync
+- `src/lib/follow-scroll.ts` (90) - scroll behaviour, deliberately split out
+- `src/data/chapter-timing.ts` (396) - the timing table, 71 pinned CDN URLs
+- `src/layouts/Reader.astro:388` - the only wiring point (`import '../lib/word-highlight'`)
+- `public/audio/ch*/*.words.json` - 71 committed timing payloads
 
 _Inference._ This is the newest and, per `handoff:0002`, least settled subsystem, and it is also the
 most spread out. `follow-scroll.ts:4` explicitly documents being "kept separate from the DOM wiring
-in word-highlight.ts", which shows the split was deliberate at the file level — but the feature has
+in word-highlight.ts", which shows the split was deliberate at the file level - but the feature has
 no enclosing boundary, so the deliberate split reads as scatter to anyone who does not already know
 the history.
 
-### F4 — `src/data/` is a directory named for data that contains only code
+### F4 - `src/data/` is a directory named for data that contains only code
 
 _Observation._ `src/data/` contains exactly two files: `chapter-timing.ts` (396 lines, 19 KB) and
 its test. The module is a generated lookup table embedding 71 absolute CDN URLs on the
@@ -142,17 +142,17 @@ looking for the timing payloads finds `public/audio/`. `task:0002` already track
 hostnames as migration surface, so this module is a known coupling point independent of where it
 sits.
 
-### F5 — `transformer.ts` is the largest module and the highest-coupled
+### F5 - `transformer.ts` is the largest module and the highest-coupled
 
 _Observation._ `src/textbook-loader/transformer.ts` is 750 lines, the largest file in the repo, and
 the `transformer` name resolves in 18 files. `docs/ROADMAP.md:195` ("Later") already commits to
 "Refactor `Transformer` to remove per-textbook shared state", and `lesson:0003` and `lesson:0004`
 both record that its mutable per-textbook counters caused test failures.
 
-_Inference._ No new finding is warranted here — the project has already identified the defect, its
+_Inference._ No new finding is warranted here - the project has already identified the defect, its
 mechanism, and its position in the queue. Recorded so this audit's silence is not read as absence.
 
-### F6 — `src/components/` groups two categories and leaves 23 files flat
+### F6 - `src/components/` groups two categories and leaves 23 files flat
 
 _Observation._ 23 `.astro` files sit directly in `src/components/`; `nodes/` (19 files) and `brand/`
 (2 files) are the only groupings. The flat set mixes primitives (`Button.astro`, `Input.astro`,
@@ -163,7 +163,7 @@ _Inference._ At 23 files this is navigable but at the point where a flat list st
 advantage. The grouping that exists (`nodes/`, `brand/`) shows the project already reaches for
 subdirectories when a set coheres; three further coherent sets are visible in the flat list.
 
-### F7 — Half the `file:line` citations in `PRINCIPLES.md` have drifted off their code
+### F7 - Half the `file:line` citations in `PRINCIPLES.md` have drifted off their code
 
 _Observation._ `AGENTS.md` states the standing norm: "Every principle in `docs/PRINCIPLES.md` has a
 code reference. When you change the code, check whether the matching principle needs updating in the
@@ -183,12 +183,12 @@ same commit." Every `file:line` citation in the document was resolved against th
 Four of eight resolve correctly; three have drifted substantially (16–50 lines) and one mildly.
 `docs/ARCHITECTURE.md` cites files without line numbers, so it has no equivalent exposure.
 
-_Inference._ The content of the principles is not wrong — §1's prose still describes the system
+_Inference._ The content of the principles is not wrong - §1's prose still describes the system
 accurately, including its enumerated exceptions. What has decayed is the navigational claim. Because
 the project deliberately made the citation a load-bearing norm, a stale citation costs more here than
 it would in a repo that never promised them. Line-anchored references to a moving file are the
 fragile form; symbol-anchored ones (`fetchDoc`, `slugify`) survived unchanged, which is visible in
-the table above — the three correct non-trivial citations are all to stable top-of-file symbols.
+the table above - the three correct non-trivial citations are all to stable top-of-file symbols.
 
 ## Limitations
 
@@ -210,12 +210,12 @@ Priority order. Sizes are S (< 1 session), M (1–2 sessions), L (multi-session)
 what to act on; nothing here should be executed without that decision.
 
 1. **Update the `docs/ARCHITECTURE.md` repo-layout block (F1). Size S.** Remove `navigation/`, add
-   `src/content/`, `src/data/`, `src/config/`, `src/fonts/`. Risk: none — documentation-only, and it
+   `src/content/`, `src/data/`, `src/config/`, `src/fonts/`. Risk: none - documentation-only, and it
    restores the accuracy of the file `AGENTS.md` points readers to first.
 
 2. **Repair the four stale citations in `docs/PRINCIPLES.md`, and prefer symbol anchors (F7).
    Size S.** The three substantially-drifted ones are `loader.ts:59`→`:77`, `loader.ts:66`→`:82`,
-   and the `content.config.ts` bridge range →`:83-90`. Risk: none — documentation-only. Worth pairing
+   and the `content.config.ts` bridge range →`:83-90`. Risk: none - documentation-only. Worth pairing
    with a shift to symbol-anchored references (`fetchDoc`, `slugify`), which is the form that
    survived in this sample; a line number re-breaks on the next edit above it. A `just`/`atlas`
    subcommand that resolves citations (see audit:0006) would make this checkable rather than
@@ -230,7 +230,7 @@ what to act on; nothing here should be executed without that decision.
 4. **Give the read-along a single home (F3, F4). Size M.** Colocating `word-highlight.ts`,
    `word-align.ts`, `follow-scroll.ts`, and `chapter-timing.ts` under one directory would make the
    newest subsystem legible as a unit and would empty `src/data/` of its misnamed contents. Risk:
-   moderate — it is the least settled code, so churn here competes with stability; it also touches
+   moderate - it is the least settled code, so churn here competes with stability; it also touches
    `task:0002`'s migration surface, so sequencing matters. **Recommend deferring until the R2
    migration in `task:0002` has landed**, to avoid moving the same file twice.
 

@@ -53,7 +53,7 @@ The 2026-09-21 governance adoption added role frontmatter to `ARCHITECTURE.md`, 
 The documents declare roles whose content standards they do not meet. `ARCHITECTURE.md` declares
 `specification` but states no failure semantics, no boundary cases, no precedence rules, and no
 divergence owners. `PRINCIPLES.md` declares `standard` but names no issuer, no applicability warrant,
-and no waiver classification — so a contested case cannot be adjudicated from the text.
+and no waiver classification - so a contested case cannot be adjudicated from the text.
 `ROADMAP.md` declares `roadmap` but has no dated commitment bands, no break triggers, and no links
 from committed items to owning tasks or ADRs.
 
@@ -100,7 +100,7 @@ Fix the three factual defects above as part of the same work.
 ## Done when
 
 - **AC-1:** `ARCHITECTURE.md` states failure semantics, boundary cases, precedence between
-  conflicting rules, and who owns divergence — and its repo-layout block matches the actual tree.
+  conflicting rules, and who owns divergence - and its repo-layout block matches the actual tree.
 - **AC-2:** `PRINCIPLES.md` names its issuer and adoption basis, the population and scope it binds,
   how an exception is authorized and recorded, and how the standard itself changes. Its four stale
   citations are repaired, preferring symbol anchors over line numbers.
@@ -118,12 +118,12 @@ Fix the three factual defects above as part of the same work.
 
 | Criterion | Evidence | Verified |
 | --------- | -------- | -------- |
-| AC-1      | `docs/ARCHITECTURE.md` — new `## Failure semantics by stage` (per-stage table: on-failure, exit code, live-site effect), `## Mode boundaries`, `## Configuration precedence`, `## Edition and language scope`. Repo-layout block corrected: `components/navigation/` removed, `src/content/`, `src/data/`, `src/config/`, `src/fonts/` added. | yes — sections present and evidence-anchored; `navigation/` absent from file |
-| AC-2      | `docs/PRINCIPLES.md` — new `## How this standard works` (issuer, adoption, governed population, exception authorization, change governance). Every principle now tagged `(binding)` or `(advisory)`, with carve-outs named. Stale citations `loader.ts:59`, `loader.ts:66`, and the `content.config.ts` bridge range repaired. | yes — 37 binding/advisory markers, 18 waiver/exception references, zero stale citations remain |
-| AC-3      | `docs/DESIGN.md` — new `## Scope`, `## Rules`, `## Conformance and exceptions`, `## Reference`; binding vs advisory distinguished. | yes — sections present |
-| AC-4      | `docs/ROADMAP.md` — `## How to read this roadmap`, dated commitment band (`Now — committed focus (calibrated 2026-09-21)`), 17 break triggers, 61 links to `task:`/`adr:`/`audit:` records, `## Reconciliation with task, ADR, and audit state`. False "language switcher already implemented dormant" claim removed; quizzes/flashcards separated from the certification-program rejection. | yes — counts verified by grep; false claim absent |
-| AC-5      | `docs/runbooks/regenerate-chapter-audio.md` (270 lines) — `When to use`, `Why this is risky — the two couplings`, `Mutations and reversibility` (per-step reversibility table), `Procedure`, `Outcome evidence`, `Not known — read before you improvise`. | yes — branch at risky step present; unknowns stated rather than papered over |
-| AC-6      | Spot-review of the failure-semantics table, reversibility table, and unknowns section found claims anchored to symbols (`fetchDoc`, `downloadImages`, `synthesizeParagraphs`) or to audit findings, with cost figures explicitly marked factor-of-2 estimates. | partial — reviewed by sampling, not line by line; see Limitations |
+| AC-1      | `docs/ARCHITECTURE.md` - new `## Failure semantics by stage` (per-stage table: on-failure, exit code, live-site effect), `## Mode boundaries`, `## Configuration precedence`, `## Edition and language scope`. Repo-layout block corrected: `components/navigation/` removed, `src/content/`, `src/data/`, `src/config/`, `src/fonts/` added. | yes - sections present and evidence-anchored; `navigation/` absent from file |
+| AC-2      | `docs/PRINCIPLES.md` - new `## How this standard works` (issuer, adoption, governed population, exception authorization, change governance). Every principle now tagged `(binding)` or `(advisory)`, with carve-outs named. Stale citations `loader.ts:59`, `loader.ts:66`, and the `content.config.ts` bridge range repaired. | yes - 37 binding/advisory markers, 18 waiver/exception references, zero stale citations remain |
+| AC-3      | `docs/DESIGN.md` - new `## Scope`, `## Rules`, `## Conformance and exceptions`, `## Reference`; binding vs advisory distinguished. | yes - sections present |
+| AC-4      | `docs/ROADMAP.md` - `## How to read this roadmap`, dated commitment band (`Now - committed focus (calibrated 2026-09-21)`), 17 break triggers, 61 links to `task:`/`adr:`/`audit:` records, `## Reconciliation with task, ADR, and audit state`. False "language switcher already implemented dormant" claim removed; quizzes/flashcards separated from the certification-program rejection. | yes - counts verified by grep; false claim absent |
+| AC-5      | `docs/runbooks/regenerate-chapter-audio.md` (270 lines) - `When to use`, `Why this is risky - the two couplings`, `Mutations and reversibility` (per-step reversibility table), `Procedure`, `Outcome evidence`, `Not known - read before you improvise`. | yes - branch at risky step present; unknowns stated rather than papered over |
+| AC-6      | Spot-review of the failure-semantics table, reversibility table, and unknowns section found claims anchored to symbols (`fetchDoc`, `downloadImages`, `synthesizeParagraphs`) or to audit findings, with cost figures explicitly marked factor-of-2 estimates. | partial - reviewed by sampling, not line by line; see Limitations |
 
 ### Limitations of this verification
 
@@ -134,8 +134,8 @@ therefore evidenced by sampling. A reviewer wanting full assurance should re-ver
 
 ## Authority and inputs
 
-- `knowledge/documentation-living-content-standards.md` — the four role standards and their
+- `knowledge/documentation-living-content-standards.md` - the four role standards and their
   discriminating tests.
-- `adr:0002` — why these documents sit outside the validator, and hence why substance is the only control.
-- `audit:0002` F1/F7, `audit:0007` F1 — the three factual defects to repair.
-- `audit:0009` — source material for the audio runbook.
+- `adr:0002` - why these documents sit outside the validator, and hence why substance is the only control.
+- `audit:0002` F1/F7, `audit:0007` F1 - the three factual defects to repair.
+- `audit:0009` - source material for the audio runbook.

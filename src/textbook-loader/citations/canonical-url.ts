@@ -7,7 +7,7 @@
  * after entries exist rewrites all of them.
  *
  * Deliberately conservative. Two URLs are merged only when they are the same
- * document by construction — a different path on the same host is a different
+ * document by construction - a different path on the same host is a different
  * document until proven otherwise. Over-merging silently loses a citation;
  * under-merging leaves a visible duplicate somebody can fix. The second failure
  * is much cheaper, so the rules below prefer it.
@@ -41,7 +41,7 @@ function stripTracking(url: URL): void {
  * The version suffix is dropped deliberately. `task:0021` treats a source as one
  * bibliography entry; v1 and v3 of a preprint are the same work for citation
  * purposes even though they are different bytes. (The research-database corpus
- * makes the opposite choice — there a revision is part of the identity — because
+ * makes the opposite choice - there a revision is part of the identity - because
  * it is answering "what exactly was published", not "what is being cited".)
  */
 function canonicalizeArxiv(url: URL): string | null {
@@ -84,7 +84,7 @@ function canonicalizeYouTube(url: URL): string | null {
  * fragment, no tracking parameters, no trailing slash on a non-root path.
  *
  * The fragment is dropped because `#section-3` addresses a place *within* one
- * document, not a different document — two citations to different parts of the
+ * document, not a different document - two citations to different parts of the
  * same paper are two instances of one entry.
  */
 export function canonicalizeUrl(raw: string): string | null {
@@ -98,7 +98,7 @@ export function canonicalizeUrl(raw: string): string | null {
   if (url.protocol !== 'http:' && url.protocol !== 'https:') return null;
 
   // A hostname with no dot cannot be a public document. `new URL()` happily
-  // accepts `https://in` — hostname "in" — so a truncated or malformed href in
+  // accepts `https://in` - hostname "in" - so a truncated or malformed href in
   // the Google Doc ("https://in", "https://li", "https://perez") became a
   // bibliography entry that rendered as `Cihon. (2019). https://in`. Three were
   // in the corpus. Rejecting them here means no entry is minted; the citation

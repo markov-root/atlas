@@ -135,7 +135,7 @@ afterEach(() => {
 // audio output. If this breaks, contributor builds will either fail
 // trying to reach R2 (no credentials) or surprise the contributor by
 // emitting network traffic they explicitly opted out of.
-describe('audio Renderer — SKIP_AUDIO_DOWNLOAD escape hatch', () => {
+describe('audio Renderer - SKIP_AUDIO_DOWNLOAD escape hatch', () => {
   it('clears every section.audioLink and chapter.audioLink without any R2 network calls', async () => {
     process.env.SKIP_AUDIO_DOWNLOAD = '1';
     const tb = textbook([
@@ -172,13 +172,13 @@ describe('audio Renderer — SKIP_AUDIO_DOWNLOAD escape hatch', () => {
   });
 });
 
-// `skipGeneration` is the standard contributor mode — no API keys, no TTS
+// `skipGeneration` is the standard contributor mode - no API keys, no TTS
 // synthesis, but the build should still attempt to hydrate cached audio
 // from R2 so contributors with R2 read access (and CI) can preview audio.
 // If these contracts break, contributors will either trigger unwanted
 // ElevenLabs/Gemini API calls (cost + key requirement) or get a build
 // missing audio they should have received from cache.
-describe('audio Renderer — skipGeneration contributor mode', () => {
+describe('audio Renderer - skipGeneration contributor mode', () => {
   it('never invokes ElevenLabs synthesis when skipGeneration is true', async () => {
     const tb = textbook([chapter(1, [section(1), section(2)])]);
     const r = new Renderer(tb, '/tmp/assets', tmpOut, { skipGeneration: true });
@@ -218,8 +218,8 @@ describe('audio Renderer — skipGeneration contributor mode', () => {
 // that content hashes are deterministic and so the rate-limited Gemini API
 // is called efficiently. If the equation pipeline runs (or doesn't run)
 // against contributor expectations, builds either hit Gemini surprise costs
-// or produce audio with raw LaTeX read aloud — both observable defects.
-describe('audio Renderer — equation pre-fetch gating', () => {
+// or produce audio with raw LaTeX read aloud - both observable defects.
+describe('audio Renderer - equation pre-fetch gating', () => {
   it('queues every equation on the describer before rendering when generation is enabled', async () => {
     process.env.ELEVENLABS_API_KEY = 'fake-key';
     process.env.GEMINI_API_KEY = 'fake-gemini';

@@ -1,11 +1,11 @@
-"""``atlas citations resolve`` — bank B9 of ``task:0021``, per ``task:0027``.
+"""``atlas citations resolve`` - bank B9 of ``task:0021``, per ``task:0027``.
 
 Fills in metadata for entries the store holds only as anchor text. This is the
 one citation command that touches the network, and it is never required:
 ``extract``, ``report``, ``export`` and ``urls`` all work from the committed
 store with no credentials and no connection (``task:0021`` D4).
 
-The design is shaped by one fact — roughly 600 of the ~950 sources have no API
+The design is shaped by one fact - roughly 600 of the ~950 sources have no API
 that describes them, so this job is long-tailed rather than hard. It is built to
 be **chipped at**: run it, interrupt it, run it again tomorrow. That is why it
 resolves only unfilled entries and saves as it goes.
@@ -26,7 +26,7 @@ from ..resolvers import ALL_RESOLVERS, ResolveResult, Unreachable, make_context,
 from ..store import Store, StoreEntry, with_www
 from .extract import STORE_PATH, read_store, write_store
 
-#: Contactable user agent. ``task:0027`` AC-5 — Crossref's polite pool wants one.
+#: Contactable user agent. ``task:0027`` AC-5 - Crossref's polite pool wants one.
 USER_AGENT = (
     "AISafetyAtlas-citations/1.0 "
     "(+https://github.com/markov-root/atlas; mailto:contact@aisafety.info)"
@@ -74,8 +74,8 @@ def apply_resolution(
 ) -> StoreEntry:
     """Fold a resolver's fields into an entry.
 
-    Resolver fields win over anchor-derived ones — a real title beats "Chollet,
-    2019" — but anything the resolver did not return is kept, so a partial result
+    Resolver fields win over anchor-derived ones - a real title beats "Chollet,
+    2019" - but anything the resolver did not return is kept, so a partial result
     is an improvement rather than a replacement. The unresolved ``note`` is
     dropped: it exists to mark an entry as needing work, and it no longer does.
     """
@@ -88,7 +88,7 @@ def apply_resolution(
         "resolvedBy": source,
         "anchors": entry.get("anchors", []),
     }
-    # Whatever stopped the last attempt did not stop this one — unless the
+    # Whatever stopped the last attempt did not stop this one - unless the
     # answer came from an archive, which only ever runs *because* the live URL
     # failed. Then the reason is still true and still the authors' to act on:
     # having found a copy is a fact about our metadata, the address being dead
@@ -102,7 +102,7 @@ def apply_unreachable(entry: StoreEntry, reason: str) -> StoreEntry:
     """Record *why* an entry could not be resolved, without claiming it was.
 
     ``task:0032`` AC-1. ``resolvedBy`` is deliberately left alone, so the entry
-    stays in the retry set — that is the entire difference between a transient
+    stays in the retry set - that is the entire difference between a transient
     failure and a permanent verdict, and it is what ``audit:0011`` F12 cost.
 
     No timestamp. The report is a durable artifact whose diff should show what
@@ -128,7 +128,7 @@ def attempt(key: str, ctx) -> ResolveResult | Unreachable | None:
 
     **The ``www.`` step** exists because canonicalization strips the prefix
     (``canonical-url.ts``), which is right for identity and wrong for
-    *reachability* on the handful of hosts serving only the prefixed form — seven
+    *reachability* on the handful of hosts serving only the prefixed form - seven
     in this corpus, four of them one Substack custom domain. See
     :func:`atlas_citations.store.with_www`. The recovered address is written to
     the entry's ``URL``, which is what the bibliography renders as a link, while
@@ -136,7 +136,7 @@ def attempt(key: str, ctx) -> ResolveResult | Unreachable | None:
 
     **The archive comes last, once.** Folding it into the chain and then retrying
     the chain would ask the Internet Archive about the same document twice, for
-    an address it normalises anyway — someone else's charity paying for our URL
+    an address it normalises anyway - someone else's charity paying for our URL
     handling.
 
     Neither extra step costs anything for the ~900 entries whose canonical URL
@@ -182,7 +182,7 @@ class ResolveOptions:
     interval_s: float = DEFAULT_INTERVAL_S
     #: Re-resolve entries previously answered by these resolvers.
     #:
-    #: Resolution is sticky by design — a resolved entry is never re-fetched,
+    #: Resolution is sticky by design - a resolved entry is never re-fetched,
     #: which is what makes the long tail tractable. That works against you when a
     #: resolver *improves*: entries a weaker one already claimed would keep their
     #: thin metadata forever. This resets them so a better resolver gets a turn.
@@ -192,11 +192,11 @@ class ResolveOptions:
 def citations_resolve(root: Path, opts: ResolveOptions | None = None) -> int:
     opts = opts or ResolveOptions()
     if not (root / STORE_PATH).exists():
-        print(f"atlas: no store at {STORE_PATH} — run `atlas citations extract` first")
+        print(f"atlas: no store at {STORE_PATH} - run `atlas citations extract` first")
         return 1
     store = read_store(root)
 
-    # A redo only targets entries a more *specific* resolver would now claim —
+    # A redo only targets entries a more *specific* resolver would now claim -
     # the point is to give newly-added coverage a turn, not to re-fetch the
     # world.
     #
@@ -259,7 +259,7 @@ def citations_resolve(root: Path, opts: ResolveOptions | None = None) -> int:
             attempted += 1
             result = attempt(key, ctx)
             if isinstance(result, Unreachable):
-                # Not resolved, and deliberately still not marked as such — but
+                # Not resolved, and deliberately still not marked as such - but
                 # the reason is worth keeping, because "the page is gone" is a
                 # defect only the authors can fix and "we were refused" is one
                 # only a human with a browser can.
@@ -288,6 +288,6 @@ def citations_resolve(root: Path, opts: ResolveOptions | None = None) -> int:
     print(f"{resolved} of {attempted} attempted resolved{suffix}.")
     if blocked_counts:
         blocked = " · ".join(f"{reason} {n}" for reason, n in sorted(blocked_counts.items()))
-        print(f"{sum(blocked_counts.values())} learned nothing ({blocked}) — see the report.")
+        print(f"{sum(blocked_counts.values())} learned nothing ({blocked}) - see the report.")
     print(f"{len(unresolved_keys(store))} still unresolved. Re-run to continue.")
     return 0

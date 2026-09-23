@@ -1,8 +1,8 @@
 /**
  * Build-time access to the citation store, for rendering references on the site.
  *
- * Phase 2 of `task:0021`. Phase 1 produced `data/citations/sources.yaml` — 948
- * sources keyed by canonical URL, in CSL — and everything here is a read of that
+ * Phase 2 of `task:0021`. Phase 1 produced `data/citations/sources.yaml` - 948
+ * sources keyed by canonical URL, in CSL - and everything here is a read of that
  * file plus the citation instances `extract.ts` finds in a section's AST.
  *
  * Three properties this module is built around:
@@ -14,7 +14,7 @@
  *
  * 2. **It needs no credentials.** The store is committed precisely so a
  *    contributor build renders the same references a maintainer build does. This
- *    reads one committed file and the already-parsed AST — no network, no
+ *    reads one committed file and the already-parsed AST - no network, no
  *    Google Docs, no `BuildMode` gate.
  *
  * 3. **Unresolved entries are shown, not hidden.** 131 of 948 sources have only
@@ -58,7 +58,7 @@ type Store = Record<string, StoreEntry>;
  * a CSL item: the component's job is layout, not bibliographic style.
  */
 export type Reference = {
-  /** Canonical URL — stable, unique, and usable as a DOM id suffix. */
+  /** Canonical URL - stable, unique, and usable as a DOM id suffix. */
   key: string;
   /** "Hoffmann, J., Borgeaud, S. & Mensch, A.", or empty when unknown. */
   authors: string;
@@ -68,7 +68,7 @@ export type Reference = {
   title: string;
   /** Journal, site or channel name. Empty when unknown. */
   container: string;
-  /** Where to link. Always present — it is the entry's identity. */
+  /** Where to link. Always present - it is the entry's identity. */
   url: string;
   doi: string;
   /** False when only the anchor text is known, so the UI can say so. */
@@ -78,12 +78,65 @@ export type Reference = {
   /**
    * Pre-rendered text per style id, from `atlas citations render` (`task:0030`).
    *
-   * Empty when `rendered.json` is absent or stale — the component then falls
+   * Empty when `rendered.json` is absent or stale - the component then falls
    * back to the structured fields above, which is what `task:0030` AC-4
    * requires: a contributor who has not run the command still gets a site.
    */
   styled: Record<string, string>;
+  /** Publication or site, for the source facet. Never empty - see `sourceOf`. */
+  source: string;
+  /** "Paper", "Blog post", "Video" - the type facet, in a reader's words. */
+  kind: string;
+  /** Chapters and sections citing this source, for the grouped view. */
+  cited: CitedIn[];
 };
+
+/** Where a source is cited, for grouping the site-wide list. */
+export type CitedIn = {
+  chapterSlug: string;
+  chapterNumber: number;
+  chapterTitle: string;
+  sectionNumber: string;
+  sectionTitle: string;
+};
+
+/**
+ * CSL item types as a reader would name them.
+ *
+ * The facet has to be readable, and "post-weblog" and "motion_picture" are
+ * schema words. Anything unmapped falls back to "Other" rather than showing the
+ * raw type: a filter option nobody understands is worse than one bucket.
+ */
+const KIND_LABELS: Record<string, string> = {
+  article: 'Paper',
+  'article-journal': 'Journal article',
+  'paper-conference': 'Conference paper',
+  'post-weblog': 'Blog post',
+  webpage: 'Web page',
+  report: 'Report',
+  motion_picture: 'Video',
+  book: 'Book',
+  chapter: 'Book chapter',
+};
+
+/**
+ * The source to file an entry under.
+ *
+ * `container-title` where the source states one - `task:0032` D5 - and the
+ * registrable domain otherwise. A domain is a *true* statement about where a
+ * work lives, needs no mapping table anyone has to maintain, and reads perfectly
+ * well in a filter list. The alternative, a hand-written domain-to-publisher
+ * table for several hundred long-tail sites, is guesswork dressed as data and
+ * would rot the first time a site renamed itself.
+ */
+export function sourceOf(container: string, url: string): string {
+  if (container) return container;
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return 'Unknown';
+  }
+}
 
 /** A style the reader can switch to, as declared by the render command. */
 export type StyleOption = { id: string; label: string; numeric: boolean };
@@ -116,7 +169,7 @@ export function loadRendered(root: string = process.cwd()): RenderedFile | null 
     const parsed = JSON.parse(readFileSync(join(root, RENDERED_PATH), 'utf8')) as RenderedFile;
     if (parsed?.schemaVersion !== RENDERED_SCHEMA) {
       console.warn(
-        `[atlas] ${RENDERED_PATH} is schema ${parsed?.schemaVersion}, expected ${RENDERED_SCHEMA} — ` +
+        `[atlas] ${RENDERED_PATH} is schema ${parsed?.schemaVersion}, expected ${RENDERED_SCHEMA} - ` +
           'falling back to plain formatting. Run `./bin/atlas citations render`.',
       );
       renderedCache = null;
@@ -125,7 +178,7 @@ export function loadRendered(root: string = process.cwd()): RenderedFile | null 
     }
   } catch {
     console.warn(
-      `[atlas] no ${RENDERED_PATH} — references will render in one plain style. ` +
+      `[atlas] no ${RENDERED_PATH} - references will render in one plain style. ` +
         'Run `./bin/atlas citations render` for the full set.',
     );
     renderedCache = null;
@@ -137,7 +190,7 @@ export function loadRendered(root: string = process.cwd()): RenderedFile | null 
  * The house style: author, year, and the work's title as the link.
  *
  * Always offered and always the default. It is the plainest of the options and
- * the one that reads best on a web page — the title is the link text, so a
+ * the one that reads best on a web page - the title is the link text, so a
  * reader scanning the list clicks the thing they recognise. The CSL styles are
  * for copying a reference *out* of the Atlas into something with a house style
  * of its own; they are not an improvement on this for reading.
@@ -174,7 +227,7 @@ export function loadStore(root: string = process.cwd()): Store {
     cached = parsed && typeof parsed === 'object' ? (parsed as Store) : {};
   } catch {
     console.warn(
-      `[atlas] no citation store at ${STORE_PATH} — references will not render. ` +
+      `[atlas] no citation store at ${STORE_PATH} - references will not render. ` +
         'Run `./bin/atlas citations extract` to build it.',
     );
     cached = {};
@@ -194,7 +247,7 @@ export function resetStoreCache(): void {
  * Anything past this is a parse failure wearing a name's clothes. The store held
  * three entries whose `given` field was tens of thousands of characters of raw
  * Atom XML, because the TypeScript arXiv resolver's regex had swallowed the
- * whole author block (`audit:0011` F11) — and the page rendered it as several
+ * whole author block (`audit:0011` F11) - and the page rendered it as several
  * hundred initials.
  */
 const MAX_NAME_PART = 80;
@@ -233,7 +286,7 @@ export function formatName(name: CslName): string {
 /**
  * Author list in reading order, truncated past six.
  *
- * Six is where a reference list stops being scannable — an arXiv paper with 40
+ * Six is where a reference list stops being scannable - an arXiv paper with 40
  * authors would otherwise push every other entry off the screen. The convention
  * is the one most styles use: the first author, then "et al."
  */
@@ -257,7 +310,7 @@ export function formatYear(item: CslItem): string {
  * middle when long.
  *
  * Used as the link text for entries that have no real title. The middle is what
- * gets dropped because both ends carry the information — the host says who
+ * gets dropped because both ends carry the information - the host says who
  * published it and the last path segment usually says what it is.
  */
 export function displayUrl(url: string, max = 70): string {
@@ -270,8 +323,8 @@ export function displayUrl(url: string, max = 70): string {
 /**
  * Strip inline markup and collapse whitespace.
  *
- * Crossref embeds presentational tags in titles — its record for "Human-level
- * play in the game of `<i>`Diplomacy`</i>`" carries them verbatim — and CSL
+ * Crossref embeds presentational tags in titles - its record for "Human-level
+ * play in the game of `<i>`Diplomacy`</i>`" carries them verbatim - and CSL
  * fields are plain text, so a template escapes them and shows them to the
  * reader. The resolver now cleans this at the source; this is the same guard at
  * the render layer, for entries already in the committed store and for the hand
@@ -292,8 +345,8 @@ function trimTerminal(text: string): string {
 /**
  * Drop a container name the title already ends with.
  *
- * Open Graph titles routinely carry the site name — "Reducing Risks of
- * Astronomical Suffering — Center on Long-Term Risk" — and `og:site_name` then
+ * Open Graph titles routinely carry the site name - "Reducing Risks of
+ * Astronomical Suffering - Center on Long-Term Risk" - and `og:site_name` then
  * supplies it again, so the rendered reference said it twice. The title is the
  * one we keep, because it is what the reader will recognise and because trimming
  * the title instead would mean guessing which separator the site chose.
@@ -318,29 +371,38 @@ export function toReference(
   const item = entry.item ?? { id: key };
   const url = item.URL ?? key;
 
-  // An unresolved entry's title IS its anchor text — "Cotra, 2023" — and the
+  // An unresolved entry's title IS its anchor text - "Cotra, 2023" - and the
   // author and year are already rendered from that same anchor. Using it as the
   // link text produced "Cotra (2023). Cotra 2023.", which says one thing twice
   // and tells a reader nothing they cannot see in the prose. The URL is the only
   // new information such an entry carries, so it becomes the link text.
   const title = resolved && item.title ? trimTerminal(item.title) : displayUrl(url);
 
+  const container = dropRedundantContainer(title, trimTerminal(item['container-title'] ?? ''));
+
   return {
     key,
     authors: formatAuthors(item.author),
     year: formatYear(item),
     title,
-    container: dropRedundantContainer(title, trimTerminal(item['container-title'] ?? '')),
+    container,
     url,
     doi: item.DOI ?? '',
     resolved,
     anchors: entry.anchors ?? [],
     styled,
+    // The *stated* container, not the display one: `dropRedundantContainer`
+    // blanks a container the title already ends with, which is right for reading
+    // and wrong for filtering - "LessWrong" must stay a facet even when the
+    // title already says it.
+    source: sourceOf(trimTerminal(item['container-title'] ?? ''), url),
+    kind: KIND_LABELS[item.type ?? ''] ?? 'Other',
+    cited: [],
   };
 }
 
 /**
- * Sort key: author, then year, then title — the standard reference ordering.
+ * Sort key: author, then year, then title - the standard reference ordering.
  *
  * Entries with no author sort by title, which puts them among the others rather
  * than in a block at one end. A reader looking up "Anthropic, 2024" should find
@@ -381,7 +443,7 @@ function referencesForKeys(keys: string[], store: Store, root?: string): Referen
   for (const key of keys) {
     const entry = store[key];
     // A cited URL with no store entry means the store is older than the prose.
-    // Render it from what the citation itself carries rather than dropping it —
+    // Render it from what the citation itself carries rather than dropping it -
     // a silently shorter bibliography is the failure D4 exists to prevent.
     refs.push(
       entry
@@ -401,10 +463,39 @@ export function sectionReferences(section: Section, root?: string): Reference[] 
   return referencesForKeys(citedKeys(section), loadStore(root), root);
 }
 
-/** References cited anywhere in one chapter. */
+/**
+ * References cited anywhere in one chapter, each tagged with its sections.
+ *
+ * The locations are what let the chapter page group by section - the one
+ * grouping that means anything at that scale, since every entry is from this
+ * chapter by construction.
+ */
 export function chapterReferences(chapter: Chapter, root?: string): Reference[] {
   const keys = chapter.sections.flatMap(citedKeys);
-  return referencesForKeys(keys, loadStore(root), root);
+  const refs = referencesForKeys(keys, loadStore(root), root);
+  return withLocations(refs, [chapter]);
+}
+
+/** Attach the chapters and sections citing each reference. */
+function withLocations(refs: Reference[], chapters: Chapter[]): Reference[] {
+  const locations = new Map<string, CitedIn[]>();
+  for (const chapter of chapters) {
+    for (const section of chapter.sections) {
+      const at: CitedIn = {
+        chapterSlug: chapter.slug,
+        chapterNumber: chapter.number,
+        chapterTitle: chapter.title,
+        sectionNumber: `${chapter.number}.${section.number}`,
+        sectionTitle: section.title,
+      };
+      // Deduplicated per section: a source cited five times in one section is
+      // one location, not five.
+      for (const key of new Set(citedKeys(section))) {
+        locations.set(key, [...(locations.get(key) ?? []), at]);
+      }
+    }
+  }
+  return refs.map((ref) => ({ ...ref, cited: locations.get(ref.key) ?? [] }));
 }
 
 /** Every source in the store, for the site-wide `/bibliography` page. */
@@ -416,7 +507,27 @@ export function allReferences(root?: string): Reference[] {
   );
 }
 
-/** How much of the store carries real metadata — shown on `/bibliography`. */
+/**
+ * Every source, each tagged with the chapters and sections citing it.
+ *
+ * `task:0030` AC-7's grouped view. A reader met these citations inside a
+ * chapter, so being able to see them back in that shape - rather than as one
+ * alphabetical run of 945 - is the difference between a list and a bibliography
+ * they can navigate.
+ *
+ * A source cited in three chapters carries three locations, and the grouped view
+ * shows it under all three. That is correct: it genuinely is a source for each,
+ * and hiding it from two of them to avoid repetition would answer "what does
+ * chapter 4 rest on" wrongly.
+ *
+ * Costs one AST walk per section, which the chapter and section pages already
+ * pay individually; this is the same work done once for the site-wide page.
+ */
+export function allReferencesWithLocations(chapters: Chapter[], root?: string): Reference[] {
+  return withLocations(allReferences(root), chapters);
+}
+
+/** How much of the store carries real metadata - shown on `/bibliography`. */
 export function storeCoverage(root?: string): { total: number; resolved: number } {
   const store = loadStore(root);
   const keys = Object.keys(store);

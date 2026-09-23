@@ -5,7 +5,7 @@
  * is the only file in the citations commands that touches the world.
  *
  * Every citation command is a **read** of already-committed content. The env
- * guards below are not an optimization — without them, loading a chapter runs
+ * guards below are not an optimization - without them, loading a chapter runs
  * the PDF and audio renderers, and the audio renderer's phases 7 and 8 push to
  * production R2 (`task:0022`). A command that lists URLs must not be able to
  * overwrite published audio, so it disables those paths before loading rather

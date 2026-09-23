@@ -7,7 +7,7 @@ fix went in at ``6c4263e``; these tests pin it, and the port hands the mechanics
 to ``bibtexparser`` so the class of bug cannot recur by hand.
 
 The parse-back tests are deliberate: asserting on emitted *text* is how the
-original bug survived review — a pre-existing test asserted
+original bug survived review - a pre-existing test asserted
 ``author = {Giattino et al.}`` and thereby encoded the very defect its own
 comment described. Reading the output back with a parser asks the question that
 actually matters, which is whether a reference manager recovers the authors.
@@ -66,7 +66,7 @@ class TestMultiAuthorRegression:
     def test_the_author_field_is_not_terminated_at_the_first_brace(self) -> None:
         bib = one_entry_bib(HOFFMANN)
         assert "{Hoffmann, Jordan} and" not in bib, (
-            "per-name braces terminate the field value — this is the 6c4263e bug"
+            "per-name braces terminate the field value - this is the 6c4263e bug"
         )
 
     def test_names_are_separated_by_the_bibtex_keyword(self) -> None:
@@ -105,7 +105,7 @@ class TestKeys:
         assert base_bibtex_key(HOFFMANN) == "hoffmann2022training"
 
     def test_the_title_word_is_dropped_when_it_repeats_the_name(self) -> None:
-        """An unresolved entry's title is its anchor text — 'chollet2019chollet' is absurd."""
+        """An unresolved entry's title is its anchor text - 'chollet2019chollet' is absurd."""
         item = {
             "id": "u",
             "type": "webpage",
@@ -128,7 +128,7 @@ class TestKeys:
         assert len(set(keys.values())) == 5
 
     def test_a_non_colliding_key_is_unaffected_by_the_rest_of_the_store(self) -> None:
-        """The guarantee that actually holds — keys are written into every ``\\cite``."""
+        """The guarantee that actually holds - keys are written into every ``\\cite``."""
         alone = {"https://a.org/1": entry({**HOFFMANN, "id": "https://a.org/1"})}
         crowded = {
             "https://a.org/1": entry({**HOFFMANN, "id": "https://a.org/1"}),
@@ -198,7 +198,7 @@ class TestSpecialCharacters:
             "Cost & Scale: 100% of the Problem",
             "A {braced} title",
             "Back\\slash and #hash and _underscore",
-            "Unicode — em dash, é, 中文",
+            "Unicode - em dash, é, 中文",
         ],
     )
     def test_a_difficult_title_survives_a_parse_round_trip(self, title: str) -> None:

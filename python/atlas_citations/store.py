@@ -5,7 +5,7 @@ identity as **one global entry per source, keyed by canonical URL**, with
 per-(edition, language, chapter, section) citation instances pointing at it. A
 URL does not translate; the prose around it does.
 
-``task:0021`` D2 fixes the schema as **CSL** — the Citation Style Language item
+``task:0021`` D2 fixes the schema as **CSL** - the Citation Style Language item
 model that Zotero, Pandoc and Crossref already speak. Using it rather than
 inventing fields buys style-independent rendering, BibTeX export and Zotero
 round-trip for free.
@@ -15,7 +15,7 @@ of the sources have no API that describes them, so a human will fix them in a
 text editor and review them in a diff. YAML takes comments and produces readable
 diffs; CSL-JSON is the compiled form.
 
-Ported from ``store.ts`` under ``task:0029``. The CSL model is unchanged — only
+Ported from ``store.ts`` under ``task:0029``. The CSL model is unchanged - only
 what writes it moved. Per ``task:0029`` D4 the emitted bytes differ from the
 TypeScript original's (a different YAML emitter wraps and quotes differently);
 what is guaranteed, and tested against the real committed store, is that every
@@ -61,7 +61,7 @@ _FILE_HEADER = """# Bibliography entries for the AI Safety Atlas.
 # whose `resolvedBy` is anything other than "anchor" is never overwritten by
 # re-extraction.
 #
-# Schema is CSL (Citation Style Language) — see task:0021 D2. The key of each
+# Schema is CSL (Citation Style Language) - see task:0021 D2. The key of each
 # entry is its canonical URL, which is the entry's identity (task:0021 D1).
 """
 
@@ -76,7 +76,7 @@ _BLOG_HOST_SUFFIXES = (
 def _yaml() -> YAML:
     """A round-trip YAML handler configured to match the store's conventions.
 
-    Round-trip mode is what preserves mapping order — the safe dumper sorts keys
+    Round-trip mode is what preserves mapping order - the safe dumper sorts keys
     alphabetically, which would scramble ``item`` / ``resolvedBy`` / ``anchors``
     and every CSL field inside them into a shape no reviewer would recognise.
     """
@@ -130,7 +130,7 @@ def infer_csl_type(url: str) -> str:
 #: Hosts whose *platform name* is a real container title, and differs from the
 #: bare domain in a way worth stating. ``task:0032`` D5.
 #:
-#: Deliberately short. These are proper names — "arXiv" is not a prettified
+#: Deliberately short. These are proper names - "arXiv" is not a prettified
 #: `arxiv.org`, it is what the preprint server is called and what every citation
 #: style expects to see. Everything outside this table falls back to its domain
 #: at the facet layer, which is true without needing a table anyone maintains.
@@ -152,13 +152,13 @@ def with_www(url: str) -> str | None:
     for one source and defeat ``task:0021`` D1.
 
     Almost every host. Measured over this corpus, **seven URLs answer only on
-    ``www.``** — the four ``planned-obsolescence.org`` posts (a Substack custom
+    ``www.``** - the four ``planned-obsolescence.org`` posts (a Substack custom
     domain, which 404s on the bare host), an AP News article, `overcomingbias`,
     and a Carter Center PDF. Stripping it turned working citations into dead
     ones, and because the store's URL is what the bibliography renders as a link,
     a reader clicking those got a 404.
 
-    So identity keeps the stripped form and *reachability* is allowed to differ —
+    So identity keeps the stripped form and *reachability* is allowed to differ -
     the same split CSL already draws between ``id`` and ``URL``.
     """
     parts = urlsplit(url)
@@ -172,7 +172,7 @@ def infer_container_title(url: str) -> str | None:
 
     The same shape as :func:`infer_csl_type`, and for the same reason: a fact the
     URL states outright, computed in one place so a resolver and the extractor
-    cannot disagree about it. A resolver with a *stated* container always wins —
+    cannot disagree about it. A resolver with a *stated* container always wins -
     this only ever fills a blank.
     """
     try:
@@ -235,7 +235,7 @@ def entry_from_anchor(key: str, anchor_text: str, parsed: dict[str, str] | None)
 def merge_entry(existing: StoreEntry, incoming: StoreEntry) -> StoreEntry:
     """Merge a newly-extracted entry into an existing one.
 
-    Extraction must never overwrite resolved metadata — ``atlas citations
+    Extraction must never overwrite resolved metadata - ``atlas citations
     extract`` runs often and resolution is expensive, so a re-extraction that
     clobbered resolver output would throw away the work ``task:0027`` exists to
     do. Only the observed anchor list grows.
@@ -244,7 +244,7 @@ def merge_entry(existing: StoreEntry, incoming: StoreEntry) -> StoreEntry:
     if existing.get("resolvedBy") != "anchor":
         return {**existing, "anchors": anchors}
 
-    # Re-derive the anchor content — the prose may have been edited — but keep
+    # Re-derive the anchor content - the prose may have been edited - but keep
     # what the last resolve attempt learned about the *address*, which no edit to
     # a sentence can change. Without this, `extract` silently wiped every
     # `unreachable` marker, and since `extract` runs immediately before `report`,

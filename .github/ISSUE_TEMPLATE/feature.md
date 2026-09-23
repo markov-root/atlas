@@ -10,7 +10,7 @@ labels: enhancement
 
 ## Proposed approach
 
-<!-- Optional: how you'd like to see this addressed. If you're not sure, that's fine — just describe the problem -->
+<!-- Optional: how you'd like to see this addressed. If you're not sure, that's fine - just describe the problem -->
 
 ## Alternatives considered
 

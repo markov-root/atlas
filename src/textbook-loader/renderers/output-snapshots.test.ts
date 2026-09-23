@@ -10,7 +10,7 @@ const FIRST_CHAPTER = EDITION.chapters[0];
 
 // Snapshot the *full output format* of the renderers against a real
 // cached chapter. The goal is to catch any regression that changes the
-// rendered output — whether intentional (you'll update the snapshot) or
+// rendered output - whether intentional (you'll update the snapshot) or
 // accidental (you'll see a focused diff before merging). One snapshot
 // per renderer replaces dozens of literal-string unit tests that each
 // pinned a single node-type's output and broke on every refactor.
@@ -23,7 +23,7 @@ const FIRST_CHAPTER = EDITION.chapters[0];
 //   - Typst snapshot diff → downloaded PDF chapters will render with a
 //     different visual layout. Same rule: intentional changes get the
 //     snapshot regenerated; accidental ones get reverted.
-describe('Renderer outputs — full chapter snapshot regression check', () => {
+describe('Renderer outputs - full chapter snapshot regression check', () => {
   // The full pipeline runs the audio + PDF renderers; gate them off so
   // these tests only exercise the AST → text/typst conversion paths.
   const prevSkipPdf = process.env.SKIP_PDF;

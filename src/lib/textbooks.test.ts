@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 // Mock the astro:content virtual module. The lib/textbooks.ts file is a thin
-// wrapper around getEntry/getCollection — tests verify the sorting, filtering,
+// wrapper around getEntry/getCollection - tests verify the sorting, filtering,
 // and URL-building logic on top of those calls.
 
 const getEntryMock = vi.fn();
@@ -28,7 +28,7 @@ function tb(version: string, language: string, chapters: any[] = []) {
 
 // getTextbook is what every chapter page calls to look up its content.
 // If lookup breaks, readers see a build error or, worse, the wrong
-// chapter rendered under a URL — both immediately visible regressions.
+// chapter rendered under a URL - both immediately visible regressions.
 describe('getTextbook(version)', () => {
   it('requests the `${version}-en` entry from the textbooks collection', async () => {
     getEntryMock.mockResolvedValueOnce(tb('v1', 'en'));
@@ -46,14 +46,14 @@ describe('getTextbook(version)', () => {
 // "Latest version" is the default the homepage and reader landing pages
 // resolve to. If the wrong version wins, every visitor lands on the
 // wrong content. Today the filter hard-codes English, which is documented
-// in TODO Entry A as the i18n unblock — these tests pin the current
+// in TODO Entry A as the i18n unblock - these tests pin the current
 // behavior so the change is deliberate and visible.
 describe('getLatestTextbook()', () => {
   it('filters to English textbooks and returns the highest-version one', async () => {
     getCollectionMock.mockResolvedValueOnce([
       tb('v1', 'en'),
       tb('v2', 'en'),
-      tb('v3', 'es'), // higher version but Spanish — filtered out
+      tb('v3', 'es'), // higher version but Spanish - filtered out
     ]);
     const t = await getLatestTextbook();
     expect(t.version).toBe('v2');

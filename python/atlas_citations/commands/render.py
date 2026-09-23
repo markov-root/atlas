@@ -1,12 +1,12 @@
-"""``atlas citations render`` — every reference, in every offered style.
+"""``atlas citations render`` - every reference, in every offered style.
 
 ``task:0030``. The store is CSL (``task:0021`` D2), so a CSL processor reads it
-with no adapter — which is the whole reason that schema was chosen. This command
+with no adapter - which is the whole reason that schema was chosen. This command
 runs ``citeproc-py`` over the vendored styles and writes one file the site reads
 at build time.
 
 Rendering happens here rather than in the browser or in Astro for two reasons.
-It keeps ``task:0029`` D1's boundary intact — Python owns metadata and output —
+It keeps ``task:0029`` D1's boundary intact - Python owns metadata and output -
 and it means the page ships strings, not a citation engine: the reader's style
 selector swaps pre-rendered text.
 
@@ -34,7 +34,7 @@ STYLES_DIR = Path("vendor") / "csl"
 #:
 #: ``numeric`` marks a style whose in-text form is ``[1]`` rather than
 #: ``(Author, Year)``. The Atlas's prose uses author-year links, so a numeric
-#: style is offered for copying a reference out, not for matching the page —
+#: style is offered for copying a reference out, not for matching the page -
 #: the UI says so rather than letting a reader infer it.
 STYLES: list[dict[str, Any]] = [
     {"id": "apa", "label": "APA", "file": "apa.csl", "numeric": False},
@@ -71,7 +71,7 @@ def _numeric_prefix_stripped(text: str) -> str:
 
     The number belongs to a citation-order list. Our list is alphabetical and the
     prose carries author-year anchors, so a number here would be actively
-    misleading — it would not correspond to anything. The style is still worth
+    misleading - it would not correspond to anything. The style is still worth
     offering for its *formatting*; the false index is not.
     """
     stripped = text.lstrip()
@@ -89,7 +89,7 @@ def _csl_item(key: str, item: dict[str, Any]) -> dict[str, Any]:
 
     Null-valued fields are dropped. A resolver that found no volume writes
     ``volume: null`` rather than omitting the key, and a processor reading the
-    CSL spec reasonably assumes a present key holds a value — ``citeproc-py``
+    CSL spec reasonably assumes a present key holds a value - ``citeproc-py``
     calls ``int()`` on it and raises. A null CSL field carries no information in
     any case, so removing it loses nothing.
     """
@@ -143,7 +143,7 @@ def render_store(store: Store, root: Path) -> dict[str, Any]:
     for style_def in STYLES:
         path = root / STYLES_DIR / style_def["file"]
         if not path.exists():
-            raise RenderError(f"missing CSL style {path} — see vendor/csl/README.md")
+            raise RenderError(f"missing CSL style {path} - see vendor/csl/README.md")
         style = CitationStylesStyle(str(path), validate=False)
         source = CiteProcJSON(json.loads(json.dumps(items)))
         bib = CitationStylesBibliography(style, source, formatter.plain)
@@ -165,7 +165,7 @@ def render_store(store: Store, root: Path) -> dict[str, Any]:
 
 def citations_render(root: Path, out_path: Path | None = None) -> int:
     if not (root / STORE_PATH).exists():
-        print(f"no citation store at {STORE_PATH} — run `atlas citations extract` first")
+        print(f"no citation store at {STORE_PATH} - run `atlas citations extract` first")
         return 1
 
     store = read_store(root)

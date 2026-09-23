@@ -61,7 +61,7 @@ export class GeminiTTS {
       }
     }
 
-    // Skip synthesis if no API key — only use cached chunks
+    // Skip synthesis if no API key - only use cached chunks
     if (!this.throttledCall) {
       if (needed.length > 0) {
         console.log(`[gemini-tts] No API key, skipping ${needed.length} uncached paragraphs.`);
@@ -117,7 +117,7 @@ export class GeminiTTS {
             this.dailyQuotaExhausted = true;
             return Buffer.alloc(0);
           }
-          // Rate limit — wait for the retry delay
+          // Rate limit - wait for the retry delay
           const retryMatch = msg.match(/retryDelay.*?(\d+)s/i) ?? msg.match(/retry in ([\d.]+)s/i);
           const delaySec = retryMatch ? Math.ceil(parseFloat(retryMatch[1])) + 1 : 30;
           console.warn(

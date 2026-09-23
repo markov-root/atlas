@@ -59,9 +59,9 @@ const LONG = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do ei
 // shape: each section is one lvl1 record, each in-section heading is one
 // lvl2 record, both keyed into a hierarchy (lvl0 = chapter, lvl1 = section,
 // lvl2 = heading). If this contract breaks, the site's search bar either
-// stops returning results or returns results that link to broken URLs —
+// stops returning results or returns results that link to broken URLs -
 // both observable to any reader using the search feature.
-describe('textbookToRecords — DocSearch contract: hierarchy and URLs', () => {
+describe('textbookToRecords - DocSearch contract: hierarchy and URLs', () => {
   it('emits one lvl1 record per section keyed to the correct chapter and section URL', () => {
     const tb = textbook({
       chapters: [
@@ -120,7 +120,7 @@ describe('textbookToRecords — DocSearch contract: hierarchy and URLs', () => {
   it('does not index headings inside sections that were themselves skipped for missing content', () => {
     // A section with no extractable prose is excluded from search so a
     // user clicking a result never lands on an empty page. Its headings
-    // must therefore also be excluded — otherwise the lvl2 record would
+    // must therefore also be excluded - otherwise the lvl2 record would
     // point at a parent lvl1 the search UI never displays.
     const tb = textbook({
       chapters: [
@@ -165,11 +165,11 @@ describe('textbookToRecords — DocSearch contract: hierarchy and URLs', () => {
 });
 
 // Search results need actual prose to show snippets and to rank by
-// relevance. Skipping Span/Link/GlossaryDefinition text — or accidentally
-// including non-textual nodes (equations, images) — produces search hits
+// relevance. Skipping Span/Link/GlossaryDefinition text - or accidentally
+// including non-textual nodes (equations, images) - produces search hits
 // without snippets or with garbled snippets. Both are visible to anyone
 // who searches.
-describe('textbookToRecords — searchable text extraction', () => {
+describe('textbookToRecords - searchable text extraction', () => {
   it('includes Span, Link visible text, and GlossaryDefinition matched text in the searchable content', () => {
     const tb = textbook({
       chapters: [

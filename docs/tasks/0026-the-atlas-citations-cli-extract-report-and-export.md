@@ -22,7 +22,7 @@ engineering_document:
   authority:
     kind: work-state
     owner: Markov Grey
-    scope: Banks B5, B6, B7 of task:0021 — CLI surface only, no network and no rendering
+    scope: Banks B5, B6, B7 of task:0021 - CLI surface only, no network and no rendering
   created: '2026-09-21'
   updated: '2026-09-22'
   transition_history: unverified
@@ -57,7 +57,7 @@ Three commands, under the plural noun fixed by `task:0021` D6.
 
 | Command                   | Job                                                         | Network |
 | ------------------------- | ----------------------------------------------------------- | ------- |
-| `atlas citations extract` | Job 1 — walk the AST, write URL-keyed stubs to the store    | none    |
+| `atlas citations extract` | Job 1 - walk the AST, write URL-keyed stubs to the store    | none    |
 | `atlas citations report`  | Unresolved, malformed, unclassifiable; counts and locations | none    |
 | `atlas citations export`  | Whole-book bibliography as BibTeX and CSL-JSON              | none    |
 
@@ -77,16 +77,16 @@ and the build must emit a one-line count pointing at it.
 
 - **Any network call.** All three commands work from the committed store. `task:0027` owns the
   network.
-- **`atlas citations archive`** — `task:0021` D3, later. When it lands it writes to a third party and
+- **`atlas citations archive`** - `task:0021` D3, later. When it lands it writes to a third party and
   must be dry-run by default with `--yes` to act, per `task:0010`'s convention.
-- **All rendering** — phase 2.
+- **All rendering** - phase 2.
 - **Wiring `extract` into the build.** Phase 1 changes no build output. Running it is a maintainer
   action until phase 2 needs it.
 
 ## Done when
 
 - **AC-1:** `atlas citations extract` populates the store from the eight cached chapters with no
-  credentials and no network, and is idempotent — a second run with unchanged input changes no file.
+  credentials and no network, and is idempotent - a second run with unchanged input changes no file.
 - **AC-2:** `atlas citations report` lists every unresolved, malformed and unclassifiable citation
   with enough location information for an author to find it in the Google Doc. Includes the 9
   unlinked footnote citations.
@@ -95,7 +95,7 @@ and the build must emit a one-line count pointing at it.
 - **AC-4:** `atlas citations export` produces the whole book's bibliography as both BibTeX and
   CSL-JSON, from the committed store, with no credentials and no network. The BibTeX file imports
   into a reference manager without error.
-- **AC-5:** Command logic is importable and unit-tested — functions, not script bodies — matching the
+- **AC-5:** Command logic is importable and unit-tested - functions, not script bodies - matching the
   separation `task:0010` AC-2 requires and `cli/commands/docs-check.ts` already demonstrates.
 
 ## Completion evidence
@@ -106,7 +106,7 @@ the coordinator, not accepted from the report.
 | Criterion | Evidence                                                                                                                                                                                                       | Verified   |
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
 | AC-1      | `cli/commands/citations/extract-cmd.ts`. Idempotence proven twice: a test, and two real corpus runs producing byte-identical `sources.yaml` (md5 `54af5a44…` both times). 948 sources, no credentials, no network. | 2026-09-22 |
-| AC-2      | `report.ts` — 948 unresolved · 0 malformed · 47 content links · 0 unlinked · **76 inconsistent spellings**, each with chapter, section and anchor text.                                                            | 2026-09-22 |
+| AC-2      | `report.ts` - 948 unresolved · 0 malformed · 47 content links · 0 unlinked · **76 inconsistent spellings**, each with chapter, section and anchor text.                                                            | 2026-09-22 |
 | AC-3      | Report written to `data/citations/citation-report.md` (110 KB) as a durable file; the command prints a one-line summary naming it. Not log output.                                                                | 2026-09-22 |
 | AC-4      | `export.ts` → 948-entry `bibliography.bib` and `bibliography.json` from the committed store, offline. BibTeX keys are content-derived, so adding an entry never renumbers another.                                 | 2026-09-22 |
 | AC-5      | All logic is importable and unit-tested: 37 tests across four files, exercising pure functions with constructed input.                                                                                            | 2026-09-22 |
@@ -117,9 +117,9 @@ regression test named for the behaviour.
 
 ## Authority and inputs
 
-- `task:0021` — parent; D4 and D6 bind this task.
-- `task:0025` — supplies extraction, canonicalization and the store. Hard dependency.
-- `task:0010` — the `atlas` control surface design; command conventions and the logic/adapter split.
-- `cli/commands/docs-check.ts` — the working precedent for a pure, unit-tested command.
-- `audit:0010` F2 — why AC-3 exists.
-- `audit:0011` F1 — `cli/` has no type coverage; B1 should land before this task adds to `cli/`.
+- `task:0021` - parent; D4 and D6 bind this task.
+- `task:0025` - supplies extraction, canonicalization and the store. Hard dependency.
+- `task:0010` - the `atlas` control surface design; command conventions and the logic/adapter split.
+- `cli/commands/docs-check.ts` - the working precedent for a pure, unit-tested command.
+- `audit:0010` F2 - why AC-3 exists.
+- `audit:0011` F1 - `cli/` has no type coverage; B1 should land before this task adds to `cli/`.

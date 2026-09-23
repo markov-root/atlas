@@ -68,7 +68,7 @@ public/audio/ch*/*.mp3
 # in it is worth keeping; prefer an absolute path outside the repo.
 .playwright-mcp/
 
-# Derived citation outputs. `data/citations/sources.yaml` IS committed — it is
+# Derived citation outputs. `data/citations/sources.yaml` IS committed - it is
 # the source of truth, and it accumulates resolver metadata that costs real time
 # and other people's rate limits to rebuild. These three are regenerated from it
 # in about 6 seconds, so committing them would add ~760 KB of churn to a repo
@@ -85,7 +85,7 @@ data/citations/citations.json
 
 # A worklist, not an artifact: `atlas citations propose` gathers evidence for the
 # entries only a human can finish (task:0032 AC-5). What survives review moves by
-# hand into `data/citations/overrides.yaml`, which IS committed — it is the
+# hand into `data/citations/overrides.yaml`, which IS committed - it is the
 # reviewed input, and the one file here a person wrote.
 data/citations/overrides.proposed.yaml
 
@@ -96,6 +96,6 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
-# Playwright MCP scratch — screenshots and snapshots from agent browser sessions.
+# Playwright MCP scratch - screenshots and snapshots from agent browser sessions.
 # Never belongs in the repo; delete it when a session ends.
 .playwright-mcp/

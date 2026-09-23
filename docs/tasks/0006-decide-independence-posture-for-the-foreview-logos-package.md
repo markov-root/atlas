@@ -37,7 +37,7 @@ engineering_document:
 
 The partner-org logos come from `@foreview/ais-logos-astro`, a **public** npm package sourced from
 `github.com/foreview/aisafety-logos` and controlled by the foreview entity (`audit:0001` #7). The
-build works today without any private access, so this is **non-blocking and low priority** — but
+build works today without any private access, so this is **non-blocking and low priority** - but
 updating a logo, or surviving an unpublish, requires access we don't formally hold. `adr:0001`'s
 revisit trigger says to record an explicit decision rather than silently depend on it.
 

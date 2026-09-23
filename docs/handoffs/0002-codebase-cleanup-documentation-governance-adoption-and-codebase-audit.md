@@ -61,7 +61,7 @@ engineering_document:
 `codebase-cleanup`, was merged to `main` at `eb1432b`. This record is deliberately NOT marked
 superseded: its transition history is unverified, so the schema requires it to stay in its initial
 state, and faking a transition to silence a validator would put a false claim in the record. It
-stays `current` alongside `handoff:0001` and `handoff:0003` — which is the `current-multiple` finding
+stays `current` alongside `handoff:0001` and `handoff:0003` - which is the `current-multiple` finding
 the owner still needs to decide, exactly as this record's own Open Work says.
 
 **Documentation and audit phases are complete; the codebase refactor has not started.**
@@ -87,17 +87,17 @@ question for the owner, not a defect.
 | --------- | ------------------------------------------------------------------------------ |
 | `8f89a78` | `.gitignore` covers `.playwright-mcp/`                                         |
 | `3b8ef1d` | Initial role declarations + this handoff                                       |
-| `22c56a1` | Documentation governance completed — lessons migrated, living docs, `adr:0002` |
+| `22c56a1` | Documentation governance completed - lessons migrated, living docs, `adr:0002` |
 | `68912e8` | `audit:0002` structure and file-tree coherence                                 |
-| `05cca32` | `audit:0002` F7 — stale `file:line` citations in `PRINCIPLES.md`               |
+| `05cca32` | `audit:0002` F7 - stale `file:line` citations in `PRINCIPLES.md`               |
 | `7e4dc36` | `audit:0006` ergonomics and the control-surface case                           |
 | `0bd0cbb` | `audit:0003` testing, `audit:0004` cruft, `audit:0005` code quality            |
 | `d397b6f` | `task:0010` control-surface design record                                      |
-| `7332d95` | `audit:0007`-`0010` deep scaling sweep — 36 findings across four causal chains |
-| `091282e` | `task:0011` — living documents restructured to their role content standards    |
-| `301634e` | `atlas docs check` — skill-free conformance floor, wired into `pnpm verify`    |
+| `7332d95` | `audit:0007`-`0010` deep scaling sweep - 36 findings across four causal chains |
+| `091282e` | `task:0011` - living documents restructured to their role content standards    |
+| `301634e` | `atlas docs check` - skill-free conformance floor, wired into `pnpm verify`    |
 | `a7ffb68` | `audit:0005` typecheck run (0 errors, 119 files) + F7 on its non-hermeticity   |
-| `e87f1f5` | `task:0012` — position the floor under the skill                               |
+| `e87f1f5` | `task:0012` - position the floor under the skill                               |
 
 **The blocker recorded in the previous version of this handoff is resolved, and its stated hypothesis
 was wrong.** The cause was not missing INDEX files. `docs.currency.roles` requires a 4-digit filename
@@ -107,7 +107,7 @@ numbered record series. `adr:0002` records the decision and the rejected alterna
 is summarised in a comment in `engineering.yaml` at the point of temptation.
 
 `docs/lessons/` is a genuine record series, so it was renamed to `NNNN-topic.md` and now carries the
-full lesson contract — sections, boundary, and all. The original journal prose is preserved verbatim
+full lesson contract - sections, boundary, and all. The original journal prose is preserved verbatim
 under "Original session notes" in each record. **These files stay gitignored** and so appear in no
 commit above.
 
@@ -118,7 +118,7 @@ Branch `codebase-cleanup` at `7a66041`, working tree clean apart from Markov's o
 
 A memory-commit monitor is running at `~/.local/var/atlas-monitor/memwatch.sh`, logging to
 `memwatch.log` every 15s. It samples `Committed_AS / (MemTotal + SwapTotal)`, which matches `sar`'s
-`%commit` — the metric that tracked both VM crashes. It held at 69–70% throughout this session.
+`%commit` - the metric that tracked both VM crashes. It held at 69–70% throughout this session.
 **Kill it when the branch is done:** `pkill -f memwatch.sh`.
 
 ## Open work
@@ -128,26 +128,26 @@ All remaining items are owner decisions. None is blocked on engineering.
 1. **Decide the `current-multiple` validation finding.** Two handoffs are `current`: `handoff:0001`
    (freelancer independence, `task:0001`–`0007` all still `todo`) and this one. Both are genuinely
    live. Either scope handoffs per-area in the manifest, or accept the finding permanently.
-   **Do not resolve it by superseding a live handoff** — that would put a false statement in the
+   **Do not resolve it by superseding a live handoff** - that would put a false statement in the
    record.
 2. **Accept or reject `adr:0002`.** It is `proposed`. It governs how documentation roles are declared
    and is the reason four documents keep their filenames.
 3. **Decide the audit recommendations.** 30 findings across five records, every recommendation
    pending. Each audit's Disposition states which items are safe standalone and which must be decided
    together. The three highest-value, by the audits' own reckoning:
-   - `audit:0003` rec 2 — a jsdom test for the two read-along regressions that shipped on
+   - `audit:0003` rec 2 - a jsdom test for the two read-along regressions that shipped on
      2026-09-20. Small, additive, targets demonstrated failures rather than a hypothesis.
-   - `audit:0004` rec 1 — the 1.59 GiB git pack. Framed as an owner call because history rewriting
+   - `audit:0004` rec 1 - the 1.59 GiB git pack. Framed as an owner call because history rewriting
      affects a public repo with outside contributors; a `--depth 1` documentation change is the
      no-risk partial.
-   - `audit:0002` rec 2 — repair four stale `file:line` citations in `PRINCIPLES.md`.
+   - `audit:0002` rec 2 - repair four stale `file:line` citations in `PRINCIPLES.md`.
      Documentation-only, and it restores a norm `AGENTS.md` sets for itself.
 4. **Accept or reject `task:0010`** (the `atlas` control surface). AC-6 makes rejection a legitimate
    completion, since `audit:0006` F7 records a real counter-case.
 5. **`task:0008` and `task:0009`** remain `in_progress` awaiting acceptance. Their evidence tables
    cite pre-cherry-pick SHAs (`2f5bff7`, `901b05c`, `7c23e39`) that no longer exist on `main`; each
    commit message carries a `(cherry picked from …)` trail. Correcting those citations is a small
-   docs-only fix — and note `audit:0002` F7 found the same class of decay in `PRINCIPLES.md`.
+   docs-only fix - and note `audit:0002` F7 found the same class of decay in `PRINCIPLES.md`.
 
 ## Resume
 
@@ -156,15 +156,15 @@ engineering document validate          # expect exactly 1 finding: current-multi
 engineering document query --role task --compact
 ```
 
-`pnpm typecheck` has since been run (119 files, 0 errors) — but **only in contributor mode**. With
+`pnpm typecheck` has since been run (119 files, 0 errors) - but **only in contributor mode**. With
 credentials present it reaches live Google Docs and can fail on a network timeout rather than a type
 error (`audit:0005` F7). Use `GOOGLE_CREDENTIALS_BASE64= pnpm typecheck` for a hermetic run.
 
 **The next thread is the codebase refactor**, which has not started. `src/` is still untouched. The
-46 audit findings collapse into six root decisions — see `docs/audits/INDEX.md` and the
+46 audit findings collapse into six root decisions - see `docs/audits/INDEX.md` and the
 cross-cutting note there.
 
-## Constraints — do not violate
+## Constraints - do not violate
 
 - **No code changes.** The owner's position: documentation may be executed; the `bin/atlas` design
   doc may be written; but `src/` needs "a lot of back and forth before we agree on the final design
@@ -198,9 +198,9 @@ None.
 
 ## Evidence and authority
 
-- `AGENTS.md` (`CLAUDE.md` is a symlink to it) — agent norms and the governed-record policy.
-- `engineering.yaml` — adopted checks, classifiers, profiles, document roles.
-- `docs/PRINCIPLES.md` — the project's chosen principles. An audit recommendation that contradicts
+- `AGENTS.md` (`CLAUDE.md` is a symlink to it) - agent norms and the governed-record policy.
+- `engineering.yaml` - adopted checks, classifiers, profiles, document roles.
+- `docs/PRINCIPLES.md` - the project's chosen principles. An audit recommendation that contradicts
   one must engage with it; each audit does so explicitly where relevant.
-- `docs/ROADMAP.md` "Not planned" — explicitly rejected directions.
+- `docs/ROADMAP.md` "Not planned" - explicitly rejected directions.
 - Crash forensics: `journalctl -b -1 | tail` and `sar -r -f /var/log/sysstat/sa21`.

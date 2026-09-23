@@ -68,7 +68,7 @@ export class Renderer {
       for (const chapter of this.textbook.chapters) {
         for (const section of chapter.sections) {
           const equations = this.textRenderer.collectEquations(section.nodes);
-          const context = `${chapter.title} — ${section.title}`;
+          const context = `${chapter.title} - ${section.title}`;
           for (const eq of equations) {
             const hash = this.describer.hashLatex(eq.latex);
             eqKeys.add(`equation-descriptions/${hash}.txt`);
@@ -125,7 +125,7 @@ export class Renderer {
       }
     }
 
-    // Phase 4: Stable key fallback (SKIP_AUDIO only — serves stale audio)
+    // Phase 4: Stable key fallback (SKIP_AUDIO only - serves stale audio)
     if (this.skipGeneration) {
       const stillNeeded = sections.filter(s => !existsSync(s.mp3Path));
       if (stillNeeded.length > 0) {

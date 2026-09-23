@@ -87,7 +87,7 @@ export async function pullFromR2(neededKeys: Set<string>): Promise<void> {
       mkdirSync(dirname(localPath), { recursive: true });
       writeFileSync(localPath, Buffer.concat(chunks));
     } catch (err: any) {
-      // NoSuchKey is expected for new content — not an error
+      // NoSuchKey is expected for new content - not an error
       if (err?.name === 'NoSuchKey') return;
       console.warn(`[r2-cache] Failed to download ${key}:`, err);
     }
@@ -181,7 +181,7 @@ export async function pullFinalAudioBatch(
 
 /**
  * Upload final assembled MP3s to R2 under the `final-audio/` prefix.
- * Always overwrites — these are "latest" snapshots.
+ * Always overwrites - these are "latest" snapshots.
  */
 export async function pushFinalAudioFiles(files: Map<string, string>): Promise<void> {
   const config = getR2Config();

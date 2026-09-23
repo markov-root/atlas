@@ -1,7 +1,7 @@
 /**
  * The TypeScript→Python handoff file (`task:0029` D1).
  *
- * These tests guard the boundary contract rather than the extraction it wraps —
+ * These tests guard the boundary contract rather than the extraction it wraps -
  * extraction has its own suite. What matters here is that the shape Python's
  * `scan.py` expects is the shape this writes, and in particular that
  * `authorYear` travels in the file. That field is why the handoff is a built
@@ -49,7 +49,7 @@ function chapter(sections: Section[]): Chapter {
 
 const CITED = 'https://arxiv.org/abs/1911.01547';
 
-describe('buildScan — the handoff contract', () => {
+describe('buildScan - the handoff contract', () => {
   it('carries the schema version Python checks', () => {
     expect(buildScan([]).schemaVersion).toBe(1);
   });
@@ -101,7 +101,7 @@ describe('buildScan — the handoff contract', () => {
     expect(scan.chapters[0].slug).toBe('chapter-1');
   });
 
-  it('survives a JSON round trip unchanged — it is written and read as a file', () => {
+  it('survives a JSON round trip unchanged - it is written and read as a file', () => {
     const scan = buildScan([chapter([section(1, [para(link(CITED, 'Chollet, 2019'))])])]);
     expect(JSON.parse(JSON.stringify(scan))).toEqual(scan);
   });

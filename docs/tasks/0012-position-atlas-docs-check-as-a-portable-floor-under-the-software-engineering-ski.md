@@ -50,7 +50,7 @@ reasonably conclude the documentation is to standard. It is not the same claim: 
 registration, supersession, criteria-to-evidence linkage, and more).
 
 **`cli/doc-rules.ts` is a second copy of the skill's knowledge.** The checker itself does not
-duplicate the skill — the two tools cover **disjoint file sets** (verified: zero overlap; the skill
+duplicate the skill - the two tools cover **disjoint file sets** (verified: zero overlap; the skill
 covers the numbered record series, this covers the living documents the skill structurally cannot).
 The duplication is in the *rules table*, which encodes one author's reading of what the
 specification, standard, roadmap and runbook roles require. When the skill's content standards
@@ -73,7 +73,7 @@ be the SE skill docs, and not the minimal version we have going here."_
 3. **Decide record-series coverage.** A cloner cannot currently check `docs/tasks`, `docs/adr`,
    `docs/audits`, `docs/handoffs` at all. Either extend the floor to them, or state deliberately
    that record conformance requires the skill and say so in `CONTRIBUTING.md`. **Do not reimplement
-   the skill's 16 checks** — that is the replication to avoid.
+   the skill's 16 checks** - that is the replication to avoid.
 4. **Make the command's own output honest** about what it did not check.
 
 ## Out of scope
@@ -98,14 +98,14 @@ be the SE skill docs, and not the minimal version we have going here."_
 
 | Criterion | Evidence | Verified |
 | --------- | -------- | -------- |
-| AC-1      | —        | —        |
-| AC-2      | —        | —        |
-| AC-3      | —        | —        |
-| AC-4      | —        | —        |
-| AC-5      | —        | —        |
+| AC-1      | -        | -        |
+| AC-2      | -        | -        |
+| AC-3      | -        | -        |
+| AC-4      | -        | -        |
+| AC-5      | -        | -        |
 
 ## Authority and inputs
 
 - `task:0010` (control surface), `task:0011` (the substance adoption this floor protects).
-- `adr:0002` — why the living documents cannot be covered by the skill's own mechanism.
+- `adr:0002` - why the living documents cannot be covered by the skill's own mechanism.
 - Coverage comparison, 2026-09-21: 16 finding types vs 3; zero file overlap.

@@ -5,7 +5,7 @@ import { parentheticalCitations } from '../../citations/author-year';
 
 // Strips citation references like "(Author, 2023)" or "(Smith et al., 2020)".
 // The pattern is shared with citation extraction rather than restated here, so
-// the two cannot drift apart — see citations/author-year.ts (task:0025 AC-6).
+// the two cannot drift apart - see citations/author-year.ts (task:0025 AC-6).
 function stripCitations(text: string): string {
   return text
     .replace(parentheticalCitations(), '')
@@ -111,7 +111,7 @@ export class TextRenderer {
   /**
    * Render an array of AST nodes to an array of spoken paragraph strings.
    * Each block-level node (Paragraph, Heading, Quote, Definition, etc.)
-   * becomes one entry in the array — this is the caching unit for TTS.
+   * becomes one entry in the array - this is the caching unit for TTS.
    */
   renderNodes(nodes: Node[]): string[] {
     const paragraphs: string[] = [];

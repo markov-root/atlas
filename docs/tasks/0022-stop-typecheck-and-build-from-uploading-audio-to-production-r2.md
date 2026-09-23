@@ -41,7 +41,7 @@ engineering_document:
 On 2026-09-21, a plain `pnpm typecheck` on a maintainer machine attempted an S3 `PutObject` of a
 **96 MB chapter MP3** (`content-length: 96596397`, key `/audio/atlas-chapter5-audio-<hash>.mp3`) to
 the production R2 bucket. The write failed only because the R2 credentials in `.env` are stale and
-the signature was rejected — the request then died with `write ETIMEDOUT` on the TLS socket, which
+the signature was rejected - the request then died with `write ETIMEDOUT` on the TLS socket, which
 presents as a confusing typecheck failure rather than as what it is.
 
 **A typecheck performed a mutating, outward-facing side effect on production storage.** The audio in
@@ -53,7 +53,7 @@ Three defects combine to produce this:
 
 1. **`BuildMode.uploadAudio` is dead configuration.** `src/lib/build-mode.ts:57` computes
    `uploadAudio: hasR2Creds && !isDev && !skipAudio`, and `build-mode.test.ts` asserts it in five
-   cases — but **no production module reads it**. The stated contract in `build-mode.ts:1-6` is that
+   cases - but **no production module reads it**. The stated contract in `build-mode.ts:1-6` is that
    it is the "single source of truth for environment-dependent build behaviour" and that "no other
    module should read process.env for these decisions". For uploads, that contract is not honoured.
 
@@ -65,8 +65,8 @@ Three defects combine to produce this:
 3. **`SKIP_AUDIO_DOWNLOAD` cannot be set from `.env`.** It is declared in neither
    `astro.config.mjs`'s env schema nor bridged to `process.env` in `src/content.config.ts:80-90`
    (which does bridge `ELEVENLABS_API_KEY`, `GEMINI_API_KEY`, the four `R2_*` vars, `SKIP_PDF` and
-   `SKIP_AUDIO`). A maintainer who writes `SKIP_AUDIO_DOWNLOAD=1` in `.env` — as the current `.env`
-   does — gets no effect at all; it must be `export`ed into the shell. The guard silently does not
+   `SKIP_AUDIO`). A maintainer who writes `SKIP_AUDIO_DOWNLOAD=1` in `.env` - as the current `.env`
+   does - gets no effect at all; it must be `export`ed into the shell. The guard silently does not
    apply in the exact configuration a maintainer is most likely to be in.
 
 Phase 8 is additionally broader than its own intent. `finalToUpload` is correctly restricted to
@@ -96,7 +96,7 @@ run regardless of whether anything changed.
 
 ## Decisions required before execution
 
-### D1 — Should a credentialed build upload audio by default at all?
+### D1 - Should a credentialed build upload audio by default at all?
 
 | Option                                                    | Consequence                                                                                                      |
 | --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -111,7 +111,7 @@ class of accident; C is the right end state but should not block the fix.
 **Irreversible if wrong:** an upload that succeeds overwrites published audio in place. There is no
 version history on the bucket and no way to regenerate the original (see `[[atlas-audio-is-frozen]]`).
 
-### D2 — Keep `SKIP_AUDIO_DOWNLOAD` or fold it into `BuildMode`?
+### D2 - Keep `SKIP_AUDIO_DOWNLOAD` or fold it into `BuildMode`?
 
 | Option                       | Consequence                                                                               |
 | ---------------------------- | ----------------------------------------------------------------------------------------- |
@@ -137,27 +137,27 @@ single source of truth; two mechanisms is the thing that produced this defect.
 
 ## Completion evidence
 
-_To be filled on completion. Each row must cite a criterion and durable evidence — a commit, a file
-path, or a recorded owner decision — not a narrative claim._
+_To be filled on completion. Each row must cite a criterion and durable evidence - a commit, a file
+path, or a recorded owner decision - not a narrative claim._
 
 | Criterion | Evidence | Verified |
 | --------- | -------- | -------- |
-| AC-1      | —        | —        |
-| AC-2      | —        | —        |
-| AC-3      | —        | —        |
-| AC-4      | —        | —        |
-| AC-5      | —        | —        |
+| AC-1      | -        | -        |
+| AC-2      | -        | -        |
+| AC-3      | -        | -        |
+| AC-4      | -        | -        |
+| AC-5      | -        | -        |
 
 ## Authority and inputs
 
 - Observed failure: `pnpm typecheck` on 2026-09-21, branch `codebase-cleanup` at `e693014`. The
   canonical request in the error output names `PutObject`, the 96 MB content length, and the
   production bucket host.
-- `src/lib/build-mode.ts:1-6` — the contract this violates. `:57` — the unused flag.
-- `src/textbook-loader/renderers/audio/renderer.ts:53,232,250,268` — the guard and the three
+- `src/lib/build-mode.ts:1-6` - the contract this violates. `:57` - the unused flag.
+- `src/textbook-loader/renderers/audio/renderer.ts:53,232,250,268` - the guard and the three
   ungated upload calls.
-- `src/content.config.ts:80-90` — the bridge that omits `SKIP_AUDIO_DOWNLOAD`.
-- `docs/PRINCIPLES.md` — the single-source-of-truth principle for build-mode decisions.
-- `audit:0005` F7 — the earlier, narrower finding that `typecheck` is not hermetic. This task
+- `src/content.config.ts:80-90` - the bridge that omits `SKIP_AUDIO_DOWNLOAD`.
+- `docs/PRINCIPLES.md` - the single-source-of-truth principle for build-mode decisions.
+- `audit:0005` F7 - the earlier, narrower finding that `typecheck` is not hermetic. This task
   supersedes its severity assessment: the problem is not only non-hermeticity but mutation.
-- `audit:0009` — audio pipeline economics; `task:0016` owns the cache-key work this must not disturb.
+- `audit:0009` - audio pipeline economics; `task:0016` owns the cache-key work this must not disturb.

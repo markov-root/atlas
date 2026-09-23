@@ -27,7 +27,7 @@ function transformBody(body: docs_v1.Schema$StructuralElement[]) {
 // content meets the loader. Many failures here are *silent* today (the
 // transformer falls back to defaults: `title='Untitled'`, `number=0`,
 // zero sections). The tests document this so a future "fail loudly"
-// refactor is visible — AND so a contributor changing the parser knows
+// refactor is visible - AND so a contributor changing the parser knows
 // which boundary behaviors they must preserve or deliberately change.
 //
 // Reader-facing consequences if these tests fail:
@@ -42,7 +42,7 @@ function transformBody(body: docs_v1.Schema$StructuralElement[]) {
 // facing metadata: navigation breadcrumbs, search results, "Chapter N"
 // labels on every page. If this test fails, a content edit to the doc
 // title silently degrades reader-facing labels site-wide.
-describe('Transformer.transformChapter — title parsing', () => {
+describe('Transformer.transformChapter - title parsing', () => {
   it("parses the canonical 'Chapter N - Title' form", () => {
     const ch = transformBody([
       para('TITLE', 'Chapter 3 - Capabilities and Risks'),
@@ -66,7 +66,7 @@ describe('Transformer.transformChapter — title parsing', () => {
 
   it('falls back when the TITLE uses an em-dash instead of a hyphen', () => {
     const ch = transformBody([
-      para('TITLE', 'Chapter 3 — Capabilities and Risks'),
+      para('TITLE', 'Chapter 3 \u2014 Capabilities and Risks'),
       para('HEADING_1', 'Intro'),
     ]);
     expect(ch.title).toBe('Untitled');
@@ -111,11 +111,11 @@ describe('Transformer.transformChapter — title parsing', () => {
   });
 });
 
-// SUBTITLE in the Google Doc becomes `chapter.description` — used in
+// SUBTITLE in the Google Doc becomes `chapter.description` - used in
 // chapter index pages, social-share previews, and the LLM-readable .md
 // route. If this test fails, descriptions silently vanish or duplicate
 // across chapters.
-describe('Transformer.transformChapter — SUBTITLE handling', () => {
+describe('Transformer.transformChapter - SUBTITLE handling', () => {
   it('populates chapter.description when SUBTITLE is present', () => {
     const ch = transformBody([
       para('TITLE', 'Chapter 1 - Title'),
@@ -126,7 +126,7 @@ describe('Transformer.transformChapter — SUBTITLE handling', () => {
   });
 
   it('leaves chapter.description empty when SUBTITLE is absent', () => {
-    // Current behavior: empty string default. Not loud — content author may
+    // Current behavior: empty string default. Not loud - content author may
     // have intentionally omitted a subtitle, so silence is the right call here.
     const ch = transformBody([para('TITLE', 'Chapter 1 - Title'), para('HEADING_1', 'Intro')]);
     expect(ch.description).toBe('');
@@ -143,11 +143,11 @@ describe('Transformer.transformChapter — SUBTITLE handling', () => {
   });
 });
 
-// HEADING_1 paragraphs become reader-visible sections — each with its
+// HEADING_1 paragraphs become reader-visible sections - each with its
 // own URL, audio file, PDF, and search-result entry. If section
 // extraction breaks, readers either see merged sections (lost
 // navigation), or chapters render as a wall of text with no anchors.
-describe('Transformer.transformChapter — section headings (HEADING_1)', () => {
+describe('Transformer.transformChapter - section headings (HEADING_1)', () => {
   it('creates one section per HEADING_1', () => {
     const ch = transformBody([
       para('TITLE', 'Chapter 1 - Title'),
@@ -203,11 +203,11 @@ describe('Transformer.transformChapter — section headings (HEADING_1)', () => 
 });
 
 // HEADING_2 paragraphs that appear before the first HEADING_1 are an
-// editorial mistake — but they shouldn't crash the build or get
+// editorial mistake - but they shouldn't crash the build or get
 // promoted into top-level sections. If this test fails, a content
 // author with a stray sub-heading at the top of a doc would either
 // brick the build or accidentally create a phantom navigation entry.
-describe('Transformer.transformChapter — HEADING_2 at chapter-extraction level', () => {
+describe('Transformer.transformChapter - HEADING_2 at chapter-extraction level', () => {
   it('does not create a section for a HEADING_2 before any HEADING_1', () => {
     // KNOWN FOOTGUN: HEADING_2 paragraphs that appear before the first
     // HEADING_1 trigger the "Unexpected early element" console warn and
@@ -225,10 +225,10 @@ describe('Transformer.transformChapter — HEADING_2 at chapter-extraction level
 
 // Defensive handling: empty bodies, sectionBreak elements (which Google
 // Docs inserts at column/page boundaries), and stray control characters
-// in titles. If these fail, an edge-case Google Doc — for example a
-// chapter currently being drafted with no content yet — would crash
+// in titles. If these fail, an edge-case Google Doc - for example a
+// chapter currently being drafted with no content yet - would crash
 // the build instead of producing an empty placeholder chapter.
-describe('Transformer.transformChapter — robustness', () => {
+describe('Transformer.transformChapter - robustness', () => {
   it('handles an empty body without throwing', () => {
     const ch = transformBody([]);
     expect(ch.title).toBe('Untitled');

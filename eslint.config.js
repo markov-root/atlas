@@ -1,4 +1,4 @@
-// Minimal ESLint flat config. The point isn't to enforce a style — it's to
+// Minimal ESLint flat config. The point isn't to enforce a style - it's to
 // catch genuine bugs and code smells without drowning agents/contributors in
 // noise. Formatting is Prettier's job (see .prettierrc).
 //
@@ -36,7 +36,7 @@ export default [
       'no-control-regex': 'off',
       // Allow empty catch blocks (used for best-effort cleanup paths).
       'no-empty': ['warn', { allowEmptyCatch: true }],
-      // Unused vars warn — TS already catches the meaningful ones via tsc.
+      // Unused vars warn - TS already catches the meaningful ones via tsc.
       'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       // Inline analytics scripts in <script> tags use legitimate expression
       // patterns that this rule misclassifies. TS catches real cases.
@@ -69,7 +69,7 @@ export default [
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-expressions': 'off',
       // The astro plugin's recommended config flags template expressions like
-      // `<MyComponent />` as unused expressions. Disabled — that's not a bug.
+      // `<MyComponent />` as unused expressions. Disabled - that's not a bug.
       'no-unused-expressions': 'off',
     },
   },

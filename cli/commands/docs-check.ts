@@ -1,5 +1,5 @@
 /**
- * `atlas docs check` — verify the governed living documents against
+ * `atlas docs check` - verify the governed living documents against
  * docs/standards/documentation.md.
  *
  * Runs with no software-engineering skill installed, so a fresh clone can check
@@ -41,7 +41,7 @@ function headings(lines: string[]): Heading[] {
  * heading. `PRINCIPLES.md` satisfies the standard role's issuer/scope/exception
  * requirement under "How this standard works"; `DESIGN.md` does it under
  * "Scope". Forcing one wording would make documents worse to read in order to
- * please a checker — which is the failure this command exists to prevent.
+ * please a checker - which is the failure this command exists to prevent.
  */
 export function sectionBody(text: string, needle: string | string[]): string | null {
   const needles = (Array.isArray(needle) ? needle : [needle]).map((n) => n.toLowerCase());
@@ -179,7 +179,7 @@ export function formatResults(results: DocResult[]): string {
       : `${bad} of ${results.length} documents do not conform.`,
   );
   out.push(
-    'Structure only. Whether each section passes its discriminating test is a human review bar —',
+    'Structure only. Whether each section passes its discriminating test is a human review bar -',
   );
   out.push('see docs/standards/documentation.md.');
   return out.join('\n');

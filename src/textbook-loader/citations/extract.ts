@@ -6,7 +6,7 @@
  * bibliography reproducible from the documents rather than maintained by hand.
  *
  * The key design point is that this function does not decide what a citation
- * *means* — it reports what it found and how confident the classification is.
+ * *means* - it reports what it found and how confident the classification is.
  * A link whose anchor is "available here" is recorded as a content link, not
  * discarded, so that `atlas citations report` can show an author the difference
  * between "we ignored this" and "we never saw it".
@@ -20,7 +20,7 @@ import { canonicalizeUrl, isAssetUrl } from './canonical-url';
 export type CitationKind =
   /** Anchor text is an author-year reference. The bibliography case. */
   | 'citation'
-  /** A real link, but the anchor is prose — "available here". Not a citation. */
+  /** A real link, but the anchor is prose - "available here". Not a citation. */
   | 'content-link'
   /** Points at an image or stylesheet rather than a document. */
   | 'asset'
@@ -28,7 +28,7 @@ export type CitationKind =
   | 'unlinked';
 
 export type CitationInstance = {
-  /** Canonical URL — the bibliography entry identity. Null for `unlinked`. */
+  /** Canonical URL - the bibliography entry identity. Null for `unlinked`. */
   key: string | null;
   /** The URL exactly as it appeared, kept so a report can show the original. */
   rawUrl: string | null;
@@ -82,7 +82,7 @@ function linkInstance(
  * `Definition.source` (`transformer.ts:288-345`).
  *
  * A `children`-only walk silently misses every citation in a figure caption.
- * Measured on the committed corpus: 364 of 1,778 linked runs — 20% — were
+ * Measured on the committed corpus: 364 of 1,778 linked runs - 20% - were
  * invisible until this was added. `task:0015` (discriminated-union AST) is
  * aimed squarely at this class of trap; until it lands, every traversal has to
  * know about it.
@@ -134,7 +134,7 @@ function subtreeText(nodes: Node[]): string {
  * Citations inside a footnote that are plain text with no hyperlink.
  *
  * The corpus contains 9 of these. They have no URL, so they cannot be keyed the
- * way every other entry is — they are emitted with a null key and an `unlinked`
+ * way every other entry is - they are emitted with a null key and an `unlinked`
  * kind so that `task:0025` AC-5 holds: they surface in a report rather than
  * vanishing. Resolving them to real entries is a later, separate problem.
  */
@@ -169,7 +169,7 @@ function unlinkedFootnoteCitations(
  * Every citation instance in one section, inline prose and footnotes alike.
  *
  * Footnotes are walked explicitly rather than by falling through the node tree,
- * so each instance can record which footnote it came from — an author fixing a
+ * so each instance can record which footnote it came from - an author fixing a
  * malformed citation needs to know where it lives.
  */
 export function extractSectionCitations(section: Section): CitationInstance[] {
@@ -219,7 +219,7 @@ export function extractSectionCitations(section: Section): CitationInstance[] {
 
 export type CitationSummary = {
   instances: CitationInstance[];
-  /** Instances that are citations — excludes content links and assets. */
+  /** Instances that are citations - excludes content links and assets. */
   citations: CitationInstance[];
   /** Distinct canonical URLs across all citations. */
   uniqueKeys: string[];

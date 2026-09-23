@@ -2,7 +2,7 @@
 
 ``task:0029`` AC-4 and D4: the 789 already-resolved entries must survive the move
 to Python without re-resolution. Proof is semantic equality entry by entry
-against the real committed store, not against a fixture — a fixture tidier than
+against the real committed store, not against a fixture - a fixture tidier than
 the real data tests the fixture, which is exactly how a span-joining bug reached
 production earlier in this work.
 """
@@ -146,7 +146,7 @@ class TestSerialization:
 
 
 class TestCommittedCorpus:
-    """``task:0029`` AC-4 — the resolved work survives the port.
+    """``task:0029`` AC-4 - the resolved work survives the port.
 
     These run against the real ``data/citations/sources.yaml``. If it is ever
     absent the tests skip rather than silently passing on an empty store.
@@ -189,7 +189,7 @@ class TestCommittedCorpus:
 
 
 class TestContainerTitleFromTheUrl:
-    """``task:0032`` AC-7 / D5 — state a container, never invent one."""
+    """``task:0032`` AC-7 / D5 - state a container, never invent one."""
 
     def test_names_the_platforms_whose_proper_name_differs_from_their_domain(self) -> None:
         assert infer_container_title("https://arxiv.org/abs/1911.01547") == "arXiv"

@@ -17,7 +17,7 @@ describe('isAuthorYearAnchor (task:0025 AC-1, AC-6)', () => {
   });
 
   // These are malformed in the source documents. Extraction must still find
-  // them — the report tells an author to fix the prose, but dropping the
+  // them - the report tells an author to fix the prose, but dropping the
   // citation because its punctuation is wrong would lose real data.
   it('accepts the malformed variants observed in the source documents', () => {
     for (const anchor of [
@@ -46,7 +46,7 @@ describe('isAuthorYearAnchor (task:0025 AC-1, AC-6)', () => {
     }
   });
 
-  // A bare year is ambiguous — it appears in the corpus as link text for
+  // A bare year is ambiguous - it appears in the corpus as link text for
   // things that are not citations. Requiring an author part is what keeps
   // "1985" out of the bibliography.
   it('rejects a bare year with no author', () => {
@@ -74,7 +74,7 @@ describe('splitAuthorYear', () => {
   });
 });
 
-describe('parentheticalCitations — shared with the audio renderer (AC-6)', () => {
+describe('parentheticalCitations - shared with the audio renderer (AC-6)', () => {
   it('matches citations embedded in running prose', () => {
     const prose =
       'Collapse has been argued to be possible (Rodriguez, 2020), though others disagree (Smith et al., 2021).';

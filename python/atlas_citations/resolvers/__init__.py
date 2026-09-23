@@ -25,7 +25,7 @@ from .research_db import research_db_resolver
 from .scholar_meta import scholar_meta_resolver
 from .wayback import wayback_resolver
 
-#: Every resolver, in no particular order — :func:`resolve_with` sorts them by
+#: Every resolver, in no particular order - :func:`resolve_with` sorts them by
 #: :data:`RESOLVER_ORDER`.
 ALL_RESOLVERS: list[Resolver] = [
     research_db_resolver,

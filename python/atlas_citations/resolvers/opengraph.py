@@ -1,4 +1,4 @@
-"""Open Graph resolver — the long tail, last in ``RESOLVER_ORDER``.
+"""Open Graph resolver - the long tail, last in ``RESOLVER_ORDER``.
 
 It only runs when everything else declined, and it will resolve worst. That is
 expected: no API describes these pages. ``task:0027`` says plainly that some
@@ -13,12 +13,12 @@ listed in its own header what that could not handle: unquoted attributes,
 duplicate keys in differing case, and anything below the read cap. Real pages are
 not well-formed, and a regex over other people's HTML is a standing invitation to
 silently wrong metadata. BeautifulSoup handles the messy cases, including entity
-decoding — which the TypeScript replaced with a hand-maintained table of
+decoding - which the TypeScript replaced with a hand-maintained table of
 nineteen named entities found by sampling.
 
 Two behaviours are deliberately kept from the original: the byte cap, and
 scheme-checked redirects. httpx refuses to follow a redirect to a non-HTTP scheme
-by raising, which the caller turns into a decline — the same outcome the
+by raising, which the caller turns into a decline - the same outcome the
 TypeScript reached by hand-walking each hop.
 """
 
@@ -54,7 +54,7 @@ _NON_TITLE_EXACT = re.compile(
     re.IGNORECASE,
 )
 
-#: Phrases distinctive enough that a suffix is allowed — no real work is titled
+#: Phrases distinctive enough that a suffix is allowed - no real work is titled
 #: "Attention Required! | Cloudflare".
 _NON_TITLE_PREFIX = re.compile(
     r"^(checking your browser|attention required|access denied|are you a robot|"
@@ -73,7 +73,7 @@ _SERVICE_NAME_TITLES = frozenset(
     {
         # The Internet Archive's viewer chrome. Its snapshot of a *PDF* is an
         # HTML wrapper titled "Wayback Machine", which is well-formed, returns
-        # 200, and is not the document — 17 of the first 25 archived entries
+        # 200, and is not the document - 17 of the first 25 archived entries
         # took it before this line existed. See task:0032's note on the guard.
         "wayback machine",
         "internet archive",
@@ -95,8 +95,8 @@ _SERVICE_NAME_TITLES = frozenset(
 #: Found on `yann.lecun.com/exdb/mnist`, whose title is "Index of /exdb/mnist".
 _DIRECTORY_INDEX = re.compile(r"^index of\s*/", re.IGNORECASE)
 
-#: Markup inside a title. Publishers put it there — SSRN's Open Graph title for
-#: one corpus entry is literally "<span>A Three-Layered Framework…" — and a CSL
+#: Markup inside a title. Publishers put it there - SSRN's Open Graph title for
+#: one corpus entry is literally "<span>A Three-Layered Framework…" - and a CSL
 #: field is plain text, so a template escapes the tag rather than interpreting
 #: it and the reader sees the angle brackets. Same defect as `audit:0011` F11,
 #: which crossref.py already strips for; this is the scraping side of it.
@@ -116,8 +116,8 @@ _MIN_TITLE_CHARS = 4
 def usable_title(title: str) -> bool:
     """Whether a scraped title is worth recording.
 
-    Declining leaves the entry unresolved, which is honest and — because
-    ``resolve`` retries unresolved entries — recoverable. Recording a bot-check
+    Declining leaves the entry unresolved, which is honest and - because
+    ``resolve`` retries unresolved entries - recoverable. Recording a bot-check
     page is neither.
     """
     text = title.strip()
@@ -165,7 +165,7 @@ def title_tag(soup) -> str | None:
 
 class OpengraphResolver:
     name = "opengraph"
-    #: Claims every HTTP URL — it is the last-resort fallback.
+    #: Claims every HTTP URL - it is the last-resort fallback.
     selective = False
 
     def claims(self, canonical_url: str) -> bool:
@@ -179,7 +179,7 @@ class OpengraphResolver:
         )
         # Nothing follows this resolver, so propagating the reason is purely so
         # the report can tell a dead citation (`gone`) from a blocked one
-        # (`refused`) — a distinction only the authors can act on.
+        # (`refused`) - a distinction only the authors can act on.
         if isinstance(html, Unreachable):
             return html
         if not html:
@@ -189,11 +189,11 @@ class OpengraphResolver:
         og_title = meta_content(soup, "og:title")
         title = clean_title(og_title or title_tag(soup) or "")
         if not title or not usable_title(title):
-            # Nothing to add beyond what the anchor gives — or worse than it.
+            # Nothing to add beyond what the anchor gives - or worse than it.
             return None
 
         fields: dict[str, Any] = {
-            # Webpage vs post-weblog is decided by the URL's domain — the same
+            # Webpage vs post-weblog is decided by the URL's domain - the same
             # decision store.py already made at extraction; reuse it, never fork it.
             "type": infer_csl_type(canonical_url),
             "title": title,

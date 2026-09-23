@@ -47,9 +47,9 @@ export class DocsSDK {
       // on disk AND we have creds, ignore the cache and re-fetch. This
       // protects against the "stale CI cache hides missing images" footgun.
       // Contributors (cacheOnly / no client) keep the cache hit even with
-      // missing images — they get caption-only figures by design.
+      // missing images - they get caption-only figures by design.
       if (this.client && !this.cacheOnly && !this.imagesExist(cached)) {
-        console.warn(`[atlas] Cached doc ${cacheKey} references missing image assets — re-fetching.`);
+        console.warn(`[atlas] Cached doc ${cacheKey} references missing image assets - re-fetching.`);
       } else {
         return cached;
       }

@@ -1,7 +1,7 @@
 """Crossref, oEmbed, Open Graph and the research-database corpus.
 
-Grouped because they share one shape — claim a URL, map a response, decline
-everything else — and because the contract test at the end applies to all of
+Grouped because they share one shape - claim a URL, map a response, decline
+everything else - and because the contract test at the end applies to all of
 them at once.
 """
 
@@ -39,8 +39,8 @@ class TestCrossref:
         assert crossref_resolver.claims("https://doi.org/10.1038/x")
         assert not crossref_resolver.claims("https://nature.com/articles/x")
 
-    # task:0032 AC-3. These hosts block scraping outright — 12 of the corpus's
-    # 132 unresolved entries sit on them — but every one prints its DOI in the
+    # task:0032 AC-3. These hosts block scraping outright - 12 of the corpus's
+    # 132 unresolved entries sit on them - but every one prints its DOI in the
     # URL, which is an identity the publisher asserts rather than one we infer.
     # See task:0032 D3 for the title-search alternative and why it was measured
     # and rejected.
@@ -80,7 +80,7 @@ class TestCrossref:
         """No guessing. A URL that merely contains digits is not a DOI.
 
         These five are real corpus entries that stay unresolved rather than
-        acquiring a plausible wrong identity — ``task:0032`` D3.
+        acquiring a plausible wrong identity - ``task:0032`` D3.
         """
         assert doi_from_url(url) is None
         assert not crossref_resolver.claims(url)
@@ -264,7 +264,7 @@ class TestOpengraph:
         )
         assert opengraph_resolver.resolve("https://example.org/x.pdf", ctx) is None
 
-    # audit:0011 F13 — a bot check or redirect stub returns HTTP 200 with a
+    # audit:0011 F13 - a bot check or redirect stub returns HTTP 200 with a
     # well-formed <title>, so nothing upstream notices. Recording one is worse
     # than recording nothing: the entry is marked resolved and never retried.
     @pytest.mark.parametrize(
@@ -313,7 +313,7 @@ class TestOpengraph:
 
         out = opengraph_resolver.resolve("https://example.org/x", make_ctx(handler))
         # httpx refuses the hop by raising, which the resolver turns into "we
-        # learned nothing" — never into a bibliography entry sourced from disk.
+        # learned nothing" - never into a bibliography entry sourced from disk.
         assert not isinstance(out, ResolveResult)
 
 
@@ -404,7 +404,7 @@ class TestEveryResolverHonoursTheContract:
         for url in self.CLAIMABLE_URLS:
             if resolver.claims(url):
                 # Whatever comes back, it must not be an exception and must not
-                # be a ResolveResult — nothing was learned, so nothing may be
+                # be a ResolveResult - nothing was learned, so nothing may be
                 # claimed.
                 outcome = resolver.resolve(url, unreachable_ctx)
                 assert not isinstance(outcome, ResolveResult)
@@ -419,7 +419,7 @@ class TestEveryResolverHonoursTheContract:
         its outage to be invisible, so it flattens the signal back to a decline.
         """
         if resolver.name == "research-db":
-            pytest.skip("task:0027 AC-6 — a corpus outage must leave the bibliography identical")
+            pytest.skip("task:0027 AC-6 - a corpus outage must leave the bibliography identical")
         for url in self.CLAIMABLE_URLS:
             if resolver.claims(url):
                 assert isinstance(resolver.resolve(url, unreachable_ctx), Unreachable)
@@ -437,7 +437,7 @@ class TestEveryResolverHonoursTheContract:
 
 class TestTheArchivesOwnChromeIsNotATitle:
     """The Internet Archive's snapshot of a PDF is an HTML wrapper titled
-    "Wayback Machine" — well-formed, HTTP 200, and not the document.
+    "Wayback Machine" - well-formed, HTTP 200, and not the document.
 
     17 of the first 25 archived entries took it before the guard covered it. The
     same shape as ``audit:0011`` F13, from a source that did not exist then.
@@ -463,7 +463,7 @@ class TestScrapedTitlesAreCleanedNotJustJudged:
     def test_markup_inside_a_title_is_stripped(self) -> None:
         """SSRN's Open Graph title for a corpus entry is literally
         "<span>A Three-Layered Framework…". CSL fields are plain text, so a
-        template escapes the tag and the reader sees angle brackets — the
+        template escapes the tag and the reader sees angle brackets - the
         scraping half of ``audit:0011`` F11."""
         page = (
             "<html><head>"

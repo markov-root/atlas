@@ -1,6 +1,6 @@
 # Documentation
 
-Each file in this directory has a single purpose. The doc set is intentionally small — three kinds of writing (reference / strategy / process journal), each with a clear destination.
+Each file in this directory has a single purpose. The doc set is intentionally small - three kinds of writing (reference / strategy / process journal), each with a clear destination.
 
 ## Reference (current state + rationale)
 
@@ -20,7 +20,7 @@ Each file in this directory has a single purpose. The doc set is intentionally s
 
 | File                      | Audience                  | Purpose                                                                                                                                                                                                                             |
 | ------------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `lessons/` _(gitignored)_ | Maintainer + their agents | Per-session journal of what was tried, learned, where things got stuck, how they were fixed. Verbose by design — agent working memory, not public reference. Decision rationale lives in ARCHITECTURE/PRINCIPLES/ROADMAP, not here. |
+| `lessons/` _(gitignored)_ | Maintainer + their agents | Per-session journal of what was tried, learned, where things got stuck, how they were fixed. Verbose by design - agent working memory, not public reference. Decision rationale lives in ARCHITECTURE/PRINCIPLES/ROADMAP, not here. |
 | `TODO.md` _(gitignored)_  | The maintainer            | Active task tracker. Checkbox-driven, tactical, changes daily. ROADMAP is the strategic complement.                                                                                                                                 |
 
 ## Conventions for all docs
@@ -32,7 +32,7 @@ Each file in this directory has a single purpose. The doc set is intentionally s
 
 ## Root-level files (GitHub-recognized)
 
-GitHub auto-detects certain filenames at the repo root and surfaces them in its UI: `README.md` renders on the homepage; `LICENSE` is parsed for the licensing badge; `SECURITY.md` links from the security tab; `CODE_OF_CONDUCT.md` and `CONTRIBUTING.md` are surfaced from the PR-creation and community-standards flows. Keeping these at root (not under `docs/`) is what unlocks that behavior. Anything else — pipeline architecture, principles, design system, roadmap — is project-specific and lives in `docs/`.
+GitHub auto-detects certain filenames at the repo root and surfaces them in its UI: `README.md` renders on the homepage; `LICENSE` is parsed for the licensing badge; `SECURITY.md` links from the security tab; `CODE_OF_CONDUCT.md` and `CONTRIBUTING.md` are surfaced from the PR-creation and community-standards flows. Keeping these at root (not under `docs/`) is what unlocks that behavior. Anything else - pipeline architecture, principles, design system, roadmap - is project-specific and lives in `docs/`.
 
 | File                                                                         | Purpose                                                                       |
 | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
@@ -47,7 +47,7 @@ GitHub auto-detects certain filenames at the repo root and surfaces them in its 
 
 ## What's still missing
 
-- No automated content-refresh — pulling fresh chapter prose from Google Docs is intentionally manual so the maintainer can gate which edits ship (ROADMAP "Not planned").
+- No automated content-refresh - pulling fresh chapter prose from Google Docs is intentionally manual so the maintainer can gate which edits ship (ROADMAP "Not planned").
 - No accessibility audit yet (ROADMAP Next; PRINCIPLES §12 names the known gap).
 - No discriminated-union AST types yet (ROADMAP Next; PRINCIPLES §11 names the debt).
 - No `format:check` enforcement in `pnpm verify` (ROADMAP Now: one-shot reformat then enable).

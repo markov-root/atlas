@@ -56,7 +56,7 @@ class TestRedo:
         assert "https://nature.com/a" in unresolved_keys(self.store, ["opengraph"])
 
     def test_redoes_only_urls_another_resolver_would_now_claim(self) -> None:
-        """After adding a publisher resolver, redo the Nature page — not 600 blog posts."""
+        """After adding a publisher resolver, redo the Nature page - not 600 blog posts."""
         out = unresolved_keys(self.store, ["opengraph"], lambda u: "nature.com" in u)
         assert "https://nature.com/a" in out
         assert "https://lesswrong.com/b" not in out
@@ -115,7 +115,7 @@ class TestApplyResolution:
 
 class TestTheWwwRetry:
     """``task:0032``: canonicalization strips ``www.``, and seven corpus URLs
-    answer only on the prefixed host — four of them one Substack custom domain.
+    answer only on the prefixed host - four of them one Substack custom domain.
 
     Identity keeps the stripped form; reachability is allowed to differ.
     """
@@ -150,7 +150,7 @@ class TestTheWwwRetry:
         assert out.fields["URL"] == self.WWW
 
     def test_identity_still_comes_from_the_canonical_key(self) -> None:
-        """``task:0021`` D1 — or the same source would mint two entries."""
+        """``task:0021`` D1 - or the same source would mint two entries."""
         ctx, _ = self.resolvers_answering_only_www()
         out = attempt(self.KEY, ctx)
         entry = entry_from_anchor(self.KEY, "Piper, 2022", {"author": "Piper", "year": "2022"})
