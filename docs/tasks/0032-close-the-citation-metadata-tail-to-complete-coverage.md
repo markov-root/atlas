@@ -7,7 +7,7 @@ role: task
 status: todo
 summary: 'Resolve the 132 sources no resolver could reach, and give the residual a reviewed override path.'
 created: '2026-09-23'
-updated: '2026-09-23'
+updated: '2026-09-24'
 owner: Markov Grey
 supersedes: ''
 superseded_by: ''
@@ -24,7 +24,7 @@ engineering_document:
     owner: Markov Grey
     scope: Metadata acquisition and its store representation - rendering and the site are unchanged
   created: '2026-09-23'
-  updated: '2026-09-23'
+  updated: '2026-09-24'
   transition_history: unverified
   transitions: []
   relationships: []
@@ -232,22 +232,40 @@ re-applied and never decays.
 | AC-4      | `resolvers/forum_magnum.py`, `test_resolver_forum_magnum.py` (14 tests). 8 entries resolved, including four shortform comment permalinks that are client-rendered and had no scrapable title at all.                                                                                        | yes        |
 | AC-5      | `data/citations/overrides.yaml` (committed, reviewed input); `overrides.py` with precedence and `--redo` immunity, `test_overrides.py` (12 tests); `atlas citations propose` and `test_propose.py` (11 tests). Commit `25941ba`.                                                            | yes        |
 | AC-6      | `dead_links()` and the report section in `commands/report.py`, keyed on the reason and not on `resolvedBy`; `TestTheReportStillCallsItDead`. Two follow-on defects found and fixed: `469b107`'s keying bug and `27d3565`'s wiped markers.                                                   | yes        |
-| AC-7      | `infer_container_title` / `fill_container_titles` in `store.py`, `TestContainerTitleFromTheUrl`. **Container: 191 of 813 → 669 of 881.** Zero-anchor entries **not yet met** - see below.                                                                                                   | **partly** |
+| AC-7      | `infer_container_title` / `fill_container_titles` in `store.py`, `TestContainerTitleFromTheUrl`. **Container: 191 of 813 → 699 of 910.** Zero-anchor entries **not yet met** - see below.                                                                                                   | **partly** |
 
 ### AC-7 is the one still open
 
-**Unresolved: 132 → 64**, over five resolve passes. Every remaining entry has been attempted and
-recorded a reason, so the residual is now a known quantity rather than an unexplored tail:
+**Unresolved: 132 → 35**, and **910 of 945 entries (96.3%) carry real metadata.** Every remaining
+entry has been attempted and recorded a reason, so the residual is a known quantity rather than an
+unexplored tail:
 
-| Group                                | Approx |
-| ------------------------------------ | -----: |
-| Publisher WAF or paywall, no archive |    ~25 |
-| PDFs with no metadata anywhere       |    ~20 |
-| Long tail, one host each             |    ~19 |
+| Group                             | Count |
+| --------------------------------- | ----: |
+| PDFs with no metadata anywhere    |    21 |
+| Long tail, one host each          |     8 |
+| Publisher WAF or paywall          |     4 |
+| The page is gone                  |     2 |
 
 Closing them is `overrides.yaml` work, which is what D2, D3 and D4 exist to make honest. The evidence
 is gathered: `atlas citations propose` writes a stub per entry carrying the PDF's first page, the
 page's own metadata, an archived copy where one exists, the anchor text and the citing sections.
+
+**22 closed on 2026-09-24** from three provenances, each recorded per block in `overrides.yaml`:
+eleven the owner read out of the documents themselves, five from deterministic Crossref lookups
+(by DOI, by Elsevier PII, or by exact journal volume and first page - never a title search, see D3),
+and six from **citoid**, Wikimedia's public instance of Zotero's translation server.
+
+Citoid is worth a sentence because it reached pages our own scrapers cannot: `academic.oup.com`
+behind Cloudflare, ResearchGate, and a YouTube video whose oEmbed endpoint returns 401. Measured over
+all 57 remaining entries it answered 14 and was usable on 10, and **refused all 29 PDFs with HTTP
+415**, which is exactly the group it would have been most useful for. That asymmetry, and the fact
+that a public Wikimedia service is not a thing to build a pipeline dependency on, is why this was a
+one-off batch rather than a resolver. A self-hosted `zotero/translation-server` behind a configurable
+endpoint is the shape that would earn a place in `RESOLVER_ORDER`; it is not built.
+
+Eleven of the 22 also need a fix in the Google Doc that no override can make, because URL is identity
+and anchor text is never re-rendered. Those are `task:0035`.
 
 ### Measured wins worth naming
 

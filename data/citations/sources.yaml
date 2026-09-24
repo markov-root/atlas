@@ -5,7 +5,7 @@
 # whose `resolvedBy` is anything other than "anchor" is never overwritten by
 # re-extraction.
 #
-# Schema is CSL (Citation Style Language) — see task:0021 D2. The key of each
+# Schema is CSL (Citation Style Language) - see task:0021 D2. The key of each
 # entry is its canonical URL, which is the entry's identity (task:0021 D1).
 https://80000hours.org/career-reviews/ai-policy-and-strategy:
   item:
@@ -102,35 +102,50 @@ https://aboutamazon.com/news/operations/amazon-robotics-robots-fulfillment-cente
 https://academic.oup.com/edited-volume/41989/chapter-abstract/408516484:
   item:
     id: https://academic.oup.com/edited-volume/41989/chapter-abstract/408516484
-    type: webpage
+    type: chapter
     URL: https://academic.oup.com/edited-volume/41989/chapter-abstract/408516484
     author:
-    - literal: Dafoe
-    issued:
-      date-parts:
-      - - 2022
-    title: Dafoe, 2022
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
-  anchors:
-  - Dafoe, 2022
-  unreachable: refused
-https://academic.oup.com/ia/article/100/3/1275/7641064:
-  item:
-    id: https://academic.oup.com/ia/article/100/3/1275/7641064
-    type: webpage
-    URL: https://academic.oup.com/ia/article/100/3/1275/7641064
-    author:
-    - literal: Roberts et al.
+    - family: Dafoe
+      given: Allan
     issued:
       date-parts:
       - - 2024
-    title: Roberts et al., 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: 'AI Governance: Overview and Theoretical Lenses'
+    container-title: The Oxford Handbook of AI Governance
+    page: 21-44
+    publisher: Oxford University Press
+    DOI: 10.1093/oxfordhb/9780197579329.013.2
+  resolvedBy: override
+  anchors:
+  - Dafoe, 2022
+https://academic.oup.com/ia/article/100/3/1275/7641064:
+  item:
+    id: https://academic.oup.com/ia/article/100/3/1275/7641064
+    type: article-journal
+    URL: https://academic.oup.com/ia/article/100/3/1275/7641064
+    author:
+    - family: Roberts
+      given: Huw
+    - family: Hine
+      given: Emmie
+    - family: Taddeo
+      given: Mariarosaria
+    - family: Floridi
+      given: Luciano
+    issued:
+      date-parts:
+      - - 2024
+        - 5
+        - 7
+    title: 'Global AI governance: barriers and pathways forward'
+    container-title: International Affairs
+    volume: '100'
+    issue: '3'
+    page: 1275-1286
+    DOI: 10.1093/ia/iiae073
+  resolvedBy: override
   anchors:
   - Roberts et al., 2024
-  unreachable: refused
 https://academic.oup.com/mind/article/LIX/236/433/986238?login=false:
   item:
     id: https://academic.oup.com/mind/article/LIX/236/433/986238?login=false
@@ -26701,16 +26716,19 @@ https://blog.google/innovation-and-ai/products/nano-banana-pro:
 https://books.google.se/books/about/AI.html?id=V3XsEAAAQBAJ&redir_esc=y:
   item:
     id: https://books.google.se/books/about/AI.html?id=V3XsEAAAQBAJ&redir_esc=y
-    type: webpage
+    type: book
     URL: https://books.google.se/books/about/AI.html?id=V3XsEAAAQBAJ&redir_esc=y
     author:
-    - literal: Yampolskiy
+    - family: Yampolskiy
+      given: Roman V.
     issued:
       date-parts:
       - - 2024
-    title: Yampolskiy, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 2
+        - 23
+    title: 'AI: Unexplainable, Unpredictable, Uncontrollable'
+    publisher: CRC Press
+  resolvedBy: override
   anchors:
   - Yampolskiy, 2024
 https://books.google.se/books/about/Superintelligence.html?id=7_H8AwAAQBAJ&redir_esc=y:
@@ -28190,16 +28208,20 @@ https://economics.mit.edu/sites/default/files/2022-09/aitocracy_20220701.pdf:
 https://edition.cnn.com/2023/04/29/us/ai-scam-calls-kidnapping-cec/index.html:
   item:
     id: https://edition.cnn.com/2023/04/29/us/ai-scam-calls-kidnapping-cec/index.html
-    type: webpage
+    type: article-newspaper
     URL: https://edition.cnn.com/2023/04/29/us/ai-scam-calls-kidnapping-cec/index.html
     author:
-    - literal: Karimi
+    - family: Karimi
+      given: Faith
     issued:
       date-parts:
       - - 2023
-    title: Karimi, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 4
+        - 29
+    title: "'Mom, these bad men have me': She believes scammers cloned her daughter's voice in a fake
+      kidnapping"
+    container-title: CNN
+  resolvedBy: override
   anchors:
   - Karimi, 2023
 https://effectivealtruism.org/articles/paul-christiano-current-work-in-ai-alignment:
@@ -29903,50 +29925,61 @@ https://hai.stanford.edu/ai-index/2025-ai-index-report:
 https://hai.stanford.edu/assets/files/hai_ai_index_report_2025.pdf:
   item:
     id: https://hai.stanford.edu/assets/files/hai_ai_index_report_2025.pdf
-    type: webpage
+    type: report
     URL: https://hai.stanford.edu/assets/files/hai_ai_index_report_2025.pdf
     author:
-    - literal: Stanford HAI
+    - literal: Stanford Institute for Human-Centered Artificial Intelligence
     issued:
       date-parts:
       - - 2025
-    title: ' Stanford HAI, 2025'
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 4
+    title: The AI Index 2025 Annual Report
+    publisher: Stanford Institute for Human-Centered Artificial Intelligence
+    publisher-place: Stanford, CA
+    DOI: 10.48550/arXiv.2504.07139
+  resolvedBy: override
   anchors:
   - ' Stanford HAI, 2025'
 https://hai.stanford.edu/sites/default/files/2024-02/White-Paper-Rethinking-Privacy-AI-Era.pdf:
   item:
     id: 
       https://hai.stanford.edu/sites/default/files/2024-02/White-Paper-Rethinking-Privacy-AI-Era.pdf
-    type: webpage
+    type: report
     URL: 
       https://hai.stanford.edu/sites/default/files/2024-02/White-Paper-Rethinking-Privacy-AI-Era.pdf
     author:
-    - literal: King & Meinhardt
+    - family: King
+      given: Jennifer
+    - family: Meinhardt
+      given: Caroline
     issued:
       date-parts:
       - - 2024
-    title: King & Meinhardt, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 2
+    title: 'Rethinking Privacy in the AI Era: Policy Provocations for a Data-Centric World'
+    publisher: Stanford Institute for Human-Centered Artificial Intelligence
+  resolvedBy: override
   anchors:
   - King & Meinhardt, 2024
 https://hai.stanford.edu/sites/default/files/2024-03/Response-NTIA-RFC-Open-Foundation-Models.pdf:
   item:
     id: 
       https://hai.stanford.edu/sites/default/files/2024-03/Response-NTIA-RFC-Open-Foundation-Models.pdf
-    type: webpage
+    type: report
     URL: 
       https://hai.stanford.edu/sites/default/files/2024-03/Response-NTIA-RFC-Open-Foundation-Models.pdf
     author:
-    - literal: Hai et al
+    - literal: Stanford Institute for Human-Centered Artificial Intelligence
     issued:
       date-parts:
       - - 2024
-    title: Hai et al, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 3
+        - 27
+    title: Response to NTIA Request for Comment on Dual Use Foundation Artificial Intelligence 
+      Models With Widely Available Model Weights
+    number: Docket No. 240216-0052
+    publisher: Stanford Institute for Human-Centered Artificial Intelligence
+  resolvedBy: override
   anchors:
   - Hai et al, 2024
 https://hrw.org/news/2024/09/10/questions-and-answers-israeli-militarys-use-digital-tools-gaza:
@@ -30444,76 +30477,106 @@ https://intelligence.org/2023/04/07/pausing-ai-developments-isnt-enough-we-need-
 https://intelligence.org/files/CEV.pdf:
   item:
     id: https://intelligence.org/files/CEV.pdf
-    type: webpage
+    type: report
     URL: https://intelligence.org/files/CEV.pdf
     author:
-    - literal: Yudkowsky
+    - family: Yudkowsky
+      given: Eliezer
     issued:
       date-parts:
       - - 2004
-    title: Yudkowsky, 2004
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Coherent Extrapolated Volition
+    publisher: The Singularity Institute
+    publisher-place: San Francisco, CA
+  resolvedBy: override
   anchors:
   - Yudkowsky, 2004
 https://intelligence.org/files/IE-EI.pdf:
   item:
     id: https://intelligence.org/files/IE-EI.pdf
-    type: webpage
+    type: chapter
     URL: https://intelligence.org/files/IE-EI.pdf
     author:
-    - literal: Muehlhauser
+    - family: Muehlhauser
+      given: Luke
+    - family: Salamon
+      given: Anna
     issued:
       date-parts:
       - - 2012
-    title: Muehlhauser, 2012
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: 'Intelligence Explosion: Evidence and Import'
+    container-title: 'Singularity Hypotheses: A Scientific and Philosophical Assessment'
+    editor:
+    - family: Eden
+      given: Amnon
+    - family: Søraker
+      given: Johnny
+    - family: Moor
+      given: James H.
+    - family: Steinhart
+      given: Eric
+    publisher: Springer
+    publisher-place: Berlin
+  resolvedBy: override
   anchors:
   - Muehlhauser, 2012
 https://intelligence.org/files/IEM.pdf:
   item:
     id: https://intelligence.org/files/IEM.pdf
-    type: webpage
+    type: report
     URL: https://intelligence.org/files/IEM.pdf
     author:
-    - literal: Yudkowsky
+    - family: Yudkowsky
+      given: Eliezer
     issued:
       date-parts:
       - - 2013
-    title: Yudkowsky, 2013
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Intelligence Explosion Microeconomics
+    number: 2013-1
+    publisher: Machine Intelligence Research Institute
+    publisher-place: Berkeley, CA
+  resolvedBy: override
   anchors:
   - Yudkowsky, 2013
 https://intelligence.org/files/LearningValue.pdf:
   item:
     id: https://intelligence.org/files/LearningValue.pdf
-    type: webpage
+    type: paper-conference
     URL: https://intelligence.org/files/LearningValue.pdf
     author:
-    - literal: Dewey
+    - family: Dewey
+      given: Daniel
     issued:
       date-parts:
       - - 2011
-    title: Dewey, 2011
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Learning What to Value
+    container-title: 'Artificial General Intelligence: 4th International Conference, AGI 2011, Proceedings'
+    collection-title: Lecture Notes in Computer Science
+    volume: '6830'
+    page: 309-314
+    publisher: Springer
+    publisher-place: Berlin
+    DOI: 10.1007/978-3-642-22887-2_35
+  resolvedBy: override
   anchors:
   - Dewey, 2011
 https://intelligence.org/wp-content/uploads/2025/05/AI-Governance-to-Avoid-Extinction.pdf:
   item:
     id: https://intelligence.org/wp-content/uploads/2025/05/AI-Governance-to-Avoid-Extinction.pdf
-    type: webpage
+    type: report
     URL: https://intelligence.org/wp-content/uploads/2025/05/AI-Governance-to-Avoid-Extinction.pdf
     author:
-    - literal: Shevlane et al.
+    - family: Barnett
+      given: Peter
+    - family: Scher
+      given: Aaron
     issued:
       date-parts:
-      - - 2023
-    title: Shevlane et al., 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+      - - 2025
+        - 5
+    title: 'AI Governance to Avoid Extinction: The Strategic Landscape and Actionable Research Questions'
+    publisher: Machine Intelligence Research Institute
+  resolvedBy: override
   anchors:
   - Shevlane et al., 2023
 https://jetpress.org/v22/goertzel-pitt.htm:
@@ -30553,17 +30616,20 @@ https://keepthefuturehuman.ai/wp-content/uploads/2025/03/Keep_the_Future_Human__
   item:
     id: 
       https://keepthefuturehuman.ai/wp-content/uploads/2025/03/Keep_the_Future_Human__AnthonyAguirre__5March2025.pdf
-    type: webpage
+    type: report
     URL: 
       https://keepthefuturehuman.ai/wp-content/uploads/2025/03/Keep_the_Future_Human__AnthonyAguirre__5March2025.pdf
     author:
-    - literal: Aguirre
+    - family: Aguirre
+      given: Anthony
     issued:
       date-parts:
       - - 2025
-    title: Aguirre, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 3
+        - 5
+    title: 'Keep the Future Human: Why and How We Should Close the Gates to AGI and Superintelligence,
+      and What We Should Build Instead'
+  resolvedBy: override
   anchors:
   - Aguirre, 2025
 https://keepthefuturehuman.com/essay:
@@ -31533,16 +31599,17 @@ https://metaculus.com/questions/38418/us-and-china-reach-an-agreement-to-limit-f
 https://metr.github.io/autonomy-evals-guide:
   item:
     id: https://metr.github.io/autonomy-evals-guide
-    type: webpage
+    type: post-weblog
     URL: https://metr.github.io/autonomy-evals-guide
     author:
     - literal: METR
     issued:
       date-parts:
-      - - 2025
-    title: METR, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+      - - 2024
+        - 3
+    title: Autonomy Evaluation Resources
+    container-title: METR
+  resolvedBy: override
   anchors:
   - METR, 2025
 https://metr.org/blog/2023-03-18-update-on-recent-evals:
@@ -31614,16 +31681,17 @@ https://metr.org/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully:
 https://metr.org/blog/2025-03-26-common-elements-of-frontier-ai-safety-policies:
   item:
     id: https://metr.org/blog/2025-03-26-common-elements-of-frontier-ai-safety-policies
-    type: webpage
+    type: post-weblog
     URL: https://metr.org/blog/2025-03-26-common-elements-of-frontier-ai-safety-policies
     author:
     - literal: METR
     issued:
       date-parts:
       - - 2025
-    title: METR, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 12
+    title: Common Elements of Frontier AI Safety Policies (December 2025 Update)
+    container-title: METR
+  resolvedBy: override
   anchors:
   - METR, 2025
 https://metr.org/language-model-pilot-report:
@@ -32277,19 +32345,31 @@ https://onlinelibrary.wiley.com/doi/10.1002/9781118660584.ese0431:
 https://onlinelibrary.wiley.com/doi/abs/10.1111/jofi.1249:
   item:
     id: https://onlinelibrary.wiley.com/doi/abs/10.1111/jofi.1249
-    type: webpage
+    type: article-journal
     URL: https://onlinelibrary.wiley.com/doi/abs/10.1111/jofi.1249
     author:
-    - literal: Kirilenko et al.
+    - family: Kirilenko
+      given: Andrei
+    - family: Kyle
+      given: Albert S.
+    - family: Samadi
+      given: Mehrdad
+    - family: Tuzun
+      given: Tugkan
     issued:
       date-parts:
       - - 2017
-    title: Kirilenko et al., 2017
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 4
+        - 21
+    title: 'The Flash Crash: High-Frequency Trading in an Electronic Market'
+    container-title: The Journal of Finance
+    volume: '72'
+    issue: '3'
+    page: 967-998
+    DOI: 10.1111/jofi.12498
+  resolvedBy: override
   anchors:
   - Kirilenko et al., 2017
-  unreachable: refused
 https://openai.com/blog/introducing-superalignment:
   item:
     id: https://openai.com/blog/introducing-superalignment
@@ -33279,19 +33359,24 @@ https://primer.ought.org:
 https://psycnet.apa.org/record/1981-27235-001:
   item:
     id: https://psycnet.apa.org/record/1981-27235-001
-    type: webpage
+    type: article-journal
     URL: https://psycnet.apa.org/record/1981-27235-001
     author:
-    - literal: Searle
+    - family: Searle
+      given: John R.
     issued:
       date-parts:
       - - 1980
-    title: Searle, 1980
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 9
+    title: Minds, brains, and programs
+    container-title: Behavioral and Brain Sciences
+    volume: '3'
+    issue: '3'
+    page: 417-424
+    DOI: 10.1017/S0140525X00005756
+  resolvedBy: override
   anchors:
   - Searle, 1980
-  unreachable: refused
 https://psycnet.apa.org/record/2014-48585-000:
   item:
     id: https://psycnet.apa.org/record/2014-48585-000
@@ -33855,38 +33940,48 @@ https://researchgate.net/publication/360644155_AI_GOVERNANCE_ARE_CHIEF_AI_OFFICE
 : item:
     id: 
       https://researchgate.net/publication/367010605_The_state's_role_in_governing_artificial_intelligence_development_control_and_promotion_through_national_strategies
-    type: webpage
+    type: article-journal
     URL: 
       https://researchgate.net/publication/367010605_The_state's_role_in_governing_artificial_intelligence_development_control_and_promotion_through_national_strategies
     author:
-    - literal: Papyshev et al.
+    - family: Papyshev
+      given: Gleb
+    - family: Yarime
+      given: Masaru
     issued:
       date-parts:
       - - 2023
-    title: Papyshev et al., 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 1
+        - 2
+    title: "The state's role in governing artificial intelligence: development, control, and promotion
+      through national strategies"
+    container-title: Policy Design and Practice
+    volume: '6'
+    issue: '1'
+    page: 79-102
+    DOI: 10.1080/25741292.2022.2162252
+  resolvedBy: override
   anchors:
   - Papyshev et al., 2023
-  unreachable: refused
 https://researchgate.net/publication/382885035_Reasons_to_Doubt_the_Impact_of_AI_Risk_Evaluations:
   item:
     id: 
       https://researchgate.net/publication/382885035_Reasons_to_Doubt_the_Impact_of_AI_Risk_Evaluations
-    type: webpage
+    type: article
     URL: 
       https://researchgate.net/publication/382885035_Reasons_to_Doubt_the_Impact_of_AI_Risk_Evaluations
     author:
-    - literal: Mukobi
+    - family: Mukobi
+      given: Gabriel
     issued:
       date-parts:
       - - 2024
-    title: Mukobi, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Reasons to Doubt the Impact of AI Risk Evaluations
+    container-title: arXiv
+    DOI: 10.48550/arXiv.2408.02565
+  resolvedBy: override
   anchors:
   - Mukobi, 2024
-  unreachable: refused
 https://researchgate.net/publication/385353725_Safety_cases_for_frontier_AI:
   item:
     id: https://researchgate.net/publication/385353725_Safety_cases_for_frontier_AI
@@ -33925,20 +34020,26 @@ https://researchgate.net/publication/385353725_Safety_cases_for_frontier_AI:
 : item:
     id: 
       https://researchgate.net/publication/387730260_Exploring_China's_cyber_sovereignty_concept_and_artificial_intelligence_governance_model_a_machine_learning_approach
-    type: webpage
+    type: article-journal
     URL: 
       https://researchgate.net/publication/387730260_Exploring_China's_cyber_sovereignty_concept_and_artificial_intelligence_governance_model_a_machine_learning_approach
     author:
-    - literal: Hung
+    - family: Hung
+      given: Ho Ting
     issued:
       date-parts:
       - - 2025
-    title: Hung, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 1
+        - 4
+    title: "Exploring China's cyber sovereignty concept and artificial intelligence governance model:
+      a machine learning approach"
+    container-title: Journal of Computational Social Science
+    volume: '8'
+    issue: '1'
+    DOI: 10.1007/s42001-024-00346-8
+  resolvedBy: override
   anchors:
   - Hung, 2025
-  unreachable: unavailable
 https://resources.nvidia.com/en-us-blackwell-architecture:
   item:
     id: https://resources.nvidia.com/en-us-blackwell-architecture
@@ -34197,19 +34298,28 @@ https://sciencedirect.com/science/article/pii/S0040162521003413:
 https://sciencedirect.com/science/article/pii/S0963868724000672:
   item:
     id: https://sciencedirect.com/science/article/pii/S0963868724000672
-    type: webpage
+    type: article-journal
     URL: https://sciencedirect.com/science/article/pii/S0963868724000672
     author:
-    - literal: Papagiannidis
+    - family: Papagiannidis
+      given: Emmanouil
+    - family: Mikalef
+      given: Patrick
+    - family: Conboy
+      given: Kieran
     issued:
       date-parts:
       - - 2025
-    title: Papagiannidis, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 6
+    title: 'Responsible artificial intelligence governance: A review and research framework'
+    container-title: The Journal of Strategic Information Systems
+    volume: '34'
+    issue: '2'
+    page: '101885'
+    DOI: 10.1016/j.jsis.2024.101885
+  resolvedBy: override
   anchors:
   - Papagiannidis, 2025
-  unreachable: refused
 https://sciendo.com/issue/JAGI/11/2:
   item:
     id: https://sciendo.com/issue/JAGI/11/2
@@ -35220,17 +35330,19 @@ https://www.youtube.com/watch?v=ETZfkkv6V7Y:
     type: motion_picture
     URL: https://www.youtube.com/watch?v=ETZfkkv6V7Y
     author:
-    - literal: LeCun
+    - family: LeCun
+      given: Yann
     issued:
       date-parts:
       - - 2025
-    title: LeCun, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
+        - 3
+        - 21
+    title: Yann LeCun "Mathematical Obstacles on the Way to Human-Level AI"
     container-title: YouTube
-  resolvedBy: anchor
+    publisher: Joint Mathematics Meetings
+  resolvedBy: override
   anchors:
   - LeCun, 2025
-  unreachable: refused
 https://www.youtube.com/watch?v=N1TEjTeQeg0:
   item:
     id: https://www.youtube.com/watch?v=N1TEjTeQeg0

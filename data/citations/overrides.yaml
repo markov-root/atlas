@@ -19,8 +19,373 @@
 #     container-title: Journal or Publisher
 #     DOI: 10.1000/example
 #
+# An explicit `null` REMOVES a field a resolver got wrong; omitting the field
+# keeps whatever is already there. `container-title: null` on a report is the
+# usual case - a report has a publisher, and APA renders a container as
+# "In Some Institute." in the middle of the reference.
+#
 # `atlas citations propose` writes a starting point for each unresolved entry,
 # with whatever evidence could be gathered, into overrides.proposed.yaml.
 #
 # Applied by `atlas citations extract`, above every resolver, and never
 # re-fetched: `resolve --redo` refuses to target an entry this file owns.
+#
+# ## Provenance
+#
+# Each block says where its metadata came from. Three sources appear here:
+#
+#   owner      - the owner opened the document and read its own citation block.
+#   crossref   - a deterministic Crossref lookup (by DOI, by Elsevier PII, or by
+#                exact journal volume and first page). Never a title search:
+#                task:0032 D3 measured that returning a *different* paper at an
+#                indistinguishable score, which is worse than no answer.
+#   citoid     - Wikimedia's public Zotero translation server, which reaches
+#                pages our own scrapers cannot. One-off batch, 2026-09-24.
+#
+# Where a source also needs a fix in the Google Doc (a wrong link, or anchor
+# text that disagrees with the document it points at), the block says so and
+# task:0035 carries the full list.
+
+# ===== MIRI (owner-read, 2026-09-24)
+
+https://intelligence.org/files/CEV.pdf:
+  # provenance: owner. Published by the Singularity Institute, which later
+  # became MIRI. `publisher` records what the document itself says, so this
+  # files under the old name in the Source facet while the 2013 and 2025 MIRI
+  # papers file under the new one. That is the truth about who published what.
+  title: Coherent Extrapolated Volition
+  author:
+    - family: Yudkowsky
+      given: Eliezer
+  issued: { date-parts: [[2004]] }
+  type: report
+  container-title: null # a report has a publisher, not a container
+  publisher: The Singularity Institute
+  publisher-place: San Francisco, CA
+
+https://intelligence.org/files/IE-EI.pdf:
+  # provenance: owner. The MIRI PDF is the preprint; the work of record is the
+  # Springer chapter, which is what the document's own citation block gives.
+  title: 'Intelligence Explosion: Evidence and Import'
+  author:
+    - family: Muehlhauser
+      given: Luke
+    - family: Salamon
+      given: Anna
+  issued: { date-parts: [[2012]] }
+  type: chapter
+  container-title: 'Singularity Hypotheses: A Scientific and Philosophical Assessment'
+  editor:
+    - family: Eden
+      given: Amnon
+    - family: Søraker
+      given: Johnny
+    - family: Moor
+      given: James H.
+    - family: Steinhart
+      given: Eric
+  publisher: Springer
+  publisher-place: Berlin
+
+https://intelligence.org/files/IEM.pdf:
+  # provenance: owner.
+  title: Intelligence Explosion Microeconomics
+  author:
+    - family: Yudkowsky
+      given: Eliezer
+  issued: { date-parts: [[2013]] }
+  type: report
+  number: 2013-1
+  container-title: null
+  publisher: Machine Intelligence Research Institute
+  publisher-place: Berkeley, CA
+
+https://intelligence.org/files/LearningValue.pdf:
+  # provenance: owner, DOI confirmed against Crossref (book-chapter, LNCS,
+  # Springer Berlin Heidelberg, 2011, pp. 309-314, Daniel Dewey).
+  title: Learning What to Value
+  author:
+    - family: Dewey
+      given: Daniel
+  issued: { date-parts: [[2011]] }
+  type: paper-conference
+  container-title: 'Artificial General Intelligence: 4th International Conference, AGI 2011, Proceedings'
+  collection-title: Lecture Notes in Computer Science
+  volume: '6830'
+  page: 309-314
+  publisher: Springer
+  publisher-place: Berlin
+  DOI: 10.1007/978-3-642-22887-2_35
+
+https://intelligence.org/wp-content/uploads/2025/05/AI-Governance-to-Avoid-Extinction.pdf:
+  # provenance: owner.
+  # GDOC FIX (task:0035): the anchor text says "Shevlane et al., 2023" but this
+  # document is Barnett and Scher, May 2025. Either the link or the anchor is
+  # wrong upstream. The metadata here describes the document actually linked.
+  title: 'AI Governance to Avoid Extinction: The Strategic Landscape and Actionable Research Questions'
+  author:
+    - family: Barnett
+      given: Peter
+    - family: Scher
+      given: Aaron
+  issued: { date-parts: [[2025, 5]] }
+  type: report
+  container-title: null
+  publisher: Machine Intelligence Research Institute
+
+# ===== Other owner-read documents (2026-09-24)
+
+https://keepthefuturehuman.ai/wp-content/uploads/2025/03/Keep_the_Future_Human__AnthonyAguirre__5March2025.pdf:
+  # provenance: owner. Same work as keepthefuturehuman.com/essay under a second
+  # address, which is task:0031 rather than a metadata gap.
+  title: 'Keep the Future Human: Why and How We Should Close the Gates to AGI and Superintelligence, and What We Should Build Instead'
+  author:
+    - family: Aguirre
+      given: Anthony
+  issued: { date-parts: [[2025, 3, 5]] }
+  type: report
+  container-title: null
+
+https://hai.stanford.edu/assets/files/hai_ai_index_report_2025.pdf:
+  # provenance: owner, from the report's own "How to Cite This Report" block.
+  # The cover reads "Artificial Intelligence Index Report 2025"; the publisher's
+  # own citation form is used instead.
+  # Authored by 26 named contributors led by Nestor Maslej. The institution is
+  # recorded as the author because the prose cites it as "Stanford HAI, 2025",
+  # and a bibliography entry sorting under Maslej would disagree with the page.
+  title: The AI Index 2025 Annual Report
+  author:
+    - literal: Stanford Institute for Human-Centered Artificial Intelligence
+  issued: { date-parts: [[2025, 4]] }
+  type: report
+  container-title: null
+  publisher: Stanford Institute for Human-Centered Artificial Intelligence
+  publisher-place: Stanford, CA
+  DOI: 10.48550/arXiv.2504.07139
+
+https://hai.stanford.edu/sites/default/files/2024-02/White-Paper-Rethinking-Privacy-AI-Era.pdf:
+  # provenance: owner.
+  title: 'Rethinking Privacy in the AI Era: Policy Provocations for a Data-Centric World'
+  author:
+    - family: King
+      given: Jennifer
+    - family: Meinhardt
+      given: Caroline
+  issued: { date-parts: [[2024, 2]] }
+  type: report
+  container-title: null
+  publisher: Stanford Institute for Human-Centered Artificial Intelligence
+
+https://hai.stanford.edu/sites/default/files/2024-03/Response-NTIA-RFC-Open-Foundation-Models.pdf:
+  # provenance: owner. A 21-signatory public comment letter with no titled
+  # author; the institution is recorded as the author.
+  # GDOC FIX (task:0035): the anchor reads "Hai et al, 2024", which is the
+  # acronym HAI parsed as a surname.
+  title: Response to NTIA Request for Comment on Dual Use Foundation Artificial Intelligence Models With Widely Available Model Weights
+  author:
+    - literal: Stanford Institute for Human-Centered Artificial Intelligence
+  issued: { date-parts: [[2024, 3, 27]] }
+  type: report
+  number: Docket No. 240216-0052
+  container-title: null
+  publisher: Stanford Institute for Human-Centered Artificial Intelligence
+
+# ===== METR (owner-read, from METR's own citation buttons)
+
+https://metr.github.io/autonomy-evals-guide:
+  # provenance: owner, METR's published BibTeX.
+  # GDOC FIX (task:0035): METR's canonical address is
+  # https://metr.org/blog/2024-03-13-autonomy-evaluation-resources/
+  title: Autonomy Evaluation Resources
+  author:
+    - literal: METR
+  issued: { date-parts: [[2024, 3]] }
+  type: post-weblog
+  container-title: METR
+
+https://metr.org/blog/2025-03-26-common-elements-of-frontier-ai-safety-policies:
+  # provenance: owner, METR's published BibTeX.
+  # GDOC FIX (task:0035): the page was revised in place and METR's canonical
+  # address is now .../2025-12-09-common-elements-of-frontier-ai-safety-policies/
+  title: Common Elements of Frontier AI Safety Policies (December 2025 Update)
+  author:
+    - literal: METR
+  issued: { date-parts: [[2025, 12]] }
+  type: post-weblog
+  container-title: METR
+
+# ===== Recovered from Crossref by DOI, PII, or volume-and-page
+
+https://psycnet.apa.org/record/1981-27235-001:
+  # provenance: crossref, by DOI.
+  title: Minds, brains, and programs
+  author:
+    - family: Searle
+      given: John R.
+  issued: { date-parts: [[1980, 9]] }
+  type: article-journal
+  container-title: Behavioral and Brain Sciences
+  volume: '3'
+  issue: '3'
+  page: 417-424
+  DOI: 10.1017/S0140525X00005756
+
+https://onlinelibrary.wiley.com/doi/abs/10.1111/jofi.1249:
+  # provenance: crossref, by DOI.
+  # GDOC FIX (task:0035): the linked DOI is truncated. 10.1111/jofi.1249 does
+  # not exist; the article is 10.1111/jofi.12498. The URL is this entry's
+  # identity and cannot be corrected here, so the link stays broken until the
+  # Doc is fixed. The recorded DOI gives readers a working route meanwhile.
+  title: 'The Flash Crash: High-Frequency Trading in an Electronic Market'
+  author:
+    - family: Kirilenko
+      given: Andrei
+    - family: Kyle
+      given: Albert S.
+    - family: Samadi
+      given: Mehrdad
+    - family: Tuzun
+      given: Tugkan
+  issued: { date-parts: [[2017, 4, 21]] }
+  type: article-journal
+  container-title: The Journal of Finance
+  volume: '72'
+  issue: '3'
+  page: 967-998
+  DOI: 10.1111/jofi.12498
+
+https://academic.oup.com/ia/article/100/3/1275/7641064:
+  # provenance: crossref, matched on journal ISSN plus volume and first page
+  # taken from the URL path; independently confirmed by citoid.
+  title: 'Global AI governance: barriers and pathways forward'
+  author:
+    - family: Roberts
+      given: Huw
+    - family: Hine
+      given: Emmie
+    - family: Taddeo
+      given: Mariarosaria
+    - family: Floridi
+      given: Luciano
+  issued: { date-parts: [[2024, 5, 7]] }
+  type: article-journal
+  container-title: International Affairs
+  volume: '100'
+  issue: '3'
+  page: 1275-1286
+  DOI: 10.1093/ia/iiae073
+
+https://researchgate.net/publication/367010605_The_state's_role_in_governing_artificial_intelligence_development_control_and_promotion_through_national_strategies:
+  # provenance: crossref, exact title and author match on the URL slug.
+  # GDOC FIX (task:0035): cites a ResearchGate mirror; the work of record is
+  # the Taylor and Francis article at the DOI below.
+  title: "The state's role in governing artificial intelligence: development, control, and promotion through national strategies"
+  author:
+    - family: Papyshev
+      given: Gleb
+    - family: Yarime
+      given: Masaru
+  issued: { date-parts: [[2023, 1, 2]] }
+  type: article-journal
+  container-title: Policy Design and Practice
+  volume: '6'
+  issue: '1'
+  page: 79-102
+  DOI: 10.1080/25741292.2022.2162252
+
+https://sciencedirect.com/science/article/pii/S0963868724000672:
+  # provenance: crossref, matched on the Elsevier PII carried in the URL.
+  title: 'Responsible artificial intelligence governance: A review and research framework'
+  author:
+    - family: Papagiannidis
+      given: Emmanouil
+    - family: Mikalef
+      given: Patrick
+    - family: Conboy
+      given: Kieran
+  issued: { date-parts: [[2025, 6]] }
+  type: article-journal
+  container-title: The Journal of Strategic Information Systems
+  volume: '34'
+  issue: '2'
+  page: '101885'
+  DOI: 10.1016/j.jsis.2024.101885
+
+# ===== Recovered by citoid (Zotero translation server), 2026-09-24
+
+https://academic.oup.com/edited-volume/41989/chapter-abstract/408516484:
+  # provenance: citoid, DOI and pagination confirmed against Crossref.
+  # Citoid's creator list merges the chapter author with the handbook's seven
+  # editors; only Dafoe is recorded as author.
+  # GDOC FIX (task:0035): the anchor says 2022, the chapter is dated 2024.
+  title: 'AI Governance: Overview and Theoretical Lenses'
+  author:
+    - family: Dafoe
+      given: Allan
+  issued: { date-parts: [[2024]] }
+  type: chapter
+  container-title: The Oxford Handbook of AI Governance
+  page: 21-44
+  publisher: Oxford University Press
+  DOI: 10.1093/oxfordhb/9780197579329.013.2
+
+https://www.youtube.com/watch?v=ETZfkkv6V7Y:
+  # provenance: citoid. Recorded conference talk; the channel is the Joint
+  # Mathematics Meetings and the speaker is the author.
+  title: Yann LeCun "Mathematical Obstacles on the Way to Human-Level AI"
+  author:
+    - family: LeCun
+      given: Yann
+  issued: { date-parts: [[2025, 3, 21]] }
+  type: motion_picture
+  container-title: YouTube
+  publisher: Joint Mathematics Meetings
+
+https://researchgate.net/publication/382885035_Reasons_to_Doubt_the_Impact_of_AI_Risk_Evaluations:
+  # provenance: citoid, which returned the arXiv DOI for the ResearchGate page.
+  # GDOC FIX (task:0035): cites a ResearchGate mirror of arXiv:2408.02565.
+  title: Reasons to Doubt the Impact of AI Risk Evaluations
+  author:
+    - family: Mukobi
+      given: Gabriel
+  issued: { date-parts: [[2024]] }
+  type: article
+  container-title: arXiv
+  DOI: 10.48550/arXiv.2408.02565
+
+https://researchgate.net/publication/387730260_Exploring_China's_cyber_sovereignty_concept_and_artificial_intelligence_governance_model_a_machine_learning_approach:
+  # provenance: citoid returned the DOI; the record below is Crossref's.
+  # GDOC FIX (task:0035): cites a ResearchGate mirror of the Springer article.
+  title: "Exploring China's cyber sovereignty concept and artificial intelligence governance model: a machine learning approach"
+  author:
+    - family: Hung
+      given: Ho Ting
+  issued: { date-parts: [[2025, 1, 4]] }
+  type: article-journal
+  container-title: Journal of Computational Social Science
+  volume: '8'
+  issue: '1'
+  DOI: 10.1007/s42001-024-00346-8
+
+https://edition.cnn.com/2023/04/29/us/ai-scam-calls-kidnapping-cec/index.html:
+  # provenance: citoid.
+  title: "'Mom, these bad men have me': She believes scammers cloned her daughter's voice in a fake kidnapping"
+  author:
+    - family: Karimi
+      given: Faith
+  issued: { date-parts: [[2023, 4, 29]] }
+  type: article-newspaper
+  container-title: CNN
+
+https://books.google.se/books/about/AI.html?id=V3XsEAAAQBAJ&redir_esc=y:
+  # provenance: citoid.
+  # GDOC FIX (task:0035): cites a Google Books landing page rather than the
+  # publisher or a DOI.
+  title: 'AI: Unexplainable, Unpredictable, Uncontrollable'
+  author:
+    - family: Yampolskiy
+      given: Roman V.
+  issued: { date-parts: [[2024, 2, 23]] }
+  type: book
+  container-title: null
+  publisher: CRC Press
