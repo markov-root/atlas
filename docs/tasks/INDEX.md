@@ -98,7 +98,7 @@ in total, each with options, a recommendation, and what is irreversible if decid
 - [task:0033](./0033-replace-native-select-dropdowns-with-a-styled-listbox-component.md) -
   Replace native select dropdowns with a styled listbox component (todo - p2; a native select's popup is drawn by the OS and ignores every site style; three inconsistent select styles exist today).
 - [task:0034](./0034-include-the-bibliography-in-the-chapter-pdf.md) -
-  Include the bibliography in the chapter PDF (todo - child of 0021, p2; every input exists, the Typst renderer never asked).
+  Include the bibliography in the chapter PDF (done 2026-09-24 - child of 0021; the fourth reader-facing surface, in the house Basic style, with every address printed as well as linked).
 - [task:0035](./0035-upstream-google-doc-citation-corrections-wrong-links-and-wrong-anchor-text.md) -
   Upstream Google Doc citation corrections (todo - child of 0032, p2; eleven defects that cannot be fixed in this repository because URL is identity and anchor text is never re-rendered).
 - [task:0036](./0036-back-links-from-a-reference-to-every-place-it-is-cited.md) -

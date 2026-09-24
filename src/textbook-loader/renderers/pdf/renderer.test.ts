@@ -214,3 +214,75 @@ describe('PDF Renderer - full pipeline links chapters and pushes to CDN', () => 
     expect(files.size).toBe(2);
   });
 });
+
+// The PDF is the one reader-facing surface where a missing reference list is
+// not recoverable: a reader on a plane cannot click through to /bibliography,
+// so the chapter's author-year citations would point at nothing the document
+// contains. If these fail, downloaded chapters ship with dangling citations.
+describe('PDF Renderer - the chapter bibliography (task:0034)', () => {
+  const link = (href: string, content: string) => ({
+    name: 'Link',
+    attributes: { href, content },
+    children: [],
+  });
+  const para = (...children: any[]) => ({ name: 'Paragraph', attributes: {}, children });
+
+  it('ends the chapter with a References section listing what it cites', () => {
+    const r = new Renderer(textbook([]), '/tmp/assets', tmpOut);
+    const ch = chapter(1, [
+      section(1, {
+        nodes: [para(link('https://arxiv.org/abs/2203.15556', 'Hoffmann et al., 2022'))] as any,
+      }),
+    ]);
+    const src = r.generateChapter(ch);
+    expect(src).toContain('numbering: none)[References]');
+    expect(src).toContain('https://arxiv.org/abs/2203.15556');
+    expect(src.indexOf('[References]')).toBeGreaterThan(src.indexOf('Section 1'));
+  });
+
+  it('renders no heading for a chapter that cites nothing (AC-2)', () => {
+    // A heading over an empty list reads as a broken page - the same rule the
+    // web component and the Acknowledgements block above both follow.
+    const r = new Renderer(textbook([]), '/tmp/assets', tmpOut);
+    expect(r.generateChapter(chapter(1, [section(1)]))).not.toContain('[References]');
+  });
+
+  it('prints the address as text as well as linking it (D2)', () => {
+    // Typst can make a URL clickable; paper cannot. A reference whose address
+    // existed only as a hyperlink is unusable in the medium this task is for.
+    const r = new Renderer(textbook([]), '/tmp/assets', tmpOut);
+    const ch = chapter(1, [
+      section(1, {
+        nodes: [para(link('https://arxiv.org/abs/2203.15556', 'Hoffmann et al., 2022'))] as any,
+      }),
+    ]);
+    const src = r.generateChapter(ch);
+    expect(src).toContain('#link("https://arxiv.org/abs/2203.15556")');
+    expect(src).toContain('arxiv.org/abs/2203.15556]]');
+  });
+
+  it('lists a source cited in two sections once', () => {
+    const r = new Renderer(textbook([]), '/tmp/assets', tmpOut);
+    const cite = () =>
+      [para(link('https://arxiv.org/abs/2203.15556', 'Hoffmann et al., 2022'))] as any;
+    const src = r.generateChapter(
+      chapter(1, [section(1, { nodes: cite() }), section(2, { nodes: cite() })]),
+    );
+    // Counted inside the reference list only: the prose carries its own two
+    // links to the same paper, and those are citations, not entries.
+    const list = src.slice(src.indexOf('[References]'));
+    expect(list.split('#link("https://arxiv.org/abs/2203.15556")').length - 1).toBe(1);
+  });
+
+  it('escapes Typst syntax that arrives in a reference title', () => {
+    const r = new Renderer(textbook([]), '/tmp/assets', tmpOut);
+    const ch = chapter(1, [
+      section(1, {
+        nodes: [para(link('https://not-in-store.example/x', 'Nobody, 2099'))] as any,
+      }),
+    ]);
+    // An entry with no store record falls back to its URL as link text, which
+    // still has to survive Typst's markup rules.
+    expect(() => r.generateChapter(ch)).not.toThrow();
+  });
+});

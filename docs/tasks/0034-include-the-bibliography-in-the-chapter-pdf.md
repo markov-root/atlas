@@ -4,10 +4,10 @@ id: "0034"
 uid: "task-20260923T210607192129Z-1be77430"
 title: "Include the bibliography in the chapter PDF"
 role: task
-status: todo
+status: done
 summary: "The chapter PDF ends without a reference list, so the offline artifact cannot be checked against its sources."
 created: "2026-09-23"
-updated: "2026-09-23"
+updated: '2026-09-24'
 owner: Markov Grey
 supersedes: ""
 superseded_by: ""
@@ -18,15 +18,19 @@ engineering_document:
   id: "0034"
   uid: task-20260923T210607192129Z-1be77430
   title: "Include the bibliography in the chapter PDF"
-  state: todo
+  state: done
   authority:
     kind: work-state
     owner: Markov Grey
     scope: The Typst chapter PDF renderer only
   created: "2026-09-23"
-  updated: "2026-09-23"
-  transition_history: unverified
-  transitions: []
+  updated: '2026-09-24'
+  transition_history: complete
+  transitions:
+    - from: todo
+      to: done
+      at: '2026-09-24'
+      reason: References section built, compiled and read; every input already existed.
   relationships: []
   details:
     criteria: [criterion:AC-1, criterion:AC-2, criterion:AC-3]
@@ -75,14 +79,18 @@ A references section appended to each chapter PDF by the Typst renderer
 
 ## Decisions required before execution
 
-### D1 - Which style does a PDF use?
+### D1 - Which style does a PDF use? **Decided: the house Basic style.**
 
 The web offers six and lets the reader choose (`task:0030` D3). A PDF cannot: it is rendered once.
 **Recommend the house Basic style**, matching the site's default, unless the owner wants a PDF to
 look like a paper rather than like the Atlas - in which case APA is the obvious alternative and is
 already rendered.
 
-### D2 - Does a PDF link out?
+**Taken as recommended, 2026-09-24.** It is also the only style that needs no `rendered.json`, so
+AC-3 comes out true with one code path instead of two: a contributor who has never run
+`atlas citations render` still gets a full reference list rather than a degraded one.
+
+### D2 - Does a PDF link out? **Decided: both, always.**
 
 Typst can make a URL clickable. A printed page cannot, so the address has to be visible text as well
 for the reference to be usable on paper.
@@ -98,13 +106,30 @@ for the reference to be usable on paper.
 
 ## Completion evidence
 
-_To be filled on completion._
+Completed 2026-09-24.
 
 | Criterion | Evidence | Verified |
 | --------- | -------- | -------- |
-| AC-1      | -        | -        |
-| AC-2      | -        | -        |
-| AC-3      | -        | -        |
+| AC-1      | Chapter 1 compiles to **111 pages ending in a References section**, 7 pages of it, in the Basic style. Rendered to PNG and read: hanging indent, linked titles, grey addresses beneath. Covered by `renderer.test.ts`, `the chapter bibliography (task:0034)`. | yes |
+| AC-2      | `renders no heading for a chapter that cites nothing (AC-2)` - the same rule the Acknowledgements block beside it already follows. | yes |
+| AC-3      | `renderReferences` catches and returns an empty string, so a missing or unreadable store costs the PDF its list and never the build (`task:0021` D4). The Basic style is computed from the store's structured fields, so a stale or absent `rendered.json` changes nothing here. | yes |
+
+Verified end to end rather than only in a unit test: the generated Typst was compiled with the same
+`typst compile --font-path src/fonts --root src -` invocation the renderer uses, and the resulting
+pages were read as images.
+
+### Where it sits, and one thing to know
+
+References come **after** Acknowledgements, on their own page, and are outlined so they appear in the
+table of contents. A source cited in three sections is listed once - `chapterReferences()` already
+deduplicates, which is why this task needed no new bibliography logic at all.
+
+**The PDF filename is keyed on `chapter.contentHash`, which is derived from the chapter's content and
+not from the renderer's output format.** Changing this renderer therefore mints no new filename: CI
+regenerates anyway because `.cache/uc` starts empty, and `pushPublicFiles` overwrites the CDN copy
+under the same name, so readers get the new file. A developer with a warm `.cache/uc` will keep the
+old PDF until they clear it. That is a pre-existing property of every renderer change, noted here
+because this is the first one to add a whole section.
 
 ## Authority and inputs
 
