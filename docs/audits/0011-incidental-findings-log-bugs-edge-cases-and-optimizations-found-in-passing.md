@@ -517,6 +517,90 @@ and it always keeps one token so a genuinely lowercase name such as "danah" surv
 at a time. The scan that found the other 12 was one regex over `rendered.json` and took a minute;
 running it after any name-handling change is cheap insurance.
 
+### F21 - The duplicate detector read the hyphen in "GPT-4" as a site-name separator
+
+**Severity:** medium · **Evidence:** the full duplicate report · **Found:** 2026-09-24, starting
+`task:0031`
+
+`_TITLE_SUFFIX` strips a trailing site name so that a post cross-published to two forums
+fingerprints identically. Its separator class allowed **zero** whitespace before the dash, so the
+hyphen inside a model name matched:
+
+| Title                    | Fingerprint | |
+| ------------------------ | ----------- | --- |
+| `GPT-4 Technical Report` | `gpt`       | ← |
+| `GPT-4 System Card`      | `gpt`       | ← |
+
+The two were reported as one work, and `task:0031` was about to alias them together - which would
+have collapsed a 100-page technical report and its system card into a single entry. Hyphenated model
+names (`GPT-4`, `Llama-2`, `Claude-3`) are everywhere in this corpus, so the exposure was much wider
+than the one pair that happened to collide.
+
+**Fixed:** a dash or pipe separator must now be preceded by whitespace; a colon need not be. Site
+suffixes still strip, model names no longer truncate. Duplicate groups fell 17 → 16.
+
+**General form worth remembering:** a heuristic that *loses* information (fingerprint, hash, slug)
+fails silently by over-merging, and the failure looks like a successful match. Print what it
+actually computed before acting on it.
+
+### F22 - A LessWrong comment was credited to the thread's owner
+
+**Severity:** high · **Evidence:** four citations, three wrong · **Found:** 2026-09-24, checking
+whether four shortform URLs were duplicates
+
+`forum_magnum.post_id` deliberately dropped `?commentId=`, with the reason stated in its docstring:
+
+> the bibliography cites the post, and a comment has no title or author record of its own to render
+
+**The premise is false.** The API returns a comment's author and date; only its title is genuinely
+absent. So four citations pointing at one conversation in `johnswentworth's Shortform` - written by
+**three different people** - were all credited to johnswentworth, with the *post's* 2020 date rather
+than the comments' 2025 ones.
+
+The authors' own anchor text is the proof it was wrong: the prose says "Segerie, 2025" and
+"Hernandez, 2025" where the bibliography said johnswentworth. **A citation that names the wrong
+author is worse than one with no author at all** - it is a false statement about a real person.
+
+**Fixed:** a comment permalink is now answered by the comment. The title is editorial and says what
+the thing is - `Comment on "johnswentworth's Shortform"` - because reusing the post's title reads as
+though the commenter wrote the post. Six comment citations corrected, including one on the Alignment
+Forum credited to a post rather than to paulfchristiano.
+
+**Residual, for `task:0035`:** one of the four, `commentId=aBcAh8H9cSzdXmgb7`, is by
+Charbel-Raphaël while the prose cites it as "Wentworth, 2025". That one is wrong upstream.
+
+### F23 - `--redo <resolver>` silently refused to redo that resolver's own entries
+
+**Severity:** medium · **Evidence:** a redo that reported work and did none · **Found:** 2026-09-24,
+trying to apply the F22 fix
+
+`--redo` exists because "a resolved entry is never re-fetched" works against you when a resolver
+improves. But its filter only admitted entries a **different** selective resolver would now claim:
+
+```python
+any(r.selective and r.name not in redo and r.claims(url) for r in ALL_RESOLVERS)
+```
+
+`--redo forum-magnum` therefore matched none of forum-magnum's own eight entries, because no *other*
+selective resolver claims a LessWrong URL. It printed `16 to attempt`, exited 0, and left every
+entry the fix was written for exactly as it was.
+
+The silence is the defect. A command that declines work should say so; this one reported a plausible
+number and did something else.
+
+**Fixed:** the predicate now receives the entry's own `resolvedBy` and admits a selective resolver
+redoing its own work. Still restricted to selective resolvers, for the reason F10 records: `opengraph`
+claims every URL, so letting a non-selective resolver redo itself turns `--redo` back into
+"re-fetch the world".
+
+**Bonus, and the reason the fix is worth more than the bug:** with the filter corrected,
+`--redo opengraph` found **136 Alignment Forum and LessWrong posts** that predate the forum-magnum
+resolver and were still carrying scraped Open Graph metadata: a title with the site name appended by
+the scraper rather than the post's own, no real author, no real date. They had been unreachable by
+any redo since the resolver was added. (The scraped titles are quoted in `data/citations/`, which is
+exempt from the house punctuation rule precisely because they contain the separator this file may
+not.)
+
 ## Recommendations
 
 1. **Close F1 before `task:0021` adds `cli/` code.** Declaring `@types/node` and getting `cli/` into

@@ -42,7 +42,7 @@ SAVE_EVERY = 20
 def unresolved_keys(
     store: Store,
     redo: list[str] | None = None,
-    claimed_by: Callable[[str], bool] | None = None,
+    claimed_by: Callable[[str, str | None], bool] | None = None,
 ) -> list[str]:
     """Entries to attempt: anchor-only, plus any whose resolver is being redone.
 
@@ -51,6 +51,11 @@ def unresolved_keys(
     with, instead of re-fetching hundreds of blog posts Open Graph already
     handled correctly. The caller supplies the predicate; see
     :func:`citations_resolve` for the one that makes that promise true.
+
+    The predicate receives the entry's own ``resolvedBy`` as well as its URL, so
+    it can distinguish "a newer resolver would claim this" from "the resolver
+    that produced this has since improved". Both are redo-worthy and only the
+    first used to be reachable (``audit:0011`` F23).
     """
     redo = redo or []
     out = []
@@ -61,7 +66,7 @@ def unresolved_keys(
             continue
         if by not in redo:
             continue
-        if claimed_by is None or claimed_by(key):
+        if claimed_by is None or claimed_by(key, by):
             out.append(key)
     return out
 
@@ -209,8 +214,24 @@ def citations_resolve(root: Path, opts: ResolveOptions | None = None) -> int:
     # was added for. See `audit:0011` F10.
     redo = effective_redo(opts.redo)
 
-    def claimed_by_newer(url: str) -> bool:
-        return any(r.selective and r.name not in redo and r.claims(url) for r in ALL_RESOLVERS)
+    # A *selective* resolver may also redo its own entries. Without this, the
+    # filter above covers only "a newer resolver exists" and silently drops the
+    # other half of `--redo`'s stated purpose - "entries a weaker one already
+    # claimed would keep their thin metadata forever" reads as though it covers
+    # a resolver that improves, and it did not. `--redo forum-magnum` after
+    # teaching that resolver to read comment permalinks reported "16 to attempt"
+    # and re-resolved none of its own eight, because no *other* selective
+    # resolver claims a LessWrong URL. Failing silently is the worst part: the
+    # command exits 0 having done nothing it was asked to do (`audit:0011` F23).
+    #
+    # Restricted to selective resolvers for the same reason the rest of this is:
+    # `opengraph` claims every URL, so letting a non-selective resolver redo its
+    # own entries turns `--redo opengraph` back into "re-fetch the world".
+    def claimed_by_newer(url: str, resolved_by: str | None = None) -> bool:
+        return any(
+            r.selective and r.claims(url) and (r.name not in redo or r.name == resolved_by)
+            for r in ALL_RESOLVERS
+        )
 
     pending = unresolved_keys(store, redo, claimed_by_newer if redo else None)
     if not pending:

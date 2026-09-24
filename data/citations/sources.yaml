@@ -781,15 +781,17 @@ https://alignmentforum.org/posts/4nZRzoGTqg8xy5rr8/the-reward-engineering-proble
     type: post-weblog
     URL: https://alignmentforum.org/posts/4nZRzoGTqg8xy5rr8/the-reward-engineering-problem
     author:
-    - literal: Christiano
+    - literal: paulfchristiano
     issued:
       date-parts:
       - - 2019
-    title: The reward engineering problem — AI Alignment Forum
+        - 1
+        - 16
+    title: The reward engineering problem
     abstract: Today we usually train reinforcement learning agents to perform narrow tasks with 
       simple goals. We may eventually want to train RL agents to behave “…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Christiano, 2019
 https://alignmentforum.org/posts/6jkGf5WEKMpMFXZp2/what-failure-looks-like-distilling-the-discussion:
@@ -800,15 +802,17 @@ https://alignmentforum.org/posts/6jkGf5WEKMpMFXZp2/what-failure-looks-like-disti
     URL: 
       https://alignmentforum.org/posts/6jkGf5WEKMpMFXZp2/what-failure-looks-like-distilling-the-discussion
     author:
-    - literal: Pace
+    - literal: Ben Pace
     issued:
       date-parts:
       - - 2020
-    title: 'What Failure Looks Like: Distilling the Discussion — AI Alignment Forum'
+        - 7
+        - 29
+    title: 'What Failure Looks Like: Distilling the Discussion'
     abstract: The comments under a post often contains valuable insights and additions. They are 
       also often very long and involved, and harder to cite than posts t…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Pace, 2020
 https://alignmentforum.org/posts/98c5WMDb3iKdzD4tM/oversight-misses-100-of-thoughts-the-ai-does-not-think:
@@ -819,15 +823,17 @@ https://alignmentforum.org/posts/98c5WMDb3iKdzD4tM/oversight-misses-100-of-thoug
     URL: 
       https://alignmentforum.org/posts/98c5WMDb3iKdzD4tM/oversight-misses-100-of-thoughts-the-ai-does-not-think
     author:
-    - literal: Wentworth
+    - literal: johnswentworth
     issued:
       date-parts:
       - - 2022
-    title: Oversight Misses 100% of Thoughts The AI Does Not Think — AI Alignment Forum
+        - 8
+        - 12
+    title: Oversight Misses 100% of Thoughts The AI Does Not Think
     abstract: 'Problem: an overseer won’t see the AI which kills us all thinking about how to kill humans,
       not because the AI conceals that thought, but because the…'
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Wentworth, 2022
 https://alignmentforum.org/posts/9Fdd9N7Escg3tcymb/preventing-language-models-from-hiding-their-reasoning:
@@ -838,15 +844,18 @@ https://alignmentforum.org/posts/9Fdd9N7Escg3tcymb/preventing-language-models-fr
     URL: 
       https://alignmentforum.org/posts/9Fdd9N7Escg3tcymb/preventing-language-models-from-hiding-their-reasoning
     author:
-    - literal: Roger & Greenblatt
+    - literal: Fabien Roger
+    - literal: ryan_greenblatt
     issued:
       date-parts:
       - - 2023
-    title: Preventing Language Models from hiding their reasoning — AI Alignment Forum
+        - 10
+        - 31
+    title: Preventing Language Models from hiding their reasoning
     abstract: When working with powerful AI models, one concern is that the AIs steganographically 
       encode secret messages when communicating with each other or in…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Roger & Greenblatt, 2023
 https://alignmentforum.org/posts/9pxcekdNjE7oNwvcC/goal-directedness-is-behavioral-not-structural:
@@ -857,15 +866,17 @@ https://alignmentforum.org/posts/9pxcekdNjE7oNwvcC/goal-directedness-is-behavior
     URL: 
       https://alignmentforum.org/posts/9pxcekdNjE7oNwvcC/goal-directedness-is-behavioral-not-structural
     author:
-    - literal: Shimi
+    - literal: adamShimi
     issued:
       date-parts:
       - - 2020
-    title: Goal-directedness is behavioral, not structural — AI Alignment Forum
+        - 6
+        - 8
+    title: Goal-directedness is behavioral, not structural
     abstract: "Goal-directedness is the term used by the AI Safety community to point to a specific property:
       following a goal. It comes from Rohin Shah's post in h…"
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Shimi, 2020
 https://alignmentforum.org/posts/A9NxPTwbw6r6Awuwt/how-likely-is-deceptive-alignment:
@@ -874,15 +885,17 @@ https://alignmentforum.org/posts/A9NxPTwbw6r6Awuwt/how-likely-is-deceptive-align
     type: post-weblog
     URL: https://alignmentforum.org/posts/A9NxPTwbw6r6Awuwt/how-likely-is-deceptive-alignment
     author:
-    - literal: Hubinger
+    - literal: evhub
     issued:
       date-parts:
       - - 2022
-    title: How likely is deceptive alignment? — AI Alignment Forum
+        - 8
+        - 30
+    title: How likely is deceptive alignment?
     abstract: The following is an edited transcript of a talk I gave. I have given this talk at 
       multiple places, including first at Anthropic and then for ELK winn…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Hubinger, 2022
 https://alignmentforum.org/posts/BAzCGCys4BkzGDCWR/the-prototypical-catastrophic-ai-action-is-getting-root:
@@ -893,16 +906,17 @@ https://alignmentforum.org/posts/BAzCGCys4BkzGDCWR/the-prototypical-catastrophic
     URL: 
       https://alignmentforum.org/posts/BAzCGCys4BkzGDCWR/the-prototypical-catastrophic-ai-action-is-getting-root
     author:
-    - literal: Shlegeris
+    - literal: Buck
     issued:
       date-parts:
       - - 2022
-    title: The prototypical catastrophic AI action is getting root access to its datacenter — AI 
-      Alignment Forum
+        - 6
+        - 2
+    title: The prototypical catastrophic AI action is getting root access to its datacenter
     abstract: (I think Carl Shulman came up with the “hacking the SSH server” example, thanks to him
       for that. Thanks to Ryan Greenblatt, Jenny Nitishinskaya, and…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Shlegeris, 2022
 https://alignmentforum.org/posts/ChDH335ckdvpxXaXX/model-organisms-of-misalignment-the-case-for-a-new-pillar-of-1:
@@ -913,16 +927,20 @@ https://alignmentforum.org/posts/ChDH335ckdvpxXaXX/model-organisms-of-misalignme
     URL: 
       https://alignmentforum.org/posts/ChDH335ckdvpxXaXX/model-organisms-of-misalignment-the-case-for-a-new-pillar-of-1
     author:
-    - literal: Hubinger et al.
+    - literal: evhub
+    - literal: Nicholas Schiefer
+    - literal: Carson Denison
+    - literal: Ethan Perez
     issued:
       date-parts:
       - - 2023
-    title: 'Model Organisms of Misalignment: The Case for a New Pillar of Alignment Research — AI Alignment
-      Forum'
+        - 8
+        - 8
+    title: 'Model Organisms of Misalignment: The Case for a New Pillar of Alignment Research'
     abstract: Evan et al argue for developing "model organisms of misalignment" - AI systems 
       deliberately designed to exhibit concerning behaviors like deception o…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Hubinger et al., 2023
 https://alignmentforum.org/posts/CoZhXrhpQxpy9xw9y/where-i-agree-and-disagree-with-eliezer:
@@ -931,15 +949,17 @@ https://alignmentforum.org/posts/CoZhXrhpQxpy9xw9y/where-i-agree-and-disagree-wi
     type: post-weblog
     URL: https://alignmentforum.org/posts/CoZhXrhpQxpy9xw9y/where-i-agree-and-disagree-with-eliezer
     author:
-    - literal: Christiano
+    - literal: paulfchristiano
     issued:
       date-parts:
       - - 2022
-    title: Where I agree and disagree with Eliezer — AI Alignment Forum
+        - 6
+        - 19
+    title: Where I agree and disagree with Eliezer
     abstract: Paul writes a list of 19 important places where he agrees with Eliezer on AI 
       existential risk and safety, and a list of 27 places where he disagrees.…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - ' Christiano, 2022'
   - Christiano, 2022
@@ -949,15 +969,17 @@ https://alignmentforum.org/posts/D7PumeYTDPfBTp3i7/the-waluigi-effect-mega-post:
     type: post-weblog
     URL: https://alignmentforum.org/posts/D7PumeYTDPfBTp3i7/the-waluigi-effect-mega-post
     author:
-    - literal: Nardo
+    - literal: Cleo Nardo
     issued:
       date-parts:
       - - 2023
-    title: The Waluigi Effect (mega-post) — AI Alignment Forum
+        - 3
+        - 3
+    title: The Waluigi Effect (mega-post)
     abstract: Everyone carries a shadow, and the less it is embodied in the individual’s conscious 
       life, the blacker and denser it is. — Carl Jung …
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Nardo, 2023
 https://alignmentforum.org/posts/DZuBHHKao6jsDDreH/in-response-to-critiques-of-guaranteed-safe-ai:
@@ -968,15 +990,17 @@ https://alignmentforum.org/posts/DZuBHHKao6jsDDreH/in-response-to-critiques-of-g
     URL: 
       https://alignmentforum.org/posts/DZuBHHKao6jsDDreH/in-response-to-critiques-of-guaranteed-safe-ai
     author:
-    - literal: Ammann
+    - literal: Nora_Ammann
     issued:
       date-parts:
       - - 2025
-    title: In response to critiques of Guaranteed Safe AI — AI Alignment Forum
+        - 1
+        - 31
+    title: In response to critiques of Guaranteed Safe AI
     abstract: In this post, I discuss a number of critiques of Guaranteed Safe AI (GSAI) approaches 
       I’ve encountered since releasing this position paper.  …
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Ammann, 2025
 https://alignmentforum.org/posts/FLMyTjuTiGytE6sP2/inner-misalignment-in-simulator-llms:
@@ -985,15 +1009,17 @@ https://alignmentforum.org/posts/FLMyTjuTiGytE6sP2/inner-misalignment-in-simulat
     type: post-weblog
     URL: https://alignmentforum.org/posts/FLMyTjuTiGytE6sP2/inner-misalignment-in-simulator-llms
     author:
-    - literal: Scherlis
+    - literal: Adam Scherlis
     issued:
       date-parts:
       - - 2023
-    title: Inner Misalignment in "Simulator" LLMs — AI Alignment Forum
+        - 1
+        - 31
+    title: Inner Misalignment in "Simulator" LLMs
     abstract: 'Alternate title: "Somewhat Contra Scott On Simulators". • Scott Alexander has a recent
       post up on large language models as simulators. …'
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Scherlis, 2023
 https://alignmentforum.org/posts/FRRb6Gqem8k69ocbi/externalized-reasoning-oversight-a-research-direction-for:
@@ -1004,16 +1030,17 @@ https://alignmentforum.org/posts/FRRb6Gqem8k69ocbi/externalized-reasoning-oversi
     URL: 
       https://alignmentforum.org/posts/FRRb6Gqem8k69ocbi/externalized-reasoning-oversight-a-research-direction-for
     author:
-    - literal: Lanham
+    - literal: tamera
     issued:
       date-parts:
       - - 2022
-    title: 'Externalized reasoning oversight: a research direction for language model alignment — AI Alignment
-      Forum'
+        - 8
+        - 3
+    title: 'Externalized reasoning oversight: a research direction for language model alignment'
     abstract: "Summary\nIn this post, I’ll present a research direction that I’m interested in for alignment
       of pretrained language models. …"
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Lanham 2022
   - Lanham, 2022
@@ -1023,15 +1050,17 @@ https://alignmentforum.org/posts/FTk7ufqK2D4dkdBDr/notes-on-openai-s-alignment-p
     type: post-weblog
     URL: https://alignmentforum.org/posts/FTk7ufqK2D4dkdBDr/notes-on-openai-s-alignment-plan
     author:
-    - literal: Flint
+    - literal: Alex Flint
     issued:
       date-parts:
       - - 2022
-    title: Notes on OpenAI’s alignment plan — AI Alignment Forum
+        - 12
+        - 8
+    title: Notes on OpenAI’s alignment plan
     abstract: This work was supported by the Monastic Academy for the Preservation of Life on Earth.
       • ---------------------------------------- …
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Flint, 2022
 https://alignmentforum.org/posts/GNhMPAWcfBCASy8e6/a-central-ai-alignment-problem-capabilities-generalization:
@@ -1042,16 +1071,17 @@ https://alignmentforum.org/posts/GNhMPAWcfBCASy8e6/a-central-ai-alignment-proble
     URL: 
       https://alignmentforum.org/posts/GNhMPAWcfBCASy8e6/a-central-ai-alignment-problem-capabilities-generalization
     author:
-    - literal: Soares
+    - literal: So8res
     issued:
       date-parts:
       - - 2022
-    title: 'A central AI alignment problem: capabilities generalization, and the sharp left turn — AI
-      Alignment Forum'
+        - 6
+        - 15
+    title: 'A central AI alignment problem: capabilities generalization, and the sharp left turn'
     abstract: Nate Soares argues that one of the core problems with AI alignment is that an AI 
       system's capabilities will likely generalize to new domains much fas…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Soares, 2022
 https://alignmentforum.org/posts/HBxe6wdjxK239zajf/what-failure-looks-like:
@@ -1060,15 +1090,17 @@ https://alignmentforum.org/posts/HBxe6wdjxK239zajf/what-failure-looks-like:
     type: post-weblog
     URL: https://alignmentforum.org/posts/HBxe6wdjxK239zajf/what-failure-looks-like
     author:
-    - literal: Christiano
+    - literal: paulfchristiano
     issued:
       date-parts:
       - - 2019
-    title: What failure looks like — AI Alignment Forum
+        - 3
+        - 17
+    title: What failure looks like
     abstract: Paul Christiano paints a vivid and disturbing picture of how AI could go wrong, not 
       with sudden violent takeover, but through a gradual loss of human…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Christiano, 2019
 https://alignmentforum.org/posts/HXJXPjzWyS5aAoRCw/putting-up-bumpers:
@@ -1077,15 +1109,17 @@ https://alignmentforum.org/posts/HXJXPjzWyS5aAoRCw/putting-up-bumpers:
     type: post-weblog
     URL: https://alignmentforum.org/posts/HXJXPjzWyS5aAoRCw/putting-up-bumpers
     author:
-    - literal: Bowman
+    - literal: Sam Bowman
     issued:
       date-parts:
-      - - 2024
-    title: Putting up Bumpers — AI Alignment Forum
+      - - 2025
+        - 4
+        - 23
+    title: Putting up Bumpers
     abstract: "tl;dr: Even if we can't solve alignment, we can solve the problem of catching and fixing
       misalignment. …"
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Bowman, 2024
 https://alignmentforum.org/posts/Hna4aoMwr6Qx9rHBs/linkpost-introducing-superalignment?commentId=NsYXBdLY6edAXavsM:
@@ -1096,11 +1130,13 @@ https://alignmentforum.org/posts/Hna4aoMwr6Qx9rHBs/linkpost-introducing-superali
     URL: 
       https://alignmentforum.org/posts/Hna4aoMwr6Qx9rHBs/linkpost-introducing-superalignment?commentId=NsYXBdLY6edAXavsM
     author:
-    - literal: Christiano
+    - literal: paulfchristiano
     issued:
       date-parts:
       - - 2023
-    title: '[Linkpost] Introducing Superalignment — AI Alignment Forum'
+        - 7
+        - 7
+    title: Comment on “[Linkpost] Introducing Superalignment”
     abstract: "Comment by paulfchristiano - I don't think I disagree with many of the claims in Jan's
       post, generally I think his high level points are correct.\n\nHe lists a lot of things as \"reasons
       for optimism\" that I wouldn't consider positive updates (e.g. stuff working that I would strongly
@@ -1123,7 +1159,7 @@ https://alignmentforum.org/posts/Hna4aoMwr6Qx9rHBs/linkpost-introducing-superali
       running an elevated risk from deceptive alignment (since it indicates that your model understands
       things about the world that you don't).\n\nIn practice I don't think either of tho"
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Christiano, 2023
 https://alignmentforum.org/posts/J8ifgynkfhpmrGrL8/why-almost-every-rl-agent-does-learned-optimization:
@@ -1134,14 +1170,16 @@ https://alignmentforum.org/posts/J8ifgynkfhpmrGrL8/why-almost-every-rl-agent-doe
     URL: 
       https://alignmentforum.org/posts/J8ifgynkfhpmrGrL8/why-almost-every-rl-agent-does-learned-optimization
     author:
-    - literal: Sharkey
+    - literal: Lee Sharkey
     issued:
       date-parts:
       - - 2023
-    title: Why almost every RL agent does learned optimization — AI Alignment Forum
+        - 2
+        - 12
+    title: Why almost every RL agent does learned optimization
     abstract: "Or \"Why RL≈RL2 (And why that matters)\"\n  …"
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Sharkey, 2023
 https://alignmentforum.org/posts/JtuTQgp9Wnd6R6F5s/when-discussing-ai-risks-talk-about-capabilities-not:
@@ -1152,15 +1190,17 @@ https://alignmentforum.org/posts/JtuTQgp9Wnd6R6F5s/when-discussing-ai-risks-talk
     URL: 
       https://alignmentforum.org/posts/JtuTQgp9Wnd6R6F5s/when-discussing-ai-risks-talk-about-capabilities-not
     author:
-    - literal: Krakovna
+    - literal: Vika
     issued:
       date-parts:
       - - 2023
-    title: When discussing AI risks, talk about capabilities, not intelligence — AI Alignment Forum
+        - 8
+        - 11
+    title: When discussing AI risks, talk about capabilities, not intelligence
     abstract: Public discussions about catastrophic risks from general AI systems are often derailed
       by using the word “intelligence”. People often have different…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Krakovna, 2023
 https://alignmentforum.org/posts/KpD2fJa6zo8o2MBxg/consciousness-as-a-conflationary-alliance-term-for:
@@ -1171,16 +1211,18 @@ https://alignmentforum.org/posts/KpD2fJa6zo8o2MBxg/consciousness-as-a-conflation
     URL: 
       https://alignmentforum.org/posts/KpD2fJa6zo8o2MBxg/consciousness-as-a-conflationary-alliance-term-for
     author:
-    - literal: Critch
+    - literal: Andrew_Critch
     issued:
       date-parts:
       - - 2023
+        - 7
+        - 10
     title: Consciousness as a conflationary alliance term for intrinsically valued internal 
-      experiences — AI Alignment Forum
+      experiences
     abstract: "Tl;dr: In this post, I argue from many anecdotes that the concept of 'consciousness' is
       more conflated than people realize, in that there's a lot of…"
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Critch, 2023
 https://alignmentforum.org/posts/KrJfoZzpSDpnrv9va/draft-report-on-ai-timelines:
@@ -1189,15 +1231,17 @@ https://alignmentforum.org/posts/KrJfoZzpSDpnrv9va/draft-report-on-ai-timelines:
     type: post-weblog
     URL: https://alignmentforum.org/posts/KrJfoZzpSDpnrv9va/draft-report-on-ai-timelines
     author:
-    - literal: Cotra
+    - literal: Ajeya Cotra
     issued:
       date-parts:
       - - 2020
-    title: Draft report on AI timelines — AI Alignment Forum
+        - 9
+        - 18
+    title: Draft report on AI timelines
     abstract: The original draft of Ayeja's report on biological anchors for AI timelines. The 
       report includes quantitative models and forecasts, though the specif…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Cotra, 2020
 https://alignmentforum.org/posts/LpM3EAakwYdS6aRKf/what-multipolar-failure-looks-like-and-robust-agent-agnostic:
@@ -1208,16 +1252,17 @@ https://alignmentforum.org/posts/LpM3EAakwYdS6aRKf/what-multipolar-failure-looks
     URL: 
       https://alignmentforum.org/posts/LpM3EAakwYdS6aRKf/what-multipolar-failure-looks-like-and-robust-agent-agnostic
     author:
-    - literal: Critch
+    - literal: Andrew_Critch
     issued:
       date-parts:
       - - 2021
-    title: What Multipolar Failure Looks Like, and Robust Agent-Agnostic Processes (RAAPs) — AI 
-      Alignment Forum
+        - 3
+        - 31
+    title: What Multipolar Failure Looks Like, and Robust Agent-Agnostic Processes (RAAPs)
     abstract: This post tells a few different stories in which humanity dies out as a result of AI 
       technology, but where no single source of human or automated age…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Critch, 2021
 https://alignmentforum.org/posts/MDeGts4Aw9DktCkXw/toy-models-of-ai-control-for-concentrated-catastrophe:
@@ -1228,15 +1273,18 @@ https://alignmentforum.org/posts/MDeGts4Aw9DktCkXw/toy-models-of-ai-control-for-
     URL: 
       https://alignmentforum.org/posts/MDeGts4Aw9DktCkXw/toy-models-of-ai-control-for-concentrated-catastrophe
     author:
-    - literal: Roger & Shlegeris
+    - literal: Fabien Roger
+    - literal: Buck
     issued:
       date-parts:
       - - 2024
-    title: Toy models of AI control for concentrated catastrophe prevention — AI Alignment Forum
+        - 2
+        - 6
+    title: Toy models of AI control for concentrated catastrophe prevention
     abstract: In this post, we analyze some simple games that model the problem of ensuring AIs 
       never succeed at taking a single catastrophic action (which we'll r…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Roger & Shlegeris, 2024
 https://alignmentforum.org/posts/MR5wJpE27ymE7M7iv/formalizing-the-qaci-alignment-formal-goal:
@@ -1247,15 +1295,18 @@ https://alignmentforum.org/posts/MR5wJpE27ymE7M7iv/formalizing-the-qaci-alignmen
     URL: 
       https://alignmentforum.org/posts/MR5wJpE27ymE7M7iv/formalizing-the-qaci-alignment-formal-goal
     author:
-    - literal: Leake
+    - literal: Tamsin Leake
+    - literal: JuliaHP
     issued:
       date-parts:
       - - 2023
-    title: formalizing the QACI alignment formal-goal — AI Alignment Forum
+        - 6
+        - 10
+    title: formalizing the QACI alignment formal-goal
     abstract: "this work was done by Tamsin Leake and Julia Persson at Orthogonal.\nthanks to mesaoptimizer
       for his help putting together this post. …"
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Leake, 2023
 https://alignmentforum.org/posts/Nsmabb9fhpLuLdtLE/takeoff-speeds-presentation-at-anthropic:
@@ -1264,15 +1315,17 @@ https://alignmentforum.org/posts/Nsmabb9fhpLuLdtLE/takeoff-speeds-presentation-a
     type: post-weblog
     URL: https://alignmentforum.org/posts/Nsmabb9fhpLuLdtLE/takeoff-speeds-presentation-at-anthropic
     author:
-    - literal: Davidson
+    - literal: Tom Davidson
     issued:
       date-parts:
-      - - 2023
-    title: Takeoff speeds presentation at Anthropic — AI Alignment Forum
+      - - 2024
+        - 6
+        - 4
+    title: Takeoff speeds presentation at Anthropic
     abstract: This is a lightly edited transcript of a presentation about the risks of a fast 
       takeoff that I (Tom Davidson) gave  at Anthropic in September 2023. S…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Davidson, 2023
 https://alignmentforum.org/posts/PZtsoaoSLpKjjbMqM/the-case-for-aligning-narrowly-superhuman-models:
@@ -1283,15 +1336,17 @@ https://alignmentforum.org/posts/PZtsoaoSLpKjjbMqM/the-case-for-aligning-narrowl
     URL: 
       https://alignmentforum.org/posts/PZtsoaoSLpKjjbMqM/the-case-for-aligning-narrowly-superhuman-models
     author:
-    - literal: Cotra
+    - literal: Ajeya Cotra
     issued:
       date-parts:
       - - 2021
-    title: The case for aligning narrowly superhuman models — AI Alignment Forum
+        - 3
+        - 5
+    title: The case for aligning narrowly superhuman models
     abstract: I wrote this post to get people’s takes on a type of work that seems exciting to me 
       personally; I’m not speaking for Open Phil as a whole. Institutio…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Cotra, 2021
 https://alignmentforum.org/posts/PwnadG4BFjaER3MGf/interpretability-will-not-reliably-find-deceptive-ai:
@@ -1302,15 +1357,17 @@ https://alignmentforum.org/posts/PwnadG4BFjaER3MGf/interpretability-will-not-rel
     URL: 
       https://alignmentforum.org/posts/PwnadG4BFjaER3MGf/interpretability-will-not-reliably-find-deceptive-ai
     author:
-    - literal: Nanda
+    - literal: Neel Nanda
     issued:
       date-parts:
       - - 2025
-    title: Interpretability Will Not Reliably Find Deceptive AI — AI Alignment Forum
+        - 5
+        - 4
+    title: Interpretability Will Not Reliably Find Deceptive AI
     abstract: "Disclaimer: Post written in a personal capacity. These are personal opinions and do not
       in any way represent my employer's views • TL;DR: …"
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Nanda, 2025
 https://alignmentforum.org/posts/REesy8nqvknFFKywm/clarifying-wireheading-terminology:
@@ -1319,15 +1376,17 @@ https://alignmentforum.org/posts/REesy8nqvknFFKywm/clarifying-wireheading-termin
     type: post-weblog
     URL: https://alignmentforum.org/posts/REesy8nqvknFFKywm/clarifying-wireheading-terminology
     author:
-    - literal: Gao
+    - literal: leogao
     issued:
       date-parts:
       - - 2022
-    title: Clarifying wireheading terminology — AI Alignment Forum
+        - 11
+        - 24
+    title: Clarifying wireheading terminology
     abstract: 'See also: Towards deconfusing wireheading and reward maximization, Everett et al. (2019).
       …'
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Gao, 2022
 https://alignmentforum.org/posts/Sn5NiiD5WBi4dLzaB/agi-will-drastically-increase-economies-of-scale-1:
@@ -1338,15 +1397,17 @@ https://alignmentforum.org/posts/Sn5NiiD5WBi4dLzaB/agi-will-drastically-increase
     URL: 
       https://alignmentforum.org/posts/Sn5NiiD5WBi4dLzaB/agi-will-drastically-increase-economies-of-scale-1
     author:
-    - literal: Dai
+    - literal: Wei Dai
     issued:
       date-parts:
       - - 2019
-    title: AGI will drastically increase economies of scale — AI Alignment Forum
+        - 6
+        - 7
+    title: AGI will drastically increase economies of scale
     abstract: In Strategic implications of AIs’ ability to coordinate at low cost, I talked about 
       the possibility that different AGIs can coordinate with each othe…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Dai, 2019
 https://alignmentforum.org/posts/SuvWoLaGiNjPDcA7d/metr-s-evaluation-of-gpt-5:
@@ -1355,15 +1416,17 @@ https://alignmentforum.org/posts/SuvWoLaGiNjPDcA7d/metr-s-evaluation-of-gpt-5:
     type: post-weblog
     URL: https://alignmentforum.org/posts/SuvWoLaGiNjPDcA7d/metr-s-evaluation-of-gpt-5
     author:
-    - literal: METR
+    - literal: GradientDissenter
     issued:
       date-parts:
       - - 2025
-    title: METR's Evaluation of GPT-5 — AI Alignment Forum
+        - 8
+        - 7
+    title: METR's Evaluation of GPT-5
     abstract: METR (where I work, though I'm cross-posting in a personal capacity) evaluated GPT-5 
       before it was externally deployed. We performed a much more comp…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - METR, 2025
 https://alignmentforum.org/posts/TWorNr22hhYegE4RT/models-don-t-get-reward:
@@ -1372,15 +1435,17 @@ https://alignmentforum.org/posts/TWorNr22hhYegE4RT/models-don-t-get-reward:
     type: post-weblog
     URL: https://alignmentforum.org/posts/TWorNr22hhYegE4RT/models-don-t-get-reward
     author:
-    - literal: Ringer
+    - literal: Sam Ringer
     issued:
       date-parts:
       - - 2022
-    title: Models Don't "Get Reward" — AI Alignment Forum
+        - 12
+        - 30
+    title: Models Don't "Get Reward"
     abstract: Models don't "get" reward. Reward is the mechanism by which we select parameters, it 
       is not something "given" to the model. Reinforcement learning sh…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Ringer, 2022
   - Turner, 2022
@@ -1392,15 +1457,17 @@ https://alignmentforum.org/posts/WCj7WgFSLmyKaMwPR/coup-probes-catching-catastro
     URL: 
       https://alignmentforum.org/posts/WCj7WgFSLmyKaMwPR/coup-probes-catching-catastrophes-with-probes-trained-off
     author:
-    - literal: Roger et al.
+    - literal: Fabien Roger
     issued:
       date-parts:
       - - 2023
-    title: 'Coup probes: Catching catastrophes with probes trained off-policy — AI Alignment Forum'
+        - 11
+        - 17
+    title: 'Coup probes: Catching catastrophes with probes trained off-policy'
     abstract: Thanks to Ryan Greenblatt for the original description of the ideas and hopes, and to 
       Erik Jenner, Jean-Stanislas Denain, Nate Thomas, Ryan Greenblat…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Roger et al., 2023
 https://alignmentforum.org/posts/WZXqNYbJhtidjRXSi/what-will-gpt-2030-look-like:
@@ -1409,15 +1476,17 @@ https://alignmentforum.org/posts/WZXqNYbJhtidjRXSi/what-will-gpt-2030-look-like:
     type: post-weblog
     URL: https://alignmentforum.org/posts/WZXqNYbJhtidjRXSi/what-will-gpt-2030-look-like
     author:
-    - literal: Steinhardt
+    - literal: jsteinhardt
     issued:
       date-parts:
       - - 2023
-    title: What will GPT-2030 look like? — AI Alignment Forum
+        - 6
+        - 7
+    title: What will GPT-2030 look like?
     abstract: GPT-4 surprised many people with its abilities at coding, creative brainstorming, 
       letter-writing, and other skills. Surprises in machine learning are…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Steinhardt, 2023
 https://alignmentforum.org/posts/XWwvwytieLtEWaFJX/deep-deceptiveness:
@@ -1426,15 +1495,17 @@ https://alignmentforum.org/posts/XWwvwytieLtEWaFJX/deep-deceptiveness:
     type: post-weblog
     URL: https://alignmentforum.org/posts/XWwvwytieLtEWaFJX/deep-deceptiveness
     author:
-    - literal: Soares
+    - literal: So8res
     issued:
       date-parts:
       - - 2023
-    title: Deep Deceptiveness — AI Alignment Forum
+        - 3
+        - 21
+    title: Deep Deceptiveness
     abstract: There are some obvious ways you might try to train deceptiveness out of AIs. But 
       deceptiveness can emerge from the recombination of non-deceptive cog…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Soares, 2023
 https://alignmentforum.org/posts/ZeE7EKHTFMBs8eMxn/clarifying-ai-alignment:
@@ -1443,15 +1514,17 @@ https://alignmentforum.org/posts/ZeE7EKHTFMBs8eMxn/clarifying-ai-alignment:
     type: post-weblog
     URL: https://alignmentforum.org/posts/ZeE7EKHTFMBs8eMxn/clarifying-ai-alignment
     author:
-    - literal: Christiano
+    - literal: paulfchristiano
     issued:
       date-parts:
       - - 2018
-    title: Clarifying "AI Alignment" — AI Alignment Forum
+        - 11
+        - 15
+    title: Clarifying "AI Alignment"
     abstract: 'When I say an AI A is aligned with an operator H, I mean: • > A is trying to do what H
       wants it to do. …'
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Christiano, 2018
 https://alignmentforum.org/posts/ZwshvqiqCvXPsZEct/the-learning-theoretic-agenda-status-2023:
@@ -1461,15 +1534,17 @@ https://alignmentforum.org/posts/ZwshvqiqCvXPsZEct/the-learning-theoretic-agenda
     URL: 
       https://alignmentforum.org/posts/ZwshvqiqCvXPsZEct/the-learning-theoretic-agenda-status-2023
     author:
-    - literal: Kosoy
+    - literal: Vanessa Kosoy
     issued:
       date-parts:
       - - 2023
-    title: 'The Learning-Theoretic Agenda: Status 2023 — AI Alignment Forum'
+        - 4
+        - 19
+    title: 'The Learning-Theoretic Agenda: Status 2023'
     abstract: 'TLDR: I give an overview of (i) the key problems that the learning-theoretic AI alignment
       research agenda is trying to solve, (ii) the insights we ha…'
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Kosoy, 2023
 https://alignmentforum.org/posts/aEjckcqHZZny9L2zy/emergent-deception-and-emergent-optimization:
@@ -1480,15 +1555,17 @@ https://alignmentforum.org/posts/aEjckcqHZZny9L2zy/emergent-deception-and-emerge
     URL: 
       https://alignmentforum.org/posts/aEjckcqHZZny9L2zy/emergent-deception-and-emergent-optimization
     author:
-    - literal: Steinhardt
+    - literal: jsteinhardt
     issued:
       date-parts:
-      - - 2024
-    title: Emergent Deception and Emergent Optimization — AI Alignment Forum
+      - - 2023
+        - 2
+        - 20
+    title: Emergent Deception and Emergent Optimization
     abstract: '[Note: this post was drafted before Sydney (the Bing chatbot) was released, but Sydney
       demonstrates some particularly good examples of some of the is…'
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Steinhardt, 2024
 https://alignmentforum.org/posts/aPeJE8bSo6rAFoLqg/solidgoldmagikarp-plus-prompt-generation:
@@ -1497,15 +1574,18 @@ https://alignmentforum.org/posts/aPeJE8bSo6rAFoLqg/solidgoldmagikarp-plus-prompt
     type: post-weblog
     URL: https://alignmentforum.org/posts/aPeJE8bSo6rAFoLqg/solidgoldmagikarp-plus-prompt-generation
     author:
-    - literal: Rumbelow & Watkins
+    - literal: Jessica Rumbelow
+    - literal: mwatkins
     issued:
       date-parts:
       - - 2023
-    title: SolidGoldMagikarp (plus, prompt generation) — AI Alignment Forum
+        - 2
+        - 5
+    title: SolidGoldMagikarp (plus, prompt generation)
     abstract: Researchers have discovered a set of "glitch tokens" that cause ChatGPT and other 
       language models to produce bizarre, erratic, and sometimes inapprop…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Rumbelow & Watkins, 2023
 https://alignmentforum.org/posts/bxt7uCiHam4QXrQAA/cyborgism:
@@ -1514,15 +1594,18 @@ https://alignmentforum.org/posts/bxt7uCiHam4QXrQAA/cyborgism:
     type: post-weblog
     URL: https://alignmentforum.org/posts/bxt7uCiHam4QXrQAA/cyborgism
     author:
-    - literal: Kees-Dupuis & Janus
+    - literal: Niki Dupuis
+    - literal: janus
     issued:
       date-parts:
       - - 2023
-    title: Cyborgism — AI Alignment Forum
+        - 2
+        - 10
+    title: Cyborgism
     abstract: Thanks to Garrett Baker, David Udell, Alex Gray, Paul Colognese, Akash Wasil, Jacques 
       Thibodeau, Michael Ivanitskiy, Zach Stein-Perlman, and Anish Up…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Kees-Dupuis & Janus, 2023
 https://alignmentforum.org/posts/cq5x4XDnLcBrYbb66/will-capabilities-generalise-more:
@@ -1531,15 +1614,17 @@ https://alignmentforum.org/posts/cq5x4XDnLcBrYbb66/will-capabilities-generalise-
     type: post-weblog
     URL: https://alignmentforum.org/posts/cq5x4XDnLcBrYbb66/will-capabilities-generalise-more
     author:
-    - literal: Kumar
+    - literal: Ramana Kumar
     issued:
       date-parts:
       - - 2022
-    title: Will Capabilities Generalise More? — AI Alignment Forum
+        - 6
+        - 29
+    title: Will Capabilities Generalise More?
     abstract: Nate and Eliezer (Lethality 21) claim that capabilities generalise further than 
       alignment once capabilities start generalising far at all. However, t…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Kumar, 2022
 https://alignmentforum.org/posts/cxkwQmys6mCB6bjDA/interlude-agents-as-automobiles:
@@ -1548,15 +1633,17 @@ https://alignmentforum.org/posts/cxkwQmys6mCB6bjDA/interlude-agents-as-automobil
     type: post-weblog
     URL: https://alignmentforum.org/posts/cxkwQmys6mCB6bjDA/interlude-agents-as-automobiles
     author:
-    - literal: Kokotajlo
+    - literal: Daniel Kokotajlo
     issued:
       date-parts:
       - - 2021
-    title: 'Interlude: Agents as Automobiles — AI Alignment Forum'
+        - 12
+        - 14
+    title: 'Interlude: Agents as Automobiles'
     abstract: I ended up writing a long rant about agency in my review of Joe Carlsmith’s report on 
       x-risk from power-seeking AI. I’ve polished the rant a bit and…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Kokotajlo, 2021
 https://alignmentforum.org/posts/dBmfb76zx6wjPsBC7/when-can-we-trust-model-evaluations:
@@ -1584,15 +1671,17 @@ https://alignmentforum.org/posts/dYnHLWMXCYdm9xu5j/simulator-framing-and-confusi
     URL: 
       https://alignmentforum.org/posts/dYnHLWMXCYdm9xu5j/simulator-framing-and-confusions-about-llms
     author:
-    - literal: Barnes
+    - literal: Beth Barnes
     issued:
       date-parts:
-      - - 2023
-    title: "'simulator' framing and confusions about LLMs — AI Alignment Forum"
+      - - 2022
+        - 12
+        - 31
+    title: "'simulator' framing and confusions about LLMs"
     abstract: 'Post status: pretty rough + unpolished, thought it might be worthwhile getting this out
       anyway …'
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Barnes, 2023
 https://alignmentforum.org/posts/etNJcXCsKC6izQQZj/pivotal-outcomes-and-pivotal-processes:
@@ -1601,15 +1690,17 @@ https://alignmentforum.org/posts/etNJcXCsKC6izQQZj/pivotal-outcomes-and-pivotal-
     type: post-weblog
     URL: https://alignmentforum.org/posts/etNJcXCsKC6izQQZj/pivotal-outcomes-and-pivotal-processes
     author:
-    - literal: Critch
+    - literal: Andrew_Critch
     issued:
       date-parts:
       - - 2022
-    title: Pivotal outcomes and pivotal processes — AI Alignment Forum
+        - 6
+        - 17
+    title: Pivotal outcomes and pivotal processes
     abstract: 'tl;dr: If you think humanity is on a dangerous path, and needs to "pivot" toward a different
       future in order to achieve safety, consider how such a p…'
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Critch, 2022
 https://alignmentforum.org/posts/gHefoxiznGfsbiAu9/inner-and-outer-alignment-decompose-one-hard-problem-into:
@@ -1620,16 +1711,17 @@ https://alignmentforum.org/posts/gHefoxiznGfsbiAu9/inner-and-outer-alignment-dec
     URL: 
       https://alignmentforum.org/posts/gHefoxiznGfsbiAu9/inner-and-outer-alignment-decompose-one-hard-problem-into
     author:
-    - literal: Turner
+    - literal: TurnTrout
     issued:
       date-parts:
       - - 2022
-    title: Inner and outer alignment decompose one hard problem into two extremely hard problems — 
-      AI Alignment Forum
+        - 12
+        - 2
+    title: Inner and outer alignment decompose one hard problem into two extremely hard problems
     abstract: Alex Turner argues that the concepts of "inner alignment" and "outer alignment" in AI 
       safety are unhelpful and potentially misleading. The author con…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Turner, 2022
 https://alignmentforum.org/posts/gJJEjJpKiddoYGZKk/the-evals-gap:
@@ -1638,15 +1730,17 @@ https://alignmentforum.org/posts/gJJEjJpKiddoYGZKk/the-evals-gap:
     type: post-weblog
     URL: https://alignmentforum.org/posts/gJJEjJpKiddoYGZKk/the-evals-gap
     author:
-    - literal: Hobbahn
+    - literal: Marius Hobbhahn
     issued:
       date-parts:
       - - 2024
-    title: The Evals Gap — AI Alignment Forum
+        - 11
+        - 11
+    title: The Evals Gap
     abstract: 'In our engagements with governments, AI safety institutes, and frontier AI developers,
       we found the concept of the “evaluation gap” (short: ‘evals ga…'
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Hobbahn, 2024
 https://alignmentforum.org/posts/hirhSqvEAq7pdnyPG/auditing-failures-vs-concentrated-failures:
@@ -1657,15 +1751,18 @@ https://alignmentforum.org/posts/hirhSqvEAq7pdnyPG/auditing-failures-vs-concentr
     URL: 
       https://alignmentforum.org/posts/hirhSqvEAq7pdnyPG/auditing-failures-vs-concentrated-failures
     author:
-    - literal: Greenblatt et al.
+    - literal: ryan_greenblatt
+    - literal: Fabien Roger
     issued:
       date-parts:
       - - 2023
-    title: Auditing failures vs concentrated failures — AI Alignment Forum
+        - 12
+        - 11
+    title: Auditing failures vs concentrated failures
     abstract: 'TL;DR: If you want to notice when powerful AIs are behaving badly, a reasonable strategy
       is to carefully audit a small fraction of AI actions. This k…'
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Greenblatt et al., 2023
 https://alignmentforum.org/posts/i2nmBfCXnadeGmhzW/catching-ais-red-handed:
@@ -1674,15 +1771,18 @@ https://alignmentforum.org/posts/i2nmBfCXnadeGmhzW/catching-ais-red-handed:
     type: post-weblog
     URL: https://alignmentforum.org/posts/i2nmBfCXnadeGmhzW/catching-ais-red-handed
     author:
-    - literal: Greenblatt et al.
+    - literal: ryan_greenblatt
+    - literal: Buck
     issued:
       date-parts:
       - - 2024
-    title: Catching AIs red-handed — AI Alignment Forum
+        - 1
+        - 5
+    title: Catching AIs red-handed
     abstract: We’ve been spending a lot of time recently thinking about how to mitigate risks posed 
       by scheming (a.k.a. deceptively aligned) models intentionally s…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Greenblatt et al., 2024
 https://alignmentforum.org/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-powerful-ais-are-controlled:
@@ -1693,15 +1793,18 @@ https://alignmentforum.org/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-po
     URL: 
       https://alignmentforum.org/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-powerful-ais-are-controlled
     author:
-    - literal: Greenblatt et al.
+    - literal: ryan_greenblatt
+    - literal: Buck
     issued:
       date-parts:
       - - 2024
-    title: The case for ensuring that powerful AIs are controlled — AI Alignment Forum
+        - 1
+        - 24
+    title: The case for ensuring that powerful AIs are controlled
     abstract: In this post, we argue that AI labs should ensure that powerful AIs are controlled. 
       That is, labs should make sure that the safety measures they appl…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Greenblatt et al., 2024
 https://alignmentforum.org/posts/kphJvksj5TndGapuh/directions-and-desiderata-for-ai-alignment:
@@ -1712,15 +1815,17 @@ https://alignmentforum.org/posts/kphJvksj5TndGapuh/directions-and-desiderata-for
     URL: 
       https://alignmentforum.org/posts/kphJvksj5TndGapuh/directions-and-desiderata-for-ai-alignment
     author:
-    - literal: Christiano
+    - literal: paulfchristiano
     issued:
       date-parts:
-      - - 2017
-    title: Directions and desiderata for AI alignment — AI Alignment Forum
+      - - 2019
+        - 1
+        - 13
+    title: Directions and desiderata for AI alignment
     abstract: 'Note: This is the first post from part four: what needs doing of the sequence on iterated
       amplification. The fourth part of the sequence describes so…'
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Christiano, 2017
 https://alignmentforum.org/posts/mFAvspg4sXkrfZ7FA/deep-forgetting-and-unlearning-for-safely-scoped-llms:
@@ -1731,15 +1836,17 @@ https://alignmentforum.org/posts/mFAvspg4sXkrfZ7FA/deep-forgetting-and-unlearnin
     URL: 
       https://alignmentforum.org/posts/mFAvspg4sXkrfZ7FA/deep-forgetting-and-unlearning-for-safely-scoped-llms
     author:
-    - literal: Casper
+    - literal: scasper
     issued:
       date-parts:
       - - 2023
-    title: Deep Forgetting & Unlearning for Safely-Scoped LLMs — AI Alignment Forum
+        - 12
+        - 5
+    title: Deep Forgetting & Unlearning for Safely-Scoped LLMs
     abstract: Thanks to Phillip Christoffersen, Adam Gleave, Anjali Gopal, Soroush Pour, and Fabien 
       Roger for useful discussions and feedback.  …
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Casper, 2023
 https://alignmentforum.org/posts/mGCcZnr4WjGjqzX5s/the-checklist-what-succeeding-at-ai-safety-will-involve:
@@ -1750,16 +1857,18 @@ https://alignmentforum.org/posts/mGCcZnr4WjGjqzX5s/the-checklist-what-succeeding
     URL: 
       https://alignmentforum.org/posts/mGCcZnr4WjGjqzX5s/the-checklist-what-succeeding-at-ai-safety-will-involve
     author:
-    - literal: Bowman
+    - literal: Sam Bowman
     issued:
       date-parts:
-      - - 2025
-    title: 'The Checklist: What Succeeding at AI Safety Will Involve — AI Alignment Forum'
+      - - 2024
+        - 9
+        - 3
+    title: 'The Checklist: What Succeeding at AI Safety Will Involve'
     abstract: This piece reflects my current best guess at the major goals that Anthropic (or 
       another similarly positioned AI developer) will need to accomplish to have things go well with
       the development of broadly superhuman AI.
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Bowman, 2025
 https://alignmentforum.org/posts/mKBfa8v4S9pNKSyKK/homogeneity-vs-heterogeneity-in-ai-takeoff-scenarios:
@@ -1770,14 +1879,16 @@ https://alignmentforum.org/posts/mKBfa8v4S9pNKSyKK/homogeneity-vs-heterogeneity-
     URL: 
       https://alignmentforum.org/posts/mKBfa8v4S9pNKSyKK/homogeneity-vs-heterogeneity-in-ai-takeoff-scenarios
     author:
-    - literal: Hubinger
+    - literal: evhub
     issued:
       date-parts:
       - - 2020
-    title: Homogeneity vs. heterogeneity in AI takeoff scenarios — AI Alignment Forum
+        - 12
+        - 16
+    title: Homogeneity vs. heterogeneity in AI takeoff scenarios
     abstract: Special thanks to Kate Woolverton for comments and feedback. …
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Hubinger, 2020
 https://alignmentforum.org/posts/ngEvKav9w57XrGQnb/cognitive-emulation-a-naive-ai-safety-proposal:
@@ -1788,14 +1899,17 @@ https://alignmentforum.org/posts/ngEvKav9w57XrGQnb/cognitive-emulation-a-naive-a
     URL: 
       https://alignmentforum.org/posts/ngEvKav9w57XrGQnb/cognitive-emulation-a-naive-ai-safety-proposal
     author:
-    - literal: Leahy & Alfour
+    - literal: Connor Leahy
+    - literal: Gabriel Alfour
     issued:
       date-parts:
       - - 2023
-    title: 'Cognitive Emulation: A Naive AI Safety Proposal — AI Alignment Forum'
+        - 2
+        - 25
+    title: 'Cognitive Emulation: A Naive AI Safety Proposal'
     abstract: This is part of the work done at Conjecture. …
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Leahy & Alfour, 2023
 https://alignmentforum.org/posts/pGXR2ynhe5bBCCNqn/takeoff-speeds-and-discontinuities:
@@ -1804,15 +1918,18 @@ https://alignmentforum.org/posts/pGXR2ynhe5bBCCNqn/takeoff-speeds-and-discontinu
     type: post-weblog
     URL: https://alignmentforum.org/posts/pGXR2ynhe5bBCCNqn/takeoff-speeds-and-discontinuities
     author:
-    - literal: Martin & Eth
+    - literal: Sammy Martin
+    - literal: Daniel_Eth
     issued:
       date-parts:
       - - 2021
-    title: Takeoff Speeds and Discontinuities — AI Alignment Forum
+        - 9
+        - 30
+    title: Takeoff Speeds and Discontinuities
     abstract: This post is part 4 in our sequence on Modeling Transformative AI Risk. We are 
       building a model to understand debates around existential risks from a…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Martin & Eth, 2021
 https://alignmentforum.org/posts/pRkFkzwKZ2zfa3R6H/without-specific-countermeasures-the-easiest-path-to:
@@ -1823,16 +1940,18 @@ https://alignmentforum.org/posts/pRkFkzwKZ2zfa3R6H/without-specific-countermeasu
     URL: 
       https://alignmentforum.org/posts/pRkFkzwKZ2zfa3R6H/without-specific-countermeasures-the-easiest-path-to
     author:
-    - literal: Cotra
+    - literal: Ajeya Cotra
     issued:
       date-parts:
       - - 2022
+        - 7
+        - 18
     title: Without specific countermeasures, the easiest path to transformative AI likely leads to 
-      AI takeover — AI Alignment Forum
+      AI takeover
     abstract: '"Human feedback on diverse tasks" could lead to transformative AI, while requiring little
       innovation on current techniques. But it seems likely that…'
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Cotra, 2022
 https://alignmentforum.org/posts/pZaPhGg2hmmPwByHc:
@@ -1841,15 +1960,17 @@ https://alignmentforum.org/posts/pZaPhGg2hmmPwByHc:
     type: post-weblog
     URL: https://alignmentforum.org/posts/pZaPhGg2hmmPwByHc
     author:
-    - literal: Steinhardt
+    - literal: jsteinhardt
     issued:
       date-parts:
       - - 2022
-    title: Future ML Systems Will Be Qualitatively Different — AI Alignment Forum
+        - 1
+        - 11
+    title: Future ML Systems Will Be Qualitatively Different
     abstract: In 1972, the Nobel prize-winning physicist Philip Anderson wrote the essay "More Is 
       Different". In it, he argues that quantitative changes can lead t…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - ' Steinhardt, 2022'
 https://alignmentforum.org/posts/pxiaLFjyr4WPmFdcm/take-2-building-tools-to-help-build-fai-is-a-legitimate:
@@ -1860,16 +1981,17 @@ https://alignmentforum.org/posts/pxiaLFjyr4WPmFdcm/take-2-building-tools-to-help
     URL: 
       https://alignmentforum.org/posts/pxiaLFjyr4WPmFdcm/take-2-building-tools-to-help-build-fai-is-a-legitimate
     author:
-    - literal: Steiner
+    - literal: Charlie Steiner
     issued:
       date-parts:
       - - 2022
-    title: "Take 2: Building tools to help build FAI is a legitimate strategy, but it's dual-use. — AI
-      Alignment Forum"
+        - 12
+        - 3
+    title: "Take 2: Building tools to help build FAI is a legitimate strategy, but it's dual-use."
     abstract: As a writing exercise, I'm writing an AI Alignment Hot Take Advent Calendar - one new 
       hot take, written every day for 25 days. Or until I run out of…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Steiner, 2022
 https://alignmentforum.org/posts/q2rCMHNXazALgQpGH/conditions-for-mesa-optimization:
@@ -1878,15 +2000,21 @@ https://alignmentforum.org/posts/q2rCMHNXazALgQpGH/conditions-for-mesa-optimizat
     type: post-weblog
     URL: https://alignmentforum.org/posts/q2rCMHNXazALgQpGH/conditions-for-mesa-optimization
     author:
-    - literal: Hubinger et al.
+    - literal: evhub
+    - literal: Chris van Merwijk
+    - literal: Vlad Mikulik
+    - literal: Joar Skalse
+    - literal: Scott Garrabrant
     issued:
       date-parts:
       - - 2019
-    title: Conditions for Mesa-Optimization — AI Alignment Forum
+        - 6
+        - 1
+    title: Conditions for Mesa-Optimization
     abstract: This is the second of five posts in the Risks from Learned Optimization Sequence based
       on the paper “Risks from Learned Optimization in Advanced Mach…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Hubinger et al., 2019
 https://alignmentforum.org/posts/r3xwHzMmMf25peeHE/the-translucent-thoughts-hypotheses-and-their-implications:
@@ -1897,15 +2025,17 @@ https://alignmentforum.org/posts/r3xwHzMmMf25peeHE/the-translucent-thoughts-hypo
     URL: 
       https://alignmentforum.org/posts/r3xwHzMmMf25peeHE/the-translucent-thoughts-hypotheses-and-their-implications
     author:
-    - literal: Roger
+    - literal: Fabien Roger
     issued:
       date-parts:
       - - 2023
-    title: The Translucent Thoughts Hypotheses and Their Implications — AI Alignment Forum
+        - 3
+        - 9
+    title: The Translucent Thoughts Hypotheses and Their Implications
     abstract: Thanks to Marius Hobbhahn, Johannes Treutlein, Siméon Campos, and Jean-Stanislas 
       Denain for helpful feedback on drafts. …
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Roger, 2023
 https://alignmentforum.org/posts/sWf8wj64AdDfMeTvf/thinking-about-propensity-evaluations:
@@ -1914,15 +2044,20 @@ https://alignmentforum.org/posts/sWf8wj64AdDfMeTvf/thinking-about-propensity-eva
     type: post-weblog
     URL: https://alignmentforum.org/posts/sWf8wj64AdDfMeTvf/thinking-about-propensity-evaluations
     author:
-    - literal: Riché et al.
+    - literal: Maxime Riché
+    - literal: Harrison G
+    - literal: JaimeRV
+    - literal: Edoardo Pona
     issued:
       date-parts:
       - - 2024
-    title: Thinking About Propensity Evaluations — AI Alignment Forum
+        - 8
+        - 19
+    title: Thinking About Propensity Evaluations
     abstract: 'Warning: This post was written at the start of 2024 as part of the AISC project "Evaluating
       Alignment Evaluations". We are not especially satisfied w…'
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Riché et al., 2024
 https://alignmentforum.org/posts/tD9zEiHfkvakpnNam/a-challenge-for-agi-organizations-and-a-challenge-for-1:
@@ -1933,15 +2068,18 @@ https://alignmentforum.org/posts/tD9zEiHfkvakpnNam/a-challenge-for-agi-organizat
     URL: 
       https://alignmentforum.org/posts/tD9zEiHfkvakpnNam/a-challenge-for-agi-organizations-and-a-challenge-for-1
     author:
-    - literal: Yudkowsky
+    - literal: Rob Bensinger
+    - literal: Eliezer Yudkowsky
     issued:
       date-parts:
       - - 2022
-    title: A challenge for AGI organizations, and a challenge for readers — AI Alignment Forum
+        - 12
+        - 1
+    title: A challenge for AGI organizations, and a challenge for readers
     abstract: '(Note: This post is a write-up by Rob of a point Eliezer wanted to broadcast. Nate helped
       with the editing, and endorses the post’s main points.) •…'
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Yudkowsky, 2022
 https://alignmentforum.org/posts/uMQ3cqWDPHhjtiesc/agi-ruin-a-list-of-lethalities:
@@ -1950,15 +2088,17 @@ https://alignmentforum.org/posts/uMQ3cqWDPHhjtiesc/agi-ruin-a-list-of-lethalitie
     type: post-weblog
     URL: https://alignmentforum.org/posts/uMQ3cqWDPHhjtiesc/agi-ruin-a-list-of-lethalities
     author:
-    - literal: Yudkowsky
+    - literal: Eliezer Yudkowsky
     issued:
       date-parts:
       - - 2022
-    title: 'AGI Ruin: A List of Lethalities — AI Alignment Forum'
+        - 6
+        - 5
+    title: 'AGI Ruin: A List of Lethalities'
     abstract: A few dozen reason that Eliezer thinks AGI alignment is an extremely difficult 
       problem, which humanity is not on track to solve. …
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Yudkowsky, 2022
 https://alignmentforum.org/posts/uqAdqrvxqGqeBHjTP/towards-understanding-based-safety-evaluations:
@@ -1969,15 +2109,17 @@ https://alignmentforum.org/posts/uqAdqrvxqGqeBHjTP/towards-understanding-based-s
     URL: 
       https://alignmentforum.org/posts/uqAdqrvxqGqeBHjTP/towards-understanding-based-safety-evaluations
     author:
-    - literal: Hubinger
+    - literal: evhub
     issued:
       date-parts:
       - - 2023
-    title: Towards understanding-based safety evaluations — AI Alignment Forum
+        - 3
+        - 15
+    title: Towards understanding-based safety evaluations
     abstract: Thanks to Kate Woolverton, Ethan Perez, Beth Barnes, Holden Karnofsky, and Ansh 
       Radhakrishnan for useful conversations, comments, and feedback. …
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Hubinger, 2023
 https://alignmentforum.org/posts/vERGLBpDE8m5mpT6t/autonomous-replication-and-adaptation-an-attempt-at-a:
@@ -1988,16 +2130,17 @@ https://alignmentforum.org/posts/vERGLBpDE8m5mpT6t/autonomous-replication-and-ad
     URL: 
       https://alignmentforum.org/posts/vERGLBpDE8m5mpT6t/autonomous-replication-and-adaptation-an-attempt-at-a
     author:
-    - literal: Wijk
+    - literal: Hjalmar_Wijk
     issued:
       date-parts:
       - - 2023
-    title: 'Autonomous replication and adaptation: an attempt at a concrete danger threshold — AI Alignment
-      Forum'
+        - 8
+        - 17
+    title: 'Autonomous replication and adaptation: an attempt at a concrete danger threshold'
     abstract: A sketch a threshold at which concerns about agentic systems causing catastrophe seem 
       hard to rule out
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Wijk, 2023
 https://alignmentforum.org/posts/vJFdjigzmcXMhNTsx/simulators:
@@ -2006,15 +2149,17 @@ https://alignmentforum.org/posts/vJFdjigzmcXMhNTsx/simulators:
     type: post-weblog
     URL: https://alignmentforum.org/posts/vJFdjigzmcXMhNTsx/simulators
     author:
-    - literal: Janus
+    - literal: janus
     issued:
       date-parts:
       - - 2022
-    title: Simulators — AI Alignment Forum
+        - 9
+        - 2
+    title: Simulators
     abstract: This post explores the concept of simulators in AI, particularly self-supervised 
       models like GPT. Janus argues that GPT and similar models are best u…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Janus, 2022
 https://alignmentforum.org/posts/vwu4kegAEZTBtpT6p/thoughts-on-the-impact-of-rlhf-research:
@@ -2023,15 +2168,17 @@ https://alignmentforum.org/posts/vwu4kegAEZTBtpT6p/thoughts-on-the-impact-of-rlh
     type: post-weblog
     URL: https://alignmentforum.org/posts/vwu4kegAEZTBtpT6p/thoughts-on-the-impact-of-rlhf-research
     author:
-    - literal: Christiano
+    - literal: paulfchristiano
     issued:
       date-parts:
       - - 2023
-    title: Thoughts on the impact of RLHF research — AI Alignment Forum
+        - 1
+        - 25
+    title: Thoughts on the impact of RLHF research
     abstract: In this post I’m going to describe my basic justification for working on RLHF in 
       2017-2020, which I still stand behind. I’ll discuss various argument…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Christiano, 2023
 https://alignmentforum.org/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely-difficult:
@@ -2040,15 +2187,17 @@ https://alignmentforum.org/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely
     type: post-weblog
     URL: https://alignmentforum.org/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely-difficult
     author:
-    - literal: Millidge
+    - literal: beren
     issued:
       date-parts:
       - - 2023
-    title: Gradient hacking is extremely difficult — AI Alignment Forum
+        - 1
+        - 24
+    title: Gradient hacking is extremely difficult
     abstract: There has been a lot of discussion recently about gradient hackers as a potentially 
       important class of mesaoptimizers. The idea of gradient hackers i…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Millidge, 2023
 https://alignmentforum.org/posts/wAczufCpMdaamF9fy/my-objections-to-we-re-all-gonna-die-with-eliezer-yudkowsky:
@@ -2059,15 +2208,17 @@ https://alignmentforum.org/posts/wAczufCpMdaamF9fy/my-objections-to-we-re-all-go
     URL: 
       https://alignmentforum.org/posts/wAczufCpMdaamF9fy/my-objections-to-we-re-all-gonna-die-with-eliezer-yudkowsky
     author:
-    - literal: Pope
+    - literal: Quintin Pope
     issued:
       date-parts:
       - - 2023
-    title: My Objections to "We’re All Gonna Die with Eliezer Yudkowsky" — AI Alignment Forum
+        - 3
+        - 21
+    title: My Objections to "We’re All Gonna Die with Eliezer Yudkowsky"
     abstract: "Introduction\nI recently watched Eliezer Yudkowsky's appearance on the Bankless podcast,
       where he argued that AI was nigh-certain to end humanity. Sin…"
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Pope, 2023
 https://alignmentforum.org/posts/xFotXGEotcKouifky/worlds-where-iterative-design-fails:
@@ -2076,15 +2227,17 @@ https://alignmentforum.org/posts/xFotXGEotcKouifky/worlds-where-iterative-design
     type: post-weblog
     URL: https://alignmentforum.org/posts/xFotXGEotcKouifky/worlds-where-iterative-design-fails
     author:
-    - literal: Wentworth
+    - literal: johnswentworth
     issued:
       date-parts:
       - - 2022
-    title: Worlds Where Iterative Design Fails — AI Alignment Forum
+        - 8
+        - 30
+    title: Worlds Where Iterative Design Fails
     abstract: In worlds where AI alignment can be handled by iterative design, we probably survive. 
       So if we want to reduce X-risk, we generally need to focus on w…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Wentworth, 2022
 https://alignmentforum.org/posts/xWMqsvHapP3nwdSW8/my-views-on-doom:
@@ -2093,15 +2246,17 @@ https://alignmentforum.org/posts/xWMqsvHapP3nwdSW8/my-views-on-doom:
     type: post-weblog
     URL: https://alignmentforum.org/posts/xWMqsvHapP3nwdSW8/my-views-on-doom
     author:
-    - literal: Christiano
+    - literal: paulfchristiano
     issued:
       date-parts:
       - - 2023
-    title: My views on “doom” — AI Alignment Forum
+        - 4
+        - 27
+    title: My views on “doom”
     abstract: Paul Christiano lays out how he frames various questions of "will AI cause a really 
       bad outcome?", and gives some probabilities. …
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Christiano, 2023
 https://alignmentforum.org/posts/xiRfJApXGDRsQBhvc/we-might-be-dropping-the-ball-on-autonomous-replication-and-1:
@@ -2112,15 +2267,17 @@ https://alignmentforum.org/posts/xiRfJApXGDRsQBhvc/we-might-be-dropping-the-ball
     URL: 
       https://alignmentforum.org/posts/xiRfJApXGDRsQBhvc/we-might-be-dropping-the-ball-on-autonomous-replication-and-1
     author:
-    - literal: Segerie & Gédéon
+    - literal: Charbel-Raphaël
+    - literal: Épiphanie Gédéon
     issued:
       date-parts:
       - - 2024
-    title: We might be dropping the ball on Autonomous Replication and Adaptation. — AI Alignment 
-      Forum
+        - 5
+        - 31
+    title: We might be dropping the ball on Autonomous Replication and Adaptation.
     abstract: Here is a little Q&A • Can you explain your position quickly? …
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Segerie & Gédéon, 2024
 https://alignmentforum.org/posts/yxdHp2cZeQbZGREEN/improving-model-written-evals-for-ai-safety-benchmarking:
@@ -2131,15 +2288,18 @@ https://alignmentforum.org/posts/yxdHp2cZeQbZGREEN/improving-model-written-evals
     URL: 
       https://alignmentforum.org/posts/yxdHp2cZeQbZGREEN/improving-model-written-evals-for-ai-safety-benchmarking
     author:
-    - literal: Dev & Hobbhahn
+    - literal: Sunishchal Dev
+    - literal: Marius Hobbhahn
     issued:
       date-parts:
       - - 2024
-    title: Improving Model-Written Evals for AI Safety Benchmarking — AI Alignment Forum
+        - 10
+        - 15
+    title: Improving Model-Written Evals for AI Safety Benchmarking
     abstract: This post was written as part of the summer 2024 cohort of the ML Alignment & Theory 
       Scholars program, under the mentorship of Marius Hobbhahn. …
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Dev & Hobbhahn, 2024
 https://alignmentforum.org/s/PC3yJgdKvk8kzqZyA/p/kcKrE9mzEHrdqtDpE:
@@ -2148,15 +2308,18 @@ https://alignmentforum.org/s/PC3yJgdKvk8kzqZyA/p/kcKrE9mzEHrdqtDpE:
     type: post-weblog
     URL: https://alignmentforum.org/s/PC3yJgdKvk8kzqZyA/p/kcKrE9mzEHrdqtDpE
     author:
-    - literal: Greenblatt & Shlegeris
+    - literal: ryan_greenblatt
+    - literal: Buck
     issued:
       date-parts:
       - - 2024
-    title: The case for ensuring that powerful AIs are controlled — AI Alignment Forum
+        - 1
+        - 24
+    title: The case for ensuring that powerful AIs are controlled
     abstract: In this post, we argue that AI labs should ensure that powerful AIs are controlled. 
       That is, labs should make sure that the safety measures they appl…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Greenblatt & Shlegeris, 2024
 https://alignmentforum.org/s/WCJtsn6fNib6L7ZBB/p/G8WwLmcGFa4H6Ld9d:
@@ -2165,15 +2328,17 @@ https://alignmentforum.org/s/WCJtsn6fNib6L7ZBB/p/G8WwLmcGFa4H6Ld9d:
     type: post-weblog
     URL: https://alignmentforum.org/s/WCJtsn6fNib6L7ZBB/p/G8WwLmcGFa4H6Ld9d
     author:
-    - literal: Greenblatt
+    - literal: ryan_greenblatt
     issued:
       date-parts:
       - - 2025
-    title: An overview of control measures — AI Alignment Forum
+        - 3
+        - 24
+    title: An overview of control measures
     abstract: We often talk about ensuring control, which in the context of this doc refers to 
       preventing AIs from being able to cause existential problems, even i…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Greenblatt, 2025
 https://alignmentforum.org/s/WCJtsn6fNib6L7ZBB/p/fCazYoZSSMadiT6sf:
@@ -2182,15 +2347,17 @@ https://alignmentforum.org/s/WCJtsn6fNib6L7ZBB/p/fCazYoZSSMadiT6sf:
     type: post-weblog
     URL: https://alignmentforum.org/s/WCJtsn6fNib6L7ZBB/p/fCazYoZSSMadiT6sf
     author:
-    - literal: Greenblatt
+    - literal: ryan_greenblatt
     issued:
       date-parts:
       - - 2025
-    title: Prioritizing threats for AI control — AI Alignment Forum
+        - 3
+        - 19
+    title: Prioritizing threats for AI control
     abstract: We often talk about ensuring control, which in the context of this doc refers to 
       preventing AIs from being able to cause existential problems, even i…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Greenblatt, 2025
 https://alignmentforum.org/s/pvoxjtCbkcweBLn7j/p/RTkatYxJWvXR4Qbyd:
@@ -2203,11 +2370,13 @@ https://alignmentforum.org/s/pvoxjtCbkcweBLn7j/p/RTkatYxJWvXR4Qbyd:
     issued:
       date-parts:
       - - 2023
-    title: Deceptive Alignment is <1% Likely by Default — AI Alignment Forum
+        - 2
+        - 21
+    title: Deceptive Alignment is <1% Likely by Default
     abstract: Thanks to Wil Perkins, Grant Fleming, Thomas Larsen, Declan Nishiyama, and Frank 
       McBride for feedback on this post. Thanks also to Paul Christiano, D…
     container-title: AI Alignment Forum
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - DavidW, 2023
 https://amazon.com/Brief-History-Artificial-Intelligence-Where/dp/1250770742:
@@ -7000,8 +7169,8 @@ https://arxiv.org/abs/2205.09712:
 https://arxiv.org/abs/2205.10816:
   item:
     id: https://arxiv.org/abs/2205.10816
-    type: article
-    URL: https://arxiv.org/abs/2205.10816
+    type: webpage
+    URL: https://www.arxiv.org/abs/2205.10816
     author:
     - literal: Yang et. al;
     issued:
@@ -8876,8 +9045,8 @@ https://arxiv.org/abs/2210.15230:
 https://arxiv.org/abs/2211.00241:
   item:
     id: https://arxiv.org/abs/2211.00241
-    type: article
-    URL: https://arxiv.org/abs/2211.00241
+    type: webpage
+    URL: https://www.arxiv.org/abs/2211.00241
     author:
     - literal: Wang et al.
     issued:
@@ -10498,8 +10667,8 @@ https://arxiv.org/abs/2303.11366:
 https://arxiv.org/abs/2303.12642:
   item:
     id: https://arxiv.org/abs/2303.12642
-    type: article
-    URL: https://arxiv.org/abs/2303.12642
+    type: webpage
+    URL: https://www.arxiv.org/abs/2303.12642
     author:
     - literal: Seger et al.
     issued:
@@ -14101,8 +14270,8 @@ https://arxiv.org/abs/2312.01479:
 https://arxiv.org/abs/2312.04724:
   item:
     id: https://arxiv.org/abs/2312.04724
-    type: article
-    URL: https://arxiv.org/abs/2312.04724
+    type: webpage
+    URL: https://www.arxiv.org/abs/2312.04724
     author:
     - literal: Bhatt et al.
     issued:
@@ -18273,8 +18442,8 @@ https://arxiv.org/abs/2403.10462:
 https://arxiv.org/abs/2403.10616:
   item:
     id: https://arxiv.org/abs/2403.10616
-    type: article
-    URL: https://arxiv.org/abs/2403.10616
+    type: webpage
+    URL: https://www.arxiv.org/abs/2403.10616
     author:
     - literal: Douillard et al
     issued:
@@ -18935,8 +19104,8 @@ https://arxiv.org/abs/2405.05466:
 https://arxiv.org/abs/2405.06624:
   item:
     id: https://arxiv.org/abs/2405.06624
-    type: article
-    URL: https://arxiv.org/abs/2405.06624
+    type: webpage
+    URL: https://www.arxiv.org/abs/2405.06624
     author:
     - literal: Dalrymple
     issued:
@@ -21105,8 +21274,8 @@ https://arxiv.org/abs/2412.01152:
 https://arxiv.org/abs/2412.01946:
   item:
     id: https://arxiv.org/abs/2412.01946
-    type: article
-    URL: https://arxiv.org/abs/2412.01946
+    type: webpage
+    URL: https://www.arxiv.org/abs/2412.01946
     author:
     - literal: Peppin et al.
     issued:
@@ -25234,8 +25403,8 @@ https://arxiv.org/abs/2502.14143:
 https://arxiv.org/abs/2502.14870:
   item:
     id: https://arxiv.org/abs/2502.14870
-    type: article
-    URL: https://arxiv.org/abs/2502.14870
+    type: webpage
+    URL: https://www.arxiv.org/abs/2502.14870
     author:
     - literal: Field
     issued:
@@ -25642,8 +25811,8 @@ https://arxiv.org/abs/2503.10965:
 https://arxiv.org/abs/2503.11705:
   item:
     id: https://arxiv.org/abs/2503.11705
-    type: article
-    URL: https://arxiv.org/abs/2503.11705
+    type: webpage
+    URL: https://www.arxiv.org/abs/2503.11705
     author:
     - literal: Habli et al.
     issued:
@@ -29375,6 +29544,7 @@ https://forum.effectivealtruism.org/posts/63stBTw3WAW6k45dY/paul-christiano-curr
   resolvedBy: forum-magnum
   anchors:
   - Christiano, 2020
+  unreachable: refused
 https://forum.effectivealtruism.org/posts/6aYfWyo9DKEheogf8/don-t-call-it-ai-alignment:
   item:
     id: https://forum.effectivealtruism.org/posts/6aYfWyo9DKEheogf8/don-t-call-it-ai-alignment
@@ -29385,11 +29555,20 @@ https://forum.effectivealtruism.org/posts/6aYfWyo9DKEheogf8/don-t-call-it-ai-ali
     issued:
       date-parts:
       - - 2023
-    title: Don't Call It AI Alignment
+    title: Don't Call It AI Alignment — EA Forum
     abstract: Let me start by saying that I generally hate pedantic arguments, so I don't see this 
       post as the most important thing in the world. More important th…
     container-title: EA Forum
-  resolvedBy: opengraph
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260516150521/https://forum.effectivealtruism.org/posts/6aYfWyo9DKEheogf8/don-t-call-it-ai-alignment
+    accessed:
+      date-parts:
+      - - 2026
+        - 5
+        - 16
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Gil, 2023
 https://forum.effectivealtruism.org/posts/7WfMYzLfcTyDtD6Gn/pause-for-thought-the-ai-pause-debate:
@@ -29411,6 +29590,7 @@ https://forum.effectivealtruism.org/posts/7WfMYzLfcTyDtD6Gn/pause-for-thought-th
   resolvedBy: forum-magnum
   anchors:
   - Alexander, 2023
+  unreachable: refused
 https://forum.effectivealtruism.org/posts/DXuwsXsqGq5GtmsB3/ai-alignment-with-humans-but-with-which-humans:
   item:
     id: 
@@ -29423,11 +29603,20 @@ https://forum.effectivealtruism.org/posts/DXuwsXsqGq5GtmsB3/ai-alignment-with-hu
     issued:
       date-parts:
       - - 2022
-    title: AI alignment with humans... but with which humans?
+    title: AI alignment with humans... but with which humans? — EA Forum
     abstract: "Caveat: This post probably raises a naive question; I assume there's at least a 70% chance
       it's been considered (if not answered) exhaustively elsewh…"
     container-title: EA Forum
-  resolvedBy: opengraph
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260422074220/https://forum.effectivealtruism.org/posts/DXuwsXsqGq5GtmsB3/ai-alignment-with-humans-but-with-which-humans
+    accessed:
+      date-parts:
+      - - 2026
+        - 4
+        - 22
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - Miller, 2022
 https://forum.effectivealtruism.org/posts/GsjmufaebreiaivF7/what-is-the-likelihood-that-civilizational-collapse-would:
@@ -29450,6 +29639,7 @@ https://forum.effectivealtruism.org/posts/GsjmufaebreiaivF7/what-is-the-likeliho
   resolvedBy: forum-magnum
   anchors:
   - Rodriguez, 2020
+  unreachable: refused
 https://forum.effectivealtruism.org/posts/f2qojPr8NaMPo2KJC/beware-safety-washing:
   item:
     id: https://forum.effectivealtruism.org/posts/f2qojPr8NaMPo2KJC/beware-safety-washing
@@ -29462,9 +29652,18 @@ https://forum.effectivealtruism.org/posts/f2qojPr8NaMPo2KJC/beware-safety-washin
       - - 2023
         - 1
         - 13
-    title: Beware safety-washing
+    title: Beware safety-washing — EA Forum
     container-title: EA Forum
-  resolvedBy: forum-magnum
+    archive: Internet Archive
+    archive_location: 
+      https://web.archive.org/web/20260519093736/https://forum.effectivealtruism.org/posts/f2qojPr8NaMPo2KJC/beware-safety-washing
+    accessed:
+      date-parts:
+      - - 2026
+        - 5
+        - 19
+    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
+  resolvedBy: wayback
   anchors:
   - ' Lizka, 2023'
   - Lizka, 2023
@@ -30925,15 +31124,17 @@ https://lesswrong.com/posts/2mhFMgtAjFJesaSYR/2-d-robustness:
     type: post-weblog
     URL: https://lesswrong.com/posts/2mhFMgtAjFJesaSYR/2-d-robustness
     author:
-    - literal: Mikulik
+    - literal: Vlad Mikulik
     issued:
       date-parts:
       - - 2019
-    title: 2-D Robustness — LessWrong
+        - 8
+        - 30
+    title: 2-D Robustness
     abstract: This is a short note on a framing that was developed in collaboration with Joar 
       Skalse, Chris van Merwijk and Evan Hubinger while working on Risks fr…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Mikulik, 2019
 https://lesswrong.com/posts/2oAxpRuadyjN2ERhe/information-security-considerations-for-ai-and-the-long-term:
@@ -30944,15 +31145,18 @@ https://lesswrong.com/posts/2oAxpRuadyjN2ERhe/information-security-consideration
     URL: 
       https://lesswrong.com/posts/2oAxpRuadyjN2ERhe/information-security-considerations-for-ai-and-the-long-term
     author:
-    - literal: Ladish & Heim
+    - literal: Jeffrey Ladish
+    - literal: lennart
     issued:
       date-parts:
       - - 2022
-    title: Information security considerations for AI and the long term future — LessWrong
+        - 5
+        - 2
+    title: Information security considerations for AI and the long term future
     abstract: "Summary\nThis post is authored by Jeffrey Ladish, who works on the security team at Anthropic,
       and Lennart Heim, who works on AI Governance with GovAI…"
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Ladish & Heim, 2022
 https://lesswrong.com/posts/2sLwt2cSAag74nsdN/speaking-to-congressional-staffers-about-ai-risk:
@@ -30963,15 +31167,18 @@ https://lesswrong.com/posts/2sLwt2cSAag74nsdN/speaking-to-congressional-staffers
     URL: 
       https://lesswrong.com/posts/2sLwt2cSAag74nsdN/speaking-to-congressional-staffers-about-ai-risk
     author:
-    - literal: Akash
+    - literal: Orpheus16
+    - literal: hath
     issued:
       date-parts:
       - - 2023
-    title: Speaking to Congressional staffers about AI risk — LessWrong
+        - 12
+        - 4
+    title: Speaking to Congressional staffers about AI risk
     abstract: Orpheus16 shares his experience talking with ~60 congressional staffers about AI risk 
       in May - June 2023. He found staffers were surprisingly open-mi…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Akash, 2023
 https://lesswrong.com/posts/3nMpdmt8LrzxQnkGp/ai-timelines-via-cumulative-optimization-power-less-long:
@@ -30982,15 +31189,17 @@ https://lesswrong.com/posts/3nMpdmt8LrzxQnkGp/ai-timelines-via-cumulative-optimi
     URL: 
       https://lesswrong.com/posts/3nMpdmt8LrzxQnkGp/ai-timelines-via-cumulative-optimization-power-less-long
     author:
-    - literal: Canell
+    - literal: jacob_cannell
     issued:
       date-parts:
       - - 2022
-    title: 'AI Timelines via Cumulative Optimization Power: Less Long, More Short — LessWrong'
+        - 10
+        - 6
+    title: 'AI Timelines via Cumulative Optimization Power: Less Long, More Short'
     abstract: 'TLDR: We can best predict the future by using simple models which best postdict the past
       (ala Bayes/Solomonoff). A simple model based on net training…'
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Canell, 2022
 https://lesswrong.com/posts/6RC3BNopCtzKaTeR6/thoughts-on-the-openai-alignment-plan-will-ai-research:
@@ -31001,16 +31210,18 @@ https://lesswrong.com/posts/6RC3BNopCtzKaTeR6/thoughts-on-the-openai-alignment-p
     URL: 
       https://lesswrong.com/posts/6RC3BNopCtzKaTeR6/thoughts-on-the-openai-alignment-plan-will-ai-research
     author:
-    - literal: Ladish
+    - literal: Jeffrey Ladish
     issued:
       date-parts:
       - - 2023
+        - 3
+        - 10
     title: 'Thoughts on the OpenAI alignment plan: will AI research assistants be net-positive for AI
-      existential risk? — LessWrong'
+      existential risk?'
     abstract: 'Note: I really appreciate the work that the OpenAI alignment team put into their alignment
       plan writeup and related posts, especially Jan Leike, the…'
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Ladish, 2023
 https://lesswrong.com/posts/6kBMqrK9bREuGsrnd/ai-enabled-coups-a-small-group-could-use-ai-to-seize-power-1:
@@ -31021,14 +31232,18 @@ https://lesswrong.com/posts/6kBMqrK9bREuGsrnd/ai-enabled-coups-a-small-group-cou
     URL: 
       https://lesswrong.com/posts/6kBMqrK9bREuGsrnd/ai-enabled-coups-a-small-group-could-use-ai-to-seize-power-1
     author:
-    - literal: Davidson
+    - literal: Tom Davidson
+    - literal: Lukas Finnveden
+    - literal: rosehadshar
     issued:
       date-parts:
       - - 2025
-    title: 'AI-enabled coups: a small group could use AI to seize power — LessWrong'
+        - 4
+        - 16
+    title: 'AI-enabled coups: a small group could use AI to seize power'
     abstract: We’ve written a new report on the threat of AI-enabled coups.  …
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Davidson, 2025
 https://lesswrong.com/posts/7gkXuHEm6CqEGT2mg/ai-safety-seems-hard-to-measure:
@@ -31037,15 +31252,17 @@ https://lesswrong.com/posts/7gkXuHEm6CqEGT2mg/ai-safety-seems-hard-to-measure:
     type: post-weblog
     URL: https://lesswrong.com/posts/7gkXuHEm6CqEGT2mg/ai-safety-seems-hard-to-measure
     author:
-    - literal: Karnofsky
+    - literal: HoldenKarnofsky
     issued:
       date-parts:
       - - 2022
-    title: AI Safety Seems Hard to Measure — LessWrong
+        - 12
+        - 8
+    title: AI Safety Seems Hard to Measure
     abstract: In previous pieces, I argued that there's a real and large risk of AI systems' 
       developing dangerous goals of their own and defeating all of humanity…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Karnofsky, 2022
 https://lesswrong.com/posts/8gy7c8GAPkuu6wTiX/frontier-models-are-capable-of-in-context-scheming:
@@ -31056,15 +31273,22 @@ https://lesswrong.com/posts/8gy7c8GAPkuu6wTiX/frontier-models-are-capable-of-in-
     URL: 
       https://lesswrong.com/posts/8gy7c8GAPkuu6wTiX/frontier-models-are-capable-of-in-context-scheming
     author:
-    - literal: Hobbhahn et al.
+    - literal: Marius Hobbhahn
+    - literal: Alex Meinke
+    - literal: Bronson Schoen
+    - literal: rusheb
+    - literal: Jérémy Scheurer
+    - literal: Mikita Balesni
     issued:
       date-parts:
       - - 2024
-    title: Frontier Models are Capable of In-context Scheming — LessWrong
+        - 12
+        - 5
+    title: Frontier Models are Capable of In-context Scheming
     abstract: This is a brief summary of what we believe to be the most important takeaways from our
       new paper and from our findings shown in the o1 system card. W…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Hobbhahn et al., 2024
 https://lesswrong.com/posts/8wBN8cdNAv3c7vt6p/the-case-against-ai-control-research:
@@ -31073,14 +31297,16 @@ https://lesswrong.com/posts/8wBN8cdNAv3c7vt6p/the-case-against-ai-control-resear
     type: post-weblog
     URL: https://lesswrong.com/posts/8wBN8cdNAv3c7vt6p/the-case-against-ai-control-research
     author:
-    - literal: Wentworth
+    - literal: johnswentworth
     issued:
       date-parts:
       - - 2025
-    title: The Case Against AI Control Research — LessWrong
+        - 1
+        - 21
+    title: The Case Against AI Control Research
     abstract: 'The AI Control Agenda, in its own words: …'
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Wentworth, 2025
 https://lesswrong.com/posts/9Yc7Pp7szcjPgPsjf/the-brain-as-a-universal-learning-machine:
@@ -31089,15 +31315,17 @@ https://lesswrong.com/posts/9Yc7Pp7szcjPgPsjf/the-brain-as-a-universal-learning-
     type: post-weblog
     URL: https://lesswrong.com/posts/9Yc7Pp7szcjPgPsjf/the-brain-as-a-universal-learning-machine
     author:
-    - literal: Canell
+    - literal: jacob_cannell
     issued:
       date-parts:
       - - 2015
-    title: The Brain as a Universal Learning Machine — LessWrong
+        - 6
+        - 24
+    title: The Brain as a Universal Learning Machine
     abstract: This article presents an emerging architectural hypothesis of the brain as a 
       biological implementation of a Universal Learning Machine.  I present a…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Canell, 2015
 https://lesswrong.com/posts/9weLK2AJ9JEt2Tt8f/politics-is-the-mind-killer:
@@ -31106,15 +31334,17 @@ https://lesswrong.com/posts/9weLK2AJ9JEt2Tt8f/politics-is-the-mind-killer:
     type: post-weblog
     URL: https://lesswrong.com/posts/9weLK2AJ9JEt2Tt8f/politics-is-the-mind-killer
     author:
-    - literal: Yudkowsky
+    - literal: Eliezer Yudkowsky
     issued:
       date-parts:
       - - 2007
-    title: Politics is the Mind-Killer — LessWrong
+        - 2
+        - 18
+    title: Politics is the Mind-Killer
     abstract: 'People go funny in the head when talking about politics. The evolutionary reasons for this
       are so obvious as to be worth belaboring: In the ancestral…'
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Yudkowsky, 2007
 https://lesswrong.com/posts/BoA3agdkAzL6HQtQP/clarifying-and-predicting-agi:
@@ -31123,14 +31353,16 @@ https://lesswrong.com/posts/BoA3agdkAzL6HQtQP/clarifying-and-predicting-agi:
     type: post-weblog
     URL: https://lesswrong.com/posts/BoA3agdkAzL6HQtQP/clarifying-and-predicting-agi
     author:
-    - literal: Ngo
+    - literal: Richard_Ngo
     issued:
       date-parts:
       - - 2023
-    title: Clarifying and predicting AGI — LessWrong
+        - 5
+        - 4
+    title: Clarifying and predicting AGI
     abstract: This post is a slightly-adapted summary of two twitter threads, here and here. …
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Ngo, 2023
 https://lesswrong.com/posts/Br4xDbYu4Frwrb64a/writeup-progress-on-ai-safety-via-debate-1:
@@ -31139,15 +31371,18 @@ https://lesswrong.com/posts/Br4xDbYu4Frwrb64a/writeup-progress-on-ai-safety-via-
     type: post-weblog
     URL: https://lesswrong.com/posts/Br4xDbYu4Frwrb64a/writeup-progress-on-ai-safety-via-debate-1
     author:
-    - literal: Barnes et al.
+    - literal: Beth Barnes
+    - literal: paulfchristiano
     issued:
       date-parts:
       - - 2020
-    title: 'Writeup: Progress on AI Safety via Debate — LessWrong'
+        - 2
+        - 5
+    title: 'Writeup: Progress on AI Safety via Debate'
     abstract: This is a writeup of the research done by the "Reflection-Humans" team at OpenAI in Q3
       and Q4 of 2019. During that period we investigated mechanisms…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Barnes et al., 2020
 https://lesswrong.com/posts/CJw2tNHaEimx6nwNy/ai-forecasting-one-year-in:
@@ -31156,15 +31391,17 @@ https://lesswrong.com/posts/CJw2tNHaEimx6nwNy/ai-forecasting-one-year-in:
     type: post-weblog
     URL: https://lesswrong.com/posts/CJw2tNHaEimx6nwNy/ai-forecasting-one-year-in
     author:
-    - literal: Steinhardt
+    - literal: jsteinhardt
     issued:
       date-parts:
       - - 2022
-    title: 'AI Forecasting: One Year In — LessWrong'
+        - 7
+        - 4
+    title: 'AI Forecasting: One Year In'
     abstract: Last August, my research group created a forecasting contest to predict AI progress on
       four benchmarks. Forecasts were asked to predict state-of-the-…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Steinhardt, 2022
 https://lesswrong.com/posts/FBG7AghvvP7fPYzkx/my-thoughts-on-openai-s-alignment-plan-1:
@@ -31173,14 +31410,16 @@ https://lesswrong.com/posts/FBG7AghvvP7fPYzkx/my-thoughts-on-openai-s-alignment-
     type: post-weblog
     URL: https://lesswrong.com/posts/FBG7AghvvP7fPYzkx/my-thoughts-on-openai-s-alignment-plan-1
     author:
-    - literal: Wasil
+    - literal: Orpheus16
     issued:
       date-parts:
       - - 2022
-    title: My thoughts on OpenAI's alignment plan — LessWrong
+        - 12
+        - 30
+    title: My thoughts on OpenAI's alignment plan
     abstract: I’m grateful to Olivia Jimenez, Thomas Larsen, and Nicholas Dupuis for feedback. …
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Wasil, 2022
 https://lesswrong.com/posts/FEcw6JQ8surwxvRfr/human-takeover-might-be-worse-than-ai-takeover:
@@ -31190,15 +31429,17 @@ https://lesswrong.com/posts/FEcw6JQ8surwxvRfr/human-takeover-might-be-worse-than
     URL: 
       https://lesswrong.com/posts/FEcw6JQ8surwxvRfr/human-takeover-might-be-worse-than-ai-takeover
     author:
-    - literal: Davidson et al
+    - literal: Tom Davidson
     issued:
       date-parts:
       - - 2025
-    title: Human takeover might be worse than AI takeover — LessWrong
+        - 1
+        - 10
+    title: Human takeover might be worse than AI takeover
     abstract: "\nSummary\nSuppose a human used AI to take over the world. Would this be worse than AI
       taking over? I think plausibly: …"
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Davidson et al, 2025
 https://lesswrong.com/posts/FtHidqjAFTerfMZLo/aisc-project-how-promising-is-automating-alignment-research:
@@ -31209,15 +31450,17 @@ https://lesswrong.com/posts/FtHidqjAFTerfMZLo/aisc-project-how-promising-is-auto
     URL: 
       https://lesswrong.com/posts/FtHidqjAFTerfMZLo/aisc-project-how-promising-is-automating-alignment-research
     author:
-    - literal: Ionut-Cirstea
+    - literal: Bogdan Ionut Cirstea
     issued:
       date-parts:
       - - 2023
-    title: 'AISC project: How promising is automating alignment research? (literature review) — LessWrong'
+        - 11
+        - 28
+    title: 'AISC project: How promising is automating alignment research? (literature review)'
     abstract: Apply to work on this project with me at AI Safety Camp 2024 before 1st December 2023.
       …
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - ' Ionut-Cirstea, 2023'
 https://lesswrong.com/posts/G4KHuYC3pHry6yMhi:
@@ -31226,14 +31469,16 @@ https://lesswrong.com/posts/G4KHuYC3pHry6yMhi:
     type: post-weblog
     URL: https://lesswrong.com/posts/G4KHuYC3pHry6yMhi
     author:
-    - literal: Heim
+    - literal: lennart
     issued:
       date-parts:
       - - 2021
-    title: Compute Research Questions and Metrics - Transformative AI and Compute [4/4] — LessWrong
+        - 11
+        - 28
+    title: Compute Research Questions and Metrics - Transformative AI and Compute [4/4]
     abstract: Transformative AI and Compute - A holistic approach - Part 4 out of 4 …
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Heim, 2021
 https://lesswrong.com/posts/GctJD5oCDRxCspEaZ/clarifying-ai-x-risk:
@@ -31242,15 +31487,24 @@ https://lesswrong.com/posts/GctJD5oCDRxCspEaZ/clarifying-ai-x-risk:
     type: post-weblog
     URL: https://lesswrong.com/posts/GctJD5oCDRxCspEaZ/clarifying-ai-x-risk
     author:
-    - literal: DeepMind
+    - literal: zac_kenton
+    - literal: Rohin Shah
+    - literal: David Lindner
+    - literal: Vikrant Varma
+    - literal: Vika
+    - literal: Mary Phuong
+    - literal: Ramana Kumar
+    - literal: Elliot Catt
     issued:
       date-parts:
       - - 2022
-    title: Clarifying AI X-risk — LessWrong
+        - 11
+        - 1
+    title: Clarifying AI X-risk
     abstract: "TL;DR: We give a threat model literature review, propose a categorization and describe
       a consensus threat model from some of DeepMind's AGI safety te…"
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - DeepMind, 2022
 https://lesswrong.com/posts/HxRjHq3QG8vcYy4yy/the-stochastic-parrot-hypothesis-is-debatable-for-the-last:
@@ -31261,17 +31515,20 @@ https://lesswrong.com/posts/HxRjHq3QG8vcYy4yy/the-stochastic-parrot-hypothesis-i
     URL: 
       https://lesswrong.com/posts/HxRjHq3QG8vcYy4yy/the-stochastic-parrot-hypothesis-is-debatable-for-the-last
     author:
-    - literal: Feuillade-Montixi & Peigné
+    - literal: Quentin FEUILLADE--MONTIXI
+    - literal: Pierre Peigné
     issued:
       date-parts:
       - - 2023
-    title: The Stochastic Parrot Hypothesis is debatable for the last generation of LLMs — LessWrong
+        - 11
+        - 7
+    title: The Stochastic Parrot Hypothesis is debatable for the last generation of LLMs
     abstract: Before diving into what model psychology is, it is crucial to clarify the nature of 
       the subject we are studying. In this post, I’ll challenge the commonly debated stochastic 
       parrot hypothesis for state-of-the-art large language models (≈GPT-4), and in the next post, 
       I’ll shed light on the foundations I am building model psychology from.
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Feuillade-Montixi & Peigné, 2023
 https://lesswrong.com/posts/NSZhadmoYdjRKNq6X/openai-launches-superalignment-taskforce:
@@ -31280,15 +31537,17 @@ https://lesswrong.com/posts/NSZhadmoYdjRKNq6X/openai-launches-superalignment-tas
     type: post-weblog
     URL: https://lesswrong.com/posts/NSZhadmoYdjRKNq6X/openai-launches-superalignment-taskforce
     author:
-    - literal: Mowshowitz
+    - literal: Zvi
     issued:
       date-parts:
       - - 2023
-    title: OpenAI Launches Superalignment Taskforce — LessWrong
+        - 7
+        - 11
+    title: OpenAI Launches Superalignment Taskforce
     abstract: In their announcement Introducing Superalignment, OpenAI committed 20% of secured 
       compute and a new taskforce to solving the technical problem of ali…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - ' Mowshowitz, 2023'
 https://lesswrong.com/posts/PJLABqQ962hZEqhdB/debate-update-obfuscated-arguments-problem:
@@ -31297,15 +31556,17 @@ https://lesswrong.com/posts/PJLABqQ962hZEqhdB/debate-update-obfuscated-arguments
     type: post-weblog
     URL: https://lesswrong.com/posts/PJLABqQ962hZEqhdB/debate-update-obfuscated-arguments-problem
     author:
-    - literal: Barnes et al.
+    - literal: Beth Barnes
     issued:
       date-parts:
       - - 2020
-    title: 'Debate update: Obfuscated arguments problem — LessWrong'
+        - 12
+        - 23
+    title: 'Debate update: Obfuscated arguments problem'
     abstract: This is an update on the work on AI Safety via Debate that we previously wrote about 
       here. …
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Barnes et al., 2020
 https://lesswrong.com/posts/PY3HEHc5fMQkTrQo4/beware-safety-washing:
@@ -31314,15 +31575,17 @@ https://lesswrong.com/posts/PY3HEHc5fMQkTrQo4/beware-safety-washing:
     type: post-weblog
     URL: https://lesswrong.com/posts/PY3HEHc5fMQkTrQo4/beware-safety-washing
     author:
-    - literal: Vaintrob
+    - literal: Lizka
     issued:
       date-parts:
       - - 2023
-    title: Beware safety-washing — LessWrong
+        - 1
+        - 13
+    title: Beware safety-washing
     abstract: 'Tl;dr: don’t be fooled into thinking that some groups working on AI are taking “safety”
       concerns seriously (enough).[1] • Outline …'
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Vaintrob, 2023
 https://lesswrong.com/posts/RYx6cLwzoajqjyB6b/what-convincing-warning-shot-could-help-prevent-extinction:
@@ -31333,15 +31596,18 @@ https://lesswrong.com/posts/RYx6cLwzoajqjyB6b/what-convincing-warning-shot-could
     URL: 
       https://lesswrong.com/posts/RYx6cLwzoajqjyB6b/what-convincing-warning-shot-could-help-prevent-extinction
     author:
-    - literal: Segerie
+    - literal: Charbel-Raphaël
+    - literal: cozyfractal
     issued:
       date-parts:
       - - 2024
-    title: What convincing warning shot could help prevent extinction from AI? — LessWrong
+        - 4
+        - 13
+    title: What convincing warning shot could help prevent extinction from AI?
     abstract: "• \n  • > - Tell me father, when is the line\n> \n> where ends everything good and fine?\n\
       > \n> I keep searching, but I don't find.\n> \n> - The line my s…"
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Segerie, 2024
 https://lesswrong.com/posts/SdkexhiynayG2sQCC/ai-forecasting-two-years-in:
@@ -31350,15 +31616,17 @@ https://lesswrong.com/posts/SdkexhiynayG2sQCC/ai-forecasting-two-years-in:
     type: post-weblog
     URL: https://lesswrong.com/posts/SdkexhiynayG2sQCC/ai-forecasting-two-years-in
     author:
-    - literal: Steinhardt
+    - literal: jsteinhardt
     issued:
       date-parts:
       - - 2023
-    title: 'AI Forecasting: Two Years In — LessWrong'
+        - 8
+        - 19
+    title: 'AI Forecasting: Two Years In'
     abstract: Two years ago, I commissioned forecasts for state-of-the-art performance on several 
       popular ML benchmarks. Forecasters were asked to predict state-of…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Steinhardt, 2023
 https://lesswrong.com/posts/TTFsKxQThrqgWeXYJ/how-might-we-safely-pass-the-buck-to-ai:
@@ -31367,14 +31635,16 @@ https://lesswrong.com/posts/TTFsKxQThrqgWeXYJ/how-might-we-safely-pass-the-buck-
     type: post-weblog
     URL: https://lesswrong.com/posts/TTFsKxQThrqgWeXYJ/how-might-we-safely-pass-the-buck-to-ai
     author:
-    - literal: Clymer
+    - literal: joshc
     issued:
       date-parts:
       - - 2025
-    title: How might we safely pass the buck to AI? — LessWrong
+        - 2
+        - 19
+    title: How might we safely pass the buck to AI?
     abstract: My goal as an AI safety researcher is to put myself out of a job. …
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Clymer, 2025
 https://lesswrong.com/posts/YWwzccGbcHMJMpT45/ai-safety-via-market-making:
@@ -31383,15 +31653,17 @@ https://lesswrong.com/posts/YWwzccGbcHMJMpT45/ai-safety-via-market-making:
     type: post-weblog
     URL: https://lesswrong.com/posts/YWwzccGbcHMJMpT45/ai-safety-via-market-making
     author:
-    - literal: Hubinger Evan
+    - literal: evhub
     issued:
       date-parts:
       - - 2020
-    title: AI safety via market making — LessWrong
+        - 6
+        - 26
+    title: AI safety via market making
     abstract: Special thanks to Abram Demski, Paul Christiano, and Kate Woolverton for talking with 
       me about some of the ideas that turned into this post. …
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Hubinger Evan, 2020
 https://lesswrong.com/posts/aEguDPoCzt3287CCD/how-will-we-update-about-scheming:
@@ -31400,15 +31672,17 @@ https://lesswrong.com/posts/aEguDPoCzt3287CCD/how-will-we-update-about-scheming:
     type: post-weblog
     URL: https://lesswrong.com/posts/aEguDPoCzt3287CCD/how-will-we-update-about-scheming
     author:
-    - literal: Greenblatt
+    - literal: ryan_greenblatt
     issued:
       date-parts:
       - - 2025
-    title: How will we update about scheming? — LessWrong
+        - 1
+        - 6
+    title: How will we update about scheming?
     abstract: I mostly work on risks from scheming (that is, misaligned, power-seeking AIs that plot
       against their creators such as by faking alignment). Recently,…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Greenblatt, 2025
 https://lesswrong.com/posts/dqSwccGTWyBgxrR58/turntrout-s-shortform-feed?commentId=Sw89AxHGJ5j7E7ETf:
@@ -31419,11 +31693,13 @@ https://lesswrong.com/posts/dqSwccGTWyBgxrR58/turntrout-s-shortform-feed?comment
     URL: 
       https://lesswrong.com/posts/dqSwccGTWyBgxrR58/turntrout-s-shortform-feed?commentId=Sw89AxHGJ5j7E7ETf
     author:
-    - literal: Turner
+    - literal: TurnTrout
     issued:
       date-parts:
       - - 2023
-    title: TurnTrout's shortform feed — LessWrong
+        - 6
+        - 1
+    title: Comment on “TurnTrout's shortform feed”
     abstract: "Comment by TurnTrout - I regret each of the thousands of hours I spent on my power-seeking
       theorems, and sometimes fantasize about retracting one or both papers. I am pained every time someone
       cites \"Optimal policies tend to seek power\", and despair that it is included in the alignment
@@ -31432,7 +31708,7 @@ https://lesswrong.com/posts/dqSwccGTWyBgxrR58/turntrout-s-shortform-feed?comment
       but sadly I only remember about two people objecting that \"optimality\" is a horrible way of understanding
       trained policies. "
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Turner, 2023
 https://lesswrong.com/posts/jRf4WENQnhssCb6mJ/davidad-s-bold-plan-for-alignment-an-in-depth-explanation:
@@ -31443,15 +31719,18 @@ https://lesswrong.com/posts/jRf4WENQnhssCb6mJ/davidad-s-bold-plan-for-alignment-
     URL: 
       https://lesswrong.com/posts/jRf4WENQnhssCb6mJ/davidad-s-bold-plan-for-alignment-an-in-depth-explanation
     author:
-    - literal: Segerie & Kolly
+    - literal: Charbel-Raphaël
+    - literal: Gabin
     issued:
       date-parts:
       - - 2023
-    title: "Davidad's Bold Plan for Alignment: An In-Depth Explanation — LessWrong"
+        - 4
+        - 19
+    title: "Davidad's Bold Plan for Alignment: An In-Depth Explanation"
     abstract: "Charbel-Raphaël summarizes Davidad's plan: Use near AGIs to build a detailed world simulation,
       then train and formally verify an AI that follows coar…"
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Segerie & Kolly, 2023
 https://lesswrong.com/posts/kYeHbXmW4Kppfkg5j/on-maim-and-superintelligence-strategy:
@@ -31460,15 +31739,17 @@ https://lesswrong.com/posts/kYeHbXmW4Kppfkg5j/on-maim-and-superintelligence-stra
     type: post-weblog
     URL: https://lesswrong.com/posts/kYeHbXmW4Kppfkg5j/on-maim-and-superintelligence-strategy
     author:
-    - literal: Mowshowitz
+    - literal: Zvi
     issued:
       date-parts:
       - - 2025
-    title: On MAIM and Superintelligence Strategy — LessWrong
+        - 3
+        - 14
+    title: On MAIM and Superintelligence Strategy
     abstract: Dan Hendrycks, Eric Schmidt and Alexandr Wang released an extensive paper titled 
       Superintelligence Strategy. There is also an op-ed in Time that summ…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Mowshowitz, 2025
 https://lesswrong.com/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-powerful-ais-are-controlled:
@@ -31479,15 +31760,18 @@ https://lesswrong.com/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-powerfu
     URL: 
       https://lesswrong.com/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-powerful-ais-are-controlled
     author:
-    - literal: Greenblatt & Shlegeris
+    - literal: ryan_greenblatt
+    - literal: Buck
     issued:
       date-parts:
       - - 2024
-    title: The case for ensuring that powerful AIs are controlled — LessWrong
+        - 1
+        - 24
+    title: The case for ensuring that powerful AIs are controlled
     abstract: In this post, we argue that AI labs should ensure that powerful AIs are controlled. 
       That is, labs should make sure that the safety measures they appl…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Greenblatt & Shlegeris, 2024
 https://lesswrong.com/posts/nCvvhFBaayaXyuBiD/shut-up-and-do-the-impossible:
@@ -31496,15 +31780,17 @@ https://lesswrong.com/posts/nCvvhFBaayaXyuBiD/shut-up-and-do-the-impossible:
     type: post-weblog
     URL: https://lesswrong.com/posts/nCvvhFBaayaXyuBiD/shut-up-and-do-the-impossible
     author:
-    - literal: Yudkowsky
+    - literal: Eliezer Yudkowsky
     issued:
       date-parts:
       - - 2008
-    title: Shut up and do the impossible! — LessWrong
+        - 10
+        - 8
+    title: Shut up and do the impossible!
     abstract: The virtue of tsuyoku naritai, "I want to become stronger", is to always keep 
       improving—to do better than your previous failures, not just humbly con…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Yudkowsky, 2008
 https://lesswrong.com/posts/neTbrpBziAsTH5Bn7/ai-companies-are-unlikely-to-make-high-assurance-safety:
@@ -31515,16 +31801,17 @@ https://lesswrong.com/posts/neTbrpBziAsTH5Bn7/ai-companies-are-unlikely-to-make-
     URL: 
       https://lesswrong.com/posts/neTbrpBziAsTH5Bn7/ai-companies-are-unlikely-to-make-high-assurance-safety
     author:
-    - literal: Greenblatt
+    - literal: ryan_greenblatt
     issued:
       date-parts:
       - - 2025
-    title: AI companies are unlikely to make high-assurance safety cases if timelines are short — 
-      LessWrong
+        - 1
+        - 23
+    title: AI companies are unlikely to make high-assurance safety cases if timelines are short
     abstract: 'One hope for keeping existential risks low is to get AI companies to (successfully) make
       high-assurance safety cases: structured and auditable argume…'
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Greenblatt, 2025
 https://lesswrong.com/posts/oJQnRDbgSS8i6DwNu/the-hopium-wars-the-agi-entente-delusion:
@@ -31533,15 +31820,17 @@ https://lesswrong.com/posts/oJQnRDbgSS8i6DwNu/the-hopium-wars-the-agi-entente-de
     type: post-weblog
     URL: https://lesswrong.com/posts/oJQnRDbgSS8i6DwNu/the-hopium-wars-the-agi-entente-delusion
     author:
-    - literal: Tegmark
+    - literal: Max Tegmark
     issued:
       date-parts:
       - - 2024
-    title: 'The Hopium Wars: the AGI Entente Delusion — LessWrong'
+        - 10
+        - 13
+    title: 'The Hopium Wars: the AGI Entente Delusion'
     abstract: As humanity gets closer to Artificial General Intelligence (AGI), a new geopolitical 
       strategy is gaining traction in US and allied circles, in the Na…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Tegmark, 2024
 https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?commentId=G5zcfntZodH3ZYDaP:
@@ -31555,10 +31844,10 @@ https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?comment
     - literal: johnswentworth
     issued:
       date-parts:
-      - - 2020
-        - 2
-        - 27
-    title: johnswentworth's Shortform
+      - - 2025
+        - 4
+        - 16
+    title: Comment on “johnswentworth's Shortform”
     container-title: LessWrong
   resolvedBy: forum-magnum
   anchors:
@@ -31571,13 +31860,13 @@ https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?comment
     URL: 
       https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?commentId=J2iPumP29GK9Qrm5p
     author:
-    - literal: johnswentworth
+    - literal: Charbel-Raphaël
     issued:
       date-parts:
-      - - 2020
-        - 2
-        - 27
-    title: johnswentworth's Shortform
+      - - 2025
+        - 4
+        - 16
+    title: Comment on “johnswentworth's Shortform”
     container-title: LessWrong
   resolvedBy: forum-magnum
   anchors:
@@ -31590,13 +31879,13 @@ https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?comment
     URL: 
       https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?commentId=NLAW24oxDFuTLT3kx
     author:
-    - literal: johnswentworth
+    - literal: Katalina Hernandez
     issued:
       date-parts:
-      - - 2020
-        - 2
-        - 27
-    title: johnswentworth's Shortform
+      - - 2025
+        - 4
+        - 15
+    title: Comment on “johnswentworth's Shortform”
     container-title: LessWrong
   resolvedBy: forum-magnum
   anchors:
@@ -31607,13 +31896,13 @@ https://lesswrong.com/posts/puv8fRDCH9jx5yhbX?commentId=aBcAh8H9cSzdXmgb7:
     type: post-weblog
     URL: https://lesswrong.com/posts/puv8fRDCH9jx5yhbX?commentId=aBcAh8H9cSzdXmgb7
     author:
-    - literal: johnswentworth
+    - literal: Charbel-Raphaël
     issued:
       date-parts:
-      - - 2020
-        - 2
-        - 27
-    title: johnswentworth's Shortform
+      - - 2025
+        - 4
+        - 17
+    title: Comment on “johnswentworth's Shortform”
     container-title: LessWrong
   resolvedBy: forum-magnum
   anchors:
@@ -31628,11 +31917,13 @@ https://lesswrong.com/posts/qYPHryHTNiJ2y6Fhi/the-paris-ai-anti-safety-summit:
     issued:
       date-parts:
       - - 2025
-    title: The Paris AI Anti-Safety Summit — LessWrong
+        - 2
+        - 12
+    title: The Paris AI Anti-Safety Summit
     abstract: It doesn’t look good. • What used to be the AI Safety Summits were perhaps the most 
       promising thing happening towards international coordination for…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Zvi, 2025
 https://lesswrong.com/posts/rZcyemEpBHgb2hqLP/ai-control-may-increase-existential-risk:
@@ -31641,15 +31932,17 @@ https://lesswrong.com/posts/rZcyemEpBHgb2hqLP/ai-control-may-increase-existentia
     type: post-weblog
     URL: https://lesswrong.com/posts/rZcyemEpBHgb2hqLP/ai-control-may-increase-existential-risk
     author:
-    - literal: Kulveit
+    - literal: Jan_Kulveit
     issued:
       date-parts:
       - - 2025
-    title: AI Control May Increase Existential Risk — LessWrong
+        - 3
+        - 11
+    title: AI Control May Increase Existential Risk
     abstract: 'Consider two broad possibilities: • I. In worlds where we are doing reasonably well on
       alignment, AI control agenda does not have much impact. …'
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Kulveit, 2025
 https://lesswrong.com/posts/uJFC5WrcyTdat3Qcc/case-studies-in-simulators-and-agents:
@@ -31658,15 +31951,21 @@ https://lesswrong.com/posts/uJFC5WrcyTdat3Qcc/case-studies-in-simulators-and-age
     type: post-weblog
     URL: https://lesswrong.com/posts/uJFC5WrcyTdat3Qcc/case-studies-in-simulators-and-agents
     author:
-    - literal: Petillo et al.
+    - literal: WillPetillo
+    - literal: Sean Herrington
+    - literal: Spencer Ames
+    - literal: Adebayo Mubarak
+    - literal: Can Narin
     issued:
       date-parts:
       - - 2025
-    title: Case Studies in Simulators and Agents — LessWrong
+        - 5
+        - 25
+    title: Case Studies in Simulators and Agents
     abstract: Simulators was posted two and a half years ago and quite a bit has happened since 
       then.  Ideas that were once thought experiments now exist as observ…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Petillo et al., 2025
 https://lesswrong.com/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely-difficult:
@@ -31675,15 +31974,17 @@ https://lesswrong.com/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely-diff
     type: post-weblog
     URL: https://lesswrong.com/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely-difficult
     author:
-    - literal: Beren
+    - literal: beren
     issued:
       date-parts:
       - - 2023
-    title: Gradient hacking is extremely difficult — LessWrong
+        - 1
+        - 24
+    title: Gradient hacking is extremely difficult
     abstract: There has been a lot of discussion recently about gradient hackers as a potentially 
       important class of mesaoptimizers. The idea of gradient hackers i…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Beren, 2023
 https://lesswrong.com/posts/x2n7mBLryDXuLwGhx/technical-ai-safety-research-landscape-slides:
@@ -31692,15 +31993,17 @@ https://lesswrong.com/posts/x2n7mBLryDXuLwGhx/technical-ai-safety-research-lands
     type: post-weblog
     URL: https://lesswrong.com/posts/x2n7mBLryDXuLwGhx/technical-ai-safety-research-landscape-slides
     author:
-    - literal: Wache
+    - literal: Magdalena Wache
     issued:
       date-parts:
       - - 2023
-    title: Technical AI Safety Research Landscape [Slides] — LessWrong
+        - 9
+        - 18
+    title: Technical AI Safety Research Landscape [Slides]
     abstract: I recently gave a technical AI safety research overview talk at EAGx Berlin. Many 
       people told me they found the talk insightful, so I’m sharing the s…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Wache, 2023
 https://lesswrong.com/posts/xwBuoE9p8GE7RAuhd/brain-efficiency-much-more-than-you-wanted-to-know:
@@ -31711,15 +32014,17 @@ https://lesswrong.com/posts/xwBuoE9p8GE7RAuhd/brain-efficiency-much-more-than-yo
     URL: 
       https://lesswrong.com/posts/xwBuoE9p8GE7RAuhd/brain-efficiency-much-more-than-you-wanted-to-know
     author:
-    - literal: Canell
+    - literal: jacob_cannell
     issued:
       date-parts:
       - - 2022
-    title: 'Brain Efficiency: Much More than You Wanted to Know — LessWrong'
+        - 1
+        - 6
+    title: 'Brain Efficiency: Much More than You Wanted to Know'
     abstract: What if the brain is highly efficient? To be more specific, there are several 
       interconnected key measures of efficiency for physical learning machine…
     container-title: LessWrong
-  resolvedBy: opengraph
+  resolvedBy: forum-magnum
   anchors:
   - Canell, 2022
 https://lexfridman.com/roman-yampolskiy-transcript:

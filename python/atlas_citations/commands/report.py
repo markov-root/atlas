@@ -31,7 +31,14 @@ REPORT_PATH = Path("data") / "citations" / "citation-report.md"
 
 
 #: Trailing site name on a scraped title: " - Google DeepMind", " | LessWrong".
-_TITLE_SUFFIX = re.compile(r"\s*[-\u2013\u2014|:]\s*[^-\u2013\u2014|:]{1,40}$")
+#:
+#: A dash or pipe separator must be **preceded by whitespace**; a colon need not
+#: be. Without that guard the hyphen inside a model name reads as a suffix
+#: separator and the fingerprint collapses to the first word: "GPT-4 Technical
+#: Report" and "GPT-4 System Card" both reduced to "gpt" and were reported as
+#: one work (``audit:0011`` F21). Hyphenated model names are everywhere in this
+#: corpus, so that was never going to stay a one-off.
+_TITLE_SUFFIX = re.compile(r"(?:\s[-\u2013\u2014|]|:)\s*[^-\u2013\u2014|:]{1,40}$")
 
 
 def _title_fingerprint(title: str | None) -> str:

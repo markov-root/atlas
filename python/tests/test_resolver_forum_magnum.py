@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+import json
+
 import httpx
 
 from atlas_citations.resolvers.base import Unreachable
 from atlas_citations.resolvers.forum_magnum import (
+    comment_id,
     forum_magnum_resolver,
     post_id,
     site_for,
@@ -152,3 +155,80 @@ class TestResolve:
         )
         assert seen["method"] == "POST"
         assert seen["url"] == "https://www.lesswrong.com/graphql"
+
+
+COMMENT = {
+    "data": {
+        "comment": {
+            "result": {
+                "_id": "J2iPumP29GK9Qrm5p",
+                "postedAt": "2025-04-16T08:59:12.382Z",
+                "user": {"displayName": "Charbel-Raphaël"},
+                "post": {"title": "johnswentworth's Shortform"},
+            }
+        }
+    }
+}
+
+COMMENT_URL = (
+    "https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform"
+    "?commentId=J2iPumP29GK9Qrm5p"
+)
+
+
+class TestCommentPermalinks:
+    """``audit:0011`` F22. A comment is not its container."""
+
+    def test_the_comment_id_is_read_from_the_query_string(self) -> None:
+        assert comment_id(COMMENT_URL) == "J2iPumP29GK9Qrm5p"
+        assert comment_id("https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/x") is None
+
+    def test_a_comment_permalink_is_answered_by_the_comment(self) -> None:
+        """The whole defect in one assertion.
+
+        Four citations to one shortform thread, written by three different
+        people, were all credited to the thread's owner. The commenter is the
+        author; the post's owner is not.
+        """
+        captured: dict[str, object] = {}
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            captured["body"] = json.loads(request.content.decode())
+            return json_response(COMMENT)
+
+        result = forum_magnum_resolver.resolve(COMMENT_URL, make_ctx(handler))
+        assert result is not None and not isinstance(result, Unreachable)
+        assert result.fields["author"] == [{"literal": "Charbel-Raphaël"}]
+        assert result.fields["issued"] == {"date-parts": [[2025, 4, 16]]}
+        # The comment id, not the post id, is what was asked for.
+        assert captured["body"]["variables"]["id"] == "J2iPumP29GK9Qrm5p"  # type: ignore[index]
+
+    def test_a_comment_is_titled_by_what_it_is(self) -> None:
+        """It has no title of its own, and reusing the post's reads as though
+        the commenter wrote the post."""
+        result = forum_magnum_resolver.resolve(
+            COMMENT_URL, make_ctx(lambda request: json_response(COMMENT))
+        )
+        assert not isinstance(result, Unreachable) and result is not None
+        assert result.fields["title"] == "Comment on “johnswentworth's Shortform”"
+
+    def test_a_plain_post_url_still_asks_for_the_post(self) -> None:
+        captured: dict[str, object] = {}
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            captured["body"] = json.loads(request.content.decode())
+            return json_response(POST)
+
+        url = "https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform"
+        result = forum_magnum_resolver.resolve(url, make_ctx(handler))
+        assert result is not None and not isinstance(result, Unreachable)
+        assert captured["body"]["variables"]["id"] == "puv8fRDCH9jx5yhbX"  # type: ignore[index]
+        assert result.fields["author"] == [{"literal": "johnswentworth"}]
+
+    def test_a_deleted_comment_is_no_answer_rather_than_the_post(self) -> None:
+        """Falling back to the post would silently restore the misattribution."""
+        empty = {"data": {"comment": {"result": None}}}
+        result = forum_magnum_resolver.resolve(
+            COMMENT_URL, make_ctx(lambda request: json_response(empty))
+        )
+        assert result is None

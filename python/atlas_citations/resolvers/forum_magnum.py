@@ -21,7 +21,7 @@ from __future__ import annotations
 
 import re
 from typing import Any
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 
 from ..store import literal_name
 from ._http import get_json
@@ -63,6 +63,21 @@ query AtlasCitation($id: String!) {
 }
 """
 
+#: A comment carries no title of its own, so the parent post's title is fetched
+#: to build one. Everything else - author, date - is the comment's.
+_COMMENT_QUERY = """
+query AtlasComment($id: String!) {
+  comment(input: {selector: {_id: $id}}) {
+    result {
+      _id
+      postedAt
+      user { displayName }
+      post { title }
+    }
+  }
+}
+"""
+
 
 def site_for(canonical_url: str) -> tuple[str, str] | None:
     """The GraphQL endpoint and container title for a URL's host, or ``None``."""
@@ -78,12 +93,32 @@ def site_for(canonical_url: str) -> tuple[str, str] | None:
 def post_id(canonical_url: str) -> str | None:
     """The ForumMagnum post id in a URL path, or ``None``.
 
-    A comment permalink (``?commentId=…``) keeps its post id, and that is the
-    right answer: the bibliography cites the post, and a comment has no title or
-    author record of its own to render.
+    A comment permalink (``?commentId=…``) keeps its post id, because the
+    comment query needs neither - but the post id alone is **not** the whole
+    answer for such a URL. See ``comment_id`` and ``audit:0011`` F22.
     """
     match = _POST_PATH.match(urlsplit(canonical_url).path)
     return match.group(1) if match else None
+
+
+def comment_id(canonical_url: str) -> str | None:
+    """The ``commentId`` a permalink points at, or ``None`` for a plain post.
+
+    ``audit:0011`` F22. This resolver used to drop the parameter and return the
+    containing post, on the stated premise that "a comment has no title or
+    author record of its own to render". The premise is false: the API returns a
+    comment's author and date, and only its title is genuinely absent.
+
+    Dropping it was not a cosmetic loss. Four citations in this corpus point at
+    a conversation in one shortform thread, written by **three different
+    people**, and all four were credited to the thread's owner. The authors' own
+    anchor text said "Segerie, 2025" and "Hernandez, 2025" while the
+    bibliography said johnswentworth. A citation that names the wrong author is
+    worse than one with no author at all.
+    """
+    values = parse_qs(urlsplit(canonical_url).query).get("commentId") or []
+    value = values[0].strip() if values else ""
+    return value or None
 
 
 def _authors(result: dict[str, Any]) -> list[dict[str, str]] | None:
@@ -104,6 +139,24 @@ def _authors(result: dict[str, Any]) -> list[dict[str, str]] | None:
             if name not in names:
                 names.append(name)
     return [n for n in names if n["literal"]] or None
+
+
+def _title_for(result: dict[str, Any], *, is_comment: bool) -> str | None:
+    """The title to record, or ``None`` when the API gave nothing usable.
+
+    A post states its own title. A comment does not have one, so it is named by
+    what it is: a comment on the thread that contains it. That is editorial, and
+    it is the smallest honest thing to write - the alternative is to reuse the
+    post's title, which reads as though the commenter wrote the post.
+    """
+    if not is_comment:
+        title = result.get("title")
+        return title.strip() if isinstance(title, str) and title.strip() else None
+    post = result.get("post")
+    parent = post.get("title") if isinstance(post, dict) else None
+    if not isinstance(parent, str) or not parent.strip():
+        return None
+    return f"Comment on “{parent.strip()}”"
 
 
 def _issued(posted_at: Any) -> dict[str, Any] | None:
@@ -133,12 +186,18 @@ class ForumMagnumResolver:
             return None
         endpoint, container = site
 
+        # A comment permalink is answered by the comment, not its container.
+        comment = comment_id(canonical_url)
+        query, variable, node = (
+            (_COMMENT_QUERY, comment, "comment") if comment else (_QUERY, identifier, "post")
+        )
+
         body = get_json(
             ctx,
             endpoint,
             timeout=TIMEOUT_S,
             headers={"Content-Type": "application/json", "Accept": "application/json"},
-            json_body={"query": _QUERY, "variables": {"id": identifier}},
+            json_body={"query": query, "variables": {"id": variable}},
         )
         if isinstance(body, Unreachable):
             return body
@@ -148,16 +207,16 @@ class ForumMagnumResolver:
         # GraphQL reports "no such post" as a 200 with `data.post.result: null`,
         # which is an answer - the id in the URL is wrong or the post was
         # deleted - and not something a retry would change.
-        result = ((body.get("data") or {}).get("post") or {}).get("result")
+        result = ((body.get("data") or {}).get(node) or {}).get("result")
         if not isinstance(result, dict):
             return None
-        title = result.get("title")
-        if not isinstance(title, str) or not title.strip():
+        title = _title_for(result, is_comment=bool(comment))
+        if not title:
             return None
 
         fields: dict[str, Any] = {
             "type": "post-weblog",
-            "title": title.strip(),
+            "title": title,
             "container-title": container,
             # The entry's identity is its canonical URL (task:0021 D1), so the
             # site's own `pageUrl` is not written over it even when it differs
