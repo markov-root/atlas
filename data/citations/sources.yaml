@@ -406,17 +406,38 @@ https://aiimpacts.org/wp-content/uploads/2023/04/Thousands_of_AI_authors_on_the_
   item:
     id: 
       https://aiimpacts.org/wp-content/uploads/2023/04/Thousands_of_AI_authors_on_the_future_of_AI.pdf
-    type: webpage
+    type: article-journal
     URL: 
       https://aiimpacts.org/wp-content/uploads/2023/04/Thousands_of_AI_authors_on_the_future_of_AI.pdf
     author:
-    - literal: AI Impacts
+    - family: Grace
+      given: Katja
+    - family: Sandkühler
+      given: Julia Fabienne
+    - family: Stewart
+      given: Harlan
+    - family: Weinstein-Raun
+      given: Benjamin
+    - family: Thomas
+      given: Stephen
+    - family: Stein-Perlman
+      given: Zach
+    - family: Salvatier
+      given: John
+    - family: Brauner
+      given: Jan
+    - family: Korzekwa
+      given: Richard C.
     issued:
       date-parts:
-      - - 2022
-    title: AI Impacts, 2022
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+      - - 2025
+        - 10
+    title: Thousands of AI Authors on the Future of AI
+    container-title: Journal of Artificial Intelligence Research
+    volume: '84'
+    publisher: AI Access Foundation
+    DOI: 10.1613/jair.1.19087
+  resolvedBy: override
   anchors:
   - AI Impacts, 2022
 https://aiindex.stanford.edu/report:
@@ -2574,33 +2595,45 @@ https://arcprize.org/arc-agi/1:
 https://arcprize.org/media/arc-prize-2024-technical-report.pdf:
   item:
     id: https://arcprize.org/media/arc-prize-2024-technical-report.pdf
-    type: webpage
+    type: article
     URL: https://arcprize.org/media/arc-prize-2024-technical-report.pdf
     author:
-    - literal: Chollet et al.
+    - family: Chollet
+      given: Francois
+    - family: Knoop
+      given: Mike
+    - family: Kamradt
+      given: Gregory
+    - family: Landers
+      given: Bryan
     issued:
       date-parts:
       - - 2024
-    title: Chollet et al., 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 12
+    title: 'ARC Prize 2024: Technical Report'
+    container-title: arXiv
+  resolvedBy: override
   anchors:
   - Chollet et al., 2024
 ? https://armedservices.house.gov/sites/evo-subsites/republicans-armedservices.house.gov/files/greenwalt%20aei%20testimony%20on%20replicator%20before%20citi%20subcommittee%20hasc%20v2.pdf
 : item:
     id: 
       https://armedservices.house.gov/sites/evo-subsites/republicans-armedservices.house.gov/files/greenwalt%20aei%20testimony%20on%20replicator%20before%20citi%20subcommittee%20hasc%20v2.pdf
-    type: webpage
+    type: report
     URL: 
       https://armedservices.house.gov/sites/evo-subsites/republicans-armedservices.house.gov/files/greenwalt%20aei%20testimony%20on%20replicator%20before%20citi%20subcommittee%20hasc%20v2.pdf
     author:
-    - literal: Greenwalt
+    - family: Greenwalt
+      given: William C.
     issued:
       date-parts:
       - - 2023
-    title: Greenwalt, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 10
+        - 19
+    title: "DOD's Replicator Program: Challenges and Opportunities"
+    publisher: House Armed Services Committee, Subcommittee on Cyber, Innovative Technologies, and 
+      Information Systems
+  resolvedBy: override
   anchors:
   - Greenwalt, 2023
 https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index:
@@ -12024,17 +12057,79 @@ https://arxiv.org/abs/2307.15217':
     type: article
     URL: https://arxiv.org/abs/2307.15217'
     author:
-    - literal: Casper et al.
+    - family: Casper
+      given: Stephen
+    - family: Davies
+      given: Xander
+    - family: Shi
+      given: Claudia
+    - family: Gilbert
+      given: Thomas Krendl
+    - family: Scheurer
+      given: Jérémy
+    - family: Rando
+      given: Javier
+    - family: Freedman
+      given: Rachel
+    - family: Korbak
+      given: Tomasz
+    - family: Lindner
+      given: David
+    - family: Freire
+      given: Pedro
+    - family: Wang
+      given: Tony
+    - family: Marks
+      given: Samuel
+    - family: Segerie
+      given: Charbel-Raphaël
+    - family: Carroll
+      given: Micah
+    - family: Peng
+      given: Andi
+    - family: Christoffersen
+      given: Phillip
+    - family: Damani
+      given: Mehul
+    - family: Slocum
+      given: Stewart
+    - family: Anwar
+      given: Usman
+    - family: Siththaranjan
+      given: Anand
+    - family: Nadeau
+      given: Max
+    - family: Michaud
+      given: Eric J.
+    - family: Pfau
+      given: Jacob
+    - family: Krasheninnikov
+      given: Dmitrii
+    - family: Chen
+      given: Xin
+    - family: Langosco
+      given: Lauro
+    - family: Hase
+      given: Peter
+    - family: Bıyık
+      given: Erdem
+    - family: Dragan
+      given: Anca
+    - family: Krueger
+      given: David
+    - family: Sadigh
+      given: Dorsa
+    - family: Hadfield-Menell
+      given: Dylan
     issued:
       date-parts:
       - - 2023
-    title: Casper et al., 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
+        - 7
+    title: Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback
     container-title: arXiv
-  resolvedBy: anchor
+  resolvedBy: override
   anchors:
   - Casper et al., 2023
-  unreachable: unavailable
 https://arxiv.org/abs/2307.16789:
   item:
     id: https://arxiv.org/abs/2307.16789
@@ -26562,7 +26657,7 @@ https://assets.ctfassets.net/kftzwdyauwt9/67qJD51Aur3eIc96iOfeOP/71551c3d223cd97
   item:
     id: 
       https://assets.ctfassets.net/kftzwdyauwt9/67qJD51Aur3eIc96iOfeOP/71551c3d223cd97e591aa89567306912/o1_system_card.pdf
-    type: webpage
+    type: article
     URL: 
       https://assets.ctfassets.net/kftzwdyauwt9/67qJD51Aur3eIc96iOfeOP/71551c3d223cd97e591aa89567306912/o1_system_card.pdf
     author:
@@ -26570,9 +26665,10 @@ https://assets.ctfassets.net/kftzwdyauwt9/67qJD51Aur3eIc96iOfeOP/71551c3d223cd97
     issued:
       date-parts:
       - - 2024
-    title: OpenAI, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 12
+    title: OpenAI o1 System Card
+    container-title: arXiv
+  resolvedBy: override
   anchors:
   - OpenAI, 2024
 ? https://assets.publishing.service.gov.uk/media/679a0c48a77d250007d313ee/International_AI_Safety_Report_2025_accessible_f.pdf
@@ -26647,19 +26743,20 @@ https://beren.io/2023-11-05-Open-source-AI-has-been-vital-for-alignment:
 https://biotech.senate.gov/wp-content/uploads/2024/01/NSCEB_AIxBio_WP3_Risks.pdf:
   item:
     id: https://biotech.senate.gov/wp-content/uploads/2024/01/NSCEB_AIxBio_WP3_Risks.pdf
-    type: webpage
+    type: report
     URL: https://biotech.senate.gov/wp-content/uploads/2024/01/NSCEB_AIxBio_WP3_Risks.pdf
     author:
-    - literal: NSCEB
+    - literal: National Security Commission on Emerging Biotechnology
     issued:
       date-parts:
       - - 2024
-    title: NSCEB, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 1
+    title: 'White Paper 3: Risks of AIxBio'
+    collection-title: NSCEB White Paper Series on AIxBio
+    publisher: National Security Commission on Emerging Biotechnology
+  resolvedBy: override
   anchors:
   - NSCEB, 2024
-  unreachable: refused
 https://blog.aiimpacts.org/p/2023-ai-survey-of-2778-six-things:
   item:
     id: https://blog.aiimpacts.org/p/2023-ai-survey-of-2778-six-things
@@ -26865,20 +26962,21 @@ https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AI
   item:
     id: 
       https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AISurveillance_final1.pdf
-    type: webpage
+    type: report
     URL: 
       https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AISurveillance_final1.pdf
     author:
-    - literal: Feldstein
+    - family: Feldstein
+      given: Steven
     issued:
       date-parts:
-      - - 2021
-    title: Feldstein, 2021
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+      - - 2019
+        - 9
+    title: The Global Expansion of AI Surveillance
+    publisher: Carnegie Endowment for International Peace
+  resolvedBy: override
   anchors:
   - Feldstein, 2021
-  unreachable: refused
 https://carnegieendowment.org/research/2019/09/the-global-expansion-of-ai-surveillance?lang=en:
   item:
     id: 
@@ -26927,20 +27025,30 @@ https://carnegieendowment.org/research/2024/09/if-then-commitments-for-ai-risk-r
 : item:
     id: 
       https://cartercenter.org/resources/pdfs/peace/china/finding-firmer-ground-the-role-of-high-technology-in-u.s.-china-relations.pdf
-    type: webpage
+    type: report
     URL: 
       https://cartercenter.org/resources/pdfs/peace/china/finding-firmer-ground-the-role-of-high-technology-in-u.s.-china-relations.pdf
     author:
-    - literal: Hsu et al.
+    - family: Hsu
+      given: Sara
+    - family: Chong
+      given: Ja-Ian
+    - family: Daniels
+      given: Rorry
+    - family: Hargis
+      given: Shirley Martey
+    - family: Lee
+      given: John
     issued:
       date-parts:
       - - 2023
-    title: Hsu et al., 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 2
+        - 7
+    title: 'Finding Firmer Ground: The Role of High Technology in U.S.-China Relations'
+    publisher: The Carter Center
+  resolvedBy: override
   anchors:
   - Hsu et al., 2023
-  unreachable: unavailable
 ? https://cbc.ca/radio/day6/episode-279-playing-ball-on-grass-vs-turf-taytweets-big-fail-narco-subs-fake-food-and-more-1.3514966/microsoft-s-ai-chatbot-taytweets-suffers-another-meltdown-1.3515046
 : item:
     id: 
@@ -27872,19 +27980,24 @@ https://deepmindsafetyresearch.medium.com/scalable-agent-alignment-via-reward-mo
 https://digitalcommons.law.villanova.edu/cgi/viewcontent.cgi?article=3670&context=vlr:
   item:
     id: https://digitalcommons.law.villanova.edu/cgi/viewcontent.cgi?article=3670&context=vlr
-    type: webpage
+    type: article-journal
     URL: https://digitalcommons.law.villanova.edu/cgi/viewcontent.cgi?article=3670&context=vlr
     author:
-    - literal: Li
+    - family: Li
+      given: Tiffany C.
     issued:
       date-parts:
       - - 2025
-    title: Li, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 3
+        - 5
+    title: 'Ending the AI Race: Regulatory Collaboration as Critical Counter-Narrative'
+    container-title: Villanova Law Review
+    volume: '69'
+    issue: '5'
+    page: '981'
+  resolvedBy: override
   anchors:
   - Li, 2025
-  unreachable: refused
 https://digitallibrary.un.org/record/3905159?v=pdf:
   item:
     id: https://digitallibrary.un.org/record/3905159?v=pdf
@@ -28986,19 +29099,22 @@ https://existential-risk.com/concept:
 https://fhi.ox.ac.uk/wp-content/uploads/Deciphering_Chinas_AI-Dream.pdf:
   item:
     id: https://fhi.ox.ac.uk/wp-content/uploads/Deciphering_Chinas_AI-Dream.pdf
-    type: webpage
+    type: report
     URL: https://fhi.ox.ac.uk/wp-content/uploads/Deciphering_Chinas_AI-Dream.pdf
     author:
-    - literal: Ding
+    - family: Ding
+      given: Jeffrey
     issued:
       date-parts:
       - - 2018
-    title: Ding, 2018
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 3
+        - 14
+    title: "Deciphering China's AI Dream: The Context, Components, Capabilities, and Consequences of China's
+      Strategy to Lead the World in AI"
+    publisher: Future of Humanity Institute, University of Oxford
+  resolvedBy: override
   anchors:
   - Ding, 2018
-  unreachable: unavailable
 https://findresearcher.sdu.dk/ws/portalfiles/portal/231643063/Loitering_Munitions_Unpredictability_WEB.pdf:
   item:
     id: 
@@ -30343,19 +30459,22 @@ https://incompleteideas.net/IncIdeas/BitterLesson.html:
 https://incompleteideas.net/Talks/waic3.pdf:
   item:
     id: https://incompleteideas.net/Talks/waic3.pdf
-    type: webpage
+    type: speech
     URL: https://incompleteideas.net/Talks/waic3.pdf
     author:
-    - literal: Sutton
+    - family: Sutton
+      given: Richard S.
     issued:
       date-parts:
       - - 2023
-    title: Sutton, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 7
+        - 7
+    title: AI Succession
+    container-title: World Artificial Intelligence Conference
+    genre: Keynote address
+  resolvedBy: override
   anchors:
   - Sutton, 2023
-  unreachable: unavailable
 https://inferencemagazine.substack.com/p/how-much-economic-growth-from-ai:
   item:
     id: https://inferencemagazine.substack.com/p/how-much-economic-growth-from-ai
@@ -33922,20 +34041,27 @@ https://researchgate.net/publication/360644155_AI_GOVERNANCE_ARE_CHIEF_AI_OFFICE
   item:
     id: 
       https://researchgate.net/publication/360644155_AI_GOVERNANCE_ARE_CHIEF_AI_OFFICERS_AND_AI_RISK_OFFICERS_NEEDED
-    type: webpage
+    type: paper-conference
     URL: 
       https://researchgate.net/publication/360644155_AI_GOVERNANCE_ARE_CHIEF_AI_OFFICERS_AND_AI_RISK_OFFICERS_NEEDED
     author:
-    - literal: Schäfer et al.
+    - family: Schäfer
+      given: Mathias
+    - family: Schneider
+      given: Johannes
+    - family: Drechsler
+      given: Katharina
+    - family: vom Brocke
+      given: Jan
     issued:
       date-parts:
       - - 2022
-    title: Schäfer et al., 2022
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 5
+    title: 'AI GOVERNANCE: ARE CHIEF AI OFFICERS AND AI RISK OFFICERS NEEDED?'
+    container-title: European Conference on Information Systems (ECIS)
+  resolvedBy: override
   anchors:
   - Schäfer et al., 2022
-  unreachable: refused
 ? https://researchgate.net/publication/367010605_The_state's_role_in_governing_artificial_intelligence_development_control_and_promotion_through_national_strategies
 : item:
     id: 
@@ -33985,37 +34111,53 @@ https://researchgate.net/publication/382885035_Reasons_to_Doubt_the_Impact_of_AI
 https://researchgate.net/publication/385353725_Safety_cases_for_frontier_AI:
   item:
     id: https://researchgate.net/publication/385353725_Safety_cases_for_frontier_AI
-    type: webpage
+    type: article
     URL: https://researchgate.net/publication/385353725_Safety_cases_for_frontier_AI
     author:
-    - literal: Buhl et al.
+    - family: Buhl
+      given: Marie Davidsen
+    - family: Sett
+      given: Gaurav
+    - family: Koessler
+      given: Leonie
+    - family: Schuett
+      given: Jonas
+    - family: Anderljung
+      given: Markus
     issued:
       date-parts:
       - - 2024
-    title: Buhl et al., 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 10
+    title: Safety cases for frontier AI
+    container-title: arXiv
+    DOI: 10.48550/arXiv.2410.21572
+  resolvedBy: override
   anchors:
   - Buhl et al., 2024
-  unreachable: unavailable
 ? https://researchgate.net/publication/387399002_The_First_Global_AI_Treaty_Analyzing_the_Framework_Convention_on_Artificial_Intelligence_and_the_EU_AI_Act
 : item:
     id: 
       https://researchgate.net/publication/387399002_The_First_Global_AI_Treaty_Analyzing_the_Framework_Convention_on_Artificial_Intelligence_and_the_EU_AI_Act
-    type: webpage
+    type: article-journal
     URL: 
       https://researchgate.net/publication/387399002_The_First_Global_AI_Treaty_Analyzing_the_Framework_Convention_on_Artificial_Intelligence_and_the_EU_AI_Act
     author:
-    - literal: Cheng
+    - family: Chang
+      given: Cheng-chi
     issued:
       date-parts:
       - - 2024
-    title: Cheng, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 12
+        - 20
+    title: 'The First Global AI Treaty: Analyzing the Framework Convention on Artificial Intelligence
+      and the EU AI Act'
+    container-title: University of Illinois Law Review (Online)
+    volume: '2024'
+    page: '86'
+    DOI: 10.2139/ssrn.5069335
+  resolvedBy: override
   anchors:
   - Cheng, 2024
-  unreachable: unavailable
 ? https://researchgate.net/publication/387730260_Exploring_China's_cyber_sovereignty_concept_and_artificial_intelligence_governance_model_a_machine_learning_approach
 : item:
     id: 
@@ -34894,19 +35036,22 @@ https://time.com/6983420/anthropic-structure-openai-incentives:
 https://tom7.org/mario/mario.pdf:
   item:
     id: https://tom7.org/mario/mario.pdf
-    type: webpage
+    type: article
     URL: https://tom7.org/mario/mario.pdf
     author:
-    - literal: Murphy
+    - family: Murphy
+      given: Tom
+      suffix: VII
     issued:
       date-parts:
       - - 2013
-    title: Murphy, 2013
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 4
+        - 1
+    title: The First Level of Super Mario Bros. is Easy with Lexicographic Orderings and Time Travel
+      . . . after that it gets a little tricky.
+  resolvedBy: override
   anchors:
   - Murphy, 2013
-  unreachable: unavailable
 https://towardsdatascience.com/neural-networks-are-fundamentally-bayesian-bee9a172fad8:
   item:
     id: https://towardsdatascience.com/neural-networks-are-fundamentally-bayesian-bee9a172fad8

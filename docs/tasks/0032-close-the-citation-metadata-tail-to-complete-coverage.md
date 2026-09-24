@@ -232,20 +232,22 @@ re-applied and never decays.
 | AC-4      | `resolvers/forum_magnum.py`, `test_resolver_forum_magnum.py` (14 tests). 8 entries resolved, including four shortform comment permalinks that are client-rendered and had no scrapable title at all.                                                                                        | yes        |
 | AC-5      | `data/citations/overrides.yaml` (committed, reviewed input); `overrides.py` with precedence and `--redo` immunity, `test_overrides.py` (12 tests); `atlas citations propose` and `test_propose.py` (11 tests). Commit `25941ba`.                                                            | yes        |
 | AC-6      | `dead_links()` and the report section in `commands/report.py`, keyed on the reason and not on `resolvedBy`; `TestTheReportStillCallsItDead`. Two follow-on defects found and fixed: `469b107`'s keying bug and `27d3565`'s wiped markers.                                                   | yes        |
-| AC-7      | `infer_container_title` / `fill_container_titles` in `store.py`, `TestContainerTitleFromTheUrl`. **Container: 191 of 813 → 699 of 910.** Zero-anchor entries **not yet met** - see below.                                                                                                   | **partly** |
+| AC-7      | `infer_container_title` / `fill_container_titles` in `store.py`, `TestContainerTitleFromTheUrl`. **Container: 191 of 813 → 707 of 925.** Zero-anchor entries **not yet met** - see below.                                                                                                   | **partly** |
 
 ### AC-7 is the one still open
 
-**Unresolved: 132 → 35**, and **910 of 945 entries (96.3%) carry real metadata.** Every remaining
+**Unresolved: 132 → 20**, and **925 of 945 entries (97.9%) carry real metadata.** Every remaining
 entry has been attempted and recorded a reason, so the residual is a known quantity rather than an
 unexplored tail:
 
-| Group                             | Count |
-| --------------------------------- | ----: |
-| PDFs with no metadata anywhere    |    21 |
-| Long tail, one host each          |     8 |
-| Publisher WAF or paywall          |     4 |
-| The page is gone                  |     2 |
+| Group                          | Count |
+| ------------------------------ | ----: |
+| PDFs with no metadata anywhere |    17 |
+| Long tail, one host each       |     1 |
+| The page is gone               |     2 |
+
+Nothing is left in the paywall group: every one of those was reachable by another route once a human
+looked.
 
 Closing them is `overrides.yaml` work, which is what D2, D3 and D4 exist to make honest. The evidence
 is gathered: `atlas citations propose` writes a stub per entry carrying the PDF's first page, the
@@ -264,8 +266,14 @@ that a public Wikimedia service is not a thing to build a pipeline dependency on
 one-off batch rather than a resolver. A self-hosted `zotero/translation-server` behind a configurable
 endpoint is the shape that would earn a place in `RESOLVER_ORDER`; it is not built.
 
-Eleven of the 22 also need a fix in the Google Doc that no override can make, because URL is identity
-and anchor text is never re-rendered. Those are `task:0035`.
+**A further 15 closed the same day**, all owner-read, and the batch changed what the tail looks
+like: for **eight** of them the owner found the same work on arXiv, SSRN or at the publisher. That
+prompted a standing preference now recorded in `task:0035` - **cite arXiv, a DOI or the publisher
+wherever the work exists there**, because those addresses have an API and the entry then stops
+needing a hand-written block at all. A ResearchGate or CDN mirror costs a human a block every time.
+
+Twenty-four of the 37 also need a fix in the Google Doc that no override can make, because URL is
+identity and anchor text is never re-rendered. Those are `task:0035`.
 
 ### Measured wins worth naming
 

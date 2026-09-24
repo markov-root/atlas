@@ -15,7 +15,8 @@
 #       - family: Chollet
 #         given: François
 #     issued: { date-parts: [[2024, 5]] }  # year, or year and month, or full date
-#     type: report                         # see CSL_TYPES in store.py
+#     type: report                         # any CSL type; CSL_TYPES in store.py
+#                                          # lists only what the resolvers emit
 #     container-title: Journal or Publisher
 #     DOI: 10.1000/example
 #
@@ -389,3 +390,311 @@ https://books.google.se/books/about/AI.html?id=V3XsEAAAQBAJ&redir_esc=y:
   type: book
   container-title: null
   publisher: CRC Press
+
+# ===== Batch 2 (owner-read, 2026-09-24)
+#
+# Where the owner found the same work on arXiv or at a publisher, the metadata
+# below is the work of record and task:0035 carries the link change. Preferring
+# an arXiv or DOI address is not tidiness: those have an API, so the entry stops
+# needing a hand-written block here the moment the Doc points at one.
+
+https://biotech.senate.gov/wp-content/uploads/2024/01/NSCEB_AIxBio_WP3_Risks.pdf:
+  # provenance: owner.
+  title: 'White Paper 3: Risks of AIxBio'
+  author:
+    - literal: National Security Commission on Emerging Biotechnology
+  issued: { date-parts: [[2024, 1]] }
+  type: report
+  container-title: null
+  collection-title: NSCEB White Paper Series on AIxBio
+  publisher: National Security Commission on Emerging Biotechnology
+
+https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AISurveillance_final1.pdf:
+  # provenance: owner, from the Carnegie landing page.
+  # NOT the JSTOR "Cite This Item" block, which describes the report's *front
+  # matter* (pp. i-ii) as a separate item titled "Front Matter". Copying it
+  # would have given this entry the wrong title and a two-page extent.
+  # GDOC FIX (task:0035): the anchor says 2021; the report is 2019. Better link:
+  # https://carnegieendowment.org/research/2019/09/the-global-expansion-of-ai-surveillance
+  title: The Global Expansion of AI Surveillance
+  author:
+    - family: Feldstein
+      given: Steven
+  issued: { date-parts: [[2019, 9]] }
+  type: report
+  container-title: null
+  publisher: Carnegie Endowment for International Peace
+
+https://digitalcommons.law.villanova.edu/cgi/viewcontent.cgi?article=3670&context=vlr:
+  # provenance: owner, from the article's own recommended-citation block.
+  # GDOC FIX (task:0035): better link
+  # https://digitalcommons.law.villanova.edu/vlr/vol69/iss5/4
+  title: 'Ending the AI Race: Regulatory Collaboration as Critical Counter-Narrative'
+  author:
+    - family: Li
+      given: Tiffany C.
+  issued: { date-parts: [[2025, 3, 5]] }
+  type: article-journal
+  container-title: Villanova Law Review
+  volume: '69'
+  issue: '5'
+  page: '981'
+
+https://researchgate.net/publication/360644155_AI_GOVERNANCE_ARE_CHIEF_AI_OFFICERS_AND_AI_RISK_OFFICERS_NEEDED:
+  # provenance: owner. Title recorded as the venue prints it, in capitals; a
+  # cited work's title is that work's title (AGENTS.md).
+  # GDOC FIX (task:0035): cites a ResearchGate mirror of an ECIS 2022 paper.
+  title: 'AI GOVERNANCE: ARE CHIEF AI OFFICERS AND AI RISK OFFICERS NEEDED?'
+  author:
+    - family: Schäfer
+      given: Mathias
+    - family: Schneider
+      given: Johannes
+    - family: Drechsler
+      given: Katharina
+    - family: vom Brocke
+      given: Jan
+  issued: { date-parts: [[2022, 5]] }
+  type: paper-conference
+  container-title: European Conference on Information Systems (ECIS)
+
+https://arxiv.org/abs/2307.15217':
+  # provenance: owner, arXiv's own BibTeX.
+  # GDOC FIX (task:0035): the linked URL has a trailing apostrophe and 404s.
+  # Remove the character and this entry resolves with no override at all.
+  title: Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback
+  author:
+    - family: Casper
+      given: Stephen
+    - family: Davies
+      given: Xander
+    - family: Shi
+      given: Claudia
+    - family: Gilbert
+      given: Thomas Krendl
+    - family: Scheurer
+      given: Jérémy
+    - family: Rando
+      given: Javier
+    - family: Freedman
+      given: Rachel
+    - family: Korbak
+      given: Tomasz
+    - family: Lindner
+      given: David
+    - family: Freire
+      given: Pedro
+    - family: Wang
+      given: Tony
+    - family: Marks
+      given: Samuel
+    - family: Segerie
+      given: Charbel-Raphaël
+    - family: Carroll
+      given: Micah
+    - family: Peng
+      given: Andi
+    - family: Christoffersen
+      given: Phillip
+    - family: Damani
+      given: Mehul
+    - family: Slocum
+      given: Stewart
+    - family: Anwar
+      given: Usman
+    - family: Siththaranjan
+      given: Anand
+    - family: Nadeau
+      given: Max
+    - family: Michaud
+      given: Eric J.
+    - family: Pfau
+      given: Jacob
+    - family: Krasheninnikov
+      given: Dmitrii
+    - family: Chen
+      given: Xin
+    - family: Langosco
+      given: Lauro
+    - family: Hase
+      given: Peter
+    - family: Bıyık
+      given: Erdem
+    - family: Dragan
+      given: Anca
+    - family: Krueger
+      given: David
+    - family: Sadigh
+      given: Dorsa
+    - family: Hadfield-Menell
+      given: Dylan
+  issued: { date-parts: [[2023, 7]] }
+  type: article
+  container-title: arXiv
+
+https://cartercenter.org/resources/pdfs/peace/china/finding-firmer-ground-the-role-of-high-technology-in-u.s.-china-relations.pdf:
+  # provenance: owner.
+  # GDOC FIX (task:0035): better link
+  # https://www.cartercenter.org/publication/finding-firmer-ground-the-role-of-high-technology-in-u-s-china-relations/
+  title: 'Finding Firmer Ground: The Role of High Technology in U.S.-China Relations'
+  author:
+    - family: Hsu
+      given: Sara
+    - family: Chong
+      given: Ja-Ian
+    - family: Daniels
+      given: Rorry
+    - family: Hargis
+      given: Shirley Martey
+    - family: Lee
+      given: John
+  issued: { date-parts: [[2023, 2, 7]] }
+  type: report
+  container-title: null
+  publisher: The Carter Center
+
+https://fhi.ox.ac.uk/wp-content/uploads/Deciphering_Chinas_AI-Dream.pdf:
+  # provenance: owner, from the GovAI research-paper page that now hosts it.
+  # GDOC FIX (task:0035): fhi.ox.ac.uk is gone; better link
+  # https://cdn.governance.ai/Deciphering_Chinas_AI-Dream.pdf
+  title: "Deciphering China's AI Dream: The Context, Components, Capabilities, and Consequences of China's Strategy to Lead the World in AI"
+  author:
+    - family: Ding
+      given: Jeffrey
+  issued: { date-parts: [[2018, 3, 14]] }
+  type: report
+  container-title: null
+  publisher: Future of Humanity Institute, University of Oxford
+
+https://incompleteideas.net/Talks/waic3.pdf:
+  # provenance: owner, from Sutton's own talks index. The PDF is the slide deck.
+  title: AI Succession
+  author:
+    - family: Sutton
+      given: Richard S.
+  issued: { date-parts: [[2023, 7, 7]] }
+  type: speech
+  genre: Keynote address
+  container-title: World Artificial Intelligence Conference
+
+https://researchgate.net/publication/385353725_Safety_cases_for_frontier_AI:
+  # provenance: owner, arXiv's own BibTeX.
+  # GDOC FIX (task:0035): cites a ResearchGate mirror of arXiv:2410.21572.
+  title: Safety cases for frontier AI
+  author:
+    - family: Buhl
+      given: Marie Davidsen
+    - family: Sett
+      given: Gaurav
+    - family: Koessler
+      given: Leonie
+    - family: Schuett
+      given: Jonas
+    - family: Anderljung
+      given: Markus
+  issued: { date-parts: [[2024, 10]] }
+  type: article
+  container-title: arXiv
+  DOI: 10.48550/arXiv.2410.21572
+
+https://researchgate.net/publication/387399002_The_First_Global_AI_Treaty_Analyzing_the_Framework_Convention_on_Artificial_Intelligence_and_the_EU_AI_Act:
+  # provenance: owner, from the SSRN record's suggested citation.
+  # GDOC FIX (task:0035): the anchor reads "Cheng, 2024"; the author's family
+  # name is Chang and "Cheng-chi" is the given name. Better link
+  # https://doi.org/10.2139/ssrn.5069335
+  title: 'The First Global AI Treaty: Analyzing the Framework Convention on Artificial Intelligence and the EU AI Act'
+  author:
+    - family: Chang
+      given: Cheng-chi
+  issued: { date-parts: [[2024, 12, 20]] }
+  type: article-journal
+  container-title: University of Illinois Law Review (Online)
+  volume: '2024'
+  page: '86'
+  DOI: 10.2139/ssrn.5069335
+
+https://tom7.org/mario/mario.pdf:
+  # provenance: owner.
+  title: 'The First Level of Super Mario Bros. is Easy with Lexicographic Orderings and Time Travel . . . after that it gets a little tricky.'
+  author:
+    - family: Murphy
+      given: Tom
+      suffix: VII
+  issued: { date-parts: [[2013, 4, 1]] }
+  type: article
+
+https://aiimpacts.org/wp-content/uploads/2023/04/Thousands_of_AI_authors_on_the_future_of_AI.pdf:
+  # provenance: owner, the published JAIR version.
+  # GDOC FIX (task:0035): the anchor says "AI Impacts, 2022", which is a
+  # different survey. The linked PDF is the 2024 arXiv preprint of this paper.
+  # Better link https://doi.org/10.1613/jair.1.19087 or arXiv:2401.02843
+  title: Thousands of AI Authors on the Future of AI
+  author:
+    - family: Grace
+      given: Katja
+    - family: Sandkühler
+      given: Julia Fabienne
+    - family: Stewart
+      given: Harlan
+    - family: Weinstein-Raun
+      given: Benjamin
+    - family: Thomas
+      given: Stephen
+    - family: Stein-Perlman
+      given: Zach
+    - family: Salvatier
+      given: John
+    - family: Brauner
+      given: Jan
+    - family: Korzekwa
+      given: Richard C.
+  issued: { date-parts: [[2025, 10]] }
+  type: article-journal
+  container-title: Journal of Artificial Intelligence Research
+  volume: '84'
+  publisher: AI Access Foundation
+  DOI: 10.1613/jair.1.19087
+
+https://arcprize.org/media/arc-prize-2024-technical-report.pdf:
+  # provenance: owner, arXiv's own BibTeX.
+  # Dated December 2024 from the eprint identifier 2412.04604, the report title,
+  # and the anchor, rather than 2025 from arXiv's latest-revision year.
+  # GDOC FIX (task:0035): better link https://arxiv.org/abs/2412.04604
+  title: 'ARC Prize 2024: Technical Report'
+  author:
+    - family: Chollet
+      given: Francois
+    - family: Knoop
+      given: Mike
+    - family: Kamradt
+      given: Gregory
+    - family: Landers
+      given: Bryan
+  issued: { date-parts: [[2024, 12]] }
+  type: article
+  container-title: arXiv
+
+https://armedservices.house.gov/sites/evo-subsites/republicans-armedservices.house.gov/files/greenwalt%20aei%20testimony%20on%20replicator%20before%20citi%20subcommittee%20hasc%20v2.pdf:
+  # provenance: owner. Title from the testimony's own header, not the
+  # PolicyCommons record, which titles it "Goals, Challenges, and Opportunities".
+  title: "DOD's Replicator Program: Challenges and Opportunities"
+  author:
+    - family: Greenwalt
+      given: William C.
+  issued: { date-parts: [[2023, 10, 19]] }
+  type: report
+  container-title: null
+  publisher: House Armed Services Committee, Subcommittee on Cyber, Innovative Technologies, and Information Systems
+
+https://assets.ctfassets.net/kftzwdyauwt9/67qJD51Aur3eIc96iOfeOP/71551c3d223cd97e591aa89567306912/o1_system_card.pdf:
+  # provenance: owner, arXiv's own BibTeX. Authored by OpenAI with ~250 named
+  # contributors; the lab is recorded as the author, matching the anchor.
+  # Dated December 2024 from the eprint identifier 2412.16720 and the anchor,
+  # rather than arXiv's latest-revision year.
+  # GDOC FIX (task:0035): better link https://arxiv.org/abs/2412.16720
+  title: OpenAI o1 System Card
+  author:
+    - literal: OpenAI
+  issued: { date-parts: [[2024, 12]] }
+  type: article
+  container-title: arXiv
