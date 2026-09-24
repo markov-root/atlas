@@ -810,28 +810,34 @@ const groupByChapter = chapters.length > 1;
       if (!entry || entry.querySelector('[data-cite-backlinks]')) continue;
       const holder = document.createElement('span');
       holder.dataset.citeBacklinks = '';
-      holder.className = 'ml-1.5 whitespace-nowrap';
+      holder.className = 'whitespace-nowrap';
       ids.forEach((id, index) => {
         const back = document.createElement('a');
         back.href = `#${id}`;
-        back.className = 'text-brand-600 no-underline hover:underline text-xs align-super ml-0.5';
-        // One instance reads as a plain return arrow, which is what the
-        // footnotes already do. Several need telling apart, and a row of
-        // identical arrows does not do that.
-        back.textContent = ids.length === 1 ? '\u21a9' : letterFor(index);
-        back.setAttribute(
-          'aria-label',
+        // `backlink` carries the shared styling; a footnote back-link uses the
+        // same class, so the two cannot drift apart.
+        back.className = 'backlink';
+        // Arrow and letter are one token, not two marks: the same shape in
+        // every case, with the letter saying *which* occurrence. A mark that
+        // changed shape with the count would be two affordances wearing one
+        // name, which is the thing this is not allowed to be.
+        back.append('\u21a9');
+        const ordinal = document.createElement('sup');
+        ordinal.textContent = letterFor(index);
+        back.appendChild(ordinal);
+        const label =
           ids.length === 1
             ? 'Back to where this is cited'
-            : `Back to citation ${index + 1} of ${ids.length}`,
-        );
+            : `Back to citation ${index + 1} of ${ids.length}`;
+        back.setAttribute('aria-label', label);
+        back.title = label;
         holder.appendChild(back);
       });
       entry.appendChild(holder);
     }
   }
 
-  /** a, b, c … z, then aa, ab. Numbers past 26 would read as a page reference. */
+  /** a, b, c … z, then aa, ab. Numbers would read as a page or note reference. */
   function letterFor(index: number): string {
     let n = index;
     let out = '';

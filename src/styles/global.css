@@ -240,3 +240,34 @@
     bottom: 2rem;
   }
 }
+
+/* One back-link, wherever it appears.
+ *
+ * `task:0036`. A footnote and a citation are the same offer to a reader - go
+ * back to where this came from - so they are the same mark: a return arrow with
+ * a superscript letter, set tight enough to read as one token rather than two
+ * characters. The letter says *which* occurrence, because a source is often
+ * cited more than once and a footnote never is.
+ *
+ * Global rather than scoped because the two call sites are different files:
+ * Bibliography.astro builds these on the client, and the footnote list is
+ * rendered by the section page. A scoped rule would style one and not the other,
+ * which is the exact defect this replaces. */
+.backlink {
+  margin-left: 0.5rem;
+  color: var(--color-brand-600);
+  font-size: 0.875rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.backlink:hover {
+  text-decoration: underline;
+}
+
+.backlink sup {
+  margin-left: 0.0625rem;
+  font-size: 0.7em;
+  line-height: 0;
+  vertical-align: super;
+}

@@ -108,13 +108,25 @@ two independent AST walks agree forever. And ids are a **plain counter** (`citer
 `fnref-N`, not a percent-encoded URL: an id has to survive being written into an href and matched
 back as a fragment, and an encoded URL does that only by the browser's leniency.
 
-### D2 - What does a back-link look like when there are several of them?
+### D2 - What mark does a back-link use, and what happens when there are several?
 
-A footnote uses a single arrow glyph. Eight arrows in a row are noise. Options: superscript letters
-(`a b c`, the convention in numbered-reference styles), superscript indices, or a single arrow to
-the first occurrence with the rest behind a control. **Decided: one instance renders the same return arrow the footnotes use; several render
-superscript letters** (`a b c`), which is what a reader of a scientific bibliography already
-recognises. Each carries an `aria-label` naming which of how many it is.
+The first build used a return arrow for a single citation and superscript letters for several. The
+owner rejected that outright, and correctly: **a mark that changes shape with the count is two
+affordances wearing one name.** A reader should not have to learn that a letter and an arrow mean the
+same thing.
+
+The reasoning that replaced it was also wrong at first. "Common styling with the footnotes" was read
+as forcing the arrow, since that is what footnotes used. It does not: the constraint is equally
+satisfiable by changing the footnote. The owner made that point, and it is the right one.
+
+**Decided: one mark everywhere, a return arrow with a superscript letter, set tight enough to read as
+a single token rather than two characters.** The arrow keeps the recognisable "go back" affordance;
+the letter says *which* occurrence, which is the one way a citation genuinely differs from a footnote
+- a source is often cited more than once and a footnote never is. The footnote back-link changed from
+an icon to the same mark, so a reader meets one affordance rather than two.
+
+It lives in `.backlink` in `global.css`, deliberately global: the two call sites are different files,
+and a scoped rule would style one and not the other, which is the exact defect this replaces.
 
 ## Done when
 
@@ -134,7 +146,7 @@ references and 71 in-text citations:
 | --- | --- | :-: |
 | AC-1 | 71 unique `citeref-N` ids assigned in document order | met |
 | AC-2 | **122 of 122** entries carry back-links; **0 broken targets** (every href resolves to an element on the page) | met |
-| AC-3 | 14 entries carry more than one, lettered `a`, `b`, `c`; the most-cited carries 3; single instances render one arrow | met |
+| AC-3 | 14 entries carry more than one, marked `\u21a9a` `\u21a9b` `\u21a9c`; the most-cited carries 3; a single instance renders the same `\u21a9a` | met |
 | AC-4 | `/bibliography` and the chapter list are untouched - `linkBackToCitations` returns early when there is no `[data-chapter-article]` to return to | met |
 
 **Two defects caught by running it rather than reading it.** The first pass excluded `#footnotes`
@@ -142,6 +154,10 @@ from the walk, which silently dropped **6 citations made inside footnotes** - a 
 footnote is cited, and the footnote is the right place to return to. The second used percent-encoded
 URLs as ids; `getElementById` on the decoded fragment failed, which the DOM check caught and a code
 review would not have.
+
+Footnote and citation back-links were compared in the live DOM by computed style: identical colour,
+font size, margin and text decoration. Consistency here is asserted from what the browser computed,
+not from the class names being similar in the source.
 
 **Known limitation, `audit:0011` F24:** a section page renders its article twice for reading mode, so
 every id on it is duplicated - including `fnref-N`, which has behaved this way since reading mode
