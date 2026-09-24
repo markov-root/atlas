@@ -327,7 +327,7 @@ const paper = resolveResource(chapter.meta.paper);
                 {section.footnotes.map(({ number, children }) => (
                 <li id={`fn-${number}`} class="pl-2 target:bg-brand-50 target:border-l-2 target:border-brand-500 target:-ml-2 target:pl-1.5 target:pr-2">
                     {children.map(child => <NodeRenderer node={child} />)}
-                    <a href={`#fnref-${number}`} class="backlink" aria-label="Back to where this is cited" title="Back to where this is cited">↩<sup>a</sup></a>
+                    <a href={`#fnref-${number}`} class="backlink" aria-label="Back to where this is cited" title="Back to where this is cited">↩</a>
                 </li>
                 ))}
             </ol>

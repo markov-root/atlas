@@ -817,14 +817,11 @@ const groupByChapter = chapters.length > 1;
         // `backlink` carries the shared styling; a footnote back-link uses the
         // same class, so the two cannot drift apart.
         back.className = 'backlink';
-        // Arrow and letter are one token, not two marks: the same shape in
-        // every case, with the letter saying *which* occurrence. A mark that
-        // changed shape with the count would be two affordances wearing one
-        // name, which is the thing this is not allowed to be.
-        back.append('\u21a9');
-        const ordinal = document.createElement('sup');
-        ordinal.textContent = letterFor(index);
-        back.appendChild(ordinal);
+        // One mark, every time. A source cited three times gets three of them,
+        // in document order; which is which lives in the accessible name and
+        // the tooltip rather than in the glyph, because a mark that changes
+        // shape with the count is two affordances wearing one name.
+        back.textContent = '\u21a9';
         const label =
           ids.length === 1
             ? 'Back to where this is cited'
@@ -835,17 +832,6 @@ const groupByChapter = chapters.length > 1;
       });
       entry.appendChild(holder);
     }
-  }
-
-  /** a, b, c … z, then aa, ab. Numbers would read as a page or note reference. */
-  function letterFor(index: number): string {
-    let n = index;
-    let out = '';
-    do {
-      out = String.fromCharCode(97 + (n % 26)) + out;
-      n = Math.floor(n / 26) - 1;
-    } while (n >= 0);
-    return out;
   }
 
   init();

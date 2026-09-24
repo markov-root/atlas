@@ -110,23 +110,27 @@ back as a fragment, and an encoded URL does that only by the browser's leniency.
 
 ### D2 - What mark does a back-link use, and what happens when there are several?
 
-The first build used a return arrow for a single citation and superscript letters for several. The
-owner rejected that outright, and correctly: **a mark that changes shape with the count is two
-affordances wearing one name.** A reader should not have to learn that a letter and an arrow mean the
-same thing.
+Three attempts, two of them corrected by the owner.
 
-The reasoning that replaced it was also wrong at first. "Common styling with the footnotes" was read
-as forcing the arrow, since that is what footnotes used. It does not: the constraint is equally
-satisfiable by changing the footnote. The owner made that point, and it is the right one.
+The first used a return arrow for a single citation and superscript letters for several. Rejected
+outright, and rightly: **a mark that changes shape with the count is two affordances wearing one
+name.** A reader should not have to learn that a letter and an arrow mean the same thing.
 
-**Decided: one mark everywhere, a return arrow with a superscript letter, set tight enough to read as
-a single token rather than two characters.** The arrow keeps the recognisable "go back" affordance;
-the letter says *which* occurrence, which is the one way a citation genuinely differs from a footnote
-- a source is often cited more than once and a footnote never is. The footnote back-link changed from
-an icon to the same mark, so a reader meets one affordance rather than two.
+The reasoning that replaced it was also wrong. "Common styling with the footnotes" was read as
+forcing the arrow, since that is what footnotes used. It does not - the constraint is equally
+satisfiable by changing the footnote. The owner made that point and it is correct.
 
-It lives in `.backlink` in `global.css`, deliberately global: the two call sites are different files,
-and a scoped rule would style one and not the other, which is the exact defect this replaces.
+**Decided: the return arrow, and nothing else, everywhere.** A source cited three times gets three
+arrows in document order. Which is which lives in the accessible name and the tooltip ("Back to
+citation 2 of 3"), never in the glyph. The footnote back-link uses the same mark and the same class,
+so a reader meets one affordance rather than two.
+
+The recorded trade-off, so it is not re-litigated: several identical arrows are told apart only on
+hover or by a screen reader. That was weighed against a second glyph language and lost. Distinguishing
+them visually was tried as a superscript letter and rejected by the owner as noise.
+
+`.backlink` lives in `global.css`, deliberately global: the two call sites are different files, and a
+scoped rule would style one and not the other - the exact defect this replaces.
 
 ## Done when
 
@@ -156,7 +160,7 @@ URLs as ids; `getElementById` on the decoded fragment failed, which the DOM chec
 review would not have.
 
 Footnote and citation back-links were compared in the live DOM by computed style: identical colour,
-font size, margin and text decoration. Consistency here is asserted from what the browser computed,
+font size and margin, and no letter remains on either (142 citation marks, 4 footnote marks). Consistency here is asserted from what the browser computed,
 not from the class names being similar in the source.
 
 **Known limitation, `audit:0011` F24:** a section page renders its article twice for reading mode, so

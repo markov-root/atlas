@@ -244,10 +244,9 @@
 /* One back-link, wherever it appears.
  *
  * `task:0036`. A footnote and a citation are the same offer to a reader - go
- * back to where this came from - so they are the same mark: a return arrow with
- * a superscript letter, set tight enough to read as one token rather than two
- * characters. The letter says *which* occurrence, because a source is often
- * cited more than once and a footnote never is.
+ * back to where this came from - so they are the same mark: a return arrow, and
+ * nothing else. A source cited three times gets three of them in document
+ * order; which is which lives in the accessible name, not in the glyph.
  *
  * Global rather than scoped because the two call sites are different files:
  * Bibliography.astro builds these on the client, and the footnote list is
@@ -263,11 +262,4 @@
 
 .backlink:hover {
   text-decoration: underline;
-}
-
-.backlink sup {
-  margin-left: 0.0625rem;
-  font-size: 0.7em;
-  line-height: 0;
-  vertical-align: super;
 }
