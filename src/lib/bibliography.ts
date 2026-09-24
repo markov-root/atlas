@@ -113,6 +113,7 @@ const KIND_LABELS: Record<string, string> = {
   article: 'Paper',
   'article-journal': 'Journal article',
   'article-newspaper': 'News article',
+  'article-magazine': 'Magazine article',
   'paper-conference': 'Conference paper',
   'post-weblog': 'Blog post',
   webpage: 'Web page',

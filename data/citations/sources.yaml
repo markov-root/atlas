@@ -26922,16 +26922,20 @@ https://businessinsider.com/google-deepmind-ceo-demis-hassabis-anthropic-ceo-ai-
 https://calteches.library.caltech.edu/2807/1/olds.pdf:
   item:
     id: https://calteches.library.caltech.edu/2807/1/olds.pdf
-    type: webpage
+    type: article-magazine
     URL: https://calteches.library.caltech.edu/2807/1/olds.pdf
     author:
-    - literal: Olds
+    - family: Olds
+      given: James
     issued:
       date-parts:
-      - - 1956
-    title: Olds, 1956
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+      - - 1970
+    title: Pleasure Centers in the Brain
+    container-title: Engineering and Science
+    volume: '33'
+    issue: '7'
+    page: 22-31
+  resolvedBy: override
   anchors:
   - Olds, 1956
 https://careerservices.fas.harvard.edu/blog/2025/05/01/what-is-ai-ethics:
@@ -27094,16 +27098,83 @@ https://cdn.governance.ai/GovAI-Research-Agenda.pdf:
 https://cdn.governance.ai/Open_Problems_in_Technical_AI_Governance.pdf:
   item:
     id: https://cdn.governance.ai/Open_Problems_in_Technical_AI_Governance.pdf
-    type: webpage
+    type: article
     URL: https://cdn.governance.ai/Open_Problems_in_Technical_AI_Governance.pdf
     author:
-    - literal: Reuel & Bucknall
+    - family: Reuel
+      given: Anka
+    - family: Bucknall
+      given: Ben
+    - family: Casper
+      given: Stephen
+    - family: Fist
+      given: Tim
+    - family: Soder
+      given: Lisa
+    - family: Aarne
+      given: Onni
+    - family: Hammond
+      given: Lewis
+    - family: Ibrahim
+      given: Lujain
+    - family: Chan
+      given: Alan
+    - family: Wills
+      given: Peter
+    - family: Anderljung
+      given: Markus
+    - family: Garfinkel
+      given: Ben
+    - family: Heim
+      given: Lennart
+    - family: Trask
+      given: Andrew
+    - family: Mukobi
+      given: Gabriel
+    - family: Schaeffer
+      given: Rylan
+    - family: Baker
+      given: Mauricio
+    - family: Hooker
+      given: Sara
+    - family: Solaiman
+      given: Irene
+    - family: Luccioni
+      given: Alexandra Sasha
+    - family: Rajkumar
+      given: Nitarshan
+    - family: Moës
+      given: Nicolas
+    - family: Ladish
+      given: Jeffrey
+    - family: Bau
+      given: David
+    - family: Bricman
+      given: Paul
+    - family: Guha
+      given: Neel
+    - family: Newman
+      given: Jessica
+    - family: Bengio
+      given: Yoshua
+    - family: South
+      given: Tobin
+    - family: Pentland
+      given: Alex
+    - family: Koyejo
+      given: Sanmi
+    - family: Kochenderfer
+      given: Mykel J.
+    - family: Trager
+      given: Robert
     issued:
       date-parts:
       - - 2024
-    title: Reuel & Bucknall, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 7
+        - 20
+    title: Open Problems in Technical AI Governance
+    container-title: arXiv
+  resolvedBy: override
   anchors:
   - Reuel & Bucknall, 2024
 https://cdn.openai.com/openai-preparedness-framework-beta.pdf:
@@ -27125,48 +27196,81 @@ https://cdn.openai.com/openai-preparedness-framework-beta.pdf:
 https://cdn.openai.com/papers/dall-e-3.pdf:
   item:
     id: https://cdn.openai.com/papers/dall-e-3.pdf
-    type: webpage
+    type: report
     URL: https://cdn.openai.com/papers/dall-e-3.pdf
     author:
-    - literal: Betker et al.
+    - family: Betker
+      given: James
+    - family: Goh
+      given: Gabriel
+    - family: Jing
+      given: Li
+    - family: Brooks
+      given: Tim
+    - family: Wang
+      given: Jianfeng
+    - family: Li
+      given: Linjie
+    - family: Ouyang
+      given: Long
+    - family: Zhuang
+      given: Juntang
+    - family: Lee
+      given: Joyce
+    - family: Guo
+      given: Yufei
+    - family: Manassra
+      given: Wesam
+    - family: Dhariwal
+      given: Prafulla
+    - family: Chu
+      given: Casey
+    - family: Jiao
+      given: Yunxin
+    - family: Ramesh
+      given: Aditya
     issued:
       date-parts:
       - - 2023
-    title: Betker et al., 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: Improving Image Generation with Better Captions
+    publisher: OpenAI
+  resolvedBy: override
   anchors:
   - Betker et al., 2023
 https://cdn.openai.com/papers/gpt-4-system-card.pdf:
   item:
     id: https://cdn.openai.com/papers/gpt-4-system-card.pdf
-    type: webpage
+    type: report
     URL: https://cdn.openai.com/papers/gpt-4-system-card.pdf
     author:
     - literal: OpenAI
     issued:
       date-parts:
       - - 2023
-    title: OpenAI, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: GPT-4 System Card
+    publisher: OpenAI
+  resolvedBy: override
   anchors:
   - OpenAI, 2023
 https://cdn.prod.website-files.com/663bd486c5e4c81588db7a1d/673b689ec926d8d32e889a8e_UK-US-Testing-Report-Nov-19.pdf:
   item:
     id: 
       https://cdn.prod.website-files.com/663bd486c5e4c81588db7a1d/673b689ec926d8d32e889a8e_UK-US-Testing-Report-Nov-19.pdf
-    type: webpage
+    type: report
     URL: 
       https://cdn.prod.website-files.com/663bd486c5e4c81588db7a1d/673b689ec926d8d32e889a8e_UK-US-Testing-Report-Nov-19.pdf
     author:
-    - literal: US & UK AISI
+    - literal: US AI Safety Institute
+    - literal: UK AI Safety Institute
     issued:
       date-parts:
       - - 2024
-    title: US & UK AISI, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 11
+        - 19
+    title: "US AISI and UK AISI Joint Pre-Deployment Test: Anthropic's Claude 3.5 Sonnet (October 2024
+      Release)"
+    publisher: National Institute of Standards and Technology
+  resolvedBy: override
   anchors:
   - US & UK AISI 2024
   - US & UK AISI, 2024
@@ -27191,17 +27295,40 @@ https://ceris.be/wp-content/uploads/2024/03/International-Institutions-for-Advan
   item:
     id: 
       https://ceris.be/wp-content/uploads/2024/03/International-Institutions-for-Advanced-AI-Robert-Trager.pdf
-    type: webpage
+    type: article
     URL: 
       https://ceris.be/wp-content/uploads/2024/03/International-Institutions-for-Advanced-AI-Robert-Trager.pdf
     author:
-    - literal: Ho et al.
+    - family: Ho
+      given: Lewis
+    - family: Barnhart
+      given: Joslyn
+    - family: Trager
+      given: Robert
+    - family: Bengio
+      given: Yoshua
+    - family: Brundage
+      given: Miles
+    - family: Carnegie
+      given: Allison
+    - family: Chowdhury
+      given: Rumman
+    - family: Dafoe
+      given: Allan
+    - family: Hadfield
+      given: Gillian
+    - family: Levi
+      given: Margaret
+    - family: Snidal
+      given: Duncan
     issued:
       date-parts:
       - - 2023
-    title: Ho et al., 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 7
+        - 10
+    title: International Institutions for Advanced AI
+    container-title: arXiv
+  resolvedBy: override
   anchors:
   - Ho et al., 2023
 https://cfg.eu/building-cern-for-ai:
@@ -27407,7 +27534,7 @@ https://crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-Incident-Roo
   item:
     id: 
       https://crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-Incident-Root-Cause-Analysis-08.06.2024.pdf
-    type: webpage
+    type: report
     URL: 
       https://crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-Incident-Root-Cause-Analysis-08.06.2024.pdf
     author:
@@ -27415,9 +27542,11 @@ https://crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-Incident-Roo
     issued:
       date-parts:
       - - 2024
-    title: CrowdStrike, 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 8
+        - 6
+    title: External Technical Root Cause Analysis — Channel File 291
+    publisher: CrowdStrike
+  resolvedBy: override
   anchors:
   - CrowdStrike, 2024
 https://cs.toronto.edu/~kriz/cifar.html:
@@ -27488,16 +27617,19 @@ https://cset.georgetown.edu/publication/the-ai-triad-and-what-it-means-for-natio
 https://dam.gcsp.ch/files/doc/gcsp-geneva-paper-29-22:
   item:
     id: https://dam.gcsp.ch/files/doc/gcsp-geneva-paper-29-22
-    type: webpage
+    type: report
     URL: https://dam.gcsp.ch/files/doc/gcsp-geneva-paper-29-22
     author:
-    - literal: Esvelt
+    - family: Esvelt
+      given: Kevin M.
     issued:
       date-parts:
       - - 2022
-    title: Esvelt, 2022
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: 'Delay, Detect, Defend: Preparing for a Future in which Thousands Can Release New Pandemics'
+    collection-title: Geneva Paper 29/22
+    publisher: Geneva Centre for Security Policy
+    publisher-place: Geneva
+  resolvedBy: override
   anchors:
   - Esvelt, 2022
 https://danfaggella.com/worthy:
@@ -28306,16 +28438,29 @@ https://earthobservatory.nasa.gov/features/RemoteSensingAtmosphere/remote_sensin
 https://economics.mit.edu/sites/default/files/2022-09/aitocracy_20220701.pdf:
   item:
     id: https://economics.mit.edu/sites/default/files/2022-09/aitocracy_20220701.pdf
-    type: webpage
+    type: article-journal
     URL: https://economics.mit.edu/sites/default/files/2022-09/aitocracy_20220701.pdf
     author:
-    - literal: Beraja et al.
+    - family: Beraja
+      given: Martin
+    - family: Kao
+      given: Andrew
+    - family: Yang
+      given: David Y.
+    - family: Yuchtman
+      given: Noam
     issued:
       date-parts:
       - - 2023
-    title: Beraja et al., 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 3
+        - 13
+    title: AI-tocracy
+    container-title: The Quarterly Journal of Economics
+    volume: '138'
+    issue: '3'
+    page: 1349-1402
+    DOI: 10.1093/qje/qjad012
+  resolvedBy: override
   anchors:
   - Beraja et al., 2023
 https://edition.cnn.com/2023/04/29/us/ai-scam-calls-kidnapping-cec/index.html:
@@ -29046,16 +29191,16 @@ https://epochai.substack.com/p/wheres-my-ten-minute-agi:
 https://evals.alignment.org/taskrabbit.pdf:
   item:
     id: https://evals.alignment.org/taskrabbit.pdf
-    type: webpage
+    type: report
     URL: https://evals.alignment.org/taskrabbit.pdf
     author:
     - literal: METR
     issued:
       date-parts:
       - - 2023
-    title: METR, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+    title: The TaskRabbit example
+    publisher: METR
+  resolvedBy: override
   anchors:
   - METR, 2023
 https://exfilbench.com:
@@ -29119,17 +29264,23 @@ https://findresearcher.sdu.dk/ws/portalfiles/portal/231643063/Loitering_Munition
   item:
     id: 
       https://findresearcher.sdu.dk/ws/portalfiles/portal/231643063/Loitering_Munitions_Unpredictability_WEB.pdf
-    type: webpage
+    type: report
     URL: 
       https://findresearcher.sdu.dk/ws/portalfiles/portal/231643063/Loitering_Munitions_Unpredictability_WEB.pdf
     author:
-    - literal: Bode & Watts
+    - family: Bode
+      given: Ingvild
+    - family: Watts
+      given: Tom
     issued:
       date-parts:
       - - 2023
-    title: Bode & Watts, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 5
+    title: 'Loitering Munitions and Unpredictability: Autonomy in Weapon Systems and Challenges to Human
+      Control'
+    publisher: Center for War Studies, University of Southern Denmark
+    publisher-place: Odense
+  resolvedBy: override
   anchors:
   - Bode & Watts, 2023
 https://forecastingresearch.org/ai-enabled-biorisk:
@@ -29394,17 +29545,19 @@ https://futureoflife.org/wp-content/uploads/2025/07/FLI-AI-Safety-Index-Report-S
   item:
     id: 
       https://futureoflife.org/wp-content/uploads/2025/07/FLI-AI-Safety-Index-Report-Summer-2025.pdf
-    type: webpage
+    type: report
     URL: 
       https://futureoflife.org/wp-content/uploads/2025/07/FLI-AI-Safety-Index-Report-Summer-2025.pdf
     author:
-    - literal: FLI
+    - literal: Future of Life Institute
     issued:
       date-parts:
       - - 2025
-    title: FLI, 2025
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 7
+        - 17
+    title: AI Safety Index, Summer 2025
+    publisher: Future of Life Institute
+  resolvedBy: override
   anchors:
   - FLI, 2025
 https://garymarcus.substack.com/p/the-last-few-months-have-been-devastating:
@@ -32329,16 +32482,22 @@ https://nist.gov/publications/reducing-risks-posed-synthetic-content-overview-te
 https://nti.org/wp-content/uploads/2023/05/NTIBIO_Benchtop-DNA-Report_FINAL.pdf:
   item:
     id: https://nti.org/wp-content/uploads/2023/05/NTIBIO_Benchtop-DNA-Report_FINAL.pdf
-    type: webpage
+    type: report
     URL: https://nti.org/wp-content/uploads/2023/05/NTIBIO_Benchtop-DNA-Report_FINAL.pdf
     author:
-    - literal: Carter et al.
+    - family: Carter
+      given: Sarah R.
+    - family: Yassif
+      given: Jaime M.
+    - family: Isaac
+      given: Christopher R.
     issued:
       date-parts:
       - - 2023
-    title: Carter et al., 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 5
+    title: 'Benchtop DNA Synthesis Devices: Capabilities, Biosecurity Implications, and Governance'
+    publisher: NTI | bio
+  resolvedBy: override
   anchors:
   - Carter et al., 2023
 https://nytimes.com/interactive/2017/business/volkswagen-diesel-emissions-timeline.html:
@@ -32427,17 +32586,42 @@ https://oecd.ai/en/wonk/ai-safety-institutes-challenge:
 : item:
     id: 
       https://oms-www.files.svdcdn.com/production/downloads/reports/Voice%20and%20Access%20in%20AI_%20Global%20AI%20Majority%20Participation%20in%20Artificial%20Intelligence%20Development%20and%20Governance-%20final.pdf?dm=1729247034
-    type: webpage
+    type: report
     URL: 
       https://oms-www.files.svdcdn.com/production/downloads/reports/Voice%20and%20Access%20in%20AI_%20Global%20AI%20Majority%20Participation%20in%20Artificial%20Intelligence%20Development%20and%20Governance-%20final.pdf?dm=1729247034
     author:
-    - literal: Adan et al.
+    - family: Adan
+      given: Sumaya N.
+    - family: Trager
+      given: Robert
+    - family: Blomquist
+      given: Kayla
+    - family: Dennis
+      given: Claire
+    - family: Edom
+      given: Gemma
+    - family: Velasco
+      given: Lucia
+    - family: Abungu
+      given: Cecil
+    - family: Garfinkel
+      given: Ben
+    - family: Jacobs
+      given: Julian
+    - family: Okolo
+      given: Chinasa T.
+    - family: Wu
+      given: Boxi
+    - family: Vipra
+      given: Jai
     issued:
       date-parts:
       - - 2024
-    title: Adan et al., 2024
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 10
+    title: 'Voice and Access in AI: Global AI Majority Participation in Artificial Intelligence Development
+      and Governance'
+    publisher: Oxford Martin AI Governance Initiative, University of Oxford
+  resolvedBy: override
   anchors:
   - Adan et al., 2024
 https://onlinelibrary.wiley.com/doi/10.1002/9781118660584.ese0431:
@@ -34831,16 +35015,23 @@ https://telegraph.co.uk/news/2024/01/07/artificial-intelligence-train-problems:
 https://testscience.org/wp-content/uploads/formidable/20/Autonomy-Lit-Review.pdf:
   item:
     id: https://testscience.org/wp-content/uploads/formidable/20/Autonomy-Lit-Review.pdf
-    type: webpage
+    type: report
     URL: https://testscience.org/wp-content/uploads/formidable/20/Autonomy-Lit-Review.pdf
     author:
-    - literal: Wojton et al.
+    - family: Wojton
+      given: Heather M.
+    - family: Porter
+      given: Daniel J.
+    - family: Dennis
+      given: John W.
     issued:
       date-parts:
       - - 2020
-    title: Wojton et al., 2020
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 9
+    title: 'Test & Evaluation of AI-enabled and Autonomous Systems: A Literature Review'
+    number: IDA Document NS-D-14331
+    publisher: Institute for Defense Analyses
+  resolvedBy: override
   anchors:
   - Wojton et al., 2020
 https://theaidigest.org/progress-and-dangers:
@@ -35342,7 +35533,7 @@ https://www-cdn.anthropic.com/1adf000c8f675958c2ee23805d91aaade1cd4613/responsib
   item:
     id: 
       https://www-cdn.anthropic.com/1adf000c8f675958c2ee23805d91aaade1cd4613/responsible-scaling-policy.pdf
-    type: webpage
+    type: report
     URL: 
       https://www-cdn.anthropic.com/1adf000c8f675958c2ee23805d91aaade1cd4613/responsible-scaling-policy.pdf
     author:
@@ -35350,9 +35541,12 @@ https://www-cdn.anthropic.com/1adf000c8f675958c2ee23805d91aaade1cd4613/responsib
     issued:
       date-parts:
       - - 2023
-    title: Anthropic, 2023
-    note: 'Unresolved: title and author taken from the citation anchor text.'
-  resolvedBy: anchor
+        - 9
+        - 19
+    title: Anthropic's Responsible Scaling Policy
+    number: Version 1.0
+    publisher: Anthropic
+  resolvedBy: override
   anchors:
   - Anthropic, 2023
 https://www-cdn.anthropic.com/bd2a28d2535bfb0494cc8e2a3bf135d2e7523226/Model-Card-Claude-2.pdf:

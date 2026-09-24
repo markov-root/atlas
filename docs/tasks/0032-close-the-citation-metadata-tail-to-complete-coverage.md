@@ -232,21 +232,20 @@ re-applied and never decays.
 | AC-4      | `resolvers/forum_magnum.py`, `test_resolver_forum_magnum.py` (14 tests). 8 entries resolved, including four shortform comment permalinks that are client-rendered and had no scrapable title at all.                                                                                        | yes        |
 | AC-5      | `data/citations/overrides.yaml` (committed, reviewed input); `overrides.py` with precedence and `--redo` immunity, `test_overrides.py` (12 tests); `atlas citations propose` and `test_propose.py` (11 tests). Commit `25941ba`.                                                            | yes        |
 | AC-6      | `dead_links()` and the report section in `commands/report.py`, keyed on the reason and not on `resolvedBy`; `TestTheReportStillCallsItDead`. Two follow-on defects found and fixed: `469b107`'s keying bug and `27d3565`'s wiped markers.                                                   | yes        |
-| AC-7      | `infer_container_title` / `fill_container_titles` in `store.py`, `TestContainerTitleFromTheUrl`. **Container: 191 of 813 → 707 of 925.** Zero-anchor entries **not yet met** - see below.                                                                                                   | **partly** |
+| AC-7      | `infer_container_title` / `fill_container_titles` in `store.py`, `TestContainerTitleFromTheUrl`. **Container: 191 of 813 → 711 of 941.** Zero-anchor entries **not yet met** - see below.                                                                                                   | **partly** |
 
 ### AC-7 is the one still open
 
-**Unresolved: 132 → 20**, and **925 of 945 entries (97.9%) carry real metadata.** Every remaining
-entry has been attempted and recorded a reason, so the residual is a known quantity rather than an
-unexplored tail:
+**Unresolved: 132 → 4**, and **941 of 945 entries (99.6%) carry real metadata.** What is left is not
+a metadata tail at all:
 
-| Group                          | Count |
-| ------------------------------ | ----: |
-| PDFs with no metadata anywhere |    17 |
-| Long tail, one host each       |     1 |
-| The page is gone               |     2 |
+| Remaining                                                     | Why it is not lookup work           |
+| ------------------------------------------------------------- | ----------------------------------- |
+| An Our World in Data chart and a Squarespace auditing framework | Both pages are gone; an author must decide what to cite instead |
+| `keepthefuturehuman.com/essay`                                | A second address for a work already resolved, so `task:0031` |
+| `yann.lecun.com/exdb/mnist`                                   | A directory index with no metadata; one entry, low value |
 
-Nothing is left in the paywall group: every one of those was reachable by another route once a human
+The paywall group emptied entirely: every one of those was reachable by another route once a human
 looked.
 
 Closing them is `overrides.yaml` work, which is what D2, D3 and D4 exist to make honest. The evidence
@@ -272,8 +271,36 @@ prompted a standing preference now recorded in `task:0035` - **cite arXiv, a DOI
 wherever the work exists there**, because those addresses have an API and the entry then stops
 needing a hand-written block at all. A ResearchGate or CDN mirror costs a human a block every time.
 
-Twenty-four of the 37 also need a fix in the Google Doc that no override can make, because URL is
-identity and anchor text is never re-rendered. Those are `task:0035`.
+### D6: search may propose a candidate, but only an identifier may confirm one
+
+**Decision.** A web search is allowed as a *candidate generator* for an unresolved source. It is
+never the evidence. The candidate must carry an identifier - an arXiv ID, a DOI, a publisher
+landing page - and that identifier must be fetched and its title checked before anything is written.
+
+This looks like D3, which rejected Crossref title search, and the distinction is the whole point.
+**D3's fault was not that search is fuzzy; it was that the result was unfalsifiable.** Crossref
+returned a different paper at an indistinguishable score, and nothing in the response let you tell
+which you had. A search result naming `arXiv:2407.14981` is falsifiable in one fetch: the abs page
+either prints "Open Problems in Technical AI Governance" or it does not.
+
+Measured: **16 more sources closed this way**, 6 directly and 10 through a delegated lookup, every
+one recorded with the exact URL that confirmed it. The delegation brief carried the rule as
+*verify-or-say-nothing*, and it held: one document came back reporting no identifier exists
+(OpenAI's DALL-E 3 paper) rather than inventing one.
+
+The same pass also found the corpus's **worst citation error**, which no search on the citation's own
+terms could have found. "Olds, 1956" links to a PDF that is a *different* 1970 essay by the same
+author under the same title; the two share no body text. It surfaced only because the brief required
+reading the linked document itself rather than a landing page. See `task:0035`.
+
+Also measured and rejected: the **research database's `/api/search`**. It is semantic, not exact -
+queried for "AI-tocracy" it returned "Preparing for the Intelligence Explosion" - so it is D3's
+failure mode with a local hostname. The corpus does hold some of these works under *different* URLs
+than the prose cites, which is a real gap, but closing it means URL-alias matching rather than fuzzy
+search, and belongs with `task:0028`.
+
+Most of the 53 closed here also need a fix in the Google Doc that no override can make, because URL
+is identity and anchor text is never re-rendered. Those are `task:0035`.
 
 ### Measured wins worth naming
 

@@ -698,3 +698,314 @@ https://assets.ctfassets.net/kftzwdyauwt9/67qJD51Aur3eIc96iOfeOP/71551c3d223cd97
   issued: { date-parts: [[2024, 12]] }
   type: article
   container-title: arXiv
+
+# ===== Batch 3, found by search and verified at the source (2026-09-24)
+#
+# provenance: `search+verified`. A search engine generated the candidate and an
+# authoritative page confirmed it - the arXiv abs page, a DOI record, or the
+# issuing institution's own. This is deliberately not what task:0032 D3
+# rejected: D3's fault was a Crossref title search returning a *different*
+# paper at an indistinguishable score with no way to tell. Here the candidate
+# carries an identifier, and fetching it either shows the right title or does
+# not. Search proposes; the identifier disposes.
+
+https://cdn.governance.ai/Open_Problems_in_Technical_AI_Governance.pdf:
+  # verified: https://arxiv.org/abs/2407.14981 (v1 submitted 2024-07-20)
+  # GDOC FIX (task:0035): better link https://arxiv.org/abs/2407.14981
+  title: Open Problems in Technical AI Governance
+  author:
+    - { family: Reuel, given: Anka }
+    - { family: Bucknall, given: Ben }
+    - { family: Casper, given: Stephen }
+    - { family: Fist, given: Tim }
+    - { family: Soder, given: Lisa }
+    - { family: Aarne, given: Onni }
+    - { family: Hammond, given: Lewis }
+    - { family: Ibrahim, given: Lujain }
+    - { family: Chan, given: Alan }
+    - { family: Wills, given: Peter }
+    - { family: Anderljung, given: Markus }
+    - { family: Garfinkel, given: Ben }
+    - { family: Heim, given: Lennart }
+    - { family: Trask, given: Andrew }
+    - { family: Mukobi, given: Gabriel }
+    - { family: Schaeffer, given: Rylan }
+    - { family: Baker, given: Mauricio }
+    - { family: Hooker, given: Sara }
+    - { family: Solaiman, given: Irene }
+    - { family: Luccioni, given: Alexandra Sasha }
+    - { family: Rajkumar, given: Nitarshan }
+    - { family: Moës, given: Nicolas }
+    - { family: Ladish, given: Jeffrey }
+    - { family: Bau, given: David }
+    - { family: Bricman, given: Paul }
+    - { family: Guha, given: Neel }
+    - { family: Newman, given: Jessica }
+    - { family: Bengio, given: Yoshua }
+    - { family: South, given: Tobin }
+    - { family: Pentland, given: Alex }
+    - { family: Koyejo, given: Sanmi }
+    - { family: Kochenderfer, given: Mykel J. }
+    - { family: Trager, given: Robert }
+  issued: { date-parts: [[2024, 7, 20]] }
+  type: article
+  container-title: arXiv
+
+https://ceris.be/wp-content/uploads/2024/03/International-Institutions-for-Advanced-AI-Robert-Trager.pdf:
+  # verified: https://arxiv.org/abs/2307.04699 (v1 submitted 2023-07-10)
+  # GDOC FIX (task:0035): ceris.be hosts a third-party copy; better link
+  # https://arxiv.org/abs/2307.04699
+  title: International Institutions for Advanced AI
+  author:
+    - { family: Ho, given: Lewis }
+    - { family: Barnhart, given: Joslyn }
+    - { family: Trager, given: Robert }
+    - { family: Bengio, given: Yoshua }
+    - { family: Brundage, given: Miles }
+    - { family: Carnegie, given: Allison }
+    - { family: Chowdhury, given: Rumman }
+    - { family: Dafoe, given: Allan }
+    - { family: Hadfield, given: Gillian }
+    - { family: Levi, given: Margaret }
+    - { family: Snidal, given: Duncan }
+  issued: { date-parts: [[2023, 7, 10]] }
+  type: article
+  container-title: arXiv
+
+https://economics.mit.edu/sites/default/files/2022-09/aitocracy_20220701.pdf:
+  # verified: Crossref record for 10.1093/qje/qjad012. The cited PDF is the 2022
+  # working paper; the work of record is the published QJE article.
+  # GDOC FIX (task:0035): better link https://doi.org/10.1093/qje/qjad012
+  title: AI-tocracy
+  author:
+    - { family: Beraja, given: Martin }
+    - { family: Kao, given: Andrew }
+    - { family: Yang, given: 'David Y.' }
+    - { family: Yuchtman, given: Noam }
+  issued: { date-parts: [[2023, 3, 13]] }
+  type: article-journal
+  container-title: The Quarterly Journal of Economics
+  volume: '138'
+  issue: '3'
+  page: 1349-1402
+  DOI: 10.1093/qje/qjad012
+
+https://dam.gcsp.ch/files/doc/gcsp-geneva-paper-29-22:
+  # verified: https://www.gcsp.ch/publications/delay-detect-defend-preparing-future-which-thousands-can-release-new-pandemics
+  # GDOC FIX (task:0035): the cited address is a bare DAM path with no readable
+  # metadata; better link
+  # https://www.gcsp.ch/sites/default/files/2024-12/gcsp-geneva-paper-29-22.pdf
+  title: 'Delay, Detect, Defend: Preparing for a Future in which Thousands Can Release New Pandemics'
+  author:
+    - { family: Esvelt, given: 'Kevin M.' }
+  issued: { date-parts: [[2022]] }
+  type: report
+  container-title: null
+  collection-title: Geneva Paper 29/22
+  publisher: Geneva Centre for Security Policy
+  publisher-place: Geneva
+
+https://findresearcher.sdu.dk/ws/portalfiles/portal/231643063/Loitering_Munitions_Unpredictability_WEB.pdf:
+  # verified: https://portal.findresearcher.sdu.dk/en/publications/loitering-munitions-and-unpredictability-autonomy-in-weapon-syste
+  title: 'Loitering Munitions and Unpredictability: Autonomy in Weapon Systems and Challenges to Human Control'
+  author:
+    - { family: Bode, given: Ingvild }
+    - { family: Watts, given: Tom }
+  issued: { date-parts: [[2023, 5]] }
+  type: report
+  container-title: null
+  publisher: Center for War Studies, University of Southern Denmark
+  publisher-place: Odense
+
+https://www-cdn.anthropic.com/1adf000c8f675958c2ee23805d91aaade1cd4613/responsible-scaling-policy.pdf:
+  # verified: https://www.anthropic.com/rsp-updates, which lists v1.0 effective
+  # 2023-09-19 and confirms this CDN path is that version.
+  # NOT anthropic.com/responsible-scaling-policy, which is a living page now
+  # serving v3.0. The version matters: citing the landing page would silently
+  # re-point a 2023 citation at a 2026 document. The versioned CDN path is the
+  # right thing to cite even though it is an unreadable address.
+  title: "Anthropic's Responsible Scaling Policy"
+  author:
+    - literal: Anthropic
+  issued: { date-parts: [[2023, 9, 19]] }
+  type: report
+  container-title: null
+  number: Version 1.0
+  publisher: Anthropic
+
+# ===== Batch 4, delegated lookup, verified at source (2026-09-24)
+#
+# provenance: `search+verified`, as batch 3, but each document's own text was
+# read with `pdftotext` rather than trusted from a landing page. That is what
+# caught the Olds mismatch below, which no amount of searching on the citation's
+# own terms would have found.
+
+https://calteches.library.caltech.edu/2807/1/olds.pdf:
+  # verified: https://calteches.library.caltech.edu/2807/ plus the PDF's own text.
+  # GDOC FIX (task:0035), and this one is a genuine citation error rather than a
+  # link preference. The prose cites "Olds, 1956", meaning the famous Scientific
+  # American article (195(4), 105-116, DOI 10.1038/scientificamerican1056-105).
+  # The linked PDF is a DIFFERENT, later essay by the same author under the same
+  # title: Engineering and Science 33(7), 1970. Its body text shares nothing with
+  # the 1956 article. Recorded here as the document actually linked; whether to
+  # keep 1970 or re-point the link at the 1956 DOI is the authors' call.
+  title: Pleasure Centers in the Brain
+  author:
+    - { family: Olds, given: James }
+  issued: { date-parts: [[1970]] }
+  type: article-magazine
+  container-title: Engineering and Science
+  volume: '33'
+  issue: '7'
+  page: 22-31
+
+https://cdn.openai.com/papers/gpt-4-system-card.pdf:
+  # verified: the PDF's own text against arXiv:2303.08774v6, whose page 41 is
+  # byte-for-byte this document's first page.
+  # Deliberately carries NO DOI: the System Card has no identifier of its own.
+  # It is Appendix H of the GPT-4 Technical Report, and recording that report's
+  # DOI here would assert an identity this document does not have.
+  title: GPT-4 System Card
+  author:
+    - literal: OpenAI
+  issued: { date-parts: [[2023]] }
+  type: report
+  container-title: null
+  publisher: OpenAI
+
+https://cdn.openai.com/papers/dall-e-3.pdf:
+  # verified: the PDF's own text. No arXiv ID and no DOI exist; the cited URL is
+  # already the canonical source, so this one needs no Doc change.
+  title: Improving Image Generation with Better Captions
+  author:
+    - { family: Betker, given: James }
+    - { family: Goh, given: Gabriel }
+    - { family: Jing, given: Li }
+    - { family: Brooks, given: Tim }
+    - { family: Wang, given: Jianfeng }
+    - { family: Li, given: Linjie }
+    - { family: Ouyang, given: Long }
+    - { family: Zhuang, given: Juntang }
+    - { family: Lee, given: Joyce }
+    - { family: Guo, given: Yufei }
+    - { family: Manassra, given: Wesam }
+    - { family: Dhariwal, given: Prafulla }
+    - { family: Chu, given: Casey }
+    - { family: Jiao, given: Yunxin }
+    - { family: Ramesh, given: Aditya }
+  issued: { date-parts: [[2023]] }
+  type: report
+  container-title: null
+  publisher: OpenAI
+
+https://cdn.prod.website-files.com/663bd486c5e4c81588db7a1d/673b689ec926d8d32e889a8e_UK-US-Testing-Report-Nov-19.pdf:
+  # verified: the PDF's cover, the UK AISI blog post and the NIST news release.
+  # GDOC FIX (task:0035): a Webflow CDN hash is the least durable address this
+  # document has. Better link
+  # https://www.nist.gov/document/us-aisi-uk-aisi-joint-testing-report-upgrade-claude-35-sonnet-111924
+  title: "US AISI and UK AISI Joint Pre-Deployment Test: Anthropic's Claude 3.5 Sonnet (October 2024 Release)"
+  author:
+    - literal: US AI Safety Institute
+    - literal: UK AI Safety Institute
+  issued: { date-parts: [[2024, 11, 19]] }
+  type: report
+  container-title: null
+  publisher: National Institute of Standards and Technology
+
+https://crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-Incident-Root-Cause-Analysis-08.06.2024.pdf:
+  # verified: the PDF's own text. The em dash is the document's own title
+  # punctuation; data/citations/ is exempt from the house rule for exactly this
+  # reason - rewriting a cited work's title would falsify the citation.
+  # GDOC FIX (task:0035): the host needs `www.` to answer.
+  title: External Technical Root Cause Analysis — Channel File 291
+  author:
+    - literal: CrowdStrike
+  issued: { date-parts: [[2024, 8, 6]] }
+  type: report
+  container-title: null
+  publisher: CrowdStrike
+
+https://evals.alignment.org/taskrabbit.pdf:
+  # verified: the PDF's own text and https://metr.org/blog/2023-08-01-new-report/
+  # The document prints NO title; "The TaskRabbit example" is its opening section
+  # heading, and is the closest thing to a printed title it has. A supplementary
+  # appendix to "Evaluating Language-Model Agents on Realistic Autonomous Tasks".
+  # Published under the name ARC Evals; the organisation became METR in December
+  # 2023. METR is recorded because the document names no publisher at all, so
+  # there is no printed name to be faithful to, and metr.org serves it today.
+  # (Contrast CEV above, where the document itself says "Singularity Institute".)
+  # GDOC FIX (task:0035): better link https://metr.org/taskrabbit.pdf
+  title: The TaskRabbit example
+  author:
+    - literal: METR
+  issued: { date-parts: [[2023]] }
+  type: report
+  container-title: null
+  publisher: METR
+
+https://futureoflife.org/wp-content/uploads/2025/07/FLI-AI-Safety-Index-Report-Summer-2025.pdf:
+  # verified: the PDF's cover and back page. No named individual authors; an
+  # independent review panel is credited separately.
+  title: AI Safety Index, Summer 2025
+  author:
+    - literal: Future of Life Institute
+  issued: { date-parts: [[2025, 7, 17]] }
+  type: report
+  container-title: null
+  publisher: Future of Life Institute
+
+https://nti.org/wp-content/uploads/2023/05/NTIBIO_Benchtop-DNA-Report_FINAL.pdf:
+  # verified: nti.org blocks non-browser clients with a Cloudflare 403, so the
+  # evidence is the Wayback Machine's archived copy of this exact publisher URL,
+  # whose own title page and author block were read.
+  # GDOC FIX (task:0035): the host needs `www.` to answer.
+  title: 'Benchtop DNA Synthesis Devices: Capabilities, Biosecurity Implications, and Governance'
+  author:
+    - { family: Carter, given: 'Sarah R.' }
+    - { family: Yassif, given: 'Jaime M.' }
+    - { family: Isaac, given: 'Christopher R.' }
+  issued: { date-parts: [[2023, 5]] }
+  type: report
+  container-title: null
+  publisher: NTI | bio
+
+https://oms-www.files.svdcdn.com/production/downloads/reports/Voice%20and%20Access%20in%20AI_%20Global%20AI%20Majority%20Participation%20in%20Artificial%20Intelligence%20Development%20and%20Governance-%20final.pdf?dm=1729247034:
+  # verified: the PDF's cover and the AIGI publication page. Title taken in the
+  # publisher's own title case rather than the cover's all-caps typography.
+  # The publisher is the Oxford Martin AI Governance Initiative, NOT Oxford
+  # Insights - a different organisation this entry was wrongly attributed to.
+  # GDOC FIX (task:0035): better link
+  # https://aigi.ox.ac.uk/publications/voice-and-access-in-ai-global-ai-majority-participation-in-artificial-intelligence-development-and-governance/
+  title: 'Voice and Access in AI: Global AI Majority Participation in Artificial Intelligence Development and Governance'
+  author:
+    - { family: Adan, given: 'Sumaya N.' }
+    - { family: Trager, given: Robert }
+    - { family: Blomquist, given: Kayla }
+    - { family: Dennis, given: Claire }
+    - { family: Edom, given: Gemma }
+    - { family: Velasco, given: Lucia }
+    - { family: Abungu, given: Cecil }
+    - { family: Garfinkel, given: Ben }
+    - { family: Jacobs, given: Julian }
+    - { family: Okolo, given: 'Chinasa T.' }
+    - { family: Wu, given: Boxi }
+    - { family: Vipra, given: Jai }
+  issued: { date-parts: [[2024, 10]] }
+  type: report
+  container-title: null
+  publisher: Oxford Martin AI Governance Initiative, University of Oxford
+
+https://testscience.org/wp-content/uploads/formidable/20/Autonomy-Lit-Review.pdf:
+  # verified: the PDF's own cover, which carries the title, the three names, the
+  # date and the IDA document number. No better public address was found, and
+  # none was guessed.
+  title: 'Test & Evaluation of AI-enabled and Autonomous Systems: A Literature Review'
+  author:
+    - { family: Wojton, given: 'Heather M.' }
+    - { family: Porter, given: 'Daniel J.' }
+    - { family: Dennis, given: 'John W.' }
+  issued: { date-parts: [[2020, 9]] }
+  type: report
+  container-title: null
+  number: IDA Document NS-D-14331
+  publisher: Institute for Defense Analyses

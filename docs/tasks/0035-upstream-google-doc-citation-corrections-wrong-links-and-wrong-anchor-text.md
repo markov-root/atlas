@@ -29,10 +29,10 @@ engineering_document:
   transitions: []
   relationships: []
   details:
-    criteria: [criterion:AC-1, criterion:AC-2, criterion:AC-3, criterion:AC-4, criterion:AC-5]
+    criteria: [criterion:AC-1, criterion:AC-2, criterion:AC-3, criterion:AC-4, criterion:AC-5, criterion:AC-6]
     depends_on: ['0032']
-    size: s
-    priority: p2
+    size: m
+    priority: p1
 ---
 
 # Task 0035: Upstream Google Doc citation corrections: wrong links and wrong anchor text
@@ -49,9 +49,9 @@ That is the right design, and it means a wrong link or wrong anchor can only be 
 Google Doc**. Until it is, the reader gets a 404, or a reference that disagrees with the citation
 pointing at it, and nothing in the build can tell.
 
-Twenty-four such defects were found while closing the metadata tail (`task:0032` AC-7). They fall
-into four kinds. This record is the list, so they are fixed once at the source rather than
-rediscovered by whoever next reads the bibliography.
+Every such defect found while closing the metadata tail (`task:0032` AC-7) is listed below, so they
+are fixed once at the source rather than rediscovered by whoever next reads the bibliography. A
+count is deliberately not stated here: the list is the record, and a number in prose rots.
 
 **Standing preference, owner-stated 2026-09-24: cite arXiv, a DOI, or the publisher wherever the
 work exists there.** This is not tidiness. Those addresses have an API behind them, so an entry
@@ -79,6 +79,8 @@ not work. `task:0031` owns the duplicate-alias half of the same problem.
 | --------------------------------------------------- | ----------------------------------------- | ------------------------------------ |
 | `arxiv.org/abs/2307.15217'`                         | Trailing apostrophe in the URL            | `https://arxiv.org/abs/2307.15217`   |
 | `onlinelibrary.wiley.com/doi/abs/10.1111/jofi.1249` | Truncated DOI; `jofi.1249` does not exist | `https://doi.org/10.1111/jofi.12498` |
+| `crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-...pdf` | Host answers only on `www.` | add `www.` |
+| `nti.org/wp-content/uploads/2023/05/NTIBIO_Benchtop-DNA-Report_FINAL.pdf` | Host answers only on `www.`, and blocks non-browser clients | add `www.` |
 
 Both resolve automatically once fixed: `crossref.doi_from_url` reads a DOI from anywhere in a URL
 path, and the arXiv resolver keys on the bare identifier. Neither needs an override afterwards.
@@ -93,6 +95,7 @@ path, and the arXiv resolver keys on the bare identifier. Neither needs an overr
 | Cheng, 2024 | `researchgate.net/publication/387399002_...` | The author's family name is Chang; "Cheng-chi" is the given name |
 | Feldstein, 2021 | `carnegie-production-assets.s3.amazonaws.com/.../WP-Feldstein-AISurveillance_final1.pdf` | The report is 2019 |
 | Dafoe, 2022 | `academic.oup.com/edited-volume/41989/chapter-abstract/408516484` | The chapter is dated 2024 |
+| **Olds, 1956** | `calteches.library.caltech.edu/2807/1/olds.pdf` | **The link is a different work.** The prose means the 1956 *Scientific American* article (195(4), 105-116, `10.1038/scientificamerican1056-105`); the PDF is a later essay by the same author under the same title, in *Engineering and Science* 33(7), 1970. The body text shares nothing. Either swap the link to the DOI or re-date the citation to 1970 |
 
 ### A mirror cited instead of the work of record
 
@@ -107,6 +110,12 @@ path, and the arXiv resolver keys on the bare identifier. Neither needs an overr
 | `aiimpacts.org/.../Thousands_of_AI_authors_on_the_future_of_AI.pdf` | `https://doi.org/10.1613/jair.1.19087` or `arXiv:2401.02843` |
 | `arcprize.org/media/arc-prize-2024-technical-report.pdf` | `https://arxiv.org/abs/2412.04604` |
 | `assets.ctfassets.net/.../o1_system_card.pdf` | `https://arxiv.org/abs/2412.16720` |
+| `cdn.governance.ai/Open_Problems_in_Technical_AI_Governance.pdf` | `https://arxiv.org/abs/2407.14981` |
+| `ceris.be/.../International-Institutions-for-Advanced-AI-Robert-Trager.pdf` | `https://arxiv.org/abs/2307.04699` (ceris.be hosts a third-party copy) |
+| `economics.mit.edu/.../aitocracy_20220701.pdf` | `https://doi.org/10.1093/qje/qjad012` (the cited PDF is the 2022 working paper) |
+| `cdn.prod.website-files.com/.../UK-US-Testing-Report-Nov-19.pdf` | `https://www.nist.gov/document/us-aisi-uk-aisi-joint-testing-report-upgrade-claude-35-sonnet-111924` |
+| `evals.alignment.org/taskrabbit.pdf` | `https://metr.org/taskrabbit.pdf` |
+| `oms-www.files.svdcdn.com/.../Voice%20and%20Access%20in%20AI...pdf` | `https://aigi.ox.ac.uk/publications/voice-and-access-in-ai-global-ai-majority-participation-in-artificial-intelligence-development-and-governance/` |
 
 A ResearchGate mirror is not the published article, is frequently removed on publisher request, and
 is what forces these entries through a hand-written override in the first place. The same argument
@@ -131,6 +140,20 @@ citation and the content a reader finds are a different revision of the argument
 | `carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AISurveillance_final1.pdf` | `https://carnegieendowment.org/research/2019/09/the-global-expansion-of-ai-surveillance` |
 | `cartercenter.org/resources/pdfs/peace/china/finding-firmer-ground-...pdf` | `https://www.cartercenter.org/publication/finding-firmer-ground-the-role-of-high-technology-in-u-s-china-relations/` |
 | `digitalcommons.law.villanova.edu/cgi/viewcontent.cgi?article=3670&context=vlr` | `https://digitalcommons.law.villanova.edu/vlr/vol69/iss5/4` |
+| `dam.gcsp.ch/files/doc/gcsp-geneva-paper-29-22` | `https://www.gcsp.ch/sites/default/files/2024-12/gcsp-geneva-paper-29-22.pdf` |
+
+### Two that are not simple swaps
+
+**`cdn.openai.com/papers/gpt-4-system-card.pdf`** has no identifier of its own. It is Appendix H of
+the GPT-4 Technical Report: page 41 of `arXiv:2303.08774v6` is byte-for-byte this PDF's first page.
+Pointing the link at the arXiv report would cite a *different, larger* work, so this is a judgement
+call about what the prose means rather than a link to correct. The override deliberately carries no
+DOI for the same reason.
+
+**`www-cdn.anthropic.com/1adf0.../responsible-scaling-policy.pdf`** should **not** move to
+`anthropic.com/responsible-scaling-policy`, which is a living page now serving v3.0. Citing it would
+silently re-point a 2023 citation at a 2026 document. The unreadable versioned CDN path is correct
+here, and is the one case where version identity beats the readable-address preference.
 
 ## Done when
 
@@ -138,10 +161,11 @@ citation and the content a reader finds are a different revision of the argument
   override block, and neither appears in the dead-link section.
 - AC-2: The three anchor-text defects are corrected in the Doc, so each in-text citation names the
   author and year of the document it links to.
-- AC-3: The nine mirror links point at the work of record, and the corresponding `overrides.yaml`
-  blocks are removed where the resolvers now answer without them.
+- AC-3: Every mirror or CDN link points at the work of record, and the corresponding
+  `overrides.yaml` blocks are removed where the resolvers now answer without them.
 - AC-4: Both METR links point at METR's canonical addresses.
-- AC-5: The four documents cited at a dead or unreadable address are cited at a readable one.
+- AC-5: The documents cited at a dead or unreadable address are cited at a readable one.
+- AC-6: The "Olds, 1956" citation names the work it links to, whichever of the two the authors mean.
 
 ## Completion evidence
 
