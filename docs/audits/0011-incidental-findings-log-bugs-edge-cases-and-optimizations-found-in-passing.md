@@ -601,6 +601,30 @@ any redo since the resolver was added. (The scraped titles are quoted in `data/c
 exempt from the house punctuation rule precisely because they contain the separator this file may
 not.)
 
+### F24 - A section page renders its article twice, so every anchor id is duplicated
+
+**Severity:** low · **Evidence:** the live DOM of one section page · **Found:** 2026-09-24, verifying
+`task:0036`
+
+A section page contains **two** `[data-chapter-article]` elements - the page and its reading-mode
+copy - and both are fully rendered. Every id inside is therefore present twice:
+
+| Selector           | Nodes | Unique ids |
+| ------------------ | ----: | ---------: |
+| `[id^="fnref-"]`   |     4 |          2 |
+| `[id^="fn-"]`      |     4 |          2 |
+| `a[id^="citeref-"]` |  142 |         71 |
+
+Duplicate ids are invalid HTML, and `getElementById` returns the first match, so **a footnote
+back-link inside reading mode already returns the reader to the non-reading-mode copy**. That has
+been true since reading mode shipped; the citation back-links added by `task:0036` inherit exactly
+the same behaviour, which is why they were left consistent with it rather than special-cased.
+
+**Disposition:** unowned, and deliberately not fixed here. The honest fix is for one of the two
+copies not to emit ids at all, which is a change to how reading mode renders rather than to
+footnotes or citations. Recorded so that whoever notices a back-link "jumping to the wrong place"
+finds the cause rather than the symptom.
+
 ## Recommendations
 
 1. **Close F1 before `task:0021` adds `cli/` code.** Declaring `@types/node` and getting `cli/` into

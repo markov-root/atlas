@@ -99,17 +99,22 @@ JavaScript, which is no worse than now but is worse than footnotes.
 shared across concurrently rendered pages, so the ids would be wrong in a way that only shows under
 load. Recorded so it is not re-proposed.
 
-**Recommendation: B first, A when the merge has landed.** B is reversible and ships the reader
-benefit now; A is the right long-term home and should not be rushed into the loader while an audio
-content hash is being kept deliberately stable.
+**Decided: B, 2026-09-24, shipped.** A stays the right long-term home and is not rushed into the
+loader while an audio content hash is being kept deliberately stable.
 
-### D2 - What does a back-link look like when there are eight of them?
+Two things B got right that a node-counting version would not have. Matching is by **canonical URL**,
+not by pairing "the Nth anchor in the DOM" with "the Nth extracted citation" - that pairing assumes
+two independent AST walks agree forever. And ids are a **plain counter** (`citeref-12`), like
+`fnref-N`, not a percent-encoded URL: an id has to survive being written into an href and matched
+back as a fragment, and an encoded URL does that only by the browser's leniency.
+
+### D2 - What does a back-link look like when there are several of them?
 
 A footnote uses a single arrow glyph. Eight arrows in a row are noise. Options: superscript letters
 (`a b c`, the convention in numbered-reference styles), superscript indices, or a single arrow to
-the first occurrence with the rest behind a control. **Recommend superscript letters**, which is what
-a reader of a scientific bibliography already recognises, with each letter's `title` naming the
-paragraph it returns to.
+the first occurrence with the rest behind a control. **Decided: one instance renders the same return arrow the footnotes use; several render
+superscript letters** (`a b c`), which is what a reader of a scientific bibliography already
+recognises. Each carries an `aria-label` naming which of how many it is.
 
 ## Done when
 
@@ -122,4 +127,24 @@ paragraph it returns to.
 
 ## Completion evidence
 
-Keep empty until evidence exists.
+Measured in the live DOM of `/chapters/v1/capabilities/current-capabilities`, a section with 122
+references and 71 in-text citations:
+
+| Criterion | Evidence | |
+| --- | --- | :-: |
+| AC-1 | 71 unique `citeref-N` ids assigned in document order | met |
+| AC-2 | **122 of 122** entries carry back-links; **0 broken targets** (every href resolves to an element on the page) | met |
+| AC-3 | 14 entries carry more than one, lettered `a`, `b`, `c`; the most-cited carries 3; single instances render one arrow | met |
+| AC-4 | `/bibliography` and the chapter list are untouched - `linkBackToCitations` returns early when there is no `[data-chapter-article]` to return to | met |
+
+**Two defects caught by running it rather than reading it.** The first pass excluded `#footnotes`
+from the walk, which silently dropped **6 citations made inside footnotes** - a source cited in a
+footnote is cited, and the footnote is the right place to return to. The second used percent-encoded
+URLs as ids; `getElementById` on the decoded fragment failed, which the DOM check caught and a code
+review would not have.
+
+**Known limitation, `audit:0011` F24:** a section page renders its article twice for reading mode, so
+every id on it is duplicated - including `fnref-N`, which has behaved this way since reading mode
+shipped. Citation back-links inherit it rather than working around it.
+
+**Not done: `/bibliography`.** Out of scope by design, and unchanged.

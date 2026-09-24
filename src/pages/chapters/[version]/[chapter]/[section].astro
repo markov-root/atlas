@@ -316,9 +316,14 @@ const paper = resolveResource(chapter.meta.paper);
         {section.nodes.map(node => <NodeRenderer node={node} />)}
 
         {section.footnotes && section.footnotes.length > 0 && (
-        <section id="footnotes" class="mt-12 pt-8 border-t border-gray-300">
-            <h2 class="text-xl font-semibold mb-4 text-gray-900">Footnotes</h2>
-            <ol class="list-decimal list-outside pl-6 text-sm text-gray-700 space-y-3">
+        <section id="footnotes" class="not-prose mt-12 pt-8 border-t border-gray-300">
+            <!-- `not-prose` and the heading classes are copied from Bibliography.astro
+                 on purpose: without it the typography plugin also styles this h2, so
+                 two headings carrying identical utility classes still rendered at
+                 different sizes. Footnotes and References are the same kind of thing
+                 to a reader and must look it. -->
+            <h2 class="text-xl font-semibold mb-1 text-gray-900">Footnotes</h2>
+            <ol class="mt-4 list-decimal list-outside pl-6 text-sm text-gray-700 space-y-3">
                 {section.footnotes.map(({ number, children }) => (
                 <li id={`fn-${number}`} class="pl-2 target:bg-brand-50 target:border-l-2 target:border-brand-500 target:-ml-2 target:pl-1.5 target:pr-2">
                     {children.map(child => <NodeRenderer node={child} />)}

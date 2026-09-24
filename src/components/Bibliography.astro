@@ -429,6 +429,8 @@ const groupByChapter = chapters.length > 1;
 </style>
 
 <script>
+  import { canonicalizeUrl } from '@/textbook-loader/citations/canonical-url';
+
   /**
    * Citation style selection, plus search / sort / filter.
    *
@@ -649,6 +651,10 @@ const groupByChapter = chapters.length > 1;
       });
     });
 
+    // Before the panel check: a section's list has back-links whether or not it
+    // has controls.
+    document.querySelectorAll<HTMLElement>('[data-bibliography]').forEach(linkBackToCitations);
+
     document.querySelectorAll<HTMLElement>('[data-bibliography]').forEach((root) => {
       const panel = root.querySelector<HTMLElement>('[data-bib-panel]');
       if (!panel) return;
@@ -744,6 +750,96 @@ const groupByChapter = chapters.length > 1;
         control.value = value;
       }
     }
+  }
+
+  /**
+   * Link each reference back to every place in the prose that cites it.
+   *
+   * `task:0036`. A footnote can already return a reader to their place; a
+   * citation could not, and the asymmetry was arbitrary - both are a marker in
+   * prose, an entry below, and a reader who wants to come back.
+   *
+   * The one way a citation differs is that **a footnote is called once and a
+   * source is often cited many times**, so a reference gets one back-link per
+   * instance, lettered in document order the way a numbered-reference style
+   * does it.
+   *
+   * Done on the client rather than in the transformer (`task:0036` D1 option B)
+   * because the transformer feeds the audio content hash, which is being held
+   * stable deliberately. Matching is by canonical URL rather than by counting
+   * nodes: pairing "the Nth anchor in the DOM" with "the Nth extracted
+   * citation" assumes two independent walks agree forever, and this does not
+   * need to assume anything.
+   */
+  function linkBackToCitations(root: HTMLElement): void {
+    const article = root.closest<HTMLElement>('[data-chapter-article]');
+    // The chapter and Atlas bibliographies have no prose to return to. Their
+    // `cited` locations already point at the right sections.
+    if (!article) return;
+
+    const entries = new Map<string, HTMLElement>();
+    root.querySelectorAll<HTMLElement>('[data-bib-entry]').forEach((entry) => {
+      if (entry.id.startsWith('ref-')) entries.set(decodeURIComponent(entry.id.slice(4)), entry);
+    });
+    if (entries.size === 0) return;
+
+    // Numbered in document order across the whole section, exactly as
+    // `fnref-N` is. An id must survive being written into an href and matched
+    // back as a fragment, and a percent-encoded URL inside one does that only
+    // by the browser's leniency - a counter needs no leniency at all.
+    const instances = new Map<string, string[]>();
+    let n = 0;
+    article.querySelectorAll<HTMLAnchorElement>('a[href]').forEach((link) => {
+      // Skip this list itself - a back-link must land in the text, not on
+      // another entry. Footnotes are deliberately NOT skipped: a source cited
+      // inside a footnote is cited, and returning the reader to the footnote is
+      // the right destination.
+      if (link.closest('[data-bibliography]')) return;
+      const key = canonicalizeUrl(link.href);
+      if (!key || !entries.has(key)) return;
+      // A page may hold more than one bibliography root (the reading-mode copy
+      // renders its own). Each walks the same prose, so an anchor already
+      // numbered keeps the number it has rather than being renumbered per root.
+      const id = link.id.startsWith('citeref-') ? link.id : `citeref-${(n += 1)}`;
+      link.id = id;
+      instances.set(key, [...(instances.get(key) ?? []), id]);
+    });
+
+    for (const [key, ids] of instances) {
+      const entry = entries.get(key);
+      if (!entry || entry.querySelector('[data-cite-backlinks]')) continue;
+      const holder = document.createElement('span');
+      holder.dataset.citeBacklinks = '';
+      holder.className = 'ml-1.5 whitespace-nowrap';
+      ids.forEach((id, index) => {
+        const back = document.createElement('a');
+        back.href = `#${id}`;
+        back.className = 'text-brand-600 no-underline hover:underline text-xs align-super ml-0.5';
+        // One instance reads as a plain return arrow, which is what the
+        // footnotes already do. Several need telling apart, and a row of
+        // identical arrows does not do that.
+        back.textContent = ids.length === 1 ? '\u21a9' : letterFor(index);
+        back.setAttribute(
+          'aria-label',
+          ids.length === 1
+            ? 'Back to where this is cited'
+            : `Back to citation ${index + 1} of ${ids.length}`,
+        );
+        holder.appendChild(back);
+      });
+      entry.appendChild(holder);
+    }
+  }
+
+  /** a, b, c … z, then aa, ab. Numbers past 26 would read as a page reference. */
+  function letterFor(index: number): string {
+    let n = index;
+    let out = '';
+    do {
+      out = String.fromCharCode(97 + (n % 26)) + out;
+      n = Math.floor(n / 26) - 1;
+    } while (n >= 0);
+    return out;
   }
 
   init();
