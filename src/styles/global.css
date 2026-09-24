@@ -251,15 +251,26 @@
  * Global rather than scoped because the two call sites are different files:
  * Bibliography.astro builds these on the client, and the footnote list is
  * rendered by the section page. A scoped rule would style one and not the other,
- * which is the exact defect this replaces. */
+ * which is the exact defect this replaces.
+ *
+ * It is underlined, and that is not a style preference. A back-link sits at the
+ * end of a line of reference text, so axe reads it as a link inside a block of
+ * text (`link-in-text-block`, WCAG 1.4.1) and colour alone is not allowed to be
+ * the only thing telling them apart. A reader who cannot distinguish the brand
+ * blue from the body grey would otherwise have no way to see the arrow is a
+ * control. The first version shipped without one and failed `pnpm test:a11y`. */
 .backlink {
   margin-left: 0.5rem;
   color: var(--color-brand-600);
   font-size: 0.875rem;
-  text-decoration: none;
+  /* `from-font` where the font offers a position, so the underline sits clear
+   * of the arrow's descender instead of striking through it. */
+  text-decoration: underline;
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.15em;
   white-space: nowrap;
 }
 
 .backlink:hover {
-  text-decoration: underline;
+  text-decoration-thickness: 2px;
 }
