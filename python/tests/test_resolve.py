@@ -57,15 +57,34 @@ class TestRedo:
 
     def test_redoes_only_urls_another_resolver_would_now_claim(self) -> None:
         """After adding a publisher resolver, redo the Nature page - not 600 blog posts."""
-        out = unresolved_keys(self.store, ["opengraph"], lambda u: "nature.com" in u)
+        out = unresolved_keys(self.store, ["opengraph"], lambda url, by=None: "nature.com" in url)
         assert "https://nature.com/a" in out
         assert "https://lesswrong.com/b" not in out
 
     def test_never_drops_anchor_only_entries_whatever_the_redo_asks_for(self) -> None:
-        assert "https://x.org/d" in unresolved_keys(self.store, ["opengraph"], lambda u: False)
+        assert "https://x.org/d" in unresolved_keys(self.store, ["opengraph"], lambda url, by=None: False)
 
     def test_does_not_touch_resolvers_outside_the_redo_list(self) -> None:
         assert "https://arxiv.org/abs/1" not in unresolved_keys(self.store, ["opengraph"])
+
+    def test_the_predicate_is_told_which_resolver_produced_the_entry(self) -> None:
+        """``audit:0011`` F23.
+
+        Without this the predicate can only answer "would a *different* resolver
+        claim it", which silently excludes the other half of what ``--redo`` is
+        for: a resolver that has itself improved. `--redo forum-magnum` after
+        teaching that resolver to read comment permalinks matched none of its own
+        entries, printed a plausible count, and exited 0 having done nothing.
+        """
+        seen: list[tuple[str, str | None]] = []
+
+        def predicate(url: str, by: str | None) -> bool:
+            seen.append((url, by))
+            return by == "opengraph"
+
+        out = unresolved_keys(self.store, ["opengraph"], predicate)
+        assert ("https://nature.com/a", "opengraph") in seen
+        assert "https://nature.com/a" in out
 
 
 class TestApplyResolution:
