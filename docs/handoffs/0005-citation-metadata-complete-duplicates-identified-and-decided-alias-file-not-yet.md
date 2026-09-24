@@ -4,13 +4,13 @@ id: "0005"
 uid: "handoff-20260924T181652526356Z-e8899b41"
 title: "Citation metadata complete; duplicates identified and decided, alias file not yet built"
 role: handoff
-status: current
+status: superseded
 summary: "Metadata is at 99.6 percent and verify is green; the duplicate work is identified and decided but the alias file is not written."
 created: "2026-09-24"
-updated: "2026-09-24"
+updated: '2026-09-24'
 owner: HANDOFF OWNER
 supersedes: ""
-superseded_by: ""
+superseded_by: "handoff:0006"
 engineering_document:
   version: 1
   contract_tier: full
@@ -18,16 +18,23 @@ engineering_document:
   id: "0005"
   uid: handoff-20260924T181652526356Z-e8899b41
   title: "Citation metadata complete; duplicates identified and decided, alias file not yet built"
-  state: current
+  state: superseded
   authority:
     kind: continuation-state
     owner: HANDOFF OWNER
     scope: NEXT-SESSION CONTINUATION ONLY
   created: "2026-09-24"
-  updated: "2026-09-24"
-  transition_history: unverified
-  transitions: []
-  relationships: []
+  updated: '2026-09-24'
+  transition_history: complete
+  transitions:
+    - from: current
+      to: superseded
+      at: '2026-09-24'
+      reason: Continuation authority moved to handoff:0006; exactly one handoff may be current.
+  relationships:
+    - type: superseded-by
+      target: handoff:0006
+      note: Continuation authority for this repository moved forward; one handoff is current.
   details:
     captured_at: "2026-09-24T18:16:52Z"
     repository: REPOSITORY IDENTITY

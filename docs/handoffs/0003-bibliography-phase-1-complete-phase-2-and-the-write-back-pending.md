@@ -4,10 +4,10 @@ id: '0003'
 uid: 'handoff-20260922T111333679155Z-76850c1e'
 title: 'Bibliography phase 1 complete; phase 2 and the write-back pending'
 role: handoff
-status: current
+status: superseded
 summary: 'The bibliography exists as files and five atlas commands; rendering and the corpus write-back are not started.'
 created: '2026-09-22'
-updated: '2026-09-22'
+updated: '2026-09-24'
 owner: Markov Grey
 supersedes: ''
 superseded_by: ''
@@ -18,16 +18,23 @@ engineering_document:
   id: '0003'
   uid: handoff-20260922T111333679155Z-76850c1e
   title: 'Bibliography phase 1 complete; phase 2 and the write-back pending'
-  state: current
+  state: superseded
   authority:
     kind: continuation-state
     owner: Markov Grey
     scope: The bibliography branch only
   created: '2026-09-22'
-  updated: '2026-09-22'
-  transition_history: unverified
-  transitions: []
-  relationships: []
+  updated: '2026-09-24'
+  transition_history: complete
+  transitions:
+    - from: current
+      to: superseded
+      at: '2026-09-24'
+      reason: Continuation authority moved to handoff:0006; exactly one handoff may be current.
+  relationships:
+    - type: superseded-by
+      target: handoff:0006
+      note: Continuation authority for this repository moved forward; one handoff is current.
   details:
     captured_at: '2026-09-22T11:15:00Z'
     repository: 'AI Safety Atlas (markov-root/atlas, GitHub)'

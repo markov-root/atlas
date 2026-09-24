@@ -4,13 +4,13 @@ id: "0004"
 uid: "handoff-20260923T214446527953Z-0baf3d01"
 title: "Citation engine complete to 94 percent; the last 57 sources are human work"
 role: handoff
-status: current
+status: superseded
 summary: "The resolvers, store and reader-facing panel are built and pushed; 57 sources need a human, and the worklist for them is committed."
 created: "2026-09-23"
-updated: "2026-09-23"
+updated: '2026-09-24'
 owner: Markov Grey
 supersedes: ""
-superseded_by: ""
+superseded_by: "handoff:0006"
 engineering_document:
   version: 1
   contract_tier: full
@@ -18,16 +18,23 @@ engineering_document:
   id: "0004"
   uid: handoff-20260923T214446527953Z-0baf3d01
   title: "Citation engine complete to 94 percent; the last 57 sources are human work"
-  state: current
+  state: superseded
   authority:
     kind: continuation-state
     owner: Markov Grey
     scope: NEXT-SESSION CONTINUATION ONLY
   created: "2026-09-23"
-  updated: "2026-09-23"
-  transition_history: unverified
-  transitions: []
-  relationships: []
+  updated: '2026-09-24'
+  transition_history: complete
+  transitions:
+    - from: current
+      to: superseded
+      at: '2026-09-24'
+      reason: Continuation authority moved to handoff:0006; exactly one handoff may be current.
+  relationships:
+    - type: superseded-by
+      target: handoff:0006
+      note: Continuation authority for this repository moved forward; one handoff is current.
   details:
     captured_at: "2026-09-23T21:44:46Z"
     repository: 'AI Safety Atlas (markov-root/atlas, GitHub)'

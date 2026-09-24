@@ -4,10 +4,10 @@ id: '0002'
 uid: 'handoff-20260921T141252887674Z-af2be434'
 title: 'Codebase cleanup: documentation governance adoption and codebase audit'
 role: handoff
-status: current
+status: superseded
 summary: 'Documentation governance is fully adopted and the five-audit sweep is complete; everything now waits on owner decisions.'
 created: '2026-09-21'
-updated: '2026-09-22'
+updated: '2026-09-24'
 owner: Markov Grey
 supersedes: ''
 superseded_by: ''
@@ -18,16 +18,23 @@ engineering_document:
   id: '0002'
   uid: handoff-20260921T141252887674Z-af2be434
   title: 'Codebase cleanup: documentation governance adoption and codebase audit'
-  state: current
+  state: superseded
   authority:
     kind: continuation-state
     owner: Markov Grey
     scope: Continuation of the codebase-cleanup branch only
   created: '2026-09-21'
-  updated: '2026-09-22'
-  transition_history: unverified
-  transitions: []
-  relationships: []
+  updated: '2026-09-24'
+  transition_history: complete
+  transitions:
+    - from: current
+      to: superseded
+      at: '2026-09-24'
+      reason: Continuation authority moved to handoff:0006; exactly one handoff may be current.
+  relationships:
+    - type: superseded-by
+      target: handoff:0006
+      note: Continuation authority for this repository moved forward; one handoff is current.
   details:
     captured_at: '2026-09-21T14:50:00Z'
     repository: 'AI Safety Atlas (markov-root/atlas)'

@@ -4,10 +4,10 @@ id: '0001'
 uid: 'handoff-20260817T191858113220Z-13ec890e'
 title: 'Freelancer handoff: make Atlas self-sustaining'
 role: handoff
-status: current
+status: superseded
 summary: 'Handoff to CeSIA/Markov: audit + R2 backup + engineering adoption done; imagegen migration, R2/gdocs cutover, credential rotation open.'
 created: '2026-08-17'
-updated: '2026-08-17'
+updated: '2026-09-24'
 owner: Markov Grey
 supersedes: ''
 superseded_by: ''
@@ -17,16 +17,23 @@ engineering_document:
   id: '0001'
   uid: handoff-20260817T191858113220Z-13ec890e
   title: 'Freelancer handoff: make Atlas self-sustaining'
-  state: current
+  state: superseded
   authority:
     kind: continuation-state
     owner: Markov Grey
     scope: NEXT-SESSION CONTINUATION ONLY
   created: '2026-08-17'
-  updated: '2026-08-17'
-  transition_history: unverified
-  transitions: []
-  relationships: []
+  updated: '2026-09-24'
+  transition_history: complete
+  transitions:
+    - from: current
+      to: superseded
+      at: '2026-09-24'
+      reason: Continuation authority moved to handoff:0006; exactly one handoff may be current.
+  relationships:
+    - type: superseded-by
+      target: handoff:0006
+      note: Continuation authority for this repository moved forward; one handoff is current.
   details:
     captured_at: '2026-08-17T19:18:58Z'
     repository: 'AI Safety Atlas (markov-root/atlas)'
