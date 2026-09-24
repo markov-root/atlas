@@ -84,6 +84,54 @@ def _numeric_prefix_stripped(text: str) -> str:
     return stripped
 
 
+def _name_for_processor(name: dict[str, Any]) -> dict[str, Any]:
+    """One CSL name in the shape a processor initialises correctly.
+
+    ``audit:0011`` F20. A style abbreviates a given name to its initials, and
+    ``citeproc-py`` only initialises a capitalised segment. Two shapes the
+    resolvers produce therefore render as visible garbage:
+
+    ======================================  ==========================
+    Stored                                  APA output
+    ======================================  ==========================
+    ``given: "Christiaan van"``             ``Merwijk, C. van .``
+    ``given: "Jen-tse"``                    ``Huang, J.-. tse .``
+    ======================================  ==========================
+
+    Both have a correct CSL spelling: a name particle belongs in
+    ``non-dropping-particle``, and a hyphenated given name capitalises each
+    segment. This normalises to those on the way to the processor rather than in
+    the store, because **the store records the name as its source printed it**.
+    A person who writes "Cheng-chi" writes it that way, and rewriting the stored
+    value to satisfy a renderer would put a rendering concern in the archive.
+
+    The particle rule needs no word list: particles are lowercase and given
+    names are capitalised, so trailing lowercase tokens are the particle. At
+    least one token is always kept, so a wholly lowercase given name such as
+    "danah" survives untouched.
+    """
+    given = name.get("given")
+    if not isinstance(given, str) or not given.strip():
+        return name
+    out = dict(name)
+
+    tokens = given.split()
+    particles: list[str] = []
+    while len(tokens) > 1 and tokens[-1].islower():
+        particles.insert(0, tokens.pop())
+    if particles and not out.get("non-dropping-particle"):
+        out["non-dropping-particle"] = " ".join(particles)
+        tokens = tokens or [given]
+
+    given = " ".join(tokens)
+    if "-" in given:
+        segments = given.split("-")
+        if segments[0][:1].isupper():
+            given = "-".join(s[:1].upper() + s[1:] if s else s for s in segments)
+    out["given"] = given
+    return out
+
+
 def _csl_item(key: str, item: dict[str, Any]) -> dict[str, Any]:
     """One store item as input a CSL processor will accept.
 
@@ -94,6 +142,14 @@ def _csl_item(key: str, item: dict[str, Any]) -> dict[str, Any]:
     any case, so removing it loses nothing.
     """
     out = {k: v for k, v in item.items() if v is not None}
+
+    # Name fields, whichever they are. Duck-typed rather than listed, because
+    # CSL defines a dozen name variables and a resolver that learns to fill
+    # `editor` or `translator` should not need a change here - the same reason
+    # `StoreEntry` is a plain dict.
+    for field, value in out.items():
+        if isinstance(value, list) and value and all(isinstance(n, dict) for n in value):
+            out[field] = [_name_for_processor(n) for n in value]
 
     # Nulls nest, too. Crossref sends `{"date-parts": [[null]]}` for a record it
     # has no date for, and one such entry is in the committed store. The

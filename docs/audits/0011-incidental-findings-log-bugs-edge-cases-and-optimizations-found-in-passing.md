@@ -486,6 +486,37 @@ the Source facet unless `sourceOf` is taught to compensate.
 **Disposition:** unowned. Recorded so the next person does not treat it as a one-off defect in a
 single entry.
 
+### F20 - Twelve entries rendered a broken author initial, and nothing was looking
+
+**Severity:** medium · **Evidence:** all 945 rendered entries · **Found:** 2026-09-24, from a single
+owner-supplied name
+
+A style abbreviates a given name to its initials, and `citeproc-py` only initialises a **capitalised**
+segment. Two shapes the resolvers routinely produce therefore rendered as visible garbage:
+
+| Stored                        | APA output            | Correct       |
+| ----------------------------- | --------------------- | ------------- |
+| `given: "Christiaan van"`     | `Merwijk, C. van .`   | `van Merwijk, C.` |
+| `given: "Jen-tse"`            | `Huang, J.-. tse .`   | `Huang, J.-T.`    |
+
+Found because one entry in a hand-written batch produced `Chang, C.-. chi . (Kirin) .`; a scan of the
+rendered corpus for the same pattern returned **12 more**, including Hubinger 2019, Bommasani 2021,
+Chinchilla and Gato. All had been shipping.
+
+Both have a correct CSL spelling: a name particle belongs in `non-dropping-particle`, and a
+hyphenated given name capitalises each segment.
+
+**Fixed:** `_name_for_processor` in `commands/render.py`, with `python/tests/test_render.py` (12
+tests, the module's first). Normalisation happens **on the way to the processor, not in the store**,
+because the store records a name as its source printed it: someone who writes "Cheng-chi" writes it
+that way, and rewriting the archive to satisfy a renderer puts the wrong concern in the wrong place.
+The particle rule needs no word list, since particles are lowercase and given names are capitalised,
+and it always keeps one token so a genuinely lowercase name such as "danah" survives.
+
+**General form worth remembering:** a rendering defect in a corpus this size is invisible one entry
+at a time. The scan that found the other 12 was one regex over `rendered.json` and took a minute;
+running it after any name-handling change is cheap insurance.
+
 ## Recommendations
 
 1. **Close F1 before `task:0021` adds `cli/` code.** Declaring `@types/node` and getting `cli/` into

@@ -118,6 +118,7 @@ const KIND_LABELS: Record<string, string> = {
   webpage: 'Web page',
   report: 'Report',
   motion_picture: 'Video',
+  speech: 'Talk',
   book: 'Book',
   chapter: 'Book chapter',
 };
