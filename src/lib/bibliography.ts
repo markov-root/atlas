@@ -52,7 +52,18 @@ type CslItem = {
   [key: string]: unknown;
 };
 
-type StoreEntry = { item: CslItem; resolvedBy: string; anchors: string[] };
+type StoreEntry = {
+  item: CslItem;
+  resolvedBy: string;
+  anchors: string[];
+  /**
+   * Other addresses for this same work, folded onto this entry by `task:0031`.
+   *
+   * Entry-level rather than a CSL field, because CSL has no `sameAs` and the
+   * BibTeX and CSL-JSON exports are the compiled form of `item` alone.
+   */
+  sameAs?: string[];
+};
 type Store = Record<string, StoreEntry>;
 
 /**
@@ -77,6 +88,13 @@ export type Reference = {
   resolved: boolean;
   /** Anchor spellings seen in the prose, for the title attribute. */
   anchors: string[];
+  /**
+   * Other addresses for this work that the prose may link to (`task:0031`).
+   *
+   * Carried to the browser so a back-link can match a citation written against
+   * `deepmind.com` to the entry rendered under `deepmind.google`.
+   */
+  aliases: string[];
   /**
    * Pre-rendered text per style id, from `atlas citations render` (`task:0030`).
    *
@@ -225,6 +243,41 @@ export function defaultStyle(): string {
 }
 
 let cached: Store | null = null;
+let aliasCache: Map<string, string> | null = null;
+
+/**
+ * Alias URL to surviving entry key, derived from the store's own `sameAs`.
+ *
+ * `task:0031`. The reviewed decision lives in `data/citations/aliases.yaml`,
+ * which `atlas citations extract` compiles into the store - so this side reads
+ * one file, the same one the rest of this module is documented as a read of. A
+ * second reader of the YAML would be a second place for the two halves to
+ * disagree about identity, which is the failure `task:0021` D1 exists to
+ * prevent.
+ */
+export function aliasMap(root?: string): Map<string, string> {
+  if (aliasCache) return aliasCache;
+  const map = new Map<string, string>();
+  const store = loadStore(root);
+  for (const key of Object.keys(store)) {
+    for (const alias of store[key].sameAs ?? []) {
+      if (alias !== key) map.set(alias, key);
+    }
+  }
+  aliasCache = map;
+  return map;
+}
+
+/**
+ * The entry a citation URL belongs to.
+ *
+ * Single-step, matching the Python side: an alias whose survivor is itself an
+ * alias is a file that disagrees with itself, and `atlas citations extract`
+ * reports that rather than quietly following the chain.
+ */
+export function resolveKey(key: string, root?: string): string {
+  return aliasMap(root).get(key) ?? key;
+}
 
 /**
  * The parsed store, or an empty one.
@@ -251,6 +304,7 @@ export function loadStore(root: string = process.cwd()): Store {
 /** Test seam: reset the module-scope cache. */
 export function resetStoreCache(): void {
   cached = null;
+  aliasCache = null;
   renderedCache = undefined;
 }
 
@@ -403,6 +457,7 @@ export function toReference(
     doi: item.DOI ?? '',
     resolved,
     anchors: entry.anchors ?? [],
+    aliases: entry.sameAs ?? [],
     styled,
     // The *stated* container, not the display one: `dropRedundantContainer`
     // blanks a container the title already ends with, which is right for reading
@@ -441,12 +496,18 @@ function dedupeAndSort(refs: Reference[]): Reference[] {
  * Only `citation`-kind instances: a prose link ("available here") is not a
  * reference, and an asset is not a document. This is the same filter
  * `atlas citations extract` applies, and for the same reason.
+ *
+ * Keys are mapped through `resolveKey`, so a citation written against a mirror
+ * lands on the entry that survived aliasing. Without it the section list would
+ * look up a key the store no longer holds and render a bare URL beside the real
+ * reference - one work appearing twice, which is what `task:0031` set out to
+ * end.
  */
-function citedKeys(section: Section): string[] {
+function citedKeys(section: Section, root?: string): string[] {
   try {
     return extractSectionCitations(section)
       .filter((c) => c.kind === 'citation' && c.key)
-      .map((c) => c.key as string);
+      .map((c) => resolveKey(c.key as string, root));
   } catch {
     // Extraction walks the AST, and a malformed node must cost this section its
     // reference list, not the whole build (D4).
@@ -477,7 +538,7 @@ function referencesForKeys(keys: string[], store: Store, root?: string): Referen
 
 /** References cited in one section, deduplicated and alphabetised. */
 export function sectionReferences(section: Section, root?: string): Reference[] {
-  return referencesForKeys(citedKeys(section), loadStore(root), root);
+  return referencesForKeys(citedKeys(section, root), loadStore(root), root);
 }
 
 /**
@@ -488,13 +549,13 @@ export function sectionReferences(section: Section, root?: string): Reference[] 
  * chapter by construction.
  */
 export function chapterReferences(chapter: Chapter, root?: string): Reference[] {
-  const keys = chapter.sections.flatMap(citedKeys);
+  const keys = chapter.sections.flatMap((s) => citedKeys(s, root));
   const refs = referencesForKeys(keys, loadStore(root), root);
-  return withLocations(refs, [chapter]);
+  return withLocations(refs, [chapter], root);
 }
 
 /** Attach the chapters and sections citing each reference. */
-function withLocations(refs: Reference[], chapters: Chapter[]): Reference[] {
+function withLocations(refs: Reference[], chapters: Chapter[], root?: string): Reference[] {
   const locations = new Map<string, CitedIn[]>();
   for (const chapter of chapters) {
     for (const section of chapter.sections) {
@@ -507,7 +568,7 @@ function withLocations(refs: Reference[], chapters: Chapter[]): Reference[] {
       };
       // Deduplicated per section: a source cited five times in one section is
       // one location, not five.
-      for (const key of new Set(citedKeys(section))) {
+      for (const key of new Set(citedKeys(section, root))) {
         locations.set(key, [...(locations.get(key) ?? []), at]);
       }
     }
@@ -541,7 +602,7 @@ export function allReferences(root?: string): Reference[] {
  * pay individually; this is the same work done once for the site-wide page.
  */
 export function allReferencesWithLocations(chapters: Chapter[], root?: string): Reference[] {
-  return withLocations(allReferences(root), chapters);
+  return withLocations(allReferences(root), chapters, root);
 }
 
 /** How much of the store carries real metadata - shown on `/bibliography`. */

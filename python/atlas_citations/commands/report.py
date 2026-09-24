@@ -22,6 +22,7 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
+from ..aliases import Aliases, read_aliases
 from ..scan import Citation, Scan, ScanError, read_scan
 from ..store import Store
 from .extract import STORE_PATH, read_store
@@ -62,7 +63,7 @@ def _year(item: dict) -> str:
     return str(parts[0][0]) if parts and parts[0] else ""
 
 
-def duplicate_groups(store: Store) -> list[list[str]]:
+def duplicate_groups(store: Store, aliases: Aliases | None = None) -> list[list[str]]:
     """Entries that are probably one work under several URLs.
 
     Matched on **first author + year + title fingerprint**, and deliberately not
@@ -77,7 +78,14 @@ def duplicate_groups(store: Store) -> list[list[str]]:
     entry's identity, and collapsing two identities on a heuristic would silently
     lose a citation - the failure mode canonicalization is written to avoid.
     Acting on this list is a human decision recorded in an alias file.
+
+    ``aliases`` carries that file's ``not-duplicates`` groups. A heuristic
+    this cheap will keep flagging the same handful of false positives - two
+    comments on one thread, two papers whose scraped titles both read "Verifying
+    your browser" - and a list that repeats a rejected finding every run is a
+    standing complaint rather than a worklist (``task:0031`` AC-4).
     """
+    reviewed = aliases or Aliases()
     groups: dict[tuple[str, str, str], list[str]] = {}
     for key in sorted(store):
         entry = store[key]
@@ -96,7 +104,7 @@ def duplicate_groups(store: Store) -> list[list[str]]:
         if not (author and year and fingerprint):
             continue
         groups.setdefault((author, year, fingerprint), []).append(key)
-    return [keys for keys in groups.values() if len(keys) > 1]
+    return [keys for keys in groups.values() if len(keys) > 1 and not reviewed.rejects(keys)]
 
 
 #: How each recorded ``unreachable`` reason is described to a human, and whether
@@ -172,7 +180,9 @@ def _heading(lines: list[str], title: str, count: int, explanation: str) -> None
     lines.append("")
 
 
-def build_citation_report(scan: Scan, store: Store) -> CitationReport:
+def build_citation_report(
+    scan: Scan, store: Store, aliases: Aliases | None = None
+) -> CitationReport:
     """Build the report. Pure: scan and store in, Markdown out.
 
     Sections with zero findings are omitted entirely - an author scanning the
@@ -201,7 +211,7 @@ def build_citation_report(scan: Scan, store: Store) -> CitationReport:
     inconsistent = sorted((k, v) for k, v in anchors_by_key.items() if len(v) > 1)
     unresolved_keys = sorted(k for k, e in store.items() if e.get("resolvedBy") == "anchor")
     dead = dead_links(store)
-    duplicates = duplicate_groups(store)
+    duplicates = duplicate_groups(store, aliases)
 
     lines: list[str] = [
         "# Citation report - citations needing human attention",
@@ -348,7 +358,7 @@ def citations_report(root: Path, out_path: Path | None = None) -> int:
         print(f"atlas: {exc}")
         return 1
 
-    report = build_citation_report(scan, read_store(root))
+    report = build_citation_report(scan, read_store(root), read_aliases(root))
     dest = out_path or (root / REPORT_PATH)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(report.markdown, encoding="utf-8")

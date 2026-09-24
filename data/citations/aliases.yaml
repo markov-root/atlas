@@ -1,0 +1,157 @@
+# Citation identity decisions - hand-written, never generated.
+#
+# Canonicalization merges two URLs only when they are the same document by
+# construction. Everything else needs a person to say so. See task:0031.
+#
+# aliases: the key is the entry to KEEP; the list folds onto it. The surviving
+# entry keeps its own metadata and records the others as `sameAs`.
+#
+#   https://deepmind.google/discover/blog/specification-gaming:
+#     - https://deepmind.com/blog/specification-gaming
+#
+# not-duplicates: groups `atlas citations report` flags that are NOT the same
+# work. Listing one here stops the report repeating it, so the duplicates
+# section stays a worklist instead of a standing complaint.
+#
+#   - - https://example.org/a
+#     - https://example.org/b
+#
+# Every entry below was checked against the two pages before it was written.
+# The rules applied, in the order they decide:
+#
+#   1. A cross-post keeps the Alignment Forum copy where one exists (owner,
+#      2026-09-24); failing that, the venue the author posted to first.
+#   2. A preprint beats a publisher landing page or a CDN copy of the same PDF,
+#      because arXiv has a stable address and machine-readable metadata (owner,
+#      2026-09-24: "a preference for papers on places like arxiv").
+#   3. A landing page beats a bare CDN asset path where there is no preprint.
+#   4. Where one site serves two paths, the live current one wins.
+#
+# A lab's announcement post about a paper is NOT a copy of that paper, and is
+# never aliased onto it. See the `not-duplicates` entries at the foot.
+
+aliases:
+  # --- Cross-posts: one post, two forums --------------------------------------
+  https://alignmentforum.org/posts/ZeE7EKHTFMBs8eMxn/clarifying-ai-alignment:
+    # Christiano's own blog is where it appeared first; the owner's rule is that
+    # the Alignment Forum copy is the one the Atlas cites.
+    - https://ai-alignment.com/clarifying-ai-alignment-cec47cd69dd6
+  https://alignmentforum.org/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-powerful-ais-are-controlled:
+    # Same post id on all three: the sequence path and the LessWrong copy are
+    # the same document served by the same software.
+    - https://alignmentforum.org/s/PC3yJgdKvk8kzqZyA/p/kcKrE9mzEHrdqtDpE
+    - https://lesswrong.com/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-powerful-ais-are-controlled
+  https://alignmentforum.org/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely-difficult:
+    - https://lesswrong.com/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely-difficult
+  https://forum.effectivealtruism.org/posts/f2qojPr8NaMPo2KJC/beware-safety-washing:
+    # No Alignment Forum copy, so rule 1 falls through to the original venue.
+    - https://lesswrong.com/posts/PY3HEHc5fMQkTrQo4/beware-safety-washing
+
+  # --- A preprint and its publisher's page or PDF -----------------------------
+  https://arxiv.org/abs/2001.00463:
+    - https://governance.ai/research-paper/the-offense-defense-balance-of-scientific-knowledge-does-publishing-ai-research-reduce-misuse
+  https://arxiv.org/abs/2212.08364:
+    - https://governance.ai/research-paper/three-lines-of-defense-against-risks-from-ai
+  https://arxiv.org/abs/2303.09377:
+    - https://governance.ai/research-paper/protecting-society-from-ai-misuse-when-are-restrictions-on-capabilities-warranted
+  https://arxiv.org/abs/2307.04699:
+    - https://ceris.be/wp-content/uploads/2024/03/International-Institutions-for-Advanced-AI-Robert-Trager.pdf
+  https://arxiv.org/abs/2307.08823:
+    - https://governance.ai/research-paper/risk-assessment-at-agi-companies-a-review-of-popular-risk-assessment-techniques-from-other-safety-critical-industries
+  https://arxiv.org/abs/2307.15217:
+    # Not a mirror: a trailing apostrophe in the Doc's href. See task:0035.
+    - "https://arxiv.org/abs/2307.15217'"
+  https://arxiv.org/abs/2310.13625:
+    - https://governance.ai/research-paper/oversight-for-frontier-ai-through-kyc-scheme-for-compute-providers
+  https://arxiv.org/abs/2401.02843:
+    - https://aiimpacts.org/wp-content/uploads/2023/04/Thousands_of_AI_authors_on_the_future_of_AI.pdf
+  https://arxiv.org/abs/2407.14981:
+    - https://cdn.governance.ai/Open_Problems_in_Technical_AI_Governance.pdf
+    - https://governance.ai/research-paper/open-problems-in-technical-ai-governance
+  https://arxiv.org/abs/2408.02565:
+    - https://researchgate.net/publication/382885035_Reasons_to_Doubt_the_Impact_of_AI_Risk_Evaluations
+  https://arxiv.org/abs/2412.04604:
+    - https://arcprize.org/media/arc-prize-2024-technical-report.pdf
+  https://arxiv.org/abs/2412.16720:
+    # The system card itself, not a post about it: the OpenAI page and the CDN
+    # PDF are the same document under three addresses.
+    - https://assets.ctfassets.net/kftzwdyauwt9/67qJD51Aur3eIc96iOfeOP/71551c3d223cd97e591aa89567306912/o1_system_card.pdf
+    - https://openai.com/index/openai-o1-system-card
+  https://arxiv.org/abs/2501.17805:
+    # The gov.uk address is a media asset path under a hashed id, which is not a
+    # citable landing page.
+    - https://assets.publishing.service.gov.uk/media/679a0c48a77d250007d313ee/International_AI_Safety_Report_2025_accessible_f.pdf
+  https://science.org/doi/10.1126/science.ade9097:
+    # The journal of record beats the index entry.
+    - https://pubmed.ncbi.nlm.nih.gov/36413172
+
+  # --- A landing page and a bare CDN copy of its PDF --------------------------
+  https://carnegieendowment.org/research/2019/09/the-global-expansion-of-ai-surveillance?lang=en:
+    - https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AISurveillance_final1.pdf
+  https://techgov.intelligence.org/research/ai-governance-to-avoid-extinction:
+    - https://intelligence.org/wp-content/uploads/2025/05/AI-Governance-to-Avoid-Extinction.pdf
+
+  # --- One site, two paths ----------------------------------------------------
+  https://anthropic.com/news/anthropics-responsible-scaling-policy:
+    - https://anthropic.com/index/anthropics-responsible-scaling-policy
+  https://deepmind.google/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules:
+    # The only one of these five with no `/discover/blog/` entry in the store.
+    - https://deepmind.com/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules
+  https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms:
+    - https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms
+  https://deepmind.google/discover/blog/alphastar-mastering-the-real-time-strategy-game-starcraft-ii:
+    - https://deepmind.com/blog/alphastar-mastering-the-real-time-strategy-game-starcraft-ii
+  https://deepmind.google/discover/blog/how-alphachip-transformed-computer-chip-design:
+    - https://deepmind.google/blog/how-alphachip-transformed-computer-chip-design
+  https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-ingenuity:
+    - https://deepmind.com/blog/specification-gaming-the-flip-side-of-ai-ingenuity
+  https://epoch.ai/gradient-updates/how-far-can-decentralized-training-over-the-internet-scale:
+    - https://epochai.substack.com/p/how-far-can-decentralized-training
+  https://openai.com/index/our-approach-to-alignment-research:
+    - https://openai.com/blog/our-approach-to-alignment-research
+
+  # --- A book, under three catalogue records ----------------------------------
+  https://psycnet.apa.org/record/2014-48585-000:
+    # Owner, 2026-09-24: keep the PsycNET record. It is a library catalogue
+    # entry rather than a shop listing, and it carries the subtitle.
+    - https://books.google.se/books/about/Superintelligence.html?id=7_H8AwAAQBAJ&redir_esc=y
+    - https://goodreads.com/book/show/20527133-superintelligence
+
+not-duplicates:
+  # Four comments on one shortform thread, by three people. The detector can
+  # only see the title this pipeline writes for a comment - "Comment on X" -
+  # which is identical for all four by construction. audit:0011 F22.
+  - - https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?commentId=G5zcfntZodH3ZYDaP
+    - https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?commentId=J2iPumP29GK9Qrm5p
+    - https://lesswrong.com/posts/puv8fRDCH9jx5yhbX/johnswentworth-s-shortform?commentId=NLAW24oxDFuTLT3kx
+    - https://lesswrong.com/posts/puv8fRDCH9jx5yhbX?commentId=aBcAh8H9cSzdXmgb7
+
+  # Two different papers that both scraped OpenReview's bot-check page title.
+  # Fixed in overrides.yaml; listed here so the pair is never folded.
+  - - https://openreview.net/forum?id=oycEeFXX74
+    - https://openreview.net/pdf?id=BZ5a1r-kVsf
+
+  # A lab's announcement post is not the paper it announces. Different text,
+  # different length, often a different author list - and the prose cites them
+  # for different things.
+  - - https://anthropic.com/research/alignment-faking
+    - https://arxiv.org/abs/2412.14093
+  - - https://anthropic.com/research/reasoning-models-dont-say-think
+    - https://arxiv.org/abs/2505.05410
+  - - https://arxiv.org/abs/2412.04984
+    - https://lesswrong.com/posts/8gy7c8GAPkuu6wTiX/frontier-models-are-capable-of-in-context-scheming
+
+  # A talk's slides and its recording. Owner, 2026-09-24: keep both, they are
+  # different media of one talk and a reader may want either.
+  - - https://incompleteideas.net/Talks/waic3.pdf
+    - https://www.youtube.com/watch?v=NgHFMolXs3U
+
+  # Collisions the title fingerprint causes by stripping a subtitle.
+  - - https://aima.cs.berkeley.edu
+    - https://ourworldindata.org/artificial-intelligence
+  - - https://academic.oup.com/edited-volume/41989/chapter-abstract/408516484
+    - https://governance.ai/research-paper/ai-governance-opportunity-and-theory-of-impact
+  - - https://lesswrong.com/posts/CJw2tNHaEimx6nwNy/ai-forecasting-one-year-in
+    - https://lesswrong.com/posts/SdkexhiynayG2sQCC/ai-forecasting-two-years-in
+  - - https://alignmentforum.org/posts/6jkGf5WEKMpMFXZp2/what-failure-looks-like-distilling-the-discussion
+    - https://alignmentforum.org/posts/HBxe6wdjxK239zajf/what-failure-looks-like

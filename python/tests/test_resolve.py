@@ -62,7 +62,8 @@ class TestRedo:
         assert "https://lesswrong.com/b" not in out
 
     def test_never_drops_anchor_only_entries_whatever_the_redo_asks_for(self) -> None:
-        assert "https://x.org/d" in unresolved_keys(self.store, ["opengraph"], lambda url, by=None: False)
+        out = unresolved_keys(self.store, ["opengraph"], lambda url, by=None: False)
+        assert "https://x.org/d" in out
 
     def test_does_not_touch_resolvers_outside_the_redo_list(self) -> None:
         assert "https://arxiv.org/abs/1" not in unresolved_keys(self.store, ["opengraph"])

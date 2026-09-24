@@ -118,7 +118,7 @@ https://intelligence.org/files/LearningValue.pdf:
   publisher-place: Berlin
   DOI: 10.1007/978-3-642-22887-2_35
 
-https://intelligence.org/wp-content/uploads/2025/05/AI-Governance-to-Avoid-Extinction.pdf:
+https://techgov.intelligence.org/research/ai-governance-to-avoid-extinction:
   # provenance: owner.
   # GDOC FIX (task:0035): the anchor text says "Shevlane et al., 2023" but this
   # document is Barnett and Scher, May 2025. Either the link or the anchor is
@@ -342,18 +342,6 @@ https://www.youtube.com/watch?v=ETZfkkv6V7Y:
   container-title: YouTube
   publisher: Joint Mathematics Meetings
 
-https://researchgate.net/publication/382885035_Reasons_to_Doubt_the_Impact_of_AI_Risk_Evaluations:
-  # provenance: citoid, which returned the arXiv DOI for the ResearchGate page.
-  # GDOC FIX (task:0035): cites a ResearchGate mirror of arXiv:2408.02565.
-  title: Reasons to Doubt the Impact of AI Risk Evaluations
-  author:
-    - family: Mukobi
-      given: Gabriel
-  issued: { date-parts: [[2024]] }
-  type: article
-  container-title: arXiv
-  DOI: 10.48550/arXiv.2408.02565
-
 https://researchgate.net/publication/387730260_Exploring_China's_cyber_sovereignty_concept_and_artificial_intelligence_governance_model_a_machine_learning_approach:
   # provenance: citoid returned the DOI; the record below is Crossref's.
   # GDOC FIX (task:0035): cites a ResearchGate mirror of the Springer article.
@@ -409,7 +397,7 @@ https://biotech.senate.gov/wp-content/uploads/2024/01/NSCEB_AIxBio_WP3_Risks.pdf
   collection-title: NSCEB White Paper Series on AIxBio
   publisher: National Security Commission on Emerging Biotechnology
 
-https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AISurveillance_final1.pdf:
+https://carnegieendowment.org/research/2019/09/the-global-expansion-of-ai-surveillance?lang=en:
   # provenance: owner, from the Carnegie landing page.
   # NOT the JSTOR "Cite This Item" block, which describes the report's *front
   # matter* (pp. i-ii) as a separate item titled "Front Matter". Copying it
@@ -457,80 +445,6 @@ https://researchgate.net/publication/360644155_AI_GOVERNANCE_ARE_CHIEF_AI_OFFICE
   issued: { date-parts: [[2022, 5]] }
   type: paper-conference
   container-title: European Conference on Information Systems (ECIS)
-
-https://arxiv.org/abs/2307.15217':
-  # provenance: owner, arXiv's own BibTeX.
-  # GDOC FIX (task:0035): the linked URL has a trailing apostrophe and 404s.
-  # Remove the character and this entry resolves with no override at all.
-  title: Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback
-  author:
-    - family: Casper
-      given: Stephen
-    - family: Davies
-      given: Xander
-    - family: Shi
-      given: Claudia
-    - family: Gilbert
-      given: Thomas Krendl
-    - family: Scheurer
-      given: Jérémy
-    - family: Rando
-      given: Javier
-    - family: Freedman
-      given: Rachel
-    - family: Korbak
-      given: Tomasz
-    - family: Lindner
-      given: David
-    - family: Freire
-      given: Pedro
-    - family: Wang
-      given: Tony
-    - family: Marks
-      given: Samuel
-    - family: Segerie
-      given: Charbel-Raphaël
-    - family: Carroll
-      given: Micah
-    - family: Peng
-      given: Andi
-    - family: Christoffersen
-      given: Phillip
-    - family: Damani
-      given: Mehul
-    - family: Slocum
-      given: Stewart
-    - family: Anwar
-      given: Usman
-    - family: Siththaranjan
-      given: Anand
-    - family: Nadeau
-      given: Max
-    - family: Michaud
-      given: Eric J.
-    - family: Pfau
-      given: Jacob
-    - family: Krasheninnikov
-      given: Dmitrii
-    - family: Chen
-      given: Xin
-    - family: Langosco
-      given: Lauro
-    - family: Hase
-      given: Peter
-    - family: Bıyık
-      given: Erdem
-    - family: Dragan
-      given: Anca
-    - family: Krueger
-      given: David
-    - family: Sadigh
-      given: Dorsa
-    - family: Hadfield-Menell
-      given: Dylan
-  issued: { date-parts: [[2023, 7]] }
-  type: article
-  container-title: arXiv
 
 https://cartercenter.org/resources/pdfs/peace/china/finding-firmer-ground-the-role-of-high-technology-in-u.s.-china-relations.pdf:
   # provenance: owner.
@@ -623,57 +537,6 @@ https://tom7.org/mario/mario.pdf:
   issued: { date-parts: [[2013, 4, 1]] }
   type: article
 
-https://aiimpacts.org/wp-content/uploads/2023/04/Thousands_of_AI_authors_on_the_future_of_AI.pdf:
-  # provenance: owner, the published JAIR version.
-  # GDOC FIX (task:0035): the anchor says "AI Impacts, 2022", which is a
-  # different survey. The linked PDF is the 2024 arXiv preprint of this paper.
-  # Better link https://doi.org/10.1613/jair.1.19087 or arXiv:2401.02843
-  title: Thousands of AI Authors on the Future of AI
-  author:
-    - family: Grace
-      given: Katja
-    - family: Sandkühler
-      given: Julia Fabienne
-    - family: Stewart
-      given: Harlan
-    - family: Weinstein-Raun
-      given: Benjamin
-    - family: Thomas
-      given: Stephen
-    - family: Stein-Perlman
-      given: Zach
-    - family: Salvatier
-      given: John
-    - family: Brauner
-      given: Jan
-    - family: Korzekwa
-      given: Richard C.
-  issued: { date-parts: [[2025, 10]] }
-  type: article-journal
-  container-title: Journal of Artificial Intelligence Research
-  volume: '84'
-  publisher: AI Access Foundation
-  DOI: 10.1613/jair.1.19087
-
-https://arcprize.org/media/arc-prize-2024-technical-report.pdf:
-  # provenance: owner, arXiv's own BibTeX.
-  # Dated December 2024 from the eprint identifier 2412.04604, the report title,
-  # and the anchor, rather than 2025 from arXiv's latest-revision year.
-  # GDOC FIX (task:0035): better link https://arxiv.org/abs/2412.04604
-  title: 'ARC Prize 2024: Technical Report'
-  author:
-    - family: Chollet
-      given: Francois
-    - family: Knoop
-      given: Mike
-    - family: Kamradt
-      given: Gregory
-    - family: Landers
-      given: Bryan
-  issued: { date-parts: [[2024, 12]] }
-  type: article
-  container-title: arXiv
-
 https://armedservices.house.gov/sites/evo-subsites/republicans-armedservices.house.gov/files/greenwalt%20aei%20testimony%20on%20replicator%20before%20citi%20subcommittee%20hasc%20v2.pdf:
   # provenance: owner. Title from the testimony's own header, not the
   # PolicyCommons record, which titles it "Goals, Challenges, and Opportunities".
@@ -685,92 +548,6 @@ https://armedservices.house.gov/sites/evo-subsites/republicans-armedservices.hou
   type: report
   container-title: null
   publisher: House Armed Services Committee, Subcommittee on Cyber, Innovative Technologies, and Information Systems
-
-https://assets.ctfassets.net/kftzwdyauwt9/67qJD51Aur3eIc96iOfeOP/71551c3d223cd97e591aa89567306912/o1_system_card.pdf:
-  # provenance: owner, arXiv's own BibTeX. Authored by OpenAI with ~250 named
-  # contributors; the lab is recorded as the author, matching the anchor.
-  # Dated December 2024 from the eprint identifier 2412.16720 and the anchor,
-  # rather than arXiv's latest-revision year.
-  # GDOC FIX (task:0035): better link https://arxiv.org/abs/2412.16720
-  title: OpenAI o1 System Card
-  author:
-    - literal: OpenAI
-  issued: { date-parts: [[2024, 12]] }
-  type: article
-  container-title: arXiv
-
-# ===== Batch 3, found by search and verified at the source (2026-09-24)
-#
-# provenance: `search+verified`. A search engine generated the candidate and an
-# authoritative page confirmed it - the arXiv abs page, a DOI record, or the
-# issuing institution's own. This is deliberately not what task:0032 D3
-# rejected: D3's fault was a Crossref title search returning a *different*
-# paper at an indistinguishable score with no way to tell. Here the candidate
-# carries an identifier, and fetching it either shows the right title or does
-# not. Search proposes; the identifier disposes.
-
-https://cdn.governance.ai/Open_Problems_in_Technical_AI_Governance.pdf:
-  # verified: https://arxiv.org/abs/2407.14981 (v1 submitted 2024-07-20)
-  # GDOC FIX (task:0035): better link https://arxiv.org/abs/2407.14981
-  title: Open Problems in Technical AI Governance
-  author:
-    - { family: Reuel, given: Anka }
-    - { family: Bucknall, given: Ben }
-    - { family: Casper, given: Stephen }
-    - { family: Fist, given: Tim }
-    - { family: Soder, given: Lisa }
-    - { family: Aarne, given: Onni }
-    - { family: Hammond, given: Lewis }
-    - { family: Ibrahim, given: Lujain }
-    - { family: Chan, given: Alan }
-    - { family: Wills, given: Peter }
-    - { family: Anderljung, given: Markus }
-    - { family: Garfinkel, given: Ben }
-    - { family: Heim, given: Lennart }
-    - { family: Trask, given: Andrew }
-    - { family: Mukobi, given: Gabriel }
-    - { family: Schaeffer, given: Rylan }
-    - { family: Baker, given: Mauricio }
-    - { family: Hooker, given: Sara }
-    - { family: Solaiman, given: Irene }
-    - { family: Luccioni, given: Alexandra Sasha }
-    - { family: Rajkumar, given: Nitarshan }
-    - { family: Moës, given: Nicolas }
-    - { family: Ladish, given: Jeffrey }
-    - { family: Bau, given: David }
-    - { family: Bricman, given: Paul }
-    - { family: Guha, given: Neel }
-    - { family: Newman, given: Jessica }
-    - { family: Bengio, given: Yoshua }
-    - { family: South, given: Tobin }
-    - { family: Pentland, given: Alex }
-    - { family: Koyejo, given: Sanmi }
-    - { family: Kochenderfer, given: Mykel J. }
-    - { family: Trager, given: Robert }
-  issued: { date-parts: [[2024, 7, 20]] }
-  type: article
-  container-title: arXiv
-
-https://ceris.be/wp-content/uploads/2024/03/International-Institutions-for-Advanced-AI-Robert-Trager.pdf:
-  # verified: https://arxiv.org/abs/2307.04699 (v1 submitted 2023-07-10)
-  # GDOC FIX (task:0035): ceris.be hosts a third-party copy; better link
-  # https://arxiv.org/abs/2307.04699
-  title: International Institutions for Advanced AI
-  author:
-    - { family: Ho, given: Lewis }
-    - { family: Barnhart, given: Joslyn }
-    - { family: Trager, given: Robert }
-    - { family: Bengio, given: Yoshua }
-    - { family: Brundage, given: Miles }
-    - { family: Carnegie, given: Allison }
-    - { family: Chowdhury, given: Rumman }
-    - { family: Dafoe, given: Allan }
-    - { family: Hadfield, given: Gillian }
-    - { family: Levi, given: Margaret }
-    - { family: Snidal, given: Duncan }
-  issued: { date-parts: [[2023, 7, 10]] }
-  type: article
-  container-title: arXiv
 
 https://economics.mit.edu/sites/default/files/2022-09/aitocracy_20220701.pdf:
   # verified: Crossref record for 10.1093/qje/qjad012. The cited PDF is the 2022
@@ -1009,3 +786,53 @@ https://testscience.org/wp-content/uploads/formidable/20/Autonomy-Lit-Review.pdf
   container-title: null
   number: IDA Document NS-D-14331
   publisher: Institute for Defense Analyses
+
+# --- task:0031 -------------------------------------------------------------
+# Three entries whose resolution was wrong in a way aliasing does not fix.
+
+https://openreview.net/forum?id=oycEeFXX74:
+  # verified: the OpenReview id in the URL is the identifier, and the title it
+  # resolves to is "Shell Games: Control Protocols for Adversarial AI Agents"
+  # (ICLR 2025 submission, September 2024, later withdrawn). OpenReview serves
+  # a bot-check page to every unauthenticated fetch, so both resolvers and the
+  # API read "Verifying your browser" as the title.
+  #
+  # The author list is deliberately left as the anchor's literal. The Atlas
+  # cites this as "Bhatt et al., 2024"; a full author list could only be copied
+  # from the successor paper (Ctrl-Z, 2025), and a search cannot confirm who
+  # signed a withdrawn submission. task:0032 D6: a search may propose, only an
+  # identifier may confirm.
+  title: 'Shell Games: Control Protocols for Adversarial AI Agents'
+  author:
+    - literal: Bhatt et al.
+  issued: { date-parts: [[2024]] }
+  type: article
+  container-title: OpenReview
+
+https://openreview.net/pdf?id=BZ5a1r-kVsf:
+  # verified: the same bot-check title. The id resolves to LeCun's position
+  # paper, which he published on OpenReview rather than arXiv specifically so
+  # that it could be commented on - so there is no preprint to prefer.
+  title: 'A Path Towards Autonomous Machine Intelligence'
+  author:
+    - { family: LeCun, given: Yann }
+  issued: { date-parts: [[2022, 6, 27]] }
+  type: article
+  container-title: OpenReview
+  version: '0.9.2'
+
+https://psycnet.apa.org/record/2014-48585-000:
+  # The surviving entry for Superintelligence (see aliases.yaml). PsycNET is a
+  # catalogue record, so a scrape typed it as a web page; the work is a book,
+  # and every CSL style renders a book differently from a page. Setting the
+  # type here is what makes "Bostrom, N. (2014). Superintelligence: Paths,
+  # dangers, strategies. Oxford University Press." come out right.
+  title: 'Superintelligence: Paths, Dangers, Strategies'
+  author:
+    - { family: Bostrom, given: Nick }
+  issued: { date-parts: [[2014]] }
+  type: book
+  container-title: null
+  publisher: Oxford University Press
+  publisher-place: Oxford
+  ISBN: '978-0-19-967811-2'

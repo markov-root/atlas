@@ -15,6 +15,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from ..aliases import ALIASES_PATH, fold_aliases, read_aliases
 from ..overrides import OVERRIDES_PATH, apply_overrides, read_overrides
 from ..scan import Scan, ScanError, read_scan
 from ..store import (
@@ -101,6 +102,14 @@ def citations_extract(root: Path) -> int:
     # is what makes the store disposable: delete it, re-extract, re-resolve, and
     # the human judgement comes back.
     merged, unmatched = apply_overrides(merged, read_overrides(root))
+
+    # Last, because `apply_override` rebuilds an entry from its reviewed fields
+    # and would drop a `sameAs` written before it. Folding after also means an
+    # override may still be written against an alias URL for one run - it is
+    # then reported as unmatched, which is the signal to move it.
+    aliases = read_aliases(root)
+    merged, removed, stale = fold_aliases(merged, aliases)
+
     write_store(root, merged)
 
     resolved = sum(1 for e in merged.values() if e.get("resolvedBy") != "anchor")
@@ -113,4 +122,22 @@ def citations_extract(root: Path) -> int:
         print(f"{len(unmatched)} override(s) match no citation - check {OVERRIDES_PATH}:")
         for key in unmatched:
             print(f"  {key}")
+
+    # task:0031 D1: a deletion inside a 1.2 MB generated YAML is invisible in
+    # review, so every one is named here.
+    if removed:
+        print(f"{len(removed)} duplicate entr(ies) folded per {ALIASES_PATH}:")
+        for alias, survivor in removed:
+            print(f"  {alias}\n    -> {survivor}")
+    # Only groups that match *nothing*. An alias with no entry is the normal
+    # steady state - that is what folding it did - so reporting those would make
+    # every run after the first one print the whole file back.
+    if stale:
+        print(f"{len(stale)} alias group(s) match no citation - check {ALIASES_PATH}:")
+        for key in stale:
+            print(f"  {key}")
+    for alias, survivor in aliases.chains():
+        # A survivor that is itself aliased away means the file disagrees with
+        # itself, and resolution is single-step on purpose (see `Aliases.resolve`).
+        print(f"alias chain in {ALIASES_PATH}: {alias} -> {survivor}, which is also an alias")
     return 0

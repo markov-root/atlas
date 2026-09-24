@@ -240,24 +240,6 @@ https://ai-2027.com/research/security-forecast:
   anchors:
   - ' Dean, 2025'
   - Dean, 2025
-https://ai-alignment.com/clarifying-ai-alignment-cec47cd69dd6:
-  item:
-    id: https://ai-alignment.com/clarifying-ai-alignment-cec47cd69dd6
-    type: webpage
-    URL: https://ai-alignment.com/clarifying-ai-alignment-cec47cd69dd6
-    author:
-    - literal: Christiano
-    issued:
-      date-parts:
-      - - 2021
-        - 4
-        - 9
-    title: Clarifying “AI alignment”
-    container-title: Medium
-    abstract: Clarifying what I mean when I say that an AI is aligned.
-  resolvedBy: opengraph
-  anchors:
-  - Christiano, 2018
 https://ai-alignment.com/policy-amplification-6a70cbee4f34:
   item:
     id: https://ai-alignment.com/policy-amplification-6a70cbee4f34
@@ -402,44 +384,6 @@ https://aiimpacts.org/time-for-ai-to-cross-the-human-performance-range-in-imagen
   resolvedBy: opengraph
   anchors:
   - Korzekwa, 2022
-https://aiimpacts.org/wp-content/uploads/2023/04/Thousands_of_AI_authors_on_the_future_of_AI.pdf:
-  item:
-    id: 
-      https://aiimpacts.org/wp-content/uploads/2023/04/Thousands_of_AI_authors_on_the_future_of_AI.pdf
-    type: article-journal
-    URL: 
-      https://aiimpacts.org/wp-content/uploads/2023/04/Thousands_of_AI_authors_on_the_future_of_AI.pdf
-    author:
-    - family: Grace
-      given: Katja
-    - family: Sandkühler
-      given: Julia Fabienne
-    - family: Stewart
-      given: Harlan
-    - family: Weinstein-Raun
-      given: Benjamin
-    - family: Thomas
-      given: Stephen
-    - family: Stein-Perlman
-      given: Zach
-    - family: Salvatier
-      given: John
-    - family: Brauner
-      given: Jan
-    - family: Korzekwa
-      given: Richard C.
-    issued:
-      date-parts:
-      - - 2025
-        - 10
-    title: Thousands of AI Authors on the Future of AI
-    container-title: Journal of Artificial Intelligence Research
-    volume: '84'
-    publisher: AI Access Foundation
-    DOI: 10.1613/jair.1.19087
-  resolvedBy: override
-  anchors:
-  - AI Impacts, 2022
 https://aiindex.stanford.edu/report:
   item:
     id: https://aiindex.stanford.edu/report
@@ -1527,6 +1471,8 @@ https://alignmentforum.org/posts/ZeE7EKHTFMBs8eMxn/clarifying-ai-alignment:
   resolvedBy: forum-magnum
   anchors:
   - Christiano, 2018
+  sameAs:
+  - https://ai-alignment.com/clarifying-ai-alignment-cec47cd69dd6
 https://alignmentforum.org/posts/ZwshvqiqCvXPsZEct/the-learning-theoretic-agenda-status-2023:
   item:
     id: https://alignmentforum.org/posts/ZwshvqiqCvXPsZEct/the-learning-theoretic-agenda-status-2023
@@ -1806,7 +1752,11 @@ https://alignmentforum.org/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-po
     container-title: AI Alignment Forum
   resolvedBy: forum-magnum
   anchors:
+  - Greenblatt & Shlegeris, 2024
   - Greenblatt et al., 2024
+  sameAs:
+  - https://alignmentforum.org/s/PC3yJgdKvk8kzqZyA/p/kcKrE9mzEHrdqtDpE
+  - https://lesswrong.com/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-powerful-ais-are-controlled
 https://alignmentforum.org/posts/kphJvksj5TndGapuh/directions-and-desiderata-for-ai-alignment:
   item:
     id: 
@@ -2199,7 +2149,10 @@ https://alignmentforum.org/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely
     container-title: AI Alignment Forum
   resolvedBy: forum-magnum
   anchors:
+  - Beren, 2023
   - Millidge, 2023
+  sameAs:
+  - https://lesswrong.com/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely-difficult
 https://alignmentforum.org/posts/wAczufCpMdaamF9fy/my-objections-to-we-re-all-gonna-die-with-eliezer-yudkowsky:
   item:
     id: 
@@ -2302,26 +2255,6 @@ https://alignmentforum.org/posts/yxdHp2cZeQbZGREEN/improving-model-written-evals
   resolvedBy: forum-magnum
   anchors:
   - Dev & Hobbhahn, 2024
-https://alignmentforum.org/s/PC3yJgdKvk8kzqZyA/p/kcKrE9mzEHrdqtDpE:
-  item:
-    id: https://alignmentforum.org/s/PC3yJgdKvk8kzqZyA/p/kcKrE9mzEHrdqtDpE
-    type: post-weblog
-    URL: https://alignmentforum.org/s/PC3yJgdKvk8kzqZyA/p/kcKrE9mzEHrdqtDpE
-    author:
-    - literal: ryan_greenblatt
-    - literal: Buck
-    issued:
-      date-parts:
-      - - 2024
-        - 1
-        - 24
-    title: The case for ensuring that powerful AIs are controlled
-    abstract: In this post, we argue that AI labs should ensure that powerful AIs are controlled. 
-      That is, labs should make sure that the safety measures they appl…
-    container-title: AI Alignment Forum
-  resolvedBy: forum-magnum
-  anchors:
-  - Greenblatt & Shlegeris, 2024
 https://alignmentforum.org/s/WCJtsn6fNib6L7ZBB/p/G8WwLmcGFa4H6Ld9d:
   item:
     id: https://alignmentforum.org/s/WCJtsn6fNib6L7ZBB/p/G8WwLmcGFa4H6Ld9d
@@ -2443,22 +2376,6 @@ https://anthropic.com/engineering/advanced-tool-use:
   resolvedBy: opengraph
   anchors:
   - Anthropic, 2025
-https://anthropic.com/index/anthropics-responsible-scaling-policy:
-  item:
-    id: https://anthropic.com/index/anthropics-responsible-scaling-policy
-    type: webpage
-    URL: https://anthropic.com/index/anthropics-responsible-scaling-policy
-    author:
-    - literal: Anthropic
-    issued:
-      date-parts:
-      - - 2023
-    title: Introducing Anthropic's Responsible Scaling Policy
-    abstract: Our Responsible Scaling Policy is a series of technical and organizational protocols 
-      to manage the risks of increasingly capable AI systems.
-  resolvedBy: opengraph
-  anchors:
-  - Anthropic, 2023
 https://anthropic.com/index/claudes-constitution:
   item:
     id: https://anthropic.com/index/claudes-constitution
@@ -2510,7 +2427,10 @@ https://anthropic.com/news/anthropics-responsible-scaling-policy:
       to manage the risks of increasingly capable AI systems.
   resolvedBy: opengraph
   anchors:
+  - Anthropic, 2023
   - Anthropic, 2024
+  sameAs:
+  - https://anthropic.com/index/anthropics-responsible-scaling-policy
 https://anthropic.com/news/claude-3-5-sonnet:
   item:
     id: https://anthropic.com/news/claude-3-5-sonnet
@@ -2761,29 +2681,6 @@ https://arcprize.org/arc-agi/1:
   resolvedBy: opengraph
   anchors:
   - ARC-AGI, 2024
-https://arcprize.org/media/arc-prize-2024-technical-report.pdf:
-  item:
-    id: https://arcprize.org/media/arc-prize-2024-technical-report.pdf
-    type: article
-    URL: https://arcprize.org/media/arc-prize-2024-technical-report.pdf
-    author:
-    - family: Chollet
-      given: Francois
-    - family: Knoop
-      given: Mike
-    - family: Kamradt
-      given: Gregory
-    - family: Landers
-      given: Bryan
-    issued:
-      date-parts:
-      - - 2024
-        - 12
-    title: 'ARC Prize 2024: Technical Report'
-    container-title: arXiv
-  resolvedBy: override
-  anchors:
-  - Chollet et al., 2024
 ? https://armedservices.house.gov/sites/evo-subsites/republicans-armedservices.house.gov/files/greenwalt%20aei%20testimony%20on%20replicator%20before%20citi%20subcommittee%20hasc%20v2.pdf
 : item:
     id: 
@@ -4221,6 +4118,9 @@ https://arxiv.org/abs/2001.00463:
   resolvedBy: arxiv
   anchors:
   - Shevlane & Dafoe, 2020
+  - Shevlane, 2024
+  sameAs:
+  - https://governance.ai/research-paper/the-offense-defense-balance-of-scientific-knowledge-does-publishing-ai-research-reduce-misuse
 https://arxiv.org/abs/2001.03246:
   item:
     id: https://arxiv.org/abs/2001.03246
@@ -9580,8 +9480,11 @@ https://arxiv.org/abs/2212.08364:
     container-title: arXiv
   resolvedBy: arxiv
   anchors:
+  - ' Schuett, 2023'
   - Schuett, 2022
   - Schuett, 2023
+  sameAs:
+  - https://governance.ai/research-paper/three-lines-of-defense-against-risks-from-ai
 https://arxiv.org/abs/2212.09251:
   item:
     id: https://arxiv.org/abs/2212.09251
@@ -10584,6 +10487,9 @@ https://arxiv.org/abs/2303.09377:
   resolvedBy: arxiv
   anchors:
   - ' Anderljung et al. 2024'
+  - Anderljung, 2024
+  sameAs:
+  - https://governance.ai/research-paper/protecting-society-from-ai-misuse-when-are-restrictions-on-capabilities-warranted
 https://arxiv.org/abs/2303.11341:
   item:
     id: https://arxiv.org/abs/2303.11341
@@ -11923,6 +11829,8 @@ https://arxiv.org/abs/2307.04699:
   - (Dafoe, 2023
   - Dafoe, 2023
   - Ho et al., 2023
+  sameAs:
+  - https://ceris.be/wp-content/uploads/2024/03/International-Institutions-for-Advanced-AI-Robert-Trager.pdf
 https://arxiv.org/abs/2307.08823:
   item:
     id: https://arxiv.org/abs/2307.08823
@@ -11961,6 +11869,9 @@ https://arxiv.org/abs/2307.08823:
   resolvedBy: arxiv
   anchors:
   - Koessler & Schuett, 2023
+  - Koessler, 2023
+  sameAs:
+  - https://governance.ai/research-paper/risk-assessment-at-agi-companies-a-review-of-popular-risk-assessment-techniques-from-other-safety-critical-industries
 https://arxiv.org/abs/2307.11768:
   item:
     id: https://arxiv.org/abs/2307.11768
@@ -12220,85 +12131,8 @@ https://arxiv.org/abs/2307.15217:
   - Casper et al., 2023
   - Casper et al., 2024
   - Casper, 2024
-https://arxiv.org/abs/2307.15217':
-  item:
-    id: https://arxiv.org/abs/2307.15217'
-    type: article
-    URL: https://arxiv.org/abs/2307.15217'
-    author:
-    - family: Casper
-      given: Stephen
-    - family: Davies
-      given: Xander
-    - family: Shi
-      given: Claudia
-    - family: Gilbert
-      given: Thomas Krendl
-    - family: Scheurer
-      given: Jérémy
-    - family: Rando
-      given: Javier
-    - family: Freedman
-      given: Rachel
-    - family: Korbak
-      given: Tomasz
-    - family: Lindner
-      given: David
-    - family: Freire
-      given: Pedro
-    - family: Wang
-      given: Tony
-    - family: Marks
-      given: Samuel
-    - family: Segerie
-      given: Charbel-Raphaël
-    - family: Carroll
-      given: Micah
-    - family: Peng
-      given: Andi
-    - family: Christoffersen
-      given: Phillip
-    - family: Damani
-      given: Mehul
-    - family: Slocum
-      given: Stewart
-    - family: Anwar
-      given: Usman
-    - family: Siththaranjan
-      given: Anand
-    - family: Nadeau
-      given: Max
-    - family: Michaud
-      given: Eric J.
-    - family: Pfau
-      given: Jacob
-    - family: Krasheninnikov
-      given: Dmitrii
-    - family: Chen
-      given: Xin
-    - family: Langosco
-      given: Lauro
-    - family: Hase
-      given: Peter
-    - family: Bıyık
-      given: Erdem
-    - family: Dragan
-      given: Anca
-    - family: Krueger
-      given: David
-    - family: Sadigh
-      given: Dorsa
-    - family: Hadfield-Menell
-      given: Dylan
-    issued:
-      date-parts:
-      - - 2023
-        - 7
-    title: Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback
-    container-title: arXiv
-  resolvedBy: override
-  anchors:
-  - Casper et al., 2023
+  sameAs:
+  - https://arxiv.org/abs/2307.15217'
 https://arxiv.org/abs/2307.16789:
   item:
     id: https://arxiv.org/abs/2307.16789
@@ -13434,6 +13268,8 @@ https://arxiv.org/abs/2310.13625:
   resolvedBy: arxiv
   anchors:
   - Egan & Heim, 2023
+  sameAs:
+  - https://governance.ai/research-paper/oversight-for-frontier-ai-through-kyc-scheme-for-compute-providers
 https://arxiv.org/abs/2310.16787:
   item:
     id: https://arxiv.org/abs/2310.16787
@@ -17379,7 +17215,10 @@ https://arxiv.org/abs/2401.02843:
     container-title: arXiv
   resolvedBy: arxiv
   anchors:
+  - AI Impacts, 2022
   - Grace et al., 2024
+  sameAs:
+  - https://aiimpacts.org/wp-content/uploads/2023/04/Thousands_of_AI_authors_on_the_future_of_AI.pdf
 https://arxiv.org/abs/2401.03408:
   item:
     id: https://arxiv.org/abs/2401.03408
@@ -20230,7 +20069,12 @@ https://arxiv.org/abs/2407.14981:
     container-title: arXiv
   resolvedBy: arxiv
   anchors:
+  - ' Reuel & Bucknall, 2024'
+  - Reuel & Bucknall, 2024
   - Reuel et al., 2024
+  sameAs:
+  - https://cdn.governance.ai/Open_Problems_in_Technical_AI_Governance.pdf
+  - https://governance.ai/research-paper/open-problems-in-technical-ai-governance
 https://arxiv.org/abs/2407.21792:
   item:
     id: https://arxiv.org/abs/2407.21792
@@ -20411,6 +20255,8 @@ https://arxiv.org/abs/2408.02565:
   resolvedBy: arxiv
   anchors:
   - Mukobi, 2024
+  sameAs:
+  - https://researchgate.net/publication/382885035_Reasons_to_Doubt_the_Impact_of_AI_Risk_Evaluations
 https://arxiv.org/abs/2408.06292:
   item:
     id: https://arxiv.org/abs/2408.06292
@@ -21372,6 +21218,8 @@ https://arxiv.org/abs/2412.04604:
   anchors:
   - Chollet et al., 2024
   - Chollet et. al, 2024
+  sameAs:
+  - https://arcprize.org/media/arc-prize-2024-technical-report.pdf
 https://arxiv.org/abs/2412.04758:
   item:
     id: https://arxiv.org/abs/2412.04758
@@ -22166,6 +22014,9 @@ https://arxiv.org/abs/2412.16720:
   resolvedBy: arxiv
   anchors:
   - OpenAI, 2024
+  sameAs:
+  - https://assets.ctfassets.net/kftzwdyauwt9/67qJD51Aur3eIc96iOfeOP/71551c3d223cd97e591aa89567306912/o1_system_card.pdf
+  - https://openai.com/index/openai-o1-system-card
 https://arxiv.org/abs/2501.09686:
   item:
     id: https://arxiv.org/abs/2501.09686
@@ -25098,6 +24949,9 @@ https://arxiv.org/abs/2501.17805:
   resolvedBy: arxiv
   anchors:
   - Bengio et al. 2025
+  - Bengio et al., 2025
+  sameAs:
+  - https://assets.publishing.service.gov.uk/media/679a0c48a77d250007d313ee/International_AI_Safety_Report_2025_accessible_f.pdf
 https://arxiv.org/abs/2502.01774:
   item:
     id: https://arxiv.org/abs/2502.01774
@@ -26822,41 +26676,6 @@ https://assets.anthropic.com/m/24a47b00f10301cd/original/Anthropic-Responsible-S
   resolvedBy: opengraph
   anchors:
   - Anthropic, 2024
-https://assets.ctfassets.net/kftzwdyauwt9/67qJD51Aur3eIc96iOfeOP/71551c3d223cd97e591aa89567306912/o1_system_card.pdf:
-  item:
-    id: 
-      https://assets.ctfassets.net/kftzwdyauwt9/67qJD51Aur3eIc96iOfeOP/71551c3d223cd97e591aa89567306912/o1_system_card.pdf
-    type: article
-    URL: 
-      https://assets.ctfassets.net/kftzwdyauwt9/67qJD51Aur3eIc96iOfeOP/71551c3d223cd97e591aa89567306912/o1_system_card.pdf
-    author:
-    - literal: OpenAI
-    issued:
-      date-parts:
-      - - 2024
-        - 12
-    title: OpenAI o1 System Card
-    container-title: arXiv
-  resolvedBy: override
-  anchors:
-  - OpenAI, 2024
-? https://assets.publishing.service.gov.uk/media/679a0c48a77d250007d313ee/International_AI_Safety_Report_2025_accessible_f.pdf
-: item:
-    id: 
-      https://assets.publishing.service.gov.uk/media/679a0c48a77d250007d313ee/International_AI_Safety_Report_2025_accessible_f.pdf
-    type: webpage
-    URL: 
-      https://assets.publishing.service.gov.uk/media/679a0c48a77d250007d313ee/International_AI_Safety_Report_2025_accessible_f.pdf
-    author:
-    - literal: Bengio et al.
-    issued:
-      date-parts:
-      - - 2025
-    title: International AI Safety Report
-    container-title: International AI Safety Report
-  resolvedBy: opengraph
-  anchors:
-  - Bengio et al., 2025
 https://axrp.net/episode/2024/04/11/episode-27-ai-control-buck-shlegeris-ryan-greenblatt.html:
   item:
     id: 
@@ -26997,21 +26816,6 @@ https://books.google.se/books/about/AI.html?id=V3XsEAAAQBAJ&redir_esc=y:
   resolvedBy: override
   anchors:
   - Yampolskiy, 2024
-https://books.google.se/books/about/Superintelligence.html?id=7_H8AwAAQBAJ&redir_esc=y:
-  item:
-    id: https://books.google.se/books/about/Superintelligence.html?id=7_H8AwAAQBAJ&redir_esc=y
-    type: webpage
-    URL: https://books.google.se/books/about/Superintelligence.html?id=7_H8AwAAQBAJ&redir_esc=y
-    author:
-    - literal: Bostrom
-    issued:
-      date-parts:
-      - - 2014
-    title: Superintelligence
-    container-title: Google Books
-  resolvedBy: opengraph
-  anchors:
-  - Bostrom, 2014
 https://bostondynamics.com/products/stretch:
   item:
     id: https://bostondynamics.com/products/stretch
@@ -27131,13 +26935,13 @@ https://careerservices.fas.harvard.edu/blog/2025/05/01/what-is-ai-ethics:
   resolvedBy: wayback
   anchors:
   - ' Harvard, 2025'
-https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AISurveillance_final1.pdf:
+https://carnegieendowment.org/research/2019/09/the-global-expansion-of-ai-surveillance?lang=en:
   item:
     id: 
-      https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AISurveillance_final1.pdf
+      https://carnegieendowment.org/research/2019/09/the-global-expansion-of-ai-surveillance?lang=en
     type: report
     URL: 
-      https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AISurveillance_final1.pdf
+      https://carnegieendowment.org/research/2019/09/the-global-expansion-of-ai-surveillance?lang=en
     author:
     - family: Feldstein
       given: Steven
@@ -27146,32 +26950,16 @@ https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AI
       - - 2019
         - 9
     title: The Global Expansion of AI Surveillance
-    publisher: Carnegie Endowment for International Peace
-  resolvedBy: override
-  anchors:
-  - Feldstein, 2021
-https://carnegieendowment.org/research/2019/09/the-global-expansion-of-ai-surveillance?lang=en:
-  item:
-    id: 
-      https://carnegieendowment.org/research/2019/09/the-global-expansion-of-ai-surveillance?lang=en
-    type: webpage
-    URL: 
-      https://carnegieendowment.org/research/2019/09/the-global-expansion-of-ai-surveillance?lang=en
-    author:
-    - literal: Feldstein
-    issued:
-      date-parts:
-      - - 2019
-        - 9
-        - 17
-    title: The Global Expansion of AI Surveillance
-    container-title: Carnegie Endowment for International Peace
     abstract: A growing number of states are deploying advanced AI surveillance tools to monitor, 
       track, and surveil citizens. Carnegie’s new index explores how different countries are going 
       about this.
-  resolvedBy: opengraph
+    publisher: Carnegie Endowment for International Peace
+  resolvedBy: override
   anchors:
   - Feldstein, 2019
+  - Feldstein, 2021
+  sameAs:
+  - https://carnegie-production-assets.s3.amazonaws.com/static/files/WP-Feldstein-AISurveillance_final1.pdf
 https://carnegieendowment.org/research/2024/09/if-then-commitments-for-ai-risk-reduction?lang=en:
   item:
     id: 
@@ -27264,88 +27052,6 @@ https://cdn.governance.ai/GovAI-Research-Agenda.pdf:
   resolvedBy: research-db
   anchors:
   - Dafoe, 2023
-https://cdn.governance.ai/Open_Problems_in_Technical_AI_Governance.pdf:
-  item:
-    id: https://cdn.governance.ai/Open_Problems_in_Technical_AI_Governance.pdf
-    type: article
-    URL: https://cdn.governance.ai/Open_Problems_in_Technical_AI_Governance.pdf
-    author:
-    - family: Reuel
-      given: Anka
-    - family: Bucknall
-      given: Ben
-    - family: Casper
-      given: Stephen
-    - family: Fist
-      given: Tim
-    - family: Soder
-      given: Lisa
-    - family: Aarne
-      given: Onni
-    - family: Hammond
-      given: Lewis
-    - family: Ibrahim
-      given: Lujain
-    - family: Chan
-      given: Alan
-    - family: Wills
-      given: Peter
-    - family: Anderljung
-      given: Markus
-    - family: Garfinkel
-      given: Ben
-    - family: Heim
-      given: Lennart
-    - family: Trask
-      given: Andrew
-    - family: Mukobi
-      given: Gabriel
-    - family: Schaeffer
-      given: Rylan
-    - family: Baker
-      given: Mauricio
-    - family: Hooker
-      given: Sara
-    - family: Solaiman
-      given: Irene
-    - family: Luccioni
-      given: Alexandra Sasha
-    - family: Rajkumar
-      given: Nitarshan
-    - family: Moës
-      given: Nicolas
-    - family: Ladish
-      given: Jeffrey
-    - family: Bau
-      given: David
-    - family: Bricman
-      given: Paul
-    - family: Guha
-      given: Neel
-    - family: Newman
-      given: Jessica
-    - family: Bengio
-      given: Yoshua
-    - family: South
-      given: Tobin
-    - family: Pentland
-      given: Alex
-    - family: Koyejo
-      given: Sanmi
-    - family: Kochenderfer
-      given: Mykel J.
-    - family: Trager
-      given: Robert
-    issued:
-      date-parts:
-      - - 2024
-        - 7
-        - 20
-    title: Open Problems in Technical AI Governance
-    container-title: arXiv
-  resolvedBy: override
-  anchors:
-  - Reuel & Bucknall, 2024
 https://cdn.openai.com/openai-preparedness-framework-beta.pdf:
   item:
     id: https://cdn.openai.com/openai-preparedness-framework-beta.pdf
@@ -27460,46 +27166,6 @@ https://centerforreducingsuffering.org/research/intro:
   resolvedBy: opengraph
   anchors:
   - Baumann, 2017
-https://ceris.be/wp-content/uploads/2024/03/International-Institutions-for-Advanced-AI-Robert-Trager.pdf:
-  item:
-    id: 
-      https://ceris.be/wp-content/uploads/2024/03/International-Institutions-for-Advanced-AI-Robert-Trager.pdf
-    type: article
-    URL: 
-      https://ceris.be/wp-content/uploads/2024/03/International-Institutions-for-Advanced-AI-Robert-Trager.pdf
-    author:
-    - family: Ho
-      given: Lewis
-    - family: Barnhart
-      given: Joslyn
-    - family: Trager
-      given: Robert
-    - family: Bengio
-      given: Yoshua
-    - family: Brundage
-      given: Miles
-    - family: Carnegie
-      given: Allison
-    - family: Chowdhury
-      given: Rumman
-    - family: Dafoe
-      given: Allan
-    - family: Hadfield
-      given: Gillian
-    - family: Levi
-      given: Margaret
-    - family: Snidal
-      given: Duncan
-    issued:
-      date-parts:
-      - - 2023
-        - 7
-        - 10
-    title: International Institutions for Advanced AI
-    container-title: arXiv
-  resolvedBy: override
-  anchors:
-  - Ho et al., 2023
 https://cfg.eu/building-cern-for-ai:
   item:
     id: https://cfg.eu/building-cern-for-ai
@@ -27819,21 +27485,6 @@ https://danfaggella.com/worthy:
   resolvedBy: opengraph
   anchors:
   - Faggella, 2025
-https://deepmind.com/blog/alphastar-mastering-the-real-time-strategy-game-starcraft-ii:
-  item:
-    id: https://deepmind.com/blog/alphastar-mastering-the-real-time-strategy-game-starcraft-ii
-    type: webpage
-    URL: https://deepmind.com/blog/alphastar-mastering-the-real-time-strategy-game-starcraft-ii
-    author:
-    - literal: DeepMind
-    issued:
-      date-parts:
-      - - 2019
-    title: 'AlphaStar: Mastering the real-time strategy game StarCraft II — Google DeepMind'
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
-  anchors:
-  - DeepMind, 2019
 https://deepmind.com/blog/alphazero-shedding-new-light-on-chess-shogi-and-go:
   item:
     id: https://deepmind.com/blog/alphazero-shedding-new-light-on-chess-shogi-and-go
@@ -27849,37 +27500,6 @@ https://deepmind.com/blog/alphazero-shedding-new-light-on-chess-shogi-and-go:
   resolvedBy: opengraph
   anchors:
   - DeepMind, 2018
-https://deepmind.com/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules:
-  item:
-    id: https://deepmind.com/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules
-    type: webpage
-    URL: https://deepmind.com/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules
-    author:
-    - literal: DeepMind
-    issued:
-      date-parts:
-      - - 2020
-    title: 'MuZero: Mastering Go, chess, shogi and Atari without rules — Google DeepMind'
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
-  anchors:
-  - DeepMind, 2020
-  - Google DeepMind, 2020
-https://deepmind.com/blog/specification-gaming-the-flip-side-of-ai-ingenuity:
-  item:
-    id: https://deepmind.com/blog/specification-gaming-the-flip-side-of-ai-ingenuity
-    type: webpage
-    URL: https://deepmind.com/blog/specification-gaming-the-flip-side-of-ai-ingenuity
-    author:
-    - literal: Krakovna et al.
-    issued:
-      date-parts:
-      - - 2020
-    title: 'Specification gaming: the flip side of AI ingenuity — Google DeepMind'
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
-  anchors:
-  - Krakovna et al., 2020
 https://deepmind.com/research/highlighted-research/alphago:
   item:
     id: https://deepmind.com/research/highlighted-research/alphago
@@ -27912,24 +27532,6 @@ https://deepmind.com/research/highlighted-research/alphago:
         - 21
     title: Advanced version of Gemini with Deep Think officially achieves gold-medal standard at the
       International Mathematical Olympiad
-  resolvedBy: research-db
-  anchors:
-  - Google DeepMind, 2025
-https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms:
-  item:
-    id: 
-      https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms
-    type: webpage
-    URL: 
-      https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms
-    author:
-    - literal: AlphaEvolve team
-    issued:
-      date-parts:
-      - - 2025
-        - 5
-        - 14
-    title: 'AlphaEvolve: A Gemini-powered coding agent for designing advanced algorithms'
   resolvedBy: research-db
   anchors:
   - Google DeepMind, 2025
@@ -28001,23 +27603,6 @@ https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models:
   resolvedBy: research-db
   anchors:
   - DeepMind, 2025
-https://deepmind.google/blog/how-alphachip-transformed-computer-chip-design:
-  item:
-    id: https://deepmind.google/blog/how-alphachip-transformed-computer-chip-design
-    type: webpage
-    URL: https://deepmind.google/blog/how-alphachip-transformed-computer-chip-design
-    author:
-    - literal: Anna Goldie
-    - literal: Azalia Mirhoseini
-    issued:
-      date-parts:
-      - - 2024
-        - 9
-        - 26
-    title: How AlphaChip transformed computer chip design
-  resolvedBy: research-db
-  anchors:
-  - Google DeepMind, 2024
 https://deepmind.google/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules:
   item:
     id: https://deepmind.google/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules
@@ -28045,6 +27630,9 @@ https://deepmind.google/blog/muzero-mastering-go-chess-shogi-and-atari-without-r
   resolvedBy: research-db
   anchors:
   - DeepMind, 2020
+  - Google DeepMind, 2020
+  sameAs:
+  - https://deepmind.com/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules
 https://deepmind.google/blog/shaping-the-future-of-advanced-robotics:
   item:
     id: https://deepmind.google/blog/shaping-the-future-of-advanced-robotics
@@ -28096,6 +27684,9 @@ https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-
   resolvedBy: opengraph
   anchors:
   - DeepMind, 2025
+  - Google DeepMind, 2025
+  sameAs:
+  - https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms
 https://deepmind.google/discover/blog/alphastar-mastering-the-real-time-strategy-game-starcraft-ii:
   item:
     id: 
@@ -28112,7 +27703,10 @@ https://deepmind.google/discover/blog/alphastar-mastering-the-real-time-strategy
     note: Title read from the <title> tag; the page had no Open Graph metadata.
   resolvedBy: opengraph
   anchors:
+  - DeepMind, 2019
   - Google DeepMind, 2019
+  sameAs:
+  - https://deepmind.com/blog/alphastar-mastering-the-real-time-strategy-game-starcraft-ii
 https://deepmind.google/discover/blog/exploring-institutions-for-global-ai-governance:
   item:
     id: https://deepmind.google/discover/blog/exploring-institutions-for-global-ai-governance
@@ -28161,6 +27755,9 @@ https://deepmind.google/discover/blog/how-alphachip-transformed-computer-chip-de
   resolvedBy: opengraph
   anchors:
   - DeepMind, 2024
+  - Google DeepMind, 2024
+  sameAs:
+  - https://deepmind.google/blog/how-alphachip-transformed-computer-chip-design
 https://deepmind.google/discover/blog/introducing-the-frontier-safety-framework:
   item:
     id: https://deepmind.google/discover/blog/introducing-the-frontier-safety-framework
@@ -28192,6 +27789,8 @@ https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-i
   resolvedBy: opengraph
   anchors:
   - Krakovna et al., 2020
+  sameAs:
+  - https://deepmind.com/blog/specification-gaming-the-flip-side-of-ai-ingenuity
 https://deepmind.google/models/gemini:
   item:
     id: https://deepmind.google/models/gemini
@@ -29194,6 +28793,8 @@ https://epoch.ai/gradient-updates/how-far-can-decentralized-training-over-the-in
   resolvedBy: research-db
   anchors:
   - Sevilla, 2025
+  sameAs:
+  - https://epochai.substack.com/p/how-far-can-decentralized-training
 https://epoch.ai/gradient-updates/is-almost-everyone-wrong-about-americas-ai-power-problem:
   item:
     id: https://epoch.ai/gradient-updates/is-almost-everyone-wrong-about-americas-ai-power-problem
@@ -29302,45 +28903,6 @@ https://epochai.substack.com/p/do-the-biorisk-evaluations-of-ai:
   resolvedBy: research-db
   anchors:
   - Ho & Berg, 2025
-https://epochai.substack.com/p/how-far-can-decentralized-training:
-  item:
-    id: https://epochai.substack.com/p/how-far-can-decentralized-training
-    type: post-weblog
-    URL: https://epochai.substack.com/p/how-far-can-decentralized-training
-    author:
-    - literal: Jaime Sevilla
-    issued:
-      date-parts:
-      - - 2025
-        - 12
-        - 29
-    title: How far can decentralized training over the internet scale?
-    abstract: "Sevilla argues that while decentralized AI training over the internet is technically feasible
-      and growing rapidly at approximately 20 times per year, it is unlikely to match the computational
-      scale of frontier models this decade. Decentralized training—where thousands of small data centers
-      or consumers pool compute—faces three main challenges: low bandwidth (typical consumer upload speeds
-      around 60 Mbps), managing heterogeneous devices, and coordination issues. While the latter two are
-      surmountable, bandwidth constraints require specialized techniques.\n\nTo overcome bandwidth limitations,
-      developers employ methods such as DiLoCo (data locality control), which reduces synchronization
-      frequency between nodes by allowing independent \"inner steps\" before aggregating updates, achieving
-      500-fold bandwidth reduction with modest performance loss. Additional optimizations include 4-bit
-      to 8-bit gradient quantization, sparsification (communicating only top-k gradients), and streaming
-      DiLoCo, which overlaps communication with computation for up to 100-fold bandwidth reduction. Model
-      parallelism approaches, such as Pluralis Research's pipeline parallelism with constrained activations,
-      enable training 8-billion-parameter models across consumer GPUs, while asynchronous reinforcement
-      learning allows decentralized post-training by using slightly outdated model checkpoints.\n\nCurrently,
-      the largest decentralized runs—including Prime Intellect's INTELLECT-1 (10B parameters, 6e22 FLOP),
-      Pluralis' 8B Protocol Model, and Nous Research's Consilience 40B—utilize roughly 1,000 times less
-      compute than frontier models like xAI's Grok 4. Active networks like Covenant AI's Templar achieve
-      approximately 9e17 FLOP/s, compared to frontier data centers' 3e20 FLOP/s. However, referencing
-      volunteer computing projects like Folding@home (which peaked at 2.43e18 FLOP/s) and Bitcoin's $30
-      billion infrastructure, Sevilla suggests decentralized networks could potentially expand 30 to 3,000
-      times in scale. Even if decentralized training narrows rather than closes the gap with frontier
-      models, this development could complicate AI regulation that relies on monitoring centralized data
-      centers."
-  resolvedBy: research-db
-  anchors:
-  - Sevilla, 2025
 https://epochai.substack.com/p/wheres-my-ten-minute-agi:
   item:
     id: https://epochai.substack.com/p/wheres-my-ten-minute-agi
@@ -29667,6 +29229,9 @@ https://forum.effectivealtruism.org/posts/f2qojPr8NaMPo2KJC/beware-safety-washin
   anchors:
   - ' Lizka, 2023'
   - Lizka, 2023
+  - Vaintrob, 2023
+  sameAs:
+  - https://lesswrong.com/posts/PY3HEHc5fMQkTrQo4/beware-safety-washing
 ? https://fr.euronews.com/next/2024/03/08/decouvrez-daisy-le-chatbot-mamie-qui-fait-perdre-du-temps-aux-fraudeurs-au-telephone
 : item:
     id: 
@@ -29811,22 +29376,6 @@ https://goldpenguin.org/blog/midjourney-v1-to-v6-evolution:
   resolvedBy: opengraph
   anchors:
   - Yap, 2024
-https://goodreads.com/book/show/20527133-superintelligence:
-  item:
-    id: https://goodreads.com/book/show/20527133-superintelligence
-    type: webpage
-    URL: https://goodreads.com/book/show/20527133-superintelligence
-    author:
-    - literal: Bostrom
-    issued:
-      date-parts:
-      - - 2014
-    title: 'Superintelligence: Paths, Dangers, Strategies'
-    container-title: Goodreads
-    abstract: 'Superintelligence asks the questions: what happens when…'
-  resolvedBy: opengraph
-  anchors:
-  - Bostrom, 2014
 ? https://gov.uk/government/publications/ai-safety-institute-approach-to-evaluations/ai-safety-institute-approach-to-evaluations
 : item:
     id: 
@@ -30019,145 +29568,6 @@ https://governance.ai/research-paper/governing-through-the-cloud:
   resolvedBy: research-db
   anchors:
   - Heim et al., 2024
-https://governance.ai/research-paper/open-problems-in-technical-ai-governance:
-  item:
-    id: https://governance.ai/research-paper/open-problems-in-technical-ai-governance
-    type: webpage
-    URL: https://governance.ai/research-paper/open-problems-in-technical-ai-governance
-    author:
-    - literal: Anka Reuel
-    - literal: Ben Bucknall
-    - literal: et al.
-    issued:
-      date-parts:
-      - - 2024
-        - 7
-        - 20
-    title: Open Problems in Technical AI Governance
-    abstract: "# Open Problems in Technical AI Governance\n\nAI progress is creating a growing range of
-      risks and opportunities, but it is often unclear how they should be navigated. In many cases, the
-      barriers and uncertainties faced are at least partly technical. Technical AI governance, referring
-      to technical analysis and tools for supporting the effective governance of AI, seeks to address
-      such challenges. It can help to (a) identify areas where intervention is needed, (b) identify and
-      assess the efficacy of potential governance actions, and (c) enhance governance options by designing
-      mechanisms for enforcement, incentivization, or compliance. In this paper, we explain what technical
-      AI governance is, why it is important, and present a taxonomy and incomplete catalogue of its open
-      problems. This paper is intended as a resource for technical researchers or research funders looking
-      to contribute to AI governance."
-  resolvedBy: research-db
-  anchors:
-  - ' Reuel & Bucknall, 2024'
-https://governance.ai/research-paper/oversight-for-frontier-ai-through-kyc-scheme-for-compute-providers:
-  item:
-    id: 
-      https://governance.ai/research-paper/oversight-for-frontier-ai-through-kyc-scheme-for-compute-providers
-    type: webpage
-    URL: 
-      https://governance.ai/research-paper/oversight-for-frontier-ai-through-kyc-scheme-for-compute-providers
-    author:
-    - literal: Janet Egan
-    - literal: Lennart Heim
-    issued:
-      date-parts:
-      - - 2023
-        - 10
-        - 25
-    title: Oversight for Frontier AI through a Know-Your-Customer Scheme for Compute Providers
-    abstract: "# Oversight for Frontier AI through a Know-Your-Customer Scheme for Compute Providers\n\
-      \nTo address security and safety risks stemming from highly capable artificial intelligence (AI)
-      models, we propose that the US government should ensure compute providers implement Know-Your-Customer
-      (KYC) schemes. Compute - the computational power and infrastructure required to train and run these
-      AI models - is emerging as a node for oversight. KYC, a standard developed by the banking sector
-      to identify and verify client identity, could provide a mechanism for greater public oversight of
-      frontier AI development and close loopholes in existing export controls. Such a scheme has the potential
-      to identify and warn stakeholders of potentially problematic and/or sudden advancements in AI capabilities,
-      build government capacity for AI regulation, and allow for the development and implementation of
-      more nuanced and targeted export controls. Unlike the strategy of limiting access to AI chip purchases,
-      regulating the *digital access* to compute offers more precise controls, allowing regulatory control
-      over compute quantities, as well as the flexibility to suspend access at anytime. To enact a KYC
-      scheme, the US government will need to work closely with industry to (1) establish a dynamic threshold
-      of compute that effectively captures high-risk frontier model development, while minimizing imposition
-      on developers not engaged in frontier AI; (2) set clear requirements and guidance for compute providers
-      to keep records and report high-risk entities; (3) establish government capacity that allows for
-      co-design, implementation, administration and enforcement of the scheme; and (4) engage internationally
-      to promote international alignment with the scheme and support its long-term efficacy. While the
-      scheme will not address all AI risks, it complements existing proposed solutions by allowing for
-      a more precise and flexible approach to controlling the development of frontier AI models and unwanted
-      AI proliferation."
-  resolvedBy: research-db
-  anchors:
-  - Egan & Heim, 2023
-https://governance.ai/research-paper/protecting-society-from-ai-misuse-when-are-restrictions-on-capabilities-warranted:
-  item:
-    id: 
-      https://governance.ai/research-paper/protecting-society-from-ai-misuse-when-are-restrictions-on-capabilities-warranted
-    type: webpage
-    URL: 
-      https://governance.ai/research-paper/protecting-society-from-ai-misuse-when-are-restrictions-on-capabilities-warranted
-    author:
-    - literal: Markus Anderljung
-    - literal: Julian Hazell
-    issued:
-      date-parts:
-      - - 2023
-        - 3
-        - 16
-    title: 'Protecting Society from AI Misuse: When are Restrictions on Capabilities Warranted?'
-    abstract: "# Protecting Society from AI Misuse: When are Restrictions on Capabilities Warranted?\n\
-      \nArtificial intelligence (AI) systems will increasingly be used to cause harm as they grow more
-      capable. In fact, AI systems are already starting to be used to automate fraudulent activities,
-      violate human rights, create harmful fake images, and identify dangerous toxins. To prevent some
-      misuses of AI, we argue that targeted interventions on certain capabilities will be warranted. These
-      restrictions may include controlling who can access certain types of AI models, what they can be
-      used for, whether outputs are filtered or can be traced back to their user, and the resources needed
-      to develop them. We also contend that some restrictions on non-AI capabilities needed to cause harm
-      will be required. Though capability restrictions risk reducing use more than misuse (facing an unfavorable
-      Misuse-Use Tradeoff), we argue that interventions on capabilities are warranted when other interventions
-      are insufficient, the potential harm from misuse is high, and there are targeted ways to intervene
-      on capabilities. We provide a taxonomy of interventions that can reduce AI misuse, focusing on the
-      specific steps required for a misuse to cause harm (the Misuse Chain), and a framework to determine
-      if an intervention is warranted. We apply this reasoning to three examples: predicting novel toxins,
-      creating harmful images, and automating spear phishing campaigns."
-  resolvedBy: research-db
-  anchors:
-  - Anderljung, 2024
-? https://governance.ai/research-paper/risk-assessment-at-agi-companies-a-review-of-popular-risk-assessment-techniques-from-other-safety-critical-industries
-: item:
-    id: 
-      https://governance.ai/research-paper/risk-assessment-at-agi-companies-a-review-of-popular-risk-assessment-techniques-from-other-safety-critical-industries
-    type: webpage
-    URL: 
-      https://governance.ai/research-paper/risk-assessment-at-agi-companies-a-review-of-popular-risk-assessment-techniques-from-other-safety-critical-industries
-    author:
-    - literal: Leonie Koessler
-    - literal: Jonas Schuett
-    issued:
-      date-parts:
-      - - 2023
-        - 7
-        - 17
-    title: 'Risk Assessment at AGI Companies: A Review of Popular Risk Assessment Techniques From Other
-      Safety-Critical Industries'
-    abstract: "# Risk Assessment at AGI Companies: A Review of Popular Risk Assessment Techniques From
-      Other Safety-Critical Industries\n\nCompanies like OpenAI, Google DeepMind, and Anthropic have the
-      stated goal of building artificial general intelligence (AGI) - AI systems that perform as well
-      as or better than humans on a wide variety of cognitive tasks. However, there are increasing concerns
-      that AGI would pose catastrophic risks. In light of this, AGI companies need to drastically improve
-      their risk management practices. To support such efforts, this paper reviews popular risk assessment
-      techniques from other safety-critical industries and suggests ways in which AGI companies could
-      use them to assess catastrophic risks from AI. The paper discusses three risk identification techniques
-      (scenario analysis, fishbone method, and risk typologies and taxonomies), five risk analysis techniques
-      (causal mapping, Delphi technique, cross-impact analysis, bow tie analysis, and system-theoretic
-      process analysis), and two risk evaluation techniques (checklists and risk matrices). For each of
-      them, the paper explains how they work, suggests ways in which AGI companies could use them, discusses
-      their benefits and limitations, and makes recommendations. Finally, the paper discusses when to
-      conduct risk assessments, when to use which technique, and how to use any of them. The reviewed
-      techniques will be obvious to risk management professionals in other industries. And they will not
-      be sufficient to assess catastrophic risks from AI. However, AGI companies should not skip the straightforward
-      step of reviewing best practices from other industries."
-  resolvedBy: research-db
-  anchors:
-  - Koessler, 2023
 https://governance.ai/research-paper/safety-case-template-for-frontier-ai-a-cyber-inability-argument:
   item:
     id: 
@@ -30225,38 +29635,6 @@ https://governance.ai/research-paper/safety-case-template-for-frontier-ai-a-cybe
   resolvedBy: research-db
   anchors:
   - Cihon, 2019
-? https://governance.ai/research-paper/the-offense-defense-balance-of-scientific-knowledge-does-publishing-ai-research-reduce-misuse
-: item:
-    id: 
-      https://governance.ai/research-paper/the-offense-defense-balance-of-scientific-knowledge-does-publishing-ai-research-reduce-misuse
-    type: webpage
-    URL: 
-      https://governance.ai/research-paper/the-offense-defense-balance-of-scientific-knowledge-does-publishing-ai-research-reduce-misuse
-    author:
-    - literal: Toby Shevlane
-    - literal: Allan Dafoe
-    issued:
-      date-parts:
-      - - 2020
-        - 2
-        - 8
-    title: 'The Offense-Defense Balance of Scientific Knowledge: Does Publishing AI Research Reduce Misuse?'
-    abstract: "# The Offense-Defense Balance of Scientific Knowledge: Does Publishing AI Research Reduce
-      Misuse?\n\nThere is growing concern over the potential misuse of artificial intelligence (AI) research.
-      Publishing scientific research can facilitate misuse of the technology, but the research can also
-      contribute to protections against misuse. This paper addresses the balance between these two effects.
-      Our theoretical framework elucidates the factors governing whether the published research will be
-      more useful for attackers or defenders, such as the possibility for adequate defensive measures,
-      or the independent discovery of the knowledge outside of the scientific community. The balance will
-      vary across scientific fields. However, we show that the existing conversation within AI has imported
-      concepts and conclusions from prior debates within computer security over the disclosure of software
-      vulnerabilities. While disclosure of software vulnerabilities often favours defence, this cannot
-      be assumed for AI research. The AI research community should consider concepts and policies from
-      a broad set of adjacent fields, and ultimately needs to craft policy well-suited to its particular
-      challenges."
-  resolvedBy: research-db
-  anchors:
-  - Shevlane, 2024
 https://governance.ai/research-paper/the-windfall-clause-distributing-the-benefits-of-ai-for-the-common-good:
   item:
     id: 
@@ -30292,33 +29670,6 @@ https://governance.ai/research-paper/the-windfall-clause-distributing-the-benefi
   resolvedBy: research-db
   anchors:
   - O’Keefe, 2020
-https://governance.ai/research-paper/three-lines-of-defense-against-risks-from-ai:
-  item:
-    id: https://governance.ai/research-paper/three-lines-of-defense-against-risks-from-ai
-    type: webpage
-    URL: https://governance.ai/research-paper/three-lines-of-defense-against-risks-from-ai
-    author:
-    - literal: Jonas Schuett
-    issued:
-      date-parts:
-      - - 2023
-        - 10
-        - 31
-    title: Three Lines of Defense Against Risks from AI
-    abstract: "# Three Lines of Defense Against Risks from AI\n\nOrganizations that develop and deploy
-      artificial intelligence (AI) systems need to manage the associated risks-for economic, legal, and
-      ethical reasons. However, it is not always clear who is responsible for AI risk management. The
-      three lines of defense (3LoD) model, which is considered best practice in many industries, might
-      offer a solution. It is a risk management framework that helps organizations to assign and coordinate
-      risk management roles and responsibilities. In this article, I suggest ways in which AI companies
-      could implement the model. I also discuss how the model could help reduce risks from AI: it could
-      identify and close gaps in risk coverage, increase the effectiveness of risk management practices,
-      and enable the board of directors to oversee management more effectively. The article is intended
-      to inform decision-makers at leading AI companies, regulators, and standard-setting bodies."
-  resolvedBy: research-db
-  anchors:
-  - ' Schuett, 2023'
-  - Schuett, 2023
 https://gwern.net/scaling-hypothesis:
   item:
     id: https://gwern.net/scaling-hypothesis
@@ -31031,25 +30382,6 @@ https://intelligence.org/files/LearningValue.pdf:
   resolvedBy: override
   anchors:
   - Dewey, 2011
-https://intelligence.org/wp-content/uploads/2025/05/AI-Governance-to-Avoid-Extinction.pdf:
-  item:
-    id: https://intelligence.org/wp-content/uploads/2025/05/AI-Governance-to-Avoid-Extinction.pdf
-    type: report
-    URL: https://intelligence.org/wp-content/uploads/2025/05/AI-Governance-to-Avoid-Extinction.pdf
-    author:
-    - family: Barnett
-      given: Peter
-    - family: Scher
-      given: Aaron
-    issued:
-      date-parts:
-      - - 2025
-        - 5
-    title: 'AI Governance to Avoid Extinction: The Strategic Landscape and Actionable Research Questions'
-    publisher: Machine Intelligence Research Institute
-  resolvedBy: override
-  anchors:
-  - Shevlane et al., 2023
 https://jetpress.org/v22/goertzel-pitt.htm:
   item:
     id: https://jetpress.org/v22/goertzel-pitt.htm
@@ -31569,25 +30901,6 @@ https://lesswrong.com/posts/PJLABqQ962hZEqhdB/debate-update-obfuscated-arguments
   resolvedBy: forum-magnum
   anchors:
   - Barnes et al., 2020
-https://lesswrong.com/posts/PY3HEHc5fMQkTrQo4/beware-safety-washing:
-  item:
-    id: https://lesswrong.com/posts/PY3HEHc5fMQkTrQo4/beware-safety-washing
-    type: post-weblog
-    URL: https://lesswrong.com/posts/PY3HEHc5fMQkTrQo4/beware-safety-washing
-    author:
-    - literal: Lizka
-    issued:
-      date-parts:
-      - - 2023
-        - 1
-        - 13
-    title: Beware safety-washing
-    abstract: 'Tl;dr: don’t be fooled into thinking that some groups working on AI are taking “safety”
-      concerns seriously (enough).[1] • Outline …'
-    container-title: LessWrong
-  resolvedBy: forum-magnum
-  anchors:
-  - Vaintrob, 2023
 https://lesswrong.com/posts/RYx6cLwzoajqjyB6b/what-convincing-warning-shot-could-help-prevent-extinction:
   item:
     id: 
@@ -31752,28 +31065,6 @@ https://lesswrong.com/posts/kYeHbXmW4Kppfkg5j/on-maim-and-superintelligence-stra
   resolvedBy: forum-magnum
   anchors:
   - Mowshowitz, 2025
-https://lesswrong.com/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-powerful-ais-are-controlled:
-  item:
-    id: 
-      https://lesswrong.com/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-powerful-ais-are-controlled
-    type: post-weblog
-    URL: 
-      https://lesswrong.com/posts/kcKrE9mzEHrdqtDpE/the-case-for-ensuring-that-powerful-ais-are-controlled
-    author:
-    - literal: ryan_greenblatt
-    - literal: Buck
-    issued:
-      date-parts:
-      - - 2024
-        - 1
-        - 24
-    title: The case for ensuring that powerful AIs are controlled
-    abstract: In this post, we argue that AI labs should ensure that powerful AIs are controlled. 
-      That is, labs should make sure that the safety measures they appl…
-    container-title: LessWrong
-  resolvedBy: forum-magnum
-  anchors:
-  - Greenblatt & Shlegeris, 2024
 https://lesswrong.com/posts/nCvvhFBaayaXyuBiD/shut-up-and-do-the-impossible:
   item:
     id: https://lesswrong.com/posts/nCvvhFBaayaXyuBiD/shut-up-and-do-the-impossible
@@ -31968,25 +31259,6 @@ https://lesswrong.com/posts/uJFC5WrcyTdat3Qcc/case-studies-in-simulators-and-age
   resolvedBy: forum-magnum
   anchors:
   - Petillo et al., 2025
-https://lesswrong.com/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely-difficult:
-  item:
-    id: https://lesswrong.com/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely-difficult
-    type: post-weblog
-    URL: https://lesswrong.com/posts/w2TAEvME2yAG9MHeq/gradient-hacking-is-extremely-difficult
-    author:
-    - literal: beren
-    issued:
-      date-parts:
-      - - 2023
-        - 1
-        - 24
-    title: Gradient hacking is extremely difficult
-    abstract: There has been a lot of discussion recently about gradient hackers as a potentially 
-      important class of mesaoptimizers. The idea of gradient hackers i…
-    container-title: LessWrong
-  resolvedBy: forum-magnum
-  anchors:
-  - Beren, 2023
 https://lesswrong.com/posts/x2n7mBLryDXuLwGhx/technical-ai-safety-research-landscape-slides:
   item:
     id: https://lesswrong.com/posts/x2n7mBLryDXuLwGhx/technical-ai-safety-research-landscape-slides
@@ -33014,24 +32286,6 @@ https://openai.com/blog/our-approach-to-ai-safety:
   resolvedBy: opengraph
   anchors:
   - OpenAI, 2023
-https://openai.com/blog/our-approach-to-alignment-research:
-  item:
-    id: https://openai.com/blog/our-approach-to-alignment-research
-    type: webpage
-    URL: https://openai.com/blog/our-approach-to-alignment-research
-    author:
-    - literal: OpenAI
-    issued:
-      date-parts:
-      - - 2022
-    title: Our approach to alignment research
-    container-title: OpenAI
-    abstract: We are improving our AI systems’ ability to learn from human feedback and to assist 
-      humans at evaluating AI. Our goal is to build a sufficiently aligned AI system that can help 
-      us solve all other alignment problems.
-  resolvedBy: opengraph
-  anchors:
-  - OpenAI, 2022
 https://openai.com/blog/planning-for-agi-and-beyond:
   item:
     id: https://openai.com/blog/planning-for-agi-and-beyond
@@ -33191,24 +32445,6 @@ https://openai.com/index/learning-from-human-preferences:
   resolvedBy: opengraph
   anchors:
   - OpenAI, 2017
-https://openai.com/index/openai-o1-system-card:
-  item:
-    id: https://openai.com/index/openai-o1-system-card
-    type: webpage
-    URL: https://openai.com/index/openai-o1-system-card
-    author:
-    - literal: OpenAI
-    issued:
-      date-parts:
-      - - 2024
-    title: OpenAI o1 System Card
-    container-title: OpenAI
-    abstract: This report outlines the safety work carried out prior to releasing OpenAI o1 and 
-      o1-mini, including external red teaming and frontier risk evaluations according to our 
-      Preparedness Framework.
-  resolvedBy: opengraph
-  anchors:
-  - OpenAI, 2024
 https://openai.com/index/openai-safety-update:
   item:
     id: https://openai.com/index/openai-safety-update
@@ -33244,6 +32480,8 @@ https://openai.com/index/our-approach-to-alignment-research:
   resolvedBy: opengraph
   anchors:
   - OpenAI, 2022
+  sameAs:
+  - https://openai.com/blog/our-approach-to-alignment-research
 https://openai.com/index/sora-2:
   item:
     id: https://openai.com/index/sora-2
@@ -33428,31 +32666,35 @@ https://openphilanthropy.org/research/what-a-compute-centric-framework-says-abou
 https://openreview.net/forum?id=oycEeFXX74:
   item:
     id: https://openreview.net/forum?id=oycEeFXX74
-    type: webpage
+    type: article
     URL: https://openreview.net/forum?id=oycEeFXX74
     author:
     - literal: Bhatt et al.
     issued:
       date-parts:
       - - 2024
-    title: Verifying your browser | OpenReview
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
+    title: 'Shell Games: Control Protocols for Adversarial AI Agents'
+    container-title: OpenReview
+  resolvedBy: override
   anchors:
   - Bhatt et al., 2024
 https://openreview.net/pdf?id=BZ5a1r-kVsf:
   item:
     id: https://openreview.net/pdf?id=BZ5a1r-kVsf
-    type: webpage
+    type: article
     URL: https://openreview.net/pdf?id=BZ5a1r-kVsf
     author:
-    - literal: LeCun
+    - family: LeCun
+      given: Yann
     issued:
       date-parts:
       - - 2022
-    title: Verifying your browser | OpenReview
-    note: Title read from the <title> tag; the page had no Open Graph metadata.
-  resolvedBy: opengraph
+        - 6
+        - 27
+    title: A Path Towards Autonomous Machine Intelligence
+    container-title: OpenReview
+    version: 0.9.2
+  resolvedBy: override
   anchors:
   - LeCun, 2022
 https://optimists.ai/2023/11/28/ai-is-easy-to-control:
@@ -33988,28 +33230,32 @@ https://psycnet.apa.org/record/1981-27235-001:
 https://psycnet.apa.org/record/2014-48585-000:
   item:
     id: https://psycnet.apa.org/record/2014-48585-000
-    type: webpage
+    type: book
     URL: https://psycnet.apa.org/record/2014-48585-000
     author:
-    - literal: Bostrom
+    - family: Bostrom
+      given: Nick
     issued:
       date-parts:
       - - 2014
-    title: 'Superintelligence: Paths, dangers, strategies.'
+    title: 'Superintelligence: Paths, Dangers, Strategies'
     archive: Internet Archive
     archive_location: 
       https://web.archive.org/web/20260916233115/https://psycnet.apa.org/record/2014-48585-000
-    container-title: APA PsycNET
     accessed:
       date-parts:
       - - 2026
         - 9
         - 16
-    note: The cited page no longer exists; this metadata comes from the Internet Archive's copy.
-  resolvedBy: wayback
+    publisher: Oxford University Press
+    publisher-place: Oxford
+    ISBN: 978-0-19-967811-2
+  resolvedBy: override
   anchors:
   - Bostrom, 2014
-  unreachable: refused
+  sameAs:
+  - https://books.google.se/books/about/Superintelligence.html?id=7_H8AwAAQBAJ&redir_esc=y
+  - https://goodreads.com/book/show/20527133-superintelligence
 https://pubmed.ncbi.nlm.nih.gov/13233369:
   item:
     id: https://pubmed.ncbi.nlm.nih.gov/13233369
@@ -34204,79 +33450,6 @@ https://pubmed.ncbi.nlm.nih.gov/36211133:
   resolvedBy: scholar-meta
   anchors:
   - Urbina et al., 2022
-https://pubmed.ncbi.nlm.nih.gov/36413172:
-  item:
-    id: https://pubmed.ncbi.nlm.nih.gov/36413172
-    type: article-journal
-    URL: https://pubmed.ncbi.nlm.nih.gov/36413172
-    title: Human-level play in the game of Diplomacy by combining language models with strategic 
-      reasoning
-    DOI: 10.1126/science.ade9097
-    container-title: Science
-    author:
-    - literal: Meta Fundamental AI Research Diplomacy Team (FAIR)†
-    - family: Bakhtin
-      given: Anton
-    - family: Brown
-      given: Noam
-    - family: Dinan
-      given: Emily
-    - family: Farina
-      given: Gabriele
-    - family: Flaherty
-      given: Colin
-    - family: Fried
-      given: Daniel
-    - family: Goff
-      given: Andrew
-    - family: Gray
-      given: Jonathan
-    - family: Hu
-      given: Hengyuan
-    - family: Jacob
-      given: Athul Paul
-    - family: Komeili
-      given: Mojtaba
-    - family: Konath
-      given: Karthik
-    - family: Kwon
-      given: Minae
-    - family: Lerer
-      given: Adam
-    - family: Lewis
-      given: Mike
-    - family: Miller
-      given: Alexander H.
-    - family: Mitts
-      given: Sasha
-    - family: Renduchintala
-      given: Adithya
-    - family: Roller
-      given: Stephen
-    - family: Rowe
-      given: Dirk
-    - family: Shi
-      given: Weiyan
-    - family: Spisak
-      given: Joe
-    - family: Wei
-      given: Alexander
-    - family: Wu
-      given: David
-    - family: Zhang
-      given: Hugh
-    - family: Zijlstra
-      given: Markus
-    issued:
-      date-parts:
-      - - 2022
-        - 12
-        - 9
-    note: Resolved via publisher metadata and Crossref.
-  resolvedBy: scholar-meta
-  anchors:
-  - META, 2022
-  - Meta, 2022
 https://pubmed.ncbi.nlm.nih.gov/36789740:
   item:
     id: https://pubmed.ncbi.nlm.nih.gov/36789740
@@ -34578,25 +33751,6 @@ https://researchgate.net/publication/360644155_AI_GOVERNANCE_ARE_CHIEF_AI_OFFICE
   resolvedBy: override
   anchors:
   - Papyshev et al., 2023
-https://researchgate.net/publication/382885035_Reasons_to_Doubt_the_Impact_of_AI_Risk_Evaluations:
-  item:
-    id: 
-      https://researchgate.net/publication/382885035_Reasons_to_Doubt_the_Impact_of_AI_Risk_Evaluations
-    type: article
-    URL: 
-      https://researchgate.net/publication/382885035_Reasons_to_Doubt_the_Impact_of_AI_Risk_Evaluations
-    author:
-    - family: Mukobi
-      given: Gabriel
-    issued:
-      date-parts:
-      - - 2024
-    title: Reasons to Doubt the Impact of AI Risk Evaluations
-    container-title: arXiv
-    DOI: 10.48550/arXiv.2408.02565
-  resolvedBy: override
-  anchors:
-  - Mukobi, 2024
 https://researchgate.net/publication/385353725_Safety_cases_for_frontier_AI:
   item:
     id: https://researchgate.net/publication/385353725_Safety_cases_for_frontier_AI
@@ -34902,7 +34056,10 @@ https://science.org/doi/10.1126/science.ade9097:
     container-title: Science
   resolvedBy: crossref
   anchors:
+  - META, 2022
   - Meta, 2022
+  sameAs:
+  - https://pubmed.ncbi.nlm.nih.gov/36413172
 https://sciencedirect.com/science/article/pii/S0040162521003413:
   item:
     id: https://sciencedirect.com/science/article/pii/S0040162521003413
@@ -35239,21 +34396,28 @@ https://tandfonline.com/doi/full/10.1080/19331681.2025.2473994:
 https://techgov.intelligence.org/research/ai-governance-to-avoid-extinction:
   item:
     id: https://techgov.intelligence.org/research/ai-governance-to-avoid-extinction
-    type: webpage
+    type: report
     URL: https://techgov.intelligence.org/research/ai-governance-to-avoid-extinction
     author:
-    - literal: Barnett
+    - family: Barnett
+      given: Peter
+    - family: Scher
+      given: Aaron
     issued:
       date-parts:
       - - 2025
-    title: 'AI Governance to Avoid Extinction: The Strategic Landscape and Actionable Research Questions
-      — MIRI Technical Governance Team'
+        - 5
+    title: 'AI Governance to Avoid Extinction: The Strategic Landscape and Actionable Research Questions'
     abstract: This AI governance research agenda lays out our view of the strategic landscape and 
       actionable research questions that, if answered, would provide important insight on how to 
       reduce catastrophic and extinction risks from AI.
-  resolvedBy: opengraph
+    publisher: Machine Intelligence Research Institute
+  resolvedBy: override
   anchors:
   - ' Barnett, 2025'
+  - Shevlane et al., 2023
+  sameAs:
+  - https://intelligence.org/wp-content/uploads/2025/05/AI-Governance-to-Avoid-Extinction.pdf
 https://technologyreview.com/2023/05/02/1072528/geoffrey-hinton-google-why-scared-ai:
   item:
     id: https://technologyreview.com/2023/05/02/1072528/geoffrey-hinton-google-why-scared-ai

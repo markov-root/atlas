@@ -17,6 +17,8 @@ import {
   sourceOf,
   allReferencesWithLocations,
   toReference,
+  aliasMap,
+  resolveKey,
 } from './bibliography';
 import type { Chapter, Section } from '../textbook-loader';
 import type { Node } from '../textbook-loader/transformer';
@@ -360,6 +362,62 @@ describe('the committed store', () => {
       (r) => r.authors && r.year && r.title === `${r.authors}, ${r.year}`,
     );
     expect(redundant).toEqual([]);
+  });
+});
+
+describe('aliased duplicates (task:0031)', () => {
+  const root = process.cwd();
+  const KEEP =
+    'https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-ingenuity';
+  const DROP = 'https://deepmind.com/blog/specification-gaming-the-flip-side-of-ai-ingenuity';
+
+  it('derives the alias map from the store the extract command compiled', () => {
+    resetStoreCache();
+    expect(aliasMap(root).get(DROP)).toBe(KEEP);
+  });
+
+  it('leaves an address nobody aliased alone', () => {
+    resetStoreCache();
+    expect(resolveKey('https://arxiv.org/abs/1911.01547', root)).toBe(
+      'https://arxiv.org/abs/1911.01547',
+    );
+  });
+
+  it('a citation at the mirror renders the surviving entry, not a bare URL', () => {
+    // Without this the section list looks up a key the store no longer holds
+    // and falls through to `displayUrl`, putting the same work on the page
+    // twice - once titled, once as an address.
+    resetStoreCache();
+    const refs = sectionReferences(section([para(link(DROP, 'Krakovna et al., 2020'))]), root);
+    expect(refs.length).toBe(1);
+    expect(refs[0].key).toBe(KEEP);
+    expect(refs[0].resolved).toBe(true);
+  });
+
+  it('counts a work cited at two of its addresses once', () => {
+    resetStoreCache();
+    const refs = sectionReferences(
+      section([para(link(DROP, 'Krakovna et al., 2020')), para(link(KEEP, 'Krakovna, 2020'))]),
+      root,
+    );
+    expect(refs.length).toBe(1);
+  });
+
+  it('carries the other addresses to the browser, so a back-link can match them', () => {
+    resetStoreCache();
+    const ref = allReferences(root).find((r) => r.key === KEEP);
+    expect(ref?.aliases).toContain(DROP);
+  });
+
+  it('the survivor of every alias group is itself in the store', () => {
+    // A `sameAs` pointing at a key that is not an entry would mean the fold
+    // deleted the wrong side.
+    resetStoreCache();
+    const store = loadStore(root);
+    for (const [alias, survivor] of aliasMap(root)) {
+      expect(store[survivor], `${alias} survives as ${survivor}`).toBeDefined();
+      expect(store[alias]).toBeUndefined();
+    }
   });
 });
 

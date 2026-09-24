@@ -331,6 +331,7 @@ const groupByChapter = chapters.length > 1;
             data-cited={ref.cited
               .map((c) => `${String(c.chapterNumber).padStart(2, '0')}|${c.chapterSlug}|${c.sectionNumber}`)
               .join(' ')}
+            data-aliases={ref.aliases.join(' ')}
           >
             {/* The house style. Always present, so the list works with no
                 pre-rendered file and with JavaScript off. */}
@@ -761,8 +762,7 @@ const groupByChapter = chapters.length > 1;
    *
    * The one way a citation differs is that **a footnote is called once and a
    * source is often cited many times**, so a reference gets one back-link per
-   * instance, lettered in document order the way a numbered-reference style
-   * does it.
+   * instance, in document order.
    *
    * Done on the client rather than in the transformer (`task:0036` D1 option B)
    * because the transformer feeds the audio content hash, which is being held
@@ -779,7 +779,15 @@ const groupByChapter = chapters.length > 1;
 
     const entries = new Map<string, HTMLElement>();
     root.querySelectorAll<HTMLElement>('[data-bib-entry]').forEach((entry) => {
-      if (entry.id.startsWith('ref-')) entries.set(decodeURIComponent(entry.id.slice(4)), entry);
+      if (!entry.id.startsWith('ref-')) return;
+      entries.set(decodeURIComponent(entry.id.slice(4)), entry);
+      // An aliased work is rendered once, under the surviving address, but the
+      // prose still links to whichever mirror the Doc cited (`task:0031`). Both
+      // addresses have to reach this entry or those citations get no back-link
+      // at all, which is the silent half of the failure.
+      for (const alias of (entry.dataset.aliases ?? '').split(' ')) {
+        if (alias) entries.set(alias, entry);
+      }
     });
     if (entries.size === 0) return;
 

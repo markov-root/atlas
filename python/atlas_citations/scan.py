@@ -14,9 +14,11 @@ commands later.
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any
+
+from .aliases import Aliases, read_aliases
 
 #: Relative to the repo root.
 SCAN_PATH = Path("data") / "citations" / "citations.json"
@@ -138,9 +140,44 @@ def parse_scan(text: str) -> Scan:
     )
 
 
+def apply_aliases(scan: Scan, aliases: Aliases) -> Scan:
+    """Rewrite each citation's ``key`` to the surviving entry for that work.
+
+    ``task:0031``. The alias file is an identity decision, and ``key`` is
+    documented above as "the bibliography entry identity" - so this belongs at
+    the same boundary canonicalization does, not in one command that remembers
+    to ask. Every downstream consumer (extract, report, urls, propose) then sees
+    one work under one address without knowing the file exists.
+
+    ``raw_url`` is left exactly as the Doc wrote it, because a report telling an
+    author to fix a link has to show the link they wrote.
+    """
+    if not aliases.of:
+        return scan
+    return Scan(
+        chapters=[
+            Chapter(
+                number=ch.number,
+                title=ch.title,
+                slug=ch.slug,
+                sections=[
+                    Section(
+                        number=sec.number,
+                        title=sec.title,
+                        slug=sec.slug,
+                        citations=[replace(c, key=aliases.resolve(c.key)) for c in sec.citations],
+                    )
+                    for sec in ch.sections
+                ],
+            )
+            for ch in scan.chapters
+        ]
+    )
+
+
 def read_scan(root: Path) -> Scan:
-    """Read the handoff file from a checkout root."""
+    """Read the handoff file from a checkout root, with reviewed aliases applied."""
     path = root / SCAN_PATH
     if not path.exists():
         raise ScanError(f"no citation scan at {SCAN_PATH} - run `atlas citations scan` first")
-    return parse_scan(path.read_text(encoding="utf-8"))
+    return apply_aliases(parse_scan(path.read_text(encoding="utf-8")), read_aliases(root))

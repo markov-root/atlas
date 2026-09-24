@@ -49,13 +49,13 @@ index as numbered files (e.g. `0001-title.md`).
   Position `atlas docs check` as a portable floor under the software-engineering skill (todo).
 - [task:0013](./0013-migrate-the-google-docs-sources-the-textbook-is-served-from.md) -
   Migrate the Google Docs sources the textbook is served from (todo - blocks nothing, but orphans the committed cache if done naively).
+
 ### Refactor programme (2026-09, from the audit sweep)
 
 Seven records covering the six root decisions the 46 audit findings collapse into, plus the
 standalone fixes. Each carries a **Decisions required before execution** section - 29 decisions
 in total, each with options, a recommendation, and what is irreversible if decided wrongly.
 **None of these is authorised to execute; the decisions come first.**
-
 
 - [task:0014](./0014-model-language-and-edition-through-the-whole-stack.md) -
   Model language and edition through the whole stack (todo - plumbing, not a model change; six decisions gate execution; translators are blocked today).
@@ -92,7 +92,7 @@ in total, each with options, a recommendation, and what is irreversible if decid
 - [task:0030](./0030-render-the-bibliography-through-a-real-csl-processor-with-a-reader-facing-style.md) -
   Render the bibliography through a real CSL processor with a reader-facing style switcher (todo - child of 0021; replaces the hand-rolled formatter; styles shipped, control panel and grouping still to build).
 - [task:0031](./0031-collapse-duplicate-sources-through-an-alias-file.md) -
-  Collapse duplicate sources through an alias file (todo - child of 0021; detection shipped in the report, 7 groups; merging is a reviewed human decision).
+  Collapse duplicate sources through an alias file (done 2026-09-24 - child of 0021; 33 addresses folded onto 29 entries, 945 sources became 912, and the report ends at 0 probable duplicates).
 - [task:0032](./0032-close-the-citation-metadata-tail-to-complete-coverage.md) -
   Close the citation metadata tail to complete coverage (todo - child of 0021, p1; 132 unresolved sources classified by fetching all of them; new resolvers plus a reviewed override file for what no API describes).
 - [task:0033](./0033-replace-native-select-dropdowns-with-a-styled-listbox-component.md) -
