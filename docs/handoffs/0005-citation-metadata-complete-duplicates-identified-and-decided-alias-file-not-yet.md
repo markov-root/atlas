@@ -87,11 +87,16 @@ Run `./bin/atlas citations render` and `pnpm check` before committing these; the
 ## Open work
 
 1. **`task:0031`** - the alias file. Identified and decided, not written. See below.
-2. **`task:0035`** - p1, 24 upstream Doc corrections including one wrong-document citation.
-3. **`task:0022`** - p1, unchanged. `deploy.yml` passes real R2 credentials and `SKIP_AUDIO=1` does
+2. **`task:0036`** - back-links from a reference to every place it cites, owner-requested
+   2026-09-24. D1 is the live question: the citation index belongs in the transformer where
+   footnote numbers already live, but putting it there now would churn the output snapshots and the
+   module feeding the audio content hash, which this branch is deliberately keeping stable until the
+   merge. Recommendation recorded: client-side first, transformer after.
+3. **`task:0035`** - p1, 24 upstream Doc corrections including one wrong-document citation.
+4. **`task:0022`** - p1, unchanged. `deploy.yml` passes real R2 credentials and `SKIP_AUDIO=1` does
    not gate `pushPublicFiles`, so a deploy re-uploads all audio. Verified **not** destructive on this
    branch: the audio content hashes are unchanged, so nothing is re-synthesised.
-4. **`task:0033`**, **`task:0034`**, **`task:0023`**, **`task:0013`**, **`task:0028`**.
+5. **`task:0033`**, **`task:0034`**, **`task:0023`**, **`task:0013`**, **`task:0028`**.
 
 ## `task:0031`: what is known, so it is not re-derived
 

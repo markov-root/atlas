@@ -256,7 +256,12 @@ const groupByChapter = chapters.length > 1;
                 <select id={`${id}-group`} data-bib-group class={SELECT}>
                   <option value="">Flat list</option>
                   {groupByChapter && <option value="chapter">Chapter</option>}
-                  <option value="section">{groupByChapter ? 'Chapter and section' : 'Section'}</option>
+                  {/* Selected by default: a reader arriving from a section is
+                      looking for their way back to it, and a flat list of 945
+                      entries is the one view that cannot help with that. */}
+                  <option value="section" selected>
+                    {groupByChapter ? 'Chapter and section' : 'Section'}
+                  </option>
                 </select>
               </div>
             )}
@@ -376,14 +381,18 @@ const groupByChapter = chapters.length > 1;
       )}
 
       {more.length > 0 && (
-        <p class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+        <p class="mt-6 text-sm">
           {more.map((link) => (
             <a
               href={link.href}
-              class="inline-flex items-center gap-1.5 text-brand-600 underline decoration-brand-300 underline-offset-2 hover:decoration-brand-600 transition-colors"
+              class="text-brand-600 underline decoration-brand-300 underline-offset-2 hover:decoration-brand-600 transition-colors"
             >
               {link.label}
-              <Icon name="tabler:arrow-right" class="h-4 w-4" aria-hidden="true" />
+              <Icon
+                name="tabler:arrow-right"
+                class="ml-1 inline-block size-4 align-[-0.2em]"
+                aria-hidden="true"
+              />
             </a>
           ))}
         </p>

@@ -93,7 +93,6 @@ const isLastSection = section.nextSection === null;
 
 const sectionMarkdownUrl = `/chapters/${version}/${chapter.slug}/${section.slug}.md`;
 const chapterMarkdownUrl = `/chapters/${version}/${chapter.slug}.md`;
-const chapterBibliographyUrl = `/bibliography/${version}/${chapter.slug}`;
 
 const lecture = resolveResource(chapter.meta.lecture);
 const paper = resolveResource(chapter.meta.paper);
@@ -318,7 +317,7 @@ const paper = resolveResource(chapter.meta.paper);
 
         {section.footnotes && section.footnotes.length > 0 && (
         <section id="footnotes" class="mt-12 pt-8 border-t border-gray-300">
-            <h2 class="text-xl font-semibold mb-4 text-gray-900 sr-only">Footnotes</h2>
+            <h2 class="text-xl font-semibold mb-4 text-gray-900">Footnotes</h2>
             <ol class="list-decimal list-outside pl-6 text-sm text-gray-700 space-y-3">
                 {section.footnotes.map(({ number, children }) => (
                 <li id={`fn-${number}`} class="pl-2 target:bg-brand-50 target:border-l-2 target:border-brand-500 target:-ml-2 target:pl-1.5 target:pr-2">
@@ -334,10 +333,7 @@ const paper = resolveResource(chapter.meta.paper);
             where a reader who has just followed a citation expects to land. */}
         <Bibliography
           references={sectionReferences(section)}
-          more={[
-            { href: chapterBibliographyUrl, label: 'All sources in this chapter' },
-            { href: '/bibliography', label: 'All sources in the Atlas' },
-          ]}
+          more={[{ href: '/bibliography', label: 'All references' }]}
         />
 
         {section.number === 1 && chapter.meta.acknowledgements && chapter.meta.acknowledgements.length > 0 && (

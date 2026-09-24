@@ -101,3 +101,5 @@ in total, each with options, a recommendation, and what is irreversible if decid
   Include the bibliography in the chapter PDF (todo - child of 0021, p2; every input exists, the Typst renderer never asked).
 - [task:0035](./0035-upstream-google-doc-citation-corrections-wrong-links-and-wrong-anchor-text.md) -
   Upstream Google Doc citation corrections (todo - child of 0032, p2; eleven defects that cannot be fixed in this repository because URL is identity and anchor text is never re-rendered).
+- [task:0036](./0036-back-links-from-a-reference-to-every-place-it-is-cited.md) -
+  Back-links from a reference to every place it is cited (todo - p2; a footnote can return the reader to their place and a citation cannot, and a source cited many times needs many back-links).
