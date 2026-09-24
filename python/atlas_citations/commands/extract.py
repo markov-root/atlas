@@ -25,6 +25,7 @@ from ..store import (
     fill_container_titles,
     parse_store,
     serialize_store,
+    split_site_suffixes,
     upsert_entries,
 )
 
@@ -97,6 +98,10 @@ def citations_extract(root: Path) -> int:
     # why this is not a --redo.
     merged, filled = fill_container_titles(merged)
 
+    # Also offline, and for the same reason: a site name sitting in a title is
+    # a fact the address already states. See `split_site_suffixes`.
+    merged, unsuffixed = split_site_suffixes(merged)
+
     # Reviewed metadata is applied last and unconditionally, because it is the
     # one input here a human wrote (task:0032 D4). Applying it on every extract
     # is what makes the store disposable: delete it, re-extract, re-resolve, and
@@ -116,6 +121,8 @@ def citations_extract(root: Path) -> int:
     print(f"{len(merged)} sources in {STORE_PATH} ({resolved} already resolved and preserved)")
     if filled:
         print(f"{filled} entries given a container title derived from their URL")
+    if unsuffixed:
+        print(f"{unsuffixed} titles had their site name moved out into the container")
     if unmatched:
         # Named rather than counted: an override pointing at nothing is a typo or
         # a citation edited out of the prose, and either way someone must look.

@@ -2853,7 +2853,7 @@ We would like to express our gratitude to Jeanne Salle, Charles Martinet, Vincen
 #pagebreak()
 #heading(outlined: true, numbering: none)[References]
 
-#par(hanging-indent: 1.5em)[AI Digest (2023). #link("https://theaidigest.org/progress-and-dangers")[How fast is AI improving? - AI Digest]. \\
+#par(hanging-indent: 1.5em)[AI Digest (2023). #link("https://theaidigest.org/progress-and-dangers")[How fast is AI improving?]. #emph[AI Digest]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[theaidigest.org/progress-and-dangers]]
 
 #par(hanging-indent: 1.5em)[AI Impacts (2022). #link("https://blog.aiimpacts.org/p/2023-ai-survey-of-2778-six-things")[Survey of 2,778 AI authors: six parts in pictures]. \\
@@ -2898,10 +2898,10 @@ We would like to express our gratitude to Jeanne Salle, Charles Martinet, Vincen
 #par(hanging-indent: 1.5em)[ARC-AGI (2024). #link("https://arcprize.org/arc-agi/1")[ARC-AGI-1]. #emph[ARC Prize]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[arcprize.org/arc-agi/1]]
 
-#par(hanging-indent: 1.5em)[ArtificialAnalysis (2025). #link("https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index")[Artificial Analysis Intelligence Index v4.3.2 | Artificial Analysis]. \\
+#par(hanging-indent: 1.5em)[ArtificialAnalysis (2025). #link("https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index")[Artificial Analysis Intelligence Index v4.3.2]. #emph[Artificial Analysis]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index]]
 
-#par(hanging-indent: 1.5em)[Aschenbrenner (2024). #link("https://situational-awareness.ai/from-gpt-4-to-agi")[I. From GPT-4 to AGI: Counting the OOMs - SITUATIONAL AWARENESS]. #emph[SITUATIONAL AWARENESS - The Decade Ahead]. \\
+#par(hanging-indent: 1.5em)[Aschenbrenner (2024). #link("https://situational-awareness.ai/from-gpt-4-to-agi")[I. From GPT-4 to AGI: Counting the OOMs]. #emph[SITUATIONAL AWARENESS - The Decade Ahead]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[situational-awareness.ai/from-gpt-4-to-agi]]
 
 #par(hanging-indent: 1.5em)[Bakhtin, A. et al. (2022). #link("https://arxiv.org/abs/2210.05492")[Mastering the Game of No-Press Diplomacy via Human-Regularized Reinforcement Learning and Planning]. #emph[arXiv]. \\
@@ -2916,10 +2916,10 @@ We would like to express our gratitude to Jeanne Salle, Charles Martinet, Vincen
 #par(hanging-indent: 1.5em)[Bommasani, R. et al. (2021). #link("https://arxiv.org/abs/2108.07258")[On the Opportunities and Risks of Foundation Models]. #emph[arXiv]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[arxiv.org/abs/2108.07258]]
 
-#par(hanging-indent: 1.5em)[Boston Dynamics (2024). #link("https://bostondynamics.com/video/atlas-goes-hands-on")[Atlas Goes Hands On | Boston Dynamics]. \\
+#par(hanging-indent: 1.5em)[Boston Dynamics (2024). #link("https://bostondynamics.com/video/atlas-goes-hands-on")[Atlas Goes Hands On]. #emph[Boston Dynamics]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[bostondynamics.com/video/atlas-goes-hands-on]]
 
-#par(hanging-indent: 1.5em)[Boston Dynamics (2024). #link("https://bostondynamics.com/products/stretch")[Stretch - Mobile Warehouse Robots | Boston Dynamics]. \\
+#par(hanging-indent: 1.5em)[Boston Dynamics (2024). #link("https://bostondynamics.com/products/stretch")[Stretch - Mobile Warehouse Robots]. #emph[Boston Dynamics]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[bostondynamics.com/products/stretch]]
 
 #par(hanging-indent: 1.5em)[Bostrom, N. (2014). #link("https://psycnet.apa.org/record/2014-48585-000")[Superintelligence: Paths, Dangers, Strategies]. \\
@@ -2976,16 +2976,16 @@ We would like to express our gratitude to Jeanne Salle, Charles Martinet, Vincen
 #par(hanging-indent: 1.5em)[Davidson (2024). #link("https://openphilanthropy.org/research/what-a-compute-centric-framework-says-about-takeoff-speeds")[What a Compute-Centric Framework Says About Takeoff Speeds]. #emph[Coefficient Giving]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[openphilanthropy.org/research/what-a-compute-centric-framework-says-about-takeoff-speeds]]
 
-#par(hanging-indent: 1.5em)[DeepMind (2016). #link("https://deepmind.com/research/highlighted-research/alphago")[AlphaGo — Google DeepMind]. \\
+#par(hanging-indent: 1.5em)[DeepMind (2016). #link("https://deepmind.com/research/highlighted-research/alphago")[AlphaGo]. #emph[Google DeepMind]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[deepmind.com/research/highlighted-research/alphago]]
 
-#par(hanging-indent: 1.5em)[DeepMind (2023). #link("https://deepmind.google/discover/blog/funsearch-making-new-discoveries-in-mathematical-sciences-using-large-language-models")[FunSearch: Making new discoveries in mathematical sciences using Large Language Models — Google DeepMind]. \\
+#par(hanging-indent: 1.5em)[DeepMind (2023). #link("https://deepmind.google/discover/blog/funsearch-making-new-discoveries-in-mathematical-sciences-using-large-language-models")[FunSearch: Making new discoveries in mathematical sciences using Large Language Models]. #emph[Google DeepMind]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[deepmind.google/discover/blog/funsearch-making-new-discoveries-in-mathematical-sciences-using-large-language-…]]
 
-#par(hanging-indent: 1.5em)[DeepMind (2024). #link("https://deepmind.google/discover/blog/how-alphachip-transformed-computer-chip-design")[How AlphaChip transformed computer chip design — Google DeepMind]. \\
+#par(hanging-indent: 1.5em)[DeepMind (2024). #link("https://deepmind.google/discover/blog/how-alphachip-transformed-computer-chip-design")[How AlphaChip transformed computer chip design]. #emph[Google DeepMind]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[deepmind.google/discover/blog/how-alphachip-transformed-computer-chip-design]]
 
-#par(hanging-indent: 1.5em)[DeepMind (2025). #link("https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms")[AlphaEvolve: A Gemini-powered coding agent for designing advanced algorithms — Google DeepMind]. \\
+#par(hanging-indent: 1.5em)[DeepMind (2025). #link("https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms")[AlphaEvolve: A Gemini-powered coding agent for designing advanced algorithms]. #emph[Google DeepMind]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms]]
 
 #par(hanging-indent: 1.5em)[Delétang, G. et al. (2022). #link("https://arxiv.org/abs/2207.02098")[Neural Networks and the Chomsky Hierarchy]. #emph[arXiv]. \\
@@ -3057,7 +3057,7 @@ We would like to express our gratitude to Jeanne Salle, Charles Martinet, Vincen
 #par(hanging-indent: 1.5em)[Google (2025). #link("https://blog.google/innovation-and-ai/products/nano-banana-pro")[Introducing Nano Banana Pro]. #emph[Google]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[blog.google/innovation-and-ai/products/nano-banana-pro]]
 
-#par(hanging-indent: 1.5em)[Google DeepMind (2019). #link("https://deepmind.google/discover/blog/alphastar-mastering-the-real-time-strategy-game-starcraft-ii")[AlphaStar: Mastering the real-time strategy game StarCraft II — Google DeepMind]. \\
+#par(hanging-indent: 1.5em)[Google DeepMind (2019). #link("https://deepmind.google/discover/blog/alphastar-mastering-the-real-time-strategy-game-starcraft-ii")[AlphaStar: Mastering the real-time strategy game StarCraft II]. #emph[Google DeepMind]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[deepmind.google/discover/blog/alphastar-mastering-the-real-time-strategy-game-starcraft-ii]]
 
 #par(hanging-indent: 1.5em)[Google DeepMind (2020). #link("https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology")[AlphaFold: a solution to a 50-year-old grand challenge in biology]. \\
@@ -3111,13 +3111,13 @@ We would like to express our gratitude to Jeanne Salle, Charles Martinet, Vincen
 #par(hanging-indent: 1.5em)[Hoffmann, J. et al. (2022). #link("https://arxiv.org/abs/2203.15556")[Training Compute-Optimal Large Language Models]. #emph[arXiv]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[arxiv.org/abs/2203.15556]]
 
-#par(hanging-indent: 1.5em)[IBM (2024). #link("https://ibm.com/topics/artificial-intelligence")[What Is Artificial Intelligence (AI)? | IBM]. \\
+#par(hanging-indent: 1.5em)[IBM (2024). #link("https://ibm.com/topics/artificial-intelligence")[What Is Artificial Intelligence (AI)?]. #emph[IBM]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[ibm.com/topics/artificial-intelligence]]
 
-#par(hanging-indent: 1.5em)[IBM (2025). #link("https://ibm.com/history/deep-blue")[Deep Blue | IBM]. \\
+#par(hanging-indent: 1.5em)[IBM (2025). #link("https://ibm.com/history/deep-blue")[Deep Blue]. #emph[IBM]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[ibm.com/history/deep-blue]]
 
-#par(hanging-indent: 1.5em)[IBM (2025). #link("https://ibm.com/history/watson-jeopardy")[Watson, Jeopardy! champion | IBM]. \\
+#par(hanging-indent: 1.5em)[IBM (2025). #link("https://ibm.com/history/watson-jeopardy")[Watson, Jeopardy! champion]. #emph[IBM]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[ibm.com/history/watson-jeopardy]]
 
 #par(hanging-indent: 1.5em)[Jack Parker-Holder & Shlomi Fruchter (2025). #link("https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models")[Genie 3: A new frontier for world models]. \\
@@ -3159,7 +3159,7 @@ We would like to express our gratitude to Jeanne Salle, Charles Martinet, Vincen
 #par(hanging-indent: 1.5em)[Kosinski, M. (2023). #link("https://arxiv.org/abs/2302.02083")[Evaluating Large Language Models in Theory of Mind Tasks]. #emph[arXiv]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[doi.org/10.1073/pnas.2405460121]]
 
-#par(hanging-indent: 1.5em)[Krakovna et al. (2020). #link("https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-ingenuity")[Specification gaming: the flip side of AI ingenuity — Google DeepMind]. \\
+#par(hanging-indent: 1.5em)[Krakovna et al. (2020). #link("https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-ingenuity")[Specification gaming: the flip side of AI ingenuity]. #emph[Google DeepMind]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-ingenuity]]
 
 #par(hanging-indent: 1.5em)[Kwa, T. et al. (2025). #link("https://arxiv.org/abs/2503.14499")[Measuring AI Ability to Complete Long Software Tasks]. #emph[arXiv]. \\
@@ -3348,7 +3348,7 @@ We would like to express our gratitude to Jeanne Salle, Charles Martinet, Vincen
 #par(hanging-indent: 1.5em)[Wei, J. et al. (2022). #link("https://arxiv.org/abs/2206.07682")[Emergent Abilities of Large Language Models]. #emph[arXiv]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[arxiv.org/abs/2206.07682]]
 
-#par(hanging-indent: 1.5em)[Wikipedia (2022). #link("https://en.wikipedia.org/wiki/AI-complete")[AI-complete - Wikipedia]. \\
+#par(hanging-indent: 1.5em)[Wikipedia (2022). #link("https://en.wikipedia.org/wiki/AI-complete")[AI-complete]. #emph[Wikipedia]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[en.wikipedia.org/wiki/AI-complete]]
 
 #par(hanging-indent: 1.5em)[Wooldridge (2021). #link("https://amazon.com/Brief-History-Artificial-Intelligence-Where/dp/1250770742")[A Brief History of Artificial Intelligence: What It Is, Where We Are, and Where We Are Going: Wooldridge, Michael: 9781250770745: Amazon.com: Books]. \\

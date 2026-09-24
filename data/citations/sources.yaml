@@ -231,11 +231,12 @@ https://ai-2027.com/research/security-forecast:
     issued:
       date-parts:
       - - 2025
-    title: Security Forecast — AI 2027
+    title: Security Forecast
     abstract: AI 2027 predicts AI models will be stolen due to poor security and highly valuable 
       algorithmic secrets will leak through espionage. This supplement justifies why we think this 
       is plausible.
     note: Research-database record found, but no publication date.
+    container-title: AI 2027
   resolvedBy: research-db
   anchors:
   - ' Dean, 2025'
@@ -444,7 +445,7 @@ https://ainowinstitute.org/publications/research/ai-now-2025-landscape-report:
       - - 2025
         - 6
         - 3
-    title: 'Artificial Power: 2025 Landscape Report - AI Now Institute'
+    title: 'Artificial Power: 2025 Landscape Report'
     container-title: AI Now Institute
     abstract: In the aftermath of the “AI boom,” this report examines how the push to integrate AI 
       products everywhere grants AI companies - and the tech oligarchs that run them - power that 
@@ -612,7 +613,7 @@ https://aisi.gov.uk/work/aisis-research-direction-for-technical-solutions:
     issued:
       date-parts:
       - - 2025
-    title: How we’re addressing the gap between AI capabilities and mitigations | AISI Work
+    title: How we’re addressing the gap between AI capabilities and mitigations
     container-title: AI Security Institute
     abstract: We outline our approach to technical solutions for misuse and loss of control.
   resolvedBy: opengraph
@@ -628,7 +629,7 @@ https://aisi.gov.uk/work/pre-deployment-evaluation-of-anthropics-upgraded-claude
     issued:
       date-parts:
       - - 2024
-    title: Pre-deployment evaluation of Anthropic’s upgraded Claude 3.5 Sonnet | AISI Work
+    title: Pre-deployment evaluation of Anthropic’s upgraded Claude 3.5 Sonnet
     container-title: AI Security Institute
     abstract: The UK Artificial Intelligence Safety Institute and U.S. Artificial Intelligence 
       Safety Institute conducted a joint pre-deployment evaluation of Anthropic’s latest model
@@ -2712,7 +2713,7 @@ https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index
     issued:
       date-parts:
       - - 2025
-    title: Artificial Analysis Intelligence Index v4.3.2 | Artificial Analysis
+    title: Artificial Analysis Intelligence Index v4.3.2
     container-title: Artificial Analysis
     abstract: Compare AI model performance on Artificial Analysis Intelligence Index v4.3.2. A 
       composite benchmark aggregating ten challenging evaluations to provide a holistic measure of 
@@ -2730,8 +2731,9 @@ https://artificialintelligenceact.eu/the-act:
     issued:
       date-parts:
       - - 2024
-    title: The Act Texts | EU Artificial Intelligence Act
+    title: The Act Texts
     note: Title read from the <title> tag; the page had no Open Graph metadata.
+    container-title: EU Artificial Intelligence Act
   resolvedBy: opengraph
   anchors:
   - European Commission, 2024
@@ -26826,7 +26828,7 @@ https://bostondynamics.com/products/stretch:
     issued:
       date-parts:
       - - 2024
-    title: Stretch - Mobile Warehouse Robots | Boston Dynamics
+    title: Stretch - Mobile Warehouse Robots
     container-title: Boston Dynamics
     abstract: Boston Dynamics helps you prioritize warehouse automation. Deploy our Stretch robot in
       your warehouse to elevate case handling.
@@ -26843,7 +26845,7 @@ https://bostondynamics.com/video/atlas-goes-hands-on:
     issued:
       date-parts:
       - - 2024
-    title: Atlas Goes Hands On | Boston Dynamics
+    title: Atlas Goes Hands On
     container-title: Boston Dynamics
     abstract: Watch Atlas, the humanoid robot from Boston Dynamics, autonomously moving engine 
       covers between supplier containers and a mobile sequencing dolly.
@@ -26860,7 +26862,7 @@ https://britannica.com/technology/military-technology/The-castle:
     issued:
       date-parts:
       - - 2025
-    title: Military technology - Castles, Fortifications, Defense | Britannica
+    title: Military technology - Castles, Fortifications, Defense
     container-title: Encyclopedia Britannica
     abstract: 'Military technology - Castles, Fortifications, Defense: The earliest distinctive European
       fortification characteristic of feudal patterns of social organization and warfare was the motte-and-bailey
@@ -27022,7 +27024,7 @@ https://carnegieendowment.org/research/2024/09/if-then-commitments-for-ai-risk-r
     issued:
       date-parts:
       - - 2023
-    title: Microsoft's AI chatbot, TayTweets, suffers another meltdown | CBC Radio
+    title: Microsoft's AI chatbot, TayTweets, suffers another meltdown
     archive: Internet Archive
     archive_location: 
       https://web.archive.org/web/20250716211155/https://www.cbc.ca/radio/day6/episode-279-playing-ball-on-grass-vs-turf-taytweets-big-fail-narco-subs-fake-food-and-more-1.3514966/microsoft-s-ai-chatbot-taytweets-suffers-another-meltdown-1.3515046
@@ -27216,7 +27218,7 @@ https://chess.com:
       date-parts:
       - - 2024
     title: CISA and Partners Release Advisory on PRC-sponsored Volt Typhoon Activity and 
-      Supplemental Living Off the Land Guidance | CISA
+      Supplemental Living Off the Land Guidance
     container-title: Cybersecurity and Infrastructure Security Agency CISA
   resolvedBy: opengraph
   anchors:
@@ -27233,8 +27235,7 @@ https://cisa.gov/news-events/news/attack-colonial-pipeline-what-weve-learned-wha
     issued:
       date-parts:
       - - 2021
-    title: 'The Attack on Colonial Pipeline: What We’ve Learned & What We’ve Done Over the Past Two Years
-      | CISA'
+    title: 'The Attack on Colonial Pipeline: What We’ve Learned & What We’ve Done Over the Past Two Years'
     container-title: Cybersecurity and Infrastructure Security Agency CISA
     abstract: Today marks two years since a watershed moment in the short but turbulent history of 
       cybersecurity.
@@ -27291,9 +27292,10 @@ https://controlai.com/deepfakes/deepfakes-policy:
     issued:
       date-parts:
       - - 2024
-    title: Deepfakes Policy | ControlAI
+    title: Deepfakes Policy
     abstract: "Top experts say AI poses an extinction risk on par with nuclear war.\nWe can prohibit the
       development of superintelligent AI to prevent this risk"
+    container-title: ControlAI
   resolvedBy: opengraph
   anchors:
   - Control AI, 2024
@@ -27307,10 +27309,11 @@ https://convergenceanalysis.org/ai-regulatory-landscape/ai-incident-reporting:
     issued:
       date-parts:
       - - 2024
-    title: AI Incident Reporting | Convergence Analysis
+    title: AI Incident Reporting
     abstract: Incident reporting refers to an emerging series of voluntary practices or regulatory 
       requirements for AI labs to document any unexpected events, malfunctions, or adverse effects 
       that arise from the deployment of AI systems.
+    container-title: Convergence Analysis
   resolvedBy: opengraph
   anchors:
   - Cheng, 2024
@@ -27324,9 +27327,10 @@ https://convergenceanalysis.org/ai-regulatory-landscape/home:
     issued:
       date-parts:
       - - 2024
-    title: State of the AI Regulatory Landscape | Convergence Analysis
+    title: State of the AI Regulatory Landscape
     abstract: 'This series is designed to be a primer for policymakers, researchers, and individuals seeking
       to develop a high-level overview of the current state of AI regulation. '
+    container-title: Convergence Analysis
   resolvedBy: opengraph
   anchors:
   - Cheng & McKernon, 2024
@@ -27343,10 +27347,11 @@ https://convergenceanalysis.org/research/ai-model-registries-a-foundational-tool
     issued:
       date-parts:
       - - 2024
-    title: 'AI Model Registries: A Foundational Tool for AI Governance | Convergence Analysis'
+    title: 'AI Model Registries: A Foundational Tool for AI Governance'
     abstract: This report proposes the implementation of national registries for frontier AI models 
       as a foundational tool for AI governance. It explores the rationale, design, implementation, 
       and enforcement of such registries, with recommendations on each.
+    container-title: Convergence Analysis
   resolvedBy: opengraph
   anchors:
   - McKernon et al., 2024
@@ -27495,8 +27500,9 @@ https://deepmind.com/blog/alphazero-shedding-new-light-on-chess-shogi-and-go:
     issued:
       date-parts:
       - - 2018
-    title: 'AlphaZero: Shedding new light on chess, shogi, and Go — Google DeepMind'
+    title: 'AlphaZero: Shedding new light on chess, shogi, and Go'
     note: Title read from the <title> tag; the page had no Open Graph metadata.
+    container-title: Google DeepMind
   resolvedBy: opengraph
   anchors:
   - DeepMind, 2018
@@ -27510,8 +27516,9 @@ https://deepmind.com/research/highlighted-research/alphago:
     issued:
       date-parts:
       - - 2016
-    title: AlphaGo — Google DeepMind
+    title: AlphaGo
     note: Title read from the <title> tag; the page had no Open Graph metadata.
+    container-title: Google DeepMind
   resolvedBy: opengraph
   anchors:
   - DeepMind, 2016
@@ -27679,8 +27686,9 @@ https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-
     issued:
       date-parts:
       - - 2025
-    title: 'AlphaEvolve: A Gemini-powered coding agent for designing advanced algorithms — Google DeepMind'
+    title: 'AlphaEvolve: A Gemini-powered coding agent for designing advanced algorithms'
     note: Title read from the <title> tag; the page had no Open Graph metadata.
+    container-title: Google DeepMind
   resolvedBy: opengraph
   anchors:
   - DeepMind, 2025
@@ -27699,8 +27707,9 @@ https://deepmind.google/discover/blog/alphastar-mastering-the-real-time-strategy
     issued:
       date-parts:
       - - 2019
-    title: 'AlphaStar: Mastering the real-time strategy game StarCraft II — Google DeepMind'
+    title: 'AlphaStar: Mastering the real-time strategy game StarCraft II'
     note: Title read from the <title> tag; the page had no Open Graph metadata.
+    container-title: Google DeepMind
   resolvedBy: opengraph
   anchors:
   - DeepMind, 2019
@@ -27717,8 +27726,9 @@ https://deepmind.google/discover/blog/exploring-institutions-for-global-ai-gover
     issued:
       date-parts:
       - - 2024
-    title: Exploring institutions for global AI governance — Google DeepMind
+    title: Exploring institutions for global AI governance
     note: Title read from the <title> tag; the page had no Open Graph metadata.
+    container-title: Google DeepMind
   resolvedBy: opengraph
   anchors:
   - DeepMind, 2024
@@ -27734,9 +27744,9 @@ https://deepmind.google/discover/blog/exploring-institutions-for-global-ai-gover
     issued:
       date-parts:
       - - 2023
-    title: 'FunSearch: Making new discoveries in mathematical sciences using Large Language Models — Google
-      DeepMind'
+    title: 'FunSearch: Making new discoveries in mathematical sciences using Large Language Models'
     note: Title read from the <title> tag; the page had no Open Graph metadata.
+    container-title: Google DeepMind
   resolvedBy: opengraph
   anchors:
   - DeepMind, 2023
@@ -27750,8 +27760,9 @@ https://deepmind.google/discover/blog/how-alphachip-transformed-computer-chip-de
     issued:
       date-parts:
       - - 2024
-    title: How AlphaChip transformed computer chip design — Google DeepMind
+    title: How AlphaChip transformed computer chip design
     note: Title read from the <title> tag; the page had no Open Graph metadata.
+    container-title: Google DeepMind
   resolvedBy: opengraph
   anchors:
   - DeepMind, 2024
@@ -27768,8 +27779,9 @@ https://deepmind.google/discover/blog/introducing-the-frontier-safety-framework:
     issued:
       date-parts:
       - - 2024
-    title: Introducing the Frontier Safety Framework — Google DeepMind
+    title: Introducing the Frontier Safety Framework
     note: Title read from the <title> tag; the page had no Open Graph metadata.
+    container-title: Google DeepMind
   resolvedBy: opengraph
   anchors:
   - DeepMind, 2024
@@ -27784,8 +27796,9 @@ https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-i
     issued:
       date-parts:
       - - 2020
-    title: 'Specification gaming: the flip side of AI ingenuity — Google DeepMind'
+    title: 'Specification gaming: the flip side of AI ingenuity'
     note: Title read from the <title> tag; the page had no Open Graph metadata.
+    container-title: Google DeepMind
   resolvedBy: opengraph
   anchors:
   - Krakovna et al., 2020
@@ -28074,7 +28087,7 @@ https://dnascript.com:
     issued:
       date-parts:
       - - 2024
-    title: Home | DNA Script
+    title: Home
     container-title: DNA Script
     abstract: Revolutionizing biological research with enzymatic DNA synthesis technology. Our 
       SYNTAX® DNA printer and advanced enzymatic methods produce longer, more complex DNA sequences 
@@ -28260,7 +28273,7 @@ https://effectivealtruism.org/articles/paul-christiano-current-work-in-ai-alignm
     issued:
       date-parts:
       - - 2019
-    title: 'Paul Christiano: Current Work in AI Alignment | Effective Altruism'
+    title: 'Paul Christiano: Current Work in AI Alignment'
     container-title: Effective Altruism
     abstract: 'Paul Christiano, a researcher at OpenAI, discusses the current state of research on aligning
       AI with human values: what’s happening now, what needs to happen, and how people can help. This
@@ -28302,7 +28315,8 @@ https://en.wikipedia.org/wiki/AI-complete:
     issued:
       date-parts:
       - - 2022
-    title: AI-complete - Wikipedia
+    title: AI-complete
+    container-title: Wikipedia
   resolvedBy: opengraph
   anchors:
   - Wikipedia, 2022
@@ -28316,7 +28330,8 @@ https://en.wikipedia.org/wiki/Space_Shuttle_Challenger_disaster:
     issued:
       date-parts:
       - - 1986
-    title: Space Shuttle Challenger disaster - Wikipedia
+    title: Space Shuttle Challenger disaster
+    container-title: Wikipedia
   resolvedBy: opengraph
   anchors:
   - Rogers Commission, 1986
@@ -28330,7 +28345,8 @@ https://en.wikiquote.org/wiki/Alan_Turing:
     issued:
       date-parts:
       - - 1951
-    title: Alan Turing - Wikiquote
+    title: Alan Turing
+    container-title: Wikiquote
   resolvedBy: opengraph
   anchors:
   - Turing, 1951
@@ -28344,7 +28360,7 @@ https://epicural.com/2021/04/27/goodharts-law:
     issued:
       date-parts:
       - - 2021
-    title: Goodhart’s Law - Epicural, LLC
+    title: Goodhart’s Law
     archive: Internet Archive
     archive_location: 
       https://web.archive.org/web/20210804125857/https://www.epicural.com/2021/04/27/goodharts-law/
@@ -29024,8 +29040,7 @@ https://forecastingresearch.org/ai-enabled-biorisk:
     issued:
       date-parts:
       - - 2025
-    title: Forecasting LLM-enabled Biorisk and the Efficacy of Safeguards – Forecasting Research 
-      Institute
+    title: Forecasting LLM-enabled Biorisk and the Efficacy of Safeguards
     container-title: Forecasting Research Institute
     abstract: This forecasting study on biological risks from large language models (LLMs) examined 
       expert views on AI-enabled biosecurity threats. The study saw 46 biosecurity and biology 
@@ -29117,7 +29132,7 @@ https://forum.effectivealtruism.org/posts/6aYfWyo9DKEheogf8/don-t-call-it-ai-ali
     issued:
       date-parts:
       - - 2023
-    title: Don't Call It AI Alignment — EA Forum
+    title: Don't Call It AI Alignment
     abstract: Let me start by saying that I generally hate pedantic arguments, so I don't see this 
       post as the most important thing in the world. More important th…
     container-title: EA Forum
@@ -29165,7 +29180,7 @@ https://forum.effectivealtruism.org/posts/DXuwsXsqGq5GtmsB3/ai-alignment-with-hu
     issued:
       date-parts:
       - - 2022
-    title: AI alignment with humans... but with which humans? — EA Forum
+    title: AI alignment with humans... but with which humans?
     abstract: "Caveat: This post probably raises a naive question; I assume there's at least a 70% chance
       it's been considered (if not answered) exhaustively elsewh…"
     container-title: EA Forum
@@ -29214,7 +29229,7 @@ https://forum.effectivealtruism.org/posts/f2qojPr8NaMPo2KJC/beware-safety-washin
       - - 2023
         - 1
         - 13
-    title: Beware safety-washing — EA Forum
+    title: Beware safety-washing
     container-title: EA Forum
     archive: Internet Archive
     archive_location: 
@@ -29280,7 +29295,7 @@ https://futureoflife.org/existential-risk/existential-risk:
       - - 2015
         - 11
         - 16
-    title: Existential Risk - Future of Life Institute
+    title: Existential Risk
     container-title: Future of Life Institute
     abstract: What is an existential risk? Here's a simple explanation. Watch podcasts with Sam 
       Harris, Toby Ord, Yuval Noah Harari and Max Tegmark on this topic.
@@ -29299,7 +29314,7 @@ https://futureoflife.org/existential-risk/gradual-ai-disempowerment:
       - - 2024
         - 2
         - 1
-    title: Gradual AI Disempowerment - Future of Life Institute
+    title: Gradual AI Disempowerment
     container-title: Future of Life Institute
     abstract: Could an AI takeover happen gradually?
   resolvedBy: opengraph
@@ -29405,8 +29420,9 @@ https://goldpenguin.org/blog/midjourney-v1-to-v6-evolution:
     issued:
       date-parts:
       - - 2023
-    title: 'Frontier AI: capabilities and risks – discussion paper - GOV.UK'
+    title: 'Frontier AI: capabilities and risks – discussion paper'
     note: Title read from the <title> tag; the page had no Open Graph metadata.
+    container-title: GOV.UK
   resolvedBy: opengraph
   anchors:
   - U.K. government, 2023
@@ -29717,10 +29733,11 @@ https://hai.stanford.edu/ai-index/2024-ai-index-report:
     issued:
       date-parts:
       - - 2024
-    title: The 2024 AI Index Report | Stanford HAI
+    title: The 2024 AI Index Report
     abstract: Welcome to the seventh edition of the AI Index report. The 2024 Index is our most 
       comprehensive to date and arrives at an important moment when AI’s influence on society has 
       never been more pronounced.
+    container-title: Stanford HAI
   resolvedBy: opengraph
   anchors:
   - Stanford, 2024
@@ -29734,10 +29751,11 @@ https://hai.stanford.edu/ai-index/2025-ai-index-report:
     issued:
       date-parts:
       - - 2025
-    title: The 2025 AI Index Report | Stanford HAI
+    title: The 2025 AI Index Report
     abstract: At Stanford HAI, we believe AI is poised to be the most transformative technology of 
       the 21st century. But its benefits won’t be evenly distributed unless we guide its development
       thoughtfully.
+    container-title: Stanford HAI
   resolvedBy: opengraph
   anchors:
   - Stanford HAI, 2025
@@ -29925,8 +29943,9 @@ https://ibm.com/history/deep-blue:
       - - 2025
         - 11
         - 10
-    title: Deep Blue | IBM
+    title: Deep Blue
     abstract: IBM’s computer checkmated a human chess champion in a computing tour de force.
+    container-title: IBM
   resolvedBy: opengraph
   anchors:
   - IBM, 2026
@@ -29942,9 +29961,10 @@ https://ibm.com/history/watson-jeopardy:
       - - 2025
         - 11
         - 10
-    title: Watson, Jeopardy! champion | IBM
+    title: Watson, Jeopardy! champion
     abstract: The DeepQA computer won TV’s smartest quiz show and kicked off an era of natural 
       language processing.
+    container-title: IBM
   resolvedBy: opengraph
   anchors:
   - IBM, 2026
@@ -29960,9 +29980,10 @@ https://ibm.com/think/topics/ai-alignment:
       - - 2024
         - 10
         - 16
-    title: What Is AI Alignment? | IBM
+    title: What Is AI Alignment?
     abstract: Artificial intelligence (AI) alignment is the process of encoding human values and 
       goals into AI models to make them as helpful, safe and reliable as possible.
+    container-title: IBM
   resolvedBy: opengraph
   anchors:
   - Jonker et al., 2024
@@ -29978,10 +29999,11 @@ https://ibm.com/topics/artificial-intelligence:
       - - 2024
         - 11
         - 21
-    title: What Is Artificial Intelligence (AI)? | IBM
+    title: What Is Artificial Intelligence (AI)?
     abstract: Artificial intelligence (AI) is technology that enables computers and machines to 
       simulate human learning, comprehension, problem solving, decision-making, creativity and 
       autonomy.
+    container-title: IBM
   resolvedBy: opengraph
   anchors:
   - IBM, 2023
@@ -30225,7 +30247,7 @@ https://intel.com/content/www/us/en/business/enterprise-computers/resources/trus
     issued:
       date-parts:
       - - 2024
-    title: What Is a Trusted Platform Module (TPM)? – Intel
+    title: What Is a Trusted Platform Module (TPM)?
     container-title: Intel
     abstract: A Trusted Platform Module (TPM) is a microcontroller used to ensure PCs or other 
       devices boot safely from trusted hardware and software.
@@ -30407,7 +30429,7 @@ https://journalofdemocracy.org/articles/how-ai-threatens-democracy:
     issued:
       date-parts:
       - - 2023
-    title: How AI Threatens Democracy | Journal of Democracy
+    title: How AI Threatens Democracy
     container-title: Journal of Democracy
     abstract: Generative AI can flood the media, internet, and even personal correspondence, sowing 
       confusion for voters and government officials alike. If we fail to act, mounting mistrust will
@@ -31311,8 +31333,7 @@ https://lexfridman.com/roman-yampolskiy-transcript:
       - - 2024
         - 6
         - 3
-    title: 'Transcript for Roman Yampolskiy: Dangers of Superintelligent AI | Lex Fridman Podcast #431
-      - Lex Fridman'
+    title: 'Transcript for Roman Yampolskiy: Dangers of Superintelligent AI'
     container-title: Lex Fridman
     abstract: 'This is a transcript of Lex Fridman Podcast #431 with Roman Yampolskiy. The timestamps
       in the transcript are clickable links that take you directly to that point in the main video. Please
@@ -31368,7 +31389,7 @@ https://longtermrisk.org/beginners-guide-to-reducing-s-risks:
     issued:
       date-parts:
       - - 2023
-    title: Beginner’s guide to reducing s-risks — Center on Long-Term Risk
+    title: Beginner’s guide to reducing s-risks
     container-title: Center on Long-Term Risk
     abstract: Suffering risks, or s-risks, are “risks of events that bring about suffering in 
       cosmically significant amounts” (Althaus and Gloor 2016).
@@ -31385,7 +31406,7 @@ https://longtermrisk.org/reducing-risks-of-astronomical-suffering-a-neglected-pr
     issued:
       date-parts:
       - - 2016
-    title: 'Reducing Risks of Astronomical Suffering: A Neglected Priority — Center on Long-Term Risk'
+    title: 'Reducing Risks of Astronomical Suffering: A Neglected Priority'
     container-title: Center on Long-Term Risk
     abstract: Will we go extinct, or will we succeed in building a flourishing utopia?
   resolvedBy: opengraph
@@ -32727,9 +32748,10 @@ https://ought.org/research/factored-cognition:
     issued:
       date-parts:
       - - 2018
-    title: Factored Cognition | Ought
+    title: Factored Cognition
     abstract: Can we solve difficult problems by composing small contributions from individual 
       agents who don't know the big picture?
+    container-title: Ought
   resolvedBy: opengraph
   anchors:
   - Ought, 2018
@@ -33201,8 +33223,9 @@ https://primer.ought.org:
     issued:
       date-parts:
       - - 2022
-    title: Factored Cognition Primer | Primer
+    title: Factored Cognition Primer
     abstract: How to write compositional language model programs
+    container-title: Primer
   resolvedBy: opengraph
   anchors:
   - Ought, 2022
@@ -34194,7 +34217,7 @@ https://situational-awareness.ai:
     issued:
       date-parts:
       - - 2024
-    title: 'Introduction - SITUATIONAL AWARENESS: The Decade Ahead'
+    title: Introduction
     container-title: SITUATIONAL AWARENESS - The Decade Ahead
     abstract: Leopold Aschenbrenner, June 2024 You can see the future first in San Francisco. Over 
       the past year, the talk of the town has shifted from $10 billion compute clusters to $100 
@@ -34215,7 +34238,7 @@ https://situational-awareness.ai/from-gpt-4-to-agi:
       - - 2024
         - 5
         - 29
-    title: 'I. From GPT-4 to AGI: Counting the OOMs - SITUATIONAL AWARENESS'
+    title: 'I. From GPT-4 to AGI: Counting the OOMs'
     container-title: SITUATIONAL AWARENESS - The Decade Ahead
     abstract: AGI by 2027 is strikingly plausible. GPT-2 to GPT-4 took us from ~preschooler to 
       ~smart high-schooler abilities in 4 years. Tracing trendlines in compute (~0.5 orders of 
@@ -34513,7 +34536,7 @@ https://theaidigest.org/progress-and-dangers:
     issued:
       date-parts:
       - - 2023
-    title: How fast is AI improving? - AI Digest
+    title: How fast is AI improving?
     container-title: AI Digest
     abstract: A visual explainer on the rate and risks of AI progress
   resolvedBy: opengraph
@@ -34529,7 +34552,7 @@ https://theaidigest.org/self-awareness:
     issued:
       date-parts:
       - - 2024
-    title: AIs are becoming more self-aware. Here's why that matters - AI Digest
+    title: AIs are becoming more self-aware. Here's why that matters
     container-title: AI Digest
     abstract: What will the world look like with more self-aware AIs? Explore the potential benefits
       and risks
@@ -35407,8 +35430,9 @@ https://yudkowsky.net/singularity/aibox:
     issued:
       date-parts:
       - - 2002
-    title: 'The AI-Box Experiment: – Eliezer S. Yudkowsky'
+    title: 'The AI-Box Experiment:'
     note: Title read from the <title> tag; the page had no Open Graph metadata.
+    container-title: Eliezer S. Yudkowsky
   resolvedBy: opengraph
   anchors:
   - Yudkowsky, 2002

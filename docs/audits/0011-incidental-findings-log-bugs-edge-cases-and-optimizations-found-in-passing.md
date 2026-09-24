@@ -625,6 +625,62 @@ copies not to emit ids at all, which is a change to how reading mode renders rat
 footnotes or citations. Recorded so that whoever notices a back-link "jumping to the wrong place"
 finds the cause rather than the symptom.
 
+### F25 - 56 bibliography titles were carrying their own site name
+
+**Severity:** low · **Evidence:** the committed store, and a chapter PDF read as images ·
+**Found:** 2026-09-24, verifying `task:0034`
+
+Open Graph returns what a browser tab should show, so 56 resolved entries held a title with the site
+name attached: "Deep Blue | IBM", "Specification gaming: the flip side of AI ingenuity - Google
+DeepMind", "Deepfakes Policy | ControlAI". It rendered on all four reader-facing surfaces, and in
+almost every case the `container-title` that should have held that name was empty.
+
+`dropRedundantContainer` in `bibliography.ts` already handled the mirror-image case - blanking a
+container the title repeats - and could not help here, because the field it blanks had nothing in it.
+
+**Fixed** by `store.split_site_suffixes`, an offline pass in `extract` beside `fill_container_titles`.
+Two things make it safe rather than a guess:
+
+- **The suffix is proved against the URL's own host**, in both directions, so nothing is looked up and
+  a suffix the address does not corroborate stays where it is. This is what `task:0032` D5 refused to
+  do with a hand-written domain-to-publisher table, done without the table.
+- **A hyphen counts only when spaced.** The first version took any hyphen and turned "Beware
+  safety-washing - EA Forum" into "Beware safety", which *passed* the host proof because the leftover
+  fragment still contained the site's name. Two more rules came out of reading all 56 by hand:
+  candidates are tried longest-first (a site name may contain a hyphen - "Center on Long-Term Risk"),
+  and a fragment merely containing the host's label is rejected unless it is about that long
+  ("Chess.com - Play Chess Online - Free Games" names no site).
+
+The site name is moved into `container-title` where that field is empty, so the source facet gains a
+real name instead of a bare domain. Stripping runs to convergence, because one title carried the name
+twice and a single pass made `extract` non-idempotent.
+
+### F26 - Re-resolving a wayback entry rewrites its access date and nothing else
+
+**Severity:** low · **Evidence:** a 17-entry `--redo wayback` run · **Found:** 2026-09-24, during
+`task:0031`
+
+The wayback resolver records an `accessed` date. Redoing an entry it already owns therefore always
+"succeeds" and always writes a new date, so the run reported five entries resolved whose only change
+was today's date. The store is committed, so this is a diff for no information. The run was reverted.
+
+**Disposition:** unowned. The fix is presumably to leave `accessed` alone when nothing else changed,
+but that is a judgement about what an access date means and it belongs with whoever owns the resolver.
+
+### F27 - `forum-magnum` loses three EA Forum URLs it claims, and the archive answers instead
+
+**Severity:** low · **Evidence:** the same redo run · **Found:** 2026-09-24, during `task:0031`
+
+`RESOLVER_ORDER` puts `forum-magnum` well ahead of `wayback`, and its `claims()` matches these URLs -
+the host is in `SITES` and the post id matches `_POST_PATH`. It is nonetheless returning `None` for
+three `forum.effectivealtruism.org` posts, so the archive answers in its place. The visible cost was a
+scraped title carrying the site name as a suffix, which F25 has since cleaned up, so nothing is
+currently wrong on the page.
+
+**Disposition:** unowned. Worth a look before the EA Forum share of this corpus grows: if the EA
+Forum's GraphQL endpoint has diverged from LessWrong's, the resolver is silently down for one of the
+three sites it claims to cover.
+
 ## Recommendations
 
 1. **Close F1 before `task:0021` adds `cli/` code.** Declaring `@types/node` and getting `cli/` into

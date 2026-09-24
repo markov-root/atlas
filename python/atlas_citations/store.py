@@ -25,6 +25,7 @@ entry survives semantically identical.
 from __future__ import annotations
 
 import io
+import re
 from typing import Any
 from urllib.parse import urlsplit, urlunsplit
 
@@ -210,6 +211,147 @@ def fill_container_titles(store: Store) -> tuple[Store, int]:
             out[key] = {**entry, "item": {**item, "container-title": container}}
             filled += 1
     return out, filled
+
+
+#: Separators a site puts between a page title and its own name.
+#:
+#: A hyphen counts **only when it is spaced**. "Deep Blue - IBM" uses one, so it
+#: cannot be left out, but a hyphen inside a word is not punctuation between
+#: fields: taking a tight one as a separator turned "Beware safety-washing - EA
+#: Forum" into "Beware safety" and "reducing s-risks - Center on Long-Term Risk"
+#: into "reducing s". Both passed the host proof, because the fragment left over
+#: still contained the site's name.
+_TITLE_SEPARATOR = re.compile("\\s+-\\s+|\\s*[|\\u2013\\u2014\\u00b7]\\s*")
+
+#: Longest a trailing site name may plausibly be.
+_MAX_SUFFIX = 40
+
+#: Shortest a title may be left, and shortest a name may be to match a host.
+#: Two characters would let "AI" match any host with those letters in it.
+_MIN_TITLE = 3
+_MIN_NAME = 3
+
+#: How much longer than the host label a matching site name may run. "Google
+#: DeepMind" is the host label plus a vendor prefix; "Play Chess Online - Free
+#: Games" is a page title that merely contains "chess".
+_NAME_SLACK = 16
+
+
+def _squash(text: str) -> str:
+    """Lowercase alphanumerics only, for comparing a site name with a host."""
+    return re.sub(r"[^a-z0-9]", "", text.lower())
+
+
+def _names_the_host(suffix: str, host: str) -> bool:
+    """Whether a trailing fragment is provably this site's own name.
+
+    Two directions, because a host says the same thing two ways: `theaidigest.org`
+    contains "AI Digest" outright, while `deepmind.google` is contained *by*
+    "Google DeepMind". The length bound is what keeps the second direction from
+    firing on any long title that happens to contain the host's label.
+    """
+    name, whole = _squash(suffix), _squash(host)
+    label = _squash(host.split(".")[0])
+    if len(name) < _MIN_NAME:
+        return False
+    if name in whole:
+        return True
+    return bool(label) and label in name and len(name) <= len(label) + _NAME_SLACK
+
+
+def site_suffix(title: str, url: str) -> tuple[str, str] | None:
+    """``(title without the site name, the site name)``, or ``None``.
+
+    Open Graph titles routinely carry the site name - "Deepfakes Policy |
+    ControlAI", "Specification gaming: the flip side of AI ingenuity - Google
+    DeepMind" - because that is what a browser tab is supposed to show. A
+    bibliography is not a browser tab, and the suffix is not part of the work's
+    title. 58 entries in this corpus carry one.
+
+    ``dropRedundantContainer`` in ``bibliography.ts`` already handles the
+    mirror-image case, blanking a *container* the title repeats. It cannot help
+    here, because these entries have no container at all: the site name is
+    sitting in the one field that is not supposed to hold it.
+
+    **The split is only made when it can be proved** against the URL's own host.
+    That is the difference between this and the guesswork ``task:0032`` D5
+    rejected when it refused to write a domain-to-publisher table: nothing is
+    looked up, and a suffix the host does not corroborate is left exactly where
+    it is. "Attention Is All You Need - Transformers" on arXiv loses nothing.
+
+    Candidates are tried **longest first**, which is the whole of the difference
+    between working and not. A site name may itself contain a separator - "Center
+    on Long-Term Risk" - so the rightmost separator is not reliably the right
+    one; taking it would leave "…Center on Long" and call "Term Risk" the site.
+    Going the other way, `Chess.com - Play Chess Online - Free Games` is a title
+    with no site name in it at all, and only the length bound stops the longest
+    candidate from claiming to be one.
+    """
+    title = title.strip()
+    try:
+        host = (urlsplit(url).hostname or "").lower().removeprefix("www.")
+    except ValueError:
+        return None
+    if not host:
+        return None
+
+    candidates: list[tuple[str, str]] = []
+    for match in _TITLE_SEPARATOR.finditer(title):
+        stem, suffix = title[: match.start()].strip(), title[match.end() :].strip()
+        if len(stem) >= _MIN_TITLE and 0 < len(suffix) <= _MAX_SUFFIX:
+            candidates.append((stem, suffix))
+
+    for stem, suffix in sorted(candidates, key=lambda pair: -len(pair[1])):
+        if _names_the_host(suffix, host):
+            return stem, suffix
+    return None
+
+
+def split_site_suffixes(store: Store) -> tuple[Store, int]:
+    """Move a site name out of every title that is carrying one.
+
+    Offline, and run beside :func:`fill_container_titles` for the same reason:
+    this is a fact the address already states, so re-fetching 56 pages from
+    other people's servers to learn it would be slow and rude.
+
+    The name is not discarded - it becomes ``container-title`` where that field
+    is empty, which is where it belonged in the first place and which gives the
+    source facet a real name instead of a bare domain. An entry that already
+    states a container keeps it: a resolver read that off the page.
+
+    **Stripped to convergence, not once**, which is what makes ``extract``
+    idempotent (``task:0021`` AC-1). One title in this corpus carries the site
+    name twice - "Transcript for … | Lex Fridman Podcast #431 - Lex Fridman" -
+    so a single pass left a second one behind, and the *next* run removed it and
+    wrote a different file from the same input. The first suffix found is the
+    one recorded as the container, because it is the outermost.
+    """
+    out: Store = dict(store)
+    moved = 0
+    for key, entry in out.items():
+        if entry.get("resolvedBy") == "anchor":
+            # An unresolved entry's title is its anchor text, and a citation
+            # anchor is not a page title to clean up.
+            continue
+        item = entry.get("item", {})
+        title = item.get("title")
+        if not isinstance(title, str):
+            continue
+
+        url = item.get("URL") or key
+        container = None
+        while (split := site_suffix(title, url)) is not None:
+            title, suffix = split
+            container = container or suffix
+
+        if container is None:
+            continue
+        updated = {**item, "title": title}
+        if not updated.get("container-title"):
+            updated["container-title"] = container
+        out[key] = {**entry, "item": updated}
+        moved += 1
+    return out, moved
 
 
 def entry_from_anchor(key: str, anchor_text: str, parsed: dict[str, str] | None) -> StoreEntry:

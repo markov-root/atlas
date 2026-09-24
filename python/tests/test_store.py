@@ -20,6 +20,8 @@ from atlas_citations.store import (
     merge_entry,
     parse_store,
     serialize_store,
+    site_suffix,
+    split_site_suffixes,
     to_csl_json,
     upsert_entries,
     year_to_csl_date,
@@ -255,3 +257,151 @@ class TestTheAttemptRecordSurvivesReExtraction:
     def test_a_resolved_entry_is_untouched_as_before(self) -> None:
         resolved = {**self.entry(), "resolvedBy": "arxiv", "item": {"title": "Real"}}
         assert merge_entry(resolved, self.entry())["item"]["title"] == "Real"
+
+
+class TestSiteSuffixInATitle:
+    """A page title is not a work's title. ``audit:0011`` F27.
+
+    Open Graph gives back what a browser tab should show, site name and all.
+    56 entries in this corpus carried one, and it read badly on three surfaces:
+    "Deep Blue | IBM.", "Specification gaming: the flip side of AI ingenuity -
+    Google DeepMind."
+    """
+
+    def test_moves_a_proven_site_name_out_of_the_title(self) -> None:
+        assert site_suffix("Deepfakes Policy | ControlAI", "https://controlai.com/x") == (
+            "Deepfakes Policy",
+            "ControlAI",
+        )
+
+    def test_matches_a_host_contained_by_the_site_name(self) -> None:
+        """``deepmind.google`` is contained *by* "Google DeepMind", not the reverse."""
+        out = site_suffix(
+            "AlphaGo - Google DeepMind", "https://deepmind.google/discover/blog/alphago"
+        )
+        assert out == ("AlphaGo", "Google DeepMind")
+
+    def test_matches_a_site_name_contained_by_the_host(self) -> None:
+        out = site_suffix("How fast is AI improving? - AI Digest", "https://theaidigest.org/p")
+        assert out == ("How fast is AI improving?", "AI Digest")
+
+    def test_leaves_a_suffix_the_host_does_not_corroborate(self) -> None:
+        """The whole difference from the domain-to-publisher table task:0032 D5 refused."""
+        assert (
+            site_suffix("Attention Is All You Need - Transformers", "https://arxiv.org/abs/1")
+            is None
+        )
+
+    def test_a_hyphen_inside_a_word_is_not_a_separator(self) -> None:
+        """Otherwise "Beware safety-washing" becomes "Beware safety".
+
+        The leftover fragment still contains the site's name, so the host proof
+        cannot catch this on its own - "washing - EA Forum" passes it.
+        """
+        out = site_suffix(
+            "Beware safety-washing - EA Forum",
+            "https://forum.effectivealtruism.org/posts/x/beware-safety-washing",
+        )
+        assert out == ("Beware safety-washing", "EA Forum")
+
+    def test_a_site_name_may_itself_contain_a_hyphen(self) -> None:
+        out = site_suffix(
+            "Beginner's guide to reducing s-risks - Center on Long-Term Risk",
+            "https://longtermrisk.org/guide",
+        )
+        assert out == ("Beginner's guide to reducing s-risks", "Center on Long-Term Risk")
+
+    def test_the_rightmost_separator_is_not_always_the_right_one(self) -> None:
+        """Candidates are tried longest first, so a multi-word site name wins."""
+        out = site_suffix(
+            "Introduction - SITUATIONAL AWARENESS: The Decade Ahead",
+            "https://situational-awareness.ai/introduction",
+        )
+        assert out == ("Introduction", "SITUATIONAL AWARENESS: The Decade Ahead")
+
+    def test_a_long_fragment_merely_containing_the_host_label_is_not_a_site_name(self) -> None:
+        assert (
+            site_suffix("Chess.com - Play Chess Online - Free Games", "https://chess.com") is None
+        )
+
+    def test_a_two_letter_fragment_cannot_name_a_host(self) -> None:
+        assert site_suffix("Scaling Laws - AI", "https://openai.com/x") is None
+
+    def test_never_leaves_an_empty_or_near_empty_title(self) -> None:
+        assert site_suffix("AI - AI Digest", "https://theaidigest.org/p") is None
+
+    def test_a_title_with_no_separator_is_left_alone(self) -> None:
+        assert site_suffix("Attention Is All You Need", "https://arxiv.org/abs/1") is None
+
+
+class TestSplittingSiteSuffixesAcrossAStore:
+    def anchor(self, key: str, title: str) -> dict:
+        return {
+            "item": {"id": key, "URL": key, "title": title},
+            "resolvedBy": "anchor",
+            "anchors": [],
+        }
+
+    def resolved(self, key: str, title: str, container: str | None = None) -> dict:
+        item = {"id": key, "URL": key, "title": title}
+        if container:
+            item["container-title"] = container
+        return {"item": item, "resolvedBy": "opengraph", "anchors": []}
+
+    def test_the_site_name_becomes_the_container(self) -> None:
+        store = {"https://ibm.com/x": self.resolved("https://ibm.com/x", "Deep Blue | IBM")}
+        out, moved = split_site_suffixes(store)
+        assert moved == 1
+        assert out["https://ibm.com/x"]["item"]["title"] == "Deep Blue"
+        assert out["https://ibm.com/x"]["item"]["container-title"] == "IBM"
+
+    def test_a_stated_container_is_never_overwritten(self) -> None:
+        """A resolver read that off the page; this only ever reads the address."""
+        store = {
+            "https://ibm.com/x": self.resolved(
+                "https://ibm.com/x", "Deep Blue | IBM", "IBM Research"
+            )
+        }
+        out, _ = split_site_suffixes(store)
+        assert out["https://ibm.com/x"]["item"]["container-title"] == "IBM Research"
+        assert out["https://ibm.com/x"]["item"]["title"] == "Deep Blue"
+
+    def test_an_unresolved_entry_is_left_alone(self) -> None:
+        """Its title is the citation's anchor text, not a page title to clean."""
+        store = {"https://ibm.com/x": self.anchor("https://ibm.com/x", "IBM - 2024")}
+        out, moved = split_site_suffixes(store)
+        assert moved == 0
+        assert out["https://ibm.com/x"]["item"]["title"] == "IBM - 2024"
+
+    def test_a_second_pass_changes_nothing(self) -> None:
+        store = {"https://ibm.com/x": self.resolved("https://ibm.com/x", "Deep Blue | IBM")}
+        once, _ = split_site_suffixes(store)
+        twice, moved = split_site_suffixes(once)
+        assert twice == once
+        assert moved == 0
+
+    def test_does_not_mutate_the_store_it_was_given(self) -> None:
+        store = {"https://ibm.com/x": self.resolved("https://ibm.com/x", "Deep Blue | IBM")}
+        split_site_suffixes(store)
+        assert store["https://ibm.com/x"]["item"]["title"] == "Deep Blue | IBM"
+
+    def test_a_title_carrying_the_site_name_twice_converges_in_one_pass(self) -> None:
+        """``extract`` must write the same bytes from the same input (AC-1).
+
+        One real title does this: "Transcript for … | Lex Fridman Podcast #431 -
+        Lex Fridman". Stripping once left a second suffix behind, so the *next*
+        run produced a different file.
+        """
+        key = "https://lexfridman.com/roman-yampolskiy-transcript"
+        store = {
+            key: self.resolved(
+                key, "Transcript for Roman Yampolskiy | Lex Fridman Podcast #431 - Lex Fridman"
+            )
+        }
+        once, _ = split_site_suffixes(store)
+        assert once[key]["item"]["title"] == "Transcript for Roman Yampolskiy"
+        # The outermost suffix is the one recorded as the container.
+        assert once[key]["item"]["container-title"] == "Lex Fridman"
+        twice, moved = split_site_suffixes(once)
+        assert twice == once
+        assert moved == 0
