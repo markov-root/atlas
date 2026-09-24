@@ -386,7 +386,9 @@ describe('style options (task:0030)', () => {
     expect(ids).toContain('chicago');
     // Numeric styles are offered but flagged, because the prose cites by
     // author-year and a number here corresponds to nothing.
-    const numeric = availableStyles(process.cwd()).filter((s) => s.numeric).map((s) => s.id);
+    const numeric = availableStyles(process.cwd())
+      .filter((s) => s.numeric)
+      .map((s) => s.id);
     expect(numeric).toEqual(['nature', 'ieee']);
   });
 
@@ -434,6 +436,28 @@ describe('the corpus has no impossible URLs (audit:0011 F13)', () => {
 describe('the source facet (task:0030 AC-7, task:0032 D5)', () => {
   it('uses the container a source states', () => {
     expect(sourceOf('arXiv', 'https://arxiv.org/abs/1')).toBe('arXiv');
+  });
+
+  it('uses the publisher when a work has no container, which is every report and book', () => {
+    // A report has a publisher, not a container. Filling `container-title` on
+    // one to make this facet read well is not free: APA prints it as
+    // "In Machine Intelligence Research Institute." mid-reference (audit:0011
+    // F18). So the store states the truth and the facet reads the right field,
+    // rather than the entry falling through to "intelligence.org".
+    expect(
+      sourceOf(
+        '',
+        'https://intelligence.org/files/IEM.pdf',
+        'Machine Intelligence Research Institute',
+      ),
+    ).toBe('Machine Intelligence Research Institute');
+  });
+
+  it('prefers a stated container over the publisher', () => {
+    // A Springer chapter lives in a book; that book is the source, not Springer.
+    expect(
+      sourceOf('Singularity Hypotheses', 'https://intelligence.org/files/IE-EI.pdf', 'Springer'),
+    ).toBe('Singularity Hypotheses');
   });
 
   it('falls back to the domain rather than inventing a publisher name', () => {

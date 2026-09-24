@@ -46,6 +46,8 @@ type CslItem = {
   URL?: string;
   DOI?: string;
   'container-title'?: string;
+  /** Reports and books have this instead of a container - see `sourceOf`. */
+  publisher?: string;
   note?: string;
   [key: string]: unknown;
 };
@@ -110,6 +112,7 @@ export type CitedIn = {
 const KIND_LABELS: Record<string, string> = {
   article: 'Paper',
   'article-journal': 'Journal article',
+  'article-newspaper': 'News article',
   'paper-conference': 'Conference paper',
   'post-weblog': 'Blog post',
   webpage: 'Web page',
@@ -122,15 +125,23 @@ const KIND_LABELS: Record<string, string> = {
 /**
  * The source to file an entry under.
  *
- * `container-title` where the source states one - `task:0032` D5 - and the
- * registrable domain otherwise. A domain is a *true* statement about where a
- * work lives, needs no mapping table anyone has to maintain, and reads perfectly
- * well in a filter list. The alternative, a hand-written domain-to-publisher
- * table for several hundred long-tail sites, is guesswork dressed as data and
- * would rot the first time a site renamed itself.
+ * `container-title`, then `publisher`, then the registrable domain -
+ * `task:0032` D5. A domain is a *true* statement about where a work lives,
+ * needs no mapping table anyone has to maintain, and reads perfectly well in a
+ * filter list. The alternative, a hand-written domain-to-publisher table for
+ * several hundred long-tail sites, is guesswork dressed as data and would rot
+ * the first time a site renamed itself.
+ *
+ * `publisher` is consulted because a **report and a book have no container**.
+ * Filling `container-title` on one to make the facet read well is not free: APA
+ * renders it as "In Machine Intelligence Research Institute." in the middle of
+ * the reference, which is wrong. So the store states the truth - a MIRI report
+ * has a publisher, not a container - and the facet reads the field that
+ * actually holds the answer instead of falling through to `intelligence.org`.
  */
-export function sourceOf(container: string, url: string): string {
+export function sourceOf(container: string, url: string, publisher = ''): string {
   if (container) return container;
+  if (publisher) return publisher;
   try {
     return new URL(url).hostname.replace(/^www\./, '');
   } catch {
@@ -395,7 +406,11 @@ export function toReference(
     // blanks a container the title already ends with, which is right for reading
     // and wrong for filtering - "LessWrong" must stay a facet even when the
     // title already says it.
-    source: sourceOf(trimTerminal(item['container-title'] ?? ''), url),
+    source: sourceOf(
+      trimTerminal(item['container-title'] ?? ''),
+      url,
+      trimTerminal(item.publisher ?? ''),
+    ),
     kind: KIND_LABELS[item.type ?? ''] ?? 'Other',
     cited: [],
   };

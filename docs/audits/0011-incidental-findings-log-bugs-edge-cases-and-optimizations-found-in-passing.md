@@ -7,7 +7,7 @@ role: audit
 status: draft
 summary: 'Append-only log of defects and improvements discovered during unrelated work, so they are not lost or silently fixed.'
 created: '2026-09-21'
-updated: '2026-09-23'
+updated: '2026-09-24'
 owner: Markov Grey
 supersedes: ''
 superseded_by: ''
@@ -24,7 +24,7 @@ engineering_document:
     owner: Markov Grey
     scope: Findings discovered incidentally during other work, repo-wide
   created: '2026-09-21'
-  updated: '2026-09-23'
+  updated: '2026-09-24'
   transition_history: unverified
   transitions: []
   relationships: []
@@ -442,6 +442,49 @@ genuinely client-rendered pages are the forum ones, and `forum-magnum` answers t
 
 **Disposition:** not built, recorded. Worth keeping because "just use a real browser" is the obvious
 next suggestion for a blocked scraper, and the obvious suggestion is wrong here.
+
+### F18 - An override could correct a wrong field but never delete one
+
+**Severity:** medium · **Evidence:** rendered output across 945 entries · **Found:** 2026-09-24,
+filling in owner-supplied metadata for MIRI's reports
+
+`apply_override` merged reviewed fields over the stored item, so omitting a field meant "keep
+whatever is there". That is right for the common case and wrong for the case that matters: a
+resolver's **incorrect** value could not be removed by any override a human wrote.
+
+It showed up as reader-visible text. `fill_container_titles` and the scrapers had given MIRI's
+reports a `container-title`, which APA renders mid-reference:
+
+> Yudkowsky, E. (2004). Coherent Extrapolated Volition. **In Machine Intelligence Research
+> Institute.** The Singularity Institute.
+
+A report has a publisher, not a container. Removing `container-title` from the override changed
+nothing, because the value was already in the store from the previous run, and omission is not
+deletion.
+
+**Fixed:** an explicit `null` in an override now removes the field
+(`overrides.py:apply_override`), with two tests and the convention documented in the
+`overrides.yaml` header. Seven entries corrected.
+
+**General form worth remembering:** any merge-based correction layer needs a way to express absence,
+or it can only ever move a value from one wrong answer to another.
+
+### F19 - `container-title: YouTube` makes APA print "In YouTube."
+
+**Severity:** low · **Evidence:** every video entry in the corpus · **Found:** 2026-09-24, while
+fixing F18
+
+`store.infer_container_title` maps `youtube.com` to `YouTube`, which is true but has a rendering
+cost: APA formats a `motion_picture` with a container as "… [Video recording]. In YouTube."
+
+> The Human Podcast. (2025). Why I'm Hosting Debates on AI 'Doom' [Video recording]. **In YouTube.**
+
+APA's own guidance names the site without "In". Unlike F18 this is cosmetic, it is consistent across
+every video in the corpus, and the fix touches `_CONTAINER_BY_HOST`, which would drop YouTube from
+the Source facet unless `sourceOf` is taught to compensate.
+
+**Disposition:** unowned. Recorded so the next person does not treat it as a one-off defect in a
+single entry.
 
 ## Recommendations
 

@@ -109,8 +109,21 @@ def apply_override(entry: StoreEntry, fields: CslItem) -> StoreEntry:
 
     The unresolved ``note`` is dropped, for the same reason ``apply_resolution``
     drops it: it marks an entry as needing work, and this one no longer does.
+
+    **An explicit null removes a field.** Without this, an override could only
+    add or change, never delete, and a resolver's wrong answer would survive
+    every correction a human wrote. That is not hypothetical: a resolver filled
+    ``container-title`` on MIRI's reports, which APA renders mid-reference as
+    "In Machine Intelligence Research Institute." - a report has a publisher,
+    not a container. Omitting the field from the override left the bad value in
+    place, because omission means "keep whatever is there". Saying
+    ``container-title: null`` states the opposite, and states it in the reviewed
+    file where the next reader can see the judgement.
     """
     item: dict[str, Any] = {**entry.get("item", {}), **fields}
+    for field, value in fields.items():
+        if value is None:
+            item.pop(field, None)
     item["id"] = entry["item"]["id"]
     item["URL"] = entry["item"].get("URL", entry["item"]["id"])
     item.pop("note", None)

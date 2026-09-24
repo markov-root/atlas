@@ -54,6 +54,24 @@ class TestApplyingOneOverride:
         out = apply_override(entry, {"title": "T"})
         assert out["item"]["issued"] == entry["item"]["issued"]
 
+    def test_an_explicit_null_removes_a_field(self) -> None:
+        """Otherwise a reviewer can correct a wrong value but never delete one.
+
+        A resolver gave MIRI's reports a ``container-title``, which APA renders
+        mid-reference as "In Machine Intelligence Research Institute." Omitting
+        the field from the override kept the bad value, because omission means
+        "keep what is there". A null has to mean the opposite.
+        """
+        entry = apply_override(anchor_entry(), {"container-title": "RAND Corporation"})
+        out = apply_override(entry, {"container-title": None})
+        assert "container-title" not in out["item"]
+
+    def test_removing_a_field_that_was_never_there_is_not_an_error(self) -> None:
+        assert (
+            "container-title"
+            not in apply_override(anchor_entry(), {"container-title": None})["item"]
+        )
+
 
 class TestApplyingAFile:
     def test_an_override_for_an_unknown_url_is_reported_not_ignored(self) -> None:
