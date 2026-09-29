@@ -51,6 +51,24 @@ the records: replacing it with a real `complete` history and a `superseded-by` r
 takes, and **all five earlier handoffs are now `superseded`**. `engineering document validate` reports
 `passed` for the first time - it had been carrying a multiple-current-handoff finding since 0002.
 
+## Shipped
+
+**The citations and bibliography feature is live.** Merged to `main` and deployed 2026-09-29
+(`69e4d5c`, Deploy green). `Test` is green too, for the first time since `task:0029` - see below.
+
+Three things were found in the hour after the merge and are fixed:
+
+| Commit | What |
+| --- | --- |
+| `10c580a` | CI never installed `uv`, so `lint:py` and `test:py` had been unreachable since the port. The whole Python half was invisible to CI, which is also why a lint error survived on this branch. |
+| `ba3c661` | The pre-push hook livelocked the VM. Three guards: skip a re-verify of the same commit, refuse to start below 3 GiB available, and export `SKIP_AUDIO_DOWNLOAD=1` itself. |
+| `69e4d5c` | `task:0037`, the 11 broken Our World in Data figure embeds. |
+
+**`task:0022` nearly fired for real.** Running the hook from a shell without
+`SKIP_AUDIO_DOWNLOAD=1` exported sent an 11 MB `PutObject` at the production R2 bucket. It failed on
+a stale signature. The protection had been "a human remembers to export a variable"; the hook sets it
+now.
+
 ## Outcome
 
 **The bibliography feature is finished on all four reader-facing surfaces, and `pnpm verify` passes
@@ -123,9 +141,7 @@ Two things were found by building it and are worth not re-deriving:
 
 - **Nothing is blocked on an answer.** Every decision this work needed was already recorded in
   `handoff:0005` or taken against evidence and written into the task record.
-- **Merging to `main` deploys.** `deploy.yml` fires on push. `main` is 73 commits behind and 0 ahead,
-  so it merges clean, and `pnpm verify` is now green for the first time on this branch. That is a
-  decision, not an obstacle, but it must be made deliberately.
+- **Merging to `main` deploys.** Done, 2026-09-29. `deploy.yml` fired and succeeded.
 - **`task:0035` needs the authors.** No amount of engineering fixes a citation that points at the
   wrong document.
 
@@ -147,7 +163,15 @@ Everything in `handoff:0004` and `handoff:0005` still applies. New since:
 - **A status-code sweep will tell you these embeds are healthy.** Nine of the eleven broken Our
   World in Data figures answer HTTP 200; the signal is the *redirect target*, not the code. Any future
   link check over this corpus has to ask "does the final URL still name the thing it asked for".
-- **A dev server is running** on `0.0.0.0:4321` from this session.
+- **The pre-push hook runs the whole `verify` chain on every push.** One push is one full verify;
+  two branches at the same commit was two, on top of one run by hand, and that is what took the VM
+  down on 2026-09-29. `ba3c661` now skips a verify of a commit that already passed. Count them anyway.
+- **`earlyoom` is installed as of 2026-09-29** and is the reason a future overrun should kill a build
+  rather than hang every pane on the box. Note its condition is an **AND**: it fires when memory *and*
+  swap are both low. Swap on this VM sits at ~0% free permanently, so the swap half is always true and
+  it behaves as a memory-only guard - which is what is wanted, but it is accidental. `-s 100,100` in
+  `/etc/default/earlyoom` makes it explicit.
+- **A dev server is not running.** It was stopped to free memory for the release and not restarted.
 
 ## Resume
 
