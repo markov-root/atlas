@@ -17,6 +17,14 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+        # `pnpm verify` has called into Python since task:0029 - `lint:py` and
+        # `test:py` both shell out to `uv`. Without this the chain dies at
+        # `sh: 1: uv: not found`, which is exactly what it did: the Python half
+        # of this project was invisible to CI from the port until 2026-09-29.
+      - run: uv sync --frozen
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install chromium --with-deps
         # Needed by pnpm test:a11y (axe-core via Playwright). Installs
@@ -24,4 +32,11 @@ jobs:
       - run: pnpm verify
         # Contributor mode: no secrets needed. Public Algolia keys come
         # from astro.config.mjs defaults. pnpm verify chain:
-        # lint → lint:actions → typecheck → test → build → test:smoke → test:a11y
+        # lint, lint:py, lint:actions, typecheck, test, test:py, docs:check,
+        # build, test:smoke, test:a11y.
+        env:
+          SKIP_AUDIO_DOWNLOAD: '1'
+          # task:0022: the build's audio renderer PUTs to production R2 when
+          # credentials are present. They are not present in this job, but
+          # stating the intent keeps a future secret from silently turning a
+          # test run into an upload.
