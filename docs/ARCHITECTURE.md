@@ -7,7 +7,7 @@ specification:
     configuration precedence, per-stage failure semantics, mode boundaries, and edition scope.
   status: current
   owner: Markov Grey
-  updated: '2026-09-21'
+  updated: '2026-09-29'
 ---
 
 # Architecture
@@ -111,9 +111,10 @@ deliberate rather than accidental (`task:0029`). The boundary is a file:
 ```
 TypeScript   Google Docs → AST → `atlas citations scan` → data/citations/citations.json
 Python       citations.json ─┬→ resolve ─→ data/citations/sources.yaml
-                             └→ overrides.yaml (reviewed, hand-written, wins)
+                             ├→ overrides.yaml (reviewed: what a work IS, wins over resolvers)
+                             └→ aliases.yaml  (reviewed: which works are the SAME, wins over URLs)
                                           → bibliography.bib / .json, reports, per-chapter Markdown
-                                          → rendered.json (945 sources × 5 CSL styles)
+                                          → rendered.json (912 sources × 5 CSL styles)
 ```
 
 **TypeScript owns identity and extraction; Python owns metadata and output.** Extraction walks the
@@ -145,6 +146,18 @@ committed, and outranks every resolver; `atlas citations propose` gathers the ev
 (a PDF's first page, a page's meta tags, the sections citing it). `task:0032` D2 and D3 record the
 two ways of closing that gap automatically that were built, measured and rejected - both produce
 entries that look resolved and are wrong.
+
+**And where no address can answer, a human does too.** `data/citations/aliases.yaml` is the second
+reviewed input (`task:0031`). Canonicalization merges two URLs only when they are the same document
+_by construction_; nothing in the addresses says that a DeepMind post under two hosts, an Alignment
+Forum cross-post, or a paper beside its publisher's PDF are one work. The file folds them, and
+records the addresses it folded on the surviving entry as `sameAs` - entry-level, outside the CSL
+`item`, because CSL has no such field and `item` is what BibTeX and CSL-JSON compile. It carries a
+second section, `not-duplicates`, for groups the report keeps flagging that a person has checked and
+rejected, so that list stays a worklist rather than a standing complaint.
+
+The site reads the alias map back out of the store's own `sameAs` rather than re-reading the YAML,
+so the two halves cannot disagree about identity (`task:0021` D1).
 
 None of this is in the site build's path. `pnpm dev`, `pnpm build` and `pnpm test` never touch
 Python; only `pnpm verify` and the `atlas citations` verbs do. `bin/atlas` stays a logic-free

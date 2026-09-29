@@ -5,7 +5,7 @@ roadmap:
   summary: Where the codebase is going: Now, Next, Later, and explicitly Not planned.
   status: current
   owner: Markov Grey
-  updated: '2026-09-21'
+  updated: '2026-09-29'
 ---
 
 # Roadmap
@@ -22,7 +22,7 @@ This file is sequenced intent, not a task list. Three conventions make it usable
 - **Record links.** `task:NNNN` → `docs/tasks/`, `adr:NNNN` → `docs/adr/`, `audit:NNNN` → `docs/audits/`. A linked task record is the bounded, acceptance-tested unit of work behind an item; a linked audit is the evidence for its sequencing. The live state of those records is reconciled at the bottom of this file, so a reader can tell what has actually moved.
 - **Assumptions and break triggers.** Significant items state what is being assumed and the observation that would change the plan. When reality diverges, the trigger names which commitment to revisit - and updating this file is the first act after one fires.
 
-**Calibration.** The bands were last calibrated 2026-09-21. The Now items were drafted in the 2026-06 sweep and several have not landed: the format pass is not in the verify chain (`pnpm verify` runs lint → lint:actions → typecheck → test → build → test:smoke → test:a11y, no `format:check`), and the locale routing scaffold is not built (`getTextbooks` in `src/lib/textbooks.ts` still filters `language === 'en'`). That staleness is why the reconciliation section exists - check it before treating any item as in-flight.
+**Calibration.** The bands were last calibrated 2026-09-21; the reconciliation section was brought current 2026-09-29. The Now items were drafted in the 2026-06 sweep and several have not landed: the format pass is not in the verify chain (`pnpm verify` runs lint → lint:py → lint:actions → typecheck → test → test:py → docs:check → build → test:smoke → test:a11y, no `format:check`), and the locale routing scaffold is not built (`getTextbooks` in `src/lib/textbooks.ts` still filters `language === 'en'`). That staleness is why the reconciliation section exists - check it before treating any item as in-flight.
 
 ---
 
@@ -228,6 +228,14 @@ A nightly GitHub Actions workflow runs `lychee` against `dist/**/*.html` to dete
 _Motivated by:_ a textbook with hundreds of external citations rots silently; a nightly check catches it before readers do.
 _Code area:_ `.github/workflows/links.yml` (new), `lychee.toml` (new).
 
+> **A status-code checker does not cover the rot this repository actually has.** Measured 2026-09-29
+> (`task:0037`): 11 of the 28 chart embeds render a 404 page or a whole third-party article, and
+> **9 of the 11 answer HTTP 200**. Our World in Data retired a batch of charts and now redirects the
+> old slug to an article, so `lychee` would pass every one of them. Whatever gets built here has to
+> ask "does the final URL still name the thing it asked for", not "did it answer". That check has its
+> own false-positive profile (plenty of legitimate links redirect) and is the harder half of this
+> item, not a detail of it.
+
 ### Expanded contributor onboarding (role-based CONTRIBUTING + issue templates)
 
 `CONTRIBUTING.md` gets role-based sections: code contributor, translator, course host, errata reporter, content collaborator. Each section explains what to read, what to use (issue template / form / PR), and what to expect.
@@ -263,7 +271,7 @@ Presence here is a placeholder with reasons and dependencies, not a promise. Ite
 
 _Motivated by:_ principle 4 (reproducibility) - currently "reproducibility holds _if_ you use a fresh loader" which is a footnote we'd rather not have. Lower-priority because the test catches the actual bug class.
 _Code area:_ `src/textbook-loader/transformer.ts`, `src/textbook-loader/loader.ts`.
-_Priority calibration (2026-09-21, `audit:0007` F10): this item does **not** block multi-edition or translation work, and must not be cited as a prerequisite for it. Each edition gets its own `TextbookLoader` (constructed per edition in `content.config.ts`), so per-textbook counter state is already isolated between editions, and per-chapter figure numbering is translation-stable. It stays here as hygiene - including removing the unused `inTextbook`/`inSection` counter halves, which are dead weight carried into serialized nodes and the audio/markdown renderers. In practice it is demoted below edition-2 and translation work, despite sitting in the same band.
+\_Priority calibration (2026-09-21, `audit:0007` F10): this item does **not** block multi-edition or translation work, and must not be cited as a prerequisite for it. Each edition gets its own `TextbookLoader` (constructed per edition in `content.config.ts`), so per-textbook counter state is already isolated between editions, and per-chapter figure numbering is translation-stable. It stays here as hygiene - including removing the unused `inTextbook`/`inSection` counter halves, which are dead weight carried into serialized nodes and the audio/markdown renderers. In practice it is demoted below edition-2 and translation work, despite sitting in the same band.
 
 ### First-class image hosting for contributors (probably R2)
 
@@ -356,7 +364,7 @@ Documented as a known limitation in `TRANSLATING.md`. Revisit if/when an Arabic 
 
 ---
 
-## Reconciliation with task, ADR, and audit state (2026-09-21)
+## Reconciliation with task, ADR, and audit state (2026-09-29)
 
 Roadmap items link to governed records; those records have their own states, and a roadmap reader should be able to tell what has actually moved without opening each one:
 
@@ -366,6 +374,8 @@ Roadmap items link to governed records; those records have their own states, and
 - **`task:0011`** - `todo`; this document's restructure is part of it.
 - **`adr:0001`** (`proposed`) - the independence strategy that underpins the entire `task:0001`–`0007` backlog; the tasks are its execution arm.
 - **`adr:0002`** (`proposed`) - living-document governance: why these four documents keep stable filenames and sit outside the validator, and therefore why substance - not a green validator - is the only control on this file.
+- **`task:0021`, `task:0025`–`task:0037`** - the bibliography programme, added after this section was first written and **shipped to `main` on 2026-09-29**. It is deliberately absent from the commitment bands above: it was sequenced through its own task records rather than as a roadmap item, and by the time this reconciliation caught up it was done. State as of 2026-09-29: `task:0031` (alias file) and `task:0034` (bibliography in the chapter PDF) are `done` with evidence; `task:0021`, `0025`, `0026`, `0027`, `0029`, `0030`, `0032` and `0036` are complete in substance with filled evidence tables but still read `todo`, because `task:0025` records that acceptance is the owner's and none has been accepted. **Do not read those eight as unstarted.** Genuinely open: `task:0035` and `task:0037` (upstream Google Doc corrections - citations and figure embeds respectively, both needing an author rather than the pipeline), `task:0028` (research-database write-back), and `task:0033` (the styled listbox, which is site-wide design work rather than bibliography work).
+- **`audit:0011`** - the incidental-findings log, `draft` and append-only by design. It carries F1-F27; F18-F27 were all found while building the bibliography, and several are unowned defects in code this roadmap does not otherwise mention (`F26`, `F27`: resolver behaviour; `F25`: fixed).
 - **`audit:0001`–`audit:0010`** - point-in-time evidence, all `draft`. Every recommendation in them is pending owner decision; none authorises a code change. When a roadmap item cites an audit, the audit supplies the sequencing evidence, and the owner's decision converts it into the commitment the band reflects. If an audit recommendation is declined, the roadmap item citing it should be updated or removed in the same decision - a roadmap item pointing at superseded audit evidence is exactly the staleness this file now guards against.
 
 ---
@@ -378,4 +388,4 @@ This file (`ROADMAP.md`) is strategic - "here's where we want to be, here's what
 
 ---
 
-_Last updated: 2026-09-21 (commitment bands, dependencies, break triggers, and record reconciliation added; language-switcher claim corrected; quizzes/flashcards distinguished from the rejected certification program)._
+_Last updated: 2026-09-29 (bibliography programme reconciled, verify chain corrected, link-checker caveat added); 2026-09-21 (commitment bands, dependencies, break triggers, and record reconciliation added; language-switcher claim corrected; quizzes/flashcards distinguished from the rejected certification program)._
