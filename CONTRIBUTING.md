@@ -2,6 +2,12 @@
 
 External contributions are welcome. If you hit a friction point that isn't covered here, that's a bug - please file an issue.
 
+**Who this is for:** anyone changing the site, the content pipeline, or the citation engine. No credentials, no Google account, and no Cloudflare access are needed for any of it - the committed `.cache/docs/` snapshot stands in for the live documents.
+
+**What it assumes:** a Unix-like shell (Linux or macOS; WSL works). CI runs **Node 22** and **pnpm 10**, so those are the supported versions; the citation half needs **Python 3.12 or newer**, installed for you by `uv`. Nothing here assumes a particular editor or OS package manager.
+
+**Currency:** this file is verified against the repository as of 2026-09-29. If a command here fails on a clean clone, that is a bug in this file, not in your setup.
+
 ## Setup
 
 ```bash
@@ -29,6 +35,28 @@ If `pnpm dev` doesn't bind to an address you can reach (it defaults to `127.0.0.
 ```bash
 pnpm dev --host 0.0.0.0
 ```
+
+### Checking it actually worked
+
+Setup is right when all three of these hold. Each is cheap and each catches a different failure:
+
+```bash
+pnpm check                       # exit 0. Typecheck plus both test suites, ~25s.
+                                 # A failure here means the toolchain, not your change.
+curl -s localhost:4321/ -o /dev/null -w '%{http_code}\n'   # 200
+./bin/atlas citations report     # prints a one-line summary; proves the Python half is wired
+```
+
+If `pnpm check` passes but `./bin/atlas` fails, you have the Node half and not the Python half - re-run `uv sync`.
+
+### If something goes wrong
+
+| Symptom                                       | Cause                                                                                                                                                                                                                                                            |
+| --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sh: 1: uv: not found` from `pnpm verify`     | The Python half is not installed. Run `uv sync`. `pnpm check` and `pnpm dev` do not need it; `pnpm verify` does.                                                                                                                                                 |
+| A build starts uploading audio                | **Export `SKIP_AUDIO_DOWNLOAD=1` before any build.** With R2 credentials present the audio renderer PUTs to production storage; the variable is the only thing that stops it (`task:0022`). The pre-push hook sets it for you, but a bare `pnpm build` does not. |
+| `pnpm verify` hangs or takes the machine down | It builds 392 pages and launches Playwright, and wants roughly 2-3 GiB free. The pre-push hook refuses to start below 3 GiB and tells you what to free. Use `pnpm check` while iterating and let the hook run `verify` once at push time.                        |
+| Figures show captions but no images           | Expected on a contributor build. Images live in R2 and are not needed to work on anything else.                                                                                                                                                                  |
 
 ## What works without credentials
 

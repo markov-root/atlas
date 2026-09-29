@@ -1,6 +1,27 @@
+---
+index:
+  version: 1
+  id: docs-index
+  summary: What each document in this directory is for, which role governs it, and why the GitHub-recognized root files are governed by substance rather than frontmatter.
+  status: current
+  owner: Markov Grey
+  updated: '2026-09-29'
+---
+
 # Documentation
 
 Each file in this directory has a single purpose. The doc set is intentionally small - three kinds of writing (reference / strategy / process journal), each with a clear destination.
+
+## How these documents are governed
+
+The repository has adopted the software-engineering skill (`engineering.yaml`), whose document roles are a closed vocabulary. Two mechanisms apply, and which one a file gets depends on whether it is an append-only series:
+
+- **Numbered record series** - `task`, `handoff`, `audit`, `adr`, `lesson` - are declared in `docs.currency.roles`, carry the full contract, and are checked by `engineering document validate`.
+- **Living documents** at stable filenames - `ARCHITECTURE.md` (`specification`), `PRINCIPLES.md` and `DESIGN.md` (`standard`), `ROADMAP.md` (`roadmap`), and this file (`index`) - carry role frontmatter but sit outside the currency mechanism, because that mechanism would force renames like `docs/0001-architecture.md`. See `adr:0002` for the full reasoning.
+
+**The GitHub-recognized root files are the third case: governed by substance, not frontmatter.** `README.md` and `CONTRIBUTING.md` are rendered by GitHub on the repository homepage and in its community-standards flow, and GitHub renders YAML frontmatter as a visible table. Bolting a role block onto a public landing page costs a reader something real and buys no validation, since these files are outside the currency mechanism either way. So they are held to their role's **content bar** - `CONTRIBUTING.md` to `guide` (audience, environment and version stated; verification steps; troubleshooting paths), `README.md` to `guide` as an entry point - and that conformance is a review question rather than a tooling one.
+
+Do not "fix" the absent frontmatter on those two. That is this paragraph's whole job.
 
 ## Reference (current state + rationale)
 

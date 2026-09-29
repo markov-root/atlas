@@ -4,10 +4,10 @@ id: '0002'
 uid: 'adr-20260921T142811698836Z-2c4de83a'
 title: 'Govern living documents by frontmatter at stable paths, not as numbered record series'
 role: adr
-status: proposed
+status: accepted
 summary: 'Living docs keep stable filenames and carry role frontmatter; only append-only record series are declared in docs.currency.roles.'
 created: '2026-09-21'
-updated: '2026-09-21'
+updated: '2026-09-29'
 owner: Markov Grey
 supersedes: ''
 superseded_by: ''
@@ -18,15 +18,19 @@ engineering_document:
   id: '0002'
   uid: adr-20260921T142811698836Z-2c4de83a
   title: 'Govern living documents by frontmatter at stable paths, not as numbered record series'
-  state: proposed
+  state: accepted
   authority:
     kind: decision-record
     owner: Markov Grey
     scope: How documentation roles are declared in engineering.yaml and how docs/ filenames are chosen
   created: '2026-09-21'
-  updated: '2026-09-21'
-  transition_history: unverified
-  transitions: []
+  updated: '2026-09-29'
+  transition_history: complete
+  transitions:
+    - from: proposed
+      to: accepted
+      at: '2026-09-29'
+      reason: Ratified by the owner after the alternative was put directly - deleting PRINCIPLES.md and DESIGN.md in favour of the skill's knowledge library - and declined.
   relationships: []
   details:
     decision_date: '2026-09-21'
@@ -87,6 +91,32 @@ Concretely:
    skill's own convention for its living documents.
 3. `engineering.yaml` carries a comment at the point of temptation explaining why those four are
    absent, so the next reader does not "fix" it by adding them back.
+
+### Amendment, 2026-09-29 (accepted with this record)
+
+Two cases the original decision did not name, both following from the same reasoning:
+
+4. **`docs/README.md` is a living document too**, carrying `index` role frontmatter at its stable
+   path. It was left out of the original list; it is the doc set's own index and belongs with the
+   other four.
+5. **The GitHub-recognized root files are a third category: governed by substance, not frontmatter.**
+   `README.md` and `CONTRIBUTING.md` are rendered by GitHub on the repository homepage and in its
+   community-standards flow, and GitHub renders YAML frontmatter as a visible table. A role block
+   there costs a public reader something real and buys no validation, because these files sit outside
+   the currency mechanism either way. They are held to their role's **content bar** instead -
+   `CONTRIBUTING.md` was brought to the `guide` standard on 2026-09-29 (audience, environment and
+   version stated; verification steps; a troubleshooting table) - and conformance is a review question
+   rather than a tooling one. `docs/README.md` states this so the absence is not "fixed" later.
+
+This amendment was prompted by the owner asking whether `PRINCIPLES.md` and `DESIGN.md` should be
+deleted in favour of the software-engineering skill's knowledge library. They should not, and the
+reason is the skill's own authority ordering: its knowledge files are decision support and explicitly
+**not** project policy, which is why the skill instructs a project to _promote a principle into
+project policy explicitly_. `PRINCIPLES.md` is that promotion. Deleting it in favour of the library
+would replace policy with the advice that policy was derived from. Both files already satisfy the
+`standard` role's discriminating test - issuer, applicability, binding/advisory classification,
+exceptions, and a contested-case procedure - so the gap was never there; it was in the unratified
+state of this record and in the root files above.
 
 ## Consequences
 
