@@ -103,3 +103,5 @@ in total, each with options, a recommendation, and what is irreversible if decid
   Upstream Google Doc citation corrections (todo - child of 0032, p2; eleven defects that cannot be fixed in this repository because URL is identity and anchor text is never re-rendered).
 - [task:0036](./0036-back-links-from-a-reference-to-every-place-it-is-cited.md) -
   Back-links from a reference to every place it is cited (todo - p2; a footnote can return the reader to their place and a citation cannot, and a source cited many times needs many back-links).
+- [task:0037](./0037-repair-the-our-world-in-data-figure-embeds-the-upstream-charts-retired.md) -
+  Repair the Our World in Data figure embeds the upstream charts retired (todo - p2; 11 of 28 iframes render a 404 page or a whole article, and 9 of them still return HTTP 200).

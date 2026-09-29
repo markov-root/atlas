@@ -7,7 +7,7 @@ role: handoff
 status: current
 summary: "The bibliography feature is finished on all four surfaces and pnpm verify passes end to end."
 created: "2026-09-24"
-updated: "2026-09-24"
+updated: "2026-09-29"
 owner: Markov Grey
 supersedes: ""
 superseded_by: ""
@@ -24,7 +24,7 @@ engineering_document:
     owner: Markov Grey
     scope: NEXT-SESSION CONTINUATION ONLY
   created: "2026-09-24"
-  updated: "2026-09-24"
+  updated: "2026-09-29"
   transition_history: unverified
   transitions: []
   relationships: []
@@ -34,7 +34,7 @@ engineering_document:
     revision: a523ffb, clean
     objective: Finish the bibliography feature, then decide on merging to main
     completed: [task:0031, task:0034, task:0036]
-    open_work: [task:0035, task:0033, task:0022, task:0028]
+    open_work: [task:0037, task:0035, task:0033, task:0022, task:0028]
     blockers: [merge-to-main-is-a-deploy]
     authority_refs: [AGENTS.md, docs/handoffs/0005-citation-metadata-complete-duplicates-identified-and-decided-alias-file-not-yet.md, docs/tasks/0031-collapse-duplicate-sources-through-an-alias-file.md, docs/audits/0011-incidental-findings-log-bugs-edge-cases-and-optimizations-found-in-passing.md]
     resume: export SKIP_AUDIO_DOWNLOAD=1 && pnpm check
@@ -97,17 +97,22 @@ Two things were found by building it and are worth not re-deriving:
 
 ## Open work
 
-1. **`task:0035`** - p1, and the only bibliography item left. ~24 upstream Google Doc corrections
+1. **`task:0037`** - the Our World in Data figure embeds. **11 of the 28 iframes in the textbook
+   render a 404 page or a whole third-party article**, on 8 pages across 4 chapters, and **9 of the 11
+   still return HTTP 200** because OWID 302s a retired chart to an article. Six verified swaps are
+   written out; five charts have no replacement and need an authorial decision. Found by the owner
+   reading a page, not by any check this repository runs.
+2. **`task:0035`** - p1, and the only bibliography *citation* item left. ~24 upstream Google Doc corrections
    that cannot be fixed here because URL is identity and anchor text is never re-rendered. Needs the
    authors, not the pipeline. Includes one wrong-document citation and the `arxiv.org/abs/2307.15217'`
    trailing apostrophe, which is now aliased but should be fixed at source.
-2. **`task:0033`** - the styled listbox. Site-wide design-system work rather than bibliography work,
+3. **`task:0033`** - the styled listbox. Site-wide design-system work rather than bibliography work,
    and D1 is unanswered: buy a headless library or hand-roll. The bibliography's source facet is
    **255 options**, which makes type-ahead and virtualisation real rather than theoretical.
-3. **`task:0022`** - p1, unchanged. `deploy.yml` passes real R2 credentials and `SKIP_AUDIO=1` does
+4. **`task:0022`** - p1, unchanged. `deploy.yml` passes real R2 credentials and `SKIP_AUDIO=1` does
    not gate `pushPublicFiles`.
-4. **`task:0028`**, **`task:0023`**, **`task:0013`**.
-5. **Records finished in substance but still `todo`:** `0021`, `0025`, `0026`, `0027`, `0029`,
+5. **`task:0028`**, **`task:0023`**, **`task:0013`**.
+6. **Records finished in substance but still `todo`:** `0021`, `0025`, `0026`, `0027`, `0029`,
    `0030`, `0032`, `0036`. Each carries a filled evidence table; `0025` states outright that it stays
    `todo` because "acceptance is the owner's". They were **deliberately not transitioned here** -
    that is the owner's call, not a cleanup. The mechanism now exists: replace
@@ -139,6 +144,9 @@ Everything in `handoff:0004` and `handoff:0005` still applies. New since:
 - **Two resolver defects are recorded and unowned**, `audit:0011` F26 and F27. F27 is the one to
   watch: `forum-magnum` is returning `None` for EA Forum URLs it claims, so the archive answers in
   its place, and the EA Forum share of this corpus will grow.
+- **A status-code sweep will tell you these embeds are healthy.** Nine of the eleven broken Our
+  World in Data figures answer HTTP 200; the signal is the *redirect target*, not the code. Any future
+  link check over this corpus has to ask "does the final URL still name the thing it asked for".
 - **A dev server is running** on `0.0.0.0:4321` from this session.
 
 ## Resume
