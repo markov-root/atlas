@@ -5,6 +5,81 @@
 #
 # Activated via `git config core.hooksPath .githooks`, set automatically
 # by the `prepare` script in package.json on every `pnpm install`.
+#
+# Two guards sit in front of the run, both added 2026-09-29 after this hook
+# took a development VM down. `pnpm verify` builds 392 pages and launches
+# Playwright; it is the heaviest thing this repository does, and the hook
+# fires it on *every* push. Neither guard weakens the gate: a push that has
+# not been verified still cannot through.
+
 set -e
-echo "[pre-push] running pnpm verify..."
-exec pnpm verify
+
+GIT_DIR=$(git rev-parse --git-dir)
+STAMP="$GIT_DIR/verify-passed"
+HEAD_SHA=$(git rev-parse HEAD)
+
+# --- Guard 1: do not verify the same tree twice -----------------------------
+#
+# A push of `main` followed by a push of `bibliography`, both at the same
+# commit, ran the full chain twice on a byte-identical tree. That is not
+# caution, it is waste - and it was two thirds of the load that killed the VM.
+#
+# Keyed on the commit SHA and only honoured when the working tree is clean,
+# so the thing that passed is exactly the thing being pushed. Uncommitted
+# changes always re-verify.
+if [ -f "$STAMP" ] && [ "$(cat "$STAMP")" = "$HEAD_SHA" ] && git diff-index --quiet HEAD --; then
+  echo "[pre-push] $HEAD_SHA already passed pnpm verify and the tree is clean - skipping."
+  echo "[pre-push] delete $STAMP to force a re-run."
+  exit 0
+fi
+
+# --- Guard 2: refuse to start without room ----------------------------------
+#
+# `free -h`'s "available" is what everyone reads and it overstates headroom,
+# but it is still the best single number here and it is cheap. The threshold
+# is set from measurement: a healthy verify on this project needs roughly
+# 2-2.5 GiB, so below 3 GiB the run is gambling.
+#
+# This refuses rather than warns on purpose. A warning printed into a scroll
+# buffer is not a control, and the failure it prevents is not "the build
+# fails" - it is a livelocked machine that only recovers from the hypervisor.
+MIN_AVAIL_MB=${ATLAS_VERIFY_MIN_AVAIL_MB:-3000}
+if [ -r /proc/meminfo ]; then
+  AVAIL_MB=$(awk '/^MemAvailable:/ {print int($2/1024)}' /proc/meminfo)
+  if [ -n "$AVAIL_MB" ] && [ "$AVAIL_MB" -lt "$MIN_AVAIL_MB" ]; then
+    echo "[pre-push] REFUSING to run pnpm verify: ${AVAIL_MB} MiB available, need ${MIN_AVAIL_MB} MiB."
+    echo
+    echo "  verify builds 392 pages and launches Playwright. Starting it here"
+    echo "  risks livelocking the machine rather than failing the build."
+    echo
+    echo "  Free memory first - the usual culprits, largest first:"
+    echo "    ps aux --sort=-rss | head -12"
+    echo "  Concurrent agent sessions each carry their own MCP fleet, so closing"
+    echo "  one closes several processes."
+    echo
+    echo "  Then re-push. To override for a genuine emergency:"
+    echo "    ATLAS_VERIFY_MIN_AVAIL_MB=0 git push ..."
+    echo "  or skip the gate entirely with: git push --no-verify"
+    exit 1
+  fi
+fi
+
+# --- Guard 3: never let a local gate write to production storage ------------
+#
+# `task:0022`. The build's audio renderer PUTs to production R2 whenever it
+# finds credentials, and `SKIP_AUDIO_DOWNLOAD=1` is the only thing that stops
+# it. That has been a rule people are asked to remember and export by hand,
+# which is not a control: running this hook from a shell that had not exported
+# it sent an 11 MB PutObject at the production bucket on 2026-09-29. It failed
+# on a stale signature. That was luck, not design.
+#
+# Set here because this is where the build is invoked. Verifying a push is
+# never a reason to mutate production assets.
+export SKIP_AUDIO_DOWNLOAD=1
+
+echo "[pre-push] running pnpm verify (SKIP_AUDIO_DOWNLOAD=1)..."
+if pnpm verify; then
+  echo "$HEAD_SHA" > "$STAMP"
+  exit 0
+fi
+exit 1
