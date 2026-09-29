@@ -425,13 +425,6 @@ Machine learning
 
 
 #figure(
-    image("/assets/uc/e17b6c6f3856dc3613b7d9a64ead0745d86cef8850d0c08aaf51aae51beff365.png", width: 90%),
-    caption: [We are seeing an explosion in language models due to their generality, and applicability to a wide range of tasks  (#link("https://ourworldindata.org/grapher/cumulative-number-of-large-scale-ai-models-by-domain")[Giattino et al., 2023]). _(interactive version on website)_]
-    )
-
-
-
-#figure(
     image("/assets/uc/7b876d786dc241f8c78c6bb7fa111ca29d0f42f6dc93662127bc50b391ec1de1.png", width: 90%),
     caption: [A list of ‘Nowhere near solved’ \\[...\\] problems in AI, from ‘A brief history of AI’, published in January 2021 (#link("https://www.amazon.com/Brief-History-Artificial-Intelligence-Where/dp/1250770742")[Wooldridge, 2021]). They also say: ‘At present, we have no idea how to get computers to do the tasks at the bottom of the list’. But everything in the category ‘Nowhere near solved’ has been solved by GPT-4 (#link("https://arxiv.org/abs/2303.12712")[Bubeck et al., 2023]), except human-level general intelligence.]
     )
@@ -718,13 +711,6 @@ foundation models
 
 
 
-#figure(
-    image("/assets/uc/3d0ff220fa89cc19cb20396d9b6b4c054cc6de5c1bf606706c345c66bfcb71f0.png", width: 90%),
-    caption: [Number of large-scale AI systems released per year. Describes the specific area, application, or field in which a large-scale AI model is designed to operate. The 2025 data is incomplete and was last updated 01 June 2025 (#link("https://ourworldindata.org/artificial-intelligence")[Giattino et al., 2023]). _(interactive version on website)_]
-    )
-
-
-
 Foundation models
 #strong[ mark a paradigm shift towards general-purpose systems.]
  This paradigm introduces many new risks which didn't exist previously. These include misuse risks from power centralization, homogenization, and dual-use capabilities just to name a few. The ability of 
@@ -734,13 +720,6 @@ foundation models
 ). Complex capabilities, combined with generality and scale, means we need to seriously consider safety risks beyond just misuse that previously seemed theoretical or distant. Beyond just misuse risk, things like misalignment are becoming an increasing concern with each new capability that these 
 foundation models
  exhibit. We dedicate an entire chapter to the discussion of these risks. But we will also give you a small taste on the kinds of possible risks in the next few subsections, as it warrants some repetition.
-
-
-
-#figure(
-    image("/assets/uc/7c3a0368514029a8a918739c49bc19b74a353ec5ccaee6ce8d7853b51c472d62.png", width: 90%),
-    caption: [Cumulative number of large-scale AI models by domain since 2017. Describes the specific area, application, or field in which a large-scale AI model is designed to operate (#link("https://ourworldindata.org/artificial-intelligence")[Giattino et al., 2023]). _(interactive version on website)_]
-    )
 
 
 
@@ -3045,9 +3024,6 @@ We would like to express our gratitude to Jeanne Salle, Charles Martinet, Vincen
 #par(hanging-indent: 1.5em)[Giattino et al. (2023). #link("https://ourworldindata.org/artificial-intelligence")[Artificial Intelligence]. #emph[Our World in Data]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[ourworldindata.org/artificial-intelligence]]
 
-#par(hanging-indent: 1.5em)[Giattino et al. (2023). #link("https://ourworldindata.org/grapher/cumulative-number-of-large-scale-ai-models-by-domain")[Language-based AI systems have grown rapidly in recent years]. #emph[Our World in Data]. \\
-#text(size: 0.8em, fill: rgb("#666666"))[ourworldindata.org/grapher/cumulative-number-of-large-scale-ai-models-by-domain]]
-
 #par(hanging-indent: 1.5em)[Goertzel, B. et al. (2023). #link("https://arxiv.org/abs/2310.18318")[OpenCog Hyperon: A Framework for AGI at the Human Level and Beyond]. #emph[arXiv]. \\
 #text(size: 0.8em, fill: rgb("#666666"))[arxiv.org/abs/2310.18318]]
 
@@ -3458,8 +3434,6 @@ AIs can construct long term strategies and play games in open ended dynamic envi
 
 *Figure 1.8: Performance on common exams as a percentile compared to human test takers. Notice the large jump from GPT-3.5 to GPT-4 on these tests, often from well below the median human to the very top of the human range ([Aschenbrenner, 2024](https://situational-awareness.ai/from-gpt-4-to-agi/);[ OpenAI, 2023](https://arxiv.org/abs/2303.08774)). The jump from GPT-3 to GPT-4 was in a single year.*
 
-*Interactive figure 1.1: We are seeing an explosion in language models due to their generality, and applicability to a wide range of tasks  ([Giattino et al., 2023](https://ourworldindata.org/grapher/cumulative-number-of-large-scale-ai-models-by-domain)).*
-
 *Figure 1.9: A list of ‘Nowhere near solved’ [...] problems in AI, from ‘A brief history of AI’, published in January 2021 ([Wooldridge, 2021](https://www.amazon.com/Brief-History-Artificial-Intelligence-Where/dp/1250770742)). They also say: ‘At present, we have no idea how to get computers to do the tasks at the bottom of the list’. But everything in the category ‘Nowhere near solved’ has been solved by GPT-4 ([Bubeck et al., 2023](https://arxiv.org/abs/2303.12712)), except human-level general intelligence.*
 
 Language models have provided a core around which we have seen many impressive capabilities emerge like - scientific research, reasoning, and software development. All of these capabilities stem from the same principle of generating language and gradually refining it.
@@ -3540,11 +3514,7 @@ Foundation models** represent a fundamental shift in how we develop AI.** Rather
 
 In language processing, models like GPT-4 and Claude are examples of foundation models. Both of these have demonstrated the ability to generate human language, have complex conversations and perform simple reasoning tasks ([OpenAI, 2023](https://arxiv.org/abs/2303.08774)). Examples in computer vision include models like DALL-E 3 and Stable Diffusion. ([Betker et al., 2023](https://cdn.openai.com/papers/dall-e-3.pdf)) These are domain specific examples, but we are also seeing a trend toward multimodal foundation models (LMMs). This includes things like GPT-4V and Gemini that can work across different types of data - processing and generating text, images, code, audio and probably more in the future ([Google, 2023](https://arxiv.org/abs/2312.11805)). Even in reinforcement learning, where models were traditionally trained for specific tasks, we're seeing foundation models like Gato demonstrate the ability to learn general-purpose behaviors that can be adapted to various different downstream tasks ([Reed et al., 2022](https://arxiv.org/abs/2205.06175)).
 
-*Interactive figure 1.2: Number of large-scale AI systems released per year. Describes the specific area, application, or field in which a large-scale AI model is designed to operate. The 2025 data is incomplete and was last updated 01 June 2025 ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).*
-
 Foundation models** mark a paradigm shift towards general-purpose systems.** This paradigm introduces many new risks which didn't exist previously. These include misuse risks from power centralization, homogenization, and dual-use capabilities just to name a few. The ability of foundation models to learn broad, transferable capabilities has led to increasingly sophisticated behaviors emerging from relatively simple training objectives ([Wei et al., 2022](https://arxiv.org/abs/2206.07682)). Complex capabilities, combined with generality and scale, means we need to seriously consider safety risks beyond just misuse that previously seemed theoretical or distant. Beyond just misuse risk, things like misalignment are becoming an increasing concern with each new capability that these foundation models exhibit. We dedicate an entire chapter to the discussion of these risks. But we will also give you a small taste on the kinds of possible risks in the next few subsections, as it warrants some repetition.
-
-*Interactive figure 1.3: Cumulative number of large-scale AI models by domain since 2017. Describes the specific area, application, or field in which a large-scale AI model is designed to operate ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).*
 
 **What is the difference between **foundation models** and frontier models?** Frontier models represent the cutting edge of AI capabilities - they are the most advanced models in their respective domains. While many frontier models are also foundation models (like Claude 3.5 Sonnet), this isn't always the case. For example, AlphaFold, while being a frontier model in protein structure prediction, isn't typically considered a foundation model because it's specialized for a single task rather than serving as a general foundation for multiple applications ([Jumper et al., 2021](https://pubmed.ncbi.nlm.nih.gov/34265844/)).
 
@@ -3737,11 +3707,11 @@ In the previous section, we looked at different notions of how to define AGI and
 
 **Scaling laws are empirically observed relationships, not laws of nature. **OpenAI first documented these relationships in 2020 by running hundreds of experiments, varying inputs while measuring accuracy ([Kaplan et al., 2020](https://arxiv.org/abs/2001.08361)). They found that when you increase compute by 10×, accuracy improves predictably. Double the parameters, accuracy jumps predictably. These patterns proved surprisingly consistent across model architectures and tasks, suggesting they capture something fundamental about how neural networks learn. Later research revealed optimal training requires roughly 20 tokens of data per parameter - about 10× more data than early laws suggested[^5] ([Hoffmann et al., 2022](https://arxiv.org/abs/2203.15556)). This meant previous large models were undertrained relative to their size. The relationships continue evolving as researchers gather more evidence, but the core insight remains: scale drives predictable capability gains. The following graphs clearly show massive increases in scale for data, compute, and parameter count by all major AI labs.
 
-*Interactive figure 1.4: Exponential growth of parameters in notable AI systems. Parameters are variables in an AI system whose values are adjusted during training to establish how input data gets transformed into the desired output; for example, the connection weights in an artificial neural network ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).*
+*Interactive figure 1.1: Exponential growth of parameters in notable AI systems. Parameters are variables in an AI system whose values are adjusted during training to establish how input data gets transformed into the desired output; for example, the connection weights in an artificial neural network ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).*
 
-*Interactive figure 1.5: Exponential growth of datapoints used to train notable AI systems. Each domain has a specific data point unit; for example, for vision it is images, for language it is words, and forgames it is timesteps. This means systems can only be compared directly within the same domain ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).*
+*Interactive figure 1.2: Exponential growth of datapoints used to train notable AI systems. Each domain has a specific data point unit; for example, for vision it is images, for language it is words, and forgames it is timesteps. This means systems can only be compared directly within the same domain ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).*
 
-*Interactive figure 1.6: Exponential growth of computation in the training of notable AI systems. Computation is measured in total peta FLOP, which is 10e15 floating-point operations ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).*
+*Interactive figure 1.3: Exponential growth of computation in the training of notable AI systems. Computation is measured in total peta FLOP, which is 10e15 floating-point operations ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).*
 
 **The Broken Neural Scaling Laws (BNSL) update in 2023**
 
@@ -3962,7 +3932,7 @@ The third factor in increasing effective compute is - how many chips can you act
 
 *Figure 1.54: Table showcasing estimates costs and times to overcome various  constraints in scaling up compute production ([Edelman & Ho, 2025](https://epoch.ai/gradient-updates/compute-scaling-will-slow-down-due-to-increasing-lead-times)).*
 
-*Interactive figure 1.7: Quarterly revenue of NVIDIA Corporation across its main market segments, reported in US dollars. NVIDIA manufactures graphics processing units (GPUs), which were originally used for gaming and are now used to train AI models. This data is not adjusted for inflation ([Our World in Data, 2023](https://ourworldindata.org/artificial-intelligence)).*
+*Interactive figure 1.4: Quarterly revenue of NVIDIA Corporation across its main market segments, reported in US dollars. NVIDIA manufactures graphics processing units (GPUs), which were originally used for gaming and are now used to train AI models. This data is not adjusted for inflation ([Our World in Data, 2023](https://ourworldindata.org/artificial-intelligence)).*
 
 **Investment doesn't immediately make chip production go faster.** If some country wants to build their own TSMC equivalent, then it can take 4-5 years to build a new cutting-edge fab (accounting for construction and permitting), though upgrading an existing fab takes less time, around 2 years in addition to billions in investment ([Edelman & Ho, 2025](https://epoch.ai/gradient-updates/compute-scaling-will-slow-down-due-to-increasing-lead-times); [Epoch AI, 2025](https://arxiv.org/abs/2503.04941)). Besides the existing competition for chips from TSMC, another factor is that the machines TSMC needs to manufacture the chips. These are almost exclusively made by a single company: ASML in the Netherlands ([Blablová, 2025](https://epoch.ai/gradient-updates/why-china-isnt-about-to-leap-ahead-of-the-west-on-compute)). These extreme ultraviolet (EUV) lithography machines cost between $150 million to $380 million each. If/When someone (e.g. TSMC) wants to expand production, they can't just order fifty more next month. They join an already long waitlist ([Edelman & Ho, 2025](https://epoch.ai/gradient-updates/compute-scaling-will-slow-down-due-to-increasing-lead-times); [Sevilla, AXRP Podcast, 2024](https://axrp.net/episode/2024/10/04/episode-37-jaime-sevilla-forecasting-ai.html)).
 
@@ -3974,13 +3944,13 @@ The third factor in increasing effective compute is - how many chips can you act
 
 *Figure 1.56: Breakdown of model development costs for selected models. Hardware costs are amortized to the total number of chip-hours spent on experiments and training. R&D staff costs cover the duration of development, from initial experiments to publication ([Cottier et al., 2025](https://epoch.ai/blog/how-much-does-it-cost-to-train-frontier-ai-models)).*
 
-*Interactive figure 1.8: Hardware and energy cost to train notable AI systems. This data is expressed in US dollars, adjusted for inflation ([Our World in Data, 2023](https://ourworldindata.org/artificial-intelligence)).*
+*Interactive figure 1.5: Hardware and energy cost to train notable AI systems. This data is expressed in US dollars, adjusted for inflation ([Our World in Data, 2023](https://ourworldindata.org/artificial-intelligence)).*
 
 *Figure 1.57: Amortized hardware cost plus energy cost for the final training run of frontier models. The selected models are among the top 10 most compute-intensive for their time. Amortized hardware costs are the product of training chip-hours and a depreciated hardware cost, with 23% overhead added for cluster-level networking. Open circles indicate costs which used an estimated production cost of Google TPU hardware. These costs are generally more uncertain than the others, which used actual price data rather than estimates ([Cottier et al., 2025](https://epoch.ai/blog/how-much-does-it-cost-to-train-frontier-ai-models)).*
 
 **The acquisition cost in USD of the hardware used to train frontier AI models has grown by 2.5x per year since 2016.** To give you a sense of how much training a frontier model costs, the total amortized cost of developing Grok-4 (released in July 2025), including hardware and electricity, is estimated at $480 million USD. The acquisition cost of the hardware to train Grok-3, including GPUs, other server components, and networking, is estimated at $3 billion USD. The hardware used to train Grok 4 may have been even more expensive ([Epoch AI, 2025](https://epoch.ai/trends)).
 
-*Interactive figure 1.9: Money put into privately held AI companies by private investors. This excludes publicly traded companies (e.g., Big Tech companies) and companies’ internal spending, such as R&D or infrastructure. Expressed in US dollars, adjusted for inflation ([Our World in Data, 2023](https://ourworldindata.org/artificial-intelligence)).*
+*Interactive figure 1.6: Money put into privately held AI companies by private investors. This excludes publicly traded companies (e.g., Big Tech companies) and companies’ internal spending, such as R&D or infrastructure. Expressed in US dollars, adjusted for inflation ([Our World in Data, 2023](https://ourworldindata.org/artificial-intelligence)).*
 
 **An unknown question is whether the returns to productivity gains will justify continued investment.** 2025 saw a lot of news headlines about circular investment and an “AI bubble”. If AI can automate significant portions of cognitive work, capturing even a fraction of the global labor market makes trillion-dollar investments rational. However, massive investments face increasing hurdles due to structural constraints. As compute scales up, the lead time between project initiation and deployment lengthens significantly—roughly one year for every ten-fold increase in scale—creating a feedback loop that naturally slows the pace of scaling ([Edelman & Ho, 2025](https://epoch.ai/gradient-updates/compute-scaling-will-slow-down-due-to-increasing-lead-times)). This uncertainty regarding long-term returns over extended periods may drive investors to prefer incremental scaling, breaking up projects into smaller chunks to gauge returns before committing further, rather than making massive upfront investments ([Edelman & Ho, 2025](https://epoch.ai/gradient-updates/compute-scaling-will-slow-down-due-to-increasing-lead-times)). Several things could break the pattern entirely: models hitting a capability ceiling where more compute doesn't help, regulations capping training runs or data center sizes, energy costs making large runs uneconomical, or economic recession drying up capital. Each represents a distinct way scaling could stop independent of technical feasibility.
 
@@ -4000,9 +3970,9 @@ The third factor in increasing effective compute is - how many chips can you act
 
 **Scaling AI systems to the forecasted levels of 2030 will require substantial power infrastructure.** A training run of $2 times 10^29$ FLOP would require approximately 6 GW of power, assuming improvements in hardware efficiency. This scale necessitates data center campuses ranging from 1 to 5 GW by the end of the decade ([Sevilla et al., 2024](https://epoch.ai/blog/can-ai-scaling-continue-through-2030)). Lead times increase with scale: every additional 10× increase in compute stock adds roughly one year to project timelines. Constructing the necessary large-scale power plants typically takes 2-3 years ([Edelman & Ho, 2025](https://epoch.ai/gradient-updates/compute-scaling-will-slow-down-due-to-increasing-lead-times)). Despite these hurdles, the cost of power remains a small fraction of data center expenses—roughly one-tenth the cost of the chips - making the capital investment rational given the potential returns ([Ho et al., 2025](https://epoch.ai/gradient-updates/is-almost-everyone-wrong-about-americas-ai-power-problem)).
 
-*Interactive figure 1.10: Total electricity generated in each country or region, measured in terawatt-hours ([Our World in Data, 2024](https://ourworldindata.org/energy-production-consumption)).*
+*Interactive figure 1.7: Total electricity generated in each country or region, measured in terawatt-hours ([Our World in Data, 2024](https://ourworldindata.org/energy-production-consumption)).*
 
-*Interactive figure 1.11: The levelized cost of energy (LCOE) accounts for everything, the cost of building the power plant, plus the ongoing costs in keeping it operational over the lifetime of the plant. The cost of energy generation per watt has been falling for decades, and even more dramatically for renewable sources ([Our World in Data, 2026](https://ourworldindata.org/grapher/levelized-cost-of-energy)).*
+*Interactive figure 1.8: The levelized cost of energy (LCOE) accounts for everything, the cost of building the power plant, plus the ongoing costs in keeping it operational over the lifetime of the plant. The cost of energy generation per watt has been falling for decades, and even more dramatically for renewable sources ([Our World in Data, 2026](https://ourworldindata.org/grapher/levelized-cost-of-energy)).*
 
 [^7]:  CMOS (Complementary Metal-Oxide-Semiconductor) is the primary paradigm in processor production. The majority of all digital integrated circuits (CPUs, GPUs, RAM, mobile SoCs) produced today are CMOS.
 
@@ -4076,9 +4046,9 @@ Leading AI researchers and technologists express significant concern about exist
 
 *Video 1.4: Optional video outlining some views that AI experts have on safety and risk.*
 
-*Interactive figure 1.12: Views about AI's impact on society in the next 20 years, 2021. Survey respondents were asked, “Will artificial intelligence help or harm people in the next 20 years?”  ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).*
+*Interactive figure 1.9: Views about AI's impact on society in the next 20 years, 2021. Survey respondents were asked, “Will artificial intelligence help or harm people in the next 20 years?”  ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).*
 
-*Interactive figure 1.13: Views of Americans about robot vs. human intelligence. Survey respondents were asked, “Which ONE, if any, of the following statements do you MOST agree with?” ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).*
+*Interactive figure 1.10: Views of Americans about robot vs. human intelligence. Survey respondents were asked, “Which ONE, if any, of the following statements do you MOST agree with?” ([Giattino et al., 2023](https://ourworldindata.org/artificial-intelligence)).*
 
 ## Surveys
 
