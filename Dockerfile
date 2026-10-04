@@ -2,7 +2,7 @@
 FROM ghcr.io/typst/typst:latest AS typst
 
 # Build stage - build Astro site
-FROM node:22-alpine AS builder
+FROM node:26.10.0-alpine AS builder
 
 # Copy typst binary
 COPY --from=typst /bin/typst /usr/local/bin/typst
@@ -10,10 +10,10 @@ COPY --from=typst /bin/typst /usr/local/bin/typst
 WORKDIR /app
 
 # Install pnpm
-RUN corepack enable && corepack prepare pnpm@10.13.1 --activate
+RUN npm install --global pnpm@12.5.1
 
 # Copy package files
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 # Install dependencies
 RUN pnpm install --frozen-lockfile
