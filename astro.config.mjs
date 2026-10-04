@@ -5,6 +5,8 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
+  // Preserve spacing between inline elements across the Astro 7 upgrade.
+  compressHTML: true,
   site: 'https://ai-safety-atlas.com',
   redirects: {
     '/chapters': '/read',
