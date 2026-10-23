@@ -10,7 +10,7 @@ import type { Author, Chapter, Section, Textbook } from '../..';
 import type { Node } from '../../transformer';
 import { chapterReferences, type Reference } from '../../../lib/bibliography';
 
-const CDN_BASE = 'https://atlas.foreviewusercontent.com';
+const CDN_BASE = 'https://atlas-media.cesia.org';
 
 const BLOCK_NODES = [
   'Paragraph',

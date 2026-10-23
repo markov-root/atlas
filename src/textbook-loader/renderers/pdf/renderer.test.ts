@@ -136,7 +136,7 @@ describe('PDF Renderer - Typst subprocess invocation', () => {
     expect(cmd).toContain('typst compile');
     expect(cmd).toContain(join(tmpOut, 'atlas-chapter5-deadbeef.pdf'));
     expect(opts?.input).toContain('#let chapter-number = 5');
-    expect(url).toBe('https://atlas.foreviewusercontent.com/pdf/atlas-chapter5-deadbeef.pdf');
+    expect(url).toBe('https://atlas-media.cesia.org/pdf/atlas-chapter5-deadbeef.pdf');
   });
 
   it('short-circuits Typst invocation when the content-hashed PDF already exists locally', () => {
@@ -152,7 +152,7 @@ describe('PDF Renderer - Typst subprocess invocation', () => {
 
     return r.renderChapter(ch).then((url) => {
       expect(execSyncMock).not.toHaveBeenCalled();
-      expect(url).toBe('https://atlas.foreviewusercontent.com/pdf/atlas-chapter7-cached-hash.pdf');
+      expect(url).toBe('https://atlas-media.cesia.org/pdf/atlas-chapter7-cached-hash.pdf');
     });
   });
 
@@ -201,10 +201,10 @@ describe('PDF Renderer - full pipeline links chapters and pushes to CDN', () => 
     await r.render();
 
     expect(tb.chapters[0].pdfLink).toBe(
-      'https://atlas.foreviewusercontent.com/pdf/atlas-chapter1-h1.pdf',
+      'https://atlas-media.cesia.org/pdf/atlas-chapter1-h1.pdf',
     );
     expect(tb.chapters[1].pdfLink).toBe(
-      'https://atlas.foreviewusercontent.com/pdf/atlas-chapter2-h2.pdf',
+      'https://atlas-media.cesia.org/pdf/atlas-chapter2-h2.pdf',
     );
 
     expect(pushPublicFilesMock).toHaveBeenCalledTimes(1);
