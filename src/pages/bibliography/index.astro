@@ -13,7 +13,6 @@ import Default from '@/layouts/Default.astro';
 import Bibliography from '@/components/Bibliography.astro';
 import { allReferencesWithLocations } from '@/lib/bibliography';
 import { getTextbooks } from '@/lib/textbooks';
-import { ogImageUrl } from '@/lib/og';
 
 // Locations as well as sources: the grouped view exists because a reader met
 // these citations inside a chapter, and an alphabetical run of 945 does not
@@ -28,7 +27,6 @@ const description = `Every source cited in the AI Safety Atlas: ${references.len
 <Default
   title="Bibliography"
   description={description}
-  image={ogImageUrl({ title: 'Bibliography' })}
 >
   {/* The house page idiom (docs/DESIGN.md): a rounded surface floating on the
       grained page background, with the content inside it. This page previously

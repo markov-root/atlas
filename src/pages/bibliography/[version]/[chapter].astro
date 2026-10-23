@@ -21,7 +21,6 @@ import Default from '@/layouts/Default.astro';
 import Bibliography from '@/components/Bibliography.astro';
 import { chapterReferences } from '@/lib/bibliography';
 import { getTextbooks } from '@/lib/textbooks';
-import { ogImageUrl } from '@/lib/og';
 
 export async function getStaticPaths() {
   const textbooks = await getTextbooks();
@@ -43,7 +42,6 @@ const firstSection = chapter.sections[0];
 <Default
   title={title}
   description={`Every source cited in chapter ${chapter.number}, ${chapter.title}.`}
-  image={ogImageUrl({ title: `${chapter.title} - Bibliography` })}
 >
   {/* The house page idiom (docs/DESIGN.md): a rounded surface on the grained
       page background, matching /bibliography and every other content page. */}
