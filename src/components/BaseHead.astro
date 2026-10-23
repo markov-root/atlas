@@ -1,17 +1,24 @@
 ---
 import '@fontsource/righteous';
 import '@fontsource-variable/jost';
+import { ogImagePath, type OgCard } from '@/lib/og';
 
 import './../styles/global.css'
 
 interface Props {
   title: string;
   description: string;
+  ogCard?: OgCard;
 }
 
-const { title, description } = Astro.props
+const { title, description, ogCard } = Astro.props
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const card = ogCard ?? { kind: 'og', title: title || 'AI Safety Atlas', description };
+const imageUrl = new URL(
+  ogImagePath({ title: title || 'AI Safety Atlas', description, pathname: Astro.url.pathname, card }),
+  canonicalUrl,
+).href;
 ---
 <title>{title ? `${title} - AI Safety Atlas` : 'AI Safety Atlas'}</title>
 <link rel="icon" href="/favicon.ico" sizes="48x48" />
@@ -21,7 +28,15 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 <meta property="og:title" content={title || 'AI Safety Atlas'} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonicalUrl} />
-<meta name="twitter:card" content="summary" />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={`${title} - AI Safety Atlas`} />
+<meta name="atlas:og-card" content={JSON.stringify(card)} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content={imageUrl} />
+<meta name="twitter:image:alt" content={`${title} - AI Safety Atlas`} />
 <meta name="description" content={description} />
 <script is:inline>
   (function(c,l,a,r,i,t,y){

@@ -98,6 +98,23 @@ describe('contributor build smoke test', () => {
     const sampleHtml = readFileSync(sized[0].path, 'utf-8');
     expect(sampleHtml).toMatch(/W6WTQ7JBP1/);
     expect(sampleHtml).toMatch(/636da71890a5466401dc666df2be6fb3/);
+
+    // Social crawlers fetch these files directly. Check both original card
+    // layouts exist in the published output at the advertised URLs.
+    for (const page of [join(dist, 'index.html'), sized[0].path]) {
+      const html = readFileSync(page, 'utf-8');
+      const image = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1];
+      expect(image, `${page} must advertise an OG image`).toBeDefined();
+      expect(html).toContain('<meta name="twitter:card" content="summary_large_image"');
+      expect(html).toContain(`<meta name="twitter:image" content="${image}"`);
+
+      const imageUrl = new URL(image!);
+      expect(imageUrl.origin).toBe('https://ai-safety-atlas.com');
+      const png = readFileSync(join(dist, imageUrl.pathname.slice(1)));
+      expect(png.subarray(0, 8).toString('hex')).toBe('89504e470d0a1a0a');
+      expect(png.readUInt32BE(16)).toBe(1200);
+      expect(png.readUInt32BE(20)).toBe(630);
+    }
   }, 180_000);
 });
 

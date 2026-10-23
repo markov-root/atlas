@@ -2,10 +2,10 @@
 schema_version: 2
 id: '0001'
 uid: 'task-20260817T191632220967Z-62a10846'
-title: 'Eliminate imagegen.foreview.org runtime dependency'
+title: 'Eliminate imagegen.foreview.org runtime dependency with build-time OG images'
 role: task
-status: done
-summary: 'Remove Atlas social images so published pages no longer depend on imagegen.foreview.org.'
+status: in_progress
+summary: 'Generate Atlas social images during the static build using the original Atlas Satori templates.'
 created: '2026-08-17'
 updated: '2026-10-23'
 owner: Markov Grey
@@ -16,8 +16,8 @@ engineering_document:
   role: task
   id: '0001'
   uid: task-20260817T191632220967Z-62a10846
-  title: 'Eliminate imagegen.foreview.org runtime dependency'
-  state: done
+  title: 'Eliminate imagegen.foreview.org runtime dependency with build-time OG images'
+  state: in_progress
   authority:
     kind: work-state
     owner: Markov Grey
@@ -30,24 +30,31 @@ engineering_document:
       to: done
       at: '2026-10-23'
       reason: Text-only metadata passed verification and was checked on live Atlas pages.
+    - from: done
+      to: in_progress
+      at: '2026-10-23'
+      reason: The site owner requested build-time images using the original card templates.
   relationships: []
   details:
-    criteria: [criterion:AC-1, criterion:AC-2, criterion:AC-3]
+    criteria: [criterion:AC-1, criterion:AC-2, criterion:AC-3, criterion:AC-4]
 ---
 
-# Task 0001: Eliminate imagegen.foreview.org runtime dependency
+# Task 0001: Eliminate imagegen.foreview.org runtime dependency with build-time OG images
 
 ## Problem
 
 Atlas pages previously advertised `https://imagegen.foreview.org/atlas/...` as their social image.
-That made link previews depend on a service outside Atlas. The earlier plan was to generate matching
-PNGs during the build. On 2026-10-23, the site owner chose text-only previews instead.
+That made link previews depend on a service outside Atlas. The initial text-only replacement removed
+the dependency but also removed image previews. The site owner then requested static images generated
+during each build from the original Atlas card templates.
 
 ## Scope
 
-- Remove `og:image` and `twitter:image` from the shared head component.
-- Use a text-only Twitter card, retaining the page title, description, and canonical URL.
-- Remove OG image helpers and their call sites from all page layouts and routes.
+- Copy the original `og` and `section` Satori layouts and their image assets into Atlas.
+- Generate 1200 by 630 PNGs after the Astro static build using page metadata and the original card fields.
+- Give each image a content-derived URL and reuse unchanged renderings across builds.
+- Advertise own-domain images with wide Open Graph and Twitter card metadata.
+- Keep the credential-free contributor build working.
 
 ## Out of scope
 
@@ -57,16 +64,10 @@ PNGs during the build. On 2026-10-23, the site owner chose text-only previews in
 ## Done when
 
 - AC-1: No site source references `imagegen.foreview.org`.
-- AC-2: Built pages emit no `og:image` or `twitter:image` and use `twitter:card=summary`.
-- AC-3: The Atlas verification gate passes and representative live pages serve text-only previews.
+- AC-2: Built pages advertise local PNGs that exist at their URLs, use `twitter:card=summary_large_image`, and specify 1200 by 630 dimensions.
+- AC-3: The original general and chapter Satori layouts render with their original text and image assets.
+- AC-4: The contributor build and full Atlas verification gate pass, and representative live pages serve the images.
 
 ## Completion evidence
 
-- AC-1: `rg -n 'imagegen\.foreview\.org|ogImageUrl|sectionOgImageUrl' src` found no matches after
-  removing the helper and every call site in commit `9f5779c`.
-- AC-2: The built homepage, `/teach/`, and a chapter page have `twitter:card=summary` and no
-  `og:image` or `twitter:image`. All three retain `og:title` and `og:description`.
-- AC-3: `pnpm verify` passed with `SKIP_AUDIO=1 SKIP_AUDIO_DOWNLOAD=1`, including 323 TypeScript
-  tests, 364 Python tests, the static build, smoke tests, and accessibility tests. GitHub Pages
-  [run 39991570988](https://github.com/markov-root/atlas/actions/runs/39991570988) deployed the
-  change. The same three [live pages](https://ai-safety-atlas.com/) returned text-only metadata.
+Pending verification and deployment.

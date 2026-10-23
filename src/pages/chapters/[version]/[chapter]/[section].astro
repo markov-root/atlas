@@ -104,7 +104,14 @@ const paper = resolveResource(chapter.meta.paper);
     Append .md to any section or chapter URL to get clean markdown.
     Citation: ${siteConfig.citation}
 -->`} />
-<Reader title={`${section.title} - Chapter ${chapter.number}`} description="" activeSection={section} textbook={textbook} markdownUrl={sectionMarkdownUrl} breadcrumbs={[
+<Reader title={`${section.title} - Chapter ${chapter.number}`} description={pageDescription ?? ''} ogCard={{
+    kind: 'section',
+    eyebrow: `Chapter ${chapter.number}: ${chapter.title}`,
+    title: section.title,
+    description: pageDescription ?? '',
+    audio: !!sectionAudio,
+    edition: `Edition ${version.replace('v', '')}`,
+}} activeSection={section} textbook={textbook} markdownUrl={sectionMarkdownUrl} breadcrumbs={[
     { text: `Chapter ${chapter.number}`, url: `/chapters/${version}/${chapter.slug}/${chapter.sections[0].slug}` },
     { text: section.title, url: '#' }
 ]}>

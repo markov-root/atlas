@@ -8,6 +8,7 @@ import SearchTrigger from '@/components/SearchTrigger.astro';
 import { ClientRouter } from 'astro:transitions';
 import LoadingIndicator from 'astro-loading-indicator/component';
 import type { Section, Chapter, Textbook } from '@/textbook-loader';
+import type { OgCard } from '@/lib/og';
 
 interface Breadcrumb {
   text: string;
@@ -21,9 +22,10 @@ interface Props {
   textbook: Textbook
   breadcrumbs: Breadcrumb[]
   markdownUrl?: string
+  ogCard?: OgCard
 }
 
-const { title, description, activeSection, textbook, breadcrumbs, markdownUrl } = Astro.props
+const { title, description, activeSection, textbook, breadcrumbs, markdownUrl, ogCard } = Astro.props
 
 // Compute prev/next section URLs
 const allSections: { chapter: Chapter; section: Section }[] = [];
@@ -50,7 +52,7 @@ const currentChapter = textbook.chapters.find((c: Chapter) => c.number === activ
 		<script is:inline>document.documentElement.classList.add('js')</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} ogCard={ogCard} />
 		<ClientRouter />
 		<LoadingIndicator color="var(--color-brand-600)" height="3px" />
 		<slot name="head" />

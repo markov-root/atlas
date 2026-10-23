@@ -24,7 +24,7 @@ index as numbered files (e.g. `0001-title.md`).
 ## Entries
 
 - [task:0001](./0001-eliminate-imagegen-foreview-org-runtime-dependency-build-time-og-images.md) -
-  Eliminate the `imagegen.foreview.org` runtime dependency with text-only previews (done).
+  Eliminate the `imagegen.foreview.org` runtime dependency with build-time OG images (in_progress).
 - [task:0002](./0002-migrate-r2-assets-to-our-own-cloudflare-account-and-repoint-config.md) -
   Migrate R2 assets to our own Cloudflare account and repoint config (todo).
 - [task:0003](./0003-establish-independent-google-docs-control-own-service-account-sharing-copy-offli.md) -
