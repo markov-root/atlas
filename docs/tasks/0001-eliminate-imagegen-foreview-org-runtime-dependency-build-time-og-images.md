@@ -4,7 +4,7 @@ id: '0001'
 uid: 'task-20260817T191632220967Z-62a10846'
 title: 'Eliminate imagegen.foreview.org runtime dependency'
 role: task
-status: todo
+status: done
 summary: 'Remove Atlas social images so published pages no longer depend on imagegen.foreview.org.'
 created: '2026-08-17'
 updated: '2026-10-23'
@@ -17,15 +17,19 @@ engineering_document:
   id: '0001'
   uid: task-20260817T191632220967Z-62a10846
   title: 'Eliminate imagegen.foreview.org runtime dependency'
-  state: todo
+  state: done
   authority:
     kind: work-state
     owner: Markov Grey
     scope: BOUNDED ACCEPTANCE AND COMPLETION AUTHORITY
   created: '2026-08-17'
   updated: '2026-10-23'
-  transition_history: unverified
-  transitions: []
+  transition_history: complete
+  transitions:
+    - from: todo
+      to: done
+      at: '2026-10-23'
+      reason: Text-only metadata passed verification and was checked on live Atlas pages.
   relationships: []
   details:
     criteria: [criterion:AC-1, criterion:AC-2, criterion:AC-3]
@@ -58,4 +62,11 @@ PNGs during the build. On 2026-10-23, the site owner chose text-only previews in
 
 ## Completion evidence
 
-Pending deployment and live verification.
+- AC-1: `rg -n 'imagegen\.foreview\.org|ogImageUrl|sectionOgImageUrl' src` found no matches after
+  removing the helper and every call site in commit `9f5779c`.
+- AC-2: The built homepage, `/teach/`, and a chapter page have `twitter:card=summary` and no
+  `og:image` or `twitter:image`. All three retain `og:title` and `og:description`.
+- AC-3: `pnpm verify` passed with `SKIP_AUDIO=1 SKIP_AUDIO_DOWNLOAD=1`, including 323 TypeScript
+  tests, 364 Python tests, the static build, smoke tests, and accessibility tests. GitHub Pages
+  [run 39991570988](https://github.com/markov-root/atlas/actions/runs/39991570988) deployed the
+  change. The same three [live pages](https://ai-safety-atlas.com/) returned text-only metadata.
