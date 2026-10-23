@@ -4,7 +4,7 @@ id: '0001'
 uid: 'task-20260817T191632220967Z-62a10846'
 title: 'Eliminate imagegen.foreview.org runtime dependency with build-time OG images'
 role: task
-status: in_progress
+status: done
 summary: 'Generate Atlas social images during the static build using the original Atlas Satori templates.'
 created: '2026-08-17'
 updated: '2026-10-23'
@@ -17,7 +17,7 @@ engineering_document:
   id: '0001'
   uid: task-20260817T191632220967Z-62a10846
   title: 'Eliminate imagegen.foreview.org runtime dependency with build-time OG images'
-  state: in_progress
+  state: done
   authority:
     kind: work-state
     owner: Markov Grey
@@ -34,6 +34,10 @@ engineering_document:
       to: in_progress
       at: '2026-10-23'
       reason: The site owner requested build-time images using the original card templates.
+    - from: in_progress
+      to: done
+      at: '2026-10-23'
+      reason: The original cards passed verification and were served from Atlas after deployment.
   relationships: []
   details:
     criteria: [criterion:AC-1, criterion:AC-2, criterion:AC-3, criterion:AC-4]
@@ -70,4 +74,15 @@ during each build from the original Atlas card templates.
 
 ## Completion evidence
 
-Pending verification and deployment.
+- AC-1: `rg -n 'imagegen\.foreview\.org|ogImageUrl|sectionOgImageUrl' src` found no matches.
+- AC-2: The static build generated 88 PNGs for 393 HTML pages. The homepage, `/teach/`, and a
+  chapter page advertise own-domain images with 1200 by 630 metadata and `summary_large_image`.
+  Each advertised live PNG returned HTTP 200 as `image/png` in under half a second in the check.
+- AC-3: The original Atlas `og` and `section` Satori templates and both original image assets
+  are copied into `scripts/og/`. The generator passes each chapter's original eyebrow, title,
+  description, audio state, and edition. Visual checks covered the homepage and chapter cards.
+- AC-4: `pnpm verify` passed in contributor mode with 323 TypeScript tests, 364 Python tests,
+  the static build, smoke tests, and accessibility tests. The generator reused all 88 cached
+  images on a second run. GitHub Pages [run 39996520279](https://github.com/markov-root/atlas/actions/runs/39996520279)
+  deployed commit `5514869`, and the same three [live pages](https://ai-safety-atlas.com/)
+  served the expected images.
