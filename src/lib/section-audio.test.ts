@@ -5,7 +5,7 @@ import {
   resolveSectionAudio,
 } from "./section-audio"
 
-const CDN = "https://atlas.foreviewusercontent.com/audio/atlas-ch1-s1-abc.mp3"
+const CDN = "https://atlas-media.cesia.org/audio/atlas-ch1-s1-abc.mp3"
 const staged = () => true
 const notStaged = () => false
 

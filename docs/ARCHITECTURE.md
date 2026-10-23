@@ -343,7 +343,7 @@ The glob collections (`glossary`, `organizations`, `cohorts`) and `loadGlossary`
 
 ### Typst PDF - fail loud at compile, silent at upload
 
-A Typst compilation failure in `renderChapter` throws with the Google Doc URL and the exact cache-clear command in the message - good, loud, actionable. But the upload of the finished PDF via `pushPublicFiles` is warn-and-continue (see R2 below), and `chapter.pdfLink` is assigned the CDN URL **unconditionally** - `renderChapter` returns `https://atlas.foreviewusercontent.com/pdf/...` whether or not the upload succeeded. A failed R2 upload therefore produces a successful build whose "Download PDF" link 404s.
+A Typst compilation failure in `renderChapter` throws with the Google Doc URL and the exact cache-clear command in the message - good, loud, actionable. But the upload of the finished PDF via `pushPublicFiles` is warn-and-continue (see R2 below), and `chapter.pdfLink` is assigned the CDN URL **unconditionally** - `renderChapter` returns `https://atlas-media.cesia.org/pdf/...` whether or not the upload succeeded. A failed R2 upload therefore produces a successful build whose "Download PDF" link 404s.
 
 ### TTS audio - all-or-nothing per section, stale fallback by design
 
@@ -449,7 +449,7 @@ We accept these costs because the alternative requires standing up a content-pub
 
 ## R2 layout (maintainer-only)
 
-PDFs and audio are served from `https://atlas.foreviewusercontent.com` (Cloudflare R2 fronted by a custom domain; the CDN base is hardcoded as `CDN_BASE` in both renderers). Everything is uploaded to one bucket under distinct prefixes:
+PDFs and audio are served from `https://atlas-media.cesia.org` (Cloudflare R2 fronted by a custom domain; the CDN base is hardcoded as `CDN_BASE` in both renderers). Everything is uploaded to one bucket under distinct prefixes:
 
 - `audio-chunks/<sha256>.mp3` and `.pcm` - per-paragraph TTS chunk cache, keyed by paragraph text hash
 - `equation-descriptions/<sha256>.txt` - Gemini-generated alt text for math, keyed by LaTeX hash

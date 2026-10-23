@@ -7,7 +7,7 @@ import { ElevenLabsTTS } from './elevenlabs-tts';
 import { TextRenderer } from './text-renderer';
 import { pullFromR2, pushToR2, pullFinalAudioBatch, pushFinalAudioFiles, pushPublicFiles } from './r2-cache';
 
-const CDN_BASE = 'https://atlas.foreviewusercontent.com';
+const CDN_BASE = 'https://atlas-media.cesia.org';
 
 export interface AudioRendererOptions {
   /** Skip TTS generation; only link existing audio files. */
